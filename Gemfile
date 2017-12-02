@@ -21,6 +21,7 @@ gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'coffee-rails'
 gem 'jquery-rails'
+gem 'reform-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

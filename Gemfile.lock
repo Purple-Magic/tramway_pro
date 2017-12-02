@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kalashnikovisme/tramway-core.git
-  revision: 9157d817db3ad3ba0da19ccaf49de7fbe7ddde74
+  revision: d97d5a5749603d062fad5f092224668697382c9b
   branch: develop
   specs:
     tramway-core (0.1.0.4)
@@ -82,6 +82,16 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
+    declarative (0.0.10)
+    declarative-builder (0.1.0)
+      declarative-option (< 0.2.0)
+    declarative-option (0.1.0)
+    disposable (0.4.3)
+      declarative (>= 0.0.9, < 1.0.0)
+      declarative-builder (< 0.2.0)
+      declarative-option (< 0.2.0)
+      representable (>= 2.4.0, <= 3.1.0)
+      uber (< 0.2.0)
     erubi (1.7.0)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -164,6 +174,16 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    reform (2.2.4)
+      disposable (>= 0.4.1)
+      representable (>= 2.4.0, < 3.1.0)
+    reform-rails (0.1.7)
+      activemodel (>= 3.2)
+      reform (>= 2.2.0)
+    representable (3.0.4)
+      declarative (< 0.1.0)
+      declarative-option (< 0.2.0)
+      uber (< 0.2.0)
     ruby_dep (1.5.0)
     ruby_parser (3.10.1)
       sexp_processor (~> 4.9)
@@ -200,6 +220,7 @@ GEM
     tilt (2.0.8)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
+    uber (0.1.0)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     unicorn (5.3.1)
@@ -229,6 +250,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   pg (~> 0.18)
   rails (~> 5.1.4)
+  reform-rails
   sass-rails
   simple_form
   spring
