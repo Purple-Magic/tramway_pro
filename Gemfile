@@ -12,7 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.5'
 gem 'tramway-sport_school', github: 'kalashnikovisme/tramway-sport_school', branch: :develop
 gem 'tramway-user', github: 'kalashnikovisme/tramway-user'
-gem 'tramway-core', github: 'kalashnikovisme/tramway-core'
+gem 'tramway-core', github: 'kalashnikovisme/tramway-core', branch: :develop
 gem 'haml-rails'
 gem 'sass-rails'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
