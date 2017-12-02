@@ -2,7 +2,7 @@
   vars:
     app_path: "/srv/tramway_pro"
     shared_path: "{{ app_path }}/shared"
-    ruby_version: "2.4.2"
+    ruby_version: "ruby-2.3.0"
 
   tasks:
     - name: Ping to server

@@ -1,21 +1,24 @@
-PATH
-  remote: ../tramway-core
+GIT
+  remote: https://github.com/kalashnikovisme/tramway-core.git
+  revision: d8eb889dfb56cab0e4929e6c07aa0e5ff6b4f60e
   specs:
     tramway-core (0.1.0.4)
       rails (~> 5.1.4)
 
-PATH
-  remote: ../tramway-sport_school
+GIT
+  remote: https://github.com/kalashnikovisme/tramway-sport_school.git
+  revision: a317c38d1ae2de718d39208a22716524a5763cf0
+  branch: develop
   specs:
     tramway-sport_school (0.1.0)
       rails (~> 5.1.4)
 
-PATH
-  remote: ../tramway-user
+GIT
+  remote: https://github.com/kalashnikovisme/tramway-user.git
+  revision: fc049535de180f4f353d86e443c6bdaffa169573
   specs:
     tramway-user (0.1.0)
       rails (~> 5.1.4)
-      tramway-core (~> 0.1.0.4)
 
 GEM
   remote: https://rubygems.org/
