@@ -18,3 +18,5 @@
 
 .byebug_history
 public/assets/
+config/secrets.yml
+config/database.yml
