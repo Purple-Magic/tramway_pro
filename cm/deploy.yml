@@ -79,7 +79,7 @@
         chdir: "{{ release_path }}"
 
     - name: Migrate
-      shell: "/usr/local/rvm/bin/rvm {{ ruby_version }} do {{ release_path }}/bin/rake db:migrate"
+      shell: "/usr/local/rvm/bin/rvm {{ ruby_version }} do {{ release_path }}/bin/rake db:create db:migrate"
       args:
         chdir: "{{ release_path }}"
 
