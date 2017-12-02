@@ -1,0 +1,99 @@
+- hosts: production
+  vars:
+    app_path: "/srv/tramway_pro"
+    shared_path: "{{ app_path }}/shared"
+    ruby_version: "2.4.2"
+
+  tasks:
+    - name: Ping to server
+      shell: echo 'Ready to deploy, main lieben fuhrer!'
+      register: ping
+
+    - name: Checking ping
+      debug: msg="{{ ping.stdout }}"
+
+    - name: Getting timestamp
+      command: date +%Y%m%d%H%M%S
+      register: time
+
+    - name: Save application path
+      set_fact: release_path="{{ app_path }}/releases/{{ time.stdout }}"
+
+    - name: Checking application path
+      debug: msg="Current application path is {{ release_path }}"
+
+    - name: Checking out repo
+      git: repo=https://github.com/kalashnikovisme/tramway_pro
+           dest={{ release_path }}
+           version=develop
+
+    - name: Linking config files
+      file:
+        src={{ shared_path }}/config/{{ item }}
+        dest={{ release_path }}/config/{{ item }}
+        state=link
+        force=yes
+      with_items:
+        - database.yml
+        - secrets.yml
+
+    - name: Create tmp
+      file:
+        path={{ release_path }}/tmp
+        state=directory
+        force=yes
+
+    - name: Remove old logs
+      file:
+        path={{ release_path }}/log
+        state=absent
+
+    - name: Linking directories
+      file:
+        src={{ shared_path }}/{{ item }}
+        dest={{ release_path }}/{{ item }}
+        state=link
+      with_items:
+        - log
+        - tmp/pids
+        - tmp/cache
+        - tmp/sockets
+        - vendor/bundle
+        - public/system
+        - public/uploads
+        - node_modules
+
+    - name: Bundle
+      shell: "/usr/local/rvm/bin/rvm {{ ruby_version }} do bundle install --path {{ shared_path }}/bundle --without development test --deployment --quiet"
+      args:
+        chdir: "{{ release_path }}"
+
+    - name: NPM install
+      shell: "cd {{ release_path }} && npm install"
+      args:
+        chdir: "{{ release_path }}"
+
+    - name: Assets
+      shell: "/usr/local/rvm/bin/rvm {{ ruby_version }} do {{ release_path }}/bin/rake assets:precompile"
+      args:
+        chdir: "{{ release_path }}"
+
+    - name: Migrate
+      shell: "/usr/local/rvm/bin/rvm {{ ruby_version }} do {{ release_path }}/bin/rake db:migrate"
+      args:
+        chdir: "{{ release_path }}"
+
+    - name: Linking current
+      file:
+        src={{ release_path }}
+        dest={{ app_path }}/current
+        state=link
+        force=yes
+
+    - name: Stop unicorn
+      shell: "[ -e /srv/tramway_pro/shared/tmp/pids/unicorn.pid  ] && kill `cat /srv/tramway_pro/shared/tmp/pids/unicorn.pid`"
+
+    - name: Start unicorn
+      shell: "/usr/local/rvm/bin/rvm {{ ruby_version }} do bundle exec unicorn -c /srv/tramway_pro/current/config/unicorn/production.rb -E production -D"
+      args:
+        chdir: "{{ release_path }}"
