@@ -23,6 +23,8 @@ gem 'font-awesome-rails'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'reform-rails'
+gem 'enumerize'
+gem 'state_machine', github: 'seuros/state_machine'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -33,5 +35,9 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  #gem 'tramway-sport_school', path: '../tramway-sport_school'
+  #gem 'tramway-admin', path: '../tramway-admin'
+  #gem 'tramway-core', path: '../tramway-core'
+  #gem 'tramway-user', path: '../tramway-user'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

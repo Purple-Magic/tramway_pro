@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kalashnikovisme/tramway-admin.git
-  revision: 8fddab4aef211d667252721cb704cd38f017a4de
+  revision: 718a09e80d620146b3a849e417f43c00f68e36c4
   branch: develop
   specs:
     tramway-admin (0.1.0)
@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: https://github.com/kalashnikovisme/tramway-sport_school.git
-  revision: cffc1a4f39a56f240a275a860769dc91e4226234
+  revision: 589a6773824c3fbf2034951cd90d9cb4fe00dd26
   branch: develop
   specs:
     tramway-sport_school (0.1.0)
@@ -30,6 +30,12 @@ GIT
     tramway-user (0.1.0)
       rails (~> 5.1.4)
       tramway-core (~> 0.1.0.4)
+
+GIT
+  remote: https://github.com/seuros/state_machine.git
+  revision: 95ba53f03e5657a5873343c2b1dc6a148ea3542e
+  specs:
+    state_machine (1.2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -102,6 +108,8 @@ GEM
       declarative-option (< 0.2.0)
       representable (>= 2.4.0, <= 3.1.0)
       uber (< 0.2.0)
+    enumerize (2.1.2)
+      activesupport (>= 3.2)
     erubi (1.7.0)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -253,6 +261,7 @@ DEPENDENCIES
   bootstrap (~> 4.0.0.beta2.1)
   byebug
   coffee-rails
+  enumerize
   font-awesome-rails
   haml-rails
   jbuilder (~> 2.5)
@@ -265,6 +274,7 @@ DEPENDENCIES
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
+  state_machine!
   tramway-admin!
   tramway-core!
   tramway-sport_school!
