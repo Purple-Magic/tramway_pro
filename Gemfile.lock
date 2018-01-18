@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/kalashnikovisme/tramway-admin.git
+  revision: 8fddab4aef211d667252721cb704cd38f017a4de
+  branch: develop
+  specs:
+    tramway-admin (0.1.0)
+      rails (~> 5.1.4)
+
+GIT
   remote: https://github.com/kalashnikovisme/tramway-core.git
   revision: 7a0b950422863bbab897c9db324f4342d190425b
   branch: develop
@@ -16,10 +24,12 @@ GIT
 
 GIT
   remote: https://github.com/kalashnikovisme/tramway-user.git
-  revision: fc049535de180f4f353d86e443c6bdaffa169573
+  revision: 006d58523e2ef99913a6837f4b91469905439c5d
+  branch: develop
   specs:
     tramway-user (0.1.0)
       rails (~> 5.1.4)
+      tramway-core (~> 0.1.0.4)
 
 GEM
   remote: https://rubygems.org/
@@ -255,6 +265,7 @@ DEPENDENCIES
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
+  tramway-admin!
   tramway-core!
   tramway-sport_school!
   tramway-user!
