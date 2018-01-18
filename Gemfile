@@ -25,6 +25,7 @@ gem 'jquery-rails'
 gem 'reform-rails'
 gem 'enumerize'
 gem 'state_machine', github: 'seuros/state_machine'
+gem 'bcrypt'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
