@@ -1,37 +1,4 @@
 GIT
-  remote: https://github.com/kalashnikovisme/tramway-admin.git
-  revision: b550f014cfb3aaec41f31a5a31be3264570b85fb
-  branch: develop
-  specs:
-    tramway-admin (0.1.0)
-      rails (~> 5.1.4)
-
-GIT
-  remote: https://github.com/kalashnikovisme/tramway-core.git
-  revision: c1e2382e8de6429fb4a4abe89ebb79b98040b6f2
-  branch: develop
-  specs:
-    tramway-core (0.1.0.4)
-      rails (~> 5.1.4)
-
-GIT
-  remote: https://github.com/kalashnikovisme/tramway-sport_school.git
-  revision: 7858a602ed7fde0d9a58f43952a2cbbe2a3ded36
-  branch: develop
-  specs:
-    tramway-sport_school (0.1.0)
-      rails (~> 5.1.4)
-
-GIT
-  remote: https://github.com/kalashnikovisme/tramway-user.git
-  revision: 006d58523e2ef99913a6837f4b91469905439c5d
-  branch: develop
-  specs:
-    tramway-user (0.1.0)
-      rails (~> 5.1.4)
-      tramway-core (~> 0.1.0.4)
-
-GIT
   remote: https://github.com/rafaelmotta/bootstrap-kaminari-views.git
   revision: e8d57b2fbf56607731c6c9bf254f24f38ce2beec
   branch: master
@@ -45,6 +12,31 @@ GIT
   revision: 95ba53f03e5657a5873343c2b1dc6a148ea3542e
   specs:
     state_machine (1.2.0)
+
+PATH
+  remote: ../tramway-admin
+  specs:
+    tramway-admin (0.1.0)
+      rails (~> 5.1.4)
+
+PATH
+  remote: ../tramway-core
+  specs:
+    tramway-core (0.1.0.4)
+      rails (~> 5.1.4)
+
+PATH
+  remote: ../tramway-sport_school
+  specs:
+    tramway-sport_school (0.1.0)
+      rails (~> 5.1.4)
+
+PATH
+  remote: ../tramway-user
+  specs:
+    tramway-user (0.1.0)
+      rails (~> 5.1.4)
+      tramway-core (~> 0.1.0.4)
 
 GEM
   remote: https://rubygems.org/
@@ -183,6 +175,7 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mini_magick (4.8.0)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.1)
@@ -236,6 +229,7 @@ GEM
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
       uber (< 0.2.0)
+    rmagick (2.16.0)
     ruby_dep (1.5.0)
     ruby_parser (3.10.1)
       sexp_processor (~> 4.9)
@@ -307,10 +301,12 @@ DEPENDENCIES
   jquery-rails
   kaminari
   listen (>= 3.0.5, < 3.2)
+  mini_magick
   pg (= 0.21.0)
   pry
   rails (~> 5.1.4)
   reform-rails
+  rmagick
   sass-rails
   simple_form
   spring

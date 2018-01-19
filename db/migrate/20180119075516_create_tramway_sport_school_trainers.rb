@@ -4,8 +4,8 @@ class CreateTramwaySportSchoolTrainers < ActiveRecord::Migration[5.1]
       t.text :first_name
       t.text :last_name
       t.text :patronymic
-      t.text :state
-      t.text :view_state
+      t.text :state, default: :active
+      t.text :view_state, default: :hidden
 
       t.timestamps
     end
