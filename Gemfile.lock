@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kalashnikovisme/tramway-admin.git
-  revision: 287afc009810d318d8d8aa63d468c79d809d86f9
+  revision: b550f014cfb3aaec41f31a5a31be3264570b85fb
   branch: develop
   specs:
     tramway-admin (0.1.0)
@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: https://github.com/kalashnikovisme/tramway-sport_school.git
-  revision: e00770c9db7e6a604bc18d3d5f5efc1dd4568c8c
+  revision: 7858a602ed7fde0d9a58f43952a2cbbe2a3ded36
   branch: develop
   specs:
     tramway-sport_school (0.1.0)
