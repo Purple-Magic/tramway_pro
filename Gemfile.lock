@@ -1,4 +1,37 @@
 GIT
+  remote: https://github.com/kalashnikovisme/tramway-admin.git
+  revision: 5cc3778b512a3581bba92363b4268ffb5e1eac6a
+  branch: develop
+  specs:
+    tramway-admin (0.1.0)
+      rails (~> 5.1.4)
+
+GIT
+  remote: https://github.com/kalashnikovisme/tramway-core.git
+  revision: 9dfc83f6bdc054784ea6782eddfde9bc3a902b36
+  branch: develop
+  specs:
+    tramway-core (0.1.0.4)
+      rails (~> 5.1.4)
+
+GIT
+  remote: https://github.com/kalashnikovisme/tramway-sport_school.git
+  revision: 5d90763118dc55439861ef39faea07201dd9858f
+  branch: develop
+  specs:
+    tramway-sport_school (0.1.0)
+      rails (~> 5.1.4)
+
+GIT
+  remote: https://github.com/kalashnikovisme/tramway-user.git
+  revision: 006d58523e2ef99913a6837f4b91469905439c5d
+  branch: develop
+  specs:
+    tramway-user (0.1.0)
+      rails (~> 5.1.4)
+      tramway-core (~> 0.1.0.4)
+
+GIT
   remote: https://github.com/rafaelmotta/bootstrap-kaminari-views.git
   revision: e8d57b2fbf56607731c6c9bf254f24f38ce2beec
   branch: master
@@ -12,31 +45,6 @@ GIT
   revision: 95ba53f03e5657a5873343c2b1dc6a148ea3542e
   specs:
     state_machine (1.2.0)
-
-PATH
-  remote: ../tramway-admin
-  specs:
-    tramway-admin (0.1.0)
-      rails (~> 5.1.4)
-
-PATH
-  remote: ../tramway-core
-  specs:
-    tramway-core (0.1.0.4)
-      rails (~> 5.1.4)
-
-PATH
-  remote: ../tramway-sport_school
-  specs:
-    tramway-sport_school (0.1.0)
-      rails (~> 5.1.4)
-
-PATH
-  remote: ../tramway-user
-  specs:
-    tramway-user (0.1.0)
-      rails (~> 5.1.4)
-      tramway-core (~> 0.1.0.4)
 
 GEM
   remote: https://rubygems.org/
