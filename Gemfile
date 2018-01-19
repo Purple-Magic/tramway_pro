@@ -33,6 +33,7 @@ gem 'bootstrap-kaminari-views', github: 'rafaelmotta/bootstrap-kaminari-views', 
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'rmagick'
+gem 'state_machine_buttons'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

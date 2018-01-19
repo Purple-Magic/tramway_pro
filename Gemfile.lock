@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/kalashnikovisme/tramway-core.git
-  revision: 9dfc83f6bdc054784ea6782eddfde9bc3a902b36
+  revision: 547704c076381b79c649bf3dd5d739968c637ddc
   branch: develop
   specs:
     tramway-core (0.1.0.4)
@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: https://github.com/kalashnikovisme/tramway-sport_school.git
-  revision: 5d90763118dc55439861ef39faea07201dd9858f
+  revision: 5129c79b882fcd8c9eaec087bb5825f26a9b8fea
   branch: develop
   specs:
     tramway-sport_school (0.1.0)
@@ -268,6 +268,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    state_machine_buttons (0.4.1)
     temple (0.8.0)
     thor (0.20.0)
     thread_safe (0.3.6)
@@ -320,6 +321,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   state_machine!
+  state_machine_buttons
   tramway-admin!
   tramway-core!
   tramway-sport_school!
