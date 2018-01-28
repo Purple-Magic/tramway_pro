@@ -15,8 +15,16 @@ GIT
       rails (~> 5.1.4)
 
 GIT
+  remote: https://github.com/kalashnikovisme/tramway-landing.git
+  revision: 9097b83d5bca465ae2b13ab53f3c25c5a42360b7
+  branch: develop
+  specs:
+    tramway-landing (0.1.0)
+      rails (~> 5.1.4)
+
+GIT
   remote: https://github.com/kalashnikovisme/tramway-sport_school.git
-  revision: 5b660d34f3b91f2ef61895145db2bd34ebe78fb0
+  revision: 6b1074ea623d053942294e20a93f96bfadb4ca76
   branch: develop
   specs:
     tramway-sport_school (0.1.0)
@@ -324,6 +332,7 @@ DEPENDENCIES
   state_machine_buttons
   tramway-admin!
   tramway-core!
+  tramway-landing!
   tramway-sport_school!
   tramway-user!
   trap

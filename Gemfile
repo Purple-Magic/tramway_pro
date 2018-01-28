@@ -14,6 +14,7 @@ gem 'tramway-sport_school', github: 'kalashnikovisme/tramway-sport_school', bran
 gem 'tramway-user', github: 'kalashnikovisme/tramway-user', branch: :develop
 gem 'tramway-core', github: 'kalashnikovisme/tramway-core', branch: :develop
 gem 'tramway-admin', github: 'kalashnikovisme/tramway-admin', branch: :develop
+gem 'tramway-landing', github: 'kalashnikovisme/tramway-landing', branch: :develop
 gem 'haml-rails'
 gem 'sass-rails'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
@@ -49,5 +50,6 @@ group :development do
  # gem 'tramway-admin', path: '../tramway-admin'
  # gem 'tramway-core', path: '../tramway-core'
  # gem 'tramway-user', path: '../tramway-user'
+ # gem 'tramway-landing', path: '../tramway-landing'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
