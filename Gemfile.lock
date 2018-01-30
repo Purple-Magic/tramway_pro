@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kalashnikovisme/tramway-admin.git
-  revision: 65f8ab8bb62267affacbbb1a4bc688168b4c7519
+  revision: 836f0f028acc739779099a2701335edc19d4ef14
   branch: develop
   specs:
     tramway-admin (0.1.0)
@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: https://github.com/kalashnikovisme/tramway-landing.git
-  revision: 97a613cb90ed9b80303c7b6366b17fecaef769e1
+  revision: 85dc07d9ad1611aa11dfcfdb4300b8f32fb648f0
   branch: develop
   specs:
     tramway-landing (0.1.0)
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/kalashnikovisme/tramway-sport_school.git
-  revision: 8c1e73fc5cfc56d5d0f9859c1bff870c960ea3a4
+  revision: 85f12d7cdc1a5bd7a0edb3da46dd958c355763e7
   branch: develop
   specs:
     tramway-sport_school (0.1.0)
@@ -197,7 +197,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     nio4r (2.2.0)
-    nokogiri (1.8.1)
+    nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     pg (0.21.0)
     popper_js (1.12.9)
@@ -342,4 +342,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
