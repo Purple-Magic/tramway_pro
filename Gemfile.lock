@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/kalashnikovisme/tramway-sport_school.git
-  revision: 85f12d7cdc1a5bd7a0edb3da46dd958c355763e7
+  revision: c6a8d18f6ffb512626cf120f1434490bb62a6373
   branch: develop
   specs:
     tramway-sport_school (0.1.0)

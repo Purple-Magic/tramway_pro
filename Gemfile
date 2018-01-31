@@ -46,10 +46,10 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry'
- # gem 'tramway-sport_school', path: '../tramway-sport_school'
- # gem 'tramway-admin', path: '../tramway-admin'
- # gem 'tramway-core', path: '../tramway-core'
- # gem 'tramway-user', path: '../tramway-user'
- # gem 'tramway-landing', path: '../tramway-landing'
+  #gem 'tramway-sport_school', path: '../tramway-sport_school'
+  #gem 'tramway-admin', path: '../tramway-admin'
+  #gem 'tramway-core', path: '../tramway-core'
+  #gem 'tramway-user', path: '../tramway-user'
+  #gem 'tramway-landing', path: '../tramway-landing'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
