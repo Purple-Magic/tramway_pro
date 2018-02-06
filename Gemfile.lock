@@ -1,45 +1,4 @@
 GIT
-  remote: https://github.com/kalashnikovisme/tramway-admin.git
-  revision: 836f0f028acc739779099a2701335edc19d4ef14
-  branch: develop
-  specs:
-    tramway-admin (0.1.0)
-      rails (~> 5.1.4)
-
-GIT
-  remote: https://github.com/kalashnikovisme/tramway-core.git
-  revision: 353780ebffd4b2187a3ac8ebe70b6b6c2775c287
-  branch: develop
-  specs:
-    tramway-core (0.1.0.4)
-      rails (~> 5.1.4)
-
-GIT
-  remote: https://github.com/kalashnikovisme/tramway-landing.git
-  revision: 85dc07d9ad1611aa11dfcfdb4300b8f32fb648f0
-  branch: develop
-  specs:
-    tramway-landing (0.1.0)
-      rails (~> 5.1.4)
-
-GIT
-  remote: https://github.com/kalashnikovisme/tramway-sport_school.git
-  revision: 7f7afb6c230568fa2f8891a7f214cb77df747f16
-  branch: develop
-  specs:
-    tramway-sport_school (0.1.0)
-      rails (~> 5.1.4)
-
-GIT
-  remote: https://github.com/kalashnikovisme/tramway-user.git
-  revision: 006d58523e2ef99913a6837f4b91469905439c5d
-  branch: develop
-  specs:
-    tramway-user (0.1.0)
-      rails (~> 5.1.4)
-      tramway-core (~> 0.1.0.4)
-
-GIT
   remote: https://github.com/rafaelmotta/bootstrap-kaminari-views.git
   revision: e8d57b2fbf56607731c6c9bf254f24f38ce2beec
   branch: master
@@ -53,6 +12,46 @@ GIT
   revision: 95ba53f03e5657a5873343c2b1dc6a148ea3542e
   specs:
     state_machine (1.2.0)
+
+GIT
+  remote: https://github.com/ulmic/tramway-admin.git
+  revision: 836f0f028acc739779099a2701335edc19d4ef14
+  branch: develop
+  specs:
+    tramway-admin (0.1.0)
+      rails (~> 5.1.4)
+
+GIT
+  remote: https://github.com/ulmic/tramway-core.git
+  revision: 075bdaa2b3cf246c11256b34fc290e4f9430d046
+  branch: develop
+  specs:
+    tramway-core (0.2)
+      carrierwave
+      rails (~> 5.1.4)
+
+GIT
+  remote: https://github.com/ulmic/tramway-landing.git
+  revision: 85dc07d9ad1611aa11dfcfdb4300b8f32fb648f0
+  branch: develop
+  specs:
+    tramway-landing (0.1.0)
+      rails (~> 5.1.4)
+
+GIT
+  remote: https://github.com/ulmic/tramway-sport_school.git
+  revision: 43b74d6172711a0e2b8a8c34dc2e79666fdf39b3
+  branch: develop
+  specs:
+    tramway-sport_school (0.1.0)
+      rails (~> 5.1.4)
+
+GIT
+  remote: https://github.com/ulmic/tramway-user.git
+  revision: 5e4c04af9dea7abcb27351b0a2d35d37ebe042a1
+  branch: develop
+  specs:
+    tramway-user (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -106,7 +105,7 @@ GEM
       popper_js (>= 1.12.9, < 2)
       sass (>= 3.5.2)
     builder (3.2.3)
-    byebug (9.1.0)
+    byebug (10.0.0)
     carrierwave (1.2.2)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -137,7 +136,7 @@ GEM
     erubi (1.7.0)
     erubis (2.7.0)
     execjs (2.7.0)
-    ffi (1.9.18)
+    ffi (1.9.21)
     font-awesome-rails (4.7.0.3)
       railties (>= 3.2, < 5.2)
     globalid (0.4.1)
@@ -177,7 +176,7 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
-    kgio (2.11.1)
+    kgio (2.11.2)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -204,7 +203,7 @@ GEM
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    rack (2.0.3)
+    rack (2.0.4)
     rack-test (0.8.2)
       rack (>= 1.0, < 3)
     rails (5.1.4)
@@ -282,10 +281,10 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.8)
     trap (2.1)
-    tzinfo (1.2.4)
+    tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uber (0.1.0)
-    uglifier (4.1.3)
+    uglifier (4.1.5)
       execjs (>= 0.3.0, < 3)
     unicorn (5.4.0)
       kgio (~> 2.6)
