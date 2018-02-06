@@ -32,11 +32,10 @@ GIT
 
 GIT
   remote: https://github.com/ulmic/tramway-landing.git
-  revision: 85dc07d9ad1611aa11dfcfdb4300b8f32fb648f0
+  revision: 715872a225d54402be66aad4de2d4fd24e5511d2
   branch: develop
   specs:
     tramway-landing (0.1.0)
-      rails (~> 5.1.4)
 
 GIT
   remote: https://github.com/ulmic/tramway-sport_school.git
