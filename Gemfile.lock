@@ -37,7 +37,7 @@ GIT
 
 GIT
   remote: https://github.com/ulmic/tramway-sport_school.git
-  revision: 941fae99b6d22b8cd327054b08e6ab4e515b31e2
+  revision: c69fcdbdb67e0e84bd83fb526d508261be2b7b81
   branch: develop
   specs:
     tramway-sport_school (0.1.0)
