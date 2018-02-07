@@ -30,7 +30,7 @@ GIT
 
 GIT
   remote: https://github.com/ulmic/tramway-landing.git
-  revision: 418be7f25ad69bc0ca994ad8c4bb0c1bdb1c60f4
+  revision: 7f5c71e5ae3193796d30caa8611639b7c5616c1a
   branch: develop
   specs:
     tramway-landing (0.1.0)
