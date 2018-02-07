@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/ulmic/tramway-core.git
-  revision: 91880977b4b1f7e4c24b84faad6d01f98359c9cd
+  revision: 7b4d2a8ad0bde4d7a35fec45b979318b8c1498d3
   branch: develop
   specs:
     tramway-core (0.2)
