@@ -35,6 +35,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'rmagick'
 gem 'state_machine_buttons'
+gem 'copyright_mafa'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

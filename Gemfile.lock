@@ -23,27 +23,24 @@ GIT
 
 GIT
   remote: https://github.com/ulmic/tramway-core.git
-  revision: 075bdaa2b3cf246c11256b34fc290e4f9430d046
+  revision: 91880977b4b1f7e4c24b84faad6d01f98359c9cd
   branch: develop
   specs:
     tramway-core (0.2)
-      carrierwave
-      rails (~> 5.1.4)
 
 GIT
   remote: https://github.com/ulmic/tramway-landing.git
-  revision: 715872a225d54402be66aad4de2d4fd24e5511d2
+  revision: 67aba7df9e8fdfe908aa029d9e4cc4fe7ffb89ee
   branch: develop
   specs:
     tramway-landing (0.1.0)
 
 GIT
   remote: https://github.com/ulmic/tramway-sport_school.git
-  revision: 43b74d6172711a0e2b8a8c34dc2e79666fdf39b3
+  revision: 941fae99b6d22b8cd327054b08e6ab4e515b31e2
   branch: develop
   specs:
     tramway-sport_school (0.1.0)
-      rails (~> 5.1.4)
 
 GIT
   remote: https://github.com/ulmic/tramway-user.git
