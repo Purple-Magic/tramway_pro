@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180207214941) do
+ActiveRecord::Schema.define(version: 20180211132840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,18 @@ ActiveRecord::Schema.define(version: 20180207214941) do
     t.text "view_state", default: "hidden"
     t.text "image"
     t.text "description"
+  end
+
+  create_table "tramway_sport_school_organizations", force: :cascade do |t|
+    t.text "title"
+    t.text "description"
+    t.text "logo"
+    t.text "organization_type", default: "required"
+    t.text "link"
+    t.text "state", default: "active"
+    t.text "view_state", default: "hidden"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tramway_sport_school_trainers", force: :cascade do |t|
