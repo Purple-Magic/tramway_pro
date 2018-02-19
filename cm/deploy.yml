@@ -1,9 +1,4 @@
 - hosts: production
-  vars:
-    app_path: "/srv/tramway_pro"
-    shared_path: "{{ app_path }}/shared"
-    ruby_version: "ruby-2.3.0"
-
   tasks:
     - name: Ping to server
       shell: echo 'Ready to deploy, main lieben fuhrer!'
@@ -90,10 +85,4 @@
         state=link
         force=yes
 
-    - name: Stop unicorn
-      shell: "[ -e /srv/tramway_pro/shared/tmp/pids/unicorn.pid  ] && kill `cat /srv/tramway_pro/shared/tmp/pids/unicorn.pid`"
-
-    - name: Start unicorn
-      shell: "/usr/local/rvm/bin/rvm {{ ruby_version }} do bundle exec unicorn -c /srv/tramway_pro/current/config/unicorn/production.rb -E production -D"
-      args:
-        chdir: "{{ release_path }}"
+    - include: unicorn.yml

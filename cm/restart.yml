@@ -1,0 +1,6 @@
+- hosts: production
+  vars_files:
+    - production.yml
+
+  tasks:
+    - include: unicorn.yml
