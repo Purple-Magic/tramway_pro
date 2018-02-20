@@ -1,4 +1,6 @@
 - hosts: production
+  vars_files:
+    - production.yml
   tasks:
     - name: Ping to server
       shell: echo 'Ready to deploy, main lieben fuhrer!'
