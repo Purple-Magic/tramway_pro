@@ -15,6 +15,8 @@ gem 'tramway-user', github: 'ulmic/tramway-user', branch: :develop
 gem 'tramway-core', github: 'ulmic/tramway-core', branch: :develop
 gem 'tramway-admin', github: 'ulmic/tramway-admin', branch: :develop
 gem 'tramway-landing', github: 'ulmic/tramway-landing', branch: :develop
+gem 'tramway-profiles', github: 'ulmic/tramway-profiles', branch: :develop
+gem 'tramway-news', github: 'ulmic/tramway-news', branch: :develop
 gem 'haml-rails'
 gem 'sass-rails'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
@@ -36,6 +38,7 @@ gem 'mini_magick'
 gem 'rmagick'
 gem 'state_machine_buttons'
 gem 'copyright_mafa'
+gem 'more_html_tags', '>= 0.2.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -52,5 +55,7 @@ group :development do
  # gem 'tramway-core', path: '../tramway-core'
  # gem 'tramway-user', path: '../tramway-user'
  # gem 'tramway-landing', path: '../tramway-landing'
+ # gem 'tramway-profiles', path: '../tramway-profiles'
+ # gem 'tramway-news', path: '../tramway-news'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
