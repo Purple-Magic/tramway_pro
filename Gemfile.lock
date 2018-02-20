@@ -23,21 +23,21 @@ GIT
 
 GIT
   remote: https://github.com/ulmic/tramway-core.git
-  revision: 4bcea7404eea1aeb0777c7e256e625b3a32cb720
+  revision: 0de3ce69e6ebd3dd7d0f8d0144929c4d85cb137b
   branch: develop
   specs:
     tramway-core (0.2)
 
 GIT
   remote: https://github.com/ulmic/tramway-landing.git
-  revision: a89b6baa941c081ddcab9c5c7857b654ea23ed5b
+  revision: 9b3c9fcaffe197587b7815727570858fee0d10fd
   branch: develop
   specs:
     tramway-landing (0.1.0)
 
 GIT
   remote: https://github.com/ulmic/tramway-news.git
-  revision: c8a0d3a11bcdd08731c36489c20c06fa08d999d6
+  revision: 3e9bc84d8a9140580e81cee1813fd1deb4ab8945
   branch: develop
   specs:
     tramway-news (0.1.0)
@@ -51,7 +51,7 @@ GIT
 
 GIT
   remote: https://github.com/ulmic/tramway-sport_school.git
-  revision: 32962bebe743250e55928716a8bc7cb495e00f66
+  revision: 2f935e0282623e339d3a04666d8150c8fdcee1a7
   branch: develop
   specs:
     tramway-sport_school (0.1.0)
