@@ -44,7 +44,7 @@ GIT
 
 GIT
   remote: https://github.com/ulmic/tramway-profiles.git
-  revision: 05fd2b9cddd9c4777d0146a868c45a4a978d2e68
+  revision: f5b2127ac5432109acebbf583002cde76fb1bc02
   branch: develop
   specs:
     tramway-profiles (0.1.0)
