@@ -23,7 +23,7 @@ GIT
 
 GIT
   remote: https://github.com/ulmic/tramway-admin.git
-  revision: 532755ea8370e00e7cbe07f85609f0abe606f940
+  revision: 007ede77ba64f8829679c7fd1d6ccf52d49464b1
   branch: develop
   specs:
     tramway-admin (1.0)
