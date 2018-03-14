@@ -28,5 +28,6 @@ module TramwayPro
     # Don't generate system test files.
     config.i18n.available_locales = [:en, :ru]
     config.i18n.default_locale = :ru
+    config.autoload_paths += %w(#{config.root}/app/models/ckeditor)
   end
 end

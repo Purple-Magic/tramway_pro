@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/galetahub/ckeditor.git
+  revision: 115a50628baceeac5cc37363db082e3f5ba03c76
+  specs:
+    ckeditor (4.2.4)
+      orm_adapter (~> 0.5.0)
+      terrapin
+
+GIT
   remote: https://github.com/rafaelmotta/bootstrap-kaminari-views.git
   revision: e8d57b2fbf56607731c6c9bf254f24f38ce2beec
   branch: master
@@ -12,6 +20,55 @@ GIT
   revision: 95ba53f03e5657a5873343c2b1dc6a148ea3542e
   specs:
     state_machine (1.2.0)
+
+GIT
+  remote: https://github.com/ulmic/tramway-admin.git
+  revision: f6c1947e45a134c5ac3af9e5b68cbc479cb6d6f3
+  branch: develop
+  specs:
+    tramway-admin (1.0)
+
+GIT
+  remote: https://github.com/ulmic/tramway-core.git
+  revision: 527d3caafa0a62720f732b205f8301d0b5e8b65d
+  branch: develop
+  specs:
+    tramway-core (1.0)
+
+GIT
+  remote: https://github.com/ulmic/tramway-landing.git
+  revision: 43f4b4f174740a90136db1472d704666840ad748
+  branch: develop
+  specs:
+    tramway-landing (1.0)
+
+GIT
+  remote: https://github.com/ulmic/tramway-news.git
+  revision: ae45dbed0afbcc0a0cb2537befdd83cb50ace469
+  branch: develop
+  specs:
+    tramway-news (1.0)
+
+GIT
+  remote: https://github.com/ulmic/tramway-profiles.git
+  revision: fd65860c1ef722423c5aa9015dc1ef173e4005d7
+  branch: develop
+  specs:
+    tramway-profiles (1.0)
+
+GIT
+  remote: https://github.com/ulmic/tramway-sport_school.git
+  revision: fc0f53bffe09fb6bf3a83c72f4fe96106e4b4940
+  branch: develop
+  specs:
+    tramway-sport_school (1.1)
+
+GIT
+  remote: https://github.com/ulmic/tramway-user.git
+  revision: b2b75daef91647c760ed53dc5206c529b29506d8
+  branch: develop
+  specs:
+    tramway-user (1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -70,6 +127,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    climate_control (0.2.0)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -159,6 +217,7 @@ GEM
     nio4r (2.2.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
+    orm_adapter (0.5.0)
     pg (0.21.0)
     popper_js (1.12.9)
     pry (0.11.3)
@@ -238,16 +297,11 @@ GEM
       sprockets (>= 3.0.0)
     state_machine_buttons (0.4.1)
     temple (0.8.0)
+    terrapin (0.6.0)
+      climate_control (>= 0.0.3, < 1.0)
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    tramway-admin (1.0)
-    tramway-core (1.0)
-    tramway-landing (1.0)
-    tramway-news (1.0)
-    tramway-profiles (1.0)
-    tramway-sport_school (1.0)
-    tramway-user (1.0)
     trap (2.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
@@ -276,6 +330,7 @@ DEPENDENCIES
   bootstrap-kaminari-views!
   byebug
   carrierwave
+  ckeditor!
   coffee-rails
   copyright_mafa
   enumerize
@@ -298,13 +353,13 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   state_machine!
   state_machine_buttons
-  tramway-admin (>= 1.0)
-  tramway-core (>= 1.0)
-  tramway-landing (>= 1.0)
-  tramway-news
-  tramway-profiles (>= 1.0)
-  tramway-sport_school (>= 1.0)
-  tramway-user (>= 1.0)
+  tramway-admin!
+  tramway-core!
+  tramway-landing!
+  tramway-news!
+  tramway-profiles!
+  tramway-sport_school!
+  tramway-user!
   trap
   tzinfo-data
   uglifier (>= 1.3.0)

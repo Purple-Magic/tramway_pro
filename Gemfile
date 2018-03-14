@@ -10,20 +10,20 @@ gem 'pg', '0.21.0'
 gem 'unicorn'
 gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.5'
-#gem 'tramway-sport_school', github: 'ulmic/tramway-sport_school', branch: :develop
-#gem 'tramway-user', github: 'ulmic/tramway-user', branch: :develop
-#gem 'tramway-core', github: 'ulmic/tramway-core', branch: :develop
-#gem 'tramway-admin', github: 'ulmic/tramway-admin', branch: :develop
-#gem 'tramway-landing', github: 'ulmic/tramway-landing', branch: :develop
-#gem 'tramway-profiles', github: 'ulmic/tramway-profiles', branch: :develop
-#gem 'tramway-news', github: 'ulmic/tramway-news', branch: :develop
-gem 'tramway-sport_school', '>= 1.0'
-gem 'tramway-user', '>= 1.0'
-gem 'tramway-core', '>= 1.0'
-gem 'tramway-admin', '>= 1.0'
-gem 'tramway-landing', '>= 1.0'
-gem 'tramway-profiles', '>= 1.0'
-gem 'tramway-news'
+gem 'tramway-sport_school', github: 'ulmic/tramway-sport_school', branch: :develop
+gem 'tramway-user', github: 'ulmic/tramway-user', branch: :develop
+gem 'tramway-core', github: 'ulmic/tramway-core', branch: :develop
+gem 'tramway-admin', github: 'ulmic/tramway-admin', branch: :develop
+gem 'tramway-landing', github: 'ulmic/tramway-landing', branch: :develop
+gem 'tramway-profiles', github: 'ulmic/tramway-profiles', branch: :develop
+gem 'tramway-news', github: 'ulmic/tramway-news', branch: :develop
+#gem 'tramway-sport_school', '>= 1.0'
+#gem 'tramway-user', '>= 1.0'
+#gem 'tramway-core', '>= 1.0'
+#gem 'tramway-admin', '>= 1.0'
+#gem 'tramway-landing', '>= 1.0'
+#gem 'tramway-profiles', '>= 1.0'
+#gem 'tramway-news'
 gem 'haml-rails'
 gem 'sass-rails'
 gem 'bootstrap', '~> 4.0.0.beta2.1'
@@ -46,6 +46,7 @@ gem 'rmagick'
 gem 'state_machine_buttons'
 gem 'copyright_mafa'
 gem 'more_html_tags', '>= 0.2.0'
+gem 'ckeditor', github: 'galetahub/ckeditor'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
