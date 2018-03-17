@@ -257,7 +257,7 @@ GEM
     tramway-core (1.0.1)
     tramway-landing (1.1)
     tramway-news (1.0.1)
-    tramway-profiles (1.0.1)
+    tramway-profiles (1.0.2)
     tramway-sport_school (1.1.2)
     tramway-user (1.0.1)
     trap (2.1)
@@ -315,7 +315,7 @@ DEPENDENCIES
   tramway-core (>= 1.0.1)
   tramway-landing (>= 1.1)
   tramway-news (>= 1.0.1)
-  tramway-profiles (>= 1.0.1)
+  tramway-profiles (>= 1.0.2)
   tramway-sport_school (>= 1.1.2)
   tramway-user (>= 1.0.1)
   trap
