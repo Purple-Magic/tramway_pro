@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  mount Ckeditor::Engine => '/ckeditor'
-  root to: 'web/distribution#index'
+  constraints DomainConstraint.new('sportschool-ulsk.ru') do
+    mount Ckeditor::Engine => '/ckeditor'
+    mount Tramway::SportSchool::Engine => "/sport_school"
+  end
 
-  mount Tramway::SportSchool::Engine => "/sport_school"
+  root to: 'web/distribution#index'
 end
