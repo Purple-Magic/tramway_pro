@@ -21,13 +21,6 @@ GIT
   specs:
     state_machine (1.2.0)
 
-GIT
-  remote: https://github.com/ulmic/tramway-profiles.git
-  revision: fd65860c1ef722423c5aa9015dc1ef173e4005d7
-  branch: develop
-  specs:
-    tramway-profiles (1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -260,11 +253,12 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    tramway-admin (1.0.1)
+    tramway-admin (1.1)
     tramway-core (1.0.1)
     tramway-landing (1.1)
     tramway-news (1.0.1)
-    tramway-sport_school (1.1.1)
+    tramway-profiles (1.0.1)
+    tramway-sport_school (1.1.2)
     tramway-user (1.0.1)
     trap (2.1)
     tzinfo (1.2.5)
@@ -317,12 +311,12 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   state_machine!
   state_machine_buttons
-  tramway-admin (>= 1.0.1)
+  tramway-admin (>= 1.1)
   tramway-core (>= 1.0.1)
   tramway-landing (>= 1.1)
   tramway-news (>= 1.0.1)
-  tramway-profiles!
-  tramway-sport_school (>= 1.1.1)
+  tramway-profiles (>= 1.0.1)
+  tramway-sport_school (>= 1.1.2)
   tramway-user (>= 1.0.1)
   trap
   tzinfo-data
