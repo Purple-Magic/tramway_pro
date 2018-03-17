@@ -1,0 +1,2 @@
+module Web::DistributionHelper
+end

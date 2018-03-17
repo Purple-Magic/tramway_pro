@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
-  mount Tramway::SportSchool::Engine => "/"
+  root to: 'web/distribution#index'
+
+  mount Tramway::SportSchool::Engine => "/sport_school"
 end
