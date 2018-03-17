@@ -20,7 +20,7 @@ gem 'jbuilder', '~> 2.5'
 #
 #
 gem 'tramway-sport_school', '>= 1.1.2'
-gem 'tramway-admin', '>= 1.1.1'
+gem 'tramway-admin', '>= 1.1.2'
 gem 'tramway-core', '>= 1.0.1'
 gem 'tramway-landing', '>= 1.1.1'
 gem 'tramway-news', '>= 1.0.2'
