@@ -1,0 +1,7 @@
+development:
+  sportschool_ulsk: sportschool-ulsk.test
+  it_way: it-way.test
+
+production:
+  sportschool_ulsk: sportschool-ulsk.ru
+  it_way: it-way.pro
