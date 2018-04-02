@@ -7,8 +7,8 @@ GIT
       terrapin
 
 GIT
-  remote: https://github.com/rafaelmotta/bootstrap-kaminari-views.git
-  revision: e8d57b2fbf56607731c6c9bf254f24f38ce2beec
+  remote: https://github.com/matenia/bootstrap-kaminari-views.git
+  revision: 9df61d400fc144c3f33d65f3f97e4867b8e68273
   branch: master
   specs:
     bootstrap-kaminari-views (0.0.5)
