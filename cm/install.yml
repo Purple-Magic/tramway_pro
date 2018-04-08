@@ -28,6 +28,9 @@
     - name: Install RVM
       apt: update_cache=yes name=rvm
 
+    - name: Install ruby
+      shell: /usr/share/rvm/bin/rvm install {{ ruby_version }}
+
     - name: Install bundler
       shell: /usr/share/rvm/bin/rvm {{ ruby_version }} do gem install bundler
 
