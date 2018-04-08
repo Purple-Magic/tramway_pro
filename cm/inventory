@@ -2,4 +2,4 @@
 localhost ansible_connection=local
 
 [production]
-sportschool-ulsk.ru ansible_user=ulmic
+138.68.76.45 ansible_user=tramway

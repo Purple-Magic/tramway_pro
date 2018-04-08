@@ -1,0 +1,76 @@
+- hosts: production
+  vars_files:
+    - production.yml
+  sudo: yes
+  remote_user: tramway
+
+  tasks:
+    - name: Ping to server
+      shell: echo 'Ready to deploy, main lieben fuhrer!'
+      register: ping
+
+    - name: Install Prerequirements
+      apt: name=software-properties-common
+
+    - name: Add repo
+      apt_repository:
+        repo: ppa:rael-gc/rvm
+        state: present
+
+    - name: Install PostgreSQL
+      apt: name={{ item }}
+      with_items:
+        - postgresql
+        - postgresql-contrib
+        - libpq-dev
+        - libmagick++-dev
+
+    - name: Install RVM
+      apt: update_cache=yes name=rvm
+
+    - name: Install bundler
+      shell: /usr/share/rvm/bin/rvm {{ ruby_version }} do gem install bundler
+
+    - name: Prepare for installing nodejs
+      shell: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+
+    - name: Install npm
+      apt: name=nodejs
+
+    - name: Install nginx
+      apt: name=nginx
+
+    - name: Create config file
+      file:
+        name: /etc/nginx/sites-available/sportschool-ulsk.ru
+        state: touch
+
+    - name: Linking config files
+      file:
+        src: /etc/nginx/sites-available/sportschool-ulsk.ru
+        dest: /etc/nginx/sites-enabled/sportschool-ulsk.ru
+        state: link
+
+    - name: Create srv directory
+      file: path=/srv state=directory
+
+    - name: Create needed directories
+      file: path=/srv/tramway_pro/{{ item }} state=directory
+      with_items:
+        - shared/
+        - shared/config/
+        - shared/log
+        - shared/tmp
+        - shared/tmp/pids
+        - shared/tmp/cache
+        - shared/tmp/sockets
+        - shared/vendor/bundle
+        - shared/public/system
+        - shared/public/uploads
+        - shared/node_modules
+
+    - name: Create needed config files
+      file: path=/srv/tramway_pro/shared/config/{{ item }} state=touch
+      with_items:
+        - database.yml
+        - secrets.yml

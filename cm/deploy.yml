@@ -61,7 +61,7 @@
         - node_modules
 
     - name: Bundle
-      shell: /bin/bash -ci "rvm {{ ruby_version }} do bundle install --path {{ shared_path }}/bundle --without development test --deployment --quiet"
+      shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle install --path {{ shared_path }}/bundle --without development test --deployment --quiet"
       args:
         chdir: "{{ release_path }}"
 
@@ -71,12 +71,12 @@
         chdir: "{{ release_path }}"
 
     - name: Assets
-      shell: /bin/bash -ci "rvm {{ ruby_version }} do {{ release_path }}/bin/rake assets:precompile"
+      shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do {{ release_path }}/bin/rake assets:precompile"
       args:
         chdir: "{{ release_path }}"
 
     - name: Migrate
-      shell: /bin/bash -ci "rvm {{ ruby_version }} do {{ release_path }}/bin/rake db:migrate"
+      shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do {{ release_path }}/bin/rake db:create db:migrate"
       args:
         chdir: "{{ release_path }}"
 
