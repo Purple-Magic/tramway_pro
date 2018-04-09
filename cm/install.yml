@@ -17,6 +17,12 @@
         repo: ppa:rael-gc/rvm
         state: present
 
+    - name: Install Imagemagick
+      apt:
+        name: {{ item }}
+      with_items:
+        - imagemagick
+
     - name: Install PostgreSQL
       apt: name={{ item }}
       with_items:
