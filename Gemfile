@@ -34,7 +34,7 @@ gem 'bcrypt'
 gem 'copyright_mafa'
 gem 'trap'
 gem 'kaminari'
-gem 'bootstrap-kaminari-views', github: 'matenia/bootstrap-kaminari-views', branch: :master
+gem 'bootstrap-kaminari-views', github: 'kalashnikovisme/bootstrap-kaminari-views', branch: :master
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'rmagick'
