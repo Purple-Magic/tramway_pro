@@ -43,6 +43,7 @@ gem 'copyright_mafa'
 gem 'more_html_tags', '>= 0.2.0'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'config'
+gem 'colorize'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
