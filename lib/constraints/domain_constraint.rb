@@ -4,6 +4,7 @@ class Constraints::DomainConstraint
   end
 
   def matches?(request)
+    ENV['PROJECT_URL'] = request.domain
     @domains.include? request.domain
   end
 end
