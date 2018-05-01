@@ -21,6 +21,11 @@ GIT
   specs:
     state_machine (1.2.0)
 
+PATH
+  remote: ../tramway-dev/tramway-conference
+  specs:
+    tramway-conference (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -348,6 +353,7 @@ DEPENDENCIES
   state_machine!
   state_machine_buttons
   tramway-admin (>= 1.1.2)
+  tramway-conference!
   tramway-core (>= 1.0.1)
   tramway-landing (>= 1.1.2)
   tramway-news (>= 1.0.2)

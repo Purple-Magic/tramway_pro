@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180314093751) do
+ActiveRecord::Schema.define(version: 20180501082533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,20 @@ ActiveRecord::Schema.define(version: 20180314093751) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
+  create_table "tramway_conference_unities", force: :cascade do |t|
+    t.text "title"
+    t.text "tagline"
+    t.text "logo"
+    t.text "address"
+    t.text "phone"
+    t.text "latitude"
+    t.text "longtitude"
+    t.text "state", default: "active"
+    t.text "view_state", default: "hidden"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tramway_landing_blocks", force: :cascade do |t|
