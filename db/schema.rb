@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180501082533) do
+ActiveRecord::Schema.define(version: 20180501100304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 20180501082533) do
     t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
+  create_table "projects", force: :cascade do |t|
+    t.text "title"
+    t.text "description"
+    t.text "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tramway_conference_unities", force: :cascade do |t|
     t.text "title"
     t.text "tagline"
@@ -61,6 +69,7 @@ ActiveRecord::Schema.define(version: 20180501082533) do
     t.text "view_state", default: "hidden"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "project_id"
   end
 
   create_table "tramway_landing_blocks", force: :cascade do |t|
@@ -75,6 +84,7 @@ ActiveRecord::Schema.define(version: 20180501082533) do
     t.text "navbar_link", default: "not_exist"
     t.text "anchor"
     t.text "description"
+    t.integer "project_id"
   end
 
   create_table "tramway_news_news", force: :cascade do |t|
