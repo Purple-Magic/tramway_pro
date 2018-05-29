@@ -6,4 +6,4 @@ module ProjectScopes
   end
 end
 
-Tramway::Landing::Block.send :include, ProjectScopes
+#Tramway::Landing::Block.send :include, ProjectScopes
