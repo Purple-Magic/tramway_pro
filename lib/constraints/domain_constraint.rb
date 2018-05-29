@@ -7,4 +7,8 @@ class Constraints::DomainConstraint
     ENV['PROJECT_URL'] = request.domain
     @domains.include? request.domain
   end
+
+  def engine_loaded
+    Settings[Rails.env][:engines][ENV['PROJECT_URL']]
+  end
 end

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     mount Tramway::SportSchool::Engine => '/'
   end
 
-  constraints Constraints::DomainConstraint.new(Settings[Rails.env][:it_way]) do
-    mount Tramway::Conference::Engine => '/'
-  end
+  #constraints Constraints::DomainConstraint.new(Settings[Rails.env][:it_way]) do
+  #  mount Tramway::Conference::Engine => '/'
+  #end
 end

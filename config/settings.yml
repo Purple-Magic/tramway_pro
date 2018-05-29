@@ -1,6 +1,9 @@
 development:
   sportschool_ulsk: sportschool-ulsk.test
   it_way: it-way.test
+  engines:
+    'sportschool-ulsk.test': sport_school
+    'it-way.test': conference
 
 production:
   sportschool_ulsk: sportschool-ulsk.ru
