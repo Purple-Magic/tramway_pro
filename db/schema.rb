@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180501100304) do
+ActiveRecord::Schema.define(version: 20180530214924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 20180501100304) do
     t.text "anchor"
     t.text "description"
     t.integer "project_id"
+    t.integer "link_object_id"
+    t.text "link_object_type"
   end
 
   create_table "tramway_news_news", force: :cascade do |t|
