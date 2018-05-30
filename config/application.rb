@@ -25,5 +25,6 @@ module TramwayPro
     config.autoload_paths += Dir[
       "#{config.root}/lib/**/"
     ]
+    config.middleware.use ::Middleware::MultiProjectConfigurationMiddleware
   end
 end
