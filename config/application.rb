@@ -10,7 +10,9 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
-require_relative '../lib/middleware/multi_project_configuration_middleware'
+require_relative '../lib/middleware/multi_project_configuration_middleware/conference'
+require_relative '../lib/middleware/multi_project_configuration_middleware/sport_school'
+require_relative '../lib/middleware/multi_project_configuration_middleware/admin'
 
 Bundler.require(*Rails.groups)
 
@@ -20,9 +22,9 @@ module TramwayPro
     config.i18n.available_locales = [:en, :ru]
     config.i18n.default_locale = :ru
     config.autoload_paths += %w(#{config.root}/app/models/ckeditor)
-    config.autoload_paths += Dir[
-      "#{config.root}/lib/**/"
-    ]
+    config.autoload_paths += Dir[ "#{config.root}/lib/**/" ]
     config.middleware.use ::MultiProjectConfigurationMiddleware::Conference
+    config.middleware.use ::MultiProjectConfigurationMiddleware::SportSchool
+    config.middleware.use ::MultiProjectConfigurationMiddleware::Admin
   end
 end
