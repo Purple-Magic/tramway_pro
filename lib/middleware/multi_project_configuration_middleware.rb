@@ -16,10 +16,9 @@ module MultiProjectCallbacks
   included do
     actions = [ :index ]
     actions.each do |action|
-      after_action "after_#{action}".to_sym, only: action
+      before_render "after_#{action}".to_sym, only: action
     end
 
-    before_render :after_index, only: :index
 
     def after_index
       project = Project.where(url: ENV['PROJECT_URL']).first
