@@ -10,10 +10,8 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
-# require "rails/test_unit/railtie"
+require_relative '../lib/middleware/multi_project_configuration_middleware'
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module TramwayPro
@@ -25,6 +23,6 @@ module TramwayPro
     config.autoload_paths += Dir[
       "#{config.root}/lib/**/"
     ]
-    config.middleware.use ::Middleware::MultiProjectConfigurationMiddleware
+    config.middleware.use ::MultiProjectConfigurationMiddleware
   end
 end

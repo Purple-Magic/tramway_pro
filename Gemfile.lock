@@ -26,6 +26,26 @@ PATH
   specs:
     tramway-conference (0.1.0)
 
+PATH
+  remote: ../tramway-dev/tramway-core
+  specs:
+    tramway-core (1.0.2)
+      audited (~> 4.5, >= 4.5.0)
+      bootstrap (~> 4.1, >= 4.1.0)
+      enumerize (~> 2.1, >= 2.1.2)
+      haml-rails (~> 1.0, >= 1.0.0)
+      loofah (~> 2.2, >= 2.2.1)
+      mini_magick (~> 4.8, >= 4.8.0)
+      reform-rails (= 0.1.7)
+      rmagick (~> 2.16, >= 2.16.0)
+      sass-rails (~> 5.0, >= 5.0.7)
+      simple_form (~> 3.5, >= 3.5.0)
+
+PATH
+  remote: ../tramway-dev/tramway-landing
+  specs:
+    tramway-landing (1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -300,18 +320,6 @@ GEM
       kaminari (~> 1.1.1, >= 1.1.1)
       state_machine_buttons (~> 0.4.1, >= 0.4.1)
       tramway-user (~> 1.0.2, >= 1.0.2)
-    tramway-core (1.0.1.5)
-      audited (~> 4.5, >= 4.5.0)
-      bootstrap (~> 4.1, >= 4.1.0)
-      enumerize (~> 2.1, >= 2.1.2)
-      haml-rails (~> 1.0, >= 1.0.0)
-      loofah (~> 2.2, >= 2.2.1)
-      mini_magick (~> 4.8, >= 4.8.0)
-      reform-rails (= 0.1.7)
-      rmagick (~> 2.16, >= 2.16.0)
-      sass-rails (~> 5.0, >= 5.0.7)
-      simple_form (~> 3.5, >= 3.5.0)
-    tramway-landing (1.1.3.1)
     tramway-news (1.0.2)
     tramway-profiles (1.1)
     tramway-sport_school (1.1.3.trash)
@@ -374,8 +382,8 @@ DEPENDENCIES
   state_machine_buttons
   tramway-admin (>= 1.1.4.11)
   tramway-conference!
-  tramway-core (>= 1.0.1.5)
-  tramway-landing (= 1.1.3.1)
+  tramway-core!
+  tramway-landing!
   tramway-news (>= 1.0.2)
   tramway-profiles (>= 1.1)
   tramway-sport_school (= 1.1.3.trash)

@@ -1,6 +1,15 @@
-class Middleware::MultiProjectConfigurationMiddleware
-  ::Tramway::Conference::Web::WelcomeController.include MultiProjectCallbacks
+class MultiProjectConfigurationMiddleware
+  def initialize(app)
+    @app = app
+  end
+
+  def call(env)
+    ::Tramway::Conference::Web::WelcomeController.include MultiProjectCallbacks
+
+    @app.call(env)
+  end
 end
+
 module MultiProjectCallbacks
   extend ActiveSupport::Concern
 
@@ -10,7 +19,7 @@ module MultiProjectCallbacks
       after_action "after_#{action}".to_sym, only: action
     end
 
-    after_action :after_index, only: :index
+    before_render :after_index, only: :index
 
     def after_index
       project = Project.where(url: ENV['PROJECT_URL']).first
