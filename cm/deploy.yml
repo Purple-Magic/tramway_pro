@@ -60,6 +60,12 @@
         - public/uploads
         - node_modules
 
+    - name: Bundle Full Index
+      shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle --full-index"
+      args:
+        chdir: "{{ release_path }}"
+
+
     - name: Bundle
       shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle install --path {{ shared_path }}/bundle --without development test --deployment --quiet"
       args:
