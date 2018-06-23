@@ -287,14 +287,14 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    tramway-admin (1.1.4.12)
+    tramway-admin (1.1.5)
       bootstrap-kaminari-views (= 0.0.5)
       ckeditor (= 4.2.4)
       copyright_mafa (~> 0.1.2, >= 0.1.2)
       font-awesome-rails (~> 4.7, >= 4.7.0.1)
       kaminari (~> 1.1.1, >= 1.1.1)
       state_machine_buttons (~> 0.4.1, >= 0.4.1)
-      tramway-user (~> 1.0.2, >= 1.0.2)
+      tramway-user (~> 1.0.3, >= 1.0.3)
     tramway-core (1.0.3)
       audited (~> 4.5, >= 4.5.0)
       bootstrap (~> 4.1, >= 4.1.0)
@@ -367,7 +367,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   state_machine!
   state_machine_buttons
-  tramway-admin (>= 1.1.4.12)
+  tramway-admin (>= 1.1.5)
   tramway-core (= 1.0.3)
   tramway-landing (= 1.2.1)
   tramway-news (>= 1.0.2)
@@ -384,4 +384,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
