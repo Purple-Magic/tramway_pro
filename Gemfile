@@ -5,6 +5,21 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'tramway-admin', '>= 1.1.7'
+gem 'tramway-core', '1.0.5'
+gem 'tramway-sport_school', '1.2'
+gem 'tramway-landing', '1.2.5'
+gem 'tramway-page', '1.1'
+gem 'tramway-news', '>= 1.0.2'
+gem 'tramway-profiles', '>= 1.1'
+gem 'tramway-user', '1.0.3.3'
+
+#gem 'tramway-page', path: '../tramway-dev/tramway-page'
+#gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
+#gem 'tramway-core', path: '../tramway-dev/tramway-core'
+#gem 'tramway-sport_school', path: '../tramway-dev/tramway-sport_school'
+#gem 'tramway-landing', path: '../tramway-dev/tramway-landing'
+
 ruby '2.5.1'
 
 gem 'rails', '~> 5.1.4'
@@ -12,20 +27,6 @@ gem 'pg', '0.21.0'
 gem 'unicorn'
 gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.5'
-gem 'tramway-admin', '>= 1.1.7'
-#gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
-gem 'tramway-core', '1.0.5'
-#gem 'tramway-core', path: '../tramway-dev/tramway-core'
-#gem 'tramway-landing', path: '../tramway-dev/tramway-landing'
-gem 'tramway-sport_school', '1.1.3.2'
-#gem 'tramway-sport_school', path: '../tramway-dev/tramway-sport_school'
-#gem 'tramway-landing', path: '../tramway-dev/tramway-landing'
-gem 'tramway-landing', github: 'ulmic/tramway-dev', branch: :develop, glob: 'tramway-landing/*.gemspec'
-#gem 'tramway-page', path: '../tramway-dev/tramway-page'
-gem 'tramway-page', '1.0.0'
-gem 'tramway-news', '>= 1.0.2'
-gem 'tramway-profiles', '>= 1.1'
-gem 'tramway-user', '1.0.3.3'
 gem 'haml-rails'
 gem 'sass-rails'
 gem 'bootstrap', '~> 4.1.0'
@@ -50,7 +51,6 @@ gem 'more_html_tags', '>= 0.2.0'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'config'
 gem 'colorize'
-
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
@@ -61,12 +61,5 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry'
-# gem 'tramway-sport_school', path: '../tramway-sport_school'
-# gem 'tramway-admin', path: '../tramway-admin'
-# gem 'tramway-core', path: '../tramway-core'
-# gem 'tramway-user', path: '../tramway-user'
-# gem 'tramway-landing', path: '../tramway-landing'
-# gem 'tramway-profiles', path: '../tramway-profiles'
-# gem 'tramway-news', path: '../tramway-news'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
