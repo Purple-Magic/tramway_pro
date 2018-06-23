@@ -21,6 +21,14 @@ GIT
   specs:
     state_machine (1.2.0)
 
+GIT
+  remote: https://github.com/ulmic/tramway-dev.git
+  revision: acd7ede8278f2254274d24519c831b9f9595f19c
+  branch: develop
+  glob: tramway-landing/*.gemspec
+  specs:
+    tramway-landing (1.2.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -306,7 +314,6 @@ GEM
       rmagick (~> 2.16, >= 2.16.0)
       sass-rails (~> 5.0, >= 5.0.7)
       simple_form (~> 3.5, >= 3.5.0)
-    tramway-landing (1.2.2)
     tramway-news (1.0.2)
     tramway-profiles (1.1)
     tramway-sport_school (1.1.3.1)
@@ -369,7 +376,7 @@ DEPENDENCIES
   state_machine_buttons
   tramway-admin (>= 1.1.6.1)
   tramway-core (= 1.0.3)
-  tramway-landing (= 1.2.2)
+  tramway-landing!
   tramway-news (>= 1.0.2)
   tramway-profiles (>= 1.1)
   tramway-sport_school (= 1.1.3.1)
