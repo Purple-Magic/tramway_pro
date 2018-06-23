@@ -60,8 +60,8 @@
         - public/uploads
         - node_modules
 
-    - name: Bundle Full Index
-      shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle --full-index"
+    - name: Update bunlder
+      shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do gem install bundler && /usr/share/rvm/bin/rvm {{ ruby_version }} do bundle --full-index"
       args:
         chdir: "{{ release_path }}"
 
