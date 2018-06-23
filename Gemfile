@@ -7,7 +7,7 @@ end
 
 gem 'tramway-admin', '>= 1.1.7'
 gem 'tramway-core', '1.0.5'
-gem 'tramway-sport_school', '1.2'
+gem 'tramway-sport_school', '1.2.1'
 gem 'tramway-landing', '1.2.6'
 gem 'tramway-page', '1.1.1'
 gem 'tramway-news', '>= 1.0.2'
