@@ -25,17 +25,17 @@ GIT
   remote: https://github.com/ulmic/tramway-dev.git
   revision: 05e537289fcf127761f24e069302705c4feaacbf
   branch: develop
-  glob: tramway-sport_school/*.gemspec
-  specs:
-    tramway-sport_school (1.1.3.2)
-
-GIT
-  remote: https://github.com/ulmic/tramway-dev.git
-  revision: acd7ede8278f2254274d24519c831b9f9595f19c
-  branch: develop
   glob: tramway-landing/*.gemspec
   specs:
     tramway-landing (1.2.2)
+
+GIT
+  remote: https://github.com/ulmic/tramway-dev.git
+  revision: 05e537289fcf127761f24e069302705c4feaacbf
+  branch: develop
+  glob: tramway-sport_school/*.gemspec
+  specs:
+    tramway-sport_school (1.1.3.2)
 
 GEM
   remote: https://rubygems.org/
