@@ -23,11 +23,11 @@ GIT
 
 GIT
   remote: https://github.com/ulmic/tramway-dev.git
-  revision: 05e537289fcf127761f24e069302705c4feaacbf
+  revision: 6bc7c2b228dfe6c683d9c4b18f1af85713729732
   branch: develop
   glob: tramway-landing/*.gemspec
   specs:
-    tramway-landing (1.2.2)
+    tramway-landing (1.2.3)
 
 GEM
   remote: https://rubygems.org/
