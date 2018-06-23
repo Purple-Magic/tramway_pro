@@ -306,7 +306,7 @@ GEM
       rmagick (~> 2.16, >= 2.16.0)
       sass-rails (~> 5.0, >= 5.0.7)
       simple_form (~> 3.5, >= 3.5.0)
-    tramway-landing (1.2.5)
+    tramway-landing (1.2.6)
     tramway-news (1.0.2)
     tramway-page (1.1.1)
     tramway-profiles (1.1)
@@ -370,7 +370,7 @@ DEPENDENCIES
   state_machine_buttons
   tramway-admin (>= 1.1.7)
   tramway-core (= 1.0.5)
-  tramway-landing (= 1.2.5)
+  tramway-landing (= 1.2.6)
   tramway-news (>= 1.0.2)
   tramway-page (= 1.1.1)
   tramway-profiles (>= 1.1)
