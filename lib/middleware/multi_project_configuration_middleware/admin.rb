@@ -5,7 +5,7 @@ module MultiProjectConfigurationMiddleware
     end
 
     def call(env)
-      ::Tramway::Admin::RecordsController.include MultiProjectCallbacks::Admin
+      ::Tramway::Admin::ApplicationController.include MultiProjectCallbacks::Admin
 
       @app.call(env)
     end
@@ -25,7 +25,6 @@ module MultiProjectCallbacks
       before_action :load_application
 
       def load_application
-        binding.pry
         engine_loaded = Constraints::DomainConstraint.new(request.domain).engine_loaded
         engine_module = "::Tramway::#{engine_loaded.camelize}".constantize
         @application = "#{engine_module}::#{engine_module.application.to_s.camelize}".constantize.first
