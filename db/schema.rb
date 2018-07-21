@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180501100304) do
+ActiveRecord::Schema.define(version: 20180623180447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 20180501100304) do
     t.text "anchor"
     t.text "description"
     t.integer "project_id"
+    t.integer "link_object_id"
+    t.text "link_object_type"
   end
 
   create_table "tramway_news_news", force: :cascade do |t|
@@ -92,6 +94,15 @@ ActiveRecord::Schema.define(version: 20180501100304) do
     t.text "body"
     t.datetime "published_at"
     t.text "photo"
+    t.text "state", default: "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tramway_page_pages", force: :cascade do |t|
+    t.text "title"
+    t.text "body"
+    t.text "slug"
     t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -116,6 +127,7 @@ ActiveRecord::Schema.define(version: 20180501100304) do
     t.text "view_state", default: "hidden"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "document_type"
   end
 
   create_table "tramway_sport_school_institutions", force: :cascade do |t|

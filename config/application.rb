@@ -21,6 +21,7 @@ module TramwayPro
   class Application < Rails::Application
     config.load_defaults 5.1
     config.i18n.available_locales = [:en, :ru]
+    #config.i18n.enforce_available_locales = false
     config.i18n.default_locale = :ru
     config.autoload_paths += %w(#{config.root}/app/models/ckeditor)
     config.autoload_paths += Dir[ "#{config.root}/lib/**/" ]
