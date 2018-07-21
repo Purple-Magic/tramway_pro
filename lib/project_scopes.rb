@@ -5,5 +5,3 @@ module ProjectScopes
     default_scope { where project_id: Project.where(url: ENV['PROJECT_URL']) }
   end
 end
-
-#Tramway::Landing::Block.send :include, ProjectScopes

@@ -59,6 +59,21 @@ PATH
     tramway-landing (1.2.6)
 
 PATH
+  remote: ../tramway-dev/tramway-news
+  specs:
+    tramway-news (1.0.2)
+
+PATH
+  remote: ../tramway-dev/tramway-page
+  specs:
+    tramway-page (1.1.2)
+
+PATH
+  remote: ../tramway-dev/tramway-profiles
+  specs:
+    tramway-profiles (1.1)
+
+PATH
   remote: ../tramway-dev/tramway-sport_school
   specs:
     tramway-sport_school (1.2.2.1)
@@ -329,9 +344,6 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    tramway-news (1.0.2)
-    tramway-page (1.1.2)
-    tramway-profiles (1.1)
     tramway-user (1.0.3)
       bcrypt (~> 3.1.11, >= 3.1.11)
       enumerize (~> 2.1, >= 2.1.2)
@@ -393,9 +405,9 @@ DEPENDENCIES
   tramway-conference!
   tramway-core!
   tramway-landing!
-  tramway-news (>= 1.0.2)
-  tramway-page
-  tramway-profiles (>= 1.1)
+  tramway-news!
+  tramway-page!
+  tramway-profiles!
   tramway-sport_school!
   tramway-user (>= 1.0.3)
   trap
