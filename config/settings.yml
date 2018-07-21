@@ -8,3 +8,6 @@ development:
 production:
   sportschool_ulsk: sportschool-ulsk.ru
   it_way: it-way.pro
+  engines:
+    'sportschool-ulsk.ru': sport_school
+    'it-way.pro': conference
