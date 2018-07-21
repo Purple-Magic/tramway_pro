@@ -10,10 +10,11 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
 require "sprockets/railtie"
-# require "rails/test_unit/railtie"
+require_relative '../lib/middleware/multi_project_configuration_middleware/conference'
+require_relative '../lib/middleware/multi_project_configuration_middleware/sport_school'
+require_relative '../lib/middleware/multi_project_configuration_middleware/admin'
+require_relative '../lib/middleware/multi_project_configuration_middleware/landing'
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module TramwayPro
@@ -23,8 +24,10 @@ module TramwayPro
     #config.i18n.enforce_available_locales = false
     config.i18n.default_locale = :ru
     config.autoload_paths += %w(#{config.root}/app/models/ckeditor)
-    config.autoload_paths += Dir[
-      "#{config.root}/lib/**/"
-    ]
+    config.autoload_paths += Dir[ "#{config.root}/lib/**/" ]
+    config.middleware.use ::MultiProjectConfigurationMiddleware::Conference
+    config.middleware.use ::MultiProjectConfigurationMiddleware::SportSchool
+    config.middleware.use ::MultiProjectConfigurationMiddleware::Admin
+    config.middleware.use ::MultiProjectConfigurationMiddleware::Landing
   end
 end
