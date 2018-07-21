@@ -28,6 +28,12 @@ module MultiProjectCallbacks
           project = Project.where(url: ENV['PROJECT_URL']).first
           @records = decorator_class.decorate @records.original_array.where project_id: project.id
         end
+
+        before_action :add_project_id, only: [ :create, :update ]
+
+        def add_project_id
+          params[:record][:project_id] = Project.where(url: ENV['PROJECT_URL']).first.id
+        end
       end
     end
 

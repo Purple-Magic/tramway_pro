@@ -13,6 +13,7 @@ require "sprockets/railtie"
 require_relative '../lib/middleware/multi_project_configuration_middleware/conference'
 require_relative '../lib/middleware/multi_project_configuration_middleware/sport_school'
 require_relative '../lib/middleware/multi_project_configuration_middleware/admin'
+require_relative '../lib/middleware/multi_project_configuration_middleware/landing'
 
 Bundler.require(*Rails.groups)
 
@@ -26,5 +27,6 @@ module TramwayPro
     config.middleware.use ::MultiProjectConfigurationMiddleware::Conference
     config.middleware.use ::MultiProjectConfigurationMiddleware::SportSchool
     config.middleware.use ::MultiProjectConfigurationMiddleware::Admin
+    config.middleware.use ::MultiProjectConfigurationMiddleware::Landing
   end
 end
