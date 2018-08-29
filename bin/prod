@@ -28,6 +28,7 @@ if ARGV[0] == 'get_db'
   puts "Copy prod db to backup folder...".yellow
   system "mkdir ~/backup.tramway.dbs"
   system "cp -r /tmp/#{dump} ~/backup.tramway.dbs/#{dump}"
+  system 'rails db:seed'
 end
 
 if ARGV[0] == 'get_credentials'
