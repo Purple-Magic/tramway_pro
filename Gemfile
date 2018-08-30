@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'tramway-sport_school', '1.2.3'
-gem 'tramway-admin', '>= 1.2.1'
+gem 'tramway-admin', '>= 1.2.2'
 gem 'tramway-core', '>= 1.0.6'
 gem 'tramway-landing', '1.2.7'
 gem 'tramway-news', '>= 1.0.3'
@@ -14,7 +14,7 @@ gem 'tramway-profiles', '>= 1.1.1'
 gem 'tramway-user', '>= 1.0.4'
 gem 'tramway-conference', '1.1'
 gem 'tramway-page', '1.1.3'
-gem 'tramway-event', '0.1.1'
+gem 'tramway-event', '0.2'
 
 #gem 'tramway-page', path: '../tramway-dev/tramway-page'
 #gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
