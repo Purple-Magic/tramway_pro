@@ -14,6 +14,7 @@ require_relative '../lib/middleware/multi_project_configuration_middleware/confe
 require_relative '../lib/middleware/multi_project_configuration_middleware/sport_school'
 require_relative '../lib/middleware/multi_project_configuration_middleware/admin'
 require_relative '../lib/middleware/multi_project_configuration_middleware/landing'
+require_relative '../lib/middleware/multi_project_configuration_middleware/event'
 
 Bundler.require(*Rails.groups)
 
@@ -29,5 +30,6 @@ module TramwayPro
     config.middleware.use ::MultiProjectConfigurationMiddleware::SportSchool
     config.middleware.use ::MultiProjectConfigurationMiddleware::Admin
     config.middleware.use ::MultiProjectConfigurationMiddleware::Landing
+    config.middleware.use ::MultiProjectConfigurationMiddleware::Event
   end
 end
