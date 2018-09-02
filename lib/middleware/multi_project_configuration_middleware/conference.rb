@@ -33,7 +33,8 @@ module MultiProjectCallbacks
 
       def after_index
         project = Project.where(url: ENV['PROJECT_URL']).first
-        @blocks = @blocks.where(project_id: project.id)
+        @blocks = ::Tramway::Landing::BlockDecorator.decorate @blocks.original_array.where(project_id: project.id)
+        @links = ::Tramway::Event::EventLinkDecorator.decorate @links.original_array.where project_id: project.id
       end
     end
   end
