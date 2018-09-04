@@ -14,7 +14,7 @@ gem 'tramway-profiles', '>= 1.1.1'
 gem 'tramway-user', '>= 1.0.4'
 gem 'tramway-conference', '1.1.2'
 gem 'tramway-page', '1.1.3'
-gem 'tramway-event', '0.4'
+gem 'tramway-event', '0.4.1'
 
 #gem 'tramway-page', path: '../tramway-dev/tramway-page'
 #gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
