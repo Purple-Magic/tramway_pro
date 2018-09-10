@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180902111210) do
+ActiveRecord::Schema.define(version: 20180909223708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,26 @@ ActiveRecord::Schema.define(version: 20180902111210) do
     t.datetime "updated_at", null: false
     t.integer "project_id"
     t.text "photo"
+  end
+
+  create_table "tramway_event_participant_form_fields", force: :cascade do |t|
+    t.text "title"
+    t.text "description"
+    t.text "field_type", default: "text"
+    t.integer "event_id"
+    t.text "state", default: "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "project_id"
+  end
+
+  create_table "tramway_event_participants", force: :cascade do |t|
+    t.integer "event_id"
+    t.jsonb "values"
+    t.text "state", default: "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "project_id"
   end
 
   create_table "tramway_landing_blocks", force: :cascade do |t|
