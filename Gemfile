@@ -6,15 +6,15 @@ git_source(:github) do |repo_name|
 end
 
 gem 'tramway-sport_school', '1.2.6'
-gem 'tramway-admin', '>= 1.2.3'
-gem 'tramway-core', '>= 1.1.0'
-gem 'tramway-landing', '1.2.11'
+gem 'tramway-admin', '>= 1.3'
+gem 'tramway-core', '>= 1.2'
+gem 'tramway-landing', '1.2.12'
 gem 'tramway-news', '>= 1.0.3'
 gem 'tramway-profiles', '>= 1.1.1'
 gem 'tramway-user', '>= 1.0.5'
 gem 'tramway-conference', '1.1.2'
 gem 'tramway-page', '1.1.3'
-gem 'tramway-event', '0.5'
+gem 'tramway-event', '0.6'
 
 #gem 'tramway-page', path: '../tramway-dev/tramway-page'
 #gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
@@ -55,6 +55,8 @@ gem 'more_html_tags', '>= 0.2.0'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'config'
 gem 'colorize'
+gem 'bootstrap-datepicker-rails', github: 'kostia/bootstrap-datepicker-rails'
+gem 'russia_regions', '0.0.6'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

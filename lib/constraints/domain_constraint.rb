@@ -1,6 +1,7 @@
 class Constraints::DomainConstraint
   def initialize(domain)
     @domains = [domain].flatten
+    ENV['PROJECT_URL'] = domain
   end
 
   def matches?(request)

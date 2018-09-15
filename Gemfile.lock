@@ -16,6 +16,14 @@ GIT
       rails (>= 3.1)
 
 GIT
+  remote: https://github.com/kostia/bootstrap-datepicker-rails.git
+  revision: 3981aea946a674e599864223dcc7415ff8a37603
+  specs:
+    bootstrap-datepicker-rails (0.0.1)
+      jquery-rails
+      rails (>= 3.2.8)
+
+GIT
   remote: https://github.com/seuros/state_machine.git
   revision: 95ba53f03e5657a5873343c2b1dc6a148ea3542e
   specs:
@@ -252,6 +260,7 @@ GEM
     ruby_dep (1.5.0)
     ruby_parser (3.11.0)
       sexp_processor (~> 4.9)
+    russia_regions (0.0.6)
     sass (3.5.7)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -286,7 +295,7 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    tramway-admin (1.2.3)
+    tramway-admin (1.3)
       bootstrap-kaminari-views (= 0.0.5)
       ckeditor (= 4.2.4)
       copyright_mafa (~> 0.1.2, >= 0.1.2)
@@ -295,7 +304,7 @@ GEM
       state_machine_buttons (~> 0.4.1, >= 0.4.1)
       tramway-user (~> 1.0.3, >= 1.0.3)
     tramway-conference (1.1.2)
-    tramway-core (1.1.0)
+    tramway-core (1.3)
       audited (~> 4.5, >= 4.5.0)
       bootstrap (~> 4.1, >= 4.1.0)
       enumerize (~> 2.1, >= 2.1.2)
@@ -306,8 +315,8 @@ GEM
       rmagick (~> 2.16, >= 2.16.0)
       sass-rails (~> 5.0, >= 5.0.7)
       simple_form (~> 3.5, >= 3.5.0)
-    tramway-event (0.5)
-    tramway-landing (1.2.11)
+    tramway-event (0.6)
+    tramway-landing (1.2.12)
     tramway-news (1.0.3)
     tramway-page (1.1.3)
     tramway-profiles (1.1.1)
@@ -340,6 +349,7 @@ DEPENDENCIES
   audited
   bcrypt
   bootstrap (~> 4.1.0)
+  bootstrap-datepicker-rails!
   bootstrap-kaminari-views!
   byebug
   carrierwave
@@ -362,17 +372,18 @@ DEPENDENCIES
   rails (~> 5.1.4)
   reform-rails
   rmagick
+  russia_regions (= 0.0.6)
   sass-rails
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
   state_machine!
   state_machine_buttons
-  tramway-admin (>= 1.2.3)
+  tramway-admin (>= 1.3)
   tramway-conference (= 1.1.2)
-  tramway-core (>= 1.1.0)
-  tramway-event (= 0.5)
-  tramway-landing (= 1.2.11)
+  tramway-core (>= 1.2)
+  tramway-event (= 0.6)
+  tramway-landing (= 1.2.12)
   tramway-news (>= 1.0.3)
   tramway-page (= 1.1.3)
   tramway-profiles (>= 1.1.1)
