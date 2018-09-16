@@ -7,14 +7,14 @@ end
 
 gem 'tramway-sport_school', '1.2.6'
 gem 'tramway-admin', '>= 1.3'
-gem 'tramway-core', '>= 1.3.1'
+gem 'tramway-core', '>= 1.4'
 gem 'tramway-landing', '1.2.12'
 gem 'tramway-news', '>= 1.0.3'
 gem 'tramway-profiles', '>= 1.1.1'
 gem 'tramway-user', '>= 1.0.5'
 gem 'tramway-conference', '1.1.2'
 gem 'tramway-page', '1.1.3'
-gem 'tramway-event', '0.7'
+gem 'tramway-event', '1.0'
 
 #gem 'tramway-page', path: '../tramway-dev/tramway-page'
 #gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
