@@ -7,8 +7,8 @@ end
 
 gem 'tramway-sport_school', '1.2.6'
 gem 'tramway-admin', '>= 1.3.1'
-gem 'tramway-core', '>= 1.4'
-gem 'tramway-landing', '1.2.12'
+gem 'tramway-core', '>= 1.4.1'
+gem 'tramway-landing', '1.2.13'
 gem 'tramway-news', '>= 1.0.3'
 gem 'tramway-profiles', '>= 1.1.1'
 gem 'tramway-user', '>= 1.1'
