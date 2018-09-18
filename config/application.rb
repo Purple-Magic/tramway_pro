@@ -16,6 +16,7 @@ require_relative '../lib/middleware/multi_project_configuration_middleware/admin
 require_relative '../lib/middleware/multi_project_configuration_middleware/landing'
 require_relative '../lib/middleware/multi_project_configuration_middleware/event'
 require_relative '../lib/middleware/multi_project_configuration_middleware/user'
+require_relative '../lib/middleware/multi_project_configuration_middleware/profiles'
 
 Bundler.require(*Rails.groups)
 
@@ -33,5 +34,6 @@ module TramwayPro
     config.middleware.use ::MultiProjectConfigurationMiddleware::Landing
     config.middleware.use ::MultiProjectConfigurationMiddleware::Event
     config.middleware.use ::MultiProjectConfigurationMiddleware::User
+    config.middleware.use ::MultiProjectConfigurationMiddleware::Profiles
   end
 end
