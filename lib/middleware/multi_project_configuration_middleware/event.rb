@@ -8,6 +8,7 @@ module MultiProjectConfigurationMiddleware
       ::Tramway::Event::EventForm.include MultiProjectCallbacks::Event::EventForm
       ::Tramway::Event::ParticipantForm.include MultiProjectCallbacks::Event::ParticipantForm
       ::Tramway::Event::ParticipantFormFieldForm.include MultiProjectCallbacks::Event::ParticipantFormFieldForm
+      ::Tramway::Event::SectionForm.include MultiProjectCallbacks::Event::SectionForm
       ::Tramway::Event::ParticipantFormField.include MultiProjectCallbacks::Event::EventModel
       ::Tramway::Event::ParticipantsController.include MultiProjectCallbacks::Event::ParticipantsController
 
@@ -35,6 +36,14 @@ module MultiProjectCallbacks
     end
 
     module ParticipantForm
+      extend ActiveSupport::Concern
+
+      included do
+        properties :project_id
+      end
+    end
+
+    module SectionForm
       extend ActiveSupport::Concern
 
       included do
