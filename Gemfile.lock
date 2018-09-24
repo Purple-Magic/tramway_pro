@@ -29,17 +29,6 @@ GIT
   specs:
     state_machine (1.2.0)
 
-PATH
-  remote: ../tramway-dev/tramway-admin
-  specs:
-    tramway-admin (1.3.7)
-      bootstrap-kaminari-views (= 0.0.5)
-      ckeditor (= 4.2.4)
-      copyright_mafa (~> 0.1.2, >= 0.1.2)
-      font-awesome-rails (~> 4.7, >= 4.7.0.1)
-      kaminari (~> 1.1.1, >= 1.1.1)
-      state_machine_buttons (~> 0.4.1, >= 0.4.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -306,6 +295,13 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
+    tramway-admin (1.3.6)
+      bootstrap-kaminari-views (= 0.0.5)
+      ckeditor (= 4.2.4)
+      copyright_mafa (~> 0.1.2, >= 0.1.2)
+      font-awesome-rails (~> 4.7, >= 4.7.0.1)
+      kaminari (~> 1.1.1, >= 1.1.1)
+      state_machine_buttons (~> 0.4.1, >= 0.4.1)
     tramway-conference (1.4)
     tramway-core (1.5.3)
       audited (~> 4.5, >= 4.5.0)
@@ -382,7 +378,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   state_machine!
   state_machine_buttons
-  tramway-admin!
+  tramway-admin (= 1.3.6)
   tramway-conference (= 1.4)
   tramway-core (= 1.5.3)
   tramway-event (= 1.2.2)
