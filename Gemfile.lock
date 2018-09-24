@@ -295,7 +295,7 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    tramway-admin (1.3.6)
+    tramway-admin (1.3.7)
       bootstrap-kaminari-views (= 0.0.5)
       ckeditor (= 4.2.4)
       copyright_mafa (~> 0.1.2, >= 0.1.2)
@@ -378,7 +378,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   state_machine!
   state_machine_buttons
-  tramway-admin (= 1.3.6)
+  tramway-admin (= 1.3.7)
   tramway-conference (= 1.4)
   tramway-core (= 1.5.3)
   tramway-event (= 1.2.2)
