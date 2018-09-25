@@ -303,7 +303,7 @@ GEM
       kaminari (~> 1.1.1, >= 1.1.1)
       state_machine_buttons (~> 0.4.1, >= 0.4.1)
     tramway-conference (1.5)
-    tramway-core (1.5.4)
+    tramway-core (1.5.5)
       audited (~> 4.5, >= 4.5.0)
       bootstrap (~> 4.1, >= 4.1.0)
       enumerize (~> 2.1, >= 2.1.2)
@@ -380,7 +380,7 @@ DEPENDENCIES
   state_machine_buttons
   tramway-admin (= 1.3.9)
   tramway-conference (= 1.5)
-  tramway-core (= 1.5.4)
+  tramway-core (= 1.5.5)
   tramway-event (= 1.2.5)
   tramway-landing (= 1.2.19)
   tramway-news (>= 1.0.3)
