@@ -11,6 +11,7 @@ module MultiProjectConfigurationMiddleware
       ::Tramway::Event::SectionForm.include MultiProjectCallbacks::Event::SectionForm
       ::Tramway::Event::ParticipantFormField.include MultiProjectCallbacks::Event::EventModel
       ::Tramway::Event::ParticipantsController.include MultiProjectCallbacks::Event::ParticipantsController
+      ::Tramway::Event::EventsController.include MultiProjectCallbacks::Event::EventsController
 
       @app.call(env)
     end
@@ -71,6 +72,21 @@ module MultiProjectCallbacks
           if @participant_form.model.id.present?
             @participant_form.model.update project_id: Project.where(url: ENV['PROJECT_URL']).first.id
           end
+        end
+      end
+    end
+
+    module EventsController
+      extend ActiveSupport::Concern
+
+      included do
+        before_action :load_application
+
+        def load_application
+          engine_loaded = Constraints::DomainConstraint.new(request.domain).engine_loaded
+          engine_module = "::Tramway::#{engine_loaded.camelize}".constantize
+          @application = "#{engine_module}::#{engine_module.application.to_s.camelize}".constantize.first
+          @application_engine = engine_loaded
         end
       end
     end

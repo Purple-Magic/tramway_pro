@@ -6,14 +6,14 @@ git_source(:github) do |repo_name|
 end
 
 gem 'tramway-admin', '1.4'
-gem 'tramway-conference', '1.5.1'
-gem 'tramway-core', '1.6'
-gem 'tramway-event', '1.3'
-gem 'tramway-landing', '1.2.19'
+gem 'tramway-conference', '1.5.2'
+gem 'tramway-core', '1.6.1'
+gem 'tramway-event', '1.4'
+gem 'tramway-landing', '1.3'
 gem 'tramway-news', '>= 1.0.3'
 gem 'tramway-page', '1.2'
 gem 'tramway-profiles', '>= 1.1.2'
-gem 'tramway-sport_school', '1.2.6'
+gem 'tramway-sport_school', '1.2.8'
 gem 'tramway-user', '>= 1.1.1'
 
 #gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
@@ -47,6 +47,7 @@ gem 'enumerize'
 gem 'state_machine', github: 'seuros/state_machine'
 gem 'bcrypt'
 gem 'copyright_mafa'
+#gem 'trap', path: '../trap'
 gem 'trap'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views', github: 'kalashnikovisme/bootstrap-kaminari-views', branch: :master
@@ -60,6 +61,7 @@ gem 'config'
 gem 'colorize'
 gem 'bootstrap-datepicker-rails', github: 'kostia/bootstrap-datepicker-rails'
 gem 'russia_regions', '0.0.6'
+gem 'russian'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

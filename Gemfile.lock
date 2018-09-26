@@ -261,6 +261,8 @@ GEM
     ruby_parser (3.11.0)
       sexp_processor (~> 4.9)
     russia_regions (0.0.6)
+    russian (0.6.0)
+      i18n (>= 0.5.0)
     sass (3.5.7)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -302,8 +304,8 @@ GEM
       font-awesome-rails (~> 4.7, >= 4.7.0.1)
       kaminari (~> 1.1.1, >= 1.1.1)
       state_machine_buttons (~> 0.4.1, >= 0.4.1)
-    tramway-conference (1.5.1)
-    tramway-core (1.6)
+    tramway-conference (1.5.2)
+    tramway-core (1.6.1)
       audited (~> 4.5, >= 4.5.0)
       bootstrap (~> 4.1, >= 4.1.0)
       enumerize (~> 2.1, >= 2.1.2)
@@ -314,12 +316,12 @@ GEM
       rmagick (~> 2.16, >= 2.16.0)
       sass-rails (~> 5.0, >= 5.0.7)
       simple_form (~> 3.5, >= 3.5.0)
-    tramway-event (1.3)
-    tramway-landing (1.2.19)
+    tramway-event (1.4)
+    tramway-landing (1.3)
     tramway-news (1.0.3)
     tramway-page (1.2)
     tramway-profiles (1.1.2)
-    tramway-sport_school (1.2.6)
+    tramway-sport_school (1.2.8)
     tramway-user (1.1.1)
       bcrypt (~> 3.1.11, >= 3.1.11)
       enumerize (~> 2.1, >= 2.1.2)
@@ -372,6 +374,7 @@ DEPENDENCIES
   reform-rails
   rmagick
   russia_regions (= 0.0.6)
+  russian
   sass-rails
   simple_form
   spring
@@ -379,14 +382,14 @@ DEPENDENCIES
   state_machine!
   state_machine_buttons
   tramway-admin (= 1.4)
-  tramway-conference (= 1.5.1)
-  tramway-core (= 1.6)
-  tramway-event (= 1.3)
-  tramway-landing (= 1.2.19)
+  tramway-conference (= 1.5.2)
+  tramway-core (= 1.6.1)
+  tramway-event (= 1.4)
+  tramway-landing (= 1.3)
   tramway-news (>= 1.0.3)
   tramway-page (= 1.2)
   tramway-profiles (>= 1.1.2)
-  tramway-sport_school (= 1.2.6)
+  tramway-sport_school (= 1.2.8)
   tramway-user (>= 1.1.1)
   trap
   tzinfo-data
