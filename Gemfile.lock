@@ -29,6 +29,74 @@ GIT
   specs:
     state_machine (1.2.0)
 
+PATH
+  remote: ../tramway-dev/tramway-admin
+  specs:
+    tramway-admin (1.4)
+      bootstrap-kaminari-views (= 0.0.5)
+      ckeditor (= 4.2.4)
+      copyright_mafa (~> 0.1.2, >= 0.1.2)
+      font-awesome-rails (~> 4.7, >= 4.7.0.1)
+      kaminari (~> 1.1.1, >= 1.1.1)
+      state_machine_buttons (~> 0.4.1, >= 0.4.1)
+
+PATH
+  remote: ../tramway-dev/tramway-conference
+  specs:
+    tramway-conference (1.5.2)
+
+PATH
+  remote: ../tramway-dev/tramway-core
+  specs:
+    tramway-core (1.6.1)
+      audited (~> 4.5, >= 4.5.0)
+      bootstrap (~> 4.1, >= 4.1.0)
+      enumerize (~> 2.1, >= 2.1.2)
+      haml-rails (~> 1.0, >= 1.0.0)
+      loofah (~> 2.2, >= 2.2.1)
+      mini_magick (~> 4.8, >= 4.8.0)
+      reform-rails (= 0.1.7)
+      rmagick (~> 2.16, >= 2.16.0)
+      sass-rails (~> 5.0, >= 5.0.7)
+      simple_form (~> 3.5, >= 3.5.0)
+
+PATH
+  remote: ../tramway-dev/tramway-event
+  specs:
+    tramway-event (1.4)
+
+PATH
+  remote: ../tramway-dev/tramway-landing
+  specs:
+    tramway-landing (1.3)
+
+PATH
+  remote: ../tramway-dev/tramway-news
+  specs:
+    tramway-news (1.0.3)
+
+PATH
+  remote: ../tramway-dev/tramway-page
+  specs:
+    tramway-page (1.2)
+
+PATH
+  remote: ../tramway-dev/tramway-profiles
+  specs:
+    tramway-profiles (1.1.2)
+
+PATH
+  remote: ../tramway-dev/tramway-sport_school
+  specs:
+    tramway-sport_school (1.2.8)
+
+PATH
+  remote: ../tramway-dev/tramway-user
+  specs:
+    tramway-user (1.1.1)
+      bcrypt (~> 3.1.11, >= 3.1.11)
+      enumerize (~> 2.1, >= 2.1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -274,6 +342,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    selectize-rails (0.12.5)
     sexp_processor (4.11.0)
     simple_form (3.5.1)
       actionpack (> 4, < 5.2)
@@ -297,34 +366,6 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    tramway-admin (1.4)
-      bootstrap-kaminari-views (= 0.0.5)
-      ckeditor (= 4.2.4)
-      copyright_mafa (~> 0.1.2, >= 0.1.2)
-      font-awesome-rails (~> 4.7, >= 4.7.0.1)
-      kaminari (~> 1.1.1, >= 1.1.1)
-      state_machine_buttons (~> 0.4.1, >= 0.4.1)
-    tramway-conference (1.5.2)
-    tramway-core (1.6.1)
-      audited (~> 4.5, >= 4.5.0)
-      bootstrap (~> 4.1, >= 4.1.0)
-      enumerize (~> 2.1, >= 2.1.2)
-      haml-rails (~> 1.0, >= 1.0.0)
-      loofah (~> 2.2, >= 2.2.1)
-      mini_magick (~> 4.8, >= 4.8.0)
-      reform-rails (= 0.1.7)
-      rmagick (~> 2.16, >= 2.16.0)
-      sass-rails (~> 5.0, >= 5.0.7)
-      simple_form (~> 3.5, >= 3.5.0)
-    tramway-event (1.4)
-    tramway-landing (1.3)
-    tramway-news (1.0.3)
-    tramway-page (1.2)
-    tramway-profiles (1.1.2)
-    tramway-sport_school (1.2.8)
-    tramway-user (1.1.1)
-      bcrypt (~> 3.1.11, >= 3.1.11)
-      enumerize (~> 2.1, >= 2.1.2)
     trap (2.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
@@ -376,21 +417,22 @@ DEPENDENCIES
   russia_regions (= 0.0.6)
   russian
   sass-rails
+  selectize-rails
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
   state_machine!
   state_machine_buttons
-  tramway-admin (= 1.4)
-  tramway-conference (= 1.5.2)
-  tramway-core (= 1.6.1)
-  tramway-event (= 1.4)
-  tramway-landing (= 1.3)
-  tramway-news (>= 1.0.3)
-  tramway-page (= 1.2)
-  tramway-profiles (>= 1.1.2)
-  tramway-sport_school (= 1.2.8)
-  tramway-user (>= 1.1.1)
+  tramway-admin!
+  tramway-conference!
+  tramway-core!
+  tramway-event!
+  tramway-landing!
+  tramway-news!
+  tramway-page!
+  tramway-profiles!
+  tramway-sport_school!
+  tramway-user!
   trap
   tzinfo-data
   uglifier (>= 1.3.0)
