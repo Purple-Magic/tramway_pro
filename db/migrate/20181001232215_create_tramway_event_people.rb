@@ -1,6 +1,6 @@
-class CreateTramwayConferencePeople < ActiveRecord::Migration[5.1]
+class CreateTramwayEventPeople < ActiveRecord::Migration[5.1]
   def change
-    create_table :tramway_conference_people do |t|
+    create_table :tramway_event_people do |t|
       t.text :first_name
       t.text :last_name
       t.text :photo

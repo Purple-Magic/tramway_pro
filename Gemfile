@@ -5,27 +5,27 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-#gem 'tramway-admin', '1.4'
-#gem 'tramway-conference', '1.5.2'
-#gem 'tramway-core', '1.6.1'
-#gem 'tramway-event', '1.4'
-#gem 'tramway-landing', '1.3'
-#gem 'tramway-news', '>= 1.0.3'
-#gem 'tramway-page', '1.2'
-#gem 'tramway-profiles', '>= 1.1.2'
-#gem 'tramway-sport_school', '1.2.8'
-#gem 'tramway-user', '>= 1.1.1'
+gem 'tramway-admin', '1.5'
+gem 'tramway-conference', '1.5.3'
+gem 'tramway-core', '1.6.2'
+gem 'tramway-event', '1.5'
+gem 'tramway-landing', '1.3'
+gem 'tramway-news', '>= 1.0.3'
+gem 'tramway-page', '1.2'
+gem 'tramway-profiles', '>= 1.1.2'
+gem 'tramway-sport_school', '1.2.8'
+gem 'tramway-user', '>= 1.1.1'
 
-gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
-gem 'tramway-conference', path: '../tramway-dev/tramway-conference'
-gem 'tramway-core', path: '../tramway-dev/tramway-core'
-gem 'tramway-event', path: '../tramway-dev/tramway-event'
-gem 'tramway-landing', path: '../tramway-dev/tramway-landing'
-gem 'tramway-news', path: '../tramway-dev/tramway-news'
-gem 'tramway-profiles', path: '../tramway-dev/tramway-profiles'
-gem 'tramway-page', path: '../tramway-dev/tramway-page'
-gem 'tramway-sport_school', path: '../tramway-dev/tramway-sport_school'
-gem 'tramway-user', path: '../tramway-dev/tramway-user'
+#gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
+#gem 'tramway-conference', path: '../tramway-dev/tramway-conference'
+#gem 'tramway-core', path: '../tramway-dev/tramway-core'
+#gem 'tramway-event', path: '../tramway-dev/tramway-event'
+#gem 'tramway-landing', path: '../tramway-dev/tramway-landing'
+#gem 'tramway-news', path: '../tramway-dev/tramway-news'
+#gem 'tramway-profiles', path: '../tramway-dev/tramway-profiles'
+#gem 'tramway-page', path: '../tramway-dev/tramway-page'
+#gem 'tramway-sport_school', path: '../tramway-dev/tramway-sport_school'
+#gem 'tramway-user', path: '../tramway-dev/tramway-user'
 
 ruby '2.5.1'
 
@@ -61,7 +61,7 @@ gem 'colorize'
 gem 'bootstrap-datepicker-rails', github: 'kostia/bootstrap-datepicker-rails'
 gem 'russia_regions', '0.0.6'
 gem 'russian'
-gem 'selectize-rails'
+gem 'simple_form_extension'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -72,3 +72,5 @@ group :development, :test do
   gem 'pry'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'redactor-rails', github: 'glyph-fr/redactor-rails'
