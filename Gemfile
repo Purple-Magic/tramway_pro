@@ -8,7 +8,7 @@ end
 gem 'tramway-admin', '1.6'
 gem 'tramway-conference', '1.5.5'
 gem 'tramway-core', '1.6.4'
-gem 'tramway-event', '1.5.3'
+gem 'tramway-event', '1.5.4'
 gem 'tramway-landing', '1.3.3'
 gem 'tramway-news', '>= 1.0.3'
 gem 'tramway-page', '1.2'
