@@ -57,30 +57,6 @@ ActiveRecord::Schema.define(version: 20181006220433) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tramway_conference_people", force: :cascade do |t|
-    t.text "first_name"
-    t.text "last_name"
-    t.text "photo"
-    t.text "state", default: "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "project_id"
-  end
-
-  create_table "tramway_conference_people_event_events", force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "person_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tramway_conference_people_event_sections", force: :cascade do |t|
-    t.integer "section_id"
-    t.integer "person_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "tramway_conference_unities", force: :cascade do |t|
     t.text "title"
     t.text "tagline"
