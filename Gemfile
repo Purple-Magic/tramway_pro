@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'tramway-admin', '1.6'
+gem 'tramway-admin', '1.6.1'
 gem 'tramway-conference', '1.5.5'
 gem 'tramway-core', '1.7.1'
 gem 'tramway-event', '1.6.4'
