@@ -7,8 +7,8 @@ end
 
 gem 'tramway-admin', '1.6'
 gem 'tramway-conference', '1.5.5'
-gem 'tramway-core', '1.7'
-gem 'tramway-event', '1.6.3'
+gem 'tramway-core', '1.7.1'
+gem 'tramway-event', '1.6.4'
 gem 'tramway-landing', '1.3.3'
 gem 'tramway-news', '>= 1.0.3'
 gem 'tramway-page', '1.2'
@@ -61,7 +61,6 @@ gem 'colorize'
 gem 'bootstrap-datepicker-rails', github: 'kostia/bootstrap-datepicker-rails'
 gem 'russia_regions', '0.0.6'
 gem 'russian'
-gem 'simple_form_extension'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
