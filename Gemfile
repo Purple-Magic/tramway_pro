@@ -61,6 +61,7 @@ gem 'colorize'
 gem 'bootstrap-datepicker-rails', github: 'kostia/bootstrap-datepicker-rails'
 gem 'russia_regions', '0.0.6'
 gem 'russian'
+gem 'time_difference'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
