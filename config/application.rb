@@ -15,6 +15,7 @@ require_relative '../lib/middleware/multi_project_configuration_middleware/sport
 require_relative '../lib/middleware/multi_project_configuration_middleware/admin'
 require_relative '../lib/middleware/multi_project_configuration_middleware/landing'
 require_relative '../lib/middleware/multi_project_configuration_middleware/event'
+require_relative '../lib/middleware/multi_project_configuration_middleware/partner'
 require_relative '../lib/middleware/multi_project_configuration_middleware/user'
 require_relative '../lib/middleware/multi_project_configuration_middleware/profiles'
 require_relative '../lib/middleware/multi_project_configuration_middleware/page'
@@ -37,5 +38,6 @@ module TramwayPro
     config.middleware.use ::MultiProjectConfigurationMiddleware::User
     config.middleware.use ::MultiProjectConfigurationMiddleware::Profiles
     config.middleware.use ::MultiProjectConfigurationMiddleware::Page
+    config.middleware.use ::MultiProjectConfigurationMiddleware::Partner
   end
 end
