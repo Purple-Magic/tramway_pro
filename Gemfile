@@ -6,13 +6,13 @@ git_source(:github) do |repo_name|
 end
 
 gem 'tramway-admin', '1.7.4'
-gem 'tramway-conference', '1.7'
+gem 'tramway-conference', '1.8'
 gem 'tramway-core', '1.8.1'
-gem 'tramway-event', '1.9.2'
+gem 'tramway-event', '1.9.3'
 gem 'tramway-landing', '1.4.1'
 gem 'tramway-news', '>= 1.0.3'
 gem 'tramway-page', '1.2'
-gem 'tramway-partner', '1.0.2'
+gem 'tramway-partner', '1.0.3'
 gem 'tramway-profiles', '>= 1.2'
 gem 'tramway-sport_school', '1.2.8'
 gem 'tramway-user', '>= 1.1.3'
