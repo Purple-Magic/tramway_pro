@@ -314,7 +314,7 @@ GEM
       font-awesome-rails (~> 4.7, >= 4.7.0.1)
       kaminari (~> 1.1.1, >= 1.1.1)
       state_machine_buttons (~> 0.4.1, >= 0.4.1)
-    tramway-conference (1.8)
+    tramway-conference (1.8.9)
     tramway-core (1.8.1)
       audited (~> 4.5, >= 4.5.0)
       bootstrap (~> 4.1, >= 4.1.0)
@@ -395,7 +395,7 @@ DEPENDENCIES
   state_machine_buttons
   time_difference
   tramway-admin (= 1.7.6)
-  tramway-conference (= 1.8)
+  tramway-conference (= 1.8.9)
   tramway-core (= 1.8.1)
   tramway-event (= 1.9.4)
   tramway-landing (= 1.4.1)
