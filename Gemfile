@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'tramway-admin', '1.7.6'
-gem 'tramway-conference', '1.8.12.2'
+gem 'tramway-conference', '1.8.12.3'
 gem 'tramway-core', '1.8.1'
 gem 'tramway-event', '1.9.9.2'
 gem 'tramway-landing', '1.4.5'
