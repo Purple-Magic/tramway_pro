@@ -3,5 +3,6 @@ deploy:
 restart:
 	ansible-playbook -i cm/inventory cm/restart.yml
 install:
-	#ansible-galaxy install -r cm/requirements.yml
-	ansible-playbook -i cm/inventory cm/install.yml
+	echo "You should run it with sudo"
+	echo "127.0.0.1 it-way.test" >> /etc/hosts
+	echo "127.0.0.1 sportschool-ulsk.test" >> /etc/hosts

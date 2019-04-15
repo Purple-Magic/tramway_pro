@@ -5,13 +5,13 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'tramway-admin', '1.11'
+gem 'tramway-admin', '1.12'
 gem 'tramway-conference', '1.8.12.4'
-gem 'tramway-core', '1.9.6.1'
+gem 'tramway-core', '1.9.9'
 gem 'tramway-event', '1.9.10'
 gem 'tramway-landing', '1.4.7'
 gem 'tramway-news', '>= 1.0.3'
-gem 'tramway-page', '1.2'
+gem 'tramway-page', '1.2.1'
 gem 'tramway-partner', '1.0.3'
 gem 'tramway-profiles', '>= 1.2'
 gem 'tramway-sport_school', '1.2.8'
@@ -65,6 +65,7 @@ gem 'russia_regions', '0.0.6'
 gem 'russian'
 gem 'time_difference'
 gem 'pg_search'
+gem 'colorize'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

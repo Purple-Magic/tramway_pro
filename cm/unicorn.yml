@@ -1,5 +1,5 @@
 - name: Stop unicorn
-  shell: "[ -e /srv/tramway_pro/shared/tmp/pids/unicorn.pid  ] && kill `cat /srv/tramway_pro/shared/tmp/pids/unicorn.pid`"
+  shell: "if !pgrep -x \"unicorn\" > /dev/null then [ -e /srv/tramway_pro/shared/tmp/pids/unicorn.pid  ] && kill `cat /srv/tramway_pro/shared/tmp/pids/unicorn.pid` fi"
   ignore_errors: yes
 
 - name: Start unicorn
