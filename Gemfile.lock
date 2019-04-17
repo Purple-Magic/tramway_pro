@@ -318,7 +318,7 @@ GEM
       kaminari (~> 1.1.1, >= 1.1.1)
       state_machine_buttons (~> 0.4.1, >= 0.4.1)
     tramway-conference (1.8.12.4)
-    tramway-core (1.9.9)
+    tramway-core (1.9.9.1)
       audited (>= 4.8.0)
       bootstrap (>= 4.1.2)
       carrierwave
@@ -405,7 +405,7 @@ DEPENDENCIES
   time_difference
   tramway-admin (= 1.12)
   tramway-conference (= 1.8.12.4)
-  tramway-core (= 1.9.9)
+  tramway-core (= 1.9.9.1)
   tramway-event (= 1.9.10)
   tramway-landing (= 1.4.7)
   tramway-news (>= 1.0.3)
