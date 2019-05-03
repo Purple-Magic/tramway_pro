@@ -5,29 +5,29 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'tramway-admin', '1.12.0.3'
-gem 'tramway-conference', '1.8.12.4'
-gem 'tramway-core', '1.9.9.3'
-gem 'tramway-event', '1.9.11.1'
-gem 'tramway-landing', '1.4.7.2'
-gem 'tramway-news', '>= 1.0.3'
-gem 'tramway-page', '1.2.1'
-gem 'tramway-partner', '1.0.3'
-gem 'tramway-profiles', '>= 1.2'
-gem 'tramway-sport_school', '1.2.8'
-gem 'tramway-user', '>= 1.1.3'
+#gem 'tramway-admin', '1.12.0.3'
+#gem 'tramway-conference', '1.8.12.4'
+#gem 'tramway-core', '1.9.9.3'
+#gem 'tramway-event', '1.9.11.1'
+#gem 'tramway-landing', '1.4.7.2'
+#gem 'tramway-news', '>= 1.0.3'
+#gem 'tramway-page', '1.2.1'
+#gem 'tramway-partner', '1.0.3'
+#gem 'tramway-profiles', '>= 1.2'
+#gem 'tramway-sport_school', '1.2.8'
+#gem 'tramway-user', '>= 1.1.3'
 
-#gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
-#gem 'tramway-conference', path: '../tramway-dev/tramway-conference'
-#gem 'tramway-core', path: '../tramway-dev/tramway-core'
-#gem 'tramway-event', path: '../tramway-dev/tramway-event'
-#gem 'tramway-landing', path: '../tramway-dev/tramway-landing'
-#gem 'tramway-news', path: '../tramway-dev/tramway-news'
-#gem 'tramway-page', path: '../tramway-dev/tramway-page'
-#gem 'tramway-partner', path: '../tramway-dev/tramway-partner'
-#gem 'tramway-profiles', path: '../tramway-dev/tramway-profiles'
-#gem 'tramway-sport_school', path: '../tramway-dev/tramway-sport_school'
-#gem 'tramway-user', path: '../tramway-dev/tramway-user'
+gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
+gem 'tramway-conference', path: '../tramway-dev/tramway-conference'
+gem 'tramway-core', path: '../tramway-dev/tramway-core'
+gem 'tramway-event', path: '../tramway-dev/tramway-event'
+gem 'tramway-landing', path: '../tramway-dev/tramway-landing'
+gem 'tramway-news', path: '../tramway-dev/tramway-news'
+gem 'tramway-page', path: '../tramway-dev/tramway-page'
+gem 'tramway-partner', path: '../tramway-dev/tramway-partner'
+gem 'tramway-profiles', path: '../tramway-dev/tramway-profiles'
+gem 'tramway-sport_school', path: '../tramway-dev/tramway-sport_school'
+gem 'tramway-user', path: '../tramway-dev/tramway-user'
 
 ruby '2.5.1'
 
@@ -67,14 +67,31 @@ gem 'time_difference'
 gem 'pg_search'
 gem 'colorize'
 
+group :development do
+  gem 'web-console', '>= 3.3.0'
+end
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry'
+  gem 'capybara', '~> 2.13'
+  gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 3.5'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'redactor-rails', github: 'glyph-fr/redactor-rails'
+
+group :test do
+  gem 'factory_bot_rails', '~> 4.0'
+  gem 'shoulda-matchers', '~> 2.8.0'
+  gem 'faker'
+  gem 'database_cleaner'
+  gem 'rspec-json_expectations'
+  gem 'json_matchers', github: 'BBonifield/json_matchers', branch: 'bugfix/properly-support-record-errors'
+  gem 'webmock'
+  gem 'webdrivers'
+end
