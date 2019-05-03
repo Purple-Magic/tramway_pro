@@ -5,11 +5,11 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'tramway-admin', '1.12'
+gem 'tramway-admin', '1.12.0.3'
 gem 'tramway-conference', '1.8.12.4'
-gem 'tramway-core', '1.9.9.1'
-gem 'tramway-event', '1.9.10'
-gem 'tramway-landing', '1.4.7'
+gem 'tramway-core', '1.9.9.3'
+gem 'tramway-event', '1.9.11.1'
+gem 'tramway-landing', '1.4.7.2'
 gem 'tramway-news', '>= 1.0.3'
 gem 'tramway-page', '1.2.1'
 gem 'tramway-partner', '1.0.3'
