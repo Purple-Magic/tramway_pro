@@ -399,7 +399,7 @@ GEM
     tramway-news (1.0.3)
     tramway-page (1.2.1)
     tramway-partner (1.0.3)
-    tramway-profiles (1.2)
+    tramway-profiles (1.2.0.1)
     tramway-sport_school (1.2.8.1)
     tramway-user (2.0)
       bcrypt (~> 3.1.11, >= 3.1.11)
@@ -491,7 +491,7 @@ DEPENDENCIES
   tramway-news (>= 1.0.3)
   tramway-page (= 1.2.1)
   tramway-partner (= 1.0.3)
-  tramway-profiles (>= 1.2)
+  tramway-profiles (= 1.2.0.1)
   tramway-sport_school (= 1.2.8.1)
   tramway-user (= 2.0)
   trap

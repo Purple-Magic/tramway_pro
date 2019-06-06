@@ -14,7 +14,7 @@ gem 'tramway-landing', '1.6'
 gem 'tramway-news', '>= 1.0.3'
 gem 'tramway-page', '1.2.1'
 gem 'tramway-partner', '1.0.3'
-gem 'tramway-profiles', '>= 1.2'
+gem 'tramway-profiles', '1.2.0.1'
 gem 'tramway-sport_school', '1.2.8.1'
 gem 'tramway-user', '2.0'
 
