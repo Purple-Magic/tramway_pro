@@ -376,7 +376,7 @@ GEM
     tilt (2.0.8)
     time_difference (0.7.0)
       activesupport (~> 5.1)
-    tramway-admin (1.13)
+    tramway-admin (1.13.0.1)
       bootstrap-kaminari-views (= 0.0.5)
       ckeditor (= 4.2.4)
       copyright_mafa (~> 0.1.2, >= 0.1.2)
@@ -491,7 +491,7 @@ DEPENDENCIES
   state_machine!
   state_machine_buttons
   time_difference
-  tramway-admin (= 1.13)
+  tramway-admin (= 1.13.0.1)
   tramway-auth (= 1.0.2)
   tramway-conference (= 1.8.13)
   tramway-core (= 1.11)
