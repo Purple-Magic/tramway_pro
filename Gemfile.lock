@@ -290,6 +290,11 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.19.0)
     rake (12.3.1)
+    ransack (2.1.1)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -371,16 +376,17 @@ GEM
     tilt (2.0.8)
     time_difference (0.7.0)
       activesupport (~> 5.1)
-    tramway-admin (1.12.1.1)
+    tramway-admin (1.13)
       bootstrap-kaminari-views (= 0.0.5)
       ckeditor (= 4.2.4)
       copyright_mafa (~> 0.1.2, >= 0.1.2)
       font-awesome-rails (~> 4.7, >= 4.7.0.1)
       kaminari (~> 1.1.1, >= 1.1.1)
+      ransack
       state_machine_buttons (~> 0.4.1, >= 0.4.1)
     tramway-auth (1.0.2)
     tramway-conference (1.8.13)
-    tramway-core (1.10.3)
+    tramway-core (1.11)
       audited (>= 4.8.0)
       bootstrap (>= 4.1.2)
       carrierwave
@@ -396,7 +402,7 @@ GEM
       rmagick (~> 2.16, >= 2.16.0)
       sass-rails (~> 5.0, >= 5.0.7)
       simple_form (~> 3.5, >= 3.5.0)
-    tramway-event (1.9.13)
+    tramway-event (1.9.14)
     tramway-landing (1.7.1)
     tramway-news (1.0.4)
     tramway-page (1.2.2)
@@ -468,6 +474,7 @@ DEPENDENCIES
   pg_search
   pry
   rails (~> 5.1.4)
+  ransack
   redactor-rails!
   reform-rails
   rmagick
@@ -484,11 +491,11 @@ DEPENDENCIES
   state_machine!
   state_machine_buttons
   time_difference
-  tramway-admin (= 1.12.1.1)
+  tramway-admin (= 1.13)
   tramway-auth (= 1.0.2)
   tramway-conference (= 1.8.13)
-  tramway-core (= 1.10.3)
-  tramway-event (= 1.9.13)
+  tramway-core (= 1.11)
+  tramway-event (= 1.9.14)
   tramway-landing (= 1.7.1)
   tramway-news (= 1.0.4)
   tramway-page (= 1.2.2)

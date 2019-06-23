@@ -5,11 +5,11 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'tramway-admin', '1.12.1.1'
+gem 'tramway-admin', '1.13'
 gem 'tramway-auth', '1.0.2'
 gem 'tramway-conference', '1.8.13'
-gem 'tramway-core', '1.10.3'
-gem 'tramway-event', '1.9.13'
+gem 'tramway-core', '1.11'
+gem 'tramway-event', '1.9.14'
 gem 'tramway-landing', '1.7.1'
 gem 'tramway-news', '1.0.4'
 gem 'tramway-page', '1.2.2'
@@ -68,6 +68,7 @@ gem 'russian'
 gem 'time_difference'
 gem 'pg_search'
 gem 'colorize'
+gem 'ransack'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
