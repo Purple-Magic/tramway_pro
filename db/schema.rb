@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190606183607) do
+ActiveRecord::Schema.define(version: 20190707214321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -207,6 +207,16 @@ ActiveRecord::Schema.define(version: 20190606183607) do
     t.integer "project_id"
   end
 
+  create_table "tramway_person_people", force: :cascade do |t|
+    t.text "names", array: true
+    t.text "short_bio"
+    t.text "bio"
+    t.text "photo"
+    t.text "state", default: "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tramway_profiles_social_networks", force: :cascade do |t|
     t.text "title"
     t.text "uid"
@@ -218,6 +228,16 @@ ActiveRecord::Schema.define(version: 20190606183607) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
+  end
+
+  create_table "tramway_site_people", force: :cascade do |t|
+    t.text "names", array: true
+    t.text "short_bio"
+    t.text "bio"
+    t.text "photo"
+    t.text "state", default: "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tramway_sport_school_documents", force: :cascade do |t|
