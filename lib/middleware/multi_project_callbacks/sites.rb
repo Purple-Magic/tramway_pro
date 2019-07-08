@@ -1,19 +1,5 @@
-module MultiProjectConfigurationMiddleware 
-  class Site
-    def initialize(app)
-      @app = app
-    end
-
-    def call(env)
-      ::Tramway::Site::Web::WelcomeController.include MultiProjectCallbacks::Site
-
-      @app.call(env)
-    end
-  end
-end
-
 module MultiProjectCallbacks
-  module Site
+  module Sites
     extend ActiveSupport::Concern
 
     included do
