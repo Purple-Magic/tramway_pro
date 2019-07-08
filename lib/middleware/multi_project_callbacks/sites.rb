@@ -20,7 +20,7 @@ module MultiProjectCallbacks
       def after_index
         project = Project.where(url: ENV['PROJECT_URL']).first
         @blocks = ::Tramway::Landing::BlockDecorator.decorate @blocks.original_array.where(project_id: project.id)
-        @links = @links.reduce([]) do |array, link|
+        @links = @links&.reduce([]) do |array, link|
           if link.is_a? Hash
             array << {
               link.keys.first => link.values.first.select { |obj| obj.model.project_id == project.id }

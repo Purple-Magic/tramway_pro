@@ -14,4 +14,4 @@ production:
   engines:
     'sportschool-ulsk.ru': sport_school
     'it-way.pro': conference
-    'kalashnikovisme.ru': conference
+    'kalashnikovisme.ru': site
