@@ -376,7 +376,7 @@ GEM
     tilt (2.0.8)
     time_difference (0.7.0)
       activesupport (~> 5.1)
-    tramway-admin (1.13.0.2)
+    tramway-admin (1.13.0.3)
       bootstrap-kaminari-views (= 0.0.5)
       ckeditor (= 4.2.4)
       copyright_mafa (~> 0.1.2, >= 0.1.2)
@@ -386,7 +386,7 @@ GEM
       state_machine_buttons (~> 0.4.1, >= 0.4.1)
     tramway-auth (1.0.2.1)
     tramway-conference (1.8.13.1)
-    tramway-core (1.11.1)
+    tramway-core (1.11.2)
       audited (>= 4.8.0)
       bootstrap (>= 4.1.2)
       carrierwave
@@ -402,7 +402,7 @@ GEM
       rmagick (~> 2.16, >= 2.16.0)
       sass-rails (~> 5.0, >= 5.0.7)
       simple_form (~> 3.5, >= 3.5.0)
-    tramway-event (1.9.14)
+    tramway-event (1.9.15)
     tramway-landing (1.7.1.1)
     tramway-news (1.0.4.1)
     tramway-page (1.2.2)
@@ -492,11 +492,11 @@ DEPENDENCIES
   state_machine!
   state_machine_buttons
   time_difference
-  tramway-admin (= 1.13.0.2)
+  tramway-admin (= 1.13.0.3)
   tramway-auth (= 1.0.2.1)
   tramway-conference (= 1.8.13.1)
-  tramway-core (= 1.11.1)
-  tramway-event (= 1.9.14)
+  tramway-core (= 1.11.2)
+  tramway-event (= 1.9.15)
   tramway-landing (= 1.7.1.1)
   tramway-news (= 1.0.4.1)
   tramway-page (= 1.2.2)
