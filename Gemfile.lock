@@ -387,7 +387,7 @@ GEM
       state_machine_buttons (~> 0.4.1, >= 0.4.1)
     tramway-auth (1.0.2.1)
     tramway-conference (1.8.13.1)
-    tramway-core (1.11.2)
+    tramway-core (1.11.2.1)
       audited (>= 4.8.0)
       bootstrap (>= 4.1.2)
       carrierwave
@@ -497,7 +497,7 @@ DEPENDENCIES
   tramway-admin (= 1.13.0.3)
   tramway-auth (= 1.0.2.1)
   tramway-conference (= 1.8.13.1)
-  tramway-core (= 1.11.2)
+  tramway-core (= 1.11.2.1)
   tramway-event (= 1.9.16)
   tramway-landing (= 1.7.1.2)
   tramway-news (= 1.0.4.1)
