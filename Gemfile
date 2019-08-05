@@ -5,11 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'tramway-admin', '1.14'
+gem 'tramway-admin', '1.14.0.1'
+gem 'tramway-api', '1.1'
 gem 'tramway-auth', '1.0.2.1'
 gem 'tramway-conference', '1.8.13.1'
-gem 'tramway-core', '1.11.2.1'
-gem 'tramway-event', '1.9.17'
+gem 'tramway-core', '1.12'
+gem 'tramway-event', '1.9.18'
 gem 'tramway-export', '0.1.0'
 gem 'tramway-landing', '1.7.1.2'
 gem 'tramway-news', '1.0.4.1'
@@ -18,9 +19,10 @@ gem 'tramway-partner', '1.0.3'
 gem 'tramway-profiles', '1.3.1'
 gem 'tramway-site', '0.1.0.3'
 gem 'tramway-sport_school', '1.2.9'
-gem 'tramway-user', '2.0'
+gem 'tramway-user', '2.0.1'
 
 #gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
+#gem 'tramway-api', path: '../tramway-dev/tramway-api'
 #gem 'tramway-auth', path: '../tramway-dev/tramway-auth'
 #gem 'tramway-conference', path: '../tramway-dev/tramway-conference'
 #gem 'tramway-core', path: '../tramway-dev/tramway-core'
@@ -39,7 +41,7 @@ ruby '2.5.1'
 
 gem 'rails', '~> 5.1.4'
 gem 'pg', '0.21.0'
-gem 'unicorn'
+gem 'unicorn-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.5'
 gem 'haml-rails'
@@ -74,6 +76,8 @@ gem 'pg_search'
 gem 'colorize'
 gem 'ransack'
 gem 'selectize-rails'
+gem 'validates'
+gem 'active_model_serializers', '0.10.5' # 0.10.6 breaks the returned json, need to investigate
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -85,6 +89,7 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry'
+  gem 'pry-nav'
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.5'

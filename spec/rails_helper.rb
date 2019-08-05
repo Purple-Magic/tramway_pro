@@ -6,9 +6,11 @@ require 'rspec/rails'
 require 'rspec/json_expectations'
 require 'json_matchers/rspec'
 require 'support/auth_helper'
-require 'support/json_api_helpers'
+require 'json_api_test_helpers'
 require 'rake'
 require 'webmock/rspec'
+require 'database_cleaner'
+require 'paybox_api/spec'
 WebMock.disable_net_connect! allow_localhost: true
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -18,7 +20,13 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.include RSpec::Rails::RequestExampleGroup, type: :feature
   config.include AuthHelper
-  config.include JsonApiHelpers
+  config.include JsonApiTestHelpers
+  config.include PayboxApi::Spec
+  config.include WebMock::API
+  config.include ::Tramway::Core::Concerns::AttributesDecoratorHelper
 
   ActiveRecord::Base.logger.level = 1
+
+  DatabaseCleaner.strategy = :truncation
+  DatabaseCleaner.clean
 end
