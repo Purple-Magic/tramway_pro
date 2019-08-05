@@ -503,6 +503,7 @@ DEPENDENCIES
   jquery-rails
   json_matchers!
   kaminari
+  knock
   listen (>= 3.0.5, < 3.2)
   mini_magick
   more_html_tags (>= 0.2.0)

@@ -78,6 +78,7 @@ gem 'ransack'
 gem 'selectize-rails'
 gem 'validates'
 gem 'active_model_serializers', '0.10.5' # 0.10.6 breaks the returned json, need to investigate
+gem 'knock'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
