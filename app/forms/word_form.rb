@@ -10,6 +10,6 @@ class WordForm < Tramway::Core::ApplicationForm
   end
 
   def synonims=(value)
-    model.synonims = value.split(',')
+    super value.split(',')
   end
 end
