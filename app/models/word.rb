@@ -1,2 +1,2 @@
-class Word < ApplicationRecord
+class Word < Tramway::Core::ApplicationRecord
 end

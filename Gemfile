@@ -100,7 +100,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'redactor-rails', github: 'glyph-fr/redactor-rails'
 
 group :test do
-  gem 'factory_bot_rails', '~> 4.0'
+  gem 'factory_bot_rails', '5.0.1'
   gem 'shoulda-matchers', '~> 2.8.0'
   gem 'faker'
   gem 'database_cleaner'

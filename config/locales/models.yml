@@ -1,0 +1,13 @@
+ru:
+  activerecord:
+    models:
+      word: Слово
+    attributes:
+      word:
+        main: Определение
+        synonims: Синонимы
+        description: Описание
+  cases:
+    word:
+      plural: слова
+      genitive: слово
