@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'tramway-admin', '1.14.0.3'
+gem 'tramway-admin', '1.14.1'
 gem 'tramway-api', '1.1.0.1'
 gem 'tramway-auth', '1.0.2.1'
 gem 'tramway-conference', '1.8.13.1'
@@ -67,7 +67,6 @@ gem 'state_machine_buttons'
 gem 'more_html_tags', '>= 0.2.0'
 gem 'ckeditor', github: 'galetahub/ckeditor'
 gem 'config'
-gem 'colorize'
 gem 'bootstrap-datepicker-rails', github: 'kostia/bootstrap-datepicker-rails'
 gem 'russia_regions', '0.0.6'
 gem 'russian'
