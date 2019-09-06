@@ -429,7 +429,7 @@ GEM
     tramway-event (1.9.18)
     tramway-export (0.1.0)
       xls_exporter
-    tramway-landing (1.7.1.2)
+    tramway-landing (1.7.2)
     tramway-news (1.0.4.1)
     tramway-page (1.2.2)
     tramway-partner (1.0.3)
@@ -537,7 +537,7 @@ DEPENDENCIES
   tramway-core (= 1.12.0.2)
   tramway-event (= 1.9.18)
   tramway-export (= 0.1.0)
-  tramway-landing (= 1.7.1.2)
+  tramway-landing (= 1.7.2)
   tramway-news (= 1.0.4.1)
   tramway-page (= 1.2.2)
   tramway-partner (= 1.0.3)
