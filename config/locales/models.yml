@@ -2,6 +2,7 @@ ru:
   activerecord:
     models:
       word: Слово
+      tramway/user/user: Пользователь
     attributes:
       word:
         main: Определение
