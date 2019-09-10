@@ -10,18 +10,20 @@ function createMap(elemId, centerLat, centerLng, zoom) {
     attribution: osmAttrib
   });
 
-  // Map
   map.setView(new L.LatLng(centerLat, centerLng), zoom);
   map.addLayer(osmLayer);
   return map;
 }
-markersLatLng = [
-  [-18.586379, 45.878906],
-  [-22.311967, 47.373047],
-  [-20.61479, 45.922852]
-];
-function addMarker(map, latLng, onClick) {
-  var marker = L.marker(latLng).addTo(map);
+cities = {
+  ulsk: [54.3080, 48.4879],
+  tomsk: [56.4853, 84.9887],
+  kzn: [55.7712, 49.1009],
+  samara: [53.3218, 50.0683],
+  perm: [58.0239, 56.2299]
+};
+function addMarker(map, city, onClick) {
+  var marker = L.marker(cities[city]).addTo(map);
+  marker.bindPopup(city);
   if (onClick !== null) {
     marker.on('click', onClick);
   }
@@ -29,7 +31,10 @@ function addMarker(map, latLng, onClick) {
 }
 document.addEventListener("DOMContentLoaded", function () {
   var map = createMap('map', 58.08, 70.07, 4);
-  markersLatLng.forEach(function(latLng) {
-    addMarker(map, latLng);
-  });
+
+  addMarker(map, 'ulsk')
+  addMarker(map, 'tomsk')
+  addMarker(map, 'kzn')
+  addMarker(map, 'samara')
+  addMarker(map, 'perm')
 });
