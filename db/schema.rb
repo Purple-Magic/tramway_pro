@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190909215646) do
+ActiveRecord::Schema.define(version: 20190910010556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,6 +164,7 @@ ActiveRecord::Schema.define(version: 20190909215646) do
     t.integer "link_object_id"
     t.text "link_object_type"
     t.jsonb "button"
+    t.text "view_name"
   end
 
   create_table "tramway_news_news", force: :cascade do |t|
