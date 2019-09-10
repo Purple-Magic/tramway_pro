@@ -36,12 +36,8 @@
       return marker;
   }
   document.addEventListener("DOMContentLoaded", function () {
-      // The DOMContentLoaded event fires when the page is ready (like $(document).ready() in jQuery)
-      //var map = createMap('map', -21.208312, 46.262851, 6);
-      var map = createMap('map', 58.08, 80.07, 4);
+      var map = createMap('map', 58.08, 70.07, 4);
       markersLatLng.forEach(function(latLng) {
         addMarker(map, latLng);
       });
-      // map is the id of our div element and the other options are
-      // lattitude, longitude and zoom
   });
