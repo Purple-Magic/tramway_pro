@@ -15,15 +15,30 @@ function createMap(elemId, centerLat, centerLng, zoom) {
   return map;
 }
 cities = {
-  ulsk: [54.3080, 48.4879],
-  tomsk: [56.4853, 84.9887],
-  kzn: [55.7712, 49.1009],
-  samara: [53.3218, 50.0683],
-  perm: [58.0239, 56.2299]
+  ulsk: {
+    coordinates: [54.3080, 48.4879],
+    text: 'Ульяновск: 11 мероприятий за 4 года'
+  },
+  tomsk: {
+    coordinates: [56.4853, 84.9887],
+    text: 'Томск: 4 мероприятия за 9 месяцев'
+  },
+  kzn: {
+    coordinates: [55.7712, 49.1009],
+    text: 'Казань: 3 мероприятия за 8 месяцев'
+  },
+  samara: {
+    coordinates: [53.3218, 50.0683],
+    text: 'Самара: 2 мероприятия за 6 месяцев',
+  },
+  perm: {
+    coordinates: [58.0239, 56.2299],
+    text: 'Пермь: 1 мероприятие за 2 месяца'
+  }
 };
 function addMarker(map, city, onClick) {
-  var marker = L.marker(cities[city]).addTo(map);
-  marker.bindPopup(city);
+  var marker = L.marker(cities[city].coordinates).addTo(map);
+  marker.bindPopup(cities[city].text);
   if (onClick !== null) {
     marker.on('click', onClick);
   }
