@@ -44,6 +44,11 @@ function addMarker(map, city, onClick) {
   }
   return marker;
 }
+function loadEvents() {
+  axios.get('http://it-way.test:3000/api/v1/records?model=Tramway::Event::Event').then(function(response) {
+    console.log(response);
+  });
+}
 document.addEventListener("DOMContentLoaded", function () {
   var map = createMap('map', 58.08, 70.07, 4);
 
@@ -52,4 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
   addMarker(map, 'kzn')
   addMarker(map, 'samara')
   addMarker(map, 'perm')
+
+  loadEvents()
 });

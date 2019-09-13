@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190910010556) do
+ActiveRecord::Schema.define(version: 20190913005013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,13 @@ ActiveRecord::Schema.define(version: 20190910010556) do
     t.datetime "request_collecting_end_date"
   end
 
+  create_table "tramway_event_events_places", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tramway_event_partakings", force: :cascade do |t|
     t.integer "part_id"
     t.integer "person_id"
@@ -133,6 +140,18 @@ ActiveRecord::Schema.define(version: 20190910010556) do
     t.datetime "updated_at", null: false
     t.integer "project_id"
     t.text "description"
+  end
+
+  create_table "tramway_event_places", force: :cascade do |t|
+    t.text "title"
+    t.text "description"
+    t.point "coordinates"
+    t.text "photo"
+    t.text "city"
+    t.text "state", default: "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "project_id"
   end
 
   create_table "tramway_event_sections", force: :cascade do |t|
