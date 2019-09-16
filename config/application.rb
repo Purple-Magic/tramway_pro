@@ -12,7 +12,7 @@ require "action_cable/engine"
 require "sprockets/railtie"
 require_relative '../lib/middleware/multi_project_configuration_middleware/conference'
 require_relative '../lib/middleware/multi_project_configuration_middleware/sport_school'
-require_relative '../lib/middleware/multi_project_configuration_middleware/admin'
+require_relative '../lib/middleware/multi_project_configuration_middleware/admin_middleware'
 require_relative '../lib/middleware/multi_project_configuration_middleware/landing'
 require_relative '../lib/middleware/multi_project_configuration_middleware/event'
 require_relative '../lib/middleware/multi_project_configuration_middleware/partner'
@@ -34,7 +34,7 @@ module TramwayPro
     config.autoload_paths += Dir[ "#{config.root}/lib/**/" ]
     config.middleware.use ::MultiProjectConfigurationMiddleware::Conference
     config.middleware.use ::MultiProjectConfigurationMiddleware::SportSchool
-    config.middleware.use ::MultiProjectConfigurationMiddleware::Admin
+    config.middleware.use ::MultiProjectConfigurationMiddleware::AdminMiddleware
     config.middleware.use ::MultiProjectConfigurationMiddleware::Landing
     config.middleware.use ::MultiProjectConfigurationMiddleware::Event
     config.middleware.use ::MultiProjectConfigurationMiddleware::User

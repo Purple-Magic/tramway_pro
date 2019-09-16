@@ -1,12 +1,12 @@
 module MultiProjectConfigurationMiddleware 
-  class Admin
+  class AdminMiddleware
     def initialize(app)
       @app = app
     end
 
     def call(env)
-      ::Tramway::Admin::ApplicationController.include MultiProjectCallbacks::Admin::Application
-      ::Tramway::Admin::RecordsController.include MultiProjectCallbacks::Admin::Records
+      ::Tramway::Admin::ApplicationController.include MultiProjectCallbacks::AdminMiddleware::Application
+      ::Tramway::Admin::RecordsController.include MultiProjectCallbacks::AdminMiddleware::Records
 
       @app.call(env)
     end
@@ -14,7 +14,7 @@ module MultiProjectConfigurationMiddleware
 end
 
 module MultiProjectCallbacks
-  module Admin
+  module AdminMiddleware
     module Records
       extend ActiveSupport::Concern
 
