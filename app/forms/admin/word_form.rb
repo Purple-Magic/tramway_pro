@@ -1,5 +1,5 @@
-class WordForm < Tramway::Core::ApplicationForm
-  properties :main, :synonims, :description
+class Admin::WordForm < Tramway::Core::ApplicationForm
+  properties :main, :synonims, :description, :project_id
 
   def initialize(obj)
     super(obj).tap do
