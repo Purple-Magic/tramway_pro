@@ -426,7 +426,7 @@ GEM
       rmagick (~> 2.16, >= 2.16.0)
       sass-rails (~> 5.0, >= 5.0.7)
       simple_form (~> 3.5, >= 3.5.0)
-    tramway-event (1.9.18.1)
+    tramway-event (1.9.18.2)
     tramway-export (0.1.0)
       xls_exporter
     tramway-landing (1.8)
@@ -535,7 +535,7 @@ DEPENDENCIES
   tramway-auth (= 1.1.0.1)
   tramway-conference (= 1.8.13.1)
   tramway-core (= 1.13.0.1)
-  tramway-event (= 1.9.18.1)
+  tramway-event (= 1.9.18.2)
   tramway-export (= 0.1.0)
   tramway-landing (= 1.8)
   tramway-news (= 1.0.4.1)
