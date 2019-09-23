@@ -5,7 +5,7 @@ class Admin::WordForm < Tramway::Core::ApplicationForm
     super(obj).tap do
       form_properties main: :string,
         synonims: :string,
-        description: :ckeditor
+        description: :text
     end
   end
 
