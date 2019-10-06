@@ -87,6 +87,11 @@ association = {
     org: 142,
     link: 143
   },
+  28 => {
+    where: 149,
+    org: 148,
+    link: 150
+  },
 }
 
 CSV.open('list.csv', 'w') do |csv|
