@@ -5,7 +5,8 @@ CSV.open('list.csv', 'w') do |csv|
   event.participants.active.where(participation_state: :prev_approved).find_each do |participant|
     csv << [
       "#{participant.values['Фамилия']} #{participant.values['Имя']} #{participant.values['Отчество']}",
-      participant.values['Дата рождения']
+      participant.values['Дата рождения'],
+      participant.values['Номер телефона']
     ]
   end
 end
