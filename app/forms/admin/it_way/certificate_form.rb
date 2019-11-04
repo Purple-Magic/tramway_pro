@@ -6,7 +6,7 @@ class Admin::ItWay::CertificateForm < Tramway::Core::ApplicationForm
   def initialize(object)
     super(object).tap do
       form_properties text: :ckeditor,
-        certificate_type: :string,
+        certificate_type: :default,
         event: :association
     end
   end
