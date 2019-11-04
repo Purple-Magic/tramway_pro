@@ -3,6 +3,7 @@ ru:
     models:
       word: Слово
       tramway/user/user: Пользователь
+      it_way/certificate: Сертификат
     attributes:
       word:
         main: Определение
@@ -12,3 +13,6 @@ ru:
     word:
       plural: слова
       genitive: слово
+    it_way/certificate:
+      plural: сертификаты
+      genitive: сертификат

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190913005013) do
+ActiveRecord::Schema.define(version: 20191104010233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,16 @@ ActiveRecord::Schema.define(version: 20190913005013) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
+  create_table "it_way_certificates", force: :cascade do |t|
+    t.integer "event_id"
+    t.text "text"
+    t.text "certificate_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "state"
+    t.integer "project_id"
   end
 
   create_table "projects", force: :cascade do |t|
