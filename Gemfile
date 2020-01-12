@@ -5,21 +5,21 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'tramway-admin', '1.18.1.1'
-gem 'tramway-api', '1.6.0.1'
-gem 'tramway-auth', '1.1.0.1'
-gem 'tramway-conference', '1.8.13.1'
-gem 'tramway-core', '1.14.0.1'
-gem 'tramway-event', '1.9.19.3'
-gem 'tramway-export', '0.1.0'
-gem 'tramway-landing', '1.8'
+gem 'tramway-admin', '1.18.4.3'
+gem 'tramway-api', '1.6.3'
+gem 'tramway-auth', '1.1.0.2'
+gem 'tramway-conference', '1.8.13.2'
+gem 'tramway-core', '1.14.7'
+gem 'tramway-event', '1.9.20'
+gem 'tramway-export', '0.1.0.1'
+gem 'tramway-landing', '1.8.2.7'
 gem 'tramway-news', '1.0.4.1'
 gem 'tramway-page', '1.3.1'
 gem 'tramway-partner', '1.0.3.1'
-gem 'tramway-profiles', '1.3.1'
+gem 'tramway-profiles', '1.3.2.1'
 gem 'tramway-site', '0.1.0.3'
 gem 'tramway-sport_school', '1.2.9.1'
-gem 'tramway-user', '2.1'
+gem 'tramway-user', '2.1.0.1'
 
 #gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
 #gem 'tramway-api', path: '../tramway-dev/tramway-api'
@@ -99,7 +99,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'redactor-rails', github: 'glyph-fr/redactor-rails'
 
 group :test do
-  gem 'factory_bot_rails', '5.0.1'
+  gem 'factory_bot_rails', '5.1.1'
   gem 'shoulda-matchers', '~> 2.8.0'
   gem 'faker'
   gem 'database_cleaner'
