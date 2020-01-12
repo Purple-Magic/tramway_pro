@@ -1,11 +1,11 @@
 development:
-  sportschool_ulsk: sportschool-ulsk.test
-  it_way: it-way.test
-  kalashnikovisme: kalashnikovisme.test
+  sportschool_ulsk: sportschool-ulsk.dev
+  it_way: it-way.dev
+  kalashnikovisme: kalashnikovisme.dev
   engines:
-    'sportschool-ulsk.test': sport_school
-    'it-way.test': conference
-    'kalashnikovisme.test': site
+    'sportschool-ulsk.dev': sport_school
+    'it-way.dev': conference
+    'kalashnikovisme.dev': site
 
 production:
   sportschool_ulsk: sportschool-ulsk.ru
@@ -15,3 +15,12 @@ production:
     'sportschool-ulsk.ru': sport_school
     'it-way.pro': conference
     'kalashnikovisme.ru': site
+
+test:
+  sportschool_ulsk: sportschool-ulsk.test
+  it_way: it-way.test
+  kalashnikovisme: kalashnikovisme.test
+  engines:
+    'sportschool-ulsk.test': sport_school
+    'it-way.test': conference
+    'kalashnikovisme.test': site
