@@ -22,7 +22,7 @@ if ARGV[0] == 'get_db'
   system "scp #{ARGV[1]}@138.68.76.45:#{dump} /tmp/"
   puts "Restoring #{restore_to} database".green
   system "ssh -t #{ARGV[1]}@138.68.76.45 'rm -f #{dump}'"
-  #system "dropdb tramway_pro_development --if-exists && createdb tramway_pro_development && pg_restore -d #{restore_to} /tmp/#{dump}"
+  system "dropdb tramway_pro_development --if-exists && createdb tramway_pro_development && pg_restore -d #{restore_to} /tmp/#{dump}"
   system "dropdb tramway_pro_test --if-exists && createdb tramway_pro_test && pg_restore -d tramway_pro_test /tmp/#{dump}"
   puts "Copy prod db for tests...".yellow
   system "cp -rf /tmp/#{dump} tmp/test.dump"
