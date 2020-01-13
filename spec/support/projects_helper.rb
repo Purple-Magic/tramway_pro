@@ -1,7 +1,6 @@
 module ProjectsHelper
   class << self 
     def projects
-      binding.pry
       Project.all.map &:url
     end
 
