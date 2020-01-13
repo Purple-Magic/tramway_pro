@@ -6,6 +6,7 @@ require 'rspec/rails'
 require 'rspec/json_expectations'
 require 'json_matchers/rspec'
 require 'support/projects_helper'
+require 'support/integration_helpers'
 require 'json_api_test_helpers'
 require 'rake'
 require 'webmock/rspec'
@@ -22,9 +23,22 @@ RSpec.configure do |config|
   config.include WebMock::API
   config.include ::Tramway::Core::Concerns::AttributesDecoratorHelper
   config.include ProjectsHelper
+  config.include IntegrationHelpers
 
   ActiveRecord::Base.logger.level = 1
 
-  DatabaseCleaner.strategy = :truncation
-  DatabaseCleaner.clean
+  ['it-way.test', 'sportschool-ulsk.test'].each do |url|
+    next if Project.where(url: url).any?
+    Project.create! url: url
+  end
+  config.before(:all) do
+    ActiveRecord::Base.descendants.each do |model|
+      next if model.to_s.in? ['PgSearch::Document', 'Customer::HABTM_Feedbacks']
+      next if model.abstract_class
+
+      model.delete_all
+    end
+    FactoryBot.create :admin, email: 'admin@email.com', password: '123456', role: :admin
+  end
+  include ActionDispatch::TestProcess
 end

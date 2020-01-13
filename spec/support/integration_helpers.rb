@@ -13,6 +13,10 @@ module IntegrationHelpers
     find(:label, text: text).click
   end
 
+  def set_host(host)
+    Capybara.app_host = 'http://' + host + ':3000'
+  end
+
   private
 
   def compile_attributes(attributes = {})

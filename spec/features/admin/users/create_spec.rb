@@ -6,8 +6,8 @@ describe 'Create admin' do
   let!(:attributes) { attributes_for :admin_admin_attributes }
 
   ProjectsHelper.projects.each do |host|
-    set_host host
-    it 'should create admin' do
+    it "#{host}: should create admin" do
+      set_host host
       count = Tramway::User::User.count
       visit '/admin'
       fill_in 'Email', with: 'admin@email.com'
