@@ -114,12 +114,6 @@ GEM
     case_transform (0.2)
       activesupport
     childprocess (3.0.0)
-    ckeditor (4.2.4)
-      cocaine
-      orm_adapter (~> 0.5.0)
-    climate_control (0.2.0)
-    cocaine (0.6.0)
-      terrapin (= 0.6.0)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -403,14 +397,12 @@ GEM
       sprockets (>= 3.0.0)
     state_machine_buttons (0.4.1)
     temple (0.8.2)
-    terrapin (0.6.0)
-      climate_control (>= 0.0.3, < 1.0)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
     time_difference (0.7.0)
       activesupport (~> 5.1)
-    tramway-admin (1.18.4.4)
+    tramway-admin (1.19)
       bootstrap-kaminari-views (= 0.0.5)
       copyright_mafa (~> 0.1.2, >= 0.1.2)
       font-awesome-rails (~> 4.7, >= 4.7.0.1)
@@ -440,7 +432,7 @@ GEM
       rmagick (~> 2.16, >= 2.16.0)
       sass-rails (~> 5.0, >= 5.0.7)
       simple_form (>= 5.0.0)
-    tramway-event (1.9.20.1)
+    tramway-event (1.9.21)
     tramway-export (0.1.0.1)
       xls_exporter
     tramway-landing (1.8.2.8)
@@ -502,7 +494,6 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   carrierwave
-  ckeditor (= 4.2.4)
   coffee-rails
   colorize
   config
@@ -545,12 +536,12 @@ DEPENDENCIES
   state_machine!
   state_machine_buttons
   time_difference
-  tramway-admin (= 1.18.4.4)
+  tramway-admin (= 1.19)
   tramway-api (= 1.6.3)
   tramway-auth (= 1.1.0.2)
   tramway-conference (= 1.8.13.2)
   tramway-core (= 1.14.7.1)
-  tramway-event (= 1.9.20.1)
+  tramway-event (= 1.9.21)
   tramway-export (= 0.1.0.1)
   tramway-landing (= 1.8.2.8)
   tramway-news (= 1.0.4.1)
