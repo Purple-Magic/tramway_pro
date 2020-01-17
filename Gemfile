@@ -7,7 +7,7 @@ end
 
 ruby '2.5.1'
 
-gem 'tramway-admin', '1.19'
+gem 'tramway-admin', '1.19.0.2'
 gem 'tramway-api', '1.6.3'
 gem 'tramway-auth', '1.1.0.2'
 gem 'tramway-conference', '1.8.13.2'
