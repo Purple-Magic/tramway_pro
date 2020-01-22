@@ -33,7 +33,7 @@ RSpec.configure do |config|
   end
   config.before(:all) do
     ActiveRecord::Base.descendants.each do |model|
-      next if model.to_s.in? ['PgSearch::Document', 'Customer::HABTM_Feedbacks']
+      next if model.to_s.in? ['PgSearch::Document', 'Project']
       next if model.abstract_class
 
       model.delete_all

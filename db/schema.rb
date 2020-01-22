@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191104010233) do
+ActiveRecord::Schema.define(version: 20200122185345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20191104010233) do
     t.integer "project_id"
     t.text "url"
     t.date "found_date"
+    t.text "email"
   end
 
   create_table "tramway_event_events", force: :cascade do |t|
@@ -295,6 +296,7 @@ ActiveRecord::Schema.define(version: 20191104010233) do
     t.text "longtitude"
     t.text "url"
     t.date "found_date"
+    t.text "name"
   end
 
   create_table "tramway_sport_school_kind_sports", force: :cascade do |t|
