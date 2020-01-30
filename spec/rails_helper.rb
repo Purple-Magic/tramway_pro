@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 require 'factory_bot'
 require 'rspec/rails'
 require 'rspec/json_expectations'
@@ -29,6 +31,7 @@ RSpec.configure do |config|
 
   ['it-way.test', 'sportschool-ulsk.test'].each do |url|
     next if Project.where(url: url).any?
+
     Project.create! url: url
   end
   config.before(:all) do

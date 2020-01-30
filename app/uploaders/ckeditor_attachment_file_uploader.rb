@@ -1,10 +1,11 @@
-# encoding: utf-8
+# frozen_string_literal: true
+
 require 'carrierwave'
 
 class CkeditorAttachmentFileUploader < CarrierWave::Uploader::Base
   include Ckeditor::Backend::CarrierWave
 
-  #include CarrierWave::RMagick
+  # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:

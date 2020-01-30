@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
   config.wrappers :input_group_append, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
@@ -5,7 +7,7 @@ SimpleForm.setup do |config|
     b.use :placeholder
     b.use :label, class: 'control-label'
 
-    b.wrapper tag: 'div', class: "input-group" do |ba|
+    b.wrapper tag: 'div', class: 'input-group' do |ba|
       ba.use :icon, wrap_with: { tag: 'span', class: 'input-group-addon' }
       ba.use :input, class: 'form-control'
     end
@@ -18,7 +20,7 @@ SimpleForm.setup do |config|
     b.use :placeholder
     b.use :label, class: 'control-label'
 
-    b.wrapper tag: 'div', class: "input-group" do |ba|
+    b.wrapper tag: 'div', class: 'input-group' do |ba|
       ba.use :input, class: 'form-control'
       ba.use :icon, wrap_with: { tag: 'span', class: 'input-group-addon' }
     end
@@ -31,7 +33,7 @@ SimpleForm.setup do |config|
     b.use :placeholder
     b.use :label, class: 'control-label'
 
-    b.wrapper tag: 'div', class: "input-group" do |ba|
+    b.wrapper tag: 'div', class: 'input-group' do |ba|
       ba.use :input, class: 'form-control'
       ba.use :popover, wrap_with: { tag: 'span', class: 'input-group-addon' }
     end

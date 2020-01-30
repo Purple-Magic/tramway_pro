@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module MultiProjectCallbacks
   module Sites
     extend ActiveSupport::Concern
 
     included do
-      actions = [ :index ]
+      actions = [:index]
       actions.each do |action|
         before_render "after_#{action}".to_sym, only: action
       end

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require_relative '../multi_project_callbacks/sites'
 
 module Middleware
-  module MultiProjectConfigurationMiddleware 
+  module MultiProjectConfigurationMiddleware
     class Sites
       def initialize(app)
         @app = app

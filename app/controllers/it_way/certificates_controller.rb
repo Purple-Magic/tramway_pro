@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ItWay::CertificatesController < ApplicationController
   def show
     @participant = Tramway::Event::Participant.find(params[:id])

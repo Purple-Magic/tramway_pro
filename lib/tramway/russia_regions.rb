@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'russia_regions'
 
 class Tramway::RussiaRegions < ::Tramway::Collection

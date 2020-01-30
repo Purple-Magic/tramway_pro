@@ -60,17 +60,6 @@
         - public/uploads
         - node_modules
 
-    - name: Update RubyGems
-      shell: "/usr/share/rvm/bin/rvm {{ruby_version}} do gem update --system"
-      args:
-        chdir: "{{ release_path }}"
-
-        #- name: Update bundler
-        # shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do gem install bundler && /usr/share/rvm/bin/rvm {{ ruby_version }} do bundle --full-index"
-        #args:
-        #chdir: "{{ release_path }}"
-
-
     - name: Bundle
       shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle install --path {{ shared_path }}/bundle --without development test --deployment --quiet"
       args:

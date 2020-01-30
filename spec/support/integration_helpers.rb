@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module IntegrationHelpers
   def click_on_link_by_href(href, options = {})
     button = find compile_attributes(href: href), options

@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
-require "rails"
+require 'rails'
 # Pick the frameworks you want:
-require "active_model/railtie"
-require "active_job/railtie"
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_view/railtie"
-require "action_cable/engine"
-require "sprockets/railtie"
+require 'active_model/railtie'
+require 'active_job/railtie'
+require 'active_record/railtie'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'action_view/railtie'
+require 'action_cable/engine'
+require 'sprockets/railtie'
 require_relative '../lib/middleware/multi_project_configuration_middleware/conference'
 require_relative '../lib/middleware/multi_project_configuration_middleware/sport_school'
 require_relative '../lib/middleware/multi_project_configuration_middleware/admin_middleware'
@@ -30,8 +32,8 @@ module TramwayPro
     config.i18n.available_locales = [:ru]
     config.i18n.enforce_available_locales = false
     config.i18n.default_locale = :ru
-    config.autoload_paths += %w(#{config.root}/app/models/ckeditor)
-    config.autoload_paths += Dir[ "#{config.root}/lib/**/" ]
+    config.autoload_paths += %w[#{config.root}/app/models/ckeditor]
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.middleware.use ::MultiProjectConfigurationMiddleware::Conference
     config.middleware.use ::MultiProjectConfigurationMiddleware::SportSchool
     config.middleware.use ::MultiProjectConfigurationMiddleware::AdminMiddleware

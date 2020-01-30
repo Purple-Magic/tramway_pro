@@ -1,4 +1,6 @@
-module MultiProjectConfigurationMiddleware 
+# frozen_string_literal: true
+
+module MultiProjectConfigurationMiddleware
   class AdminMiddleware
     def initialize(app)
       @app = app
@@ -19,7 +21,7 @@ module MultiProjectCallbacks
       extend ActiveSupport::Concern
 
       included do
-        actions = [ :index ]
+        actions = [:index]
         actions.each do |action|
           before_render "after_#{action}".to_sym, only: action
         end
@@ -32,7 +34,7 @@ module MultiProjectCallbacks
           end
         end
 
-        before_action :add_project_id, only: [ :create, :update ]
+        before_action :add_project_id, only: %i[create update]
 
         def add_project_id
           params[:record][:project_id] = Project.where(url: ENV['PROJECT_URL']).first.id

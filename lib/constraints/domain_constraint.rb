@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Constraints::DomainConstraint
   def initialize(domain)
     @domains = [domain].flatten

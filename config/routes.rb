@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:sportschool_ulsk]) do
     mount Ckeditor::Engine => '/ckeditor'

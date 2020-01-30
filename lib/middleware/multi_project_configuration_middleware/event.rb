@@ -1,4 +1,6 @@
-module MultiProjectConfigurationMiddleware 
+# frozen_string_literal: true
+
+module MultiProjectConfigurationMiddleware
   class Event
     def initialize(app)
       @app = app
@@ -14,7 +16,7 @@ module MultiProjectConfigurationMiddleware
       ::Tramway::Event::EventsController.include MultiProjectCallbacks::Event::EventsController
       ::Tramway::Event::PartakingForm.include MultiProjectCallbacks::Event::PartakingForm
       ::Tramway::Event::PersonForm.include MultiProjectCallbacks::Event::PersonForm
-#      ::Tramway::Event::PlaceForm.include MultiProjectCallbacks::Event::PlaceForm
+      #      ::Tramway::Event::PlaceForm.include MultiProjectCallbacks::Event::PlaceForm
 
       @app.call(env)
     end
@@ -93,7 +95,7 @@ module MultiProjectCallbacks
       extend ActiveSupport::Concern
 
       included do
-        after_action :add_project_id, only: [ :create ]
+        after_action :add_project_id, only: [:create]
 
         def add_project_id
           if @participant_form.model.id.present?

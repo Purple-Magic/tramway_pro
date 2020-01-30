@@ -1,4 +1,6 @@
-module MultiProjectConfigurationMiddleware 
+# frozen_string_literal: true
+
+module MultiProjectConfigurationMiddleware
   class Auth
     def initialize(app)
       @app = app

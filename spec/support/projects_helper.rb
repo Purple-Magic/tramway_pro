@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module ProjectsHelper
-  class << self 
+  class << self
     def projects
       Project.all.map &:url
     end

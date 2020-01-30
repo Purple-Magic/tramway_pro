@@ -1,4 +1,6 @@
-module MultiProjectConfigurationMiddleware 
+# frozen_string_literal: true
+
+module MultiProjectConfigurationMiddleware
   class Conference
     def initialize(app)
       @app = app
@@ -17,7 +19,7 @@ module MultiProjectCallbacks
     extend ActiveSupport::Concern
 
     included do
-      actions = [ :index ]
+      actions = [:index]
       actions.each do |action|
         before_render "after_#{action}".to_sym, only: action
       end
