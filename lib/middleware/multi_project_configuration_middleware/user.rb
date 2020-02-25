@@ -7,7 +7,7 @@ module MultiProjectConfigurationMiddleware
     end
 
     def call(env)
-      ::Tramway::User::UserForm.include MultiProjectCallbacks::User::UserForm
+      ::Admin::Tramway::User::UserForm.include MultiProjectCallbacks::User::UserForm
 
       @app.call(env)
     end

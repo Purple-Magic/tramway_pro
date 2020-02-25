@@ -7,7 +7,7 @@ module MultiProjectConfigurationMiddleware
     end
 
     def call(env)
-      ::Tramway::Page::PageForm.include MultiProjectCallbacks::Page::PageForm
+      ::Admin::Tramway::Page::PageForm.include MultiProjectCallbacks::Page::PageForm
 
       @app.call(env)
     end

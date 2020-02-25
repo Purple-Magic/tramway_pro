@@ -34,4 +34,4 @@ Capybara.configure do |config|
     config.javascript_driver = :chrome_headless
   end
 end
-Chromedriver.set_version '2.46'
+Webdrivers::Chromedriver.required_version = '80.0.3987.106'

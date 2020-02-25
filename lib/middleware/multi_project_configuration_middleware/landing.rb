@@ -7,7 +7,7 @@ module MultiProjectConfigurationMiddleware
     end
 
     def call(env)
-      ::Tramway::Landing::BlockForm.include MultiProjectCallbacks::Landing::BlockForm
+      ::Admin::Tramway::Landing::BlockForm.include MultiProjectCallbacks::Landing::BlockForm
 
       @app.call(env)
     end

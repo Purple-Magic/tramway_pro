@@ -7,7 +7,7 @@ module MultiProjectConfigurationMiddleware
     end
 
     def call(env)
-      ::Tramway::Profiles::SocialNetworkForm.include MultiProjectCallbacks::Profiles::SocialNetworkForm
+      ::Admin::Tramway::Profiles::SocialNetworkForm.include MultiProjectCallbacks::Profiles::SocialNetworkForm
 
       @app.call(env)
     end

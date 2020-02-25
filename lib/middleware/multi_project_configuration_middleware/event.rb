@@ -7,15 +7,17 @@ module MultiProjectConfigurationMiddleware
     end
 
     def call(env)
-      ::Tramway::Event::EventForm.include MultiProjectCallbacks::Event::EventForm
-      ::Tramway::Event::ParticipantForm.include MultiProjectCallbacks::Event::ParticipantForm
-      ::Tramway::Event::ParticipantFormFieldForm.include MultiProjectCallbacks::Event::ParticipantFormFieldForm
-      ::Tramway::Event::SectionForm.include MultiProjectCallbacks::Event::SectionForm
+      ::Admin::Tramway::Event::EventForm.include MultiProjectCallbacks::Event::EventForm
+      ::Admin::Tramway::Event::ParticipantForm.include MultiProjectCallbacks::Event::ParticipantForm
+      ::Admin::Tramway::Event::ParticipantFormFieldForm.include MultiProjectCallbacks::Event::ParticipantFormFieldForm
+      ::Admin::Tramway::Event::SectionForm.include MultiProjectCallbacks::Event::SectionForm
+      ::Admin::Tramway::Event::PartakingForm.include MultiProjectCallbacks::Event::PartakingForm
+      ::Admin::Tramway::Event::PersonForm.include MultiProjectCallbacks::Event::PersonForm
+
       ::Tramway::Event::ParticipantFormField.include MultiProjectCallbacks::Event::EventModel
+
       ::Tramway::Event::ParticipantsController.include MultiProjectCallbacks::Event::ParticipantsController
       ::Tramway::Event::EventsController.include MultiProjectCallbacks::Event::EventsController
-      ::Tramway::Event::PartakingForm.include MultiProjectCallbacks::Event::PartakingForm
-      ::Tramway::Event::PersonForm.include MultiProjectCallbacks::Event::PersonForm
       #      ::Tramway::Event::PlaceForm.include MultiProjectCallbacks::Event::PlaceForm
 
       @app.call(env)

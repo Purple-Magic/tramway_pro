@@ -7,8 +7,9 @@ module MultiProjectConfigurationMiddleware
     end
 
     def call(env)
-      ::Tramway::Partner::OrganizationForm.include MultiProjectCallbacks::Partner::OrganizationForm
-      ::Tramway::Partner::PartnershipForm.include MultiProjectCallbacks::Partner::PartnershipForm
+      ::Admin::Tramway::Partner::OrganizationForm.include MultiProjectCallbacks::Partner::OrganizationForm
+      ::Admin::Tramway::Partner::PartnershipForm.include MultiProjectCallbacks::Partner::PartnershipForm
+
       ::Tramway::Partner::Organization.include MultiProjectCallbacks::Partner::OrganizationModel
       ::Tramway::Partner::Partnership.include MultiProjectCallbacks::Partner::PartnershipModel
 
