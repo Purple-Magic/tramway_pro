@@ -6,6 +6,7 @@ describe 'Create block' do
   let!(:attributes) { attributes_for :block_admin_attributes }
 
   it 'should create block' do
+    set_host 'it-way.test'
     count = Tramway::Landing::Block.count
     visit '/admin'
     fill_in 'Email', with: 'admin@email.com'

@@ -16,3 +16,5 @@ ru:
     it_way/certificate:
       plural: сертификаты
       genitive: сертификат
+    tramway/user/user:
+      plural: пользователи
