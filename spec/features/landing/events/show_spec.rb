@@ -2,7 +2,9 @@
 
 require 'rails_helper'
 
-describe 'Show event' do
+describe 'IT Way: Show event' do
+  before { set_host it_way_host }
+
   context 'Collecting requests campaign started' do
     let(:event) { create :event, :campaign_started }
 
