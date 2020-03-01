@@ -525,10 +525,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionview (>= 5.1.6.2)
   active_model_serializers (= 0.10.5)
   audited (>= 4.8.0)
   bcrypt
-  bootstrap (~> 4.3.1)
+  bootstrap (>= 4.3.1)
   bootstrap-datepicker-rails!
   bootstrap-kaminari-views!
   byebug
@@ -544,6 +545,7 @@ DEPENDENCIES
   enumerize
   factory_bot_rails (= 5.1.1)
   faker
+  ffi (>= 1.9.24)
   font_awesome5_rails
   haml-rails
   jbuilder (~> 2.5)
@@ -565,6 +567,7 @@ DEPENDENCIES
   rack (>= 2.0.8)
   rails (= 5.1.7)
   rails-html-sanitizer (>= 1.0.4)
+  rake (>= 12.3.3)
   ransack
   redactor-rails!
   reform-rails
@@ -577,10 +580,11 @@ DEPENDENCIES
   selectize-rails
   selenium-webdriver
   shoulda-matchers (~> 2.8.0)
-  simple_form
+  simple_form (>= 5.0.0)
   smart_buttons (= 1.0.0.1)
   spring
   spring-watcher-listen (~> 2.0.0)
+  sprockets (>= 3.7.2)
   state_machine!
   state_machine_buttons (= 1.0)
   time_difference

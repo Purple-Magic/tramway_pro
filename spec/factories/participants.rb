@@ -8,7 +8,7 @@ FactoryBot.define do
         'Имя' => generate(:string),
         'Место учёбы / работы' => generate(:string),
         'Email' => generate(:email),
-        'Номер телефона' => generate(:phone),
+        'Номер телефона' => generate(:phone)
       }
     end
     event_id { Tramway::Event::Event.last&.id || create(:event).id }

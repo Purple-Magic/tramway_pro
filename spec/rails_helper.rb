@@ -9,7 +9,7 @@ require 'support/navbar_helper'
 require 'support/tramway_helpers'
 require 'support/capybara_helpers'
 require 'json_api_test_helpers'
-#require 'web_driver_helper'
+# require 'web_driver_helper'
 require 'rake'
 require 'webmock/rspec'
 WebMock.disable_net_connect! allow_localhost: true
