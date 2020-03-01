@@ -5,16 +5,16 @@ require 'rails_helper'
 describe 'Create admin' do
   let!(:attributes) { attributes_for :admin_admin_attributes }
 
-  ProjectsHelper.projects.each do |host|
-    it "#{host}: should create admin" do
-      set_host host
-      count = Tramway::User::User.count
+  ProjectsHelper.projects.each do |project|
+    it "#{project.url}: should create admin" do
+      set_host project.url
+      count = Tramway::User::User.where(project_id: project.id).count
       visit '/admin'
       fill_in 'Email', with: 'admin@email.com'
       fill_in 'Password', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
-      click_on 'Пользователь'
+      click_on 'Пользователи'
       find('.btn.btn-primary', match: :first).click
       fill_in 'record[email]', with: attributes[:email]
       fill_in 'record[password]', with: attributes[:password]
@@ -23,8 +23,8 @@ describe 'Create admin' do
       select attributes[:role], from: 'record[role]'
 
       click_on 'Сохранить', class: 'btn-success'
-      expect(Tramway::User::User.count).to eq(count + 1)
-      admin = Tramway::User::User.last
+      expect(Tramway::User::User.where(project_id: project.id).count).to eq(count + 1)
+      admin = Tramway::User::User.where(project_id: project.id).last
       attributes.keys.each do |attr|
         next if attr == :password
 

@@ -5,6 +5,8 @@ FactoryBot.define do
     email
     password
     role { :admin }
+    first_name { generate :string }
+    last_name { generate :string }
   end
 
   factory :admin_admin_attributes, class: Tramway::User::User do
