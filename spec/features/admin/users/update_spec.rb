@@ -11,7 +11,7 @@ describe 'Update admin' do
       set_host project.url
       visit '/admin'
       fill_in 'Email', with: 'admin@email.com'
-      fill_in 'Password', with: '123456'
+      fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
       admin = Tramway::User::User.where(project_id: project.id).last

@@ -6,6 +6,8 @@ require 'support/projects_helper'
 require 'support/integration_helpers'
 require 'support/errors_helper'
 require 'support/navbar_helper'
+require 'support/tramway_helpers'
+require 'support/capybara_helpers'
 require 'json_api_test_helpers'
 #require 'web_driver_helper'
 require 'rake'
@@ -24,6 +26,8 @@ RSpec.configure do |config|
   config.include IntegrationHelpers
   config.include ErrorsHelper
   config.include NavbarHelper
+  config.include TramwayHelpers
+  config.include CapybaraHelpers
 
   ActiveRecord::Base.logger.level = 1
 

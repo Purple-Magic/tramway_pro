@@ -11,7 +11,7 @@ describe 'Create block' do
       count = Tramway::Landing::Block.count
       visit '/admin'
       fill_in 'Email', with: 'admin@email.com'
-      fill_in 'Password', with: '123456'
+      fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
       click_on_dropdown 'Лендинг'

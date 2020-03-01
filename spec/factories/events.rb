@@ -12,6 +12,8 @@ FactoryBot.define do
     short_description { generate :string }
     begin_date { generate(:date) }
     end_date { begin_date + 10.days }
+    request_collecting_begin_date { DateTime.now.beginning_of_day.change(offset: '+0400') }
+    request_collecting_end_date { DateTime.now.beginning_of_day.change(offset: '+0400') }
 
     after :create do |event|
       creation_event = event.audits.where(action: :create).first

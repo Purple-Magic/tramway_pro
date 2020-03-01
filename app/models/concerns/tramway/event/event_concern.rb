@@ -4,12 +4,10 @@ module Tramway::Event::EventConcern
   extend ActiveSupport::Concern
 
   included do
-    scope :partner_scope, ->(partner_id) { created_by_user partner_id }
-
     MANDATORY_FIELDS = YAML.load_file(Rails.root.join('lib', 'yaml', 'mandatory_fields.yml')).with_indifferent_access
     MANDATORY_ACTIONS = YAML.load_file(Rails.root.join('lib', 'yaml', 'mandatory_actions.yml')).with_indifferent_access
 
-    after_create do
+    after_save do
       MANDATORY_FIELDS.each do |field|
         Tramway::Event::ParticipantFormField.create! field[1].merge event_id: id
       end

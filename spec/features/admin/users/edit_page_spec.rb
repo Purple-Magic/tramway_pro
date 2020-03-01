@@ -10,7 +10,7 @@ describe 'Edit admin page' do
       set_host project.url
       visit '/admin'
       fill_in 'Email', with: 'admin@email.com'
-      fill_in 'Password', with: '123456'
+      fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
       last_admin = Tramway::User::User.active.where(project_id: project.id).last

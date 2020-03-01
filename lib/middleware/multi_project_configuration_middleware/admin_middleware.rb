@@ -30,7 +30,9 @@ module MultiProjectCallbacks
           project = Project.where(url: ENV['PROJECT_URL']).first
           @records = decorator_class.decorate @records.original_array.where project_id: project.id
           @counts = decorator_class.collections.reduce({}) do |hash, collection|
-            hash.merge! collection => model_class.active.send(collection).where(project_id: project.id).count
+            array = model_class.active.send(collection).where(project_id: project.id)
+            array = array.ransack(params[:filter]).result if params[:filter].present?
+            hash.merge! collection => array.count
           end
         end
 

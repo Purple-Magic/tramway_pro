@@ -9,6 +9,8 @@ ru:
         main: Определение
         synonims: Синонимы
         description: Описание
+      tramway/user/user:
+        password: Пароль
   cases:
     word:
       plural: слова
