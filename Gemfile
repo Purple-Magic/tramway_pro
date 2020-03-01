@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.5.1'
+ruby '2.7.0'
 gem 'rails', '5.1.7'
 
 gem 'tramway-admin', '1.26.1'
@@ -46,6 +46,7 @@ gem 'actionview', '>= 5.1.6.2'
 gem 'active_model_serializers', '0.10.5' # 0.10.6 breaks the returned json, need to investigate
 gem 'audited', '>= 4.8.0'
 gem 'bcrypt'
+gem 'bigdecimal', '1.3.5'
 gem 'bootstrap', '>= 4.3.1'
 gem 'bootstrap-datepicker-rails', github: 'kostia/bootstrap-datepicker-rails'
 gem 'bootstrap-kaminari-views', github: 'kalashnikovisme/bootstrap-kaminari-views', branch: :master
@@ -118,10 +119,8 @@ group :test do
   gem 'json_api_test_helpers', '1.2'
   gem 'json_matchers', github: 'BBonifield/json_matchers', branch: 'bugfix/properly-support-record-errors'
   gem 'rspec-json_expectations'
-  gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 2.8.0'
   gem 'webdrivers', '4.2.0'
-  gem 'webmock'
   gem 'webmock'
   gem 'whenever-test'
 end
