@@ -26,6 +26,7 @@ RSpec.configure do |config|
   config.include ::Tramway::Core::Concerns::AttributesDecoratorHelper
   config.include ProjectsHelper
   config.include IntegrationHelpers
+  config.include FactoryBot::Syntax::Methods
 
   ActiveRecord::Base.logger.level = 1
 
@@ -41,7 +42,8 @@ RSpec.configure do |config|
 
       model.delete_all
     end
-    FactoryBot.create :admin, email: 'admin@email.com', password: '123456', role: :admin
+    create :admin, email: 'admin@email.com', password: '123456', role: :admin
+    create :unity, title: 'IT Way'
   end
   include ActionDispatch::TestProcess
 end
