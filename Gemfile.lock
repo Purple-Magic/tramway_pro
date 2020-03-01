@@ -40,7 +40,7 @@ GIT
 PATH
   remote: ../tramway-dev/tramway-admin
   specs:
-    tramway-admin (1.26)
+    tramway-admin (1.26.1)
       bootstrap-kaminari-views (= 0.0.5)
       copyright_mafa (~> 0.1.2, >= 0.1.2)
       font-awesome-rails (~> 4.7, >= 4.7.0.1)
@@ -222,6 +222,7 @@ GEM
     case_transform (0.2)
       activesupport
     childprocess (3.0.0)
+    chronic (0.10.2)
     ckeditor (4.2.4)
       cocaine
       orm_adapter (~> 0.5.0)
@@ -247,7 +248,6 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
-    database_cleaner (1.8.3)
     declarative (0.0.10)
     declarative-builder (0.1.0)
       declarative-option (< 0.2.0)
@@ -260,6 +260,10 @@ GEM
       declarative-option (< 0.2.0)
       representable (>= 2.4.0, <= 3.1.0)
       uber (< 0.2.0)
+    dotenv (2.7.5)
+    dotenv-rails (2.7.5)
+      dotenv (= 2.7.5)
+      railties (>= 3.2, < 6.1)
     dry-configurable (0.11.3)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.4, >= 0.4.7)
@@ -564,6 +568,10 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
+    whenever (1.0.0)
+      chronic (>= 0.6.3)
+    whenever-test (1.0.1)
+      whenever
     xls_exporter (1.0.0)
       spreadsheet
     xpath (3.2.0)
@@ -588,7 +596,7 @@ DEPENDENCIES
   colorize
   config
   copyright_mafa
-  database_cleaner
+  dotenv-rails
   enumerize
   factory_bot_rails (= 5.1.1)
   faker
@@ -652,8 +660,9 @@ DEPENDENCIES
   unicorn-rails
   validates
   web-console (>= 3.3.0)
-  webdrivers
+  webdrivers (= 4.2.0)
   webmock
+  whenever-test
 
 RUBY VERSION
    ruby 2.5.1p57

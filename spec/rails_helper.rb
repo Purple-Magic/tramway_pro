@@ -1,20 +1,16 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../config/environment', __dir__)
 require 'factory_bot'
-require 'rspec/rails'
-require 'rspec/json_expectations'
-require 'json_matchers/rspec'
 require 'support/projects_helper'
 require 'support/integration_helpers'
+require 'support/errors_helper'
+require 'support/navbar_helper'
 require 'json_api_test_helpers'
+#require 'web_driver_helper'
 require 'rake'
 require 'webmock/rspec'
-require 'database_cleaner'
 WebMock.disable_net_connect! allow_localhost: true
-ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers
@@ -26,7 +22,8 @@ RSpec.configure do |config|
   config.include ::Tramway::Core::Concerns::AttributesDecoratorHelper
   config.include ProjectsHelper
   config.include IntegrationHelpers
-  config.include FactoryBot::Syntax::Methods
+  config.include ErrorsHelper
+  config.include NavbarHelper
 
   ActiveRecord::Base.logger.level = 1
 

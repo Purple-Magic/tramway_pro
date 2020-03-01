@@ -107,13 +107,16 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'redactor-rails', github: 'glyph-fr/redactor-rails'
 
 group :test do
-  gem 'database_cleaner'
+  gem 'dotenv-rails'
   gem 'factory_bot_rails', '5.1.1'
   gem 'faker'
   gem 'json_api_test_helpers', '1.2'
   gem 'json_matchers', github: 'BBonifield/json_matchers', branch: 'bugfix/properly-support-record-errors'
   gem 'rspec-json_expectations'
   gem 'shoulda-matchers', '~> 2.8.0'
-  gem 'webdrivers'
   gem 'webmock'
+  gem 'selenium-webdriver'
+  gem 'webdrivers', '4.2.0'
+  gem 'webmock'
+  gem 'whenever-test'
 end

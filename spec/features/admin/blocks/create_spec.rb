@@ -6,14 +6,15 @@ describe 'Create block' do
   let!(:attributes) { attributes_for :block_admin_attributes }
 
   it 'should create block' do
-    set_host 'it-way.test'
+    set_host it_way_host
     count = Tramway::Landing::Block.count
     visit '/admin'
     fill_in 'Email', with: 'admin@email.com'
     fill_in 'Password', with: '123456'
     click_on 'Войти', class: 'btn-success'
 
-    click_on 'Блок'
+    click_on_dropdown 'Лендинг'
+    click_on 'Блоки'
     find('.btn.btn-primary', match: :first).click
     fill_in 'record[title]', with: attributes[:title]
     fill_in 'record[position]', with: attributes[:position]

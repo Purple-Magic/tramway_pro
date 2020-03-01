@@ -4,16 +4,18 @@ require 'rails_helper'
 
 describe 'Update block' do
   let!(:attributes) { attributes_for :block_admin_attributes }
-  before { create :block }
+  before { create :block, project_id: it_way_id }
 
   it 'should update block' do
+    set_host it_way_host
     visit '/admin'
     fill_in 'Email', with: 'admin@email.com'
     fill_in 'Password', with: '123456'
     click_on 'Войти', class: 'btn-success'
 
     block = Tramway::Landing::Block.last
-    click_on 'Блок'
+    click_on_dropdown 'Лендинг'
+    click_on 'Блоки'
     click_on block.title
     find('.btn.btn-warning', match: :first).click
     fill_in 'record[title]', with: attributes[:title]
