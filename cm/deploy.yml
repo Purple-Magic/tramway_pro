@@ -22,7 +22,7 @@
     - name: Checking out repo
       git: repo=https://github.com/ulmic/tramway_pro
            dest={{ release_path }}
-           version=develop
+           version=master
 
     - name: Linking config files
       file:
