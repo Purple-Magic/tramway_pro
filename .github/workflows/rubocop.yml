@@ -16,4 +16,5 @@ jobs:
     - name: Rubocop action
       run: |
         gem install rubocop
+        gem install concurrent-ruby:1.1.6
         bundle exec rubocop
