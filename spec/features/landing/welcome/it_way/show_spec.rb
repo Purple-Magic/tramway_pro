@@ -2,8 +2,9 @@
 
 require 'rails_helper'
 
-describe 'Show main page' do
-  before { create :block }
+describe 'IT Way: Show main page with events' do
+  before { create :block, project_id: it_way_id }
+  before { set_host it_way_host }
 
   context 'with main event' do
     it 'should show main page with started campaign' do
@@ -42,24 +43,6 @@ describe 'Show main page' do
       visit '/'
 
       expect(page).not_to have_xpath 'form.tramway_event_participant'
-    end
-  end
-
-  context 'with close events' do
-    it 'should show close events from every admin and partner user' do
-      Tramway::Event::Event.delete_all
-      Tramway::User::User.delete_all
-      events = Tramway::User::User.role.values.reduce({}) do |hash, role|
-        create role
-        hash.merge! role => create("event_created_by_#{role}", end_date: DateTime.now + 10.days)
-      end
-
-      visit '/'
-
-      events.each do |pair|
-        expect(page).to have_content pair[1].title
-        expect(page).to have_content pair[1].short_description.split('.').first
-      end
     end
   end
 end
