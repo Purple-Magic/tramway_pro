@@ -41,6 +41,7 @@ RSpec.configure do |config|
     end
     create :admin, email: 'admin@email.com', password: '123456', role: :admin
     create :unity, title: 'IT Way'
+    create :institution, title: 'Sport school ULSK'
   end
   include ActionDispatch::TestProcess
 end

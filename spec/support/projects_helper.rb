@@ -3,7 +3,7 @@
 module ProjectsHelper
   class << self
     def projects
-      Project.all.map &:url
+      Project.all
     end
 
     def set_host(host)
@@ -25,5 +25,9 @@ module ProjectsHelper
 
   def sportschool_ulsk_host
     'sportschool-ulsk.test'
+  end
+
+  def projects_names
+    [ :it_way, :sportschool_ulsk ]
   end
 end
