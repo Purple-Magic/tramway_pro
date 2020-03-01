@@ -1,0 +1,55 @@
+find_place: 
+  title: 'Определение места проведения мероприятия'
+  deadline:
+    days: 16
+    when: before
+vk_publics:
+  title: 'Сделать рассылку по местным пабликам о мероприятии'
+  deadline:
+    days: 9
+    when: before
+posters:
+  title: 'Развесить постеры о мероприятии'
+  deadline:
+    days: 7
+    when: before
+students_informating:
+  title: 'Отправка информационных писем в учебные заведения'
+  deadline:
+    days: 7
+    when: before
+speakers_approve:
+  title: 'Подтверждение участия контент-мейкеров'
+  deadline:
+    days: 4
+    when: before
+entertainer:
+  title: 'Найти ведущего мероприятия'
+  deadline:
+    days: 10
+    when: before
+checking_place:
+  title: 'Проверка помещение на техническое соответствие'
+  deadline:
+    days: 2
+    when: before
+photographer:
+  title: 'Найти фотографа'
+  deadline:
+    days: 10
+    when: before
+videographer:
+  title: 'Найти видеографа'
+  deadline:
+    days: 10
+    when: before
+publication_photos:
+  title: 'Публикация фото-отчёта'
+  deadline:
+    days: 1
+    when: after
+publication_videos:
+  title: 'Публикация видео-отчёта'
+  deadline:
+    days: 7
+    when: after

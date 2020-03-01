@@ -7,6 +7,7 @@ FactoryBot.define do
     role { :admin }
     first_name { generate :string }
     last_name { generate :string }
+    phone
   end
 
   factory :admin_admin_attributes, class: Tramway::User::User do
