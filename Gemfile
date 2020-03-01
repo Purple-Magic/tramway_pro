@@ -23,7 +23,7 @@ gem 'tramway-page', '1.3.1.1'
 gem 'tramway-partner', '1.0.3.2'
 gem 'tramway-profiles', '1.3.2.4'
 gem 'tramway-site', '0.1.0.4'
-gem 'tramway-sport_school', '1.2.10.4'
+gem 'tramway-sport_school', '1.2.10.5'
 gem 'tramway-user', '2.1.2'
 
 # gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
