@@ -1,0 +1,40 @@
+first_name: 
+  title: 'Фамилия'
+  field_type: string
+  options: 
+    list_field: 'true'
+    validations: 
+      presence: 'true'
+  position: 1
+second_name: 
+  title: 'Имя'
+  field_type: string
+  options: 
+    list_field: 'true'
+    validations: 
+      presence: 'true'
+  position: 2
+organization: 
+  title: 'Место учёбы / работы'
+  field_type: string
+  options: 
+    list_field: 'true'
+    validations: 
+      presence: 'true'
+  position: 7
+email: 
+  title: 'Email'
+  field_type: string
+  options: 
+    list_field: 'true'
+    validations: 
+      presence: 'true'
+  position: 8
+mobile: 
+  title: 'Номер телефона'
+  field_type: string
+  options: 
+    list_field: 'true'
+    validations: 
+      presence: 'true'
+  position: 9

@@ -9,6 +9,8 @@ ru:
         main: Определение
         synonims: Синонимы
         description: Описание
+      tramway/user/user:
+        password: Пароль
   cases:
     word:
       plural: слова
@@ -16,3 +18,5 @@ ru:
     it_way/certificate:
       plural: сертификаты
       genitive: сертификат
+    tramway/user/user:
+      plural: пользователи

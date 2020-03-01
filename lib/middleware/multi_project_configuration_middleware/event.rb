@@ -13,8 +13,9 @@ module MultiProjectConfigurationMiddleware
       ::Admin::Tramway::Event::SectionForm.include MultiProjectCallbacks::Event::SectionForm
       ::Admin::Tramway::Event::PartakingForm.include MultiProjectCallbacks::Event::PartakingForm
       ::Admin::Tramway::Event::PersonForm.include MultiProjectCallbacks::Event::PersonForm
+      ::Admin::Tramway::Event::ActionForm.include MultiProjectCallbacks::Event::ActionForm
 
-      ::Tramway::Event::ParticipantFormField.include MultiProjectCallbacks::Event::EventModel
+      Tramway::Event::Event.include Tramway::Event::EventConcern
 
       ::Tramway::Event::ParticipantsController.include MultiProjectCallbacks::Event::ParticipantsController
       ::Tramway::Event::EventsController.include MultiProjectCallbacks::Event::EventsController
@@ -75,7 +76,7 @@ module MultiProjectCallbacks
       end
     end
 
-    module SectionForm
+    module ActionForm
       extend ActiveSupport::Concern
 
       included do
@@ -83,13 +84,11 @@ module MultiProjectCallbacks
       end
     end
 
-    module EventModel
+    module SectionForm
       extend ActiveSupport::Concern
 
       included do
-        default_scope do
-          where project_id: Project.where(url: ENV['PROJECT_URL']).first.id
-        end
+        properties :project_id
       end
     end
 

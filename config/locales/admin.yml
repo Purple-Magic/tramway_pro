@@ -1,0 +1,7 @@
+ru:
+  admin:
+    navbar:
+      links:
+        events_organization: Организация мероприятий
+        other_functions: Другие функции
+        landing: Лендинг
