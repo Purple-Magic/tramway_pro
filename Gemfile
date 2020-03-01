@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.5.1'
+ruby '2.7.0'
 gem 'rails', '5.1.7'
 
 gem 'tramway-admin', '1.26.1'
@@ -23,7 +23,7 @@ gem 'tramway-page', '1.3.1.1'
 gem 'tramway-partner', '1.0.3.2'
 gem 'tramway-profiles', '1.3.2.4'
 gem 'tramway-site', '0.1.0.4'
-gem 'tramway-sport_school', '1.2.10.4'
+gem 'tramway-sport_school', '1.2.10.5'
 gem 'tramway-user', '2.1.2'
 
 # gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
@@ -42,10 +42,12 @@ gem 'tramway-user', '2.1.2'
 # gem 'tramway-sport_school', path: '../tramway-dev/tramway-sport_school'
 # gem 'tramway-user', path: '../tramway-dev/tramway-user'
 
+gem 'actionview', '>= 5.1.6.2'
 gem 'active_model_serializers', '0.10.5' # 0.10.6 breaks the returned json, need to investigate
 gem 'audited', '>= 4.8.0'
 gem 'bcrypt'
-gem 'bootstrap', '~> 4.3.1'
+gem 'bigdecimal', '1.3.5'
+gem 'bootstrap', '>= 4.3.1'
 gem 'bootstrap-datepicker-rails', github: 'kostia/bootstrap-datepicker-rails'
 gem 'bootstrap-kaminari-views', github: 'kalashnikovisme/bootstrap-kaminari-views', branch: :master
 gem 'carrierwave'
@@ -56,20 +58,22 @@ gem 'colorize'
 gem 'config'
 gem 'copyright_mafa'
 gem 'enumerize'
+gem 'ffi', '>= 1.9.24'
 gem 'font_awesome5_rails'
 gem 'haml-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'knock'
-gem "loofah", ">= 2.3.1"
-gem "mini_magick", ">= 4.9.4"
+gem 'loofah', '>= 2.3.1'
+gem 'mini_magick', '>= 4.9.4'
 gem 'more_html_tags', '>= 0.2.0'
-gem "nokogiri", ">= 1.10.8"
+gem 'nokogiri', '>= 1.10.8'
 gem 'pg', '0.21.0'
 gem 'pg_search'
-gem "rack", ">= 2.0.8"
-gem "rails-html-sanitizer", ">= 1.0.4"
+gem 'rack', '>= 2.0.8'
+gem 'rails-html-sanitizer', '>= 1.0.4'
+gem 'rake', '>= 12.3.3'
 gem 'ransack'
 gem 'reform-rails'
 gem 'rmagick'
@@ -77,8 +81,9 @@ gem 'russia_regions', '0.0.6'
 gem 'russian'
 gem 'sass-rails'
 gem 'selectize-rails'
-gem 'simple_form'
+gem 'simple_form', '>= 5.0.0'
 gem 'smart_buttons', '1.0.0.1'
+gem 'sprockets', '>= 3.7.2'
 gem 'state_machine', github: 'seuros/state_machine'
 gem 'state_machine_buttons', '1.0'
 gem 'time_difference'
@@ -94,6 +99,7 @@ end
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara', '3.31'
+  gem 'launchy'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry'
   gem 'pry-nav'
@@ -101,7 +107,6 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem "launchy"
 end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
@@ -115,8 +120,6 @@ group :test do
   gem 'json_matchers', github: 'BBonifield/json_matchers', branch: 'bugfix/properly-support-record-errors'
   gem 'rspec-json_expectations'
   gem 'shoulda-matchers', '~> 2.8.0'
-  gem 'webmock'
-  gem 'selenium-webdriver'
   gem 'webdrivers', '4.2.0'
   gem 'webmock'
   gem 'whenever-test'

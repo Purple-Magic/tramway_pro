@@ -28,6 +28,6 @@ module ProjectsHelper
   end
 
   def projects_names
-    [ :it_way, :sportschool_ulsk ]
+    %i[it_way sportschool_ulsk]
   end
 end
