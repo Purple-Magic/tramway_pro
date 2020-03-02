@@ -19,7 +19,9 @@ describe 'IT Way: Creating participant' do
       click_on 'Отправить заявку'
 
       expect(page).to have_field('tramway_event_participant[Имя]', with: attributes[:'Имя'])
-      expect(page).to have_field('tramway_event_participant[Место учёбы / работы]', with: attributes[:'Место учёбы / работы'])
+      expect(page).to(
+        have_field('tramway_event_participant[Место учёбы / работы]', with: attributes[:'Место учёбы / работы'])
+      )
       expect(page).to have_field('tramway_event_participant[Номер телефона]', with: attributes[:'Номер телефона'])
       expect(page).to have_field('tramway_event_participant[Email]', with: attributes[:Email])
     end

@@ -12,6 +12,8 @@ Style/ClassAndModuleChildren:
   EnforcedStyle: compact
   Exclude:
     - config/application.rb
+    - lib/middleware/**/*.rb
+    - spec/support/capybara_helpers/node/element.rb
 Style/FrozenStringLiteralComment:
   Exclude:
     - bin/stage
