@@ -32,7 +32,7 @@ module TramwayPro
     config.i18n.available_locales = [:ru]
     config.i18n.enforce_available_locales = false
     config.i18n.default_locale = :ru
-    config.autoload_paths += %w[#{config.root}/app/models/ckeditor]
+    config.autoload_paths += ["#{config.root}/app/models/ckeditor"]
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.middleware.use ::MultiProjectConfigurationMiddleware::Conference
     config.middleware.use ::MultiProjectConfigurationMiddleware::SportSchool
