@@ -6,20 +6,23 @@ module MultiProjectConfigurationMiddleware
       @app = app
     end
 
+    PAIRS = {
+      ::Admin::Tramway::Event::EventForm => MultiProjectCallbacks::Event::EventForm,
+      ::Admin::Tramway::Event::ParticipantForm => MultiProjectCallbacks::Event::ParticipantForm,
+      ::Admin::Tramway::Event::ParticipantFormFieldForm => MultiProjectCallbacks::Event::ParticipantFormFieldForm,
+      ::Admin::Tramway::Event::SectionForm => MultiProjectCallbacks::Event::SectionForm,
+      ::Admin::Tramway::Event::PartakingForm => MultiProjectCallbacks::Event::PartakingForm,
+      ::Admin::Tramway::Event::PersonForm => MultiProjectCallbacks::Event::PersonForm,
+      ::Admin::Tramway::Event::ActionForm => MultiProjectCallbacks::Event::ActionForm,
+      Tramway::Event::Event => Tramway::Event::EventConcern,
+      ::Tramway::Event::ParticipantsController => MultiProjectCallbacks::Event::ParticipantsController,
+      ::Tramway::Event::EventsController => MultiProjectCallbacks::Event::EventsController
+    }.freeze
+
     def call(env)
-      ::Admin::Tramway::Event::EventForm.include MultiProjectCallbacks::Event::EventForm
-      ::Admin::Tramway::Event::ParticipantForm.include MultiProjectCallbacks::Event::ParticipantForm
-      ::Admin::Tramway::Event::ParticipantFormFieldForm.include MultiProjectCallbacks::Event::ParticipantFormFieldForm
-      ::Admin::Tramway::Event::SectionForm.include MultiProjectCallbacks::Event::SectionForm
-      ::Admin::Tramway::Event::PartakingForm.include MultiProjectCallbacks::Event::PartakingForm
-      ::Admin::Tramway::Event::PersonForm.include MultiProjectCallbacks::Event::PersonForm
-      ::Admin::Tramway::Event::ActionForm.include MultiProjectCallbacks::Event::ActionForm
-
-      Tramway::Event::Event.include Tramway::Event::EventConcern
-
-      ::Tramway::Event::ParticipantsController.include MultiProjectCallbacks::Event::ParticipantsController
-      ::Tramway::Event::EventsController.include MultiProjectCallbacks::Event::EventsController
-      #      ::Tramway::Event::PlaceForm.include MultiProjectCallbacks::Event::PlaceForm
+      PAIRS.each do |pair|
+        pair.first.include pair.last
+      end
 
       @app.call(env)
     end
@@ -99,9 +102,9 @@ module MultiProjectCallbacks
         after_action :add_project_id, only: [:create]
 
         def add_project_id
-          if @participant_form.model.id.present?
-            @participant_form.model.update project_id: Project.where(url: ENV['PROJECT_URL']).first.id
-          end
+          return unless @participant_form.model.id.present?
+
+          @participant_form.model.update project_id: Project.where(url: ENV['PROJECT_URL']).first.id
         end
       end
     end
