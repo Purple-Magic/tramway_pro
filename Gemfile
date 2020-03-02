@@ -104,10 +104,10 @@ group :development, :test do
   gem 'pry'
   gem 'pry-nav'
   gem 'rspec-rails', '~> 3.5'
+  gem 'rubocop'
   gem 'selenium-webdriver'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'rubocop'
 end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
