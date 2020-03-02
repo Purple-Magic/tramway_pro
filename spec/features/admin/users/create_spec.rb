@@ -7,7 +7,7 @@ describe 'Create admin' do
 
   ProjectsHelper.projects.each do |project|
     it "#{project.url}: should create admin" do
-      set_host project.url
+      move_host_to project.url
       count = Tramway::User::User.where(project_id: project.id).count
       visit '/admin'
       fill_in 'Email', with: 'admin@email.com'

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'IT Way: Show main page with events' do
   before { create :block, project_id: it_way_id }
-  before { set_host it_way_host }
+  before { move_host_to it_way_host }
 
   context 'with main event' do
     it 'should show main page with started campaign' do

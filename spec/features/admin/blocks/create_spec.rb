@@ -7,7 +7,7 @@ describe 'Create block' do
 
   ProjectsHelper.projects.each do |project|
     it "#{project.url}: should create block" do
-      set_host project.url
+      move_host_to project.url
       count = Tramway::Landing::Block.count
       visit '/admin'
       fill_in 'Email', with: 'admin@email.com'

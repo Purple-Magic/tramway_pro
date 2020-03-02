@@ -6,7 +6,7 @@ describe 'IT Way: Creating participant' do
   let(:event) { create :event, :campaign_started }
   let(:attributes) { attributes_for :participant_default_event_attributes }
 
-  before { set_host it_way_host }
+  before { move_host_to it_way_host }
 
   it 'should create participant' do
     count = Tramway::Event::Participant.count

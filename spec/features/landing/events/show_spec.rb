@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'IT Way: Show event' do
-  before { set_host it_way_host }
+  before { move_host_to it_way_host }
 
   context 'Collecting requests campaign started' do
     let(:event) { create :event, :campaign_started }

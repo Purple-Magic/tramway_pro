@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'Update event' do
-  before { set_host it_way_host }
+  before { move_host_to it_way_host }
   let!(:attributes) { attributes_for :event_admin_attributes }
   before { create :event, project_id: it_way_id }
 

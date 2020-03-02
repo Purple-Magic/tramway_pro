@@ -7,7 +7,7 @@ describe 'Show admin' do
     before { create :admin, project_id: project.id }
 
     it "#{project.url}: should show admin" do
-      set_host project.url
+      move_host_to project.url
       visit '/admin'
       fill_in 'Email', with: 'admin@email.com'
       fill_in 'Пароль', with: '123456'
