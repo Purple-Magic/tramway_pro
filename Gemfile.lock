@@ -450,7 +450,7 @@ GEM
       tramway-core (>= 1.9.2)
     tramway-auth (1.1.0.2)
     tramway-conference (1.9.0.2)
-    tramway-core (1.16.1.9)
+    tramway-core (1.16.2)
       audited (>= 4.8.0)
       bootstrap (>= 4.1.2)
       carrierwave
@@ -468,7 +468,7 @@ GEM
       rmagick (~> 2.16, >= 2.16.0)
       sass-rails (~> 5.0, >= 5.0.7)
       simple_form (>= 5.0.0)
-    tramway-event (1.10.0.2)
+    tramway-event (1.10.1)
       configus
     tramway-export (0.1.2)
       xls_exporter
@@ -594,8 +594,8 @@ DEPENDENCIES
   tramway-api (= 1.7.0.4)
   tramway-auth (= 1.1.0.2)
   tramway-conference (= 1.9.0.2)
-  tramway-core (= 1.16.1.9)
-  tramway-event (= 1.10.0.2)
+  tramway-core (= 1.16.2)
+  tramway-event (= 1.10.1)
   tramway-export (= 0.1.2)
   tramway-landing (= 2.0.1.1)
   tramway-news (= 1.0.4.3)
