@@ -7,7 +7,7 @@ describe 'Show block' do
     before { create :block, project_id: project.id }
 
     it 'should show block' do
-      set_host project.url
+      move_host_to project.url
       visit '/admin'
       fill_in 'Email', with: 'admin@email.com'
       fill_in 'Пароль', with: '123456'

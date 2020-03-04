@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'Update event' do
-  before { set_host it_way_host }
+  before { move_host_to it_way_host }
   let!(:attributes) { attributes_for :event_admin_attributes }
   before { create :event, project_id: it_way_id }
 
@@ -23,6 +23,7 @@ describe 'Update event' do
     fill_in 'record[end_date]', with: attributes[:end_date]
     fill_in 'record[request_collecting_begin_date]', with: attributes[:request_collecting_begin_date]
     fill_in 'record[request_collecting_end_date]', with: attributes[:request_collecting_end_date]
+    select attributes[:reach], from: 'record[reach]'
 
     click_on 'Сохранить', class: 'btn-success'
     event.reload

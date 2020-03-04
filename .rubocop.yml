@@ -11,12 +11,18 @@ Metrics/AbcSize:
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
   Exclude:
+    - bin/*
     - config/application.rb
+    - lib/middleware/**/*.rb
+    - spec/support/capybara_helpers/node/element.rb
 Style/FrozenStringLiteralComment:
   Exclude:
     - bin/stage
 Layout/ArgumentAlignment:
   EnforcedStyle: with_fixed_indentation
+Style/MixinUsage:
+  Exclude:
+    - bin/*
 AllCops:
   Include:
     - app/**/*.rb

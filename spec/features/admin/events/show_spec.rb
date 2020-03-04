@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'Show event' do
-  before { set_host it_way_host }
+  before { move_host_to it_way_host }
   before { create :event, project_id: it_way_id }
 
   it 'should show event' do

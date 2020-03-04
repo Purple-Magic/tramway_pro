@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'Change participant state' do
-  before { set_host it_way_host }
+  before { move_host_to it_way_host }
   let!(:event) { create :event, project_id: it_way_id }
   let!(:participant) { create :participant, event: event, project_id: it_way_id }
 

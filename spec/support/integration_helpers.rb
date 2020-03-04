@@ -15,7 +15,7 @@ module IntegrationHelpers
     find(:label, text: text).click
   end
 
-  def set_host(host)
+  def move_host_to(host)
     Capybara.app_host = 'http://' + host + ':3000'
   end
 

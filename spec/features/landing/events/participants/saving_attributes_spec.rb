@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'IT Way: Creating participant' do
-  before { set_host it_way_host }
+  before { move_host_to it_way_host }
   let(:event) { create :event, :campaign_started, project_id: it_way_id }
   let(:attributes) { attributes_for :participant_default_event_attributes }
 
@@ -19,7 +19,9 @@ describe 'IT Way: Creating participant' do
       click_on 'Отправить заявку'
 
       expect(page).to have_field('tramway_event_participant[Имя]', with: attributes[:'Имя'])
-      expect(page).to have_field('tramway_event_participant[Место учёбы / работы]', with: attributes[:'Место учёбы / работы'])
+      expect(page).to(
+        have_field('tramway_event_participant[Место учёбы / работы]', with: attributes[:'Место учёбы / работы'])
+      )
       expect(page).to have_field('tramway_event_participant[Номер телефона]', with: attributes[:'Номер телефона'])
       expect(page).to have_field('tramway_event_participant[Email]', with: attributes[:Email])
     end

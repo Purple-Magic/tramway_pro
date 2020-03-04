@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'Mandatory actions' do
-  before { set_host it_way_host }
+  before { move_host_to it_way_host }
   let!(:attributes) { attributes_for :event_admin_attributes }
 
   it 'should show mandatory actions after creating an event' do
