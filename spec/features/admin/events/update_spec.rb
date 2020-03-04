@@ -23,6 +23,7 @@ describe 'Update event' do
     fill_in 'record[end_date]', with: attributes[:end_date]
     fill_in 'record[request_collecting_begin_date]', with: attributes[:request_collecting_begin_date]
     fill_in 'record[request_collecting_end_date]', with: attributes[:request_collecting_end_date]
+    select attributes[:reach], from: 'record[reach]'
 
     click_on 'Сохранить', class: 'btn-success'
     event.reload
