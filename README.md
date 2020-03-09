@@ -1,24 +1,5 @@
-# README
+# Tramway based applications ![.github/workflows/test.yml](https://github.com/ulmic/tramway_pro/workflows/.github/workflows/test.yml/badge.svg?branch=develop)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* [IT Way](https://it-way.pro)
+* [Sport School](http://sportschool-ulsk.ru)
+* [kalashnikovisme.ru](kalashnikovisme.ru)
