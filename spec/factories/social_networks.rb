@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :social_network, class: 'Tramway::Profiles::SocialNetwork' do
     title
