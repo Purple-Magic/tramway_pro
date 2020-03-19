@@ -27,4 +27,10 @@ FactoryBot.define do
     uid { generate :string }
     network_name { Tramway::Profiles::SocialNetwork.network_name.values.sample.text }
   end
+
+  factory :social_network_admin_add_to_admin_attributes, class: 'Tramway::Profiles::SocialNetwork' do
+    title
+    uid { generate :string }
+    network_name { Tramway::Profiles::SocialNetwork.network_name.values.sample.text }
+  end
 end
