@@ -460,7 +460,7 @@ GEM
       smart_buttons (>= 1.0)
       state_machine_buttons (>= 1.0)
       trap (= 3.0)
-    tramway-api (1.7.1.3)
+    tramway-api (1.8)
       active_model_serializers (= 0.10.5)
       knock
       tramway-core (>= 1.9.2)
@@ -609,7 +609,7 @@ DEPENDENCIES
   state_machine_buttons (= 1.0)
   time_difference
   tramway-admin (= 1.28.0.1)
-  tramway-api (= 1.7.1.3)
+  tramway-api (= 1.8)
   tramway-auth (= 1.1.0.3)
   tramway-conference (= 1.9.3)
   tramway-core (= 1.17.2.4)
