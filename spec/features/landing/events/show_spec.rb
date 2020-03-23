@@ -47,4 +47,34 @@ describe 'IT Way: Show event' do
       expect(page).not_to have_xpath 'form.tramway_event_participant'
     end
   end
+
+  context 'Responsible person contacts' do
+    let(:event) { create :event, :created_by_admin }
+
+    it 'should show phone of responsible person' do
+      visit "/events/#{event.id}"
+
+      expect(page).to have_content event.creator.phone
+    end
+
+    it 'should show email of responsible person' do
+      visit "/events/#{event.id}"
+
+      expect(page).to have_content event.creator.email
+    end
+
+    context 'with social_networks' do
+      Tramway::Profiles::SocialNetwork.network_name.values.each do |network|
+        let(:event) { create :event, :created_by_full_filled_admin }
+
+        it "should show #{network} of responsible person" do
+          visit "/events/#{event.id}"
+
+          expect(page).to(
+            have_content(event.creator.social_networks.where(network_name: network).first.title)
+          )
+        end
+      end
+    end
+  end
 end

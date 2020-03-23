@@ -8,6 +8,14 @@ FactoryBot.define do
     first_name { generate :string }
     last_name { generate :string }
     phone
+
+    trait :with_social_networks do
+      after :create do |user|
+        Tramway::Profiles::SocialNetwork.network_name.values.each do |network|
+          create :social_network, network_name: network, record_type: Tramway::User::User, record_id: user.id
+        end
+      end
+    end
   end
 
   factory :admin_admin_attributes, class: Tramway::User::User do

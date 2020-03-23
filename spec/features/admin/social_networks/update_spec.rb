@@ -38,6 +38,9 @@ describe 'Update social_network' do
         when 'Tramway::SportSchool::Institution', 'Tramway::Conference::Unity'
           expect(actual).to be_present, "#{attr} is empty"
           actual = "#{actual.class.model_name.human} | #{actual.title}"
+        when 'Tramway::User::User'
+          expect(actual).to be_present, "#{attr} is empty"
+          actual = "#{actual.class.model_name.human} | #{actual.first_name} #{actual.last_name}"
         end
         expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
       end
