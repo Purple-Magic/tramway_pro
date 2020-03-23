@@ -25,9 +25,6 @@ if ARGV[0] == 'get_db'
   system 'dropdb tramway_pro_development --if-exists'
   system 'createdb tramway_pro_development'
   system "pg_restore -d #{restore_to} /tmp/#{dump}"
-  system 'dropdb tramway_pro_test --if-exists'
-  system 'createdb tramway_pro_test'
-  system "pg_restore -d tramway_pro_test /tmp/#{dump}"
   puts 'Copy prod db for tests...'.yellow
   system "cp -rf /tmp/#{dump} tmp/test.dump"
   puts 'Copy prod db to backup folder...'.yellow

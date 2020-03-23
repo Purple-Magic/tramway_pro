@@ -59,7 +59,7 @@ describe 'IT Way: Creating participant' do
   end
 
   context 'Organizer info checking' do
-    let(:event) { create :event, :campaign_started }
+    let(:event) { create :event, :campaign_started, :created_by_admin }
 
     it 'should show event creator data' do
       visit "/events/#{event.id}"

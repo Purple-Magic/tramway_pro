@@ -15,9 +15,18 @@ FactoryBot.define do
     request_collecting_begin_date { DateTime.now.beginning_of_day.change(offset: '+0400') }
     request_collecting_end_date { DateTime.now.beginning_of_day.change(offset: '+0400') }
 
-    after :create do |event|
-      creation_event = event.audits.where(action: :create).first
-      creation_event.update! user_id: create(:admin).id, user_type: Tramway::User::User
+    trait :created_by_admin do
+      after :create do |event|
+        creation_event = event.audits.where(action: :create).first
+        creation_event.update! user_id: create(:admin).id, user_type: Tramway::User::User
+      end
+    end
+
+    trait :created_by_full_filled_admin do
+      after :create do |event|
+        creation_event = event.audits.where(action: :create).first
+        creation_event.update! user_id: create(:admin, :with_social_networks).id, user_type: Tramway::User::User
+      end
     end
   end
 
