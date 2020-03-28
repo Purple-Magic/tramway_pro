@@ -34,7 +34,7 @@ describe 'IT Way: Creating participant' do
 
     click_on 'Отправить заявку'
 
-    expect(page).to have_content 'Заявка успешно отправлена!'
+    expect(page).to have_content 'Заявка отправлена успешно!'
   end
 
   it 'should create participant with needed arguments' do

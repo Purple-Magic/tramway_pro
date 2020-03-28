@@ -22,6 +22,12 @@ describe 'IT Way: Show event' do
       end
     end
 
+    it 'should show registration button' do
+      visit "/events/#{event.id}"
+
+      expect(page).to have_selector :css, 'button[data-anchor="#registration"]'
+    end
+
     context 'without mandatory fields' do
       it 'participants form fields are not checked with asterix' do
         event.participant_form_fields.update_all options: { validations: { presence: false } }
@@ -44,7 +50,29 @@ describe 'IT Way: Show event' do
     it 'should not show participants form' do
       visit "/events/#{event.id}"
 
-      expect(page).not_to have_xpath 'form.tramway_event_participant'
+      expect(page).not_to have_selector :css, 'form.tramway_event_participant'
+    end
+  end
+
+  context 'Event is past' do
+    let(:event) { create :event, end_date: DateTime.now - 1.day }
+
+    it 'should show event' do
+      visit "/events/#{event.id}"
+
+      expect(page).to have_content event.title
+    end
+
+    it 'should not show registration button' do
+      visit "/events/#{event.id}"
+
+      expect(page).not_to have_selector :css, 'button[data-anchor="#registration"]'
+    end
+
+    it 'should not show participants form' do
+      visit "/events/#{event.id}"
+
+      expect(page).not_to have_selector :css, 'form.tramway_event_participant'
     end
   end
 
