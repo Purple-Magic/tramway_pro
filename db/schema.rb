@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200328165644) do
+ActiveRecord::Schema.define(version: 20200330173643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20200328165644) do
     t.text "url"
     t.date "found_date"
     t.text "email"
+    t.text "main_image"
   end
 
   create_table "tramway_event_actions", force: :cascade do |t|
@@ -311,6 +312,7 @@ ActiveRecord::Schema.define(version: 20200328165644) do
     t.text "url"
     t.date "found_date"
     t.text "name"
+    t.text "main_image"
   end
 
   create_table "tramway_sport_school_kind_sports", force: :cascade do |t|
