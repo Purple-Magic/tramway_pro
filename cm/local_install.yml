@@ -1,0 +1,11 @@
+- hosts: develop
+  tasks:
+    - name: Insert hosts into the /etc/hosts
+      lineinfile:
+        path: /etc/hosts
+        line:
+          - 127.0.0.1       localhost
+          - 127.0.0.1       it-way.test
+          - 127.0.0.1       sportschool-ulsk.test
+          - 127.0.0.1       kalashnikovisme.test
+        insertbefore: BOF
