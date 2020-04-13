@@ -5,12 +5,24 @@
 ```yaml
 development:
   your_project: your-project.test
+  engines:
+    'your-project.test': engine_name # if your application is instance of some Tramway Engine
+  application_name:
+    'your-project.test: application_name # if your application does not use Tramway Engine
   
 production:
   your_project: your-project.com # real domain name
+  engines:
+    'your-project.com': engine_name # if your application is instance of some Tramway Engine
+  application_name:
+    'your-project.com: application_name # if your application does not use Tramway Engine
   
 test:
   your_project: your-project.test
+  engines:
+    'your-project.test': engine_name # if your application is instance of some Tramway Engine
+  application_name:
+    'your-project.test: application_name # if your application does not use Tramway Engine
 ```
 
 #### 2. Add project to the database
