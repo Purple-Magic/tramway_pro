@@ -7,7 +7,7 @@ describe 'IT Way: Creating participant' do
   let(:attributes) { attributes_for :participant_default_event_attributes }
 
   before do
-    move_host_to it_way_host 
+    move_host_to it_way_host
   end
 
   it 'should create participant' do
