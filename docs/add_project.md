@@ -21,3 +21,10 @@ Project.create! title: 'Tramway', description: 'Main tramway application', url: 
 2.7.0 :001 > Project.create! title: 'Your project name', description: 'This is my application', url: 'your-project.com'
 ```
 
+#### 3. Add routes to the `config/routes.rb`
+
+```ruby
+ constraints Constraints::DomainConstraint.new(Settings[Rails.env][:your_project]) do
+   # your routes here
+ end
+```
