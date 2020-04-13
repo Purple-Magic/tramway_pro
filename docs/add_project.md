@@ -28,3 +28,9 @@ Project.create! title: 'Tramway', description: 'Main tramway application', url: 
    # your routes here
  end
 ```
+#### 4. Update hosts. Edit `Makefile`
+
+```make
+install:
+  echo "127.0.0.1 your-project.test" >> /etc/hosts
+```
