@@ -25,6 +25,8 @@ test:
     'your-project.test: application_class # if your application does not use Tramway Engine
 ```
 
+*Don't forget to create Tramway Application Model if you used application_class here*. [How-to](https://github.com/Purple-Magic/tramway-core#how-to-create-model-that-will-be-an-application-model-for-the-tramway)
+
 #### 2. Add project to the database
 
 ```ruby
