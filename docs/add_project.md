@@ -34,3 +34,5 @@ Project.create! title: 'Tramway', description: 'Main tramway application', url: 
 install:
   echo "127.0.0.1 your-project.test" >> /etc/hosts
 ```
+
+#### 5. Run rails server and open `your-project.test:3000` to test
