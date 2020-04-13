@@ -8,7 +8,10 @@ development:
   engines:
     'your-project.test': engine_name # if your application is instance of some Tramway Engine
   application_class:
-    'your-project.test: application_class # if your application does not use Tramway Engine
+    'your-project.test': application_class # if your application does not use Tramway Engine
+  application:
+    'your-project.test':
+      name: your_project # if your application does not use Tramway Engine and does not have Tramway Application Model
   
 production:
   your_project: your-project.com # real domain name
