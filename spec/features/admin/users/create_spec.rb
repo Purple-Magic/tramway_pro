@@ -8,12 +8,12 @@ describe 'Create admin' do
   ProjectsHelper.projects.each do |project|
     it "#{project.url}: should create admin" do
       move_host_to project.url
-      count = Tramway::User::User.where(project_id: project.id).count
       visit '/admin'
       fill_in 'Email', with: 'admin@email.com'
       fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
+      count = Tramway::User::User.where(project_id: project.id).count
       click_on 'Пользователи'
       find('.btn.btn-primary', match: :first).click
       fill_in 'record[email]', with: attributes[:email]
