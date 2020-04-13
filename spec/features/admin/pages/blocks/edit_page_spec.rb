@@ -4,7 +4,10 @@ require 'rails_helper'
 
 describe 'Edit block page' do
   ProjectsHelper.projects.each do |project|
-    before { create :block, project_id: project.id }
+    before do
+      landing_page = create :page, project_id: project.id
+      create :block, project_id: project.id, page: landing_page
+    end
 
     it 'should show edit block page' do
       move_host_to project.url
@@ -13,10 +16,11 @@ describe 'Edit block page' do
       fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
-      last_block = Tramway::Landing::Block.active.where(project_id: project.id).last
-
+      last_page = Tramway::Page::Page.where(project_id: project.id).last
       click_on_dropdown 'Лендинг'
-      click_on 'Блоки'
+      click_on 'Страницы'
+      click_on last_page.title
+      last_block = Tramway::Landing::Block.where(project_id: project.id).last
       click_on last_block.title
       find('.btn.btn-warning', match: :first).click
 

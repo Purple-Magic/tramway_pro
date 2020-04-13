@@ -22,7 +22,7 @@ class Tramway::Core::ApplicationController < ActionController::Base
     super
   end
 
-  # FIXME it's repeat of tramway-core/application_controller method
+  # FIXME: it's repeat of tramway-core/application_controller method
 
   def application
     @application = ::Tramway::Core.application_object

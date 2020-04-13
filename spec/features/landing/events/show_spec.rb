@@ -82,13 +82,13 @@ describe 'IT Way: Show event' do
     it 'should show phone of responsible person' do
       visit "/events/#{event.id}"
 
-      expect(page).to have_content event.creator.phone
+      expect(page).to have_content event.creator&.phone
     end
 
     it 'should show email of responsible person' do
       visit "/events/#{event.id}"
 
-      expect(page).to have_content event.creator.email
+      expect(page).to have_content event.creator&.email
     end
 
     context 'with social_networks' do
@@ -99,7 +99,7 @@ describe 'IT Way: Show event' do
           visit "/events/#{event.id}"
 
           expect(page).to(
-            have_content(event.creator.social_networks.where(network_name: network).first.title)
+            have_content(event.creator&.social_networks&.where(network_name: network)&.first&.title)
           )
         end
       end

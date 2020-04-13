@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :block, class: Tramway::Landing::Block do
+    page
     title
     position { generate :integer }
     block_type { Tramway::Landing::Block.block_type.values.sample }

@@ -31,7 +31,7 @@ RSpec.configure do |config|
 
   ActiveRecord::Base.logger.level = 1
 
-  ['it-way.test', 'sportschool-ulsk.test'].each do |url|
+  ['it-way.test', 'sportschool-ulsk.test', 'tramway.test'].each do |url|
     next if Project.where(url: url).any?
 
     Project.create! url: url
@@ -43,9 +43,12 @@ RSpec.configure do |config|
 
       model.delete_all
     end
-    create :admin, email: 'admin@email.com', password: '123456', role: :admin
+    ProjectsHelper.projects.each do |project|
+      create :admin, email: 'admin@email.com', password: '123456', role: :admin, project_id: project.id
+    end
     create :unity, title: 'IT Way'
     create :institution, title: 'Sport school ULSK'
+    create :tramway_dev, name: 'Tramway'
   end
   include ActionDispatch::TestProcess
 end

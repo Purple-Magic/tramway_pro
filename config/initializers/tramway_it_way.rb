@@ -27,7 +27,6 @@ Tramway::Admin.navbar_structure(
   },
   {
     landing: [
-      Tramway::Landing::Block,
       Tramway::Page::Page,
       Tramway::Profiles::SocialNetwork
     ]
@@ -38,5 +37,6 @@ Tramway::Admin.navbar_structure(
       ItWay::Certificate
     ]
   },
-  Tramway::User::User
+  Tramway::User::User,
+  project: :conference
 )

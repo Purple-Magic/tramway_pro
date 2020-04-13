@@ -2,21 +2,29 @@
 
 require 'rails_helper'
 
-describe 'Create block' do
+describe 'Update block' do
   let!(:attributes) { attributes_for :block_admin_attributes }
-
   ProjectsHelper.projects.each do |project|
-    it "#{project.url}: should create block" do
+    before do
+      landing_page = create :page, project_id: project.id
+      create :block, project_id: project.id, page: landing_page
+    end
+
+    it 'should update block' do
       move_host_to project.url
-      count = Tramway::Landing::Block.count
       visit '/admin'
       fill_in 'Email', with: 'admin@email.com'
       fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
+      last_page = Tramway::Page::Page.where(project_id: project.id).last
       click_on_dropdown 'Лендинг'
-      click_on 'Блоки'
-      find('.btn.btn-primary', match: :first).click
+      click_on 'Страницы'
+      click_on last_page.title
+      last_block = Tramway::Landing::Block.where(project_id: project.id).last
+      click_on last_block.title
+      find('.btn.btn-warning', match: :first).click
+
       fill_in 'record[title]', with: attributes[:title]
       fill_in 'record[position]', with: attributes[:position]
       select attributes[:block_type], from: 'record[block_type]'
@@ -26,10 +34,9 @@ describe 'Create block' do
       find('input[name="record[background]"]').set attributes[:background].path
 
       click_on 'Сохранить', class: 'btn-success'
-      expect(Tramway::Landing::Block.count).to eq(count + 1)
-      block = Tramway::Landing::Block.last
+      last_block.reload
       attributes.keys.each do |attr|
-        actual = block.send(attr)
+        actual = last_block.send(attr)
         expecting = attributes[attr]
         case actual.class.to_s
         when 'NilClass'
