@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200330173643) do
+ActiveRecord::Schema.define(version: 20200413060732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20200330173643) do
     t.text "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "state", default: "active"
   end
 
   create_table "tramway_conference_unities", force: :cascade do |t|
@@ -85,6 +86,21 @@ ActiveRecord::Schema.define(version: 20200330173643) do
     t.date "found_date"
     t.text "email"
     t.text "main_image"
+    t.text "favicon"
+    t.text "name"
+  end
+
+  create_table "tramway_devs", force: :cascade do |t|
+    t.text "name"
+    t.text "public_name"
+    t.text "tagline"
+    t.text "address"
+    t.text "phone"
+    t.point "coordinates"
+    t.text "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "favicon"
   end
 
   create_table "tramway_event_actions", force: :cascade do |t|
@@ -210,6 +226,7 @@ ActiveRecord::Schema.define(version: 20200330173643) do
     t.jsonb "button"
     t.text "view_name"
     t.jsonb "values"
+    t.integer "page_id"
   end
 
   create_table "tramway_news_news", force: :cascade do |t|
@@ -231,6 +248,8 @@ ActiveRecord::Schema.define(version: 20200330173643) do
     t.datetime "updated_at", null: false
     t.integer "project_id"
     t.text "view"
+    t.text "page_type"
+    t.text "view_state", default: "unpublished"
   end
 
   create_table "tramway_partner_organizations", force: :cascade do |t|
@@ -313,6 +332,7 @@ ActiveRecord::Schema.define(version: 20200330173643) do
     t.date "found_date"
     t.text "name"
     t.text "main_image"
+    t.text "favicon"
   end
 
   create_table "tramway_sport_school_kind_sports", force: :cascade do |t|

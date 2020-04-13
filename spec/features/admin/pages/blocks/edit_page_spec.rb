@@ -4,7 +4,10 @@ require 'rails_helper'
 
 describe 'Edit block page' do
   ProjectsHelper.projects.each do |project|
-    before { create :block, project_id: project.id }
+    before do
+      page = create :page, project_id: project.id
+      create :block, project_id: project.id, page: page
+    end
 
     it 'should show edit block page' do
       move_host_to project.url
@@ -15,9 +18,10 @@ describe 'Edit block page' do
 
       last_block = Tramway::Landing::Block.active.where(project_id: project.id).last
 
+      last_page = Tramway::Page::Page.where(project_id: project.id).last
       click_on_dropdown 'Лендинг'
-      click_on 'Блоки'
-      click_on last_block.title
+      click_on 'Страницы'
+      click_on last_page.title
       find('.btn.btn-warning', match: :first).click
 
       expect(page).to have_field 'record[title]', with: last_block.title
