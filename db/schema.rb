@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200413060732) do
+ActiveRecord::Schema.define(version: 20200413080904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20200413060732) do
     t.text "main_image"
     t.text "favicon"
     t.text "name"
+    t.text "public_name"
   end
 
   create_table "tramway_devs", force: :cascade do |t|
@@ -333,6 +334,7 @@ ActiveRecord::Schema.define(version: 20200413060732) do
     t.text "name"
     t.text "main_image"
     t.text "favicon"
+    t.text "public_name"
   end
 
   create_table "tramway_sport_school_kind_sports", force: :cascade do |t|

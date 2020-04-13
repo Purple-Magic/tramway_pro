@@ -3,10 +3,12 @@
 require 'rails_helper'
 
 describe 'IT Way: Creating participant' do
-  let(:event) { create :event, :campaign_started }
+  let!(:event) { create :event, :created_by_full_filled_admin, :campaign_started }
   let(:attributes) { attributes_for :participant_default_event_attributes }
 
-  before { move_host_to it_way_host }
+  before do
+    move_host_to it_way_host 
+  end
 
   it 'should create participant' do
     count = Tramway::Event::Participant.count
@@ -72,8 +74,8 @@ describe 'IT Way: Creating participant' do
 
       click_on 'Отправить заявку'
 
-      expect(page).to have_content event.creator.phone
-      expect(page).to have_content event.creator.email
+      expect(page).to have_content event.creator&.phone
+      expect(page).to have_content event.creator&.email
     end
   end
 end

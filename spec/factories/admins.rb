@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :admin, class: Tramway::User::User do
+  factory :admin, aliases: [:user], class: Tramway::User::User do
     email
     password
     role { :admin }

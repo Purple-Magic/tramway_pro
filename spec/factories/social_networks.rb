@@ -7,7 +7,7 @@ FactoryBot.define do
     uid { generate :string }
     record_type { Tramway::Profiles::SocialNetwork.record_type.values.sample }
     record_id do
-      record_type.constantize.last&.id || create(record_type.underscore).id
+      record_type.constantize.last&.id || create(record_type.underscore.split('/').last).id
     end
   end
 
@@ -15,12 +15,12 @@ FactoryBot.define do
     title
     uid { generate :string }
     network_name { Tramway::Profiles::SocialNetwork.network_name.values.sample.text }
-    record do
-      record_type = Tramway::Profiles::SocialNetwork.record_type.values.sample
-      record = record_type.constantize.last || create(record_type.underscore)
-      record_title = "#{record_type}Decorator".constantize.decorate(record).name
-      "#{record_type.constantize.model_name.human} | #{record_title}"
-    end
+#    record do
+#      record_type = Tramway::Profiles::SocialNetwork.record_type.values.sample
+#      record = record_type.constantize.last || create(record_type.underscore.split('/').last)
+#      record_title = "#{record_type}Decorator".constantize.decorate(record).name
+#      "#{record_type.constantize.model_name.human} | #{record_title}"
+#    end
   end
 
   factory :social_network_admin_add_to_unity_attributes, class: 'Tramway::Profiles::SocialNetwork' do
