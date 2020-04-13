@@ -34,7 +34,6 @@ test:
 
 ```ruby
 $> rails c
-Project.create! title: 'Tramway', description: 'Main tramway application', url: 'tramway.test'
 2.7.0 :001 > Project.create! title: 'Your project name', description: 'This is my application', url: 'your-project.com'
 ```
 
