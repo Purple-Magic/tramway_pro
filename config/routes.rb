@@ -17,4 +17,9 @@ Rails.application.routes.draw do
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:kalashnikovisme]) do
     mount Tramway::Site::Engine => '/'
   end
+
+  constraints Constraints::DomainConstraint.new(Settings[Rails.env][:tramway_dev]) do
+    mount Tramway::Admin::Engine, at: '/admin'
+    mount Tramway::Auth::Engine, at: '/auth'
+  end
 end

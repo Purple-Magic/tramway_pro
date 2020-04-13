@@ -1,0 +1,2 @@
+class TramwayDev < ApplicationRecord
+end

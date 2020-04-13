@@ -20,3 +20,5 @@ ru:
       genitive: сертификат
     tramway/user/user:
       plural: пользователи
+    project:
+      plural: проекты

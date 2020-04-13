@@ -14,4 +14,8 @@ class Constraints::DomainConstraint
   def engine_loaded
     Settings[Rails.env][:engines][ENV['PROJECT_URL']]
   end
+
+  def application_class
+    Settings[Rails.env][:application_class][ENV['PROJECT_URL']]
+  end
 end

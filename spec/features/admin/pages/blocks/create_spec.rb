@@ -6,6 +6,10 @@ describe 'Create block' do
   let!(:attributes) { attributes_for :block_admin_attributes }
 
   ProjectsHelper.projects.each do |project|
+    before do
+      create :page, project_id: project.id
+    end
+
     it "#{project.url}: should create block" do
       move_host_to project.url
       count = Tramway::Landing::Block.count
@@ -14,9 +18,11 @@ describe 'Create block' do
       fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
+      last_page = Tramway::Page::Page.where(project_id: project.id).last
       click_on_dropdown 'Лендинг'
-      click_on 'Блоки'
-      find('.btn.btn-primary', match: :first).click
+      click_on 'Страницы'
+      click_on last_page.title
+      click_on 'Добавить блоки'
       fill_in 'record[title]', with: attributes[:title]
       fill_in 'record[position]', with: attributes[:position]
       select attributes[:block_type], from: 'record[block_type]'
