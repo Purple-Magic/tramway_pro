@@ -5,7 +5,10 @@ require 'rails_helper'
 describe 'Update block' do
   let!(:attributes) { attributes_for :block_admin_attributes }
   ProjectsHelper.projects.each do |project|
-    before { create :block, project_id: project.id }
+    before do
+      landing_page = create :page, project_id: project.id
+      create :block, project_id: project.id, page: landing_page
+    end
 
     it 'should update block' do
       move_host_to project.url
@@ -14,11 +17,14 @@ describe 'Update block' do
       fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
-      block = Tramway::Landing::Block.active.where(project_id: project.id).last
+      last_page = Tramway::Page::Page.where(project_id: project.id).last
       click_on_dropdown 'Лендинг'
-      click_on 'Блоки'
-      click_on block.title
+      click_on 'Страницы'
+      click_on last_page.title
+      last_block = Tramway::Landing::Block.where(project_id: project.id).last
+      click_on last_block.title
       find('.btn.btn-warning', match: :first).click
+
       fill_in 'record[title]', with: attributes[:title]
       fill_in 'record[position]', with: attributes[:position]
       select attributes[:block_type], from: 'record[block_type]'
@@ -28,9 +34,9 @@ describe 'Update block' do
       find('input[name="record[background]"]').set attributes[:background].path
 
       click_on 'Сохранить', class: 'btn-success'
-      block.reload
+      last_block.reload
       attributes.keys.each do |attr|
-        actual = block.send(attr)
+        actual = last_block.send(attr)
         expecting = attributes[attr]
         case actual.class.to_s
         when 'NilClass'
