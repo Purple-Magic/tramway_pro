@@ -19,6 +19,12 @@ Open:
 * kalashnikovisme -> `kalashnikovisme.test:3000`
 * tramway -> `tramway.test:3000`
 
+To fill db run:
+
+```
+bin/prod get_db tramway
+```
+
 ### Install && run tests
 
 ```shell
