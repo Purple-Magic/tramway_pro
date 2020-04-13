@@ -94,3 +94,7 @@ make deploy
 
 * Коммиты следует именовать, начиная с `#{номер_карточки_в_trello} описание вашего коммита``
 * Не забудьте поставить пробел в начале коммит сообщения, а то ваше сообщение будет считаться комментарием
+
+## More Instructions
+
+* [How to add project](https://github.com/Purple-Magic/tramway_pro/blob/develop/docs/add_project.md)
