@@ -7,14 +7,22 @@
 ### Install && run
 
 ```shell
+make install
 bundle
 rails db:create db:migrate
 bundle exec rails s
 ```
 
+Open:
+* IT Way -> it-way.test:3000
+* Sport School ULSK -> sportschool-ulsk.test:3000
+* kalashnikovisme -> kalashnikovisme.test:3000
+* tramway -> tramway.test:3000
+
 ### Install && run tests
 
 ```shell
+make install
 bundle
 RAILS_ENV=test rails db:create db:migrate
 bundle exec rspec
