@@ -5,6 +5,7 @@ ru:
       tramway/user/user: Пользователь
       it_way/certificate: Сертификат
       listai/book: Книга
+      listai/page: Страница
     attributes:
       word:
         main: Определение
@@ -12,6 +13,13 @@ ru:
         description: Описание
       tramway/user/user:
         password: Пароль
+      listai/book:
+        title: Название
+        pages: Страницы
+      listai/page:
+        number: Номер страницы
+        file: Файл
+        book: Книга
   cases:
     word:
       plural: слова
@@ -23,3 +31,7 @@ ru:
       plural: пользователи
     project:
       plural: проекты
+    listai/book:
+      genitive: книгу
+    listai/page:
+      genitive: страницу
