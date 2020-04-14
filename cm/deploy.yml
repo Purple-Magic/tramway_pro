@@ -20,7 +20,7 @@
       debug: msg="Current application path is {{ release_path }}"
 
     - name: Checking out repo
-      git: repo=https://github.com/ulmic/tramway_pro
+      git: repo=https://github.com/Purple-Magic/tramway_pro
            dest={{ release_path }}
            version=master
 
