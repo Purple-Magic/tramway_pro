@@ -28,6 +28,7 @@ Tramway::Admin.navbar_structure(
   {
     landing: [
       Tramway::Page::Page,
+      Tramway::Landing::Block,
       Tramway::Profiles::SocialNetwork
     ]
   },

@@ -22,4 +22,8 @@ Rails.application.routes.draw do
     mount Tramway::Admin::Engine, at: '/admin'
     mount Tramway::Auth::Engine, at: '/auth'
   end
+
+  constraints Constraints::DomainConstraint.new(Settings[Rails.env][:engineervol]) do
+    root to: 'engineervol/web/welcome#index'
+  end
 end
