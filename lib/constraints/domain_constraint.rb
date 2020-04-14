@@ -18,4 +18,8 @@ class Constraints::DomainConstraint
   def application_class
     Settings[Rails.env][:application_class][ENV['PROJECT_URL']]
   end
+
+  def application_object
+    Settings[Rails.env][:application][ENV['PROJECT_URL']]
+  end
 end

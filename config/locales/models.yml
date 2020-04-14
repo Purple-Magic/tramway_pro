@@ -4,6 +4,7 @@ ru:
       word: Слово
       tramway/user/user: Пользователь
       it_way/certificate: Сертификат
+      listai/book: Книга
     attributes:
       word:
         main: Определение
