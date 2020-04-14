@@ -4,15 +4,18 @@ development:
   kalashnikovisme: kalashnikovisme.test
   tramway_dev: tramway.test
   engineervol: engineervol.test
+  listai: listai.test
   engines:
     'sportschool-ulsk.test': sport_school
     'it-way.test': conference
     'kalashnikovisme.test': site
   application_class:
     'tramway.test': tramway_dev
+    'listai.test': listai_app
   application:
     'engineervol.test':
       name: engineervol
+      title: Инженерное волонтёрство
 
 production:
   sportschool_ulsk: sportschool-ulsk.ru
@@ -20,12 +23,14 @@ production:
   kalashnikovisme: kalashnikovisme.ru
   engineervol: engineervol.ru
   tramway_dev: tramway.dev
+  listai: listai.io
   engines:
     'sportschool-ulsk.ru': sport_school
     'it-way.pro': conference
     'kalashnikovisme.ru': site
   application_class:
     'tramway.dev': tramway_dev
+    'listai.io': listai_app
   application:
     'engineervol.ru':
       name: engineervol
@@ -36,12 +41,14 @@ test:
   kalashnikovisme: kalashnikovisme.test
   tramway_dev: tramway.test
   engineervol: engineervol.test
+  listai: listai.test
   engines:
     'sportschool-ulsk.test': sport_school
     'it-way.test': conference
     'kalashnikovisme.test': site
   application_class:
     'tramway.test': tramway_dev
+    'listai.test': listai_app
   application:
     'engineervol.test':
       name: engineervol

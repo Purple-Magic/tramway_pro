@@ -9,6 +9,7 @@ module MultiProjectConfigurationMiddleware
     def call(env)
       ::Tramway::Admin::ApplicationController.include MultiProjectCallbacks::AdminMiddleware::Application
       ::Tramway::Admin::RecordsController.include MultiProjectCallbacks::AdminMiddleware::Records
+      ::Tramway::Admin::SingletonsController.include MultiProjectCallbacks::AdminMiddleware::Records
 
       @app.call(env)
     end
@@ -37,7 +38,11 @@ module MultiProjectCallbacks
         before_action :add_project_id, only: %i[create update]
 
         def add_project_id
-          params[:record][:project_id] = Project.where(url: ENV['PROJECT_URL']).first.id
+          if params[:record].present?
+            params[:record][:project_id] = Project.where(url: ENV['PROJECT_URL']).first.id
+          else
+            params[:singleton][:project_id] = Project.where(url: ENV['PROJECT_URL']).first.id
+          end
         end
 
         private
@@ -67,9 +72,11 @@ module MultiProjectCallbacks
           engine_loaded = Constraints::DomainConstraint.new(request.domain).engine_loaded
           if engine_loaded.present?
             build_application_with_engine engine_loaded
-          else
+          elsif Constraints::DomainConstraint.new(request.domain).application_class.present?
             application_class = Constraints::DomainConstraint.new(request.domain).application_class.camelize.constantize
             @application = application_class.first
+          else
+            @application = Constraints::DomainConstraint.new(request.domain).application_object
           end
         end
 

@@ -1,0 +1,16 @@
+= stylesheet_link_tag 'engineervol/web/welcome'
+
+#flipbook
+  - @book.pages.active.order(number: :asc).each do |page|
+    %div{ style: "background-image: url(#{page.file.url});background-size: cover;" }
+
+:javascript
+  var height = $(window).height() * 0.9
+  var width = height * 0.704 * 2
+  window.addEventListener('load', function(){
+    $("#flipbook").turn({
+      width: width,
+      height: height,
+      autoCenter: true
+    });
+  });
