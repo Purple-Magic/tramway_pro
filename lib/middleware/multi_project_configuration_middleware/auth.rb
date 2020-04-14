@@ -26,9 +26,11 @@ module MultiProjectCallbacks
           engine_loaded = Constraints::DomainConstraint.new(request.domain).engine_loaded
           if engine_loaded.present?
             build_application_with_engine engine_loaded
-          else
+          elsif Constraints::DomainConstraint.new(request.domain).application_class.present?
             application_class = Constraints::DomainConstraint.new(request.domain).application_class.camelize.constantize
             @application = application_class.first
+          else
+            @application = Constraints::DomainConstraint.new(request.domain).application_object
           end
         end
 
