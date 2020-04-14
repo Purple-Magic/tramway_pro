@@ -3,19 +3,22 @@ development:
   it_way: it-way.test
   kalashnikovisme: kalashnikovisme.test
   tramway_dev: tramway.test
-  #engineervol_ru: engineervol.test
+  engineervol: engineervol.test
   engines:
     'sportschool-ulsk.test': sport_school
     'it-way.test': conference
     'kalashnikovisme.test': site
   application_class:
     'tramway.test': tramway_dev
+  application:
+    'engineervol.test':
+      name: engineervol
 
 production:
   sportschool_ulsk: sportschool-ulsk.ru
   it_way: it-way.pro
   kalashnikovisme: kalashnikovisme.ru
-  #engineervol_ru: engineervol.ru
+  engineervol: engineervol.ru
   tramway_dev: tramway.dev
   engines:
     'sportschool-ulsk.ru': sport_school
@@ -23,16 +26,22 @@ production:
     'kalashnikovisme.ru': site
   application_class:
     'tramway.dev': tramway_dev
+  application:
+    'engineervol.ru':
+      name: engineervol
 
 test:
   sportschool_ulsk: sportschool-ulsk.test
   it_way: it-way.test
   kalashnikovisme: kalashnikovisme.test
   tramway_dev: tramway.test
-  #engineervol_ru: engineervol.test
+  engineervol: engineervol.test
   engines:
     'sportschool-ulsk.test': sport_school
     'it-way.test': conference
     'kalashnikovisme.test': site
   application_class:
     'tramway.test': tramway_dev
+  application:
+    'engineervol.test':
+      name: engineervol
