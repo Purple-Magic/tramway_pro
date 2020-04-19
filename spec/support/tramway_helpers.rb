@@ -23,6 +23,7 @@ module TramwayHelpers
       object.id,
       model: object.class
     )
-    find("form[action='#{delete_path}']").click
+    form = find("form[action='#{delete_path}']")
+    form.find('button[type="submit"]').click
   end
 end

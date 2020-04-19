@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Listai::BookForm < Tramway::Core::ApplicationForm
   properties :title
 
