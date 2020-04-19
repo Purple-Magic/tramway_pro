@@ -17,4 +17,12 @@ module TramwayHelpers
   def click_on_table_item(text)
     find('table td a', text: text).click
   end
+
+  def click_on_delete_button(object)
+    delete_path = ::Tramway::Admin::Engine.routes.url_helpers.record_path(
+      object.id,
+      model: object.class
+    )
+    find("form[action='#{delete_path}']").click
+  end
 end
