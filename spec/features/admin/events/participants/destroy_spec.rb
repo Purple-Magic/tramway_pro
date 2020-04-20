@@ -17,7 +17,7 @@ describe 'Destroy participant' do
     click_on 'Участники'
     click_on_delete_button last_participant
     last_participant.reload
-    
+
     expect(last_participant.remove?).to be_truthy
   end
 end
