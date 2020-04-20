@@ -5,6 +5,7 @@ development:
   tramway_dev: tramway.test
   engineervol: engineervol.test
   listai: listai.test
+  purple_magic: purple-magic.test
   engines:
     'sportschool-ulsk.test': sport_school
     'it-way.test': conference
@@ -24,6 +25,7 @@ production:
   engineervol: engineervol.ru
   tramway_dev: tramway.dev
   listai: listai.io
+  purple_magic: purple-magic.com
   engines:
     'sportschool-ulsk.ru': sport_school
     'it-way.pro': conference
@@ -42,10 +44,12 @@ test:
   tramway_dev: tramway.test
   engineervol: engineervol.test
   listai: listai.test
+  purple_magic: purple-magic.test
   engines:
     'sportschool-ulsk.test': sport_school
     'it-way.test': conference
     'kalashnikovisme.test': site
+    'purple-magic.test': site
   application_class:
     'tramway.test': tramway_dev
     'listai.test': listai_app

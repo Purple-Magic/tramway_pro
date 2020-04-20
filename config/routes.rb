@@ -28,4 +28,8 @@ Rails.application.routes.draw do
     mount Tramway::Admin::Engine, at: '/admin', as: :vol_admin
     mount Tramway::Auth::Engine, at: '/auth', as: :vol_auth
   end
+
+  constraints Constraints::DomainConstraint.new(Settings[Rails.env][:purple_magic]) do
+    
+  end
 end
