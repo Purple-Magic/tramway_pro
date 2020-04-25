@@ -1,0 +1,1 @@
+Tramway::Core.initialize_application model_class: PurpleMagic
