@@ -27,6 +27,9 @@ test:
   application_class:
     'your-project.test: application_class # if your application does not use Tramway Engine
 ```
+[How to choose engine you want to use here](https://github.com/Purple-Magic/tramway_pro/blob/develop/docs/engine_description.md)
+
+If you have not found any engine which you can use, you should create Tramway Application and use `application` or `application_class` in config/settings.yml
 
 *Don't forget to create Tramway Application Model if you used application_class here*. [How-to](https://github.com/Purple-Magic/tramway-core#how-to-create-model-that-will-be-an-application-model-for-the-tramway)
 
