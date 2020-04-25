@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200414203940) do
+ActiveRecord::Schema.define(version: 20200425222511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,20 @@ ActiveRecord::Schema.define(version: 20200414203940) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "state", default: "active"
+  end
+
+  create_table "purple_magics", force: :cascade do |t|
+    t.text "name"
+    t.text "public_name"
+    t.text "tagline"
+    t.text "address"
+    t.text "phone"
+    t.point "coordinates"
+    t.string "state"
+    t.string "text"
+    t.text "favicon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tramway_conference_unities", force: :cascade do |t|
