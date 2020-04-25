@@ -8,4 +8,4 @@ We have 3 types of engines to use in this project:
   * [http://sportschool-ulsk.ru/](http://sportschool-ulsk.ru/)
  * site - personal site (not production ready)
 
-If you have found suitable engine in this list, you should create own Trawmay Application. [How-to](https://github.com/Purple-Magic/tramway-core#how-to-create-model-that-will-be-an-application-model-for-the-tramway)
+If you have found suitable engine in this list, you should create own Trawmay Application Model. [How-to](https://github.com/Purple-Magic/tramway-core#how-to-create-model-that-will-be-an-application-model-for-the-tramway)
