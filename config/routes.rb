@@ -30,6 +30,5 @@ Rails.application.routes.draw do
   end
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:purple_magic]) do
-    
   end
 end
