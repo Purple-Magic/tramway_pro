@@ -464,7 +464,7 @@ GEM
       active_model_serializers (= 0.10.5)
       knock
       tramway-core (>= 1.9.2)
-    tramway-auth (1.2.1)
+    tramway-auth (1.2.1.1)
     tramway-conference (1.9.4.2)
     tramway-core (1.17.7.1)
       audited (>= 4.8.0)
@@ -534,7 +534,7 @@ GEM
       chronic (>= 0.6.3)
     whenever-test (1.0.1)
       whenever
-    xls_exporter (1.2)
+    xls_exporter (1.2.0.1)
       spreadsheet
     xpath (3.2.0)
       nokogiri (~> 1.8)
@@ -610,7 +610,7 @@ DEPENDENCIES
   time_difference
   tramway-admin (= 1.29.1.5)
   tramway-api (= 1.8.1.1)
-  tramway-auth (= 1.2.1)
+  tramway-auth (= 1.2.1.1)
   tramway-conference (= 1.9.4.2)
   tramway-core (= 1.17.7.1)
   tramway-event (= 1.12.3.2)

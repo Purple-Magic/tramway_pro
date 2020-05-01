@@ -12,7 +12,7 @@ gem 'rails', '5.1.7'
 
 gem 'tramway-admin', '1.29.1.5'
 gem 'tramway-api', '1.8.1.1'
-gem 'tramway-auth', '1.2.1'
+gem 'tramway-auth', '1.2.1.1'
 gem 'tramway-conference', '1.9.4.2'
 gem 'tramway-core', '1.17.7.1'
 gem 'tramway-event', '1.12.3.2'
