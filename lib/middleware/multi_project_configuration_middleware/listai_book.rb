@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module MultiProjectConfigurationMiddleware
-  class ListaiBook 
+  class ListaiBook
     def initialize(app)
       @app = app
     end
