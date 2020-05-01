@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Engineervol::Web::WelcomeController < ApplicationController
   layout 'engineervol/application'
 
