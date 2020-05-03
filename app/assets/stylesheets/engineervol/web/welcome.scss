@@ -7,6 +7,11 @@ body{
   src: asset-url('fonts/engineervol/Exo-Bold.otf');
 }
 
+@font-face {
+  font-family: 'Acrom-Regular';
+  src: asset-url('fonts/engineervol/Acrom-Regular.ttf');
+}
+
 .btn.btn-engineervol {
   background-color: #19efbc;
   font-family: 'Exo-Bold';
@@ -75,7 +80,7 @@ body{
 }
 
 #description {
-  font-family: 'Exo-Bold';
+  font-family: 'Acrom-Regular';
   position: fixed;
   text-align: left;
   font-size: 15pt;
