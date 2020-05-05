@@ -6,7 +6,8 @@ Tramway::Admin.set_available_models(
   Tramway::Page::Page,
   Tramway::Profiles::SocialNetwork,
   Tramway::Landing::Block,
-  project: :tramway
+  project: :tramway_dev,
+  role: :admin
 )
 
 Tramway::Admin.navbar_structure(
@@ -18,5 +19,5 @@ Tramway::Admin.navbar_structure(
       Tramway::Profiles::SocialNetwork
     ]
   },
-  project: :tramway
+  project: :tramway_dev
 )

@@ -534,7 +534,7 @@ GEM
       chronic (>= 0.6.3)
     whenever-test (1.0.1)
       whenever
-    xls_exporter (1.2)
+    xls_exporter (1.2.0.1)
       spreadsheet
     xpath (3.2.0)
       nokogiri (~> 1.8)
