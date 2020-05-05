@@ -20,6 +20,10 @@ ru:
         number: Номер страницы
         file: Файл
         book: Книга
+      project:
+        title: Название
+        description: Описание
+        url: URL
   cases:
     word:
       plural: слова
@@ -31,6 +35,7 @@ ru:
       plural: пользователи
     project:
       plural: проекты
+      genitive: проект
     listai/book:
       genitive: книгу
     listai/page:
