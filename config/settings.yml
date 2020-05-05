@@ -5,6 +5,7 @@ development:
   tramway_dev: tramway.test
   engineervol: engineervol.test
   listai: listai.test
+  gorodsad73: gorodsad73.test
   engines:
     'sportschool-ulsk.test': sport_school
     'it-way.test': conference
@@ -16,6 +17,9 @@ development:
     'engineervol.test':
       name: engineervol
       title: Инженерное волонтёрство
+    'gorodsad73.test':
+      name: gorodsad73
+      title: Город-сад Ульяновск
 
 production:
   sportschool_ulsk: sportschool-ulsk.ru
@@ -24,6 +28,7 @@ production:
   engineervol: engineervol.ru
   tramway_dev: tramway.dev
   listai: listai.io
+  gorodsad73: gorodsad73.ru
   engines:
     'sportschool-ulsk.ru': sport_school
     'it-way.pro': conference
@@ -34,6 +39,10 @@ production:
   application:
     'engineervol.ru':
       name: engineervol
+      title: Инженерное волонтёрство
+    'gorodsad73.ru':
+      name: gorodsad73
+      title: Город-сад Ульяновск
 
 test:
   sportschool_ulsk: sportschool-ulsk.test
@@ -42,6 +51,7 @@ test:
   tramway_dev: tramway.test
   engineervol: engineervol.test
   listai: listai.test
+  gorodsad73: gorodsad73.test
   engines:
     'sportschool-ulsk.test': sport_school
     'it-way.test': conference
@@ -52,3 +62,6 @@ test:
   application:
     'engineervol.test':
       name: engineervol
+    'gorodsad73.test':
+      name: gorodsad73
+      title: Город-сад Ульяновск
