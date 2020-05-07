@@ -6,6 +6,7 @@ ru:
       it_way/certificate: Сертификат
       listai/book: Книга
       listai/page: Страница
+      project: Проект
     attributes:
       word:
         main: Определение
