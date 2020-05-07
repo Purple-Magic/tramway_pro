@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200414203940) do
+ActiveRecord::Schema.define(version: 20200507140813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -246,6 +246,16 @@ ActiveRecord::Schema.define(version: 20200414203940) do
     t.text "view_name"
     t.jsonb "values"
     t.integer "page_id"
+  end
+
+  create_table "tramway_landing_forms", force: :cascade do |t|
+    t.text "title"
+    t.text "form_name"
+    t.integer "block_id"
+    t.integer "position"
+    t.text "state", default: "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tramway_news_news", force: :cascade do |t|
