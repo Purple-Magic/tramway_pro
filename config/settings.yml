@@ -20,6 +20,7 @@ development:
     'gorodsad73.test':
       name: gorodsad73
       title: Город-сад Ульяновск
+      public_name: Город-сад Ульяновск
 
 production:
   sportschool_ulsk: sportschool-ulsk.ru
@@ -43,6 +44,7 @@ production:
     'gorodsad73.ru':
       name: gorodsad73
       title: Город-сад Ульяновск
+      public_name: Город-сад Ульяновск
 
 test:
   sportschool_ulsk: sportschool-ulsk.test
@@ -65,3 +67,5 @@ test:
     'gorodsad73.test':
       name: gorodsad73
       title: Город-сад Ульяновск
+      public_name: Город-сад Ульяновск
+
