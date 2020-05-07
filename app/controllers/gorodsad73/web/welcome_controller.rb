@@ -5,10 +5,19 @@ class Gorodsad73::Web::WelcomeController < ApplicationController
 
   def index
     @application = Constraints::DomainConstraint.new(request.domain).application_object
-    @blocks = Tramway::Landing::BlockDecorator.decorate Tramway::Landing::Block.on_main_page
     project = Project.find_by(url: ENV['PROJECT_URL'])
-    @links = Tramway::Landing::BlockLinkDecorator.decorate(
-      Tramway::Landing::Block.active.with_navbar_link.where(project_id: project.id)
+    main_page = Tramway::Page::Page.where(project_id: project, page_type: :main).active.first
+    @blocks = Tramway::Landing::BlockDecorator.decorate Tramway::Landing::Block.on_main_page
+    pages_links = Tramway::Page::Page.where(project_id: project.id).where.not(page_type: :main).active.map do |page|
+      Tramway::Landing::Navbar::LinkDecorator.decorate(
+        {
+          title: page.title,
+          link: Tramway::Page::Engine.routes.url_helpers.page_path(page.slug)
+        }
+      )
+    end
+    @links = pages_links + Tramway::Landing::BlockLinkDecorator.decorate(
+      Tramway::Landing::Block.active.with_navbar_link.where(project_id: project.id, page_id: main_page.id)
     )
   end
 end
