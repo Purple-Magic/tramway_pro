@@ -22,10 +22,14 @@
     %button{ data: { page: button[1] }, class: 'btn btn-engineervol btn-lg turn-page', style: 'color: black !important' }
       = button[0]
   %br
-  %br
-  %br
   Для получения активных ссылок, дополнительных печатных материалов и ответов на ваши вопросы -&nbsp;
   = mail_to 'engineervol@yandex.ru'
 
 #turnThePage
   Потяните за правый нижний угол
+
+#rotateDevice
+  %h1
+    Переверните устройство в горизонтальное положение, чтобы было удобно читать книгу
+#rotateBackground
+  = image_tag @book.pages.active.order(number: :asc).first.file.url

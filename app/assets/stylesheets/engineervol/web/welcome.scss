@@ -97,3 +97,51 @@ body{
   font-family: 'Exo-Bold';
   font-size: 20pt;
 }
+
+#rotateDevice, #rotateBackground {
+  display: none;
+}
+
+@media only screen and (max-device-width: 480px) {
+  body {
+    margin-left: 5%;
+  }
+  #flipbook, #buttons, #description, #turnThePage {
+    display: none !important;
+  }
+
+  #rotateDevice, #rotateBackground {
+    display: block;
+    position: fixed;
+    width: 90%;
+    height: 100%;
+    top: 0;
+    h1 {
+      text-align: center;
+      font-size: 6rem;
+    }
+  }
+
+  #rotateDevice {
+    z-index: 999;
+  }
+
+  #rotateBackground {
+    filter: blur(45px);
+  }
+}
+
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1280px) {
+  #flipbook {
+    height: 100%;
+  }
+
+  #buttons {
+    top: 15px !important;
+  }
+
+  #description, #turnThePage {
+    display: none !important;
+  }
+}

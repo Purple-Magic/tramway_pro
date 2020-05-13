@@ -20,12 +20,11 @@ function turnPageTo(page) {
   } 
 }
 
-window.addEventListener('load', function(){
+function init() {
   $flipbook = $('#flipbook');
   $flipbook.turn({
     width: width,
-    height: height,
-    autoCenter: true
+    height: height
   });
 
   const $description = $('#description');
@@ -55,4 +54,16 @@ window.addEventListener('load', function(){
   $('button.turn-page').click(function(event) {
     turnPageTo($(event.target).data('page'));
   });
+  setTimeout(function() {
+    $flipbook = $('#flipbook');
+    $flipbook.turn('peel', 'br');
+  }, 2000);
+}
+
+window.addEventListener('load', function(){
+  init();
+});
+
+window.addEventListener('orientationchange', function(){
+  location.reload();
 });
