@@ -1,3 +1,5 @@
+@import 'spinner';
+
 body{
     overflow:hidden;
 }
@@ -10,6 +12,13 @@ body{
 @font-face {
   font-family: 'Acrom-Regular';
   src: asset-url('fonts/engineervol/Acrom-Regular.ttf');
+}
+
+.loading {
+  width: 100%;
+  text-align: center;
+  font-family: 'Exo-Bold';
+  font-size: 25pt;
 }
 
 .btn.btn-engineervol {
@@ -117,13 +126,18 @@ body{
   #buttons, #turnThePage {
     left: 800px;
   }
+
+  .loading {
+    font-size: 5vw;
+    margin-bottom: 5em;
+  }
 } 
 
 @media only screen and (max-device-width: 480px) {
   body {
     margin-left: 5%;
   }
-  #flipbook, #turnThePage {
+  #flipbook, #buttons, #turnThePage {
     display: none !important;
   }
 
