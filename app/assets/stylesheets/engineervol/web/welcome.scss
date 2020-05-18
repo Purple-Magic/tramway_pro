@@ -118,14 +118,12 @@ body{
 
   #buttons, #turnThePage {
     right: 0px !important;
-    left: 1050px;
+    left: 78vw;
   }
 }
 
 @media only screen and (max-device-width: 1000px) {
   #buttons, #turnThePage {
-    left: 78vw;
-
     button {
       width: 20vw;
     }
