@@ -113,11 +113,17 @@ body{
   }
 }
 
+@media only screen and (max-device-width: 1000px) {
+  #buttons, #turnThePage {
+    left: 800px;
+  }
+} 
+
 @media only screen and (max-device-width: 480px) {
   body {
     margin-left: 5%;
   }
-  #flipbook, #buttons, #turnThePage {
+  #flipbook, #turnThePage {
     display: none !important;
   }
 
