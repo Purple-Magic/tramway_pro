@@ -124,8 +124,13 @@ body{
 
 @media only screen and (max-device-width: 1000px) {
   #buttons, #turnThePage {
-    left: 800px;
+    left: 78vw;
+
+    button {
+      width: 20vw;
+    }
   }
+
 
   .loading {
     font-size: 5vw;
