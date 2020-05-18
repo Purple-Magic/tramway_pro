@@ -129,10 +129,14 @@ body{
     button {
       width: 20vw;
     }
+
+    span {
+      display: none;
+    }
   }
 
-
   .loading {
+    width: 75vw;
     font-size: 5vw;
     margin-bottom: 5em;
   }
