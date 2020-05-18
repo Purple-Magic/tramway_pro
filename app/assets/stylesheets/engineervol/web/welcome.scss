@@ -102,11 +102,22 @@ body{
   display: none;
 }
 
+@media only screen and (max-width: 1750px) {
+  #description {
+    display: none !important;
+  }
+
+  #buttons, #turnThePage {
+    right: 0px !important;
+    left: 1050px;
+  }
+}
+
 @media only screen and (max-device-width: 480px) {
   body {
     margin-left: 5%;
   }
-  #flipbook, #buttons, #description, #turnThePage {
+  #flipbook, #buttons, #turnThePage {
     display: none !important;
   }
 

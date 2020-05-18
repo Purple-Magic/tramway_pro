@@ -1,5 +1,8 @@
 var height = $(window).height() * 0.9
-var width = height * 0.704 * 2
+
+function getWidth(height) {
+  return height * 0.704 * 2;
+};
 
 function turnPageTo(page) {
   $flipbook = $('#flipbook');
@@ -22,6 +25,7 @@ function turnPageTo(page) {
 
 function init() {
   $flipbook = $('#flipbook');
+  const width = getWidth(height);
   $flipbook.turn({
     width: width,
     height: height
@@ -59,6 +63,15 @@ function init() {
     $flipbook.turn('peel', 'br');
   }, 2000);
 }
+
+window.addEventListener('resize', function() {
+  window_height = $(window).height(); 
+  if (window_height < height) {
+    $flipbook = $('#flipbook');
+    $flipbook.height(window_height);
+    $flipbook.turn('size', getWidth(window_height), window_height);
+  }
+});
 
 window.addEventListener('load', function(){
   init();
