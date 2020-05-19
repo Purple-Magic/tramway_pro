@@ -89,6 +89,7 @@ body{
 }
 
 #description {
+  display: none;
   font-family: 'Acrom-Regular';
   position: fixed;
   text-align: left;
@@ -97,11 +98,13 @@ body{
 }
 
 #buttons {
+  display: none;
   position: fixed;
   font-family: 'Exo-Bold';
 }
 
 #turnThePage {
+  display: none;
   position: fixed;
   font-family: 'Exo-Bold';
   font-size: 20pt;
