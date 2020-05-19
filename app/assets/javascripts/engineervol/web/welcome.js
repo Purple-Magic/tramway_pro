@@ -84,4 +84,15 @@ window.addEventListener('load', function(){
 
 window.addEventListener('orientationchange', function(){
   location.reload();
+
+  // for iOS devices
+  
+  switch(window.orientation) {
+    case -90: case 90:
+      location.reload();
+      break;
+    default:
+      location.reload();
+      break;
+  }
 });
