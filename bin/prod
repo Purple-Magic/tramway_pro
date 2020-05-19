@@ -36,7 +36,7 @@ end
 
 if ARGV[0] == 'get_files'
   puts 'You should add username on server'.red if ARGV[1].nil?
-  copy_files_command = "scp -r #{ARGV[1]}@138.68.76.45:/srv/tramway_pro/shared/public/ ./"
+  copy_files_command = "rsync -avh #{ARGV[1]}@138.68.76.45:/srv/tramway_pro/shared/public/ ./public"
   puts copy_files_command.blue
   system copy_files_command
 end
