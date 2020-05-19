@@ -76,6 +76,9 @@ window.addEventListener('resize', function() {
 window.addEventListener('load', function(){
   $('.loader').hide();
   $('.loading').hide();
+  $('#description').show();
+  $('#buttons').show();
+  $('#turnThePage').show();
   init();
 });
 
