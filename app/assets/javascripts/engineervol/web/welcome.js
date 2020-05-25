@@ -72,6 +72,7 @@ window.addEventListener('resize', function() {
     $flipbook.turn('size', getWidth(window_height), window_height);
   }
   location.reload();
+  alert('Это только для теста, скорее всего пропадёт');
 });
 
 window.addEventListener('load', function(){
