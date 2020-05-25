@@ -97,7 +97,9 @@ window.addEventListener('orientationchange', function(){
   // for iOS devices
   
 
-  alert('Это просто для тестирования, скоро пропадёт');
+  alert("Width: " + $(window).width());
+  alert("Height: " + $(window).height());
+
   switch(window.orientation) {
     case -90: case 90:
       location.reload();
