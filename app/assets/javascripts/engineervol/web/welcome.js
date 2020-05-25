@@ -86,6 +86,14 @@ window.addEventListener('load', function(){
 window.addEventListener('orientationchange', function(){
   location.reload();
 
+  if ($(window).height() < $(window).width()) {
+    $('#rotateDevice').hide();
+    $('#rotateBackground').hide();
+  } else {
+    $('#rotateDevice').show();
+    $('#rotateBackground').show();
+  }
+
   // for iOS devices
   
   switch(window.orientation) {
