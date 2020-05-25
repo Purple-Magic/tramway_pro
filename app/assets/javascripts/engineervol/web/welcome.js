@@ -94,9 +94,12 @@ window.addEventListener('orientationchange', function(){
   location.reload();
 
   // for iOS devices
+  
+  setTimeout(function() {
+    alert("Width: " + window.screen.width);
+    alert("Height: " + window.screen.height);
+  }, 5000);
 
-  alert("Width: " + window.screen.width);
-  alert("Height: " + window.screen.height);
 
   switch(window.orientation) {
     case -90: case 90:
