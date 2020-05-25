@@ -71,6 +71,7 @@ window.addEventListener('resize', function() {
     $flipbook.height(window_height);
     $flipbook.turn('size', getWidth(window_height), window_height);
   }
+  location.reload();
 });
 
 window.addEventListener('load', function(){
