@@ -72,6 +72,14 @@ window.addEventListener('resize', function() {
     $flipbook.height(window_height);
     $flipbook.turn('size', getWidth(window_height), window_height);
   }
+  if ($(window).height() < $(window).width()) {
+    $('#rotateDevice').hide();
+    $('#rotateBackground').hide();
+  } else {
+    $('#rotateDevice').show();
+    $('#rotateBackground').show();
+  }
+
 });
 
 window.addEventListener('load', function(){
@@ -85,14 +93,6 @@ window.addEventListener('load', function(){
 
 window.addEventListener('orientationchange', function(){
   location.reload();
-
-  if ($(window).height() < $(window).width()) {
-    $('#rotateDevice').hide();
-    $('#rotateBackground').hide();
-  } else {
-    $('#rotateDevice').show();
-    $('#rotateBackground').show();
-  }
 
   // for iOS devices
   
