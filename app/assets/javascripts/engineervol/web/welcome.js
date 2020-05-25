@@ -65,14 +65,13 @@ function init() {
 }
 
 window.addEventListener('resize', function() {
+  location.reload();
   window_height = $(window).height(); 
   if (window_height < height) {
     $flipbook = $('#flipbook');
     $flipbook.height(window_height);
     $flipbook.turn('size', getWidth(window_height), window_height);
   }
-  location.reload();
-  alert('Это только для теста, скорее всего пропадёт');
 });
 
 window.addEventListener('load', function(){
