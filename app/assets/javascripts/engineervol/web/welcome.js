@@ -98,19 +98,19 @@ window.addEventListener('orientationchange', function(){
   setTimeout(function() {
     alert("Width: " + window.screen.width);
     alert("Height: " + window.screen.height);
-  }, 5000);
-
-
-  switch(window.orientation) {
-    case -90: case 90:
-      location.reload();
+    switch(window.orientation) {
+      case -90: case 90:
+        location.reload();
       $('#rotateDevice').hide();
       $('#rotateBackground').hide();
       break;
-    default:
-      location.reload();
+      default:
+        location.reload();
       $('#rotateDevice').show();
       $('#rotateBackground').show();
       break;
-  }
+    }
+  }, 5000);
+
+
 });
