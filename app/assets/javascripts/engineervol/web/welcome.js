@@ -78,8 +78,17 @@ window.addEventListener('resize', function() {
     $('#rotateDevice').show();
     $('#rotateBackground').show();
   }
-
 });
+
+setInterval(function() {
+  if ($(window).height() < $(window).width()) {
+    $('#rotateDevice').hide();
+    $('#rotateBackground').hide();
+  } else {
+    $('#rotateDevice').show();
+    $('#rotateBackground').show();
+  }
+}, 1000);
 
 window.addEventListener('load', function(){
   $('.loader').hide();
@@ -91,28 +100,5 @@ window.addEventListener('load', function(){
 });
 
 window.addEventListener('orientationchange', function(){
-  // for iOS devices
-  
-  setTimeout(function() {
-    alert("Width: " + window.screen.width);
-    alert("Height: " + window.screen.height);
-    switch(window.orientation) {
-      case -90: case 90:
-        $('#rotateDevice').hide();
-        $('#rotateBackground').hide();
-        $('#description').show();
-        $('#buttons').show();
-        $('#turnThePage').show();
-        break;
-      default:
-        $('#rotateDevice').show();
-        $('#rotateBackground').show();
-        $('#description').hide();
-        $('#buttons').hide();
-        $('#turnThePage').hide();
-        break;
-    }
-  }, 5000);
-
-
+  location.reload();
 });
