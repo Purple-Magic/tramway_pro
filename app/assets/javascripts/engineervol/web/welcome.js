@@ -96,12 +96,18 @@ window.addEventListener('orientationchange', function(){
 
   // for iOS devices
   
+
+  alert('Это просто для тестирования, скоро пропадёт');
   switch(window.orientation) {
     case -90: case 90:
       location.reload();
+      $('#rotateDevice').hide();
+      $('#rotateBackground').hide();
       break;
     default:
       location.reload();
+      $('#rotateDevice').show();
+      $('#rotateBackground').show();
       break;
   }
 });
