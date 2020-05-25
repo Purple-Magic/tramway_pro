@@ -84,6 +84,9 @@ setInterval(function() {
   if ($(window).height() < $(window).width()) {
     $('#rotateDevice').hide();
     $('#rotateBackground').hide();
+    $flipbook = $('#flipbook');
+    $flipbook.height(window_height);
+    $flipbook.turn('size', getWidth(window_height), window_height);
   } else {
     $('#rotateDevice').show();
     $('#rotateBackground').show();
