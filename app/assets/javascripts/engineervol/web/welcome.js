@@ -91,8 +91,6 @@ window.addEventListener('load', function(){
 });
 
 window.addEventListener('orientationchange', function(){
-  location.reload();
-
   // for iOS devices
   
   setTimeout(function() {
@@ -101,14 +99,14 @@ window.addEventListener('orientationchange', function(){
     switch(window.orientation) {
       case -90: case 90:
         location.reload();
-      $('#rotateDevice').hide();
-      $('#rotateBackground').hide();
-      break;
+        $('#rotateDevice').hide();
+        $('#rotateBackground').hide();
+        break;
       default:
         location.reload();
-      $('#rotateDevice').show();
-      $('#rotateBackground').show();
-      break;
+        $('#rotateDevice').show();
+        $('#rotateBackground').show();
+        break;
     }
   }, 5000);
 
