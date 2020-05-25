@@ -65,7 +65,6 @@ function init() {
 }
 
 window.addEventListener('resize', function() {
-  location.reload();
   window_height = $(window).height(); 
   if (window_height < height) {
     $flipbook = $('#flipbook');
@@ -95,10 +94,9 @@ window.addEventListener('orientationchange', function(){
   location.reload();
 
   // for iOS devices
-  
 
-  alert("Width: " + $(window).width());
-  alert("Height: " + $(window).height());
+  alert("Width: " + window.screen.width);
+  alert("Height: " + window.screen.height);
 
   switch(window.orientation) {
     case -90: case 90:
