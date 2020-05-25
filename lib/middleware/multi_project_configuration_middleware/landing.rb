@@ -9,6 +9,8 @@ module MultiProjectConfigurationMiddleware
     def call(env)
       ::Admin::Tramway::Landing::BlockForm.include MultiProjectCallbacks::Landing::BlockForm
 
+      PhotoUploader.include Tramway::Landing::PhotoVersions
+
       @app.call(env)
     end
   end
