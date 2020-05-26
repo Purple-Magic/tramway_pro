@@ -465,8 +465,8 @@ GEM
       knock
       tramway-core (>= 1.9.2)
     tramway-auth (2.0.1)
-    tramway-conference (1.9.4.4)
-    tramway-core (1.18.1.2)
+    tramway-conference (1.9.5)
+    tramway-core (1.18.2)
       audited (>= 4.8.0)
       bootstrap (>= 4.1.2)
       carrierwave
@@ -609,8 +609,8 @@ DEPENDENCIES
   tramway-admin (= 1.30.0.1)
   tramway-api (= 1.8.2.3)
   tramway-auth (= 2.0.1)
-  tramway-conference (= 1.9.4.4)
-  tramway-core (= 1.18.1.2)
+  tramway-conference (= 1.9.5)
+  tramway-core (= 1.18.2)
   tramway-event (= 1.12.3.5)
   tramway-export (= 0.1.6.1)
   tramway-landing (= 3.1.1.1)
