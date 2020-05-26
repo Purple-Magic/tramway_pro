@@ -6,8 +6,15 @@ module MultiProjectConfigurationMiddleware
       @app = app
     end
 
+    PAIRS = {
+      '::Tramway::Conference::Web::WelcomeController' => 'MultiProjectCallbacks::Conference',
+      '::Admin::Tramway::Conference::UnityForm' => 'MultiProjectCallbacks::Conference::UnityForm'
+    }
+
     def call(env)
-      ::Tramway::Conference::Web::WelcomeController.include MultiProjectCallbacks::Conference
+      PAIRS.each do |pair|
+        pair.first.constantize.include pair.last.constantize
+      end
 
       @app.call(env)
     end
@@ -71,6 +78,14 @@ module MultiProjectCallbacks
             array << link
           end
         end
+      end
+    end
+
+    module UnityForm
+      extend ActiveSupport::Concern
+
+      included do
+        properties :project_id
       end
     end
   end
