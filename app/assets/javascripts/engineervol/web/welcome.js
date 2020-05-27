@@ -106,11 +106,8 @@ window.addEventListener('orientationchange', function(){
   location.reload();
 });
 
-var ua = window.navigator.userAgent;
-var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
-var webkit = !!ua.match(/WebKit/i);
-var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
-if (iOSSafari) {
+var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+if (isSafari) {
   $('#safariiOS').show();
 
   $('#rotateDevice').hide();
