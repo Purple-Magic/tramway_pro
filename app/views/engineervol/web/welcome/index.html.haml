@@ -35,7 +35,7 @@
 
 #rotateDevice
   %h1
-    Переверните устройство в горизонтальное положение, чтобы было удобно читать книгу
+    Эту книгу лучше читать с полной версии на компьютере
 #rotateBackground
   = image_tag @book.pages.active.order(number: :asc).first.file.url
 
