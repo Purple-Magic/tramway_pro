@@ -6,8 +6,15 @@ module MultiProjectConfigurationMiddleware
       @app = app
     end
 
+    PAIRS = {
+      '::Tramway::SportSchool::Web::WelcomeController' => 'MultiProjectCallbacks::SportSchool',
+      '::Admin::Tramway::SportSchool::DocumentForm' => 'MultiProjectCallbacks::SportSchool::DocumentForm'
+    }
+
     def call(env)
-      ::Tramway::SportSchool::Web::WelcomeController.include MultiProjectCallbacks::SportSchool
+      PAIRS.each do |pair|
+        pair.first.constantize.include pair.last.constantize
+      end
 
       @app.call(env)
     end
@@ -60,6 +67,14 @@ module MultiProjectCallbacks
 
       def application_object(request)
         Constraints::DomainConstraint.new(request.domain).application_object
+      end
+    end
+
+    module DocumentForm
+      extend ActiveSupport::Concern
+
+      included do
+        properties :project_id
       end
     end
   end
