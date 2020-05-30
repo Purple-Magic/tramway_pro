@@ -35,7 +35,7 @@
 
 #rotateDevice
   %h1
-    Эту книгу лучше читать с полной версии на компьютере
+    Рекомендуем использовать браузер Chrome на персональном компьютере, мы ещё работаем над оптимизацией работы на мобильных устройствах
 #rotateBackground
   = image_tag @book.pages.active.order(number: :asc).first.file.url
 
