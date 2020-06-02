@@ -63,10 +63,10 @@ test:
     'sportschool-ulsk.test': sport_school
     'it-way.test': conference
     'kalashnikovisme.test': site
-    'purple-magic.test': site
   application_class:
     'tramway.test': tramway_dev
     'listai.test': listai_app
+    'purple-magic.test': purple_magic
   application:
     'engineervol.test':
       name: engineervol
