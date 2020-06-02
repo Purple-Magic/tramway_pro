@@ -1,16 +1,44 @@
 = stylesheet_link_tag 'engineervol/web/welcome'
+= javascript_include_tag 'engineervol/web/welcome'
+= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.5/css/mdb.min.css'
+= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.5/js/mdb.js'
+
+.loading
+  Пожалуйста, подождите. Книга загружается, она большая, но интересная :)
+.loader
+
+#description
+  Инженерное волонтерство — новое направление в добровольческом движении. Оно направлено на поддержку и развитие научно-технического творчества детей и молодёжи на некоммерческой основе.
+  %br
+  Бескорыстная помощь от профессионалов образовательной и социальной среды – уже не тренд, а успешная практика. Профессиональное волонтерское сообщество становится движущей силой нового добровольческого движения – «инженерного волонтерства».
+  %br
+  Навигатор инженерного волонтерства пригодится волонтерам, организациям и всем неравнодушным людям.
+  %br
+  Наши контакты -&nbsp;
+  = mail_to 'engineervol@yandex.ru'
 
 #flipbook
   - @book.pages.active.order(number: :asc).each do |page|
     %div{ style: "background-image: url(#{page.file.url});background-size: cover;" }
 
-:javascript
-  var height = $(window).height() * 0.9
-  var width = height * 0.704 * 2
-  window.addEventListener('load', function(){
-    $("#flipbook").turn({
-      width: width,
-      height: height,
-      autoCenter: true
-    });
-  });
+#buttons
+  - chapters_buttons.each do |button|
+    %button{ data: { page: button[1] }, class: 'btn btn-engineervol btn-lg turn-page', style: 'color: black !important' }
+      = button[0]
+  %br
+  %span
+    Для получения активных ссылок, дополнительных печатных материалов и ответов на ваши вопросы -&nbsp;
+    = mail_to 'engineervol@yandex.ru'
+
+#turnThePage
+  Потяните за правый нижний угол
+
+#rotateDevice{ style: 'display: flex; flex-direction: column; align-items: center; justify-content: center;' }
+  %span{ style: 'font-size: 4rem;' }
+    Если вы используете браузер Chrome на мобильном устройстве, переверните телефон, чтобы было удобно читать книгу. Если ваш браузер Safari на iOS, рекомендуем читать книгу на персональном компьютере, мы ещё работаем над оптимизацией работы для Safari на iOS.
+#rotateBackground
+  = image_tag @book.pages.active.order(number: :asc).first.file.url
+
+#safariiOS
+  %h1
+    Кажется, вы зашли через Safari на iOS. К сожалению, вы не сможете прочитать данную книгу в этом браузере. Пожалуйста, воспользуйтесь другим браузером.

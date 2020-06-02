@@ -23,14 +23,12 @@ module MultiProjectCallbacks
         before_action :load_application
 
         def load_application
-          engine_loaded = Constraints::DomainConstraint.new(request.domain).engine_loaded
-          if engine_loaded.present?
-            build_application_with_engine engine_loaded
-          elsif Constraints::DomainConstraint.new(request.domain).application_class.present?
-            application_class = Constraints::DomainConstraint.new(request.domain).application_class.camelize.constantize
-            @application = application_class.first
+          if engine_loaded(request).present?
+            build_application_with_engine engine_loaded request
+          elsif application_class(request).present?
+            @application = application_class(request).camelize.constantize.first
           else
-            @application = Constraints::DomainConstraint.new(request.domain).application_object
+            @application = application_object request
           end
         end
 
@@ -40,6 +38,18 @@ module MultiProjectCallbacks
           engine_module = "::Tramway::#{engine_loaded.camelize}".constantize
           @application = "#{engine_module}::#{engine_module.application.to_s.camelize}".constantize.first
           @application_engine = engine_loaded
+        end
+
+        def application_class(request)
+          Constraints::DomainConstraint.new(request.domain).application_class
+        end
+
+        def engine_loaded(request)
+          Constraints::DomainConstraint.new(request.domain).engine_loaded
+        end
+
+        def application_object(request)
+          Constraints::DomainConstraint.new(request.domain).application_object
         end
       end
     end

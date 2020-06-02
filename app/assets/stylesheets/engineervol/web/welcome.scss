@@ -1,5 +1,29 @@
+@import 'spinner';
+
 body{
     overflow:hidden;
+}
+
+@font-face {
+  font-family: 'Exo-Bold';
+  src: asset-url('fonts/engineervol/Exo-Bold.otf');
+}
+
+@font-face {
+  font-family: 'Acrom-Regular';
+  src: asset-url('fonts/engineervol/Acrom-Regular.ttf');
+}
+
+.loading {
+  width: 100%;
+  text-align: center;
+  font-family: 'Exo-Bold';
+  font-size: 25pt;
+}
+
+.btn.btn-engineervol {
+  background-color: #19efbc;
+  font-family: 'Exo-Bold';
 }
 
 #flipbook{
@@ -37,11 +61,11 @@ body{
 
 #flipbook .odd{
     background:-webkit-gradient(linear, right top, left top, color-stop(0.95, #FFF), color-stop(1, #DADADA));
-    background-image:-webkit-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
-    background-image:-moz-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
-    background-image:-ms-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
-    background-image:-o-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
-    background-image:linear-gradient(right, #FFF 95%, #C4C4C4 100%);
+    background-image:-webkit-linear-gradient(to left, #FFF 95%, #C4C4C4 100%);
+    background-image:-moz-linear-gradient(to left, #FFF 95%, #C4C4C4 100%);
+    background-image:-ms-linear-gradient(to left, #FFF 95%, #C4C4C4 100%);
+    background-image:-o-linear-gradient(to left, #FFF 95%, #C4C4C4 100%);
+    background-image:linear-gradient(to left, #FFF 95%, #C4C4C4 100%);
     -webkit-box-shadow:inset 0 0 5px #666;
     -moz-box-shadow:inset 0 0 5px #666;
     -o-box-shadow:inset 0 0 5px #666;
@@ -62,4 +86,107 @@ body{
     -o-box-shadow:inset 0 0 5px #666;
     -ms-box-shadow:inset 0 0 5px #666;
     box-shadow:inset 0 0 5px #666;
+}
+
+#description {
+  display: none;
+  font-family: 'Acrom-Regular';
+  position: fixed;
+  text-align: left;
+  font-size: 15pt;
+  z-index: 999;
+}
+
+#buttons {
+  display: none;
+  position: fixed;
+  font-family: 'Exo-Bold';
+}
+
+#turnThePage {
+  display: none;
+  position: fixed;
+  font-family: 'Exo-Bold';
+  font-size: 20pt;
+}
+
+#rotateDevice, #rotateBackground {
+  display: none;
+}
+
+#safariiOS {
+  display: none;
+}
+
+@media only screen and (max-width: 1750px) {
+  #description {
+    display: none !important;
+  }
+
+  #buttons, #turnThePage {
+    right: 0px !important;
+    left: 78vw;
+  }
+}
+
+@media only screen and (max-device-width: 1000px) {
+  #buttons, #turnThePage {
+    button {
+      width: 20vw;
+    }
+
+    span {
+      display: none;
+    }
+  }
+
+  .loading {
+    width: 75vw;
+    font-size: 5vw;
+    margin-bottom: 5em;
+  }
+} 
+
+@media only screen and (max-device-width: 480px) {
+  body {
+    margin-left: 5%;
+  }
+  #flipbook, #buttons, #turnThePage {
+    display: none !important;
+  }
+
+  #rotateDevice, #rotateBackground {
+    display: block;
+    position: fixed;
+    width: 90%;
+    height: 100%;
+    top: 0;
+    h1 {
+      text-align: center;
+      font-size: 6rem;
+    }
+  }
+
+  #rotateDevice {
+    z-index: 999;
+  }
+
+  #rotateBackground {
+    filter: blur(45px);
+  }
+}
+
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1280px) {
+  #flipbook {
+    height: 100%;
+  }
+
+  #buttons {
+    top: 15px !important;
+  }
+
+  #description, #turnThePage {
+    display: none !important;
+  }
 }
