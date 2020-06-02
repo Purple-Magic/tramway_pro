@@ -35,7 +35,7 @@
 
 #rotateDevice{ style: 'display: flex; flex-direction: column; align-items: center; justify-content: center;' }
   %span{ style: 'font-size: 4rem;' }
-    Если вы используете браузер Chrome на мобильном устройстве. Переверните телефон, чтобы было удобно читать книгу. Если ваш браузер Safari на iOS, рекомендуем читать книгу на персональном компьютере, мы ещё работаем над оптимизацией работы для Safari на iOS.
+    Если вы используете браузер Chrome на мобильном устройстве, переверните телефон, чтобы было удобно читать книгу. Если ваш браузер Safari на iOS, рекомендуем читать книгу на персональном компьютере, мы ещё работаем над оптимизацией работы для Safari на iOS.
 #rotateBackground
   = image_tag @book.pages.active.order(number: :asc).first.file.url
 
