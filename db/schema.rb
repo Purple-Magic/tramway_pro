@@ -87,6 +87,20 @@ ActiveRecord::Schema.define(version: 20200507140813) do
     t.text "state", default: "active"
   end
 
+  create_table "purple_magics", force: :cascade do |t|
+    t.text "name"
+    t.text "public_name"
+    t.text "tagline"
+    t.text "address"
+    t.text "phone"
+    t.point "coordinates"
+    t.string "state"
+    t.string "text"
+    t.text "favicon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tramway_conference_unities", force: :cascade do |t|
     t.text "title"
     t.text "tagline"
