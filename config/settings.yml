@@ -28,7 +28,7 @@ production:
   it_way: it-way.pro
   kalashnikovisme: kalashnikovisme.ru
   engineervol: engineervol.ru
-  tramway_dev: tramway.dev
+  tramway_dev: tramway.pro
   listai: listai.io
   gorodsad73: gorodsad73.ru
   engines:
@@ -36,7 +36,7 @@ production:
     'it-way.pro': conference
     'kalashnikovisme.ru': site
   application_class:
-    'tramway.dev': tramway_dev
+    'tramway.pro': tramway_dev
     'listai.io': listai_app
   application:
     'engineervol.ru':
