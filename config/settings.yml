@@ -5,6 +5,7 @@ development:
   tramway_dev: tramway.test
   engineervol: engineervol.test
   listai: listai.test
+  purple_magic: purple-magic.test
   gorodsad73: gorodsad73.test
   engines:
     'sportschool-ulsk.test': sport_school
@@ -30,6 +31,7 @@ production:
   engineervol: engineervol.ru
   tramway_dev: tramway.pro
   listai: listai.io
+  purple_magic: purple-magic.com
   gorodsad73: gorodsad73.ru
   engines:
     'sportschool-ulsk.ru': sport_school
@@ -55,6 +57,7 @@ test:
   tramway_dev: tramway.test
   engineervol: engineervol.test
   listai: listai.test
+  purple_magic: purple-magic.test
   gorodsad73: gorodsad73.test
   engines:
     'sportschool-ulsk.test': sport_school
@@ -63,6 +66,7 @@ test:
   application_class:
     'tramway.test': tramway_dev
     'listai.test': listai_app
+    'purple-magic.test': purple_magic
   application:
     'engineervol.test':
       name: engineervol
