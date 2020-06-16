@@ -9,12 +9,13 @@ end
 
 ruby '2.7.0'
 gem 'rails', '5.1.7'
-gem 'tramway-admin', '1.30.0.1'
+
+gem 'tramway-admin', '1.31.0.1'
 gem 'tramway-api', '1.8.2.3'
 gem 'tramway-auth', '2.0.1'
 gem 'tramway-conference', '1.9.5'
-gem 'tramway-core', '1.18.2'
-gem 'tramway-event', '1.12.3.5'
+gem 'tramway-core', '1.18.3.1'
+gem 'tramway-event', '1.12.3.7'
 gem 'tramway-export', '0.1.6.1'
 gem 'tramway-landing', '3.1.1.1'
 gem 'tramway-news', '1.0.4.3'
