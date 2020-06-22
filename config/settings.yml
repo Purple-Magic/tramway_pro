@@ -14,7 +14,7 @@ development:
   application_class:
     'tramway.test': tramway_dev
     'listai.test': listai_app
-    'purple-magic.test': purple_magic
+    'purple-magic.test': purple_magic   
   application:
     'engineervol.test':
       name: engineervol
@@ -41,7 +41,7 @@ production:
   application_class:
     'tramway.pro': tramway_dev
     'listai.io': listai_app
-    'purple-magic.test': purple_magic
+    'purple-magic.com': purple_magic
   application:
     'engineervol.ru':
       name: engineervol
