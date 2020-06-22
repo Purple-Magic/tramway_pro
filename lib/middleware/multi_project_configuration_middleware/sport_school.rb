@@ -9,7 +9,7 @@ module MultiProjectConfigurationMiddleware
     PAIRS = {
       '::Tramway::SportSchool::Web::WelcomeController' => 'MultiProjectCallbacks::SportSchool',
       '::Admin::Tramway::SportSchool::DocumentForm' => 'MultiProjectCallbacks::SportSchool::DocumentForm'
-    }
+    }.freeze
 
     def call(env)
       PAIRS.each do |pair|
