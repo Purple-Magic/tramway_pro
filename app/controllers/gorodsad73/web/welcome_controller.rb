@@ -16,8 +16,9 @@ class Gorodsad73::Web::WelcomeController < ApplicationController
         }
       )
     end
+    pages_blocks = Tramway::Landing::Block.active.with_navbar_link.where(project_id: project.id, page_id: main_page.id)
     @links = pages_links + Tramway::Landing::BlockLinkDecorator.decorate(
-      Tramway::Landing::Block.active.with_navbar_link.where(project_id: project.id, page_id: main_page.id)
+      pages_blocks.order(position: :asc)
     )
   end
 end
