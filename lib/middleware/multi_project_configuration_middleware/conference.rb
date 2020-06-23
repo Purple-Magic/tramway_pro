@@ -9,7 +9,7 @@ module MultiProjectConfigurationMiddleware
     PAIRS = {
       '::Tramway::Conference::Web::WelcomeController' => 'MultiProjectCallbacks::Conference',
       '::Admin::Tramway::Conference::UnityForm' => 'MultiProjectCallbacks::Conference::UnityForm'
-    }
+    }.freeze
 
     def call(env)
       PAIRS.each do |pair|
