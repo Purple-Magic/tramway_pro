@@ -38,10 +38,12 @@ module MultiProjectCallbacks
         before_action :add_project_id, only: %i[create update]
 
         def add_project_id
-          if params[:record].present?
-            params[:record][:project_id] = Project.where(url: ENV['PROJECT_URL']).first.id
-          else
-            params[:singleton][:project_id] = Project.where(url: ENV['PROJECT_URL']).first.id
+          unless params[:model] == 'Project'
+            if params[:record].present?
+              params[:record][:project_id] = Project.where(url: ENV['PROJECT_URL']).first.id
+            else
+              params[:singleton][:project_id] = Project.where(url: ENV['PROJECT_URL']).first.id
+            end
           end
         end
 
