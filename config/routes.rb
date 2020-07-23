@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:tramway_dev]) do
+    root to: 'tramway_dev/web/welcome#index'
     mount Tramway::Admin::Engine, at: '/admin'
     mount Tramway::Auth::Engine, at: '/auth'
   end
