@@ -57,3 +57,5 @@ install:
 #### 5. Run `sudo make install`
 
 #### 6. Run rails server and open `your-project.test:3000` to test
+
+#### 7. Make needed nginx configs
