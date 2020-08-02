@@ -34,10 +34,16 @@ Rails.application.routes.draw do
     mount Tramway::Auth::Engine, at: '/auth', as: :vol_auth
   end
 
-  constraints Constraints::DomainConstraint.new(Settings[Rails.env][:purple_magic]) do
-    mount Tramway::Admin::Engine, at: '/admin', as: :purple_magic_admin
-    mount Tramway::Auth::Engine, at: '/auth', as: :purple_magic_auth
+  #constraints Constraints::DomainConstraint.new(Settings[Rails.env][:purple_magic]) do
+  #  mount Tramway::Admin::Engine, at: '/admin', as: :purple_magic_admin
+  #  mount Tramway::Auth::Engine, at: '/auth', as: :purple_magic_auth
+  #end
+
+  constraints Constraints::DomainConstraint.new(Settings[Rails.env][:dobry_sosed]) do
+    mount Tramway::Admin::Engine, at: '/admin', as: :dob_admin
+    mount Tramway::Api::Engine, at: '/api', as: :dob_api
   end
+
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:gorodsad73]) do
     root to: 'gorodsad73/web/welcome#index'
     mount Tramway::Admin::Engine, at: '/admin', as: :gorod_admin
