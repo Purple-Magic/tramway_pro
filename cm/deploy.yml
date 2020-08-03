@@ -87,4 +87,4 @@
         state=link
         force=yes
 
-    - include: unicorn.yml
+    - include: restart_commands.yml
