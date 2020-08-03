@@ -151,6 +151,7 @@ Telegram::Bot::Client.run(token) do |bot|
       )
     when '/stop'
       bot.api.send_message(chat_id: message.chat.id, text: "Пока, #{message.from.first_name}")
+    else
     end
   end
 end
