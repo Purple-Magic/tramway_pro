@@ -152,6 +152,12 @@ Telegram::Bot::Client.run(token) do |bot|
     when '/stop'
       bot.api.send_message(chat_id: message.chat.id, text: "Пока, #{message.from.first_name}")
     else
+      if message.text.include?('Округ')
+        candidates = Elections::Candidate.where(area: message.text.split(' ')[1])
+        bot.api.send_message(chat_id: message.chat.id, text: (candidates.map do |candidate|
+          "#{candidate.full_name} - #{candidate.consignment}"
+        end).join("\n"))
+      end
     end
   end
 end
