@@ -28,7 +28,7 @@ describe 'Delete action' do
 
     click_on_association_delete_button action
     action.reload
-    expect(action.remove?).to be_truthy
+    expect(action.removed?).to be_truthy
   end
 
   it 'deletes mandatory action' do
