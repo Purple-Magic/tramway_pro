@@ -31,7 +31,7 @@ describe 'Delete participant_form_field' do
 
     click_on_association_delete_button field
     field.reload
-    expect(field.remove?).to be_truthy
+    expect(field.removed?).to be_truthy
   end
 
   it 'deletes mandatory participant_form_field' do
@@ -60,6 +60,6 @@ describe 'Delete participant_form_field' do
     )
     find("td[colspan='2'] td a[href='#{delete_path}']").parent_node(level: 2).find('td button[type="submit"]').click
     field.reload
-    expect(field.remove?).to be_truthy
+    expect(field.removed?).to be_truthy
   end
 end
