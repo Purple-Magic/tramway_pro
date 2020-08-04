@@ -27,6 +27,6 @@ describe 'Delete social_network' do
 
     click_on_association_delete_button social_network
     social_network.reload
-    expect(social_network.remove?).to be_truthy
+    expect(social_network.removed?).to be_truthy
   end
 end
