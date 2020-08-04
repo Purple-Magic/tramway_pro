@@ -18,6 +18,6 @@ describe 'Destroy event' do
     click_on_delete_button last_event
     last_event.reload
 
-    expect(last_event.remove?).to be_truthy
+    expect(last_event.removed?).to be_truthy
   end
 end
