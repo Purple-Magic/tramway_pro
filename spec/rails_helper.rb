@@ -43,10 +43,12 @@ RSpec.configure do |config|
 
       model.delete_all
     end
-    ProjectsHelper.projects.each do |project|
-      user = Tramway::User::User.find_or_create_by(email: 'admin@email.com', role: :admin, project_id: project.id)
-      user.password = '123456'
-      user.save
+    ProjectsHelper.projects.each do |project| 
+      if Tramway::User::User.find_by(email: "admin@email.com", project_id: project.id).nil?
+        user = Tramway::User::User.create(email: "admin@email.com", role: :admin, project_id: project.id)
+        user.password = '123456'
+        user.save!
+      end
     end
     create :unity, title: 'IT Way'
     create :institution, title: 'Sport school ULSK'
