@@ -12,6 +12,7 @@ install:
 	echo "127.0.0.1	purple-magic.test" >> /etc/hosts
 	echo "127.0.0.1 gorodsad73.test" >> /etc/hosts
 	echo "127.0.0.1 dobry-sosed.test" >> /etc/hosts
+	RAILS_ENV=test rails db:create db:migrate db:seed
 restore_production:
 	bin/prod get_db $(USER)
 	rails db:seed
