@@ -17,7 +17,6 @@ describe 'Create block' do
       fill_in 'Email', with: "admin#{project.id}@email.com"
       fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
-      binding.pry
 
       last_page = Tramway::Page::Page.where(project_id: project.id).last
       click_on_dropdown 'Лендинг'
