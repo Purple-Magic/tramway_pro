@@ -8,7 +8,7 @@ describe 'Destroy event' do
 
   it 'should destroy event' do
     visit '/admin'
-    fill_in 'Email', with: 'admin@email.com'
+    fill_in 'Email', with: "admin#{it_way_id}@email.com"
     fill_in 'Пароль', with: '123456'
     click_on 'Войти', class: 'btn-success'
 
@@ -18,6 +18,6 @@ describe 'Destroy event' do
     click_on_delete_button last_event
     last_event.reload
 
-    expect(last_event.remove?).to be_truthy
+    expect(last_event.removed?).to be_truthy
   end
 end

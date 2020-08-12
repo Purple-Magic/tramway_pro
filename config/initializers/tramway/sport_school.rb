@@ -8,7 +8,9 @@ Tramway::Admin.navbar_structure(
       Tramway::SportSchool::KindSport,
       Tramway::SportSchool::Organization,
       Tramway::SportSchool::Trainer
-    ],
+    ]
+  },
+  {
     landing: [
       Tramway::Page::Page,
       Tramway::Profiles::SocialNetwork

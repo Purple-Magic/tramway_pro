@@ -42,9 +42,10 @@ RSpec.configure do |config|
       next if model.abstract_class
 
       model.delete_all
+      ActiveRecord::Base.connection.execute('DELETE FROM tramway_user_users')
     end
     ProjectsHelper.projects.each do |project|
-      create :admin, email: 'admin@email.com', password: '123456', role: :admin, project_id: project.id
+      create :admin, email: "admin#{project.id}@email.com", password: '123456', role: :admin, project_id: project.id
     end
     create :unity, title: 'IT Way'
     create :institution, title: 'Sport school ULSK'

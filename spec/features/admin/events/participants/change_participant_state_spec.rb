@@ -9,7 +9,7 @@ describe 'Change participant state' do
 
   it 'should pre_approve participant' do
     visit '/admin'
-    fill_in 'Email', with: 'admin@email.com'
+    fill_in 'Email', with: "admin#{it_way_id}@email.com"
     fill_in 'Пароль', with: '123456'
     click_on 'Войти', class: 'btn-success'
 
@@ -27,7 +27,7 @@ describe 'Change participant state' do
 
   it 'should wait for decision participant' do
     visit '/admin'
-    fill_in 'Email', with: 'admin@email.com'
+    fill_in 'Email', with: "admin#{it_way_id}@email.com"
     fill_in 'Пароль', with: '123456'
     click_on 'Войти', class: 'btn-success'
 
@@ -45,7 +45,7 @@ describe 'Change participant state' do
 
   it 'should reserve participant' do
     visit '/admin'
-    fill_in 'Email', with: 'admin@email.com'
+    fill_in 'Email', with: "admin#{it_way_id}@email.com"
     fill_in 'Пароль', with: '123456'
     click_on 'Войти', class: 'btn-success'
 
@@ -63,7 +63,7 @@ describe 'Change participant state' do
 
   it 'should reject participant' do
     visit '/admin'
-    fill_in 'Email', with: 'admin@email.com'
+    fill_in 'Email', with: "admin#{it_way_id}@email.com"
     fill_in 'Пароль', with: '123456'
     click_on 'Войти', class: 'btn-success'
 
@@ -81,7 +81,7 @@ describe 'Change participant state' do
 
   it 'should approve participant' do
     visit '/admin'
-    fill_in 'Email', with: 'admin@email.com'
+    fill_in 'Email', with: "admin#{it_way_id}@email.com"
     fill_in 'Пароль', with: '123456'
     click_on 'Войти', class: 'btn-success'
 
@@ -99,7 +99,7 @@ describe 'Change participant state' do
 
   it 'should not_got_answer participant' do
     visit '/admin'
-    fill_in 'Email', with: 'admin@email.com'
+    fill_in 'Email', with: "admin#{it_way_id}@email.com"
     fill_in 'Пароль', with: '123456'
     click_on 'Войти', class: 'btn-success'
 

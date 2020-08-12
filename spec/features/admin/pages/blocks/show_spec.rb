@@ -12,7 +12,7 @@ describe 'Show block' do
     it 'should show block' do
       move_host_to project.url
       visit '/admin'
-      fill_in 'Email', with: 'admin@email.com'
+      fill_in 'Email', with: "admin#{project.id}@email.com"
       fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 

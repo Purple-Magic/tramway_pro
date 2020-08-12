@@ -10,7 +10,7 @@ FactoryBot.define do
     title { generate :string }
     description { generate :string }
     short_description { generate :string }
-    begin_date { generate(:date) }
+    begin_date { (DateTime.now + 1.day).beginning_of_day.change(offset: '+0400') }
     end_date { begin_date + 10.days }
     request_collecting_begin_date { DateTime.now.beginning_of_day.change(offset: '+0400') }
     request_collecting_end_date { DateTime.now.beginning_of_day.change(offset: '+0400') }

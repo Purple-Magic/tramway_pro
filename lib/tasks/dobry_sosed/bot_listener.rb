@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'telegram/bot'
 
 token = '1372761771:AAHunTt8YA8f1P190v8TNca6txq6-b8TSnE'
@@ -18,8 +20,8 @@ Telegram::Bot::Client.run(token) do |bot|
     when 'Начать'
       answers = Telegram::Bot::Types::ReplyKeyboardMarkup.new(
         keyboard: [
-          ['Дзержинский', 'Железнодорожный', 'Заельцовский', 'Калининский', 'Кировский'],
-          ['Ленинский', 'Октябрьский', 'Первомайский', 'Советский', 'Центральный']
+          %w[Дзержинский Железнодорожный Заельцовский Калининский Кировский],
+          %w[Ленинский Октябрьский Первомайский Советский Центральный]
         ],
         one_time_keyboard: true
       )
@@ -32,13 +34,13 @@ Telegram::Bot::Client.run(token) do |bot|
       answers = Telegram::Bot::Types::ReplyKeyboardMarkup.new(
         keyboard: [
           ['Округ 1', 'Округ 2'],
-          ['Округ 3', 'Округ 4'],
+          ['Округ 3', 'Округ 4']
         ],
         one_time_keyboard: true
       )
       bot.api.send_message(
         chat_id: message.chat.id,
-        text: "Выбери округ",
+        text: 'Выбери округ',
         reply_markup: answers
       )
     when 'Железнодорожный'
@@ -48,72 +50,72 @@ Telegram::Bot::Client.run(token) do |bot|
       )
       bot.api.send_message(
         chat_id: message.chat.id,
-        text: "Выбери округ",
+        text: 'Выбери округ',
         reply_markup: answers
       )
     when 'Заельцовский'
       answers = Telegram::Bot::Types::ReplyKeyboardMarkup.new(
         keyboard: [
           ['Округ 7', 'Округ 8'],
-          ['Округ 9', 'Округ 10'],
+          ['Округ 9', 'Округ 10']
         ],
         one_time_keyboard: true
       )
       bot.api.send_message(
         chat_id: message.chat.id,
-        text: "Выбери округ",
+        text: 'Выбери округ',
         reply_markup: answers
       )
     when 'Калининский'
       answers = Telegram::Bot::Types::ReplyKeyboardMarkup.new(
         keyboard: [
           ['Округ 11', 'Округ 12'],
-          ['Округ 13', 'Округ 14', 'Округ 15'],
+          ['Округ 13', 'Округ 14', 'Округ 15']
         ],
         one_time_keyboard: true
       )
       bot.api.send_message(
         chat_id: message.chat.id,
-        text: "Выбери округ",
+        text: 'Выбери округ',
         reply_markup: answers
       )
     when 'Кировский'
       answers = Telegram::Bot::Types::ReplyKeyboardMarkup.new(
         keyboard: [
           ['Округ 16', 'Округ 17'],
-          ['Округ 18', 'Округ 19', 'Округ 20'],
+          ['Округ 18', 'Округ 19', 'Округ 20']
         ],
         one_time_keyboard: true
       )
       bot.api.send_message(
         chat_id: message.chat.id,
-        text: "Выбери округ",
+        text: 'Выбери округ',
         reply_markup: answers
       )
     when 'Ленинский'
       answers = Telegram::Bot::Types::ReplyKeyboardMarkup.new(
         keyboard: [
           ['Округ 21', 'Округ 22', 'Округ 23'],
-          ['Округ 24', 'Округ 25', 'Округ 26', 'Округ 27'],
+          ['Округ 24', 'Округ 25', 'Округ 26', 'Округ 27']
         ],
         one_time_keyboard: true
       )
       bot.api.send_message(
         chat_id: message.chat.id,
-        text: "Выбери округ",
+        text: 'Выбери округ',
         reply_markup: answers
       )
     when 'Октябрьский'
       answers = Telegram::Bot::Types::ReplyKeyboardMarkup.new(
         keyboard: [
           ['Округ 28', 'Округ 29'],
-          ['Округ 30', 'Округ 31', 'Округ 32'],
+          ['Округ 30', 'Округ 31', 'Округ 32']
         ],
         one_time_keyboard: true
       )
       bot.api.send_message(
         chat_id: message.chat.id,
-        text: "Выбери округ",
+        text: 'Выбери округ',
         reply_markup: answers
       )
     when 'Первомайский'
@@ -123,20 +125,20 @@ Telegram::Bot::Client.run(token) do |bot|
       )
       bot.api.send_message(
         chat_id: message.chat.id,
-        text: "Выбери округ",
+        text: 'Выбери округ',
         reply_markup: answers
       )
     when 'Советский'
       answers = Telegram::Bot::Types::ReplyKeyboardMarkup.new(
         keyboard: [
           ['Округ 35', 'Округ 36'],
-          ['Округ 37', 'Округ 38'],
+          ['Округ 37', 'Округ 38']
         ],
         one_time_keyboard: true
       )
       bot.api.send_message(
         chat_id: message.chat.id,
-        text: "Выбери округ",
+        text: 'Выбери округ',
         reply_markup: answers
       )
     when 'Центральный'
@@ -146,7 +148,7 @@ Telegram::Bot::Client.run(token) do |bot|
       )
       bot.api.send_message(
         chat_id: message.chat.id,
-        text: "Выбери округ",
+        text: 'Выбери округ',
         reply_markup: answers
       )
     when '/stop'
