@@ -94,7 +94,6 @@ gem 'unicorn-rails'
 gem 'validates'
 
 group :development do
-  gem 'colorize'
   gem 'web-console', '>= 3.3.0'
 end
 
