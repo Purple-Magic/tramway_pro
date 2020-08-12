@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.7.0'
+ruby '2.7.1'
 gem 'rails', '5.1.7'
 
 gem 'tramway-admin', '1.32.1'
@@ -94,7 +94,6 @@ gem 'unicorn-rails'
 gem 'validates'
 
 group :development do
-  gem 'colorize'
   gem 'web-console', '>= 3.3.0'
 end
 
