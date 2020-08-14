@@ -504,7 +504,7 @@ GEM
       configus
     tramway-export (0.1.6.1)
       xls_exporter (>= 1.2)
-    tramway-landing (3.1.1.6)
+    tramway-landing (3.1.1.7)
     tramway-news (1.0.4.3)
     tramway-page (1.5.3.4)
     tramway-partner (1.0.3.2)
@@ -637,7 +637,7 @@ DEPENDENCIES
   tramway-core (= 1.18.3.2)
   tramway-event (= 1.12.3.9)
   tramway-export (= 0.1.6.1)
-  tramway-landing (= 3.1.1.6)
+  tramway-landing (= 3.1.1.7)
   tramway-news (= 1.0.4.3)
   tramway-page (= 1.5.3.4)
   tramway-partner (= 1.0.3.2)
