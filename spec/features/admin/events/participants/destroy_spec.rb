@@ -8,7 +8,7 @@ describe 'Destroy participant' do
 
   it 'should destroy participant' do
     visit '/admin'
-    fill_in 'Email', with: 'admin@email.com'
+    fill_in 'Email', with: "admin#{it_way_id}@email.com"
     fill_in 'Пароль', with: '123456'
     click_on 'Войти', class: 'btn-success'
 
@@ -18,6 +18,6 @@ describe 'Destroy participant' do
     click_on_delete_button last_participant
     last_participant.reload
 
-    expect(last_participant.remove?).to be_truthy
+    expect(last_participant.removed?).to be_truthy
   end
 end

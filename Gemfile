@@ -7,24 +7,24 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.7.0'
+ruby '2.7.1'
 gem 'rails', '5.1.7'
 
-gem 'tramway-admin', '1.32.0.1'
-gem 'tramway-api', '1.8.2.3'
+gem 'tramway-admin', '1.32.1'
+gem 'tramway-api', '1.8.6.4'
 gem 'tramway-auth', '2.0.1'
 gem 'tramway-conference', '1.9.5'
-gem 'tramway-core', '1.18.3.1'
-gem 'tramway-event', '1.12.3.7'
+gem 'tramway-core', '1.18.3.2'
+gem 'tramway-event', '1.12.3.9'
 gem 'tramway-export', '0.1.6.1'
-gem 'tramway-landing', '3.1.1.5'
+gem 'tramway-landing', '3.1.1.7'
 gem 'tramway-news', '1.0.4.3'
 gem 'tramway-page', '1.5.3.4'
 gem 'tramway-partner', '1.0.3.2'
 gem 'tramway-profiles', '1.4.1.1'
 gem 'tramway-site', '0.1.0.4'
 gem 'tramway-sport_school', '1.2.12.5'
-gem 'tramway-user', '2.1.3.1'
+gem 'tramway-user', '2.1.3.2'
 
 # gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
 # gem 'tramway-api', path: '../tramway-dev/tramway-api'
@@ -95,7 +95,6 @@ gem 'validates'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
-  gem 'colorize'
 end
 
 group :development, :test do

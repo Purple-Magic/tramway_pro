@@ -10,7 +10,7 @@ describe 'Create participant' do
   it 'should create participant' do
     count = Tramway::Event::Participant.count
     visit '/admin'
-    fill_in 'Email', with: 'admin@email.com'
+    fill_in 'Email', with: "admin#{it_way_id}@email.com"
     fill_in 'Пароль', with: '123456'
     click_on 'Войти', class: 'btn-success'
 
@@ -42,7 +42,7 @@ describe 'Create participant' do
 
   it 'should show participant admin page' do
     visit '/admin'
-    fill_in 'Email', with: 'admin@email.com'
+    fill_in 'Email', with: "admin#{it_way_id}@email.com"
     fill_in 'Пароль', with: '123456'
     click_on 'Войти', class: 'btn-success'
 

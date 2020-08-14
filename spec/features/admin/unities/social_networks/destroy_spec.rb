@@ -7,7 +7,7 @@ describe 'Delete social_network' do
 
   it 'deletes social_network' do
     visit '/admin'
-    fill_in 'Email', with: 'admin@email.com'
+    fill_in 'Email', with: "admin#{it_way_id}@email.com"
     fill_in 'Пароль', with: '123456'
     click_on 'Войти', class: 'btn-success'
 
@@ -25,6 +25,6 @@ describe 'Delete social_network' do
 
     click_on_association_delete_button social_network
     social_network.reload
-    expect(social_network.remove?).to be_truthy
+    expect(social_network.removed?).to be_truthy
   end
 end

@@ -19,7 +19,6 @@ module MultiProjectCallbacks
   module User
     module UserForm
       extend ActiveSupport::Concern
-
       included do
         properties :project_id
       end
@@ -27,7 +26,6 @@ module MultiProjectCallbacks
 
     module UserCallbacks
       extend ActiveSupport::Concern
-
       included do
         default_scope do
           where project_id: Project.where(url: ENV['PROJECT_URL'])
