@@ -26,7 +26,7 @@ gem 'tramway-site', '0.1.0.4'
 gem 'tramway-sport_school', '1.2.12.5'
 gem 'tramway-user', '2.1.3.2'
 
-# gem 'tramway-admin', path: '../tramway-dev/tramway-admin'
+# gem 'tramway-admin', path: '../tramway-admin'
 # gem 'tramway-api', path: '../tramway-dev/tramway-api'
 # gem 'tramway-auth', path: '../tramway-dev/tramway-auth'
 # gem 'tramway-conference', path: '../tramway-dev/tramway-conference'
