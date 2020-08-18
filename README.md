@@ -102,7 +102,6 @@ git flow release finish (номер релиза в соответствии с 
 git push origin develop
 git push origin master
 make deploy
-
 ```
 
 ### Наименование коммитов
