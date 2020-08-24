@@ -35,8 +35,6 @@ Rails.application.routes.draw do
   end
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:purple_magic]) do
-    root to: 'purple_magic/web/welcome#index'
-
     mount Tramway::Admin::Engine, at: '/admin', as: :purple_magic_admin
     mount Tramway::Auth::Engine, at: '/auth', as: :purple_magic_auth
   end

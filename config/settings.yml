@@ -28,6 +28,11 @@ development:
       name: dobry_sosed
       title: Добрый сосед
       public_name: Добрый сосед
+    'purple-magic.test':
+      name: purple_magic
+      title: PurpleMagic
+      public_name: PurpleMagic
+
 
 production:
   sportschool_ulsk: sportschool-ulsk.ru
