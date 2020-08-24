@@ -97,8 +97,8 @@ rm -rf *.gem && gem build $(basename "$PWD").gemspec && gem push *.gem
 
 ```shell
 git describe --abbrev=0 --tags # смотрим последний релиз
-git release start (номер релиза в соответствии с семантическим версионированием)
-git release finish (номер релиза в соответствии с семантическим версионированием)
+git flow release start (номер релиза в соответствии с семантическим версионированием)
+git flow release finish (номер релиза в соответствии с семантическим версионированием)
 git push origin develop
 git push origin master
 make deploy
@@ -112,3 +112,4 @@ make deploy
 ## More Instructions
 
 * [How to add project](https://github.com/Purple-Magic/tramway_pro/blob/develop/docs/add_project.md)
+* [Update ruby version](https://github.com/Purple-Magic/tramway_pro/blob/develop/docs/update-ruby.md)
