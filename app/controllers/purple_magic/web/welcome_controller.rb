@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PurpleMagic::Web::WelcomeController < ApplicationController
   before_action :application
 
