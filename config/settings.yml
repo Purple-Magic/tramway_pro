@@ -36,8 +36,7 @@ production:
   engineervol: engineervol.ru
   tramway_dev: tramway.pro
   listai: listai.io
-#  purple_magic: purple-magic.com
-  dobry_sosed: purple-magic.com
+  purple_magic: purple-magic.com
   gorodsad73: gorodsad73.ru
   engines:
     'sportschool-ulsk.ru': sport_school
@@ -56,9 +55,9 @@ production:
       public_name: Город-сад
       tagline: Ландшафтный дизайн - как искусство
     'purple-magic.com':
-      name: dobry_sosed
-      title: Добрый сосед
-      public_name: Добрый сосед
+      name: purple_magic
+      title: PurpleMagic
+      public_name: PurpleMagic
 
 test:
   sportschool_ulsk: sportschool-ulsk.test
@@ -90,3 +89,7 @@ test:
       name: dobry_sosed
       title: Добрый сосед
       public_name: Добрый сосед
+    'purple-magic.test':
+      name: purple_magic
+      title: PurpleMagic
+      public_name: PurpleMagic
