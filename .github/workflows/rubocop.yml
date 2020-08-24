@@ -25,21 +25,10 @@ jobs:
       with:
         ruby-version: 2.7.x
 
-    - name: Install PostgreSQL 11 client
-      run: |
-        sudo apt-get -yqq install libpq-dev
-
     - name: Build App
-      env:
-        PGHOST: localhost
-        PGUSER: postgres
-        RAILS_ENV: test
       run: |
         gem install bundler
         bundle install --jobs 4 --retry 3
-        cp config/database.sample.yml config/database.yml
-        cp config/secrets.sample.yml config/secrets.yml
-        bin/rails db:setup
 
     - name: Run Rubocop
       run: |
