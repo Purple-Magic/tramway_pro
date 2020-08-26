@@ -88,7 +88,7 @@ GEM
     ast (2.4.1)
     audited (4.9.0)
       activerecord (>= 4.2, < 6.1)
-    autoprefixer-rails (9.8.6.1)
+    autoprefixer-rails (9.8.6.3)
       execjs
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -471,7 +471,7 @@ GEM
     tilt (2.0.10)
     time_difference (0.7.0)
       activesupport (~> 5.1)
-    tramway-admin (1.32.1.1)
+    tramway-admin (1.32.1.2)
       bootstrap-kaminari-views (= 0.0.5)
       copyright_mafa (~> 0.1.2, >= 0.1.2)
       font-awesome-rails (~> 4.7, >= 4.7.0.1)
@@ -481,7 +481,7 @@ GEM
       smart_buttons (>= 1.0)
       state_machine_buttons (>= 1.0)
       tramway-auth (>= 2.0.1)
-      tramway-core (>= 1.18.3.4)
+      tramway-core (>= 1.18.3.5)
       tramway-user (>= 2.1.3.2)
       trap (= 3.0)
     tramway-api (1.8.6.6)
@@ -490,7 +490,7 @@ GEM
       tramway-core (>= 1.9.2)
     tramway-auth (2.0.1)
     tramway-conference (1.9.5)
-    tramway-core (1.18.3.4)
+    tramway-core (1.18.3.5)
       audited (>= 4.8.0)
       bootstrap (>= 4.1.2)
       carrierwave
@@ -636,11 +636,10 @@ DEPENDENCIES
   state_machine_buttons (= 1.0)
   telegram-bot-ruby
   time_difference
-  tramway-admin (= 1.32.1.1)
+  tramway-admin (= 1.32.1.2)
   tramway-api (= 1.8.6.6)
   tramway-auth (= 2.0.1)
   tramway-conference (= 1.9.5)
-  tramway-core (= 1.18.3.4)
   tramway-event (= 1.12.3.9)
   tramway-export (= 0.1.6.1)
   tramway-landing (= 3.1.1.7)
