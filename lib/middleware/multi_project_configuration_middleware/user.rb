@@ -22,7 +22,7 @@ module MultiProjectCallbacks
       included do
         properties :project_id
         p = Project.find_by(url: ENV['PROJECT_URL']).id
-        validates :email, uniqueness: true, if: -> { project_id ==  p && state == "active" }
+        validates :email, uniqueness: true, if: -> { project_id == p && state == 'active' }
       end
     end
 
