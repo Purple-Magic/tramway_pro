@@ -21,10 +21,8 @@ module MultiProjectCallbacks
       extend ActiveSupport::Concern
       included do
         properties :project_id
-        binding.pry
-
-        project = Project.where(url: ENV['PROJECT_URL'])
-        validates :email, uniqueness: true, if: 'project_id == project'
+        p = Project.find_by(url: ENV['PROJECT_URL']).id
+        validates :email, uniqueness: true, if: -> { project_id ==  p && state == "active" }
       end
     end
 
