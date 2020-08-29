@@ -25,6 +25,7 @@ require_relative '../lib/middleware/multi_project_configuration_middleware/auth'
 require_relative '../lib/middleware/multi_project_configuration_middleware/sites'
 require_relative '../lib/middleware/multi_project_configuration_middleware/listai_book'
 require_relative '../lib/middleware/multi_project_configuration_middleware/listai_page'
+require_relative '../lib/middleware/multi_project_configuration_middleware/notification'
 
 Bundler.require(*Rails.groups)
 
@@ -49,5 +50,6 @@ module TramwayPro
     config.middleware.use ::MultiProjectConfigurationMiddleware::ListaiBook
     config.middleware.use ::MultiProjectConfigurationMiddleware::ListaiPage
     config.middleware.use ::Middleware::MultiProjectConfigurationMiddleware::Sites
+    config.middleware.use ::MultiProjectConfigurationMiddleware::Notification
   end
 end
