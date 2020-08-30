@@ -133,7 +133,5 @@ module MultiProjectCallbacks
         end
       end
     end
-
-
   end
 end
