@@ -91,6 +91,7 @@ gem 'trap', '3.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn-rails'
 gem 'validates'
+gem "sentry-raven"
 
 group :development do
   gem 'web-console', '>= 3.3.0'
