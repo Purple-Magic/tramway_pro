@@ -6,7 +6,7 @@ describe 'Create admin' do
   let!(:attributes) { attributes_for :admin_admin_attributes }
 
   ProjectsHelper.projects.each do |project|
-    unless project.url.in? ['listai.test', 'kalashnikovisme.test']
+    unless project.url.in? ['listai.test', 'kalashnikovisme.test', 'gorodsad73.test']
       it "#{project.url}: should create admin" do
         move_host_to project.url
         visit '/admin'

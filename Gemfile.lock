@@ -37,6 +37,112 @@ GIT
   specs:
     state_machine (1.2.0)
 
+PATH
+  remote: ../tramway-admin
+  specs:
+    tramway-admin (1.32.1)
+      bootstrap-kaminari-views (= 0.0.5)
+      copyright_mafa (~> 0.1.2, >= 0.1.2)
+      font-awesome-rails (~> 4.7, >= 4.7.0.1)
+      kaminari (~> 1.1.1, >= 1.1.1)
+      ransack
+      selectize-rails
+      smart_buttons (>= 1.0)
+      state_machine_buttons (>= 1.0)
+      trap (= 3.0)
+
+PATH
+  remote: ../tramway-core
+  specs:
+    tramway-core (1.18.3.4)
+      audited (>= 4.8.0)
+      bootstrap (>= 4.1.2)
+      carrierwave
+      ckeditor (= 4.2.4)
+      clipboard-rails
+      enumerize (~> 2.1, >= 2.1.2)
+      font_awesome5_rails
+      haml-rails
+      kaminari
+      loofah (>= 2.3.1)
+      mini_magick (~> 4.8, >= 4.8.0)
+      pg_search
+      rmagick (~> 2.16, >= 2.16.0)
+      sass-rails (~> 5.0, >= 5.0.7)
+      simple_form (>= 5.0.0)
+
+PATH
+  remote: ../tramway-dev/tramway-api
+  specs:
+    tramway-api (1.8.6.6)
+      active_model_serializers (= 0.10.5)
+      knock
+      tramway-core (>= 1.9.2)
+
+PATH
+  remote: ../tramway-dev/tramway-auth
+  specs:
+    tramway-auth (2.0.1)
+
+PATH
+  remote: ../tramway-dev/tramway-conference
+  specs:
+    tramway-conference (1.9.5)
+
+PATH
+  remote: ../tramway-dev/tramway-event
+  specs:
+    tramway-event (1.12.3.9)
+      configus
+
+PATH
+  remote: ../tramway-dev/tramway-export
+  specs:
+    tramway-export (0.1.6.1)
+      xls_exporter (>= 1.2)
+
+PATH
+  remote: ../tramway-dev/tramway-landing
+  specs:
+    tramway-landing (3.1.1.7)
+
+PATH
+  remote: ../tramway-dev/tramway-news
+  specs:
+    tramway-news (1.0.4.3)
+
+PATH
+  remote: ../tramway-dev/tramway-page
+  specs:
+    tramway-page (1.5.3.4)
+
+PATH
+  remote: ../tramway-dev/tramway-partner
+  specs:
+    tramway-partner (1.0.3.2)
+
+PATH
+  remote: ../tramway-dev/tramway-profiles
+  specs:
+    tramway-profiles (1.4.1.1)
+
+PATH
+  remote: ../tramway-dev/tramway-site
+  specs:
+    tramway-site (0.1.0.4)
+
+PATH
+  remote: ../tramway-dev/tramway-sport_school
+  specs:
+    tramway-sport_school (1.2.12.5)
+
+PATH
+  remote: ../tramway-dev/tramway-user
+  specs:
+    tramway-user (2.1.3.2)
+      bcrypt (~> 3.1.11, >= 3.1.11)
+      enumerize (~> 2.1, >= 2.1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -471,55 +577,6 @@ GEM
     tilt (2.0.10)
     time_difference (0.7.0)
       activesupport (~> 5.1)
-    tramway-admin (1.32.1.2)
-      bootstrap-kaminari-views (= 0.0.5)
-      copyright_mafa (~> 0.1.2, >= 0.1.2)
-      font-awesome-rails (~> 4.7, >= 4.7.0.1)
-      kaminari (~> 1.1.1, >= 1.1.1)
-      ransack
-      selectize-rails
-      smart_buttons (>= 1.0)
-      state_machine_buttons (>= 1.0)
-      tramway-auth (>= 2.0.1)
-      tramway-core (>= 1.18.3.5)
-      tramway-user (>= 2.1.3.2)
-      trap (= 3.0)
-    tramway-api (1.8.6.6)
-      active_model_serializers (= 0.10.5)
-      knock
-      tramway-core (>= 1.9.2)
-    tramway-auth (2.0.1)
-    tramway-conference (1.9.5)
-    tramway-core (1.18.3.5)
-      audited (>= 4.8.0)
-      bootstrap (>= 4.1.2)
-      carrierwave
-      ckeditor (= 4.2.4)
-      clipboard-rails
-      enumerize (~> 2.1, >= 2.1.2)
-      font_awesome5_rails
-      haml-rails
-      kaminari
-      loofah (>= 2.3.1)
-      mini_magick (~> 4.8, >= 4.8.0)
-      pg_search
-      rmagick (~> 2.16, >= 2.16.0)
-      sass-rails (~> 5.0, >= 5.0.7)
-      simple_form (>= 5.0.0)
-    tramway-event (1.12.3.9)
-      configus
-    tramway-export (0.1.6.1)
-      xls_exporter (>= 1.2)
-    tramway-landing (3.1.1.7)
-    tramway-news (1.0.4.3)
-    tramway-page (1.5.3.4)
-    tramway-partner (1.0.3.2)
-    tramway-profiles (1.4.1.1)
-    tramway-site (0.1.0.4)
-    tramway-sport_school (1.2.12.5)
-    tramway-user (2.1.3.2)
-      bcrypt (~> 3.1.11, >= 3.1.11)
-      enumerize (~> 2.1, >= 2.1.2)
     trap (3.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
@@ -636,20 +693,21 @@ DEPENDENCIES
   state_machine_buttons (= 1.0)
   telegram-bot-ruby
   time_difference
-  tramway-admin (= 1.32.1.2)
-  tramway-api (= 1.8.6.6)
-  tramway-auth (= 2.0.1)
-  tramway-conference (= 1.9.5)
-  tramway-event (= 1.12.3.9)
-  tramway-export (= 0.1.6.1)
-  tramway-landing (= 3.1.1.7)
-  tramway-news (= 1.0.4.3)
-  tramway-page (= 1.5.3.4)
-  tramway-partner (= 1.0.3.2)
-  tramway-profiles (= 1.4.1.1)
-  tramway-site (= 0.1.0.4)
-  tramway-sport_school (= 1.2.12.5)
-  tramway-user (= 2.1.3.2)
+  tramway-admin!
+  tramway-api!
+  tramway-auth!
+  tramway-conference!
+  tramway-core!
+  tramway-event!
+  tramway-export!
+  tramway-landing!
+  tramway-news!
+  tramway-page!
+  tramway-partner!
+  tramway-profiles!
+  tramway-site!
+  tramway-sport_school!
+  tramway-user!
   trap (= 3.0)
   tzinfo-data
   uglifier (>= 1.3.0)
