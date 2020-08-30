@@ -32,7 +32,8 @@ RSpec.configure do |config|
   ActiveRecord::Base.logger.level = 1
 
   Settings[:test].each do |pair|
-    next if pair[0].in? [:engines, :application_class, :application]
+    next if pair[0].in? %i[engines application_class application]
+
     url = pair[1]
     next if Project.where(url: url).any?
 
