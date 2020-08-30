@@ -42,7 +42,7 @@ describe 'Create admin' do
         end
       end
 
-      it "#{project.url}: should not create admin with existing email" do
+      it "#{project.url}: should create admin with existing email in another project" do
         existed_email = (create :admin, project_id: project.id + 1).email
 
         move_host_to project.url
@@ -62,7 +62,22 @@ describe 'Create admin' do
         select attributes[:role], from: 'record[role]'
 
         click_on 'Сохранить', class: 'btn-success'
-        expect(Tramway::User::User.where(project_id: project.id).count).to eq(count)
+        expect(Tramway::User::User.where(project_id: project.id).count).to eq(count + 1)
+        admin = Tramway::User::User.where(project_id: project.id).last
+        attributes.keys.each do |attr|
+          next if attr == :password
+
+          actual = admin.send(attr)
+          expecting = attr == :email ? existed_email : attributes[attr]
+          case actual.class.to_s
+          when 'NilClass'
+            expect(actual).not_to be_empty, "#{attr} is empty"
+          when 'Enumerize::Value'
+            expect(actual).not_to be_empty, "#{attr} is empty"
+            actual = actual.text
+          end
+          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
+        end
       end
     end
   end
