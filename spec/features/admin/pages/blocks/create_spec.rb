@@ -9,9 +9,7 @@ describe 'Create block' do
     before do
       create :page, project_id: project.id
     end
-    if project.url.in? ['listai.test', 'kalashnikovisme.test', 'engineervol.test']
-      next
-    end
+    next if project.url.in? ['listai.test', 'kalashnikovisme.test', 'engineervol.test']
 
     it "#{project.url}: should create block" do
       move_host_to project.url

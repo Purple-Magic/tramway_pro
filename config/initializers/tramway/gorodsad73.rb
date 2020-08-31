@@ -14,6 +14,6 @@ Tramway::Admin.navbar_structure(
       Tramway::Landing::Block
     ]
   },
-  Tramway::User::User, 
+  Tramway::User::User,
   project: :gorodsad73
-) 
+)

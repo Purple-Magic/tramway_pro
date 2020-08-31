@@ -9,9 +9,7 @@ describe 'Edit block page' do
       create :block, project_id: project.id, page: landing_page
     end
 
-    if project.url.in? ['listai.test', 'kalashnikovisme.test', 'engineervol.test']
-      next
-    end
+    next if project.url.in? ['listai.test', 'kalashnikovisme.test', 'engineervol.test']
 
     it 'should show edit block page' do
       move_host_to project.url
