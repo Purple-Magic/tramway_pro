@@ -9,8 +9,7 @@ describe 'Update block' do
       landing_page = create :page, project_id: project.id
       create :block, project_id: project.id, page: landing_page
     end
-    if project.url.in? ['listai.test', 'kalashnikovisme.test', 'engineervol.test',
-                        'purple-magic.test', 'gorodsad73.test']
+    if project.url.in? ['listai.test', 'kalashnikovisme.test', 'engineervol.test']
       next
     end
 

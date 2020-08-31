@@ -9,8 +9,7 @@ describe 'Create block' do
     before do
       create :page, project_id: project.id
     end
-    if project.url.in? ['listai.test', 'kalashnikovisme.test', 'engineervol.test',
-                        'purple-magic.test', 'gorodsad73.test']
+    if project.url.in? ['listai.test', 'kalashnikovisme.test', 'engineervol.test']
       next
     end
 

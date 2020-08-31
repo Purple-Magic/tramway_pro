@@ -9,4 +9,13 @@ Tramway::Admin.set_available_models(
   project: :purple_magic
 )
 
-Tramway::Admin.navbar_structure Tramway::Page::Page, Tramway::User::User, project: :purple_magic
+Tramway::Admin.navbar_structure(
+  {
+    landing: [
+      Tramway::Page::Page,
+      Tramway::Landing::Block
+    ]
+  },
+  Tramway::User::User, 
+  project: :purple_magic
+) 

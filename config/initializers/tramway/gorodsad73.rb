@@ -7,4 +7,13 @@ Tramway::Admin.set_available_models(
   project: :gorodsad73
 )
 
-Tramway::Admin.navbar_structure Tramway::Page::Page, Tramway::User::User, project: :gorodsad73
+Tramway::Admin.navbar_structure(
+  {
+    landing: [
+      Tramway::Page::Page,
+      Tramway::Landing::Block
+    ]
+  },
+  Tramway::User::User, 
+  project: :gorodsad73
+) 
