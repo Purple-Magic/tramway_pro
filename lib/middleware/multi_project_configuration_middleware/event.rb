@@ -15,6 +15,7 @@ module MultiProjectConfigurationMiddleware
       '::Admin::Tramway::Event::PersonForm' => 'MultiProjectCallbacks::Event::PersonForm',
       '::Admin::Tramway::Event::ActionForm' => 'MultiProjectCallbacks::Event::ActionForm',
       'Tramway::Event::Event' => 'Tramway::Event::EventConcern',
+      '::Tramway::Event::Participant' => 'MultiProjectCallbacks::Event::ParticipantConcern',
       '::Tramway::Event::ParticipantsController' => 'MultiProjectCallbacks::Event::ParticipantsController',
       '::Tramway::Event::EventsController' => 'MultiProjectCallbacks::Event::EventsController'
     }.freeze
@@ -120,6 +121,15 @@ module MultiProjectCallbacks
           engine_module = "::Tramway::#{engine_loaded.camelize}".constantize
           @application = "#{engine_module}::#{engine_module.application.to_s.camelize}".constantize.first
           @application_engine = engine_loaded
+        end
+      end
+    end
+
+    module ParticipantConcern
+      extend ActiveSupport::Concern
+      included do
+        default_scope do
+          where project_id: Project.where(url: ENV['PROJECT_URL'])
         end
       end
     end
