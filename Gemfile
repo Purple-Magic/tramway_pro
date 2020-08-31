@@ -80,6 +80,7 @@ gem 'russian'
 gem 'russia_regions', '0.0.6'
 gem 'sass-rails'
 gem 'selectize-rails'
+gem 'sentry-raven'
 gem 'simple_form', '>= 5.0.0'
 gem 'smart_buttons', '1.0.0.1'
 gem 'sprockets', '>= 3.7.2'
@@ -91,7 +92,6 @@ gem 'trap', '3.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn-rails'
 gem 'validates'
-gem "sentry-raven"
 
 group :development do
   gem 'web-console', '>= 3.3.0'
