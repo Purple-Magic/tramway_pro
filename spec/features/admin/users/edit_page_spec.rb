@@ -6,6 +6,8 @@ describe 'Edit admin page' do
   ProjectsHelper.projects.each do |project|
     before { create :admin, project_id: project.id }
 
+    next if project.url.in? ['listai.test', 'kalashnikovisme.test']
+
     it "#{project.url}: should show edit admin page" do
       move_host_to project.url
       visit '/admin'

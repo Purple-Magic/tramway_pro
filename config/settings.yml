@@ -73,7 +73,6 @@ test:
   listai: listai.test
   purple_magic: purple-magic.test
   gorodsad73: gorodsad73.test
-  dobry_sosed: dobry-sosed.test
   engines:
     'sportschool-ulsk.test': sport_school
     'it-way.test': conference
@@ -90,10 +89,6 @@ test:
       title: Город-сад
       public_name: Город-сад
       tagline: Ландшафтный дизайн - как искусство
-    'dobry-sosed.test':
-      name: dobry_sosed
-      title: Добрый сосед
-      public_name: Добрый сосед
     'purple-magic.test':
       name: purple_magic
       title: PurpleMagic
