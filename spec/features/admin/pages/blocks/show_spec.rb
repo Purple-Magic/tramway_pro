@@ -8,6 +8,7 @@ describe 'Show block' do
       landing_page = create :page, project_id: project.id
       create :block, project_id: project.id, page: landing_page
     end
+    next if project.url.in? ['listai.test', 'kalashnikovisme.test', 'engineervol.test']
 
     it 'should show block' do
       move_host_to project.url

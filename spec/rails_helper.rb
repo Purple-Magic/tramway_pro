@@ -31,7 +31,10 @@ RSpec.configure do |config|
 
   ActiveRecord::Base.logger.level = 1
 
-  ['it-way.test', 'sportschool-ulsk.test', 'tramway.test'].each do |url|
+  Settings[:test].each do |pair|
+    next if pair[0].in? %i[engines application_class application]
+
+    url = pair[1]
     next if Project.where(url: url).any?
 
     Project.create! url: url
@@ -49,7 +52,8 @@ RSpec.configure do |config|
     end
     create :unity, title: 'IT Way'
     create :institution, title: 'Sport school ULSK'
-    create :tramway_dev, name: 'Tramway'
+    create :tramway_dev, name: :tramway, title: 'Tramway'
+    create :purple_magic, name: :purple_magic, title: 'Purple Magic'
   end
   include ActionDispatch::TestProcess
 end
