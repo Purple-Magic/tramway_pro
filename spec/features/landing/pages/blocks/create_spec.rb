@@ -12,20 +12,20 @@ describe 'IT Way: Show main page with contacts' do
 
   it 'should show main page with map' do
     visit '/'
-    project =  Tramway::Conference::Unity.last
+    project = Tramway::Conference::Unity.last
 
     expect(page).to have_content project.phone
     expect(page).to have_content project.address
-    expect(page.find("#map-container").present?).to be_truthy
+    expect(page.find('#map-container').present?).to be_truthy
   end
 
   it 'should show main page without map' do
-    project =  Tramway::Conference::Unity.last
+    project = Tramway::Conference::Unity.last
     project.update!(latitude: nil, longtitude: nil)
 
     visit '/'
 
     expect(page).to have_content project.phone
-    expect(page).to_not have_css "#map-container"
+    expect(page).to_not have_css '#map-container'
   end
 end
