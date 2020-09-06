@@ -50,7 +50,7 @@ def start_game(message, user)
   
 end
 
-areas = ['Ленинский', 'Засвияжский', 'Заволжский', 'Железнодорожный']
+areas = ChatQuestUlsk::Message.area.values
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
