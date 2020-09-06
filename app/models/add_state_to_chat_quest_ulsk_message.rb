@@ -1,0 +1,2 @@
+class AddStateToChatQuestUlskMessage < ApplicationRecord
+end
