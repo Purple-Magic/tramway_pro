@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200824151330) do
+ActiveRecord::Schema.define(version: 20200906212312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "add_state_to_chat_quest_ulsk_messages", force: :cascade do |t|
+    t.text "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "audits", force: :cascade do |t|
     t.integer "auditable_id"
@@ -36,6 +42,66 @@ ActiveRecord::Schema.define(version: 20200824151330) do
     t.index ["created_at"], name: "index_audits_on_created_at"
     t.index ["request_uuid"], name: "index_audits_on_request_uuid"
     t.index ["user_id", "user_type"], name: "user_index"
+  end
+
+  create_table "bot_telegram_chats", force: :cascade do |t|
+    t.integer "telegram_id"
+    t.text "title"
+    t.text "chat_type"
+    t.jsonb "options"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "project_id"
+    t.text "state"
+  end
+
+  create_table "bot_telegram_messages", force: :cascade do |t|
+    t.integer "chat_id"
+    t.integer "user_id"
+    t.text "text"
+    t.jsonb "options"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "project_id"
+    t.text "state"
+  end
+
+  create_table "bot_telegram_users", force: :cascade do |t|
+    t.text "first_name"
+    t.text "last_name"
+    t.text "username"
+    t.jsonb "options"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "project_id"
+    t.text "state"
+  end
+
+  create_table "chat_quest_ulsk_games", force: :cascade do |t|
+    t.text "area"
+    t.integer "bot_telegram_user_id"
+    t.text "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "game_state", default: "started"
+  end
+
+  create_table "chat_quest_ulsk_messages", force: :cascade do |t|
+    t.text "text"
+    t.text "area"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "state"
+    t.integer "project_id"
+  end
+
+  create_table "chatquestulsk_games", force: :cascade do |t|
+    t.text "area"
+    t.integer "bot_telegram_user_id"
+    t.text "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
