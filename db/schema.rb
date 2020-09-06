@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200906212312) do
+ActiveRecord::Schema.define(version: 20200906232532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "add_state_to_chat_quest_ulsk_messages", force: :cascade do |t|
+    t.text "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "audits", force: :cascade do |t|
     t.integer "auditable_id"
@@ -78,6 +84,7 @@ ActiveRecord::Schema.define(version: 20200906212312) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "game_state", default: "started"
+    t.integer "current_position"
   end
 
   create_table "chat_quest_ulsk_messages", force: :cascade do |t|
@@ -88,6 +95,7 @@ ActiveRecord::Schema.define(version: 20200906212312) do
     t.datetime "updated_at", null: false
     t.text "state"
     t.integer "project_id"
+    t.text "answer"
   end
 
   create_table "chatquestulsk_games", force: :cascade do |t|
