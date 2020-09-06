@@ -66,7 +66,8 @@ Telegram::Bot::Client.run(token) do |bot|
     end
     if message.text.in? areas
       game = ChatQuestUlsk::Game.find_by area: message.text, bot_telegram_user_id: user.id
-      if game.present?
+      game&.reload
+      if game.present? && game.started?
         bot.api.send_message(
           chat_id: message.chat.id,
           text: 'Вы уже начали игру в этом районе'
