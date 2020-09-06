@@ -76,7 +76,7 @@
         chdir: "{{ release_path }}"
 
     - name: Migrate
-      shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do {{ release_path }}/bin/rake db:create db:migrate"
+      shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do {{ release_path }}/bin/rake db:migrate"
       args:
         chdir: "{{ release_path }}"
 

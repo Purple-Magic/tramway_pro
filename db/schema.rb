@@ -16,12 +16,6 @@ ActiveRecord::Schema.define(version: 20200906212312) do
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
-  create_table "add_state_to_chat_quest_ulsk_messages", force: :cascade do |t|
-    t.text "state"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "audits", force: :cascade do |t|
     t.integer "auditable_id"
     t.string "auditable_type"
