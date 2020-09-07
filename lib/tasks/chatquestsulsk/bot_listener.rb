@@ -11,7 +11,7 @@ include ChatQuestUlsk::BotInfo
 include ChatQuestUlsk::BotMessage
 include ChatQuestUlsk::BotAnswers
 
-token = ENV['CHAT_QUEST_ULSK_TELEGRAM_API_TOKEN']
+love_token = ENV['QUEST_ULSK_LOVE_TELEGRAM_API_TOKEN']
 
 def choose_your_area(bot, message)
   bot.api.send_message(
@@ -21,7 +21,7 @@ def choose_your_area(bot, message)
   )
 end
 
-Telegram::Bot::Client.run(token) do |bot|
+Telegram::Bot::Client.run(love_token) do |bot|
   bot.listen do |message|
     user = user_from message
     chat = chat_from message
