@@ -61,6 +61,12 @@ Telegram::Bot::Client.run(token) do |bot|
           chat_id: message.chat.id,
           text: next_message.text
         )
+        if next_message.file.present?
+          bot.api.send_photo(
+            chat_id: message.chat.id,
+            photo: Faraday::UploadIO.new(next_message.file.file.file, 'image/jpeg')
+          )
+        end
       else
         game.finish
       end
