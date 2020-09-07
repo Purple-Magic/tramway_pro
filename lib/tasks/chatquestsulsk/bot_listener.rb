@@ -13,23 +13,31 @@ token = ENV['CHAT_QUEST_ULSK_TELEGRAM_API_TOKEN']
 
 start_game_message = 'Поехали!'
 
+def choose_your_area(bot, message)
+  bot.api.send_message(
+    chat_id: message.chat.id,
+    text: 'Привет, выбери свой район!',
+    reply_markup: Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: ChatQuestUlsk::Message.area.values, one_time_keyboard: true)
+  )
+end
+
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
     user = user_from message
     chat = chat_from message
     log_message message, user, chat
-    game = ChatQuestUlsk::Game.find_by area: message.text, bot_telegram_user_id: user.id
+    game = ChatQuestUlsk::Game.find_by bot_telegram_user_id: user.id
     if message.text == '/start'
-      bot.api.send_message(
-        chat_id: message.chat.id,
-        text: 'Привет, выбери свой район!',
-        reply_markup: Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: ChatQuestUlsk::Message.area.values, one_time_keyboard: true)
-      )
+      choose_your_area bot, message
     elsif message.text == start_game_message
-      bot.api.send_message(
-        chat_id: message.chat.id,
-        text: ChatQuestUlsk::Message.where(area: game&.area, position: 2).first&.text
-      )
+      if game.present?
+        bot.api.send_message(
+          chat_id: message.chat.id,
+          text: ChatQuestUlsk::Message.where(area: game.area, position: 2).first&.text
+        )
+      else
+        choose_your_area bot, message
+      end
     elsif message.text.in? ChatQuestUlsk::Message.area.values
       if game.present? && game.started?
         bot.api.send_message(
