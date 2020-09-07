@@ -24,7 +24,11 @@ module ChatQuestUlsk::AfterSvyagaAreaQuest
       elsif expecting_answers(game)&.include? message.text
         game.update! current_position: game.current_position + 1
         next_message = ChatQuestUlsk::Message.where(area: game.area, position: game.current_position).first
-        message_to_user bot, next_message, message
+        if next_message.present?
+          message_to_user bot, next_message, message
+        else
+          game.finish
+        end
         
         case game.current_position
         when 6
