@@ -26,11 +26,12 @@ Telegram::Bot::Client.run(token) do |bot|
     user = user_from message
     chat = chat_from message
     log_message message, user, chat
-    game = ChatQuestUlsk::Game.find_by bot_telegram_user_id: user.id
+    game = ChatQuestUlsk::Game.where(game_state: :started).find_by bot_telegram_user_id: user.id
     if message.text == '/start'
       choose_your_area bot, message
     elsif message.text == start_game_message
       if game.present?
+        game.update current_position: 2
         bot.api.send_message(
           chat_id: message.chat.id,
           text: ChatQuestUlsk::Message.where(area: game.area, position: 2).first&.text
@@ -39,7 +40,7 @@ Telegram::Bot::Client.run(token) do |bot|
         choose_your_area bot, message
       end
     elsif message.text.in? ChatQuestUlsk::Message.area.values
-      if game.present? && game.started?
+      if game.present?
         bot.api.send_message(
           chat_id: message.chat.id,
           text: 'Вы уже начали игру в этом районе'
@@ -52,12 +53,17 @@ Telegram::Bot::Client.run(token) do |bot|
           reply_markup: Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: [start_game_message], one_time_keyboard: true) 
         )
       end
-    elsif expecting_answers(game).include? message.text
+    elsif expecting_answers(game)&.include? message.text
       game.update! current_position: game.current_position + 1
-      bot.api.send_message(
-        chat_id: message.chat.id,
-        text: ChatQuestUlsk::Message.where(area: game.area, position: game.current_position).first.text
-      )
+      next_message = ChatQuestUlsk::Message.where(area: game.area, position: game.current_position).first
+      if next_message.present?
+        bot.api.send_message(
+          chat_id: message.chat.id,
+          text: next_message.text
+        )
+      else
+        game.finish
+      end
     else
       bot.api.send_message(
         chat_id: message.chat.id,
