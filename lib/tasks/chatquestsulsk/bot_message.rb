@@ -12,4 +12,33 @@ module ChatQuestUlsk::BotMessage
                     hash.merge! attribute => message.send(attribute)
                   end)
   end
+
+  def message_to_user(bot, message_obj, message_telegram, reply_markup = nil)
+    case message_obj.class.to_s
+    when 'String'
+      bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj
+    when 'ChatQuestUlsk::Message'
+      if message_obj.text.present?
+        if reply_markup
+          bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text, reply_markup: reply_markup
+        else
+          bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text
+        end
+      end
+      if message_obj.file.present?
+        case message_obj.file.file.file[-3..-1]
+        when 'jpg'
+          bot.api.send_photo(
+            chat_id: message_telegram.chat.id,
+            photo: Faraday::UploadIO.new(message_obj.file.file.file, 'image/jpeg')
+          )
+        when 'mp3'
+          bot.api.send_voice(
+            chat_id: message_telegram.chat.id,
+            voice: Faraday::UploadIO.new(message_obj.file.file.file, 'audio/mpeg')
+          )
+        end
+      end
+    end
+  end
 end
