@@ -7,7 +7,7 @@ class Admin::ChatQuestUlsk::MessageForm < Tramway::Core::ApplicationForm
         area: :default,
         position: :default,
         answer: :default,
-        file: :default
+        file: :file
     end
   end
 end
