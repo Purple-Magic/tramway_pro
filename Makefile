@@ -14,3 +14,5 @@ install:
 restore_production:
 	bin/prod get_db $(USER)
 	rails db:seed
+run_chat_quest_ulsk_bot:
+	rails r lib/tasks/chatquestsulsk/bot_listener.rb
