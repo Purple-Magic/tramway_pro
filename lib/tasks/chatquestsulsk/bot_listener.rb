@@ -4,48 +4,28 @@ require 'telegram/bot'
 require_relative './bot_info'
 require_relative './bot_message'
 require_relative './bot_answers'
-require_relative './rails_area_quest'
+require_relative './love'
 require_relative './after_svyaga_area_quest'
 
 include ChatQuestUlsk::BotInfo
 include ChatQuestUlsk::BotMessage
 include ChatQuestUlsk::BotAnswers
 
-love_token = ENV['QUEST_ULSK_LOVE_TELEGRAM_API_TOKEN']
+quests = [ :love ]
 
-def choose_your_area(bot, message)
-  bot.api.send_message(
-    chat_id: message.chat.id,
-    text: 'Привет, выбери свой район!',
-    reply_markup: Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: ChatQuestUlsk::Message.area.values, one_time_keyboard: true)
-  )
-end
-
-Telegram::Bot::Client.run(love_token) do |bot|
-  bot.listen do |message|
-    user = user_from message
-    chat = chat_from message
-    log_message message, user, chat
-    game = ChatQuestUlsk::Game.where(game_state: :started).find_by bot_telegram_user_id: user.id
-    if message.text == '/start'
-      if game.present?
-        message_to_user bot, 'Ты уже играешь в игру! Ответь на вопрос, который задали выше', message
-      else
-        choose_your_area bot, message
+quests.each do |quest|
+  Telegram::Bot::Client.run(ENV["QUEST_ULSK_#{quest.upcase}_TELEGRAM_API_TOKEN"]) do |bot|
+    bot.listen do |message|
+      user = user_from message
+      chat = chat_from message
+      log_message message, user, chat
+      game = ChatQuestUlsk::Game.where(game_state: :started, quest: :love).find_by bot_telegram_user_id: user.id
+      if message.text == '/start'
+        unless game.present?
+          game = ChatQuestUlsk::Game.create! bot_telegram_user_id: user.id, quest: :love, current_position: 1 
+        end
       end
-    end
-    if message.text.in? ChatQuestUlsk::Message.area.values
-      if game.present?
-        message_to_user bot, 'Вы уже начали игру в этом районе', message
-      else
-        game = ChatQuestUlsk::Game.create! bot_telegram_user_id: user.id, area: message.text, current_position: 1
-      end
-    end
-    case game&.area
-    when 'Железнодорожный'
-      ChatQuestUlsk::RailsAreaQuest.scenario(message, game, user, bot)
-    when 'Засвияжский'
-      ChatQuestUlsk::AfterSvyagaAreaQuest.scenario(message, game, user, bot)
+      ChatQuestUlsk::Love.scenario(message, game, user, bot)
     end
   end
 end
