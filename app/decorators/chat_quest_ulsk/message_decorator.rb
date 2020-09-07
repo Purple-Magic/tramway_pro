@@ -3,7 +3,7 @@ class ChatQuestUlsk::MessageDecorator < Tramway::Core::ApplicationDecorator
     "#{object.area}: #{object.text.split(' ')[0..2].join(' ')}..."
   end
 
-  delegate_attributes :area, :position
+  delegate_attributes :area, :position, :file
 
   class << self
     def list_attributes
