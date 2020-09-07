@@ -5,6 +5,7 @@ require_relative './bot_info'
 require_relative './bot_message'
 require_relative './bot_answers'
 require_relative './rails_area_quest'
+require_relative './after_svyaga_area_quest'
 
 include ChatQuestUlsk::BotInfo
 include ChatQuestUlsk::BotMessage
@@ -36,6 +37,21 @@ Telegram::Bot::Client.run(token) do |bot|
         choose_your_area bot, message
       end
     end
-    ChatQuestUlsk::RailsAreaQuest.scenario(message, game, user, bot)
+    if message.text.in? ChatQuestUlsk::Message.area.values
+      if game.present?
+        bot.api.send_message(
+          chat_id: message.chat.id,
+          text: 'Вы уже начали игру в этом районе'
+        )
+      else
+        game = ChatQuestUlsk::Game.create! bot_telegram_user_id: user.id, area: message.text, current_position: 1
+      end
+    end
+    case game&.area
+    when 'Железнодорожный'
+      ChatQuestUlsk::RailsAreaQuest.scenario(message, game, user, bot)
+    when 'Засвияжский'
+      ChatQuestUlsk::AfterSvyagaAreaQuest.scenario(message, game, user, bot)
+    end
   end
 end
