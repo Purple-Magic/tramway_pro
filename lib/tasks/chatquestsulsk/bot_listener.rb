@@ -29,20 +29,14 @@ Telegram::Bot::Client.run(token) do |bot|
     game = ChatQuestUlsk::Game.where(game_state: :started).find_by bot_telegram_user_id: user.id
     if message.text == '/start'
       if game.present?
-        bot.api.send_message(
-          chat_id: message.chat.id,
-          text: 'Ты уже играешь в игру! Ответь на вопрос, который задали выше'
-        )
+        message_to_user bot, 'Ты уже играешь в игру! Ответь на вопрос, который задали выше', message
       else
         choose_your_area bot, message
       end
     end
     if message.text.in? ChatQuestUlsk::Message.area.values
       if game.present?
-        bot.api.send_message(
-          chat_id: message.chat.id,
-          text: 'Вы уже начали игру в этом районе'
-        )
+        message_to_user bot, 'Вы уже начали игру в этом районе', message
       else
         game = ChatQuestUlsk::Game.create! bot_telegram_user_id: user.id, area: message.text, current_position: 1
       end
