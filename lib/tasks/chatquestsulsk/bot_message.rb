@@ -18,10 +18,12 @@ module ChatQuestUlsk::BotMessage
     when 'String'
       bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj
     when 'ChatQuestUlsk::Message'
-      if reply_markup
-        bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text, reply_markup: reply_markup
-      else
-        bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text
+      if message_obj.text.present?
+        if reply_markup
+          bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text, reply_markup: reply_markup
+        else
+          bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text
+        end
       end
       if message_obj.file.present?
         bot.api.send_photo(
