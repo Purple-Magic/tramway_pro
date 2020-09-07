@@ -26,18 +26,18 @@ module ChatQuestUlsk::BotMessage
         end
       end
       if message_obj.file.present?
-        content_type = case message_obj.file.file.file[-3..-1]
-                       when 'jpg'
-                         'image/jpeg'
-                       when 'mp3'
-                         'audio/mpeg'
-                       when 'wav'
-                         'audio/wav'
-                       end
-        bot.api.send_photo(
-          chat_id: message_telegram.chat.id,
-          photo: Faraday::UploadIO.new(message_obj.file.file.file, content_type)
-        )
+        case message_obj.file.file.file[-3..-1]
+        when 'jpg'
+          bot.api.send_photo(
+            chat_id: message_telegram.chat.id,
+            photo: Faraday::UploadIO.new(message_obj.file.file.file, 'image/jpeg')
+          )
+        when 'mp3'
+          bot.api.send_voice(
+            chat_id: message_telegram.chat.id,
+            voice: Faraday::UploadIO.new(message_obj.file.file.file, 'audio/mpeg')
+          )
+        end
       end
     end
   end
