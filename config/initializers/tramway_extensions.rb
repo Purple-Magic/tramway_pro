@@ -3,7 +3,6 @@
 module ::Tramway::Extensions
   def self.load
     Tramway::Event::Event.include Tramway::Event::EventConcern
-    Tramway::User::User.include Tramway::User::UserConcern
   end
 end
 
