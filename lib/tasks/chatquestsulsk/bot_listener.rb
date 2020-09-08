@@ -4,10 +4,10 @@ require 'telegram/bot'
 require_relative './bot_info'
 require_relative './bot_message'
 require_relative './bot_answers'
-require_relative './love'
-require_relative './detective'
-require_relative './fantasy'
-require_relative './horror'
+require_relative './love/scenario'
+require_relative './detective/scenario'
+require_relative './fantasy/scenario'
+require_relative './horror/scenario'
 
 
 module BotListener
