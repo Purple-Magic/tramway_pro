@@ -18,3 +18,5 @@ run_love_chat_quest_ulsk_bot:
 	rails r lib/tasks/chatquestsulsk/love_bot_listener.rb
 run_detective_chat_quest_ulsk_bot:
 	rails r lib/tasks/chatquestsulsk/detective_bot_listener.rb
+run_fantasy_chat_quest_ulsk_bot:
+	rails r lib/tasks/chatquestsulsk/fantasy_bot_listener.rb
