@@ -1,6 +1,10 @@
 module ChatQuestUlsk::Love
   class << self
-    def scenario(message, game, _user, bot)
+    include ChatQuestUlsk::BotInfo
+    include ChatQuestUlsk::BotMessage
+    include ChatQuestUlsk::BotAnswers
+
+    def scenario(message, game, user, bot)
       start_game_message = 'Поехали!'
       if message.text == start_game_message
         game.update current_position: 2
