@@ -33,6 +33,8 @@ module MultiProjectCallbacks
         default_scope do
           where project_id: Project.where(url: ENV['PROJECT_URL'])
         end
+
+        enumerize :role, in: [ :admin, :user, :partner ], default: :admin
       end
     end
   end
