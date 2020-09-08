@@ -1,21 +1,32 @@
-- name: Stop unicorn
-  shell: "[ -e /srv/tramway_pro/shared/tmp/pids/unicorn.pid  ] && kill `cat /srv/tramway_pro/shared/tmp/pids/unicorn.pid`"
-  ignore_errors: yes
-
-- name: Start unicorn
-  shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec unicorn -c /srv/tramway_pro/current/config/unicorn/production.rb -E production -D"
-  args:
-    chdir: "{{ app_path }}/current"
-
+#- name: Stop unicorn
+#  shell: "[ -e /srv/tramway_pro/shared/tmp/pids/unicorn.pid  ] && kill `cat /srv/tramway_pro/shared/tmp/pids/unicorn.pid`"
+#  ignore_errors: yes
+#
+#- name: Start unicorn
+#  shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec unicorn -c /srv/tramway_pro/current/config/unicorn/production.rb -E production -D"
+#  args:
+#    chdir: "{{ app_path }}/current"
+#
 - name: Stop bots
   ignore_errors: yes
   shell: "ps aux | grep -ie bot | awk '{print $2}' | xargs kill -9 "
 
-- name: Start bots
-  shell: "/usr/share/rvm/bin/rvm 2.7.1 do bundle exec bin/rails runner lib/tasks/chatquestsulsk/love/bot_listener.rb"
-  shell: "/usr/share/rvm/bin/rvm 2.7.1 do bundle exec bin/rails runner lib/tasks/chatquestsulsk/detective/bot_listener.rb"
-  shell: "/usr/share/rvm/bin/rvm 2.7.1 do bundle exec bin/rails runner lib/tasks/chatquestsulsk/fantasy/bot_listener.rb"
-  shell: "/usr/share/rvm/bin/rvm 2.7.1 do bundle exec bin/rails runner lib/tasks/chatquestsulsk/horror/bot_listener.rb"
+- name: Start fantasy quest bot
+  shell: "cd /srv/tramway_pro/current && /bin/bash -lic 'exec bundle exec rails runner lib/tasks/chatquestsulsk/fantasy/bot_listener.rb &'"
   args:
     chdir: "{{ app_path }}/current"
 
+- name: Start horror quest bot
+  shell: "cd /srv/tramway_pro/current && /bin/bash -lic 'exec bundle exec rails runner lib/tasks/chatquestsulsk/horror/bot_listener.rb &'"
+  args:
+    chdir: "{{ app_path }}/current"
+
+- name: Start love quest bot
+  shell: "cd /srv/tramway_pro/current && /bin/bash -lic 'exec bundle exec rails runner lib/tasks/chatquestsulsk/love/bot_listener.rb &'"
+  args:
+    chdir: "{{ app_path }}/current"
+
+- name: Start detective quest bot
+  shell: "cd /srv/tramway_pro/current && /bin/bash -lic 'exec bundle exec rails runner lib/tasks/chatquestsulsk/detective/bot_listener.rb &'"
+  args:
+    chdir: "{{ app_path }}/current"
