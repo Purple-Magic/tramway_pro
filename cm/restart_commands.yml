@@ -12,7 +12,10 @@
   shell: "ps aux | grep -ie bot | awk '{print $2}' | xargs kill -9 "
 
 - name: Start bots
-  shell: . /home/tramway/.bashrc && cd /srv/tramway_pro/current && bundle exec rails r lib/tasks/chatquestsulsk/love/bot_listener.rb
+  shell: "/usr/share/rvm/bin/rvm 2.7.1 do bundle exec bin/rails runner lib/tasks/chatquestsulsk/love/bot_listener.rb"
+  shell: "/usr/share/rvm/bin/rvm 2.7.1 do bundle exec bin/rails runner lib/tasks/chatquestsulsk/detective/bot_listener.rb"
+  shell: "/usr/share/rvm/bin/rvm 2.7.1 do bundle exec bin/rails runner lib/tasks/chatquestsulsk/fantasy/bot_listener.rb"
+  shell: "/usr/share/rvm/bin/rvm 2.7.1 do bundle exec bin/rails runner lib/tasks/chatquestsulsk/horror/bot_listener.rb"
   args:
     chdir: "{{ app_path }}/current"
 
