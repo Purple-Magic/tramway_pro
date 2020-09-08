@@ -25,7 +25,7 @@ quests.each do |quest|
           game = ChatQuestUlsk::Game.create! bot_telegram_user_id: user.id, quest: :love, current_position: 1 
         end
       end
-      ChatQuestUlsk::Love.scenario(message, game, user, bot)
+      "ChatQuestUlsk::#{quest.capitalize}".constantize.scenario(message, game, user, bot)
     end
   end
 end
