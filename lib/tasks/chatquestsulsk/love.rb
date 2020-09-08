@@ -18,7 +18,7 @@ module ChatQuestUlsk::Love
         else
           game.finish
         end
-      else
+      elsif !game.finished?
         message_to_user bot, 'Ответ неверный :( попробуй ещё раз!', message
       end
     end
