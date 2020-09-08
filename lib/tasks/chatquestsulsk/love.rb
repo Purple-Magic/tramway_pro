@@ -5,7 +5,7 @@ module ChatQuestUlsk::Love
       if message.text == start_game_message
         game.update current_position: 2
         message_to_user bot, ChatQuestUlsk::Message.where(quest: game.quest, position: 2).first, message
-      elsif game.current_position == 1
+      elsif game&.current_position == 1
         message_to_user bot,
           ChatQuestUlsk::Message.where(quest: game.quest, position: 1).first,
           message,
