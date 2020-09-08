@@ -2,7 +2,11 @@ module ChatQuestUlsk::Love
   class << self
     def scenario(message, game, user, bot)
       start_game_message = 'Поехали!'
-      if message.text == start_game_message
+      if game.current_position == 10
+        next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+        message_to_user bot, next_message, message
+        game.finish
+      elsif message.text == start_game_message
         game.update current_position: 2
         message_to_user bot, ChatQuestUlsk::Message.where(quest: game.quest, position: 2).first, message
       elsif game&.current_position == 1
@@ -15,11 +19,6 @@ module ChatQuestUlsk::Love
         next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
         if next_message.present?
           message_to_user bot, next_message, message
-          if game.current_position == 10
-            next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
-            message_to_user bot, next_message, message
-            game.finish
-          end
         end
       elsif !game.finished?
         message_to_user bot, 'Ответ неверный :( попробуй ещё раз!', message
