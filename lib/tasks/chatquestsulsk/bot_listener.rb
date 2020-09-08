@@ -5,13 +5,13 @@ require_relative './bot_info'
 require_relative './bot_message'
 require_relative './bot_answers'
 require_relative './love'
-require_relative './after_svyaga_area_quest'
+require_relative './detective'
 
 include ChatQuestUlsk::BotInfo
 include ChatQuestUlsk::BotMessage
 include ChatQuestUlsk::BotAnswers
 
-quests = [:love]
+quests = [ :love, :detective ]
 
 quests.each do |quest|
   Telegram::Bot::Client.run(ENV["QUEST_ULSK_#{quest.upcase}_TELEGRAM_API_TOKEN"]) do |bot|
@@ -25,7 +25,7 @@ quests.each do |quest|
           game = ChatQuestUlsk::Game.create! bot_telegram_user_id: user.id, quest: :love, current_position: 1
         end
       end
-      ChatQuestUlsk::Love.scenario(message, game, user, bot)
+      "ChatQuestUlsk::#{quest.capitalize}".constantize.scenario(message, game, user, bot)
     end
   end
 end

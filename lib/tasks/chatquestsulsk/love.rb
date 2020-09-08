@@ -15,10 +15,14 @@ module ChatQuestUlsk::Love
         next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
         if next_message.present?
           message_to_user bot, next_message, message
-        else
-          game.finish
+          if game.current_position == 10
+            game.update! current_position: game.current_position + 1
+            next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+            message_to_user bot, next_message, message
+            game.finish
+          end
         end
-      else
+      elsif !game.finished?
         message_to_user bot, 'Ответ неверный :( попробуй ещё раз!', message
       end
     end

@@ -1,4 +1,4 @@
-module ChatQuestUlsk::AfterSvyagaAreaQuest
+module ChatQuestUlsk::Detective
   class << self
     def scenario(message, game, _user, bot)
       if game.current_position == 1
