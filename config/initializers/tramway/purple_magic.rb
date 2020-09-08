@@ -19,8 +19,8 @@ Tramway::Admin.navbar_structure(
   },
   {
     chat_quest_ulsk: [
-      ChatQuestUlsk::Message,
-    ],
+      ChatQuestUlsk::Message
+    ]
   },
   Tramway::User::User,
   project: :purple_magic

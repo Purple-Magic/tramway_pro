@@ -7,7 +7,7 @@ class ChatQuestUlsk::MessageDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def list_attributes
-      [ :quest, :position ]
+      %i[quest position]
     end
   end
 end
