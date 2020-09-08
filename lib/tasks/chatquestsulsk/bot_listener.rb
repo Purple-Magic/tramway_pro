@@ -7,6 +7,7 @@ require_relative './bot_answers'
 require_relative './love'
 require_relative './detective'
 require_relative './fantasy'
+require_relative './horror'
 
 
 module BotListener
