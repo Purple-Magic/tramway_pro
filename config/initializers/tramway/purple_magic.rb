@@ -24,7 +24,7 @@ Tramway::Admin.navbar_structure(
   },
   {
     chat_quest_ulsk: [
-      ChatQuestUlsk::User,
+      BotTelegram::User,
       ChatQuestUlsk::Message
     ]
   },
