@@ -16,6 +16,7 @@ module ChatQuestUlsk::Love
         if next_message.present?
           message_to_user bot, next_message, message
           if game.current_position == 10
+            sleep 5
             game.update! current_position: game.current_position + 1
             next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
             message_to_user bot, next_message, message
