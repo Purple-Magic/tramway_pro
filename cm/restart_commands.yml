@@ -4,7 +4,7 @@
 
 - name: Restart Telegram task
   shell: 'killall ruby'
-  shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec rails r /srv/tramway_pro/lib/tasks/dobry_sosed/bot_listener.rb &"
+  shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec rails r /srv/tramway_pro/current/lib/tasks/chatquestsulsk/bot_listener.rb &"
 
 - name: Start unicorn
   shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec unicorn -c /srv/tramway_pro/current/config/unicorn/production.rb -E production -D"
