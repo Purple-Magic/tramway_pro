@@ -45,5 +45,10 @@ ru:
       plural: Сайт Tramway.pro
       genitive: Сайт Tramway.pro
     chat_quest_ulsk/message:
-      plural: Сценарий
+      plural: Сценарии
       genitive: сценарий
+    chat_quest_ulsk/game:
+      plural: Игры
+      genitive: игру
+    bot_telegram/user:
+      plural: Telegram-пользователи

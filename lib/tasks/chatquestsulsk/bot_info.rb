@@ -3,6 +3,7 @@ module ChatQuestUlsk::BotInfo
     user = BotTelegram::User.find_or_create_by! username: message.from.username
     user.update! first_name: message.from.first_name,
                  last_name: message.from.last_name,
+                 project_id: Project.find_by(title: 'PurpleMagic').id,
                  options: {
                    can_join_groups: message.from.can_join_groups,
                    can_read_all_group_messages: message.from.can_read_all_group_messages,
@@ -17,6 +18,7 @@ module ChatQuestUlsk::BotInfo
     chat = BotTelegram::Chat.find_or_create_by! telegram_id: message.chat.id
     chat.update! title: message.chat.title,
                  chat_type: message.chat.type,
+                 project_id: Project.find_by(title: 'PurpleMagic').id,
                  options: (%i[
                    all_members_are_administrators can_set_sticker_set description first_name invite_link
                    last_name permissions photo pinned_message slow_mode_delay sticker_set_name
