@@ -84,6 +84,8 @@ module ChatQuestUlsk::Detective
 
           game.finish
         end
+      elsif !game.finished?
+        message_to_user bot, 'Ответ неверный! Я сегодня добрый, так что попробуй ещё раз!', message
       end
     end
   end
