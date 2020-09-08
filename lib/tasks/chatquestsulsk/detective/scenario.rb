@@ -25,7 +25,7 @@ module ChatQuestUlsk::Detective
         game.update! current_position: game.current_position + 1
         next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
         message_to_user bot, next_message, message
-      elsif expecting_answers(game)&.include? message.text
+      elsif game.present? && right_answer?(game, message.text)
         game.update! current_position: game.current_position + 1
         next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
         if next_message.present?
