@@ -6,7 +6,7 @@ module ChatQuestUlsk::Love
 
     def scenario(message, game, user, bot)
       start_game_message = 'Поехали!'
-      if message.text == start_game_message
+      if message.text == start_game_message && game.present?
         game.update current_position: 2
         message_to_user bot, ChatQuestUlsk::Message.where(quest: game.quest, position: 2).first, message
       elsif game&.current_position == 1
@@ -14,7 +14,7 @@ module ChatQuestUlsk::Love
           ChatQuestUlsk::Message.where(quest: game.quest, position: 1).first,
           message,
           Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: [start_game_message], one_time_keyboard: true)
-      elsif expecting_answers(game)&.include? message.text
+      elsif game.present? && right_answer?(game, message.text)
         game.update! current_position: game.current_position + 1
         next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
         if next_message.present?
