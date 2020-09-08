@@ -22,7 +22,7 @@ quests.each do |quest|
       game = ChatQuestUlsk::Game.where(game_state: :started, quest: :love).find_by bot_telegram_user_id: user.id
       if message.text == '/start'
         unless game.present?
-          game = ChatQuestUlsk::Game.create! bot_telegram_user_id: user.id, quest: :love, current_position: 1 
+          game = ChatQuestUlsk::Game.create! bot_telegram_user_id: user.id, quest: :love, current_position: 1
         end
       end
       "ChatQuestUlsk::#{quest.capitalize}".constantize.scenario(message, game, user, bot)

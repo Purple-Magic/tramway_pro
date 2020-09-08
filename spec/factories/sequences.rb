@@ -46,7 +46,7 @@ FactoryBot.define do
   sequence :latitude do |_n|
     rand(-90.0..90.0).round(5)
   end
-  sequence :longitude do |_n|
+  sequence :longtitude do |_n|
     rand(-180.0..180.0).round(5)
   end
   sequence :coordinates do
