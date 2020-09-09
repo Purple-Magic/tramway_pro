@@ -30,7 +30,7 @@ class ChatQuestUlsk::GameDecorator < Tramway::Core::ApplicationDecorator
             when 'ChatQuestUlsk::Message'
               message.text.present? ? message.text : '[файл]'
             when 'BotTelegram::Message'
-              message.user.username
+              message.text
             end
           end)
         end)
