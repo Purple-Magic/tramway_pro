@@ -5,7 +5,7 @@ module ChatQuestUlsk::Detective
     include ChatQuestUlsk::BotAnswers
 
     def scenario(message, game, user, bot)
-      if game.current_position == 1 
+      if game&.current_position == 1 
         message_to_user bot, ChatQuestUlsk::Message.where(quest: game.quest, position: 1).first, message
 
         sleep 5
@@ -84,7 +84,7 @@ module ChatQuestUlsk::Detective
 
           game.finish
         end
-      elsif !game.finished?
+      elsif !game&.finished?
         message_to_user bot, 'Ответ неверный! Я сегодня добрый, так что попробуй ещё раз!', message
       end
     end
