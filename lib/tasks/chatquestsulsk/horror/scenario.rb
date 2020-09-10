@@ -5,7 +5,7 @@ module ChatQuestUlsk::Horror
     include ChatQuestUlsk::BotAnswers
 
     def scenario(message, game, user, bot)
-      if message.text == '/start'
+      if game.current_position == 1 
         message_to_user bot, ChatQuestUlsk::Message.where(quest: game.quest, position: 1).first, message
       elsif game.present? && right_answer?(game, message.text)
         game.update! current_position: game.current_position + 1
