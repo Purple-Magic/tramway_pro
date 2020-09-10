@@ -17,27 +17,42 @@ module ChatQuestUlsk::BotMessage
   def message_to_user(bot, message_obj, message_telegram, reply_markup = nil)
     case message_obj.class.to_s
     when 'String'
-      bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj
+      begin
+        bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj
+      rescue
+      end
     when 'ChatQuestUlsk::Message'
       if message_obj.text.present?
         if reply_markup
-          bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text, reply_markup: reply_markup
+          begin
+            bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text, reply_markup: reply_markup
+          rescue
+          end
         else
-          bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text
+          begin
+            bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text
+          rescue
+          end
         end
       end
       if message_obj.file.present?
         case message_obj.file.file.file[-3..-1]
         when 'jpg'
-          bot.api.send_photo(
-            chat_id: message_telegram.chat.id,
-            photo: Faraday::UploadIO.new(message_obj.file.file.file, 'image/jpeg')
-          )
+          begin
+            bot.api.send_photo(
+              chat_id: message_telegram.chat.id,
+              photo: Faraday::UploadIO.new(message_obj.file.file.file, 'image/jpeg')
+            )
+          rescue
+          end
         when 'mp3'
-          bot.api.send_voice(
-            chat_id: message_telegram.chat.id,
-            voice: Faraday::UploadIO.new(message_obj.file.file.file, 'audio/mpeg')
-          )
+          begin
+            bot.api.send_voice(
+              chat_id: message_telegram.chat.id,
+              voice: Faraday::UploadIO.new(message_obj.file.file.file, 'audio/mpeg')
+            )
+          rescue
+          end
         end
       end
     end
