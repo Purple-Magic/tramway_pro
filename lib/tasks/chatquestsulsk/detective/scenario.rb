@@ -85,7 +85,9 @@ module ChatQuestUlsk::Detective
           game.finish
         end
       elsif !game&.finished?
-        message_to_user bot, 'Ответ неверный! Я сегодня добрый, так что попробуй ещё раз!', message
+        error_message_text = 'Ответ неверный! Я сегодня добрый, так что попробуй ещё раз!'
+        message_to_user bot, error_message_text, message
+        BotTelegram::Message.create! text: error_message_text
       end
     end
   end

@@ -28,7 +28,9 @@ module ChatQuestUlsk::Love
           end
         end
       elsif !game&.finished?
-        message_to_user bot, 'Ответ неверный :( попробуй ещё раз!', message
+        error_message_text = 'Ответ неверный :( попробуй ещё раз!'
+        message_to_user bot, error_message_text, message
+        BotTelegram::Message.create! text: error_message_text
       end
     end
   end
