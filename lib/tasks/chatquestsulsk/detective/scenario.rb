@@ -6,28 +6,28 @@ module ChatQuestUlsk::Detective
 
     def scenario(message, game, user, bot)
       if game&.current_position == 1 
-        message_to_user bot, ChatQuestUlsk::Message.where(quest: game.quest, position: 1).first, message
+        message_to_user bot, ChatQuestUlsk::Message.active.where(quest: game.quest, position: 1).first, message
 
         sleep 5
 
         game.update! current_position: game.current_position + 1
-        next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+        next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
         message_to_user bot, next_message, message
 
         sleep 10
 
         game.update! current_position: game.current_position + 1
-        next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+        next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
         message_to_user bot, next_message, message
 
         sleep 3
 
         game.update! current_position: game.current_position + 1
-        next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+        next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
         message_to_user bot, next_message, message
       elsif game.present? && right_answer?(game, message.text)
         game.update! current_position: game.current_position + 1
-        next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+        next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
         if next_message.present?
           message_to_user bot, next_message, message
         else
@@ -39,47 +39,47 @@ module ChatQuestUlsk::Detective
           sleep 5
 
           game.update! current_position: game.current_position + 1
-          next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+          next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
           message_to_user bot, next_message, message
         when 8
           sleep 10
 
           game.update! current_position: game.current_position + 1
-          next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+          next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
           message_to_user bot, next_message, message
 
           game.update! current_position: game.current_position + 1
-          next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+          next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
           message_to_user bot, next_message, message
 
           sleep 20
 
           game.update! current_position: game.current_position + 1
-          next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+          next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
           message_to_user bot, next_message, message
 
           game.update! current_position: game.current_position + 1
-          next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+          next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
           message_to_user bot, next_message, message
 
           game.update! current_position: game.current_position + 1
-          next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+          next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
           message_to_user bot, next_message, message
         when 16
           game.update! current_position: game.current_position + 1
-          next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+          next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
           message_to_user bot, next_message, message
         when 19
           sleep 30
 
           game.update! current_position: game.current_position + 1
-          next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+          next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
           message_to_user bot, next_message, message
 
           sleep 5
 
           game.update! current_position: game.current_position + 1
-          next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+          next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
           message_to_user bot, next_message, message
 
           game.finish

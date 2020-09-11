@@ -8,7 +8,7 @@ class ChatQuestUlsk::GameDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def title
-    "#{object.quest}: #{user.title} ##{object.id}"
+    "#{object.quest}: #{user.first_name} #{user.last_name} ##{object.id}"
   end
 
   decorate_associations :user
@@ -22,7 +22,11 @@ class ChatQuestUlsk::GameDecorator < Tramway::Core::ApplicationDecorator
             when 'ChatQuestUlsk::Message'
               'Bot'
             when 'BotTelegram::Message'
-              message.user.username
+              if message.user.present?
+                "#{message.user.first_name} #{message.user.last_name}"
+              else
+                'Bot'
+              end
             end
           end)
           concat(content_tag(:td) do

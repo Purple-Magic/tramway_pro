@@ -34,4 +34,6 @@ class ChatQuestUlsk::Game < ApplicationRecord
       transition started: :finished
     end
   end
+
+  search_by :quest, user: [ :first_name, :username, :last_name ]
 end

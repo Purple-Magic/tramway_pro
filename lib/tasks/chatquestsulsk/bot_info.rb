@@ -1,6 +1,6 @@
 module ChatQuestUlsk::BotInfo
   def user_from(message)
-    user = BotTelegram::User.find_or_create_by! username: message.from.username
+    user = BotTelegram::User.active.find_or_create_by! username: message.from.username
     user.update! first_name: message.from.first_name,
                  last_name: message.from.last_name,
                  project_id: Project.find_by(title: 'PurpleMagic').id,
@@ -15,7 +15,7 @@ module ChatQuestUlsk::BotInfo
   end
 
   def chat_from(message)
-    chat = BotTelegram::Chat.find_or_create_by! telegram_id: message.chat.id
+    chat = BotTelegram::Chat.active.find_or_create_by! telegram_id: message.chat.id
     chat.update! title: message.chat.title,
                  chat_type: message.chat.type,
                  project_id: Project.find_by(title: 'PurpleMagic').id,
