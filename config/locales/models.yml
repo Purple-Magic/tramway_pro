@@ -52,3 +52,5 @@ ru:
       genitive: игру
     bot_telegram/user:
       plural: Telegram-пользователи
+    bot_telegram/message:
+      plural: Сообщения
