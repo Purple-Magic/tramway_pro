@@ -22,7 +22,7 @@ module BotListener
           user = user_from message
           chat = chat_from message
           log_message message, user, chat
-          game = ChatQuestUlsk::Game.where(game_state: :started, quest: quest).find_by bot_telegram_user_id: user.id
+          game = ChatQuestUlsk::Game.where(game_state: :started, quest: quest, state: :active).find_by bot_telegram_user_id: user.id
           if message.text == '/start'
             unless game.present?
               game = ChatQuestUlsk::Game.create! bot_telegram_user_id: user.id, quest: quest, current_position: 1, project_id: Project.find_by(title: 'PurpleMagic').id
