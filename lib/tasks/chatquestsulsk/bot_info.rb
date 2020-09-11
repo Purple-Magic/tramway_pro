@@ -1,16 +1,16 @@
 module ChatQuestUlsk::BotInfo
   def user_from(message)
-    user = BotTelegram::User.active.find_or_create_by! username: message.from.username
+    user = BotTelegram::User.active.find_or_create_by! telegram_id: message.from.id
     user.update! first_name: message.from.first_name,
                  last_name: message.from.last_name,
                  project_id: Project.find_by(title: 'PurpleMagic').id,
+                 telegram_id: message.from.id,
                  options: {
                    can_join_groups: message.from.can_join_groups,
                    can_read_all_group_messages: message.from.can_read_all_group_messages,
                    language_code: message.from.language_code,
                    supports_inline_queries: message.from.supports_inline_queries,
-                   is_bot: message.from.is_bot,
-                   telegram_id: message.from.id
+                   is_bot: message.from.is_bot
                  }
     user.reload
   end
