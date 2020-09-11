@@ -9,7 +9,8 @@ module ChatQuestUlsk::BotInfo
                    can_read_all_group_messages: message.from.can_read_all_group_messages,
                    language_code: message.from.language_code,
                    supports_inline_queries: message.from.supports_inline_queries,
-                   is_bot: message.from.is_bot
+                   is_bot: message.from.is_bot,
+                   telegram_id: message.from.id
                  }
     user.reload
   end
