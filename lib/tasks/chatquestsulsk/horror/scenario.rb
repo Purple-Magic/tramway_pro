@@ -6,10 +6,10 @@ module ChatQuestUlsk::Horror
 
     def scenario(message, game, user, bot)
       if  message.text == "/start" && game.present?  
-        message_to_user bot, ChatQuestUlsk::Message.where(quest: game.quest, position: 1).first, message
+        message_to_user bot, ChatQuestUlsk::Message.active.where(quest: game.quest, position: 1).first, message
       elsif game.present? && right_answer?(game, message.text)
         game.update! current_position: game.current_position + 1
-        next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+        next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
         if next_message.present?
           message_to_user bot, next_message, message
         end
@@ -17,7 +17,7 @@ module ChatQuestUlsk::Horror
           sleep 5
 
           game.update! current_position: game.current_position + 1
-          next_message = ChatQuestUlsk::Message.where(quest: game.quest, position: game.current_position).first
+          next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
           message_to_user bot, next_message, message
 
           game.finish
