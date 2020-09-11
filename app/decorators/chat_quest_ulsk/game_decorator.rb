@@ -33,6 +33,9 @@ class ChatQuestUlsk::GameDecorator < Tramway::Core::ApplicationDecorator
               message.text
             end
           end)
+          concat(content_tag(:td) do
+            message.created_at.strftime('%d.%m.%Y %H:%M:%S')
+          end)
         end)
       end
     end
