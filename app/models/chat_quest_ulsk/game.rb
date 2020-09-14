@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChatQuestUlsk::Game < ApplicationRecord
   belongs_to :user, class_name: 'BotTelegram::User', foreign_key: :bot_telegram_user_id
 
@@ -11,7 +13,26 @@ class ChatQuestUlsk::Game < ApplicationRecord
       audit if audit.audited_changes['current_position'].present?
     end.compact
     sorted_collection = (events + user_messages).sort_by { |obj| obj&.created_at }
-    sorted_collection.map do |obj|
+    get_messages_order sorted_collection
+  end
+
+  state_machine :game_state, initial: :started do
+    state :started
+    state :finished
+
+    event :finish do
+      transition started: :finished
+    end
+  end
+
+  search_by :quest, user: %i[first_name username last_name]
+
+  scope :started, -> { where game_state: :started }
+
+  private
+
+  def get_messages_order(events_collection)
+    events_collection.map do |obj|
       case obj.class.to_s
       when 'Audited::Audit'
         case obj.action
@@ -25,15 +46,4 @@ class ChatQuestUlsk::Game < ApplicationRecord
       end
     end.compact
   end
-
-  state_machine :game_state, initial: :started do
-    state :started
-    state :finished
-
-    event :finish do
-      transition started: :finished
-    end
-  end
-
-  search_by :quest, user: %i[first_name username last_name]
 end

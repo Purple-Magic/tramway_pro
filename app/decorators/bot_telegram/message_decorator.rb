@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BotTelegram::MessageDecorator < Tramway::Core::ApplicationDecorator
   decorate_associations :user
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChatQuestUlsk::GameDecorator < Tramway::Core::ApplicationDecorator
   class << self
     delegate :human_game_state_event_name, to: :model_class
@@ -18,24 +20,10 @@ class ChatQuestUlsk::GameDecorator < Tramway::Core::ApplicationDecorator
       object.messages.each do |message|
         concat(content_tag(:tr) do
           concat(content_tag(:td) do
-            case message.class.to_s
-            when 'ChatQuestUlsk::Message'
-              'Bot'
-            when 'BotTelegram::Message'
-              if message.user.present?
-                "#{message.user.first_name} #{message.user.last_name}"
-              else
-                'Bot'
-              end
-            end
+            message_author_cell message
           end)
           concat(content_tag(:td) do
-            case message.class.to_s
-            when 'ChatQuestUlsk::Message'
-              message.text.present? ? message.text : '[файл]'
-            when 'BotTelegram::Message'
-              message.text
-            end
+            message_content_cell message
           end)
           concat(content_tag(:td) do
             message.created_at.strftime('%d.%m.%Y %H:%M:%S')
@@ -49,6 +37,30 @@ class ChatQuestUlsk::GameDecorator < Tramway::Core::ApplicationDecorator
     case event
     when :finish
       :success
+    end
+  end
+
+  private
+
+  def message_author_cell(message)
+    case message.class.to_s
+    when 'ChatQuestUlsk::Message'
+      'Bot'
+    when 'BotTelegram::Message'
+      if message.user.present?
+        "#{message.user.first_name} #{message.user.last_name}"
+      else
+        'Bot'
+      end
+    end
+  end
+
+  def message_content_cell(message)
+    case message.class.to_s
+    when 'ChatQuestUlsk::Message'
+      message.text.present? ? message.text : '[файл]'
+    when 'BotTelegram::Message'
+      message.text
     end
   end
 end

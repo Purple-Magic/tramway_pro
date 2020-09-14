@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChatQuestUlsk::ChapterDecorator < Tramway::Core::ApplicationDecorator
   delegate_attributes :answers
 

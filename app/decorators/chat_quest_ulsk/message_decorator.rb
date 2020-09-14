@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChatQuestUlsk::MessageDecorator < Tramway::Core::ApplicationDecorator
   def title
     "#{object.quest}: #{object.text.split(' ')[0..2].join(' ')}..."

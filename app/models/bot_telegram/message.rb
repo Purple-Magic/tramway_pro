@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BotTelegram::Message < ApplicationRecord
   self.table_name = :bot_telegram_messages
 

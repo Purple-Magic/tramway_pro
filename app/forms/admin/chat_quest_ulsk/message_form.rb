@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::ChatQuestUlsk::MessageForm < Tramway::Core::ApplicationForm
   properties :text, :quest, :position, :project_id, :answer, :file
 
