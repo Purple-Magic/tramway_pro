@@ -3,6 +3,7 @@ module ChatQuestUlsk::Love
     include ChatQuestUlsk::BotInfo
     include ChatQuestUlsk::BotMessage
     include ChatQuestUlsk::BotAnswers
+    include ChatQuestUlsk::Errors
 
     def scenario(message, game, bot)
       if message.text == '/start'
