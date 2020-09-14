@@ -3,10 +3,10 @@ class ChatQuestUlsk::ChapterDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def list_attributes
-      [ :answers ]
+      [:answers]
     end
   end
-  
+
   def title
     "#{object.quest} ##{object.position}"
   end

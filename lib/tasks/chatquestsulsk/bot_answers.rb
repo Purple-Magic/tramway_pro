@@ -12,7 +12,7 @@ module ChatQuestUlsk::BotAnswers
 
   def expecting_chapter_answers(game)
     if game&.current_position.present?
-      ChatQuestUlsk::Chapter.active.find_by(quest: game.quest, position: game.current_position).answers.split(',')
+      ChatQuestUlsk::Chapter.active.find_by(quest: game.quest, position: game.current_position).answers&.split(',')
     end
   end
 

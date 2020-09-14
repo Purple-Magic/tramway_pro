@@ -3,8 +3,9 @@ module ChatQuestUlsk::Detective
     include ChatQuestUlsk::BotInfo
     include ChatQuestUlsk::BotMessage
     include ChatQuestUlsk::BotAnswers
+    include ChatQuestUlsk::Errors
 
-    def scenario(message, game, _user, bot)
+    def scenario(message, game, bot)
       if message.text == '/start'
         chapter = ChatQuestUlsk::Chapter.active.find_by(quest: :detective, position: 1)
         chapter.messages.order(:position).each do |bot_message|
@@ -19,9 +20,9 @@ module ChatQuestUlsk::Detective
           sleep 5
         end
       elsif !game&.finished?
-        error_message_text = 'Ответ неверный! Я сегодня добрый, так что попробуй ещё раз!'
-        message_to_user bot, error_message_text, message
-        BotTelegram::Message.create! text: error_message_text
+        send_error bot, 'Ответ неверный! Я сегодня добрый, так что попробуй ещё раз!', message
+      else
+        send_error bot, 'Бот, возможно, работает не так. Напишите в чат поддержки. Подробности в описании бота', message
       end
     end
   end
