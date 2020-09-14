@@ -4,7 +4,7 @@ module ChatQuestUlsk::Fantasy
     include ChatQuestUlsk::BotMessage
     include ChatQuestUlsk::BotAnswers
 
-    def scenario(message, game, user, bot)
+    def scenario(message, game, _user, bot)
       if message.text == '/start'
         message_to_user bot, ChatQuestUlsk::Message.active.where(quest: game.quest, position: 1).first, message
       elsif game.present? && right_answer?(game, message.text)

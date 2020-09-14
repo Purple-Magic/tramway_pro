@@ -4,8 +4,8 @@ module ChatQuestUlsk::Detective
     include ChatQuestUlsk::BotMessage
     include ChatQuestUlsk::BotAnswers
 
-    def scenario(message, game, user, bot)
-      if game&.current_position == 1 
+    def scenario(message, game, _user, bot)
+      if game&.current_position == 1
         message_to_user bot, ChatQuestUlsk::Message.active.where(quest: game.quest, position: 1).first, message
 
         sleep 5

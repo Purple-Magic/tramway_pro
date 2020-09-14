@@ -54,3 +54,6 @@ ru:
       plural: Telegram-пользователи
     bot_telegram/message:
       plural: Сообщения
+    chat_quest_ulsk/chapter:
+      plural: главы
+      genitive: главу

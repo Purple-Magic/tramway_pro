@@ -4,12 +4,8 @@ module ChatQuestUlsk::Love
     include ChatQuestUlsk::BotMessage
     include ChatQuestUlsk::BotAnswers
 
-    def scenario(message, game, user, bot)
-      start_game_message = 'Поехали!'
-      if message.text == start_game_message && game.present?
-        game.update current_position: 2
-        message_to_user bot, ChatQuestUlsk::Message.active.where(quest: game.quest, position: 2).first, message
-      elsif game&.current_position == 1
+    def scenario(message, game, bot)
+      if game&.current_position == 1
         message_to_user bot,
           ChatQuestUlsk::Message.where(quest: game.quest, position: 1).first,
           message,
