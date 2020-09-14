@@ -1,5 +1,5 @@
 class ChatQuestUlsk::ChapterDecorator < Tramway::Core::ApplicationDecorator
-  decorate_attributes :answers
+  delegate_attributes :answers
 
   class << self
     def list_attributes
