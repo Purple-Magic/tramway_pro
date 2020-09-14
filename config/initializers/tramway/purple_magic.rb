@@ -10,6 +10,7 @@ Tramway::Admin.set_available_models(
   Tramway::User::User,
   ChatQuestUlsk::Message,
   ChatQuestUlsk::Game,
+  ChatQuestUlsk::Chapter,
   BotTelegram::User,
   BotTelegram::Message,
   project: :purple_magic
@@ -18,6 +19,7 @@ Tramway::Admin.set_available_models(
 Tramway::Admin.set_available_models(
   ChatQuestUlsk::Message,
   ChatQuestUlsk::Game,
+  ChatQuestUlsk::Chapter,
   BotTelegram::User,
   BotTelegram::Message,
   role: :partner,
@@ -36,6 +38,7 @@ Tramway::Admin.navbar_structure(
       BotTelegram::User,
       ChatQuestUlsk::Message,
       ChatQuestUlsk::Game,
+      ChatQuestUlsk::Chapter,
       BotTelegram::Message
     ]
   },
