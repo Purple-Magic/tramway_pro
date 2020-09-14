@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module ChatQuestUlsk::BotAnswers
   def expecting_answers(game)
-    if game&.current_position.present?
-      ChatQuestUlsk::Message.active.find_by(quest: game.quest, position: game.current_position).answer.split(',')
-    end
+    return unless game&.current_position.present?
+
+    ChatQuestUlsk::Message.active.find_by(quest: game.quest, position: game.current_position).answer.split(',')
   end
 
   def right_answer?(game, answer)
@@ -11,9 +13,9 @@ module ChatQuestUlsk::BotAnswers
   end
 
   def expecting_chapter_answers(game)
-    if game&.current_position.present?
-      ChatQuestUlsk::Chapter.active.find_by(quest: game.quest, position: game.current_position).answers&.split(',')
-    end
+    return unless game&.current_position.present?
+
+    ChatQuestUlsk::Chapter.active.find_by(quest: game.quest, position: game.current_position).answers&.split(',')
   end
 
   def right_chapter_answer?(game, answer)

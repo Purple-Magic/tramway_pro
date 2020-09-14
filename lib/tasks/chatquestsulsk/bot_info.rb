@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ChatQuestUlsk::BotInfo
   def user_from(message)
     user = BotTelegram::User.active.find_or_create_by! telegram_id: message.from.id

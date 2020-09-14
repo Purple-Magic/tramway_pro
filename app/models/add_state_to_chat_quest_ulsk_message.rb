@@ -1,2 +1,0 @@
-class AddStateToChatQuestUlskMessage < ApplicationRecord
-end

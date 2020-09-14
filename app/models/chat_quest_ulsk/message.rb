@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChatQuestUlsk::Message < ApplicationRecord
   belongs_to :chapter, class_name: 'ChatQuestUlsk::Chapter'
 

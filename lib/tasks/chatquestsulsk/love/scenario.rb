@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ChatQuestUlsk::Love
   class << self
     include ChatQuestUlsk::BotInfo
@@ -9,7 +11,8 @@ module ChatQuestUlsk::Love
       if message.text == '/start'
         chapter = ChatQuestUlsk::Chapter.active.find_by(quest: :love, position: 1)
         chapter.messages.order(:position).each do |bot_message|
-          message_to_user bot, bot_message, message
+          message_to_user bot, bot_message, message,
+            Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: ['Поехали!'], one_time_keyboard: true)
           sleep 5
         end
       elsif game.present? && right_chapter_answer?(game, message.text)

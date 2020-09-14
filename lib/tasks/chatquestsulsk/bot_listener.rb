@@ -22,9 +22,10 @@ module BotListener
           user = user_from message
           chat = chat_from message
           log_message message, user, chat
-          game = ChatQuestUlsk::Game.active.where(game_state: :started, quest: quest, bot_telegram_user_id: user.id).last
+          game = ChatQuestUlsk::Game.active.started.where(quest: quest, bot_telegram_user_id: user.id).last
           if message.text == '/start'
-            game = ChatQuestUlsk::Game.create! bot_telegram_user_id: user.id, quest: quest, current_position: 1, project_id: Project.find_by(title: 'PurpleMagic').id
+            game = ChatQuestUlsk::Game.create! bot_telegram_user_id: user.id, quest: quest, current_position: 1,
+                                               project_id: Project.find_by(title: 'PurpleMagic').id
           end
           "ChatQuestUlsk::#{quest.capitalize}".constantize.scenario(message, game, bot)
         end
