@@ -3,7 +3,7 @@ class BotTelegram::MessageDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def list_attributes
-      [ :created_at ]
+      [:created_at]
     end
   end
 

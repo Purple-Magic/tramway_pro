@@ -1,6 +1,6 @@
 class BotTelegram::UserDecorator < Tramway::Core::ApplicationDecorator
   delegate_attributes :username, :first_name, :last_name
-  
+
   def title
     "#{username.present? ? username : 'No username'}: #{first_name} #{last_name}"
   end
@@ -9,7 +9,7 @@ class BotTelegram::UserDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def show_associations
-      [ :messages ]
+      [:messages]
     end
   end
 end

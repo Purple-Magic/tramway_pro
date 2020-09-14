@@ -2,4 +2,3 @@
 
 require_relative '../bot_listener'
 BotListener.run_bot(quest: :fantasy)
-

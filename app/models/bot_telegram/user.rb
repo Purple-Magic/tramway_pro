@@ -3,5 +3,5 @@ class BotTelegram::User < ApplicationRecord
 
   has_many :messages, class_name: 'BotTelegram::Message'
 
-  search_by :first_name, :username, :last_name 
+  search_by :first_name, :username, :last_name
 end

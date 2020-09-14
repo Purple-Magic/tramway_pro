@@ -2,7 +2,7 @@ class ChatQuestUlsk::Game < ApplicationRecord
   belongs_to :user, class_name: 'BotTelegram::User', foreign_key: :bot_telegram_user_id
 
   def finished_at
-    audits.find_by(action: :update, audited_changes: { 'game_state' => [ 'started', 'finished' ] })&.created_at
+    audits.find_by(action: :update, audited_changes: { 'game_state' => %w[started finished] })&.created_at
   end
 
   def messages
@@ -35,5 +35,5 @@ class ChatQuestUlsk::Game < ApplicationRecord
     end
   end
 
-  search_by :quest, user: [ :first_name, :username, :last_name ]
+  search_by :quest, user: %i[first_name username last_name]
 end

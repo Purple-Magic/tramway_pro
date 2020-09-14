@@ -36,7 +36,7 @@ Tramway::Admin.navbar_structure(
       BotTelegram::User,
       ChatQuestUlsk::Message,
       ChatQuestUlsk::Game,
-      BotTelegram::Message,
+      BotTelegram::Message
     ]
   },
   Tramway::User::User,

@@ -7,6 +7,6 @@ module ChatQuestUlsk::BotAnswers
 
   def right_answer?(game, answer)
     answers = expecting_answers(game)&.map(&:downcase)
-    answer&.present? && answers&.any? && answers.include?(answer&.downcase)
+    answer&.present? && answers&.any? && answers&.include?(answer&.downcase)
   end
 end

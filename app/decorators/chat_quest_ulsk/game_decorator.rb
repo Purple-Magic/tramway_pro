@@ -3,7 +3,7 @@ class ChatQuestUlsk::GameDecorator < Tramway::Core::ApplicationDecorator
     delegate :human_game_state_event_name, to: :model_class
 
     def show_attributes
-      [ :chat ]
+      [:chat]
     end
   end
 
