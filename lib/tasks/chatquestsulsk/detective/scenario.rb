@@ -6,25 +6,10 @@ module ChatQuestUlsk::Detective
 
     def scenario(message, game, _user, bot)
       if game&.current_position == 1
-        message_to_user bot, ChatQuestUlsk::Message.active.where(quest: game.quest, position: 1).first, message
-
-        sleep 5
-
-        game.update! current_position: game.current_position + 1
-        next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
-        message_to_user bot, next_message, message
-
-        sleep 10
-
-        game.update! current_position: game.current_position + 1
-        next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
-        message_to_user bot, next_message, message
-
-        sleep 3
-
-        game.update! current_position: game.current_position + 1
-        next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
-        message_to_user bot, next_message, message
+        chapter = ChatQuestUlsk::Chapter.active.find_by(quest: :detective, position: 1)
+        chapter.messages.order(:position).each do |bot_message|
+          message_to_user bot, bot_message, message
+        end
       elsif game.present? && right_answer?(game, message.text)
         game.update! current_position: game.current_position + 1
         next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
