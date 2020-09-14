@@ -3,27 +3,26 @@ module ChatQuestUlsk::Horror
     include ChatQuestUlsk::BotInfo
     include ChatQuestUlsk::BotMessage
     include ChatQuestUlsk::BotAnswers
+    include ChatQuestUlsk::Errors
 
     def scenario(message, game, bot)
-      if message.text == '/start' && game.present?
-        message_to_user bot, ChatQuestUlsk::Message.active.where(quest: game.quest, position: 1).first, message
-      elsif game.present? && right_answer?(game, message.text)
-        game.update! current_position: game.current_position + 1
-        next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
-        message_to_user bot, next_message, message if next_message.present?
-        if game.current_position == 13
+      if message.text == '/start'
+        chapter = ChatQuestUlsk::Chapter.active.find_by(quest: :horror, position: 1)
+        chapter.messages.order(:position).each do |bot_message|
+          message_to_user bot, bot_message, message
           sleep 5
-
-          game.update! current_position: game.current_position + 1
-          next_message = ChatQuestUlsk::Message.active.where(quest: game.quest, position: game.current_position).first
-          message_to_user bot, next_message, message
-
-          game.finish
+        end
+      elsif game.present? && right_chapter_answer?(game, message.text)
+        game.update! current_position: game.current_position + 1
+        chapter = ChatQuestUlsk::Chapter.active.find_by(quest: :horror, position: game.current_position)
+        chapter.messages.order(:position).each do |bot_message|
+          message_to_user bot, bot_message, message
+          sleep 5
         end
       elsif !game&.finished?
-        error_message_text = 'Ответ неверный! Попробуй ещё раз'
-        message_to_user bot, error_message_text, message
-        BotTelegram::Message.create! text: error_message_text
+        send_error bot, 'Ответ неверный!', message
+      else
+        send_error bot, 'Бот, возможно, работает не так. Напишите в чат поддержки. Подробности в описании бота', message
       end
     end
   end
