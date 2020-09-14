@@ -4,6 +4,7 @@ require 'telegram/bot'
 require_relative './bot_info'
 require_relative './bot_message'
 require_relative './bot_answers'
+require_relative './bot_errors'
 require_relative './love/scenario'
 require_relative './detective/scenario'
 require_relative './fantasy/scenario'
@@ -25,7 +26,7 @@ module BotListener
           if message.text == '/start'
             game = ChatQuestUlsk::Game.create! bot_telegram_user_id: user.id, quest: quest, current_position: 1, project_id: Project.find_by(title: 'PurpleMagic').id
           end
-          "ChatQuestUlsk::#{quest.capitalize}".constantize.scenario(message, game, user, bot)
+          "ChatQuestUlsk::#{quest.capitalize}".constantize.scenario(message, game, bot)
         end
       end
     end

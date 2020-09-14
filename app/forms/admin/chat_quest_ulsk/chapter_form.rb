@@ -4,8 +4,8 @@ class Admin::ChatQuestUlsk::ChapterForm < Tramway::Core::ApplicationForm
   def initialize(object)
     super(object).tap do
       form_properties quest: :default,
-        position: :numeric,
-        answers: :string
+                      position: :numeric,
+                      answers: :string
     end
   end
 end
