@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ChatQuestUlsk::Detective
   class << self
     include ChatQuestUlsk::BotInfo

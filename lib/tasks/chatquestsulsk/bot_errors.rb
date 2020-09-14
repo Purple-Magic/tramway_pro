@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ChatQuestUlsk
   module Errors
     def send_error(bot, error_message, message_obj)

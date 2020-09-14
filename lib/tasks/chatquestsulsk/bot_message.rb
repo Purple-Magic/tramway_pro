@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ChatQuestUlsk::BotMessage
   def log_message(message, user, chat)
     BotTelegram::Message.create! text: message.text, user_id: user.id, chat_id: chat.id,

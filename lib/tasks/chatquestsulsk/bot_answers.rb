@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ChatQuestUlsk::BotAnswers
   def expecting_answers(game)
     if game&.current_position.present?
