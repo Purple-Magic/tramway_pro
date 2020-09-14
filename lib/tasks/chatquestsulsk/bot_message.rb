@@ -2,7 +2,8 @@
 
 module ChatQuestUlsk::BotMessage
   def log_message(message, user, chat)
-    telegram_message_attributes = YAML.safe_load('./bot_message_attributes.yml')['telegram_message']['attribute']
+    file_path = "#{Rails.root}/lib/tasks/chatquestsulsk/bot_message_attributes.yml"
+    telegram_message_attributes = YAML.load_file(file_path)['telegram_message']['attributes']
     BotTelegram::Message.create! text: message.text, user_id: user.id, chat_id: chat.id,
                                  project_id: Project.find_by(title: 'PurpleMagic').id,
                                  options: (telegram_message_attributes.reduce({}) do |hash, attribute|

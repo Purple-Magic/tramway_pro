@@ -26,7 +26,9 @@ telegram_message:
     - group_chat_created
     - invoice
     - left_chat_member
-    - location media_group_id message_id
+    - location
+    - media_group_id
+    - message_id
     - migrate_from_chat_id
     - migrate_to_chat_id
     - new_chat_members
