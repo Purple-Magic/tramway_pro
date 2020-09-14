@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(version: 20200914211922) do
     t.text "answer"
     t.text "file"
     t.text "quest"
-    t.text "texts", array: true
     t.integer "chapter_id"
   end
 
