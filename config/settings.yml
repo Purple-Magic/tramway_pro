@@ -1,5 +1,4 @@
 development:
-  sportschool_ulsk: sportschool-ulsk.test
   it_way: it-way.test
   kalashnikovisme: kalashnikovisme.test
   tramway_dev: tramway.test
@@ -9,7 +8,6 @@ development:
   gorodsad73: gorodsad73.test
   dobry_sosed: dobry-sosed.test
   engines:
-    'sportschool-ulsk.test': sport_school
     'it-way.test': conference
     'kalashnikovisme.test': site
   application_class:
@@ -35,7 +33,6 @@ development:
 
 
 production:
-  sportschool_ulsk: sportschool-ulsk.ru
   it_way: it-way.pro
   kalashnikovisme: kalashnikovisme.ru
   engineervol: engineervol.ru
@@ -44,7 +41,6 @@ production:
   purple_magic: purple-magic.com
   gorodsad73: gorodsad73.ru
   engines:
-    'sportschool-ulsk.ru': sport_school
     'it-way.pro': conference
     'kalashnikovisme.ru': site
   application_class:
@@ -65,7 +61,6 @@ production:
       public_name: PurpleMagic
 
 test:
-  sportschool_ulsk: sportschool-ulsk.test
   it_way: it-way.test
   kalashnikovisme: kalashnikovisme.test
   tramway_dev: tramway.test
@@ -74,7 +69,6 @@ test:
   purple_magic: purple-magic.test
   gorodsad73: gorodsad73.test
   engines:
-    'sportschool-ulsk.test': sport_school
     'it-way.test': conference
     'kalashnikovisme.test': site
   application_class:
