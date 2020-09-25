@@ -15,19 +15,11 @@ module ProjectsHelper
     Project.where(url: 'it-way.test').first.id
   end
 
-  def sportschool_ulsk_id
-    Project.where(url: 'sportschool-ulsk.test').first.id
-  end
-
   def it_way_host
     'it-way.test'
   end
 
-  def sportschool_ulsk_host
-    'sportschool-ulsk.test'
-  end
-
   def projects_names
-    %i[it_way sportschool_ulsk]
+    %i[it_way]
   end
 end
