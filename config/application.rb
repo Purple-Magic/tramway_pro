@@ -13,7 +13,6 @@ require 'action_view/railtie'
 require 'action_cable/engine'
 require 'sprockets/railtie'
 require_relative '../lib/middleware/multi_project_configuration_middleware/conference'
-require_relative '../lib/middleware/multi_project_configuration_middleware/sport_school'
 require_relative '../lib/middleware/multi_project_configuration_middleware/admin_middleware'
 require_relative '../lib/middleware/multi_project_configuration_middleware/landing'
 require_relative '../lib/middleware/multi_project_configuration_middleware/event'
@@ -37,7 +36,6 @@ module TramwayPro
     config.autoload_paths += ["#{config.root}/app/models/ckeditor"]
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     config.middleware.use ::MultiProjectConfigurationMiddleware::Conference
-    config.middleware.use ::MultiProjectConfigurationMiddleware::SportSchool
     config.middleware.use ::MultiProjectConfigurationMiddleware::AdminMiddleware
     config.middleware.use ::MultiProjectConfigurationMiddleware::Landing
     config.middleware.use ::MultiProjectConfigurationMiddleware::Event

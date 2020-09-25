@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200914211922) do
+ActiveRecord::Schema.define(version: 20200925194434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,14 +102,6 @@ ActiveRecord::Schema.define(version: 20200914211922) do
     t.text "file"
     t.text "quest"
     t.integer "chapter_id"
-  end
-
-  create_table "chatquestulsk_games", force: :cascade do |t|
-    t.text "area"
-    t.integer "bot_telegram_user_id"
-    t.text "state"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -439,17 +431,6 @@ ActiveRecord::Schema.define(version: 20200914211922) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tramway_sport_school_documents", force: :cascade do |t|
-    t.text "title"
-    t.text "file"
-    t.text "state", default: "active"
-    t.text "view_state", default: "hidden"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "document_type"
-    t.integer "project_id", default: 1
-  end
-
   create_table "tramway_sport_school_institutions", force: :cascade do |t|
     t.text "title"
     t.text "tagline"
@@ -467,41 +448,6 @@ ActiveRecord::Schema.define(version: 20200914211922) do
     t.text "main_image"
     t.text "favicon"
     t.text "public_name"
-  end
-
-  create_table "tramway_sport_school_kind_sports", force: :cascade do |t|
-    t.text "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "state", default: "active"
-    t.text "view_state", default: "hidden"
-    t.text "image"
-    t.text "description"
-  end
-
-  create_table "tramway_sport_school_organizations", force: :cascade do |t|
-    t.text "title"
-    t.text "description"
-    t.text "logo"
-    t.text "organization_type", default: "required"
-    t.text "link"
-    t.text "state", default: "active"
-    t.text "view_state", default: "hidden"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tramway_sport_school_trainers", force: :cascade do |t|
-    t.text "first_name"
-    t.text "last_name"
-    t.text "patronymic"
-    t.text "state", default: "active"
-    t.text "view_state", default: "hidden"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "degree"
-    t.text "photo"
-    t.text "description"
   end
 
   create_table "tramway_user_users", force: :cascade do |t|
