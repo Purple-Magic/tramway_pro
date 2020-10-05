@@ -66,7 +66,7 @@
         chdir: "{{ release_path }}"
 
     - name: NPM install
-      shell: "cd {{ release_path }} && npm install"
+      shell: "cd {{ release_path }} && /bin/bash -ilc 'npm install'"
       args:
         chdir: "{{ release_path }}"
 
