@@ -2,26 +2,22 @@
 
 require 'rails_helper'
 
-describe 'Edit event page' do
+describe 'Edit podcast page' do
   before { move_host_to it_way_host }
-  before { create :event, project_id: it_way_id }
+  before { create :podcast, project_id: it_way_id }
 
-  it 'should show edit event page' do
+  it 'should show edit podcast page' do
     visit '/admin'
     fill_in 'Email', with: "admin#{it_way_id}@email.com"
     fill_in 'Пароль', with: '123456'
     click_on 'Войти', class: 'btn-success'
 
-    last_event = Tramway::Event::Event.active.last
-    click_on_dropdown 'Организация мероприятий'
-    click_on 'Мероприятия'
-    click_on last_event.title
+    last_podcast = Podcast.active.last
+    click_on 'Подкасты'
+    click_on last_podcast.title
     find('.btn.btn-warning', match: :first).click
 
-    expect(page).to have_field 'record[title]', with: last_event.title
-    expect(page).to have_field 'record[begin_date]', with: last_event.begin_date
-    expect(page).to have_field 'record[end_date]', with: last_event.end_date
-    expect(page).to have_field 'record[request_collecting_begin_date]', with: last_event.request_collecting_begin_date
-    expect(page).to have_field 'record[request_collecting_end_date]', with: last_event.request_collecting_end_date
+    expect(page).to have_field 'record[title]', with: last_podcast.title
+    expect(page).to have_field 'record[feed_url]', with: last_podcast.feed_url
   end
 end
