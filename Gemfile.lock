@@ -32,6 +32,12 @@ GIT
       rails (>= 3.2.8)
 
 GIT
+  remote: https://github.com/purple-magic/capybara_helpers.git
+  revision: 04dbac88e02ecc598f79a76ff1bd281e6868acae
+  specs:
+    capybara_helpers (0.1.0)
+
+GIT
   remote: https://github.com/seuros/state_machine.git
   revision: 95ba53f03e5657a5873343c2b1dc6a148ea3542e
   specs:
@@ -581,6 +587,7 @@ DEPENDENCIES
   bootstrap-kaminari-views!
   byebug
   capybara (= 3.31)
+  capybara_helpers!
   carrierwave
   ckeditor (= 4.2.4)
   clipboard-rails

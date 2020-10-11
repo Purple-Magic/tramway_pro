@@ -113,6 +113,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'redactor-rails', github: 'glyph-fr/redactor-rails'
 
 group :test do
+  gem 'capybara_helpers', github: 'purple-magic/capybara_helpers'
   gem 'dotenv-rails'
   gem 'factory_bot_rails', '5.1.1'
   gem 'faker'
