@@ -7,6 +7,7 @@ ru:
       listai/book: Книга
       listai/page: Страница
       project: Проект
+      podcast: Подкаст
     attributes:
       word:
         main: Определение
@@ -57,3 +58,6 @@ ru:
     chat_quest_ulsk/chapter:
       plural: главы
       genitive: главу
+    podcast:
+      plural: подкасты
+      genitive: подкаст

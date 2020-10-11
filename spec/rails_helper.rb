@@ -2,12 +2,12 @@
 
 require 'spec_helper'
 require 'factory_bot'
+require 'capybara_helpers'
 require 'support/projects_helper'
 require 'support/integration_helpers'
 require 'support/errors_helper'
 require 'support/navbar_helper'
 require 'support/tramway_helpers'
-require 'support/capybara_helpers'
 require 'json_api_test_helpers'
 # require 'web_driver_helper'
 require 'rake'
