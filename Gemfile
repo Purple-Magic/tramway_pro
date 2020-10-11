@@ -39,6 +39,9 @@ gem 'tramway-user', '2.1.3.3'
 # gem 'tramway-site', path: '../tramway-dev/tramway-site'
 # gem 'tramway-user', path: '../tramway-dev/tramway-user'
 
+
+gem 'rss'
+
 gem 'actionview', '>= 5.1.6.2'
 gem 'active_model_serializers', '0.10.5' # 0.10.6 breaks the returned json, need to investigate
 gem 'audited', '>= 4.8.0'

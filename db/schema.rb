@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200925194434) do
+ActiveRecord::Schema.define(version: 20201011033440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,14 @@ ActiveRecord::Schema.define(version: 20200925194434) do
     t.integer "chapter_id"
   end
 
+  create_table "chatquestulsk_games", force: :cascade do |t|
+    t.text "area"
+    t.integer "bot_telegram_user_id"
+    t.text "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
@@ -125,6 +133,19 @@ ActiveRecord::Schema.define(version: 20200925194434) do
     t.text "consignment"
     t.text "state"
     t.integer "project_id"
+  end
+
+  create_table "episodes", force: :cascade do |t|
+    t.integer "podcast_id"
+    t.text "title"
+    t.integer "number"
+    t.integer "season"
+    t.text "description"
+    t.datetime "published_at"
+    t.text "image"
+    t.text "explicit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "it_way_certificates", force: :cascade do |t|
@@ -153,6 +174,13 @@ ActiveRecord::Schema.define(version: 20200925194434) do
     t.text "state"
     t.integer "book_id"
     t.integer "project_id"
+  end
+
+  create_table "podcasts", force: :cascade do |t|
+    t.text "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "feed_url"
   end
 
   create_table "projects", force: :cascade do |t|

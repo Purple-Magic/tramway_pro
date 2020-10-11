@@ -390,6 +390,8 @@ GEM
       rspec-mocks (~> 3.9.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.3)
+    rss (0.2.9)
+      rexml
     rubocop (0.89.1)
       parallel (~> 1.10)
       parser (>= 2.7.1.1)
@@ -623,6 +625,7 @@ DEPENDENCIES
   rmagick
   rspec-json_expectations
   rspec-rails (~> 3.5)
+  rss
   rubocop
   russia_regions (= 0.0.6)
   russian
