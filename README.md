@@ -114,3 +114,11 @@ make deploy
 * [How to add project](https://github.com/Purple-Magic/tramway_pro/blob/develop/docs/add_project.md)
 * [How to remove project](https://github.com/Purple-Magic/tramway_pro/blob/develop/docs/remove_project.md)
 * [Update ruby version](https://github.com/Purple-Magic/tramway_pro/blob/develop/docs/update-ruby.md)
+
+## Troubleshooting
+
+### Middlewares issue
+
+You have this `ActiveSupport::Concern::MultipleIncludedBlocks (Cannot define multiple 'included' blocks for a Concern)`
+It means that you should rename your middleware file and class to another. Looks like it's some kind of constant name conflict
+.

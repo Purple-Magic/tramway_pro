@@ -55,3 +55,5 @@ module PodcastsDownload
     end
   end
 end
+
+PodcastsDownload::Process.run
