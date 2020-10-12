@@ -12,7 +12,6 @@ module MultiProjectConfigurationMiddleware
       #::Admin::EpisodeForm.include MultiProjectCallbacks::EpisodeCallbacks::EpisodeForm
       ::Episode.include MultiProjectCallbacks::EpisodeCallbacks::EpisodeConcern
 
-
       @app.call(env)
     end
   end
