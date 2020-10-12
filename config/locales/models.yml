@@ -8,6 +8,7 @@ ru:
       listai/page: Страница
       project: Проект
       podcast: Подкаст
+      episode: Эпизод
     attributes:
       word:
         main: Определение
@@ -61,3 +62,6 @@ ru:
     podcast:
       plural: подкасты
       genitive: подкаст
+    episode:
+      plural: эпизоды
+      genitive: эпизод
