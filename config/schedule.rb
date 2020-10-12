@@ -1,3 +1,3 @@
 every 1.minute do
-  runner 'PodcastsDownload::Process.run'
+  command "bundle exec rails r #{Rails.root}/lib/podcasts_download/process.rb"
 end

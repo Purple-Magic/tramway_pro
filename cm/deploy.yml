@@ -81,7 +81,7 @@
         chdir: "{{ release_path }}"
 
     - name: Update crontab
-      shell: "/bin/bash -lic '/usr/share/rvm/bin/rvm {{ ruby_version }} do whenever --update-crontab'"
+      shell: "/bin/bash -lic '/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec whenever --update-crontab'"
       args:
         chdir: "{{ release_path }}"
 
