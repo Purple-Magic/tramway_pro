@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201011035104) do
+ActiveRecord::Schema.define(version: 20201012003748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 20201011035104) do
     t.datetime "updated_at", null: false
     t.text "state"
     t.integer "project_id"
+    t.uuid "guid"
   end
 
   create_table "it_way_certificates", force: :cascade do |t|
