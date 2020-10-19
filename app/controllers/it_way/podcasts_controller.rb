@@ -1,4 +1,8 @@
-class ItWay::PodcastsController < ApplicationController
-  def index
+class ItWay::PodcastsController < Tramway::Core::ApplicationController
+  layout 'tramway/landing/application'
+  before_action :application
+
+  def show
+    @episodes = ::EpisodeBlockDecorator.decorate Episode.active.order(published_at: :desc)
   end
 end

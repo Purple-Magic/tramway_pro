@@ -4,6 +4,8 @@ require 'open-uri'
 module PodcastsDownload
   module Process
     class << self
+      IT_WAY_PROJECT_ID = 2
+
       def item_attribute(item, attribute_name)
         attribute_name = case attribute_name
                          when :number
@@ -36,7 +38,7 @@ module PodcastsDownload
             end.compact.reverse
             items.each do |item|
               guid = item_attribute item, 'guid'
-              episode = Episode.find_or_initialize_by guid: guid
+              episode = Episode.find_or_initialize_by guid: guid, project_id: IT_WAY_PROJECT_ID
               Episode::EPISODE_ATTRIBUTES.each do |attr|
                 value = item_attribute item, attr
                 if episode.id.present?
