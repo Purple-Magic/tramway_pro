@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     mount Tramway::Api::Engine, at: '/api'
     scope module: :it_way do
       resources :certificates, only: :show
+      resources :podcasts, only: :show
     end
   end
 
