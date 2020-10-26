@@ -1,8 +1,11 @@
+require_relative '../bot_telegram/messages_manager'
+require_relative '../bot_telegram/info'
+
 module RSM
   module ProjectOffice
     class << self
-      include BotTelegram::MessagesManager
-      include BotTelegram::Info
+      include ::BotTelegram::MessagesManager
+      include ::BotTelegram::Info
 
       def scenario(message_from_telegram, bot)
         bot_record = Bot.find_by name: 'Проектный офис РСМ'

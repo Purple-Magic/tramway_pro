@@ -23,4 +23,4 @@ run_fantasy_chat_quest_ulsk_bot:
 run_horror_chat_quest_ulsk_bot:
 	rails r lib/tasks/chatquestsulsk/horror/bot_listener.rb
 run_rsm_project_office_bot:
-	rails r lib/tasks/rsm/bot_listener.rb
+	bundle exec rails r lib/tasks/rsm/bot_listener.rb
