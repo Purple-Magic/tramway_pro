@@ -15,10 +15,14 @@ module BotTelegram::MessagesManager
     case message_obj.class.to_s
     when 'String'
       bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj
-    when 'BotTelegram::MessageBuilder'
+    when 'BotTelegram::Scenario::Step'
       if message_obj.text.present?
-        if message_obj.reply_markup
-          bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text, reply_markup: message_obj.reply_markup
+        if message_obj.reply_markup.present?
+          bot.api.send_message(
+            chat_id: message_telegram.chat.id,
+            text: message_obj&.text,
+            reply_markup: Telegram::Bot::Types::ReplyKeyboardMarkup.new(**message_obj.reply_markup)
+          )
         else
           bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text
         end

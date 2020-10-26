@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201012003748) do
+ActiveRecord::Schema.define(version: 20201026132003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,26 @@ ActiveRecord::Schema.define(version: 20201012003748) do
     t.text "state"
   end
 
+  create_table "bot_telegram_scenario_progress_records", force: :cascade do |t|
+    t.integer "bot_telegram_user_id"
+    t.integer "bot_telegram_scenario_step_id"
+    t.text "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "state"
+  end
+
+  create_table "bot_telegram_scenario_steps", force: :cascade do |t|
+    t.text "name"
+    t.text "text"
+    t.jsonb "reply_markup"
+    t.jsonb "options"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "state"
+    t.integer "bot_id"
+  end
+
   create_table "bot_telegram_users", force: :cascade do |t|
     t.text "first_name"
     t.text "last_name"
@@ -70,6 +90,13 @@ ActiveRecord::Schema.define(version: 20201012003748) do
     t.integer "project_id"
     t.text "state"
     t.text "telegram_id"
+  end
+
+  create_table "bots", force: :cascade do |t|
+    t.text "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "state"
   end
 
   create_table "chat_quest_ulsk_chapters", force: :cascade do |t|

@@ -2,17 +2,22 @@ module RSM
   module ProjectOffice
     class << self
       include BotTelegram::MessagesManager
+      include BotTelegram::Info
 
       def scenario(message_from_telegram, bot)
         if message_from_telegram.text == '/start'
-          file_path = "#{Rails.root}/lib/tasks/rsm/messages.yml"
-          messages = YAML.load_file(file_path)['messages'].with_indifferent_access
-          message_to_user bot, messages[:start], message_from_telegram
+          message = BotTelegram::Scenario::Step.find_by name: :start
+          message_to_user bot, message.text, message_from_telegram
 
           sleep 3
 
-          message = BotTelegram::MessageBuilder.new messages[:do_you_have_project]
+          message = BotTelegram::Scenario::Step.find_by name: :do_you_have_project
           message_to_user bot, message, message_from_telegram
+          BotTelegram::Scenario::ProgressRecord.create!(
+            bot_telegram_user_id: user_from(message_from_telegram),
+            bot_telegram_scenario_step_id: message
+          )
+        else
         end
       end
     end

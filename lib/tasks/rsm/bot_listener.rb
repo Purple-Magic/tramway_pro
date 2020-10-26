@@ -2,7 +2,6 @@
 
 require 'telegram/bot'
 require_relative './../bot_telegram/info'
-require_relative './../bot_telegram/message_builder'
 require_relative './project_office'
 
 module RSM

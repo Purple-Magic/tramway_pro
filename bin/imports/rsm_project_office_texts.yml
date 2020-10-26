@@ -1,0 +1,32 @@
+messages:
+  - name: start
+    text: "Привет друг! Ты попал в чат-бот Проектного офиса РСМ - это сообщество экпертов социального проектирования, которые готовы тебе оказать помощь в работе с проектами. Чтобы понять, чем мы можем тебе помочь, ответь на следующие вопросы)"
+  - name: do_you_have_project
+    text: 'У тебя есть проект?'
+    reply_markup: 
+      one_time_keyboard: true
+      keyboard:
+        - Да
+        - Нет
+    options:
+      Да: project_is_ready_and_you_want_to_send_it
+      Нет: do_you_have_idea
+  - name: do_you_have_idea
+    text: 'У тебя есть проектная идея?'
+    reply_markup: 
+      one_time_keyboard: true
+      keyboard:
+        - Да
+        - Нет
+    options:
+      Да: do_you_want_to_have_advices
+      Нет: cell_6
+  - name: do_you_want_to_have_advices
+    text: 'Хотите получить консультацию по проектной идее?'
+    reply_markup: 
+      one_time_keyboard: true
+      keyboard:
+        - Да
+        - Нет
+  - name: cell_6
+    text: 'Мы собрали для тебя папку методических материалов по социальному проектированию, это поможет тебе погрузиться в тему и проработать в будущем свою идею https://drive.google.com/drive/folders/1xSNW9RYBwKY--nxSmHwgalEXbNYBwFns?usp=sharing'
