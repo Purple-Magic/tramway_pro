@@ -114,6 +114,7 @@ make deploy
 * [How to add project](https://github.com/Purple-Magic/tramway_pro/blob/develop/docs/add_project.md)
 * [How to remove project](https://github.com/Purple-Magic/tramway_pro/blob/develop/docs/remove_project.md)
 * [Update ruby version](https://github.com/Purple-Magic/tramway_pro/blob/develop/docs/update-ruby.md)
+* [How to change favicon on IT Way](https://github.com/Purple-Magic/tramway_pro/blob/develop/docs/change_favicon_on_it_way.md)
 
 ## Troubleshooting
 
