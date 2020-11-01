@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201101073513) do
+ActiveRecord::Schema.define(version: 20201101075301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20201101073513) do
     t.text "state"
     t.integer "bot_id"
     t.text "file"
+    t.integer "project_id"
   end
 
   create_table "bot_telegram_users", force: :cascade do |t|
