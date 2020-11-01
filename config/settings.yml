@@ -30,6 +30,7 @@ development:
       name: purple_magic
       title: PurpleMagic
       public_name: PurpleMagic
+      favicon: '/purple-magic.ico'
 
 
 production:

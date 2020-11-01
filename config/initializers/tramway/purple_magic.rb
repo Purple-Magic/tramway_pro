@@ -29,6 +29,7 @@ Tramway::Admin.set_available_models(
 )
 
 Tramway::Admin.navbar_structure(
+  PurpleMagic,
   {
     landing: [
       Tramway::Page::Page,
