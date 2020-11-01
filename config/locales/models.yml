@@ -65,3 +65,7 @@ ru:
     episode:
       plural: эпизоды
       genitive: эпизод
+    bot_telegram/scenario/step:
+      plural: Сообщения бота
+    bot_telegram/scenario/progress_record:
+      plural: Прогресс пользователей

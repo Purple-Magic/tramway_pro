@@ -5,6 +5,7 @@ module BotTelegram::Info
     user = BotTelegram::User.active.find_or_create_by! telegram_id: message.from.id
     user.update! first_name: message.from.first_name,
                  last_name: message.from.last_name,
+                 username: message.from.username,
                  project_id: Project.find_by(title: 'PurpleMagic').id,
                  telegram_id: message.from.id,
                  options: {
