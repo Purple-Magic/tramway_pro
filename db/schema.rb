@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201026132003) do
+ActiveRecord::Schema.define(version: 20201101075301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20201026132003) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "state"
+    t.integer "project_id"
   end
 
   create_table "bot_telegram_scenario_steps", force: :cascade do |t|
@@ -78,6 +79,8 @@ ActiveRecord::Schema.define(version: 20201026132003) do
     t.datetime "updated_at", null: false
     t.text "state"
     t.integer "bot_id"
+    t.text "file"
+    t.integer "project_id"
   end
 
   create_table "bot_telegram_users", force: :cascade do |t|
@@ -238,6 +241,7 @@ ActiveRecord::Schema.define(version: 20201026132003) do
     t.datetime "updated_at", null: false
     t.text "main_image"
     t.text "title"
+    t.integer "project_id"
   end
 
   create_table "tramway_conference_unities", force: :cascade do |t|

@@ -8,4 +8,6 @@ class BotTelegram::User < ApplicationRecord
   has_many :steps, class_name: 'BotTelegram::Scenario::Step', through: :progress_records
 
   search_by :first_name, :username, :last_name
+
+  scope :partner_scope, -> { all }
 end

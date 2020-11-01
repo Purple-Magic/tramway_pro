@@ -65,3 +65,10 @@ ru:
     episode:
       plural: эпизоды
       genitive: эпизод
+    bot_telegram/scenario/step:
+      plural: Сценарий бота
+      genitive: пункт сценария
+    bot_telegram/scenario/progress_record:
+      plural: Прогресс пользователей
+    purple_magic:
+      genitive: Purple Magic

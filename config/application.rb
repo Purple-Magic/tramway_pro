@@ -25,6 +25,8 @@ require_relative '../lib/middleware/multi_project_configuration_middleware/sites
 require_relative '../lib/middleware/multi_project_configuration_middleware/listai_book'
 require_relative '../lib/middleware/multi_project_configuration_middleware/listai_page'
 require_relative '../lib/middleware/multi_project_configuration_middleware/podcasts'
+require_relative '../lib/middleware/multi_project_configuration_middleware/purple_magic_callback'
+require_relative '../lib/middleware/multi_project_configuration_middleware/bot_middleware'
 
 Bundler.require(*Rails.groups)
 
@@ -48,6 +50,8 @@ module TramwayPro
     config.middleware.use ::MultiProjectConfigurationMiddleware::ListaiBook
     config.middleware.use ::MultiProjectConfigurationMiddleware::ListaiPage
     config.middleware.use ::MultiProjectConfigurationMiddleware::Podcasts
+    config.middleware.use ::MultiProjectConfigurationMiddleware::PurpleMagicCallback
+    config.middleware.use ::MultiProjectConfigurationMiddleware::BotMiddleware
     config.middleware.use ::Middleware::MultiProjectConfigurationMiddleware::Sites
   end
 end
