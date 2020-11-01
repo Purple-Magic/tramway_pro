@@ -19,11 +19,13 @@ Tramway::Admin.set_available_models(
 )
 
 Tramway::Admin.set_available_models(
-  ChatQuestUlsk::Message,
-  ChatQuestUlsk::Game,
-  ChatQuestUlsk::Chapter,
+#  ChatQuestUlsk::Message,
+#  ChatQuestUlsk::Game,
+#  ChatQuestUlsk::Chapter,
   BotTelegram::User,
-  BotTelegram::Message,
+  BotTelegram::Scenario::Step,
+  BotTelegram::Scenario::ProgressRecord,
+#  BotTelegram::Message,
   role: :partner,
   project: :purple_magic
 )
