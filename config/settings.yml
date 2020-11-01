@@ -60,6 +60,7 @@ production:
       name: purple_magic
       title: PurpleMagic
       public_name: PurpleMagic
+      favicon: '/purple-magic.ico'
 
 test:
   it_way: it-way.test
