@@ -6,6 +6,6 @@ class BotTelegram::Scenario::Step < ApplicationRecord
   scope :partner_scope, -> { all }
 
   def continue?
-    options.nil?
+    options.present?
   end
 end
