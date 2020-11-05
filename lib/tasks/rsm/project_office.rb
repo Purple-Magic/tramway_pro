@@ -26,11 +26,15 @@ module RSM
           current_step = user.progress_records.joins(:step).where('bot_telegram_user_id = ? AND bot_telegram_scenario_steps.bot_id = ?', user.id, bot_record.id).last.step
           if current_step.continue?
             next_step = BotTelegram::Scenario::Step.find_by name: current_step.options[message_from_telegram.text]
-            message_to_user bot, next_step, message_from_telegram
-            BotTelegram::Scenario::ProgressRecord.create!(
-              bot_telegram_user_id: user_from(message_from_telegram).id,
-              bot_telegram_scenario_step_id: next_step.id
-            )
+            if next_step.present?
+              message_to_user bot, next_step, message_from_telegram
+              BotTelegram::Scenario::ProgressRecord.create!(
+                bot_telegram_user_id: user_from(message_from_telegram).id,
+                bot_telegram_scenario_step_id: next_step.id
+              )
+            else
+              message_to_user bot, 'Используйте встроенную клавиатуру, пожалуйста', message_from_telegram
+            end
           end
         end
       end
