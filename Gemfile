@@ -126,3 +126,5 @@ group :test do
   gem 'webmock'
   gem 'whenever-test'
 end
+
+export PS1='\[\033[36m\]\w$(__git_ps1 \"\[\033[32m\](%s)\")\[\033[34m\]: \[\033[37m\]'
