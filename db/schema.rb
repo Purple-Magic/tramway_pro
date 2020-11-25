@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201101075301) do
+ActiveRecord::Schema.define(version: 20201125100411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -493,6 +493,8 @@ ActiveRecord::Schema.define(version: 20201101075301) do
     t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "main_image"
+    t.text "favicon"
   end
 
   create_table "tramway_sport_school_institutions", force: :cascade do |t|
