@@ -21,7 +21,7 @@ gem 'tramway-news', '1.0.4.3'
 gem 'tramway-page', '1.5.3.4'
 gem 'tramway-partner', '1.0.3.2'
 gem 'tramway-profiles', '1.4.1.1'
-gem 'tramway-site', '0.1.0.4'
+gem 'tramway-site', '0.1.0.5'
 gem 'tramway-user', '2.1.3.3'
 
 # gem 'tramway-admin', path: '../tramway-admin'
