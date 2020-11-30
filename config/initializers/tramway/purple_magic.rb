@@ -30,6 +30,14 @@ Tramway::Admin.set_available_models(
   project: :purple_magic
 )
 
+Tramway::Admin.set_available_models(
+  BotTelegram::User,
+  BotTelegram::Scenario::Step,
+  BotTelegram::Scenario::ProgressRecord,
+  role: :partner,
+  project: :purple_magic
+)
+
 Tramway::Admin.navbar_structure(
   PurpleMagic,
   {
