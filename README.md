@@ -15,7 +15,6 @@ bundle exec rails s
 
 Open:
 * IT Way -> `it-way.test:3000`
-* Sport School ULSK -> `sportschool-ulsk.test:3000`
 * kalashnikovisme -> `kalashnikovisme.test:3000`
 * tramway -> `tramway.test:3000`
 
