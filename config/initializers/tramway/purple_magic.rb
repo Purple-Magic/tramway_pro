@@ -34,7 +34,7 @@ Tramway::Admin.set_available_models(
   BotTelegram::User,
   BotTelegram::Scenario::Step,
   BotTelegram::Scenario::ProgressRecord,
-  role: :partner,
+  role: :rsm,
   project: :purple_magic
 )
 
@@ -48,7 +48,6 @@ Tramway::Admin.navbar_structure(
   },
   {
     chat_quest_ulsk: [
-      BotTelegram::User,
       ChatQuestUlsk::Message,
       ChatQuestUlsk::Game,
       ChatQuestUlsk::Chapter,

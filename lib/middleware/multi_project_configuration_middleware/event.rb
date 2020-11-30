@@ -132,7 +132,8 @@ module MultiProjectCallbacks
           where project_id: Project.where(url: ENV['PROJECT_URL'])
         end
 
-        scope :rsm_scope, -> (user_id) { where state: :active }
+        scope :partner_scope, -> (_user_id) { all }
+        scope :rsm_scope, -> (_user_id) { all }
       end
     end
   end
