@@ -131,6 +131,9 @@ module MultiProjectCallbacks
         default_scope do
           where project_id: Project.where(url: ENV['PROJECT_URL'])
         end
+
+        scope :partner_scope, -> (_user_id) { all }
+        scope :rsm_scope, -> (_user_id) { all }
       end
     end
   end

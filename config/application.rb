@@ -16,17 +16,17 @@ require_relative '../lib/middleware/multi_project_configuration_middleware/confe
 require_relative '../lib/middleware/multi_project_configuration_middleware/admin_middleware'
 require_relative '../lib/middleware/multi_project_configuration_middleware/landing'
 require_relative '../lib/middleware/multi_project_configuration_middleware/event'
-require_relative '../lib/middleware/multi_project_configuration_middleware/partner'
 require_relative '../lib/middleware/multi_project_configuration_middleware/user'
 require_relative '../lib/middleware/multi_project_configuration_middleware/profiles'
 require_relative '../lib/middleware/multi_project_configuration_middleware/page'
+require_relative '../lib/middleware/multi_project_configuration_middleware/partner'
 require_relative '../lib/middleware/multi_project_configuration_middleware/auth'
-require_relative '../lib/middleware/multi_project_configuration_middleware/sites'
 require_relative '../lib/middleware/multi_project_configuration_middleware/listai_book'
 require_relative '../lib/middleware/multi_project_configuration_middleware/listai_page'
 require_relative '../lib/middleware/multi_project_configuration_middleware/podcasts'
 require_relative '../lib/middleware/multi_project_configuration_middleware/purple_magic_callback'
 require_relative '../lib/middleware/multi_project_configuration_middleware/bot_middleware'
+require_relative '../lib/middleware/multi_project_configuration_middleware/sites'
 
 Bundler.require(*Rails.groups)
 
