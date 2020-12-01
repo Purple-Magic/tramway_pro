@@ -15,7 +15,6 @@ bundle exec rails s
 
 Open:
 * IT Way -> `it-way.test:3000`
-* Sport School ULSK -> `sportschool-ulsk.test:3000`
 * kalashnikovisme -> `kalashnikovisme.test:3000`
 * tramway -> `tramway.test:3000`
 
@@ -121,5 +120,8 @@ make deploy
 ### Middlewares issue
 
 You have this `ActiveSupport::Concern::MultipleIncludedBlocks (Cannot define multiple 'included' blocks for a Concern)`
-It means that you should rename your middleware file and class to another. Looks like it's some kind of constant name conflict
-.
+It means that you should rename your middleware file and class to another. Looks like it's some kind of constant name conflict.
+
+### Role scope issue
+
+If you have issue looks like this `#{user.role}_scope undefined for ActiveRecord::Relation[]` you should add this scope in `lib/middleware/multi_project_configuration_middleware/event.rb` at `ParticipantConcern`
