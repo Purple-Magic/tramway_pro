@@ -10,5 +10,7 @@ class BotTelegram::User < ApplicationRecord
   search_by :first_name, :username, :last_name
 
   scope :partner_scope, -> (_user_id) { all }
-  scope :rsm_scope, -> (_user_id) { joins(steps: :bot).where('bots.team = ?', :rsm) }
+  scope :rsm_scope, -> (_user_id) do
+    joins(progress_records: { step: :bot }).where('bots.team = ?', :rsm)
+  end
 end
