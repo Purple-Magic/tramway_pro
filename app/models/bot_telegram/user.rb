@@ -11,6 +11,8 @@ class BotTelegram::User < ApplicationRecord
 
   scope :partner_scope, -> (_user_id) { all }
   scope :rsm_scope, -> (_user_id) do
-    joins(progress_records: { step: :bot }).where('bots.team = ?', :rsm)
+    step_ids = Bot.where(team: :rsm).map(&:steps).flatten.map &:id
+    user_ids = BotTelegram::Scenario::ProgressRecord.where(bot_telegram_scenario_step_id: step_ids).map &:bot_telegram_user_id
+    BotTelegram::User.where id: user_ids
   end
 end
