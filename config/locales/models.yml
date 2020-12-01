@@ -72,3 +72,6 @@ ru:
       plural: Прогресс пользователей
     purple_magic:
       genitive: Purple Magic
+    bot:
+      plural: Боты
+      genitive: бота
