@@ -3,5 +3,7 @@ class BotTelegram::Scenario::ProgressRecord < ApplicationRecord
   belongs_to :user, class_name: 'BotTelegram::User', foreign_key: :bot_telegram_user_id
 
   scope :partner_scope, -> (_user_id) { all }
-  scope :rsm_scope, -> (_user_id) { joins(step: :bot).where('bots.team = ?', :rsm) }
+  [ :rsm, :night ].each do |team|
+    scope "#{team}_scope".to_sym, -> (_user_id) { joins(step: :bot).where('bots.team = ?', team) }
+  end
 end

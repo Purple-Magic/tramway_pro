@@ -47,7 +47,14 @@ Tramway::Admin.navbar_structure(
       Tramway::Landing::Block
     ]
   },
-  Bot,
+  {
+    bots: [
+      Bot,
+      BotTelegram::User,
+      BotTelegram::Scenario::Step,
+      BotTelegram::Scenario::ProgressRecord,
+    ]
+  },
   {
     chat_quest_ulsk: [
       ChatQuestUlsk::Message,
@@ -58,9 +65,6 @@ Tramway::Admin.navbar_structure(
   },
   {
     rsm_project_office_bot: [
-      BotTelegram::User,
-      BotTelegram::Scenario::Step,
-      BotTelegram::Scenario::ProgressRecord,
     ]
   },
   Tramway::User::User,
