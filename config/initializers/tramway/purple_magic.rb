@@ -32,10 +32,20 @@ Tramway::Admin.set_available_models(
 )
 
 Tramway::Admin.set_available_models(
+  Bot,
   BotTelegram::User,
   BotTelegram::Scenario::Step,
   BotTelegram::Scenario::ProgressRecord,
   role: :rsm,
+  project: :purple_magic
+)
+
+Tramway::Admin.set_available_models(
+  Bot,
+  BotTelegram::User,
+  BotTelegram::Scenario::Step,
+  BotTelegram::Scenario::ProgressRecord,
+  role: :night,
   project: :purple_magic
 )
 
