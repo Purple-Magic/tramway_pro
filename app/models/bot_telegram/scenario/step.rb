@@ -10,6 +10,6 @@ class BotTelegram::Scenario::Step < ApplicationRecord
   end
 
   def continue?
-    options.present?
+    options.present? || delay.present?
   end
 end
