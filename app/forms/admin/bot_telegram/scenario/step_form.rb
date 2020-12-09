@@ -1,5 +1,5 @@
 class Admin::BotTelegram::Scenario::StepForm < Tramway::Core::ApplicationForm
-  properties :name, :text, :file, :project_id
+  properties :name, :text, :file, :project_id, :delay
     
   association :bot
 
