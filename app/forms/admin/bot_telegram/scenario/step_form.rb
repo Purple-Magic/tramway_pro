@@ -9,6 +9,7 @@ class Admin::BotTelegram::Scenario::StepForm < Tramway::Core::ApplicationForm
         name: :string,
         text: :text,
         file: :file,
+        options: :text,
         delay: {
           type: :default,
           input_options: {
