@@ -1,5 +1,5 @@
-class Admin::BotTelegram::Scenario::StepForm < Tramway::Core::ApplicationForm
-  properties :name, :text, :file, :project_id
+class Rsm::BotTelegram::Scenario::StepForm < Tramway::Core::ApplicationForm
+  properties :name, :text, :file, :delay, :project_id, :options
     
   association :bot
 
@@ -9,6 +9,7 @@ class Admin::BotTelegram::Scenario::StepForm < Tramway::Core::ApplicationForm
         name: :string,
         text: :text,
         file: :file,
+        options: :text,
         delay: {
           type: :default,
           input_options: {
@@ -16,5 +17,13 @@ class Admin::BotTelegram::Scenario::StepForm < Tramway::Core::ApplicationForm
           }
         }
     end
+  end
+
+  def options=(value)
+    model.options = YAML.load(value)
+  end
+
+  def options
+    YAML.dump(model.options).sub("---\n", '')
   end
 end

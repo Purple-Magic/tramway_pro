@@ -133,7 +133,9 @@ module MultiProjectCallbacks
         end
 
         scope :partner_scope, -> (_user_id) { all }
-        scope :rsm_scope, -> (_user_id) { all }
+        [ :rsm, :night ].each do |team|
+          scope "#{team}_scope".to_sym, -> (_user_id) { all }
+        end
       end
     end
   end
