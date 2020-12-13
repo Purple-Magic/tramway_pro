@@ -1,6 +1,6 @@
 require 'nokogiri'
 
-doc = File.open(Rails.root.join('bin', 'podcast', 'description.html')) do |f|
+doc = File.open(Rails.root.join('bin', 'podcast', 'description', 'description.html')) do |f|
   Nokogiri::HTML(f, nil, Encoding::UTF_8.to_s)
 end
 
