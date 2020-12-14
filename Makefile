@@ -26,6 +26,8 @@ run_rsm_project_office_bot:
 	bundle exec rails r lib/tasks/rsm/bot_listener.rb
 stop_rsm_project_office_bot:
 	sh stop_rsm_project_office_bot.sh
+stop_detective_project_office_bot:
+	sh stop_detective_project_office_bot.sh
 restart_rsm_project_office_bot:
 	make run_rsm_project_office_bot
 	make stop_rsm_project_office_bot

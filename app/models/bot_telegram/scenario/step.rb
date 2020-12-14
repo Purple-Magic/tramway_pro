@@ -1,4 +1,6 @@
 class BotTelegram::Scenario::Step < ApplicationRecord
+  self.table_name = 'bot_telegram_scenario_steps'
+
   belongs_to :bot
   has_many :progress_records, class_name: 'BotTelegram::Scenario::ProgressRecord', foreign_key: :bot_telegram_scenario_step_id
 

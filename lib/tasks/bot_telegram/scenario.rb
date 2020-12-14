@@ -1,14 +1,14 @@
-require_relative '../bot_telegram/messages_manager'
-require_relative '../bot_telegram/info'
+require_relative './messages_manager'
+require_relative './info'
 
-module RSM
-  module ProjectOffice
+module BotTelegram
+  module Scenario
     class << self
       include ::BotTelegram::MessagesManager
       include ::BotTelegram::Info
 
-      def scenario(message_from_telegram, bot)
-        bot_record = Bot.find_by name: 'Проектный офис РСМ'
+      def run(message_from_telegram, bot, scenario:)
+        bot_record = Bot.find_by name: scenario
         user = user_from message_from_telegram
         if message_from_telegram.text == '/start'
           current_step = bot_record.steps.find_by(name: :start)

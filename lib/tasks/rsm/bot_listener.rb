@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 require 'telegram/bot'
-require_relative './../bot_telegram/info'
-require_relative './project_office'
+require_relative '../bot_telegram/scenario'
 
 module RSM
   module BotListener
@@ -16,7 +15,7 @@ module RSM
             user = user_from message
             chat = chat_from message
             log_message message, user, chat
-            RSM::ProjectOffice.scenario(message, bot)
+            BotTelegram::Scenario.run(message, bot, scenario: 'Проектный офис РСМ')
           end
         end
       end
