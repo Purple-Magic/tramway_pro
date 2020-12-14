@@ -27,7 +27,9 @@ module BotTelegram::MessagesManager
           bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text
         end
       end
-      send_file bot, message_telegram, message_obj if message_obj.file.present?
+      if message_obj.file.path.present?
+        send_file bot, message_telegram, message_obj
+      end
     end
   rescue StandardError => e
     Raven.capture_exception e
