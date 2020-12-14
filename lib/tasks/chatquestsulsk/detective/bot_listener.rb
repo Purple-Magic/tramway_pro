@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 require 'telegram/bot'
-require_relative '../../bot_telegram/info'
-require_relative './scenario'
+require_relative '../../bot_telegram/scenario'
 
-module ChatQuestUlsk::Detective
+module ChatQuestUlsk
   module BotListener
     class << self
       include BotTelegram::Info
@@ -16,7 +15,7 @@ module ChatQuestUlsk::Detective
             user = user_from message
             chat = chat_from message
             log_message message, user, chat
-            ChatQuestUlsk::Detective.scenario(message, bot)
+            BotTelegram::Scenario.run(message, bot, scenario: 'Кира', error_message: 'Ответ неверный. Ещё один шанс!')
           end
         end
       end
@@ -24,7 +23,4 @@ module ChatQuestUlsk::Detective
   end
 end
 
-RSM::BotListener.run_bot
-
-require_relative '../bot_listener'
-BotListener.run_bot(quest: :detective)
+ChatQuestUlsk::BotListener.run_bot

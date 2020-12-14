@@ -7,7 +7,7 @@ module BotTelegram
       include ::BotTelegram::MessagesManager
       include ::BotTelegram::Info
 
-      def run(message_from_telegram, bot, scenario:)
+      def run(message_from_telegram, bot, scenario:, error_message:)
         bot_record = Bot.find_by name: scenario
         user = user_from message_from_telegram
         if message_from_telegram.text == '/start'
@@ -20,7 +20,7 @@ module BotTelegram
             if next_step.present?
               send_step_message next_step, bot, message_from_telegram
             else
-              message_to_user bot, 'Используйте встроенную клавиатуру, пожалуйста', message_from_telegram
+              message_to_user bot, error_message, message_from_telegram
             end
           end
         end

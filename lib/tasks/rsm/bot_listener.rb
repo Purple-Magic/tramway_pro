@@ -15,7 +15,7 @@ module RSM
             user = user_from message
             chat = chat_from message
             log_message message, user, chat
-            BotTelegram::Scenario.run(message, bot, scenario: 'Проектный офис РСМ')
+            BotTelegram::Scenario.run(message, bot, scenario: 'Проектный офис РСМ', error_message: 'Используйте встроенную клавиатуру, пожалуйста')
           end
         end
       end
