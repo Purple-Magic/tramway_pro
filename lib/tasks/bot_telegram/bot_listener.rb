@@ -1,21 +1,23 @@
 # frozen_string_literal: true
 
 require 'telegram/bot'
-require_relative '../../bot_telegram/scenario'
+require_relative 'scenario'
 
-module ChatQuestUlsk
+module BotTelegram
   module BotListener
     class << self
       include BotTelegram::Info
       include BotTelegram::MessagesManager
 
       def run_bot
-        Telegram::Bot::Client.run(ENV["QUEST_ULSK_DETECTIVE_TELEGRAM_API_TOKEN"]) do |bot|
-          bot.listen do |message|
-            user = user_from message
-            chat = chat_from message
-            log_message message, user, chat
-            BotTelegram::Scenario.run(message, bot, scenario: 'Кира', error_message: 'Ответ неверный. Ещё один шанс!')
+        Bot.active.find_each do |bot_record|
+          Telegram::Bot::Client.run(bot_record.token) do |bot|
+            bot.listen do |message|
+              user = user_from message
+              chat = chat_from message
+              log_message message, user, chat
+              BotTelegram::Scenario.run message, bot, bot_record
+            end
           end
         end
       end
@@ -23,4 +25,4 @@ module ChatQuestUlsk
   end
 end
 
-ChatQuestUlsk::BotListener.run_bot
+BotTelegram::BotListener.run_bot
