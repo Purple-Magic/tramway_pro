@@ -1,5 +1,5 @@
 class Admin::BotForm < Tramway::Core::ApplicationForm
-  properties :name, :team, :project_id, :string
+  properties :name, :team, :project_id, :token
 
   def initialize(object)
     super(object).tap do
