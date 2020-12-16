@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201216010211) do
+ActiveRecord::Schema.define(version: 20201216014515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20201216010211) do
     t.text "team"
     t.integer "project_id"
     t.text "token"
+    t.jsonb "options"
   end
 
   create_table "chat_quest_ulsk_chapters", force: :cascade do |t|
