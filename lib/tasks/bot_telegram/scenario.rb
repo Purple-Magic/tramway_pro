@@ -7,8 +7,7 @@ module BotTelegram
       include ::BotTelegram::MessagesManager
       include ::BotTelegram::Info
 
-      def run(message_from_telegram, bot, scenario:, error_message:)
-        bot_record = Bot.find_by name: scenario
+      def run(message_from_telegram, bot, bot_record)
         user = user_from message_from_telegram
         if message_from_telegram.text == '/start'
           current_step = bot_record.steps.find_by(name: :start)
@@ -16,11 +15,11 @@ module BotTelegram
         else
           current_step = user.progress_records.joins(:step).where('bot_telegram_user_id = ? AND bot_telegram_scenario_steps.bot_id = ?', user.id, bot_record.id).last.step
           if current_step.present? && current_step.continue?
-            next_step = find_next_step current_step, message_from_telegram, bot
+            next_step = find_next_step current_step, message_from_telegram, bot_record
             if next_step.present?
               send_step_message next_step, bot, message_from_telegram
             else
-              message_to_user bot, error_message, message_from_telegram
+              message_to_user bot, bot_record.options['standard_error'], message_from_telegram
             end
           end
         end
@@ -34,7 +33,7 @@ module BotTelegram
         )
         if current_step.delay.present? && current_step.delay != 0
           sleep current_step.delay
-          next_step = find_next_step current_step, message_from_telegram, bot
+          next_step = find_next_step current_step, message_from_telegram, bot_record
           send_step_message next_step, bot, message_from_telegram
         end
       end
