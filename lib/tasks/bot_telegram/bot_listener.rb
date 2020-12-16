@@ -11,7 +11,6 @@ module BotTelegram
 
       def run_bot
         Bot.active.find_each do |bot_record|
-          puts "Running #{bot_record.name} bot".green
           Telegram::Bot::Client.run(bot_record.token) do |bot|
             bot.listen do |message|
               user = user_from message
