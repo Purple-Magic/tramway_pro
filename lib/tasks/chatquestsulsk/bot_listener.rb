@@ -1,35 +1,26 @@
 # frozen_string_literal: true
 
 require 'telegram/bot'
-require_relative './bot_info'
-require_relative './bot_message'
-require_relative './bot_answers'
-require_relative './bot_errors'
-require_relative './love/scenario'
-require_relative './detective/scenario'
-require_relative './fantasy/scenario'
-require_relative './horror/scenario'
+require_relative '../../bot_telegram/scenario'
 
-module BotListener
-  class << self
-    include ChatQuestUlsk::BotInfo
-    include ChatQuestUlsk::BotMessage
-    include ChatQuestUlsk::BotAnswers
+module ChatQuestUlsk
+  module BotListener
+    class << self
+      include BotTelegram::Info
+      include BotTelegram::MessagesManager
 
-    def run_bot(quest:)
-      Telegram::Bot::Client.run(ENV["QUEST_ULSK_#{quest.upcase}_TELEGRAM_API_TOKEN"]) do |bot|
-        bot.listen do |message|
-          user = user_from message
-          chat = chat_from message
-          log_message message, user, chat
-          game = ChatQuestUlsk::Game.active.started.where(quest: quest, bot_telegram_user_id: user.id).last
-          if message.text == '/start'
-            game = ChatQuestUlsk::Game.create! bot_telegram_user_id: user.id, quest: quest, current_position: 1,
-                                               project_id: Project.find_by(title: 'PurpleMagic').id
+      def run_bot
+        Telegram::Bot::Client.run(ENV["QUEST_ULSK_DETECTIVE_TELEGRAM_API_TOKEN"]) do |bot|
+          bot.listen do |message|
+            user = user_from message
+            chat = chat_from message
+            log_message message, user, chat
+            BotTelegram::Scenario.run(message, bot, scenario: 'Кира', error_message: 'Ответ неверный. Ещё один шанс!')
           end
-          "ChatQuestUlsk::#{quest.capitalize}".constantize.scenario(message, game, bot)
         end
       end
     end
   end
 end
+
+ChatQuestUlsk::BotListener.run_bot

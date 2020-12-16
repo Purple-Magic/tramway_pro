@@ -26,11 +26,11 @@
 #  args:
 #    chdir: "{{ app_path }}/current"
 #
-#- name: Start detective quest bot
-#  shell: "cd /srv/tramway_pro/current && /bin/bash -lic 'exec bundle exec rails runner lib/tasks/chatquestsulsk/detective/bot_listener.rb &'"
-#  args:
-#    chdir: "{{ app_path }}/current"
-#
+- name: Start detective quest bot
+  shell: "cd /srv/tramway_pro/current && /bin/bash -lic 'exec bundle exec rails runner lib/tasks/chatquestsulsk/detective/bot_listener.rb &'"
+  args:
+    chdir: "{{ app_path }}/current"
+
 - name: Start rsm project office bot
   shell: "cd /srv/tramway_pro/current && /bin/bash -lic 'exec bundle exec rails runner lib/tasks/rsm/bot_listener.rb &'"
   args:
