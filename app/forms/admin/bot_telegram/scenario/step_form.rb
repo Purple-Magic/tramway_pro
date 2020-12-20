@@ -1,5 +1,5 @@
 class Admin::BotTelegram::Scenario::StepForm < Tramway::Core::ApplicationForm
-  properties :name, :text, :file, :project_id, :delay, :options
+  properties :name, :text, :file, :project_id, :delay, :options, :reply_markup
     
   association :bot
 
@@ -10,6 +10,7 @@ class Admin::BotTelegram::Scenario::StepForm < Tramway::Core::ApplicationForm
         text: :text,
         file: :file,
         options: :text,
+        reply_markup: :text,
         delay: {
           type: :default,
           input_options: {
@@ -25,5 +26,13 @@ class Admin::BotTelegram::Scenario::StepForm < Tramway::Core::ApplicationForm
 
   def options
     YAML.dump(model.options).sub("---\n", '')
+  end
+
+  def reply_markup=(value)
+    model.reply_markup = YAML.load(value)
+  end
+
+  def reply_markup
+    YAML.dump(model.reply_markup).sub("---\n", '')
   end
 end
