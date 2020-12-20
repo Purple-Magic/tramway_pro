@@ -13,7 +13,7 @@ module BotTelegram
           current_step = bot_record.steps.find_by(name: :start)
           send_step_message current_step, bot, message_from_telegram, bot_record
         else
-          current_step = user.progress_records.joins(:step).where('bot_telegram_user_id = ? AND bot_telegram_scenario_steps.bot_id = ?', user.id, bot_record.id).last.step
+          current_step = user.progress_records.joins(:step).where('bot_telegram_user_id = ? AND bot_telegram_scenario_steps.bot_id = ?', user.id, bot_record.id).last&.step
           if current_step.present? && current_step.continue?
             next_step = find_next_step current_step, message_from_telegram, bot_record
             if next_step.present?
@@ -32,8 +32,8 @@ module BotTelegram
           bot_telegram_scenario_step_id: current_step.id
         )
         if current_step.delay.present? && current_step.delay != 0
-          sleep current_step.delay
           next_step = find_next_step current_step, message_from_telegram, bot_record
+          sleep current_step.delay
           send_step_message next_step, bot, message_from_telegram, bot_record
         end
       end
