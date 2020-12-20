@@ -16,7 +16,7 @@ restore_production:
 	rails db:seed
 
 run_telegram_bots:
-	bundle exec rails r lib/tasks/bot_telegram/bot_listener.rb
+	bundle exec rails r lib/tasks/bot_telegram/start_bots.rb
 stop_telegram_bots:
 	sh stop_telegram_bots.sh
 restart_telegram_bots:
