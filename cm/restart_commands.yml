@@ -12,6 +12,6 @@
   shell: "ps aux | grep -ie bot | awk '{print $2}' | xargs kill -9 "
 
 - name: Start telegram bots
-  shell: "cd /srv/tramway_pro/current && /bin/bash -lic 'exec bundle exec rails runner lib/tasks/bot_telegram/bot_listener.rb &'"
+  shell: "cd /srv/tramway_pro/current && /bin/bash -lic 'exec bundle exec rails runner lib/tasks/bot_telegram/start_bots.rb'"
   args:
     chdir: "{{ app_path }}/current"
