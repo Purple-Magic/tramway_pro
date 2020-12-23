@@ -27,9 +27,11 @@ module MultiProjectCallbacks
           before_render "after_#{action}".to_sym, only: action
         end
 
+        NOT_PROJECTABLE_MODELS = [ 'Project', 'Audited::Audit' ]
+
         def after_index
           project = Project.where(url: ENV['PROJECT_URL']).first
-          unless params[:model] == 'Project'
+          unless params[:model].in? NOT_PROJECTABLE_MODELS
             @records = decorator_class.decorate @records.original_array.where project_id: project.id
           end
           @counts = build_counts project
@@ -38,7 +40,7 @@ module MultiProjectCallbacks
         before_action :add_project_id, only: %i[create update]
 
         def add_project_id
-          return if params[:model] == 'Project'
+          return if params[:model].in? NOT_PROJECTABLE_MODELS
 
           if params[:record].present?
             params[:record][:project_id] = Project.where(url: ENV['PROJECT_URL']).first.id
@@ -57,7 +59,7 @@ module MultiProjectCallbacks
 
         def filter_with_project(collection, project)
           array = model_class.active.send(collection)
-          array = array.where(project_id: project.id) unless params[:model] == 'Project'
+          array = array.where(project_id: project.id) unless params[:model].in? NOT_PROJECTABLE_MODELS
           array = array.ransack(params[:filter]).result if params[:filter].present?
           array
         end
