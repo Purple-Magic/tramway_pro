@@ -1,8 +1,13 @@
 # Tramway based applications ![.github/workflows/test.yml](https://github.com/purple-magic/tramway_pro/workflows/.github/workflows/test.yml/badge.svg?branch=develop)
 
 * [IT Way](https://it-way.pro)
-* [Sport School](http://sportschool-ulsk.ru)
-* [kalashnikovisme.ru](kalashnikovisme.ru)
+* [ ULSK Quest Fantasy ]( t.me/questfantasy_bot )
+* [ ULSK Quest Horror ]( t.me/questhorror_bot )
+* [ ULSK Quest Love ]( t.me/questlove_bot )
+* [ ULSK Quest Detective ]( t.me/questhorror_bot )
+* [ ULSK Quest Fantasy ]( t.me/questfantasy_bot )
+* [ ULSK Quest Uncle Mitya ]( t.me/questnewyearbot )
+* [Инженерное волонтёрство](http://engineervol.ru/)
 
 ### Install && run
 
@@ -29,7 +34,7 @@ bin/prod get_db tramway
 ```shell
 make install
 bundle
-RAILS_ENV=test rails db:create db:migrate
+RAILS_ENV=test rails db:create db:migrate db:seed
 bundle exec rspec
 ```
 

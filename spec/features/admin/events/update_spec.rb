@@ -23,6 +23,7 @@ describe 'Update event' do
     fill_in 'record[end_date]', with: attributes[:end_date]
     fill_in 'record[request_collecting_begin_date]', with: attributes[:request_collecting_begin_date]
     fill_in 'record[request_collecting_end_date]', with: attributes[:request_collecting_end_date]
+    attach_file 'record[photo]', attributes[:photo]
     select attributes[:reach], from: 'record[reach]'
 
     click_on 'Сохранить', class: 'btn-success'
@@ -39,6 +40,9 @@ describe 'Update event' do
       when 'Enumerize::Value'
         expect(actual).not_to be_empty, "#{attr} is empty"
         actual = actual.text
+      when 'PhotoUploader'
+        actual = actual.path.split('/').last
+        expecting = expecting.to_s.split('/').last
       end
       expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
     end
