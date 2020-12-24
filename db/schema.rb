@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201223213932) do
+ActiveRecord::Schema.define(version: 20201216014515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20201223213932) do
     t.string "remote_address"
     t.string "request_uuid"
     t.datetime "created_at"
-    t.integer "project_id"
     t.index ["associated_type", "associated_id"], name: "associated_index"
     t.index ["auditable_type", "auditable_id"], name: "auditable_index"
     t.index ["created_at"], name: "index_audits_on_created_at"
@@ -138,14 +137,6 @@ ActiveRecord::Schema.define(version: 20201223213932) do
     t.text "file"
     t.text "quest"
     t.integer "chapter_id"
-  end
-
-  create_table "chatquestulsk_games", force: :cascade do |t|
-    t.text "area"
-    t.integer "bot_telegram_user_id"
-    t.text "state"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
