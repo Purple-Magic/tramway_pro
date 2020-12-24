@@ -83,3 +83,5 @@ ru:
     bot:
       plural: Боты
       genitive: бота
+    audited/audit:
+      plural: События
