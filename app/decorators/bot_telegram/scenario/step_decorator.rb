@@ -13,7 +13,19 @@ class BotTelegram::Scenario::StepDecorator < Tramway::Core::ApplicationDecorator
     end
   end
 
-  delegate_attributes :name, :text, :options, :reply_markup, :file, :delay
+  delegate_attributes :name, :text, :delay
+
+  def file
+    file_view object.file
+  end
+
+  def options
+    yaml_view object.options
+  end
+
+  def reply_markup
+    yaml_view object.reply_markup
+  end
 
   def actions
     href = Tramway::Admin::Engine.routes.url_helpers.records_path(model: Audited::Audit, filter: { auditable_id_eq: object.id, auditable_type_eq: BotTelegram::Scenario::Step })
