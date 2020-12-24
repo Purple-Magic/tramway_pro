@@ -16,6 +16,7 @@ Tramway::Admin.set_available_models(
   BotTelegram::Scenario::Step,
   BotTelegram::Scenario::ProgressRecord,
   Bot,
+  Audited::Audit,
   project: :purple_magic
 )
 
@@ -77,6 +78,7 @@ Tramway::Admin.navbar_structure(
     rsm_project_office_bot: [
     ]
   },
+  Audited::Audit,
   Tramway::User::User,
   project: :purple_magic
 )
