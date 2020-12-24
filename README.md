@@ -29,7 +29,7 @@ bin/prod get_db tramway
 ```shell
 make install
 bundle
-RAILS_ENV=test rails db:create db:migrate
+RAILS_ENV=test rails db:create db:migrate db:seed
 bundle exec rspec
 ```
 
