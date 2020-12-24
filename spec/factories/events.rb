@@ -14,6 +14,7 @@ FactoryBot.define do
     end_date { begin_date + 10.days }
     request_collecting_begin_date { DateTime.now.beginning_of_day.change(offset: '+0400') }
     request_collecting_end_date { DateTime.now.beginning_of_day.change(offset: '+0400') }
+    photo { generate :full_hd_image_as_file }
 
     trait :created_by_admin do
       after :create do |event|
@@ -37,5 +38,6 @@ FactoryBot.define do
     request_collecting_begin_date { DateTime.now.beginning_of_day.change(offset: '+0400') }
     request_collecting_end_date { DateTime.now.beginning_of_day.change(offset: '+0400') }
     reach { Tramway::Event::Event.reach.values.sample.text }
+    photo { generate :full_hd_image_as_path }
   end
 end
