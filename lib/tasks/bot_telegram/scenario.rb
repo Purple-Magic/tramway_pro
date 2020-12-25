@@ -33,8 +33,10 @@ module BotTelegram
         )
         if current_step.delay.present? && current_step.delay != 0
           next_step = find_next_step current_step, message_from_telegram, bot_record
-          sleep current_step.delay
-          send_step_message next_step, bot, message_from_telegram, bot_record
+          if next_step.present?
+            sleep current_step.delay
+            send_step_message next_step, bot, message_from_telegram, bot_record
+          end
         end
       end
 
