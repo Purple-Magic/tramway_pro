@@ -2,7 +2,7 @@ class BotTelegram::Scenario::StepDecorator < Tramway::Core::ApplicationDecorator
   class << self
     def show_attributes
       [
-        :name,
+        :title,
         :text,
         :options,
         :reply_markup,
@@ -13,7 +13,15 @@ class BotTelegram::Scenario::StepDecorator < Tramway::Core::ApplicationDecorator
     end
   end
 
-  delegate_attributes :name, :text, :delay
+  delegate_attributes :text, :delay
+
+  def title
+    object.name
+  end
+
+  def name
+    "#{object.name} - #{object.text.first(50)}..."
+  end
 
   def file
     file_view object.file
