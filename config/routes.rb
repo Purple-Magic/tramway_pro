@@ -41,4 +41,10 @@ Rails.application.routes.draw do
     mount Tramway::Admin::Engine, at: '/admin', as: :gorod_admin
     mount Tramway::Page::Engine, at: '/page', as: :gorod_page
   end
+
+  constraints Constraints::DomainConstraint.new(Settings[Rails.env][:red_magic]) do
+    root to: 'red_magic/web/welcome#index'
+    mount Tramway::Admin::Engine, at: '/admin', as: :red_magic_admin
+    mount Tramway::Auth::Engine, at: '/auth', as: :red_magic_auth
+  end
 end
