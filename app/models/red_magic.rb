@@ -1,0 +1,2 @@
+class RedMagic < ApplicationRecord
+end
