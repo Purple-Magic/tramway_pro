@@ -12,6 +12,7 @@ describe 'Create block' do
     next if project.url.in? ['listai.test', 'kalashnikovisme.test', 'engineervol.test', 'tramway.test']
 
     it "#{project.url}: should create block" do
+      puts "PROJECT URL: #{project.url}".yellow
       move_host_to project.url
       count = Tramway::Landing::Block.count
       visit '/admin'
