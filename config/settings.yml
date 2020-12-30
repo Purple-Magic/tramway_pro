@@ -1,3 +1,15 @@
+purple_magic: &purple_magic
+  name: purple_magic
+  title: PurpleMagic
+  public_name: PurpleMagic
+  favicon: '/purple-magic.ico'
+
+red_magic: &red_magic
+  name: red_magic
+  title: RedMagic
+  public_name: RedMagic
+  favicon: '/red-magic.ico'
+
 development:
   it_way: it-way.test
   kalashnikovisme: kalashnikovisme.test
@@ -7,6 +19,7 @@ development:
   purple_magic: purple-magic.test
   gorodsad73: gorodsad73.test
   dobry_sosed: dobry-sosed.test
+  red_magic: red-magic.test
   engines:
     'it-way.test': conference
     'kalashnikovisme.test': site
@@ -22,16 +35,10 @@ development:
       title: Город-сад
       public_name: Город-сад
       tagline: Ландшафтный дизайн - как искусство
-    'dobry-sosed.test':
-      name: dobry_sosed
-      title: Добрый сосед
-      public_name: Добрый сосед
     'purple-magic.test':
-      name: purple_magic
-      title: PurpleMagic
-      public_name: PurpleMagic
-      favicon: '/purple-magic.ico'
-
+      <<: *purple_magic
+    'red-magic.test':
+      <<: *red_magic
 
 production:
   it_way: it-way.pro
@@ -41,6 +48,7 @@ production:
   listai: listai.io
   purple_magic: purple-magic.com
   gorodsad73: gorodsad73.ru
+  red_magic: red-magic.ru
   engines:
     'it-way.pro': conference
     'kalashnikovisme.ru': site
@@ -57,10 +65,9 @@ production:
       public_name: Город-сад
       tagline: Ландшафтный дизайн - как искусство
     'purple-magic.com':
-      name: purple_magic
-      title: PurpleMagic
-      public_name: PurpleMagic
-      favicon: '/purple-magic.ico'
+      <<: *purple_magic
+    'red-magic.com':
+      <<: *red_magic
 
 test:
   it_way: it-way.test
@@ -70,6 +77,7 @@ test:
   listai: listai.test
   purple_magic: purple-magic.test
   gorodsad73: gorodsad73.test
+  red_magic: red-magic.test
   engines:
     'it-way.test': conference
     'kalashnikovisme.test': site
@@ -86,6 +94,6 @@ test:
       public_name: Город-сад
       tagline: Ландшафтный дизайн - как искусство
     'purple-magic.test':
-      name: purple_magic
-      title: PurpleMagic
-      public_name: PurpleMagic
+      <<: *purple_magic
+    'red-magic.test':
+      <<: *red_magic

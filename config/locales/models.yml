@@ -9,6 +9,9 @@ ru:
       project: Проект
       podcast: Подкаст
       episode: Эпизод
+      estimation/project: Проект
+      estimation/customer: Клиент
+      estimation/task: Задача 
     attributes:
       word:
         main: Определение
@@ -35,6 +38,22 @@ ru:
         delay: Задержка перед следующим сообщением, сек
       bot:
         steps: Шаги сценария
+      estimation/project:
+        title: Название
+        tasks: Задачи
+        table: Расчёты
+        summary: Общая сумма
+      estimation/customer:
+        title: Название
+        logo: Логотип
+        url: Ссылка
+        projects: Проекты
+      estimation/task:
+        project: Проект
+        title: Название задачи
+        hours: Количество часов
+        price: Цена за час
+        sum: Сумма
   cases:
     word:
       plural: слова
@@ -85,3 +104,11 @@ ru:
       genitive: бота
     audited/audit:
       plural: События
+    estimation/project:
+      plural: оценки
+      genitive: оценку
+    estimation/customer:
+      plural: клиенты
+      genitive: клиента
+    estimation/task:
+      genitive: задачу

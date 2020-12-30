@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201216014515) do
+ActiveRecord::Schema.define(version: 20201230004044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -186,6 +186,36 @@ ActiveRecord::Schema.define(version: 20201216014515) do
     t.uuid "guid"
   end
 
+  create_table "estimation_customers", force: :cascade do |t|
+    t.text "title"
+    t.text "logo"
+    t.text "url"
+    t.integer "project_id"
+    t.text "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "estimation_projects", force: :cascade do |t|
+    t.text "title"
+    t.text "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "project_id"
+    t.integer "customer_id"
+  end
+
+  create_table "estimation_tasks", force: :cascade do |t|
+    t.text "title"
+    t.integer "estimation_project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "project_id"
+    t.text "state"
+    t.float "hours"
+    t.float "price"
+  end
+
   create_table "it_way_certificates", force: :cascade do |t|
     t.integer "event_id"
     t.text "text"
@@ -247,6 +277,21 @@ ActiveRecord::Schema.define(version: 20201216014515) do
     t.text "main_image"
     t.text "title"
     t.integer "project_id"
+  end
+
+  create_table "red_magics", force: :cascade do |t|
+    t.text "name"
+    t.text "public_name"
+    t.text "tagline"
+    t.text "address"
+    t.text "phone"
+    t.point "coordinates"
+    t.text "text"
+    t.text "main_image"
+    t.text "favicon"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tramway_conference_unities", force: :cascade do |t|
