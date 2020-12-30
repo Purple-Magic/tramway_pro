@@ -54,6 +54,7 @@ ru:
         hours: Количество часов
         price: Цена за час
         sum: Сумма
+        specialists_count: Количество специалистов
   cases:
     word:
       plural: слова
@@ -105,8 +106,8 @@ ru:
     audited/audit:
       plural: События
     estimation/project:
-      plural: оценки
-      genitive: оценку
+      plural: проекты
+      genitive: проект
     estimation/customer:
       plural: клиенты
       genitive: клиента

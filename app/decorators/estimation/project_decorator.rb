@@ -25,6 +25,9 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
           concat(Estimation::Task.human_attribute_name(:price))
         end)
         concat(content_tag(:th) do
+          concat(Estimation::Task.human_attribute_name(:specialists_count))
+        end)
+        concat(content_tag(:th) do
           concat(Estimation::Task.human_attribute_name(:sum))
         end)
       end)
@@ -40,11 +43,16 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
             concat task.price
           end)
           concat(content_tag(:td) do
+            concat task.specialists_count
+          end)
+          concat(content_tag(:td) do
             concat task.sum
           end)
         end)
       end
       concat(content_tag(:tr) do
+        concat(content_tag(:td) do
+        end)
         concat(content_tag(:td) do
         end)
         concat(content_tag(:td) do
