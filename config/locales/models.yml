@@ -12,6 +12,7 @@ ru:
       estimation/project: Проект
       estimation/customer: Клиент
       estimation/task: Задача 
+      estimation/coefficient: Коэффициент
     attributes:
       word:
         main: Определение
@@ -43,6 +44,8 @@ ru:
         tasks: Задачи
         table: Расчёты
         summary: Общая сумма
+        coefficients: Коэфициенты
+        ending_summary: Окончательная сумма
       estimation/customer:
         title: Название
         logo: Логотип
@@ -55,6 +58,10 @@ ru:
         price: Цена за час
         sum: Сумма
         specialists_count: Количество специалистов
+      estimation/coefficient:
+        estimation_project: Проект
+        title: Название
+        scale: Значение
   cases:
     word:
       plural: слова
@@ -113,3 +120,6 @@ ru:
       genitive: клиента
     estimation/task:
       genitive: задачу
+    estimation/coefficient:
+      genitive: коэффициент
+      plural: коэффициенты

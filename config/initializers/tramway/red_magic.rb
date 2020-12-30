@@ -9,6 +9,7 @@ Tramway::Admin.set_available_models(
   Estimation::Project,
   Estimation::Task,
   Estimation::Customer,
+  Estimation::Coefficient,
   project: :red_magic
 )
 

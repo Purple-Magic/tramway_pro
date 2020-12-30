@@ -10,7 +10,7 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
         :updated_at,
   )
 
-  decorate_associations :tasks
+  decorate_associations :tasks, :coefficients
 
   def table
     content_tag :table do
@@ -68,6 +68,43 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
           end)
         end)
       end)
+      ending_summary = summary
+      coefficients.each do |coefficient|
+        ending_summary *= coefficient.scale
+        concat(content_tag(:tr) do
+          concat(content_tag(:td) do
+            concat coefficient.title
+          end)
+          concat(content_tag(:td) do
+          end)
+          concat(content_tag(:td) do
+          end)
+          concat(content_tag(:td) do
+            concat coefficient.scale
+          end)
+          concat(content_tag(:td) do
+            concat ending_summary
+          end)
+        end)
+      end
+      concat(content_tag(:tr) do
+        concat(content_tag(:td) do
+        end)
+        concat(content_tag(:td) do
+        end)
+        concat(content_tag(:td) do
+        end)
+        concat(content_tag(:td) do
+          concat(content_tag(:b) do
+            concat(Estimation::Project.human_attribute_name(:ending_summary))
+          end)
+        end)
+        concat(content_tag(:td) do
+          concat(content_tag(:b) do
+            concat(ending_summary)
+          end)
+        end)
+      end)
     end
   end
 
@@ -102,7 +139,7 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_associations
-      [ :tasks ] 
+      [ :tasks, :coefficients ] 
     end
 
     def list_filters
