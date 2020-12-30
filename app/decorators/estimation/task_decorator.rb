@@ -7,14 +7,13 @@ class Estimation::TaskDecorator < Tramway::Core::ApplicationDecorator
         :title,
         :hours,
         :price,
-        :estimation_project_id,
         :created_at,
         :updated_at,
-        :project_id,
+        :specialists_count
   )
 
   def sum
-    object.hours * object.price
+    object.hours * object.price * object.specialists_count
   end
 
   class << self

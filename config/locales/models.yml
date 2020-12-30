@@ -54,6 +54,7 @@ ru:
         hours: Количество часов
         price: Цена за час
         sum: Сумма
+        specialists_count: Количество специалистов
   cases:
     word:
       plural: слова
