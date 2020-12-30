@@ -59,15 +59,14 @@ production:
     'engineervol.ru':
       name: engineervol
       title: Инженерное волонтёрство
-    #'gorodsad73.ru':
-    #  name: gorodsad73
-    #  title: Город-сад 
-    #  public_name: Город-сад
-    #  tagline: Ландшафтный дизайн - как искусство
+    'gorodsad73.ru':
+      name: gorodsad73
+      title: Город-сад 
+      public_name: Город-сад
+      tagline: Ландшафтный дизайн - как искусство
     'purple-magic.com':
       <<: *purple_magic
-    'gorodsad73.ru':
-    #'red-magic.com':
+    'red-magic.com':
       <<: *red_magic
 
 test:
