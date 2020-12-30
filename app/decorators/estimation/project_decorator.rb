@@ -76,11 +76,11 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
             concat coefficient.title
           end)
           concat(content_tag(:td) do
-          end)
-          concat(content_tag(:td) do
-          end)
-          concat(content_tag(:td) do
             concat coefficient.scale
+          end)
+          concat(content_tag(:td) do
+          end)
+          concat(content_tag(:td) do
           end)
           concat(content_tag(:td) do
             concat ending_summary
