@@ -105,8 +105,8 @@ ru:
     audited/audit:
       plural: События
     estimation/project:
-      plural: оценки
-      genitive: оценку
+      plural: проекты
+      genitive: проект
     estimation/customer:
       plural: клиенты
       genitive: клиента
