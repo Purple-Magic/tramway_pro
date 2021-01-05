@@ -12,11 +12,15 @@ module BotTelegram
       def perform
         bot_record = Bot.find_by name: ENV['RUNNING_BOT_NAME']
         Telegram::Bot::Client.run(bot_record.token) do |bot|
-          bot.listen do |message|
-            user = user_from message
-            chat = chat_from message
-            log_message message, user, chat
-            BotTelegram::Scenario.run message, bot, bot_record
+          begin
+            bot.listen do |message|
+              user = user_from message
+              chat = chat_from message
+              log_message message, user, chat
+              BotTelegram::Scenario.run message, bot, bot_record
+            end
+          rescue Telegram::Bot::Exceptions::ResponseError => e
+            Sentry.capture_exception(e)
           end
         end
       end

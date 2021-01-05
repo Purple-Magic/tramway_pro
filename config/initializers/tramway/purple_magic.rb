@@ -17,6 +17,10 @@ Tramway::Admin.set_available_models(
   BotTelegram::Scenario::ProgressRecord,
   Bot,
   Audited::Audit,
+  Estimation::Project,
+  Estimation::Task,
+  Estimation::Customer,
+  Estimation::Coefficient,
   project: :purple_magic
 )
 
