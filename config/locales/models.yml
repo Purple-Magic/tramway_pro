@@ -39,6 +39,8 @@ ru:
         delay: Задержка перед следующим сообщением, сек
       bot:
         steps: Шаги сценария
+        users_count: Количество пользователей
+        messages_count: Количество сообщений
       estimation/project:
         title: Название
         tasks: Задачи
