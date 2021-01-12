@@ -21,7 +21,7 @@ module BotTelegram
             else
               error = if current_step.options['free_answer']
                 #bot_record.options['standard_answer'] || 'Я запомнил это сообщение'
-                'Я передам ответ ребятам. Если хочешь посмотреть ссылки заново, просто введи /start'
+                'Я передам ответ ребятам. Ты можешь пока дальше смотреть наши ссылки'
               else
                 bot_record.options&.require('standard_error') || 'К сожалению, я не знаю, что на это ответить'
               end
