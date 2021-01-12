@@ -87,4 +87,4 @@ Tramway::Admin.navbar_structure(
   project: :purple_magic
 )
 
-Tramway::Landing.navbar = false
+Tramway::Landing.set_navbar false, project: :purple_magic

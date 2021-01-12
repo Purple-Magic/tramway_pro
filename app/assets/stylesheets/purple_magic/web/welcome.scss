@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display-swap');
 
+$purple_color: #9700ff;
+
+
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +12,7 @@
 
 body {
   overflow: hidden;
+  background: $purple_color;
 }
 
 section {
@@ -16,35 +20,7 @@ section {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #f1f4f9, #dff1ff);
-}
-
-section .color {
-  position: absolute;
-  filter: blur(150px);
-}
-
-section .color:nth-child(1) {
-  top: -350px;
-  width: 600px;
-  height: 600px;
-  background: #ff359b;
-}
-
-section .color:nth-child(2) {
-  bottom: -150px;
-  left: 100px;
-  width: 500px;
-  height: 500px;
-  background: #fffd87;
-}
-
-section .color:nth-child(3) {
-  bottom: 50px;
-  right: 100px;
-  width: 300px;
-  height: 300px;
-  background: #00d2ff;
+  background: $purple_color;
 }
 
 .box {
@@ -127,5 +103,6 @@ section .color:nth-child(3) {
 
   .text {
     text-align: center;
+    color: white;
   }
 }
