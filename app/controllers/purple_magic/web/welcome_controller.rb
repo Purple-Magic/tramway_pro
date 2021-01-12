@@ -12,6 +12,6 @@ class PurpleMagic::Web::WelcomeController < ApplicationController
   private
 
   def application
-    @application = ::Tramway::Core.application_object
+    @application = Constraints::DomainConstraint.new(request.domain).application_object
   end
 end
