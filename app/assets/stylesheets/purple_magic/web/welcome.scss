@@ -2,7 +2,6 @@
 
 $purple_color: #9700ff;
 
-
 * {
   margin: 0;
   padding: 0;
@@ -104,5 +103,13 @@ section {
   .text {
     text-align: center;
     color: white;
+
+    img.telegram {
+      filter: invert(99%) sepia(96%) saturate(0%) hue-rotate(189deg) brightness(105%) contrast(100%);
+      width: 3rem;
+      &:hover {
+        filter: invert(100%) sepia(0%) saturate(1949%) hue-rotate(176deg) brightness(106%) contrast(73%);
+      }
+    }
   }
 }
