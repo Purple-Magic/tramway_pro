@@ -6,9 +6,6 @@
 
 = stylesheet_link_tag 'purple_magic/web/welcome'
 %section
-  -#.color
-  -#.color
-  -#.color
   .box
     .square{ style: "--i:0;" }
     .square{ style: "--i:1;" }
@@ -20,3 +17,7 @@
         %h1
           Purple Magic
         Здесь когда-нибудь будет наш сайт, а пока напиши нашему боту
+        %br
+        %p
+          = link_to 'https://t.me/purple_magic_bot' do
+            = image_tag 'https://cdn.jsdelivr.net/npm/simple-icons@3.13.0/icons/telegram.svg', class: 'telegram'
