@@ -16,7 +16,7 @@ module BotTelegram
             bot.listen do |message|
               user = user_from message
               chat = chat_from message
-              log_message message, user, chat
+              log_message message, user, chat, bot_record
               BotTelegram::Scenario.run message, bot, bot_record
             end
           rescue Telegram::Bot::Exceptions::ResponseError => e

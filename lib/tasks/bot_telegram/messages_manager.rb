@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 module BotTelegram::MessagesManager
-  def log_message(message, user, chat)
+  def log_message(message, user, chat, bot)
     file_path = "#{Rails.root}/lib/tasks/bot_telegram/bot_message_attributes.yml"
     telegram_message_attributes = YAML.load_file(file_path)['telegram_message']['attributes']
     BotTelegram::Message.create! text: message.text, user_id: user.id, chat_id: chat.id,
-                                 project_id: Project.find_by(title: 'PurpleMagic').id,
-                                 options: (telegram_message_attributes.reduce({}) do |hash, attribute|
-                                             hash.merge! attribute => message.send(attribute)
+      bot_id: bot.id, 
+      project_id: Project.find_by(title: 'PurpleMagic').id,
+      options: (telegram_message_attributes.reduce({}) do |hash, attribute|
+        hash.merge! attribute => message.send(attribute)
                                            end)
   end
 
