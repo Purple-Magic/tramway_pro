@@ -20,7 +20,8 @@ module BotTelegram
               send_step_message next_step, bot, message_from_telegram, bot_record
             else
               error = if current_step.options['free_answer']
-                bot_record.options['standard_answer'] || 'Я запомнил это сообщение'
+                #bot_record.options['standard_answer'] || 'Я запомнил это сообщение'
+                'Я передам ответ ребятам. Если хочешь посмотреть ссылки заново, просто введи /start'
               else
                 bot_record.options&.require('standard_error') || 'К сожалению, я не знаю, что на это ответить'
               end
