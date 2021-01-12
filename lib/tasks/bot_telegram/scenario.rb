@@ -19,7 +19,7 @@ module BotTelegram
             if next_step.present?
               send_step_message next_step, bot, message_from_telegram, bot_record
             else
-              error = bot_record.options['standard_error'] || 'К сожалению, я не знаю, что на это ответить'
+              error = bot_record.options&.require('standard_error') || 'К сожалению, я не знаю, что на это ответить'
               message_to_user bot, error, message_from_telegram
             end
           end
