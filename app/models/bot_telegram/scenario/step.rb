@@ -12,8 +12,6 @@ class BotTelegram::Scenario::Step < ApplicationRecord
   end
 
   def continue?
-    return false if options.present? && !options['free_answer']
-
     options.present? || delay.present?
   end
 end
