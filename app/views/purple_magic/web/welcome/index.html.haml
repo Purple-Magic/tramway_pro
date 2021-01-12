@@ -1,5 +1,22 @@
 = content_for :title do
-  -PurpleMagic
+  - "Purple Magic"
   
 = content_for :application_name do
-  -PurpleMagic
+  - "Purple Magic"
+
+= stylesheet_link_tag 'purple_magic/web/welcome'
+%section
+  -#.color
+  -#.color
+  -#.color
+  .box
+    .square{ style: "--i:0;" }
+    .square{ style: "--i:1;" }
+    .square{ style: "--i:2;" }
+    .square{ style: "--i:3;" }
+    .square{ style: "--i:4;" }
+    .container
+      .text
+        %h1
+          Purple Magic
+        Здесь когда-нибудь будет наш сайт, а пока напиши нашему боту

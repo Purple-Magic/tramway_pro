@@ -43,3 +43,5 @@ Tramway::Admin.navbar_structure(
   Tramway::User::User,
   project: :conference
 )
+
+Tramway::Landing.set_navbar true, project: :conference
