@@ -1,12 +1,18 @@
 # frozen_string_literal: true
 
 class BotTelegram::MessageDecorator < Tramway::Core::ApplicationDecorator
+  delegate_attributes :text
+
   decorate_associations :user
 
   class << self
     def list_attributes
-      [:created_at]
+      [:bot, :text, :created_at]
     end
+  end
+
+  def bot
+    object.bot&.name
   end
 
   def title

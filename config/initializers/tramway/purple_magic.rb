@@ -68,6 +68,7 @@ Tramway::Admin.navbar_structure(
       BotTelegram::User,
       BotTelegram::Scenario::Step,
       BotTelegram::Scenario::ProgressRecord,
+      BotTelegram::Message
     ]
   },
   {
@@ -75,7 +76,6 @@ Tramway::Admin.navbar_structure(
       ChatQuestUlsk::Message,
       ChatQuestUlsk::Game,
       ChatQuestUlsk::Chapter,
-      BotTelegram::Message
     ]
   },
   {
