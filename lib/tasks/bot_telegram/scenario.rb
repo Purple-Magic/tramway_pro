@@ -23,7 +23,7 @@ module BotTelegram
                 #bot_record.options['standard_answer'] || 'Я запомнил это сообщение'
                 'Я передам ответ ребятам. Ты можешь пока дальше смотреть наши ссылки'
               else
-                bot_record.options&.require('standard_error') || 'К сожалению, я не знаю, что на это ответить'
+                (bot_record.options.present? && bot_record.options['standard_error']) || 'К сожалению, я не знаю, что на это ответить'
               end
               message_to_user bot, error, message_from_telegram
             end
