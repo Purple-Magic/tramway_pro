@@ -99,6 +99,7 @@ window.addEventListener('load', function(){
   $('#description').show();
   $('#buttons').show();
   $('#turnThePage').show();
+  $('#flipbook').show();
   $('body').css('background', 'white')
   $('body').css('display', 'block')
   init();
@@ -117,6 +118,7 @@ if (isSafari) {
   $('#description').hide();
   $('#buttons').hide();
   $('#turnThePage').hide();
+  $('#flipbook').hide();
   $('.loader').hide();
   $('.loading').hide();
 }
