@@ -1,7 +1,81 @@
-@import 'spinner';
+body {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #121213;
+}
 
-body{
-    overflow:hidden;
+.loader {
+  position: relative;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0002);
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: #03e9f4;
+    animation: blinkCursor 0.8s steps(3) infinite;
+  }
+  
+  h2 {
+    position: relative;
+    color: #03e9f4;
+    letter-spacing: 5px;
+    font-size: 4em;
+    text-transform: uppercase;
+    animation: typing 8s steps(100) infinite;
+    overflow: hidden;
+  }
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  9% {
+    width: 43.063px;
+  }
+  18% {
+    width: 88.031px;
+  }
+  27% {
+    width: 128.344px;
+  }
+  36% {
+    width: 172.750px;
+  }
+  45% {
+    width: 215.906px;
+  }
+  54% {
+    width: 206.969px;
+  }
+  63% {
+    width: 306.844px;
+  }
+  72% {
+    width: 351.812px;
+  }
+}
+
+@keyframes blinkCursor {
+  0%, 75% {
+    opacity: 1;
+  }
+  76%, 100% {
+    opacity: 0;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 @font-face {
@@ -15,10 +89,13 @@ body{
 }
 
 .loading {
+  position: fixed;
+  bottom: 10px;
+  color: white;
   width: 100%;
   text-align: center;
   font-family: 'Exo-Bold';
-  font-size: 25pt;
+  font-family: 1.5em;
 }
 
 .btn.btn-engineervol {
