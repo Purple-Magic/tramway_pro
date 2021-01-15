@@ -99,6 +99,8 @@ window.addEventListener('load', function(){
   $('#description').show();
   $('#buttons').show();
   $('#turnThePage').show();
+  $('body').css('background', 'white')
+  $('body').css('display', 'block')
   init();
 });
 
