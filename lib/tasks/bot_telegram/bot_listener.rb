@@ -20,7 +20,7 @@ module BotTelegram
               BotTelegram::Scenario.run message, bot, bot_record
             end
           rescue Telegram::Bot::Exceptions::ResponseError => e
-            Sentry.capture_exception(e)
+            ::Sentry.capture_exception(e)
           end
         end
       end
