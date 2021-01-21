@@ -2,7 +2,6 @@
 
 require 'telegram/bot'
 require_relative 'scenario'
-require 'sentry-raven'
 
 module BotTelegram
   class BotListener
@@ -21,7 +20,7 @@ module BotTelegram
               BotTelegram::Scenario.run message, bot, bot_record
             end
           rescue Telegram::Bot::Exceptions::ResponseError => e
-            ::Sentry.capture_exception(e)
+            Raven.capture_exception e
           end
         end
       end

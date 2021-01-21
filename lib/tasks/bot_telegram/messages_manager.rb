@@ -22,10 +22,11 @@ module BotTelegram::MessagesManager
           bot.api.send_message(
             chat_id: message_telegram.chat.id,
             text: message_obj&.text,
-            reply_markup: Telegram::Bot::Types::ReplyKeyboardMarkup.new(**message_obj.reply_markup)
+            reply_markup: Telegram::Bot::Types::ReplyKeyboardMarkup.new(**message_obj.reply_markup),
+            parse_mode: :markdown
           )
         else
-          bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text
+          bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text, parse_mode: :markdown
         end
       end
       if message_obj.file.path.present?
