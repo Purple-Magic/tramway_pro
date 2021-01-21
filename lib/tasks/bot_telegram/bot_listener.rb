@@ -2,6 +2,7 @@
 
 require 'telegram/bot'
 require_relative 'scenario'
+require 'sentry'
 
 module BotTelegram
   class BotListener
