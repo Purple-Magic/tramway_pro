@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  
+  .box {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    transition: 1s;
+
+    &.box1 {
+      background: #f00;
+      clip-path: polygon(0 0, 33% 0, 33% 100%, 0% 100%)
+    }
+
+    &.box2 {
+      background: #0f0;
+      clip-path: polygon(33% 0, 67% 0, 67% 100%, 33% 100%)
+    }
+
+    &.box3 {
+      background: #00f;
+      clip-path: polygon(67% 0, 100% 0, 100% 100%, 67% 100%)
+    }
+
+    .content {
+      padding: 20px;
+      margin: 20px;
+      z-index: 10;
+      opacity: 0;
+      transition: 1s;
+
+      h2 {
+        color: #fff;
+        font-size: 6vw;
+        font-weight: initial;
+      }
+    }
+
+    &.active {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+      .content {
+        opacity: 1;
+        transition-delay: 0.5s;
+      }
+    }
+
+    &:hover {
+      z-index: 1000;
+    }
+
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

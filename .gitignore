@@ -20,6 +20,7 @@
 public/assets/
 public/uploads/
 public/system/
+public/*.mp4
 config/secrets.yml
 config/database.yml
 

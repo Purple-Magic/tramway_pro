@@ -1,0 +1,20 @@
+= stylesheet_link_tag 'red_magic/web/welcome'
+
+%section
+  .box.box1
+    %video{ src: '3.mp4', autoplay: true, loop: true, muted: true }
+    .content
+      %h2 Развлекательный шоурил
+  .box.box2
+    %video{ src: '1.mp4', autoplay: true, loop: true, muted: true }
+    .content
+      %h2 Музыкальный шоурил
+  .box.box3
+    %video{ src: '2.mp4', autoplay: true, loop: true, muted: true }
+    .content
+      %h2 Офисный шоурил
+:javascript
+  let box = document.querySelectorAll('.box');
+  box.forEach(popup => popup.addEventListener('click', () => {
+    popup.classList.toggle('active')
+  }))
