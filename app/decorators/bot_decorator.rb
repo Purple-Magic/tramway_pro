@@ -9,7 +9,7 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      [ :name, :team, :options, :users_count, :messages_count ]
+      [ :name, :team, :options, :users_count, :messages, :messages_count ]
     end
 
     def show_associations
@@ -27,5 +27,11 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
 
   def messages_count
     object.progress_records.uniq.count
+  end
+
+  def messages
+    content_tag :a, href: Tramway::Admin::Engine.routes.url_helpers.records_path(model: ::BotTelegram::Message, filter: { bot_id_eq: object.id }) do
+      I18n.t('helpers.links.open')
+    end
   end
 end
