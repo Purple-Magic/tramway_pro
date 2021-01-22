@@ -73,3 +73,30 @@ section {
     }
   }
 }
+
+@media screen and (max-width: 700px) {
+  section {
+    .box {
+      &.box1 {
+        clip-path: polygon(0 0, 100% 0%, 100% 33%, 0 33%);
+      }
+
+      &.box2 {
+        clip-path: polygon(0 33%, 100% 33%, 100% 66%, 0 66%);
+      }
+
+      &.box3 {
+        clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+      }
+
+      &.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+        .content {
+          opacity: 1;
+          transition-delay: 0.5s;
+        }
+      }
+    }
+  }
+}
