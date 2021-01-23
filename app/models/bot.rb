@@ -10,4 +10,7 @@ class Bot < ApplicationRecord
       where team: team
     end
   end
+
+  store_accessor :options, :custom
+  store_accessor :options, :scenario
 end

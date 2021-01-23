@@ -41,6 +41,7 @@ ru:
         steps: Шаги сценария
         users_count: Количество пользователей
         messages_count: Количество сообщений
+        custom: Кастомный
       estimation/project:
         title: Название
         tasks: Задачи
