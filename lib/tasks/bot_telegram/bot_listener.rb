@@ -18,7 +18,6 @@ module BotTelegram
               chat = chat_from message
               log_message message, user, chat, bot_record
               if bot_record.custom
-                puts "BotTelegram::#{bot_record.scenario.camelize.capitalize}::Scenario"
                 "BotTelegram::#{bot_record.scenario.camelize.capitalize}::Scenario".constantize.run message, bot, bot_record, chat
               else
                 BotTelegram::Scenario.run message, bot, bot_record

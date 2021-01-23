@@ -9,7 +9,6 @@ module BotTelegram
         IT_WAY_CHAT_ID = '-434152573'
 
         def run(message_from_telegram, bot, bot_record, chat)
-          puts message_from_telegram.text
           if chat.telegram_id.to_s == IT_WAY_CHAT_ID.to_s
             words = words_to_explain(message_from_telegram.text)
             words.each do |word|
