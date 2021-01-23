@@ -12,6 +12,7 @@ class Admin::WordForm < Tramway::Core::ApplicationForm
   end
 
   def synonims=(value)
-    super value.split(',')
+    model.synonims = value.split(',')
+    model.save!
   end
 end
