@@ -17,10 +17,19 @@ module BotTelegram
               user = user_from message
               chat = chat_from message
               log_message message, user, chat, bot_record
-              BotTelegram::Scenario.run message, bot, bot_record
+              if bot_record.custom
+                puts "BotTelegram::#{bot_record.scenario.camelize.capitalize}::Scenario"
+                "BotTelegram::#{bot_record.scenario.camelize.capitalize}::Scenario".constantize.run message, bot, bot_record, chat
+              else
+                BotTelegram::Scenario.run message, bot, bot_record
+              end
             end
           rescue Telegram::Bot::Exceptions::ResponseError => e
-            Raven.capture_exception e
+            if Rails.env.development?
+              puts e
+            else
+              Raven.capture_exception e
+            end
           end
         end
       end

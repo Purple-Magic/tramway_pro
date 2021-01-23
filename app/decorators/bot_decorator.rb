@@ -5,7 +5,7 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def list_attributes
-      [ :users_count, :messages_count ]
+      [ :users_count, :messages_count, :custom ]
     end
 
     def show_attributes
@@ -32,6 +32,14 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
   def messages
     content_tag :a, href: Tramway::Admin::Engine.routes.url_helpers.records_path(model: ::BotTelegram::Message, filter: { bot_id_eq: object.id }) do
       I18n.t('helpers.links.open')
+    end
+  end
+
+  def custom
+    if object.custom
+      I18n.t('helpers.yes')
+    else
+      I18n.t('helpers.no')
     end
   end
 end
