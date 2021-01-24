@@ -1,6 +1,6 @@
 module BotTelegram
   module Leopold
-    module ItWay
+    module ItWayPro
       module WordsCheck
         def words_to_explain(text)
           ['.', ',', '!', ':', ';', '(', ')', '@'].each do |symbol|

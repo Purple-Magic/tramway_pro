@@ -4,8 +4,6 @@ require 'telegram/bot'
 require_relative 'scenario'
 require_relative 'leopold'
 require_relative 'leopold/scenario'
-require_relative 'leopold/it_way'
-require_relative 'leopold/it_way/words_check'
 
 module BotTelegram
   class BotListener

@@ -1,10 +1,12 @@
+require_relative 'it_way_pro'
+
 module BotTelegram
   module Leopold
     module Scenario
       class << self
         include ::BotTelegram::MessagesManager
         include ::BotTelegram::Info
-        include ::BotTelegram::Leopold::ItWay::WordsCheck
+        include ::BotTelegram::Leopold::ItWayPro::WordsCheck
 
         IT_WAY_CHAT_ID = '-434152573'
 
