@@ -8,9 +8,7 @@ module BotTelegram
           end
           words = text.split(' ')
           words.map do |word|
-            Word.active.where(main: word.downcase) + (Word.active.select do |record|
-              record.synonims&.include? word.downcase
-            end)
+            Word.find_records_by word, Word.active.approved
           end.flatten.uniq
         end
       end
