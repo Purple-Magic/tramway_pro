@@ -126,3 +126,9 @@ ru:
     estimation/coefficient:
       genitive: коэффициент
       plural: коэффициенты
+  state_machines:
+    word:
+      review_state:
+        events:
+          approve: Подтвердить
+          revoke: Отменить
