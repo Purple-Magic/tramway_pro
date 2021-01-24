@@ -12,12 +12,18 @@ module BotTelegram
         IT_WAY_CHAT_ID = '-434152573'
 
         def run(message_from_telegram, bot, bot_record, chat)
-          if chat.telegram_id.to_s == IT_WAY_CHAT_ID.to_s
+          if chat_to_answer? chat
             words = words_to_explain(message_from_telegram.text)
             words.each do |word|
               message_to_chat bot, chat, "#{word.main} - #{word.description}"
             end
+          else
+            message_to_chat bot, chat, bot_record.options['not_my_group']
           end
+        end
+
+        def chat_to_answer?(chat)
+          chat.chat_type == 'private' || chat.telegram_id.to_s == IT_WAY_CHAT_ID.to_s
         end
       end
     end
