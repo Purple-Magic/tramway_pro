@@ -8,7 +8,7 @@ module BotTelegram
           end
           words = text.split(' ')
           words.map do |word|
-            Word.where(main: word.downcase) + (Word.all.select do |record|
+            Word.active.where(main: word.downcase) + (Word.active.select do |record|
               record.synonims&.include? word.downcase
             end)
           end.flatten.uniq
