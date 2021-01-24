@@ -1,4 +1,5 @@
 require_relative 'it_way_pro'
+require_relative 'it_way_pro/words_check'
 
 module BotTelegram
   module Leopold
