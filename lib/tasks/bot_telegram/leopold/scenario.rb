@@ -29,7 +29,7 @@ module BotTelegram
         if chat_to_answer? chat
           command = get_command message_from_telegram.text
           if command.present?
-            send command, message_from_telegram.text.gsub(/^\/#{command} /, '')
+            send command, message_from_telegram.text.gsub(/^\/#{command} /, '').gsub(/^\@myleopold_bot/, '')
           else
             words = words_to_explain(message_from_telegram.text)
             words.each do |word|
