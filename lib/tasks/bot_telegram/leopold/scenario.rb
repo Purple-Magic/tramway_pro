@@ -41,7 +41,7 @@ module BotTelegram
           chat.chat_type == 'private' 
         end
 
-        def is_a_command?(text)
+        def get_command(text)
           COMMANDS.reduce('') do |method_name, command|
             method_name = command if text.match?(/^\/#{command}/)
           end
