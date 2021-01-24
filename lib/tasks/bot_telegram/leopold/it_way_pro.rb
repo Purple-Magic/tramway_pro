@@ -1,6 +1,6 @@
 module BotTelegram
   module Leopold
-    module ItWay
+    module ItWayPro
     end
   end
 end
