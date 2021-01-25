@@ -40,7 +40,7 @@ module BotTelegram
             end
           end
         else
-          message_to_chat bot, chat, bot_record.options['not_my_group']
+          #message_to_chat bot, chat, bot_record.options['not_my_group']
         end
       end
 
