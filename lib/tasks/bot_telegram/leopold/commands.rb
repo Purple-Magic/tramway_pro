@@ -3,7 +3,7 @@ module BotTelegram
     module Commands
       def add_word(text)
         if text == '/add_word@myleopold_bot' || text == '/add_word'
-          message_from_chat bot, chat, bot_record.options['empty_word']
+          message_to_chat bot, chat, bot_record.options['empty_word']
         else
           words = Word.find_records_by(text, Word.active)
           if words.any?
