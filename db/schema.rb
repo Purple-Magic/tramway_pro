@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210125130537) do
+ActiveRecord::Schema.define(version: 20210125141523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -244,6 +244,7 @@ ActiveRecord::Schema.define(version: 20210125130537) do
     t.integer "chat_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "state"
   end
 
   create_table "listai_books", force: :cascade do |t|
