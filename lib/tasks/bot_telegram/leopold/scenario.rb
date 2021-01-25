@@ -70,7 +70,7 @@ module BotTelegram
         last_use = ::ItWay::WordUse.where(word_id: word.id, chat_id: chat.id).last
 
         return false unless last_use.present?
-        return last_use.created_at > (DateTime.now + 1.hour)
+        return last_use.created_at > (DateTime.now - 1.hour)
       end
 
       def build_message_with_word(word)
