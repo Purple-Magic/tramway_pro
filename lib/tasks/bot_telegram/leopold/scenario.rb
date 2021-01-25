@@ -45,7 +45,7 @@ module BotTelegram
       end
 
       def chat_to_answer?(chat)
-        private_chat?(chat) || chat.telegram_id.to_s == IT_WAY_CHAT_ID.to_s
+        private_chat?(chat) || chat.telegram_chat_id.to_s == IT_WAY_CHAT_ID.to_s
       end
 
       def private_chat?(chat)
