@@ -63,11 +63,12 @@ module BotTelegram
 
       def send_word_to_chat(word)
         message_to_chat bot, chat, build_message_with_word(word)
-        WordUse.create! word_id: word.id, chat_id: chat.id
+        ::ItWay::WordUse.create! word_id: word.id, chat_id: chat.id
       end
 
       def sended_recently?(word)
-        WordUse.where(word_id: word.id, chat_id: chat.id).last.created_at - 1.hour < DateTime.now
+        last_use = ::ItWay::WordUse.where(word_id: word.id, chat_id: chat.id).last
+        last_use && last_use.created_at > (DateTime.now - 1.hour)
       end
 
       def build_message_with_word(word)
