@@ -33,9 +33,11 @@ module BotTelegram
           else
             words = words_to_explain(message_from_telegram.text)
             words.each do |word|
-              message_to_chat bot, chat, build_message_with_word(word)
-              if private_chat? chat
-                message_to_chat bot, chat, bot_record.options['you_can_add_words']
+              unless sended_recently? word
+                send_word word
+                if private_chat? chat
+                  message_to_chat bot, chat, bot_record.options['you_can_add_words']
+                end
               end
             end
           end
@@ -57,6 +59,15 @@ module BotTelegram
         COMMANDS.reduce('') do |method_name, command|
           method_name = command if text&.match?(/^\/#{command}/)
         end
+      end
+
+      def send_word_to_chat(word)
+        message_to_chat bot, chat, build_message_with_word(word)
+        WordUse.create! word_id: word.id, chat_id: chat.id
+      end
+
+      def sended_recently?(word)
+        WordUse.where(word_id: word.id, chat_id: chat.id).last.created_at - 1.hour < DateTime.now
       end
 
       def build_message_with_word(word)
