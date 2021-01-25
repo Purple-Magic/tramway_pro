@@ -13,6 +13,12 @@
     %video{ src: 'system/2.mp4', autoplay: true, loop: true, muted: true }
     .content
       %h2 Офисный шоурил
+.link-panel
+  .links
+    = link_to 'https://vk.com/redmagicprod', class: :vk do
+      = image_tag 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/vk.svg'
+    = link_to 'https://instagram.com/redmagicprod', class: :instagram do
+      = image_tag 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg'
 :javascript
   let box = document.querySelectorAll('.box');
   box.forEach(popup => popup.addEventListener('click', () => {
