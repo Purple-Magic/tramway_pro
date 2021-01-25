@@ -13,7 +13,7 @@ module BotTelegram::MessagesManager
   end
 
   def message_to_chat(bot, chat, message)
-    bot.api.send_message chat_id: chat.telegram_id, text: message
+    bot.api.send_message chat_id: chat.telegram_chat_id, text: message
   end
 
   def message_to_user(bot, message_obj, message_telegram)
