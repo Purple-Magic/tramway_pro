@@ -22,17 +22,14 @@ section {
     transition: 1s;
 
     &.box1 {
-      background: #f00;
       clip-path: polygon(0 0, 33% 0, 33% 100%, 0% 100%);
     }
 
     &.box2 {
-      background: #0f0;
       clip-path: polygon(33% 0, 67% 0, 67% 100%, 33% 100%);
     }
 
     &.box3 {
-      background: #00f;
       clip-path: polygon(67% 0, 100% 0, 100% 100%, 67% 100%);
     }
 
@@ -47,6 +44,7 @@ section {
         color: #fff;
         font-size: 6vw;
         font-weight: initial;
+        text-shadow: 0 0 3px #000, 0 0 5px #000;
       }
     }
 
