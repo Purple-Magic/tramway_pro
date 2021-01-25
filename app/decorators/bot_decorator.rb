@@ -22,11 +22,19 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def users_count
-    object.users.uniq.count
+    if object.custom
+      object.messages.map(&:user).flatten.uniq.count
+    else
+      object.users.uniq.count
+    end
   end
 
   def messages_count
-    object.progress_records.uniq.count
+    if object.custom
+      object.messages.count
+    else
+      object.progress_records.uniq.count
+    end
   end
 
   def messages
