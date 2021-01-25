@@ -14,6 +14,8 @@ module BotTelegram::MessagesManager
 
   def message_to_chat(bot, chat, message)
     bot.api.send_message chat_id: chat.telegram_chat_id, text: message
+  rescue
+    Raven.capture_exception e
   end
 
   def message_to_user(bot, message_obj, message_telegram)
