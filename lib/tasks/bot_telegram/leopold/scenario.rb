@@ -44,6 +44,8 @@ module BotTelegram
         else
           #message_to_chat bot, chat, bot_record.options['not_my_group']
         end
+      rescue StandardError => e
+        Raven.capture_exception e
       end
 
       def chat_to_answer?(chat)
@@ -68,6 +70,7 @@ module BotTelegram
 
       def sended_recently?(word)
         last_use = ::ItWay::WordUse.where(word_id: word.id, chat_id: chat.id).last
+
         return false unless last_use.present?
         return last_use.created_at > (DateTime.now - 1.hour)
       end
