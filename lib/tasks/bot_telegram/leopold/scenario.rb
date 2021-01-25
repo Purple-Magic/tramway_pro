@@ -10,7 +10,7 @@ module BotTelegram
       include ::BotTelegram::Leopold::ItWayPro::WordsCheck
       include ::BotTelegram::Leopold::Commands
 
-      IT_WAY_CHAT_ID = '-434152573'
+      IT_WAY_CHAT_ID = '-1001141858122'
       COMMANDS = ['add_word']
 
       attr_reader :bot
