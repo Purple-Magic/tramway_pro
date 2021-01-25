@@ -91,6 +91,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'unicorn-rails'
 gem 'validates'
 gem 'whenever', require: false
+gem 'safe_target_blank'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

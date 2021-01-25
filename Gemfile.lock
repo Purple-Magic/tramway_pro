@@ -413,6 +413,8 @@ GEM
     russia_regions (0.0.6)
     russian (0.6.0)
       i18n (>= 0.5.0)
+    safe_target_blank (1.0.2)
+      rails
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -626,6 +628,7 @@ DEPENDENCIES
   rubocop
   russia_regions (= 0.0.6)
   russian
+  safe_target_blank
   sass-rails
   selectize-rails
   selenium-webdriver

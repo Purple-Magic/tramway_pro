@@ -114,7 +114,7 @@ section {
         &::before {
           width: 4.4rem;
           height: 100%;
-          transform: skewX(45deg) translateX(-$link-size);
+          transform: translateX(-$link-size);
         }
       }
 
