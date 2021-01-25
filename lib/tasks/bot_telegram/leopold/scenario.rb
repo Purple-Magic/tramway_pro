@@ -42,13 +42,12 @@ module BotTelegram
             end
           end
         else
-          #message_to_chat bot, chat, bot_record.options['not_my_group']
+          message_to_chat bot, chat, bot_record.options['not_my_group']
         end
       end
 
       def chat_to_answer?(chat)
-        #private_chat?(chat) || chat.telegram_chat_id.to_s == IT_WAY_CHAT_ID.to_s
-        true
+        private_chat?(chat) || chat.telegram_chat_id.to_s == IT_WAY_CHAT_ID.to_s
       end
 
       def private_chat?(chat)
