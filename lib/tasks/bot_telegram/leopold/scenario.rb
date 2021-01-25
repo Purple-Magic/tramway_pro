@@ -54,7 +54,7 @@ module BotTelegram
 
       def get_command(text)
         COMMANDS.reduce('') do |method_name, command|
-          method_name = command if text.match?(/^\/#{command}/)
+          method_name = command if text&.match?(/^\/#{command}/)
         end
       end
 
