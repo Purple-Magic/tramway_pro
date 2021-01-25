@@ -19,7 +19,7 @@ module BotTelegram::Info
   end
 
   def chat_from(message)
-    chat = BotTelegram::Chat.active.find_or_create_by! telegram_id: message.chat.id
+    chat = BotTelegram::Chat.active.find_or_create_by! telegram_chat_id: message.chat.id
     chat.update! title: message.chat.title,
                  chat_type: message.chat.type,
                  project_id: Project.find_by(title: 'PurpleMagic').id,
