@@ -20,7 +20,7 @@ class WordDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def synonims
-    object.synonims.join(', ')
+    object.synonims&.join(', ')
   end
 
   def review_state_button_color(event)
