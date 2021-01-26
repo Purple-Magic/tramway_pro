@@ -7,17 +7,20 @@
       register: ping
 
     - name: Checking ping
-      debug: msg="{{ ping.stdout }}"
+      debug:
+        msg: "{{ ping.stdout }}"
 
     - name: Getting timestamp
       command: date +%Y%m%d%H%M%S
       register: time
 
     - name: Save application path
-      set_fact: release_path="{{ app_path }}/releases/{{ time.stdout }}"
+      set_fact:
+        release_path: "{{ app_path }}/releases/{{ time.stdout }}"
 
     - name: Checking application path
-      debug: msg="Current application path is {{ release_path }}"
+      debug:
+        msg: "Current application path is {{ release_path }}"
 
     - name: Checking out repo
       git: repo=https://github.com/Purple-Magic/tramway_pro
