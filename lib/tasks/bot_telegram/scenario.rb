@@ -10,7 +10,7 @@ module BotTelegram
       def run(message_from_telegram, bot, bot_record)
         user = user_from message_from_telegram
         if message_from_telegram.text == '/start'
-          current_step = bot_record.steps.find_by(name: :start)
+          current_step = bot_record.steps.active.find_by(name: :start)
           send_step_message current_step, bot, message_from_telegram, bot_record
         else
           current_step = user.progress_records.joins(:step).where('bot_telegram_user_id = ? AND bot_telegram_scenario_steps.bot_id = ?', user.id, bot_record.id).last&.step
@@ -20,8 +20,7 @@ module BotTelegram
               send_step_message next_step, bot, message_from_telegram, bot_record
             else
               error = if current_step.options['free_answer']
-                #bot_record.options['standard_answer'] || 'Я запомнил это сообщение'
-                'Я передам ответ ребятам. Ты можешь пока дальше смотреть наши ссылки'
+                bot_record.options['standard_answer'] || 'Я запомнил это сообщение'
               else
                 (bot_record.options.present? && bot_record.options['standard_error']) || 'К сожалению, я не знаю, что на это ответить'
               end
@@ -49,7 +48,7 @@ module BotTelegram
 
       def find_next_step(current_step, message_from_telegram, bot)
         next_step = message_from_telegram.text.present? && BotTelegram::Scenario::Step.find_by(name: current_step.options[message_from_telegram.text.downcase], bot_id: bot.id)
-        next_step = BotTelegram::Scenario::Step.find_by name: current_step.options['next'], bot_id: bot.id unless next_step.present?
+        next_step = BotTelegram::Scenario::Step.active.find_by name: current_step.options['next'], bot_id: bot.id unless next_step.present?
         next_step
       end
 
