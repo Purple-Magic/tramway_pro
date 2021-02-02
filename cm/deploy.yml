@@ -73,6 +73,10 @@
       args:
         chdir: "{{ release_path }}"
 
+    - name: Stop telegram bots
+      ignore_errors: yes
+      shell: "ps aux | grep -ie bot | awk '{print $2}' | xargs kill -9 "
+
     - name: Assets
       shell: "/bin/bash -lic '/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec rails assets:precompile'"
       args:
