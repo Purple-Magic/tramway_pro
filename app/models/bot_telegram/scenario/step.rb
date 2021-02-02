@@ -6,6 +6,8 @@ class BotTelegram::Scenario::Step < ApplicationRecord
 
   uploader :file, :file, extensions: %i[mp3 wav jpg jpeg png ogg]
 
+  search_by :options
+
   scope :partner_scope, -> (_user_id) { all }
   [ :rsm, :night, :purple_magic ].each do |team|
     scope "#{team}_scope".to_sym, -> (_user_id) { joins(:bot).where('bots.team = ?', team) }
