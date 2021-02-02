@@ -8,9 +8,6 @@ Tramway::Admin.set_available_models(
   Tramway::Landing::Block,
   Tramway::Page::Page,
   Tramway::User::User,
-  ChatQuestUlsk::Message,
-  ChatQuestUlsk::Game,
-  ChatQuestUlsk::Chapter,
   BotTelegram::User,
   BotTelegram::Message,
   BotTelegram::Scenario::Step,
@@ -25,13 +22,9 @@ Tramway::Admin.set_available_models(
 )
 
 Tramway::Admin.set_available_models(
-#  ChatQuestUlsk::Message,
-#  ChatQuestUlsk::Game,
-#  ChatQuestUlsk::Chapter,
   BotTelegram::User,
   BotTelegram::Scenario::Step,
   BotTelegram::Scenario::ProgressRecord,
-#  BotTelegram::Message,
   role: :partner,
   project: :purple_magic
 )
@@ -69,13 +62,6 @@ Tramway::Admin.navbar_structure(
       BotTelegram::Scenario::Step,
       BotTelegram::Scenario::ProgressRecord,
       BotTelegram::Message
-    ]
-  },
-  {
-    chat_quest_ulsk: [
-      ChatQuestUlsk::Message,
-      ChatQuestUlsk::Game,
-      ChatQuestUlsk::Chapter,
     ]
   },
   {

@@ -3,16 +3,16 @@
 class Word < Tramway::Core::ApplicationRecord
   search_by :main, :synonims
 
-  state_machine :review_state, initial: :approved do
-    state :approved
+  aasm :review_state do
+    state :approved, initial: true
     state :unviewed
 
     event :approve do
-      transition unviewed: :approved
+      transitions from: :unviewed, to: :approved
     end
 
     event :revoke do
-      transition approved: :unviewed
+      transitions from: :approved, to: :unviewed
     end
   end
 
