@@ -3,17 +3,14 @@ module BotTelegram
     module ItWayPro
       module WordsCheck
         def words_to_explain(text)
-          if text.present?
-            ['.', ',', '!', ':', ';', '(', ')', '@'].each do |symbol|
-              text.gsub! symbol, ''
-            end
-            words = text.split(' ')
-            words.map do |word|
-              Word.find_records_by word, Word.active.approved
-            end.flatten.uniq
-          else
-            []
-          end
+          Word.all.map do |word|
+            include_main = text.includes?(word.main)
+            include_synonim = word.synonims.map do |synonim|
+              text.includes? synonim
+            end.includes? true
+
+            return word if include_main || include_synonim
+          end.compact
         end
       end
     end

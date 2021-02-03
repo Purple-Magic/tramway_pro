@@ -25,5 +25,9 @@ class Word < Tramway::Core::ApplicationRecord
         record.synonims&.include? word.downcase
       end)
     end
+
+    def all_words_with_synonims
+      all.map(&:main) + all.map(&:synonims).flatten
+    end
   end
 end
