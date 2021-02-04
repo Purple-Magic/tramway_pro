@@ -6,9 +6,10 @@ describe 'Create admin' do
   let!(:attributes) { attributes_for :admin_admin_attributes }
 
   ProjectsHelper.projects.each do |project|
-    next if project.url.in? ['listai.test', 'kalashnikovisme.test', 'gorodsad73.test']
+    next if project.url.in? ['listai.test', 'kalashnikovisme.test', 'gorodsad73.test', 'tramway.test', 'engineervol.test', 'red-magic.test']
 
     it "#{project.url}: should create admin" do
+      puts "PROJECT URL: #{project.url}".yellow
       move_host_to project.url
       visit '/admin'
       fill_in 'Email', with: "admin#{project.id}@email.com"
@@ -44,6 +45,7 @@ describe 'Create admin' do
     end
 
     it "#{project.url}: should create admin with existing email in another project" do
+      puts "PROJECT URL: #{project.url}".yellow
       existed_email = (create :admin, project_id: project.id + 1).email
 
       move_host_to project.url

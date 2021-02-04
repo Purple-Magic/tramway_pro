@@ -3,16 +3,16 @@
 class Word < Tramway::Core::ApplicationRecord
   search_by :main, :synonims
 
-  state_machine :review_state, initial: :approved do
-    state :approved
+  aasm :review_state do
+    state :approved, initial: true
     state :unviewed
 
     event :approve do
-      transition unviewed: :approved
+      transitions from: :unviewed, to: :approved
     end
 
     event :revoke do
-      transition approved: :unviewed
+      transitions from: :approved, to: :unviewed
     end
   end
 
@@ -24,6 +24,10 @@ class Word < Tramway::Core::ApplicationRecord
       collection.where(main: word.downcase) + (collection.select do |record|
         record.synonims&.include? word.downcase
       end)
+    end
+
+    def all_words_with_synonims
+      all.map(&:main) + all.map(&:synonims).flatten
     end
   end
 end

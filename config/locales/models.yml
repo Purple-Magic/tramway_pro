@@ -132,3 +132,8 @@ ru:
         events:
           approve: Подтвердить
           revoke: Отменить
+    tramway/event/action:
+      action_state:
+        events:
+          do: Выполнить
+          decline: Отменить
