@@ -53,6 +53,7 @@ RSpec.configure do |config|
     create :unity, title: 'IT Way'
     create :tramway_dev, name: :tramway, title: 'Tramway'
     create :purple_magic, name: :purple_magic, title: 'Purple Magic'
+    create :red_magic, name: :red_magic, title: 'Red Magic'
   end
   include ActionDispatch::TestProcess
 end

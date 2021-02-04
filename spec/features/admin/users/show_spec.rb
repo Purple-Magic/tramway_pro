@@ -6,9 +6,10 @@ describe 'Show admin' do
   ProjectsHelper.projects.each do |project|
     before { create :admin, project_id: project.id }
 
-    next if project.url.in? ['listai.test', 'kalashnikovisme.test']
+    next if project.url.in? ['listai.test', 'kalashnikovisme.test', 'tramway.test']
 
     it "#{project.url}: should show admin" do
+      puts "PROJECT URL: #{project.url}".yellow
       move_host_to project.url
       visit '/admin'
       fill_in 'Email', with: "admin#{project.id}@email.com"

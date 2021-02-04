@@ -5,6 +5,8 @@ Tramway::Core.initialize_application model_class: RedMagic
 Tramway::Admin.set_singleton_models RedMagic, project: :red_magic
 
 Tramway::Admin.set_available_models(
+  Tramway::Landing::Block,
+  Tramway::Page::Page,
   Tramway::User::User,
   Estimation::Project,
   Estimation::Task,
@@ -19,6 +21,12 @@ Tramway::Admin.navbar_structure(
     estimations: [
       Estimation::Customer,
       Estimation::Project,
+    ]
+  },
+  {
+    landing: [
+      Tramway::Page::Page,
+      Tramway::Landing::Block
     ]
   },
   Tramway::User::User,
