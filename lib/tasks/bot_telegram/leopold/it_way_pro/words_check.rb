@@ -4,7 +4,7 @@ module BotTelegram
       module WordsCheck
         def words_to_explain(text)
           Word.all.map do |word|
-            include_main = text.includes?(word.main)
+            include_main = text.include?(word.main)
             include_synonim = word.synonims.map do |synonim|
               text.include? synonim
             end.includes? true
