@@ -16,6 +16,12 @@ class Estimation::TaskDecorator < Tramway::Core::ApplicationDecorator
     object.hours * object.price * object.specialists_count
   end
 
+  def sum_with_coefficients
+    object.estimation_project.coefficients.reduce(sum) do |result, coeff|
+      result *= coeff.scale
+    end.round
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
