@@ -30,6 +30,9 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
         concat(content_tag(:th) do
           concat(Estimation::Task.human_attribute_name(:sum))
         end)
+        concat(content_tag(:th) do
+          concat(Estimation::Task.human_attribute_name(:sum_with_coefficients))
+        end)
       end)
       tasks.each do |task|
         concat(content_tag(:tr) do
@@ -47,6 +50,9 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
           end)
           concat(content_tag(:td) do
             concat task.sum
+          end)
+          concat(content_tag(:td) do
+            concat task.sum_with_coefficients
           end)
         end)
       end
@@ -67,44 +73,33 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
             concat(summary)
           end)
         end)
-      end)
-      ending_summary = summary
-      coefficients.each do |coefficient|
-        ending_summary *= coefficient.scale
-        concat(content_tag(:tr) do
-          concat(content_tag(:td) do
-            concat coefficient.title
-          end)
-          concat(content_tag(:td) do
-            concat coefficient.scale
-          end)
-          concat(content_tag(:td) do
-          end)
-          concat(content_tag(:td) do
-          end)
-          concat(content_tag(:td) do
-            concat ending_summary
-          end)
-        end)
-      end
-      concat(content_tag(:tr) do
-        concat(content_tag(:td) do
-        end)
-        concat(content_tag(:td) do
-        end)
-        concat(content_tag(:td) do
-        end)
-        concat(content_tag(:td) do
-          concat(content_tag(:b) do
-            concat(Estimation::Project.human_attribute_name(:ending_summary))
-          end)
-        end)
+        ending_summary = coefficients.reduce(summary) do |result, coeff|
+          result *= coeff.scale
+        end
         concat(content_tag(:td) do
           concat(content_tag(:b) do
             concat(ending_summary)
           end)
         end)
       end)
+      coefficients.each do |coefficient|
+        concat(content_tag(:tr) do
+          concat(content_tag(:td) do
+            concat coefficient.title
+          end)
+          concat(content_tag(:td) do
+            concat "#{(coefficient.scale * 100 - 100).round(0)} %"
+          end)
+          concat(content_tag(:td) do
+          end)
+          concat(content_tag(:td) do
+          end)
+          concat(content_tag(:td) do
+          end)
+          concat(content_tag(:td) do
+          end)
+        end)
+      end
     end
   end
 

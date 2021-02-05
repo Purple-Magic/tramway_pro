@@ -60,6 +60,7 @@ ru:
         hours: Количество часов
         price: Цена за час
         sum: Сумма
+        sum_with_coefficients: Сумма для заказчика
         specialists_count: Количество специалистов
       estimation/coefficient:
         estimation_project: Проект
