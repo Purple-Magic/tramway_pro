@@ -6,7 +6,7 @@ module BotTelegram
           if text.present?
             Word.all.map do |word|
               include_main = text.include?(word.main)
-              include_synonim = word.synonims.map do |synonim|
+              include_synonim = word.synonims&.map do |synonim|
                 text.include? synonim
               end.includes? true
 
