@@ -8,7 +8,7 @@ module BotTelegram
               include_main = text.include?(word.main)
               include_synonim = word.synonims&.map do |synonim|
                 text.include? synonim
-              end.includes? true
+              end&.include? true
 
               return word if include_main || include_synonim
             end.compact
