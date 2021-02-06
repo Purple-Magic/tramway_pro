@@ -43,12 +43,14 @@ ru:
         messages_count: Количество сообщений
         custom: Кастомный
       estimation/project:
+        name: Название
         title: Название
         tasks: Задачи
         table: Расчёты
         summary: Общая сумма
         coefficients: Коэфициенты
         ending_summary: Окончательная сумма
+        project_state: Состояние проекта
       estimation/customer:
         title: Название
         logo: Логотип
@@ -140,6 +142,12 @@ ru:
           decline: Отменить
     estimation/project:
       project_state:
+        states:
+          estimation_in_progress: В процессе оценки
+          estimation_done: Оценка готов
+          estimation_sent: Оценка отправлена заказчику
+          confirmed: Проект утверждён
+          declined: Проект отклонён
         events:
           finish_estimation: Завершить оценку
           send_to_customer: Отправлена заказчику
