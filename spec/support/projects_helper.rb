@@ -19,6 +19,14 @@ module ProjectsHelper
     'it-way.test'
   end
 
+  def red_magic_id
+    Project.where(url: 'red-magic.test').first.id
+  end
+
+  def red_magic_host
+    'red-magic.test'
+  end
+
   def projects_names
     %i[it_way]
   end
