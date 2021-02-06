@@ -138,3 +138,10 @@ ru:
         events:
           do: Выполнить
           decline: Отменить
+    estimation/project:
+      project_state:
+        events:
+          finish_estimation: Завершить оценку
+          send_to_customer: Отправлена заказчику
+          confirmed: Проект запущен
+          decline: Проект отклонён
