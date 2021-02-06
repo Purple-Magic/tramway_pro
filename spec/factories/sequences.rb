@@ -82,7 +82,7 @@ FactoryBot.define do
   sequence :postcode do |_n|
     'ab1 0aa'
   end
-  sequence :fee do |n|
+  sequence :float, aliases: [:fee] do |n|
     "0.#{n}".to_f
   end
 end
