@@ -494,7 +494,7 @@ GEM
       tramway-core (>= 1.9.2)
     tramway-auth (2.0.2)
     tramway-conference (1.9.5.1)
-    tramway-core (2.0.0.5)
+    tramway-core (2.0.0.6)
       audited (>= 4.8.0)
       bootstrap (>= 4.1.2)
       carrierwave
@@ -645,7 +645,7 @@ DEPENDENCIES
   tramway-admin (= 2.0.0.2)
   tramway-api (= 1.8.6.6)
   tramway-conference (= 1.9.5.1)
-  tramway-core (= 2.0.0.5)
+  tramway-core (= 2.0.0.6)
   tramway-event (= 1.12.6.2)
   tramway-export (= 0.1.6.1)
   tramway-landing (= 3.2.0.3)
