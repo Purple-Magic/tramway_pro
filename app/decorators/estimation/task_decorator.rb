@@ -43,10 +43,8 @@ class Estimation::TaskDecorator < Tramway::Core::ApplicationDecorator
         :title,
         :hours,
         :price,
-        :estimation_project_id,
         :created_at,
-        :updated_at,
-        :project_id,
+        :updated_at
       ]
     end
 

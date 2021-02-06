@@ -2,7 +2,7 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
-  delegate_attributes :title, :project_state
+  delegate_attributes :title, :state
 
   decorate_associations :tasks, :coefficients
 
@@ -101,6 +101,10 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
     tasks.sum(&:sum)
   end
 
+  def project_state
+    state_machine_view object, :project_state
+  end
+
   def project_state_button_color(event)
     case event
     when :send_to_customer
@@ -129,9 +133,6 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
         :id,
         :title,
         :table,
-        :state,
-        :created_at,
-        :updated_at,
       ]
     end
 
