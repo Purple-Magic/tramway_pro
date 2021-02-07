@@ -7,7 +7,7 @@ module ProjectsHelper
     end
 
     def move_host_to(host)
-      Capybara.app_host = 'http://' + host
+      Capybara.app_host = "http://#{host}"
     end
   end
 

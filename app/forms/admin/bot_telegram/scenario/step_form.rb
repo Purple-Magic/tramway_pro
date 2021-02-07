@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::BotTelegram::Scenario::StepForm < Tramway::Core::ApplicationForm
   properties :name, :text, :file, :project_id, :delay, :options, :reply_markup
 
@@ -21,7 +23,7 @@ class Admin::BotTelegram::Scenario::StepForm < Tramway::Core::ApplicationForm
   end
 
   def options=(value)
-    model.options = YAML.load(value)
+    model.options = YAML.safe_load(value)
   end
 
   def options
@@ -29,7 +31,7 @@ class Admin::BotTelegram::Scenario::StepForm < Tramway::Core::ApplicationForm
   end
 
   def reply_markup=(value)
-    model.reply_markup = YAML.load(value)
+    model.reply_markup = YAML.safe_load(value)
   end
 
   def reply_markup

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BotDecorator < Tramway::Core::ApplicationDecorator
   delegate_attributes :name, :team
 

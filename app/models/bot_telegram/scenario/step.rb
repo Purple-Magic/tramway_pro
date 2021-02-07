@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BotTelegram::Scenario::Step < ApplicationRecord
   self.table_name = 'bot_telegram_scenario_steps'
 

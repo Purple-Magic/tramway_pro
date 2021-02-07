@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Bot < ApplicationRecord
   has_many :steps, class_name: 'BotTelegram::Scenario::Step'
   has_many :progress_records, through: :steps, class_name: 'BotTelegram::Scenario::ProgressRecord'

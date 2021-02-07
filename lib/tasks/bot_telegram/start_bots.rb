@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'colorize'
 
 Bot.active.find_each do |bot|

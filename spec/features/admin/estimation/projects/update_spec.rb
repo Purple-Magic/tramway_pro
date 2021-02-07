@@ -26,7 +26,7 @@ describe 'Update estimation_project' do
 
     click_on 'Сохранить', class: 'btn-success'
     last_project.reload
-    attributes.keys.each do |attr|
+    attributes.each_key do |attr|
       actual = last_project.send(attr)
       expecting = attributes[attr]
       case actual.class.to_s

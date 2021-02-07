@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::BotForm < Tramway::Core::ApplicationForm
   properties :name, :team, :project_id, :token, :options
 
@@ -11,7 +13,7 @@ class Admin::BotForm < Tramway::Core::ApplicationForm
   end
 
   def options=(value)
-    model.options = YAML.load(value)
+    model.options = YAML.safe_load(value)
   end
 
   def options

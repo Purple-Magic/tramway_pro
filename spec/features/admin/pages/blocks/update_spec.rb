@@ -37,7 +37,7 @@ describe 'Update block' do
 
       click_on 'Сохранить', class: 'btn-success'
       last_block.reload
-      attributes.keys.each do |attr|
+      attributes.each_key do |attr|
         actual = last_block.send(attr)
         expecting = attributes[attr]
         case actual.class.to_s

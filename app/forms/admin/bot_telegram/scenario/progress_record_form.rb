@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::BotTelegram::Scenario::ProgressRecordForm < Tramway::Core::ApplicationForm
   properties :answer
 

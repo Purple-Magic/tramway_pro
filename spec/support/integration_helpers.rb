@@ -16,14 +16,14 @@ module IntegrationHelpers
   end
 
   def move_host_to(host)
-    Capybara.app_host = 'http://' + host + ':3000'
+    Capybara.app_host = "http://#{host}:3000"
   end
 
   private
 
   def compile_attributes(attributes = {})
     param = '//a'
-    attributes.keys.each do |attribute|
+    attributes.each_key do |attribute|
       param += "[@#{attribute}='#{attributes[attribute]}']"
     end
     param

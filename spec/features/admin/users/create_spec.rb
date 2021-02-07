@@ -30,7 +30,7 @@ describe 'Create admin' do
       click_on 'Сохранить', class: 'btn-success'
       expect(Tramway::User::User.where(project_id: project.id).count).to eq(count + 1)
       admin = Tramway::User::User.where(project_id: project.id).last
-      attributes.keys.each do |attr|
+      attributes.each_key do |attr|
         next if attr == :password
 
         actual = admin.send(attr)
@@ -69,7 +69,7 @@ describe 'Create admin' do
       click_on 'Сохранить', class: 'btn-success'
       expect(Tramway::User::User.where(project_id: project.id).count).to eq(count + 1)
       admin = Tramway::User::User.where(project_id: project.id).last
-      attributes.keys.each do |attr|
+      attributes.each_key do |attr|
         next if attr == :password
 
         actual = admin.send(attr)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Estimation::TaskDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts

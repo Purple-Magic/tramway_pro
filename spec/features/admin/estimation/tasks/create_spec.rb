@@ -31,7 +31,7 @@ describe 'Create task' do
     click_on 'Сохранить', class: 'btn-success'
     expect(Estimation::Task.count).to eq(count + 1)
     task = Estimation::Task.last
-    attributes.keys.each do |attr|
+    attributes.each_key do |attr|
       actual = task.send(attr)
       expecting = attributes[attr]
       case actual.class.to_s

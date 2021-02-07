@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Estimation::CustomerForm < Tramway::Core::ApplicationForm
   properties :title, :logo, :url, :project_id, :state
 

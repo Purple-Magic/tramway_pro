@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :estimation_task, class: 'Estimation::Task' do
     title

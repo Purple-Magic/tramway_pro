@@ -29,7 +29,7 @@ describe 'Update admin' do
 
       click_on 'Сохранить', class: 'btn-success'
       admin.reload
-      attributes.keys.each do |attr|
+      attributes.each_key do |attr|
         next if attr == :password
 
         actual = admin.send(attr)

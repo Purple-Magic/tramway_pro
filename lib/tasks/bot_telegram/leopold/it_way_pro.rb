@@ -1,6 +1,6 @@
-module BotTelegram
-  module Leopold
-    module ItWayPro
-    end
+# frozen_string_literal: true
+
+module BotTelegram::Leopold
+  module ItWayPro
   end
 end

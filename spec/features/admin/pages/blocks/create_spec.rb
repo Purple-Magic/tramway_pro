@@ -36,7 +36,7 @@ describe 'Create block' do
       click_on 'Сохранить', class: 'btn-success'
       expect(Tramway::Landing::Block.count).to eq(count + 1)
       block = Tramway::Landing::Block.last
-      attributes.keys.each do |attr|
+      attributes.each_key do |attr|
         actual = block.send(attr)
         expecting = attributes[attr]
         case actual.class.to_s

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Estimation::CoefficientForm < Tramway::Core::ApplicationForm
   properties :scale, :project_id, :title
 

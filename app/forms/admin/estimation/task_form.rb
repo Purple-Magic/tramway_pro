@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Estimation::TaskForm < Tramway::Core::ApplicationForm
   properties :title, :hours, :price, :project_id, :specialists_count
 

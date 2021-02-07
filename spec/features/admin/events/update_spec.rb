@@ -28,7 +28,7 @@ describe 'Update event' do
 
     click_on 'Сохранить', class: 'btn-success'
     event.reload
-    attributes.keys.each do |attr|
+    attributes.each_key do |attr|
       actual = event.send(attr)
       expecting = attributes[attr]
       if attr.in? %i[begin_date end_date request_collecting_end_date request_collecting_begin_date]

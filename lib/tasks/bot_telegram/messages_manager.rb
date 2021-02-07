@@ -42,7 +42,7 @@ module BotTelegram::MessagesManager
   end
 
   def send_file(bot, message_telegram, message_obj)
-    case message_obj.file.file.file[-3..-1]
+    case message_obj.file.file.file[-3..]
     when 'jpg'
       bot.api.send_photo(
         chat_id: message_telegram.chat.id,

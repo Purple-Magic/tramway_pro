@@ -11,7 +11,7 @@ FactoryBot.define do
 
     trait :with_social_networks do
       after :create do |user|
-        Tramway::Profiles::SocialNetwork.network_name.values.each do |network|
+        Tramway::Profiles::SocialNetwork.network_name.each_value do |network|
           create :social_network, network_name: network, record_type: Tramway::User::User, record_id: user.id
         end
       end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::PodcastForm < Tramway::Core::ApplicationForm
   properties :title, :feed_url
 

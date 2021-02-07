@@ -92,7 +92,7 @@ describe 'IT Way: Show event' do
     end
 
     context 'with social_networks' do
-      Tramway::Profiles::SocialNetwork.network_name.values.each do |network|
+      Tramway::Profiles::SocialNetwork.network_name.each_value do |network|
         let(:event) { create :event, :created_by_full_filled_admin }
 
         it "should show #{network} of responsible person" do
