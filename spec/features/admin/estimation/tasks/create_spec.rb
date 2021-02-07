@@ -9,7 +9,7 @@ describe 'Create task' do
     create :estimation_project, project_id: red_magic_id
   end
 
-  it "RED MAGIC: should create task" do
+  it 'RED MAGIC: should create task' do
     puts "PROJECT URL: #{red_magic_host}".yellow
     move_host_to red_magic_host
     count = Estimation::Task.count

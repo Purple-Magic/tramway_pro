@@ -119,7 +119,7 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
@@ -129,15 +129,15 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      [
-        :id,
-        :title,
-        :table,
+      %i[
+        id
+        title
+        table
       ]
     end
 
     def show_associations
-      [ :tasks, :coefficients ] 
+      %i[tasks coefficients]
     end
 
     def list_filters

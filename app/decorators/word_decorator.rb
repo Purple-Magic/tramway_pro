@@ -3,11 +3,11 @@
 class WordDecorator < Tramway::Core::ApplicationDecorator
   class << self
     def collections
-      [ :all, :unviewed, :approved ]
+      %i[all unviewed approved]
     end
 
     def list_attributes
-      [ :synonims, :description ]
+      %i[synonims description]
     end
 
     delegate :human_review_state_event_name, to: :model_class

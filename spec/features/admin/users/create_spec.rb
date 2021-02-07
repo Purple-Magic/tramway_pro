@@ -6,7 +6,9 @@ describe 'Create admin' do
   let!(:attributes) { attributes_for :admin_admin_attributes }
 
   ProjectsHelper.projects.each do |project|
-    next if project.url.in? ['listai.test', 'kalashnikovisme.test', 'gorodsad73.test', 'tramway.test', 'engineervol.test', 'red-magic.test']
+    if project.url.in? ['listai.test', 'kalashnikovisme.test', 'gorodsad73.test', 'tramway.test', 'engineervol.test', 'red-magic.test']
+      next
+    end
 
     it "#{project.url}: should create admin" do
       puts "PROJECT URL: #{project.url}".yellow

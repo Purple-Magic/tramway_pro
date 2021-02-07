@@ -24,7 +24,6 @@ gem 'tramway-profiles', '1.4.1.1'
 gem 'tramway-site', '0.1.0.5'
 gem 'tramway-user', '2.1.3.3'
 
-
 # gem 'tramway-admin', path: '../tramway-admin'
 # gem 'tramway-api', path: '../tramway-dev/tramway-api'
 # gem 'tramway-auth', path: '../tramway-dev/tramway-auth'
@@ -78,6 +77,7 @@ gem 'reform-rails'
 gem 'rmagick'
 gem 'russian'
 gem 'russia_regions', '0.0.6'
+gem 'safe_target_blank'
 gem 'sass-rails'
 gem 'selectize-rails'
 gem 'sentry-raven'
@@ -92,7 +92,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'unicorn-rails'
 gem 'validates'
 gem 'whenever', require: false
-gem 'safe_target_blank'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

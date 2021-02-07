@@ -6,10 +6,10 @@ class Admin::Estimation::TaskForm < Tramway::Core::ApplicationForm
   def initialize(object)
     super(object).tap do
       form_properties estimation_project: :association,
-        title: :string,
-        hours: :numeric,
-        price: :numeric,
-        specialists_count: :numeric
+                      title: :string,
+                      hours: :numeric,
+                      price: :numeric,
+                      specialists_count: :numeric
     end
   end
 end

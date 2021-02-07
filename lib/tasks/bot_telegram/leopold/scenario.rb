@@ -10,13 +10,10 @@ module BotTelegram
       include ::BotTelegram::Leopold::ItWayPro::WordsCheck
       include ::BotTelegram::Leopold::Commands
 
-      IT_WAY_CHAT_ID = '-1001141858122'
-      COMMANDS = ['add_word']
+      IT_WAY_CHAT_ID = '-1001141858122'.freeze
+      COMMANDS = ['add_word'].freeze
 
-      attr_reader :bot
-      attr_reader :bot_record
-      attr_reader :chat
-      attr_reader :message_from_telegram
+      attr_reader :bot, :bot_record, :chat, :message_from_telegram, :bot, :bot_record, :message_from_telegram, :chat
 
       def initialize(message_from_telegram, bot, bot_record, chat)
         @bot = bot
@@ -29,23 +26,19 @@ module BotTelegram
         if chat_to_answer? chat
           command = get_command message_from_telegram.text
           if command.present?
-            send command, message_from_telegram.text.gsub(/^\/#{command} /, '').gsub(/^\@myleopold_bot/, '')
+            send command, message_from_telegram.text.gsub(%r{^/#{command} }, '').gsub(/^@myleopold_bot/, '')
           else
             words = words_to_explain(message_from_telegram.text)
             if words.class.to_s == 'Word'
               unless sended_recently? words
                 send_word words
-                if private_chat? chat
-                  message_to_chat bot, chat, bot_record.options['you_can_add_words']
-                end
+                message_to_chat bot, chat, bot_record.options['you_can_add_words'] if private_chat? chat
               end
             else
               words&.each do |word|
                 unless sended_recently? word
                   send_word word
-                  if private_chat? chat
-                    message_to_chat bot, chat, bot_record.options['you_can_add_words']
-                  end
+                  message_to_chat bot, chat, bot_record.options['you_can_add_words'] if private_chat? chat
                 end
               end
             end
@@ -60,12 +53,12 @@ module BotTelegram
       end
 
       def private_chat?(chat)
-        chat.chat_type == 'private' 
+        chat.chat_type == 'private'
       end
 
       def get_command(text)
-        COMMANDS.reduce('') do |method_name, command|
-          method_name = command if text&.match?(/^\/#{command}/)
+        COMMANDS.reduce('') do |_method_name, command|
+          method_name = command if text&.match?(%r{^/#{command}})
         end
       end
 
@@ -78,27 +71,12 @@ module BotTelegram
         last_use = ::ItWay::WordUse.where(word_id: word.id, chat_id: chat.id).last
 
         return false unless last_use.present?
-        return last_use.created_at > (DateTime.now - 1.hour)
+
+        last_use.created_at > (DateTime.now - 1.hour)
       end
 
       def build_message_with_word(word)
         "#{word.main} - #{word.description}"
-      end
-
-      def bot
-        @bot
-      end
-
-      def bot_record
-        @bot_record
-      end
-
-      def message_from_telegram
-        @message_from_telegram
-      end
-
-      def chat
-        @chat
       end
     end
   end

@@ -5,7 +5,7 @@ require 'rails_helper'
 describe 'Create estimation project' do
   let!(:attributes) { attributes_for :estimation_project }
 
-  it "RED MAGIC should create estimation project" do
+  it 'RED MAGIC should create estimation project' do
     project_id = red_magic_id
     move_host_to red_magic_host
     count = ::Estimation::Project.count

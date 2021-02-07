@@ -3,13 +3,13 @@ class Estimation::TaskDecorator < Tramway::Core::ApplicationDecorator
   # decorate_associations :messages, :posts
 
   delegate_attributes(
-        :id,
-        :title,
-        :hours,
-        :price,
-        :created_at,
-        :updated_at,
-        :specialists_count
+    :id,
+    :title,
+    :hours,
+    :price,
+    :created_at,
+    :updated_at,
+    :specialists_count
   )
 
   def sum
@@ -25,26 +25,26 @@ class Estimation::TaskDecorator < Tramway::Core::ApplicationDecorator
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :title,
-        :hours,
-        :price,
+      %i[
+        id
+        title
+        hours
+        price
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :title,
-        :hours,
-        :price,
-        :created_at,
-        :updated_at
+      %i[
+        id
+        title
+        hours
+        price
+        created_at
+        updated_at
       ]
     end
 

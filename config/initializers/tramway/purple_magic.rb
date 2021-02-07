@@ -65,8 +65,7 @@ Tramway::Admin.navbar_structure(
     ]
   },
   {
-    rsm_project_office_bot: [
-    ]
+    rsm_project_office_bot: []
   },
   Audited::Audit,
   Tramway::User::User,

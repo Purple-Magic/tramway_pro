@@ -6,7 +6,7 @@ class Admin::Estimation::ProjectForm < Tramway::Core::ApplicationForm
   def initialize(object)
     super(object).tap do
       form_properties customer: :association,
-        title: :string
+                      title: :string
     end
   end
 end

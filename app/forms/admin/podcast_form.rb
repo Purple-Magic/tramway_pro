@@ -4,7 +4,7 @@ class Admin::PodcastForm < Tramway::Core::ApplicationForm
   def initialize(object)
     super(object).tap do
       form_properties title: :string,
-        feed_url: :string
+                      feed_url: :string
     end
   end
 end

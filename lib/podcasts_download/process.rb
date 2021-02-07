@@ -15,7 +15,7 @@ module PodcastsDownload
                          else
                            attribute_name.to_s
                          end
-        attribute = item.children.select { |attr| attr.name ==  attribute_name }.first
+        attribute = item.children.select { |attr| attr.name == attribute_name }.first
         if attribute.present?
           case attribute_name
           when 'image'
@@ -42,16 +42,14 @@ module PodcastsDownload
               Episode::EPISODE_ATTRIBUTES.each do |attr|
                 value = item_attribute item, attr
                 if episode.id.present?
-                  unless episode.send(attr) == value
-                    episode.send "#{attr}=", value
-                  end
+                  episode.send "#{attr}=", value unless episode.send(attr) == value
                 else
                   episode.send "#{attr}=", value
                 end
                 episode.save!
               end
             end
-          end 
+          end
         end
       end
     end

@@ -5,15 +5,15 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def list_attributes
-      [ :users_count, :messages_count, :custom ]
+      %i[users_count messages_count custom]
     end
 
     def show_attributes
-      [ :name, :team, :options, :users_count, :messages, :messages_count ]
+      %i[name team options users_count messages messages_count]
     end
 
     def show_associations
-      [ :steps ]
+      [:steps]
     end
   end
 

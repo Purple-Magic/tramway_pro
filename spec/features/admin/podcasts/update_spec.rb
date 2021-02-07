@@ -1,8 +1,8 @@
 ## frozen_string_literal: true
 #
-#require 'rails_helper'
+# require 'rails_helper'
 #
-#describe 'Update podcast' do
+# describe 'Update podcast' do
 #  before { move_host_to it_way_host }
 #  let!(:attributes) { attributes_for :podcast_admin_attributes }
 #  before { create :podcast, project_id: it_way_id }
@@ -29,4 +29,4 @@
 #      expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
 #    end
 #  end
-#end
+# end

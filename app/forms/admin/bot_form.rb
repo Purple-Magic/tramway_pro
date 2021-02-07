@@ -4,9 +4,9 @@ class Admin::BotForm < Tramway::Core::ApplicationForm
   def initialize(object)
     super(object).tap do
       form_properties name: :string,
-        team: :default,
-        token: :string,
-        options: :text
+                      team: :default,
+                      token: :string,
+                      options: :text
     end
   end
 

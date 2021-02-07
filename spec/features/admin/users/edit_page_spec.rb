@@ -7,6 +7,7 @@ describe 'Edit admin page' do
     before { create :admin, project_id: project.id }
 
     next if project.url.in? ['listai.test', 'kalashnikovisme.test', 'tramway.test']
+
     puts "PROJECT URL: #{project.url}".yellow
 
     it "#{project.url}: should show edit admin page" do

@@ -1,8 +1,8 @@
 ## frozen_string_literal: true
 #
-#require 'rails_helper'
+# require 'rails_helper'
 #
-#describe 'Index podcasts' do
+# describe 'Index podcasts' do
 #  before { move_host_to it_way_host }
 #  let!(:podcasts) { create_list :podcast, 5, project_id: it_way_id }
 #
@@ -18,4 +18,4 @@
 #      expect(page).to have_content podcast.title
 #    end
 #  end
-#end
+# end

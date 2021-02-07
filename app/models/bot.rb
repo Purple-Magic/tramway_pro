@@ -4,12 +4,12 @@ class Bot < ApplicationRecord
   has_many :users, through: :progress_records, class_name: 'BotTelegram::User'
   has_many :messages, class_name: 'BotTelegram::Message'
 
-  enumerize :team, in: [ :rsm, :night, :purple_magic ]
+  enumerize :team, in: %i[rsm night purple_magic]
 
-  [ :rsm, :night, :purple_magic ].each do |team|
-    scope "#{team}_scope".to_sym, -> (_user_id) do
+  %i[rsm night purple_magic].each do |team|
+    scope "#{team}_scope".to_sym, lambda { |_user_id|
       where team: team
-    end
+    }
   end
 
   store_accessor :options, :custom
