@@ -2,15 +2,15 @@
 
 %section
   .box.left
-    %video{ src: 'system/left.mp4', autoplay: true, loop: true, muted: true }
+    %video{ src: 'system/red_magic/left.mp4', autoplay: true, loop: true, muted: true }
     .content
       %h2 Видео всегда должно быть красивым!
   .box.center
-    %video{ src: 'system/center.mp4', autoplay: true, loop: true, muted: true }
+    %video{ src: 'system/red_magic/center.mp4', autoplay: true, loop: true, muted: true }
     .content
       %h2 Видео смотрят все!
   .box.right
-    %video{ src: 'system/right.mp4', autoplay: true, loop: true, muted: true }
+    %video{ src: 'system/red_magic/right.mp4', autoplay: true, loop: true, muted: true }
     .content
       %h2 Мы делаем красивые видео и прямые эфиры!
 .link-panel
@@ -19,6 +19,10 @@
       = image_tag 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/vk.svg'
     = link_to 'https://instagram.com/redmagicprod', target: '_blank', class: :instagram do
       = image_tag 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg'
+  .logo
+    = image_tag 'red_magic_logo.png'
+    %h3
+      RED MAGIC
 :javascript
   let box = document.querySelectorAll('.box');
   box.forEach(popup => popup.addEventListener('click', () => {

@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'Ebrima';
+  src: asset-url('fonts/red_magic/ebrima.ttf');
+}
+
 section {
   position: absolute;
   top: 0;
@@ -79,6 +84,25 @@ section {
   display: flex;
   flex-direction: column-reverse;
   padding: 2rem;
+  justify-content: space-between;
+
+  .logo {
+    z-index: 2000;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    img {
+      height: 7rem;
+    }
+    h3 {
+      font-family: 'Ebrima';
+      font-size: 2.5rem;
+      margin-left: 6px;
+      text-shadow: 0 0 3px #000, 0 0 5px #000;
+      color: #fff;
+    }
+  }
 
   .links {
     display: flex;
