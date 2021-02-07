@@ -32,11 +32,20 @@ module BotTelegram
             send command, message_from_telegram.text.gsub(/^\/#{command} /, '').gsub(/^\@myleopold_bot/, '')
           else
             words = words_to_explain(message_from_telegram.text)
-            words&.each do |word|
-              unless sended_recently? word
-                send_word word
+            if words.class.to_s == 'Word'
+              unless sended_recently? words
+                send_word words
                 if private_chat? chat
                   message_to_chat bot, chat, bot_record.options['you_can_add_words']
+                end
+              end
+            else
+              words&.each do |word|
+                unless sended_recently? word
+                  send_word word
+                  if private_chat? chat
+                    message_to_chat bot, chat, bot_record.options['you_can_add_words']
+                  end
                 end
               end
             end
