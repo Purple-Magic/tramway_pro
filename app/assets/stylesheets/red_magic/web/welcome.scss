@@ -21,15 +21,15 @@ section {
     justify-content: center; 
     transition: 1s;
 
-    &.box1 {
+    &.left {
       clip-path: polygon(0 0, 33% 0, 33% 100%, 0% 100%);
     }
 
-    &.box2 {
+    &.center {
       clip-path: polygon(33% 0, 67% 0, 67% 100%, 33% 100%);
     }
 
-    &.box3 {
+    &.right {
       clip-path: polygon(67% 0, 100% 0, 100% 100%, 67% 100%);
     }
 
@@ -39,6 +39,7 @@ section {
       z-index: 10;
       opacity: 0;
       transition: 1s;
+      text-align: center;
 
       h2 {
         color: #fff;
@@ -147,15 +148,15 @@ section {
 @media screen and (max-width: 700px) {
   section {
     .box {
-      &.box1 {
+      &.left {
         clip-path: polygon(0 0, 100% 0%, 100% 33%, 0 33%);
       }
 
-      &.box2 {
+      &.center {
         clip-path: polygon(0 33%, 100% 33%, 100% 66%, 0 66%);
       }
 
-      &.box3 {
+      &.right {
         clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
       }
 

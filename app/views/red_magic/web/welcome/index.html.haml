@@ -1,18 +1,18 @@
 = stylesheet_link_tag 'red_magic/web/welcome'
 
 %section
-  .box.box1
-    %video{ src: 'system/3.mp4', autoplay: true, loop: true, muted: true }
+  .box.left
+    %video{ src: 'system/left.mp4', autoplay: true, loop: true, muted: true }
     .content
-      %h2 Развлекательный шоурил
-  .box.box2
-    %video{ src: 'system/1.mp4', autoplay: true, loop: true, muted: true }
+      %h2 Видео всегда должно быть красивым!
+  .box.center
+    %video{ src: 'system/center.mp4', autoplay: true, loop: true, muted: true }
     .content
-      %h2 Музыкальный шоурил
-  .box.box3
-    %video{ src: 'system/2.mp4', autoplay: true, loop: true, muted: true }
+      %h2 Видео смотрят все!
+  .box.right
+    %video{ src: 'system/right.mp4', autoplay: true, loop: true, muted: true }
     .content
-      %h2 Офисный шоурил
+      %h2 Мы делаем красивые видео и прямые эфиры!
 .link-panel
   .links
     = link_to 'https://vk.com/redmagicprod', target: '_blank', class: :vk do
