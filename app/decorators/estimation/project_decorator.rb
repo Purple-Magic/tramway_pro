@@ -1,101 +1,32 @@
 # frozen_string_literal: true
 
 class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
-  # Associations you want to show in admin dashboard
-  # decorate_associations :messages, :posts
-
   delegate_attributes :title, :state
 
   decorate_associations :tasks, :coefficients
 
+  def self.collections
+    [:all]
+  end
+
+  def self.list_attributes
+    [:project_state]
+  end
+
+  def self.show_attributes
+    %i[id title table]
+  end
+
+  def self.show_associations
+    %i[tasks coefficients]
+  end
+
   def table
     content_tag :table do
-      concat(content_tag(:thead) do
-        concat(content_tag(:th) do
-          concat(Estimation::Task.human_attribute_name(:title))
-        end)
-        concat(content_tag(:th) do
-          concat(Estimation::Task.human_attribute_name(:hours))
-        end)
-        concat(content_tag(:th) do
-          concat(Estimation::Task.human_attribute_name(:price))
-        end)
-        concat(content_tag(:th) do
-          concat(Estimation::Task.human_attribute_name(:specialists_count))
-        end)
-        concat(content_tag(:th) do
-          concat(Estimation::Task.human_attribute_name(:sum))
-        end)
-        concat(content_tag(:th) do
-          concat(Estimation::Task.human_attribute_name(:sum_with_coefficients))
-        end)
-      end)
-      tasks.each do |task|
-        concat(content_tag(:tr) do
-          concat(content_tag(:td) do
-            concat task.title
-          end)
-          concat(content_tag(:td) do
-            concat task.hours
-          end)
-          concat(content_tag(:td) do
-            concat task.price
-          end)
-          concat(content_tag(:td) do
-            concat task.specialists_count
-          end)
-          concat(content_tag(:td) do
-            concat task.sum
-          end)
-          concat(content_tag(:td) do
-            concat task.sum_with_coefficients
-          end)
-        end)
-      end
-      concat(content_tag(:tr) do
-        concat(content_tag(:td) do
-        end)
-        concat(content_tag(:td) do
-        end)
-        concat(content_tag(:td) do
-        end)
-        concat(content_tag(:td) do
-          concat(content_tag(:b) do
-            concat(Estimation::Project.human_attribute_name(:summary))
-          end)
-        end)
-        concat(content_tag(:td) do
-          concat(content_tag(:b) do
-            concat(summary)
-          end)
-        end)
-        ending_summary = coefficients.reduce(summary) do |result, coeff|
-          result *= coeff.scale
-        end
-        concat(content_tag(:td) do
-          concat(content_tag(:b) do
-            concat(ending_summary)
-          end)
-        end)
-      end)
-      coefficients.each do |coefficient|
-        concat(content_tag(:tr) do
-          concat(content_tag(:td) do
-            concat coefficient.title
-          end)
-          concat(content_tag(:td) do
-            concat "#{(coefficient.scale * 100 - 100).round(0)} %"
-          end)
-          concat(content_tag(:td) do
-          end)
-          concat(content_tag(:td) do
-          end)
-          concat(content_tag(:td) do
-          end)
-          concat(content_tag(:td) do
-          end)
-        end)
-      end
+      header
+      body
+      summary_row
+      footer
     end
   end
 
@@ -118,46 +49,71 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
     end
   end
 
-  class << self
-    def collections
-      # [ :all, :scope1, :scope2 ]
-      [:all]
-    end
+  private
 
-    def list_attributes
-      [
-        :project_state
-      ]
-    end
+  def header
+    concat(content_tag(:thead) do
+      %i[title hours price specialists_count sum sum_with_coefficients].each do |attribute|
+        concat(content_tag(:th) do
+          concat(Estimation::Task.human_attribute_name(attribute))
+        end)
+      end
+    end)
+  end
 
-    def show_attributes
-      %i[
-        id
-        title
-        table
-      ]
+  def body
+    tasks.each do |task|
+      concat(content_tag(:tr) do
+        %i[title hours price specialists_count sum sum_with_coefficients].each do |attribute|
+          concat(content_tag(:td) do
+            concat task.send(attribute)
+          end)
+        end
+      end)
     end
+  end
 
-    def show_associations
-      %i[tasks coefficients]
+  def ending_summary
+    result = summary
+    coefficients.each do |coeff|
+      result *= coeff.scale
     end
+    result
+  end
 
-    def list_filters
-      # {
-      #   filter_name: {
-      #     type: :select,
-      #     select_collection: filter_collection,
-      #     query: lambda do |list, value|
-      #       list.where some_attribute: value
-      #     end
-      #   },
-      #   date_filter_name: {
-      #     type: :dates,
-      #     query: lambda do |list, begin_date, end_date|
-      #       list.where 'created_at > ? AND created_at < ?', begin_date, end_date
-      #     end
-      #   }
-      # }
+  def summary_row
+    concat(content_tag(:tr) do
+      3.times do
+        concat(content_tag(:td))
+      end
+      concat(content_tag(:td) do
+        concat(content_tag(:b) do
+          concat(Estimation::Project.human_attribute_name(:summary))
+        end)
+      end)
+      %i[summary ending_summary].each do |number|
+        concat(content_tag(:td) do
+          concat(content_tag(:b) do
+            concat(send(number))
+          end)
+        end)
+      end
+    end)
+  end
+
+  def footer
+    coefficients.each do |coefficient|
+      concat(content_tag(:tr) do
+        concat(content_tag(:td) do
+          concat coefficient.title
+        end)
+        concat(content_tag(:td) do
+          concat "#{(coefficient.scale * 100 - 100).round(0)} %"
+        end)
+        4.times do
+          concat(content_tag(:td))
+        end
+      end)
     end
   end
 end

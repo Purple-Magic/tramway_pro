@@ -40,7 +40,9 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def messages
-    content_tag :a, href: Tramway::Admin::Engine.routes.url_helpers.records_path(model: ::BotTelegram::Message, filter: { bot_id_eq: object.id }) do
+    filter = { bot_id_eq: object.id }
+    href = Tramway::Admin::Engine.routes.url_helpers.records_path(model: ::BotTelegram::Message, filter: filter)
+    content_tag :a, href: href do
       I18n.t('helpers.links.open')
     end
   end

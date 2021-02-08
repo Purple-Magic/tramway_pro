@@ -19,9 +19,11 @@ class Estimation::TaskDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def sum_with_coefficients
-    object.estimation_project.coefficients.reduce(sum) do |result, coeff|
+    result = sum
+    object.estimation_project.coefficients.each do |coeff|
       result *= coeff.scale
-    end.round
+    end
+    result.round
   end
 
   class << self

@@ -14,7 +14,7 @@ module BotTelegram::Leopold
     IT_WAY_CHAT_ID = '-1001141858122'
     COMMANDS = ['add_word'].freeze
 
-    attr_reader :bot, :bot_record, :chat, :message_from_telegram, :bot, :bot_record, :message_from_telegram, :chat
+    attr_reader :bot, :bot_record, :chat, :message_from_telegram
 
     def initialize(message_from_telegram, bot, bot_record, chat)
       @bot = bot
@@ -31,16 +31,10 @@ module BotTelegram::Leopold
         else
           words = words_to_explain(message_from_telegram.text)
           if words.class.to_s == 'Word'
-            unless sended_recently? words
-              send_word words
-              message_to_chat bot, chat, bot_record.options['you_can_add_words'] if private_chat? chat
-            end
+            send_word words
           else
             words&.each do |word|
-              unless sended_recently? word
-                send_word word
-                message_to_chat bot, chat, bot_record.options['you_can_add_words'] if private_chat? chat
-              end
+              send_word word
             end
           end
         end
@@ -58,14 +52,17 @@ module BotTelegram::Leopold
     end
 
     def get_command(text)
-      COMMANDS.reduce('') do |_method_name, command|
-        method_name = command if text&.match?(%r{^/#{command}})
-      end
+      COMMANDS.map do |command|
+        command if text&.match?(%r{^/#{command}})
+      end.compact.first
     end
 
     def send_word(word)
-      message_to_chat bot, chat, build_message_with_word(word)
-      ::ItWay::WordUse.create! word_id: word.id, chat_id: chat.id
+      unless sended_recently? word
+        message_to_chat bot, chat, build_message_with_word(word)
+        ::ItWay::WordUse.create! word_id: word.id, chat_id: chat.id
+      end
+      message_to_chat bot, chat, bot_record.options['you_can_add_words'] if private_chat? chat
     end
 
     def sended_recently?(word)

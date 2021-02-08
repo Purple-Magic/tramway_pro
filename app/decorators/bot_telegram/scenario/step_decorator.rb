@@ -38,7 +38,8 @@ class BotTelegram::Scenario::StepDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def actions
-    href = Tramway::Admin::Engine.routes.url_helpers.records_path(model: Audited::Audit, filter: { auditable_id_eq: object.id, auditable_type_eq: BotTelegram::Scenario::Step })
+    filter = { auditable_id_eq: object.id, auditable_type_eq: BotTelegram::Scenario::Step }
+    href = Tramway::Admin::Engine.routes.url_helpers.records_path(model: Audited::Audit, filter: filter)
     content_tag :a, href: href do
       'Действия'
     end

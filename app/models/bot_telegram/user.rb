@@ -13,8 +13,8 @@ class BotTelegram::User < ApplicationRecord
   %i[rsm night purple_magic].each do |team|
     scope "#{team}_scope".to_sym, lambda { |_user_id|
       step_ids = Bot.where(team: team).map(&:steps).flatten.map(&:id)
-      user_ids = BotTelegram::Scenario::ProgressRecord.where(bot_telegram_scenario_step_id: step_ids).map(&:bot_telegram_user_id)
-      BotTelegram::User.where id: user_ids
+      records = BotTelegram::Scenario::ProgressRecord.where(bot_telegram_scenario_step_id: step_ids)
+      BotTelegram::User.where id: records.map(&:bot_telegram_user_id)
     }
   end
 end

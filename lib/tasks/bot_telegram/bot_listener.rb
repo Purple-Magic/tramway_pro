@@ -18,18 +18,15 @@ class BotTelegram::BotListener
           chat = chat_from message
           log_message message, user, chat, bot_record
           if bot_record.custom
-            scenario = "BotTelegram::#{bot_record.scenario.camelize.capitalize}::Scenario".constantize.new message, bot, bot_record, chat
+            scenario_class = "BotTelegram::#{bot_record.scenario.camelize.capitalize}::Scenario".constantize
+            scenario = scenario_class.new message, bot, bot_record, chat
             scenario.run
           else
             BotTelegram::Scenario.run message, bot, bot_record
           end
         end
       rescue Telegram::Bot::Exceptions::ResponseError => e
-        if Rails.env.development?
-          puts e
-        else
-          Raven.capture_exception e
-        end
+        Rails.env.development? ? puts(e) : Raven.capture_exception(e)
       end
     end
   end

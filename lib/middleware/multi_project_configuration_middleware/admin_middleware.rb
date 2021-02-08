@@ -51,7 +51,8 @@ module MultiProjectCallbacks
 
         def build_counts(project)
           decorator_class.collections.reduce({}) do |hash, collection|
-            hash.merge! collection => filter_with_project(collection, project).send("#{current_admin.role}_scope", current_admin.id).count
+            scope_name = "#{current_admin.role}_scope"
+            hash.merge! collection => filter_with_project(collection, project).send(scope_name, current_admin.id).count
           end
         end
 
