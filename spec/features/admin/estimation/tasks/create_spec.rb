@@ -9,7 +9,7 @@ describe 'Create task' do
     create :estimation_project, project_id: red_magic_id
   end
 
-  it "RED MAGIC: should create task" do
+  it 'RED MAGIC: should create task' do
     puts "PROJECT URL: #{red_magic_host}".yellow
     move_host_to red_magic_host
     count = Estimation::Task.count
@@ -31,7 +31,7 @@ describe 'Create task' do
     click_on 'Сохранить', class: 'btn-success'
     expect(Estimation::Task.count).to eq(count + 1)
     task = Estimation::Task.last
-    attributes.keys.each do |attr|
+    attributes.each_key do |attr|
       actual = task.send(attr)
       expecting = attributes[attr]
       case actual.class.to_s

@@ -5,10 +5,10 @@ module BotTelegram::MessagesManager
     file_path = "#{Rails.root}/lib/tasks/bot_telegram/bot_message_attributes.yml"
     telegram_message_attributes = YAML.load_file(file_path)['telegram_message']['attributes']
     BotTelegram::Message.create! text: message.text, user_id: user.id, chat_id: chat.id,
-      bot_id: bot.id, 
-      project_id: Project.find_by(title: 'PurpleMagic').id,
-      options: (telegram_message_attributes.reduce({}) do |hash, attribute|
-        hash.merge! attribute => message.send(attribute)
+                                 bot_id: bot.id,
+                                 project_id: Project.find_by(title: 'PurpleMagic').id,
+                                 options: (telegram_message_attributes.reduce({}) do |hash, attribute|
+                                             hash.merge! attribute => message.send(attribute)
                                            end)
   end
 
@@ -35,16 +35,14 @@ module BotTelegram::MessagesManager
           bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text, parse_mode: :markdown
         end
       end
-      if message_obj.file.path.present?
-        send_file bot, message_telegram, message_obj
-      end
+      send_file bot, message_telegram, message_obj if message_obj.file.path.present?
     end
   rescue StandardError => e
     Raven.capture_exception e
   end
 
   def send_file(bot, message_telegram, message_obj)
-    case message_obj.file.file.file[-3..-1]
+    case message_obj.file.file.file[-3..]
     when 'jpg'
       bot.api.send_photo(
         chat_id: message_telegram.chat.id,

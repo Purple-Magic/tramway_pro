@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 ## frozen_string_literal: true
 #
-#require 'rails_helper'
+# require 'rails_helper'
 #
-#describe 'Show podcast' do
+# describe 'Show podcast' do
 #  before { move_host_to it_way_host }
 #  before { create :podcast, project_id: it_way_id }
 #
@@ -18,4 +19,4 @@
 #
 #    expect(page).to have_content last_podcast.title
 #  end
-#end
+# end

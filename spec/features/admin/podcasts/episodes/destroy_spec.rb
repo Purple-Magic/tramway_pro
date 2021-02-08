@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 ## frozen_string_literal: true
 #
-#require 'rails_helper'
+# require 'rails_helper'
 #
-#describe 'Delete participant_form_field' do
+# describe 'Delete participant_form_field' do
 #  before { create :event, project_id: it_way_id }
 #  before { move_host_to it_way_host }
 #
@@ -62,4 +63,4 @@
 #    field.reload
 #    expect(field.removed?).to be_truthy
 #  end
-#end
+# end

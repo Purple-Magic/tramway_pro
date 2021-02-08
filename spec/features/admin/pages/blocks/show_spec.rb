@@ -3,12 +3,11 @@
 require 'rails_helper'
 
 describe 'Show block' do
-  ProjectsHelper.projects.each do |project|
+  ProjectsHelper.projects_instead_of('listai', 'kalashnikovisme', 'engineervol', 'tramway').each do |project|
     before do
       landing_page = create :page, project_id: project.id
       create :block, project_id: project.id, page: landing_page
     end
-    next if project.url.in? ['listai.test', 'kalashnikovisme.test', 'engineervol.test', 'tramway.test']
 
     it 'should show block' do
       puts "PROJECT URL: #{project.url}".yellow

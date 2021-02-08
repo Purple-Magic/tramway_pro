@@ -32,7 +32,7 @@ describe 'Update estimation_task' do
 
     click_on 'Сохранить', class: 'btn-success'
     last_estimation_task.reload
-    attributes.keys.each do |attr|
+    attributes.each_key do |attr|
       actual = last_estimation_task.send(attr)
       expecting = attributes[attr]
       case actual.class.to_s

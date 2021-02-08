@@ -5,11 +5,10 @@ require 'rails_helper'
 describe 'Create block' do
   let!(:attributes) { attributes_for :block_admin_attributes }
 
-  ProjectsHelper.projects.each do |project|
+  ProjectsHelper.projects_instead_of('listai', 'kalashnikovisme', 'engineervol', 'tramway').each do |project|
     before do
       create :page, project_id: project.id
     end
-    next if project.url.in? ['listai.test', 'kalashnikovisme.test', 'engineervol.test', 'tramway.test']
 
     it "#{project.url}: should create block" do
       puts "PROJECT URL: #{project.url}".yellow
@@ -36,7 +35,7 @@ describe 'Create block' do
       click_on 'Сохранить', class: 'btn-success'
       expect(Tramway::Landing::Block.count).to eq(count + 1)
       block = Tramway::Landing::Block.last
-      attributes.keys.each do |attr|
+      attributes.each_key do |attr|
         actual = block.send(attr)
         expecting = attributes[attr]
         case actual.class.to_s

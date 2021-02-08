@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BotDecorator < Tramway::Core::ApplicationDecorator
   delegate_attributes :name, :team
 
@@ -5,15 +7,15 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def list_attributes
-      [ :users_count, :messages_count, :custom ]
+      %i[users_count messages_count custom]
     end
 
     def show_attributes
-      [ :name, :team, :options, :users_count, :messages, :messages_count ]
+      %i[name team options users_count messages messages_count]
     end
 
     def show_associations
-      [ :steps ]
+      [:steps]
     end
   end
 
@@ -38,7 +40,9 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def messages
-    content_tag :a, href: Tramway::Admin::Engine.routes.url_helpers.records_path(model: ::BotTelegram::Message, filter: { bot_id_eq: object.id }) do
+    filter = { bot_id_eq: object.id }
+    href = Tramway::Admin::Engine.routes.url_helpers.records_path(model: ::BotTelegram::Message, filter: filter)
+    content_tag :a, href: href do
       I18n.t('helpers.links.open')
     end
   end

@@ -6,8 +6,12 @@ module ProjectsHelper
       Project.all
     end
 
+    def projects_instead_of(*names)
+      Project.where.not(url: (names.map { |name| "#{name}.test" }))
+    end
+
     def move_host_to(host)
-      Capybara.app_host = 'http://' + host
+      Capybara.app_host = "http://#{host}"
     end
   end
 
@@ -30,4 +34,6 @@ module ProjectsHelper
   def projects_names
     %i[it_way]
   end
+
+  def project_one_of?(project, *names); end
 end

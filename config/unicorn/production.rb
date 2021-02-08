@@ -5,7 +5,7 @@ working_directory "#{app_path}/current"
 
 worker_processes 1
 
-listen app_path + '/shared/.sock', backlog: 64
+listen "#{app_path}/shared/.sock", backlog: 64
 
 timeout 30
 # preload_app true

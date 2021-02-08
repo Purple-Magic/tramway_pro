@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 ## frozen_string_literal: true
 #
-#require 'rails_helper'
+# require 'rails_helper'
 #
-#describe 'Destroy podcast' do
+# describe 'Destroy podcast' do
 #  before { move_host_to it_way_host }
 #  before { create :podcast, project_id: it_way_id }
 #
@@ -19,4 +20,4 @@
 #
 #    expect(last_podcast.removed?).to be_truthy
 #  end
-#end
+# end

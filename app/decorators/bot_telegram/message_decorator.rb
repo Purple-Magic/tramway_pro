@@ -7,7 +7,7 @@ class BotTelegram::MessageDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def list_attributes
-      [:bot, :text, :created_at]
+      %i[bot text created_at]
     end
   end
 

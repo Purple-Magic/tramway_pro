@@ -29,6 +29,9 @@ Metrics/PerceivedComplexity:
   Max: 9
 Metrics/CyclomaticComplexity:
   Max: 8
+Style/AsciiComments:
+  Exclude:
+    - spec/**/*.rb
 AllCops:
   Include:
     - app/**/*.rb

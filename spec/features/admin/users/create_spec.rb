@@ -5,9 +5,9 @@ require 'rails_helper'
 describe 'Create admin' do
   let!(:attributes) { attributes_for :admin_admin_attributes }
 
-  ProjectsHelper.projects.each do |project|
-    next if project.url.in? ['listai.test', 'kalashnikovisme.test', 'gorodsad73.test', 'tramway.test', 'engineervol.test', 'red-magic.test']
-
+  ProjectsHelper.projects_instead_of(
+    :listai, :kalashnikovisme, :gorodsad73, :tramway, :engineervol, 'red-magic'
+  ).each do |project|
     it "#{project.url}: should create admin" do
       puts "PROJECT URL: #{project.url}".yellow
       move_host_to project.url
@@ -28,7 +28,7 @@ describe 'Create admin' do
       click_on 'Сохранить', class: 'btn-success'
       expect(Tramway::User::User.where(project_id: project.id).count).to eq(count + 1)
       admin = Tramway::User::User.where(project_id: project.id).last
-      attributes.keys.each do |attr|
+      attributes.each_key do |attr|
         next if attr == :password
 
         actual = admin.send(attr)
@@ -67,7 +67,7 @@ describe 'Create admin' do
       click_on 'Сохранить', class: 'btn-success'
       expect(Tramway::User::User.where(project_id: project.id).count).to eq(count + 1)
       admin = Tramway::User::User.where(project_id: project.id).last
-      attributes.keys.each do |attr|
+      attributes.each_key do |attr|
         next if attr == :password
 
         actual = admin.send(attr)

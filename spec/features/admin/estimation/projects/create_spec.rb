@@ -5,7 +5,7 @@ require 'rails_helper'
 describe 'Create estimation project' do
   let!(:attributes) { attributes_for :estimation_project }
 
-  it "RED MAGIC should create estimation project" do
+  it 'RED MAGIC should create estimation project' do
     project_id = red_magic_id
     move_host_to red_magic_host
     count = ::Estimation::Project.count
@@ -23,7 +23,7 @@ describe 'Create estimation project' do
     click_on 'Сохранить', class: 'btn-success'
     expect(::Estimation::Project.count).to eq(count + 1)
     project = ::Estimation::Project.last
-    attributes.keys.each do |attr|
+    attributes.each_key do |attr|
       actual = project.send(attr)
       expecting = attributes[attr]
       case actual.class.to_s

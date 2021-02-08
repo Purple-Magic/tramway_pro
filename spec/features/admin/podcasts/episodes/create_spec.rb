@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 ## frozen_string_literal: true
 #
-#require 'rails_helper'
+# require 'rails_helper'
 #
-#describe 'Create episode' do
+# describe 'Create episode' do
 #  before { create :podcast, project_id: it_way_id }
 #  before { move_host_to it_way_host }
 #
@@ -31,4 +32,4 @@
 #    last_episode = ::Tramway::Event::ParticipantFormField.last
 #    expect(page).to have_content last_episode.title
 #  end
-#end
+# end

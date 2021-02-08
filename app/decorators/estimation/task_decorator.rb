@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 class Estimation::TaskDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
   delegate_attributes(
-        :id,
-        :title,
-        :hours,
-        :price,
-        :created_at,
-        :updated_at,
-        :specialists_count
+    :id,
+    :title,
+    :hours,
+    :price,
+    :created_at,
+    :updated_at,
+    :specialists_count
   )
 
   def sum
@@ -17,34 +19,36 @@ class Estimation::TaskDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def sum_with_coefficients
-    object.estimation_project.coefficients.reduce(sum) do |result, coeff|
+    result = sum
+    object.estimation_project.coefficients.each do |coeff|
       result *= coeff.scale
-    end.round
+    end
+    result.round
   end
 
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :title,
-        :hours,
-        :price,
+      %i[
+        id
+        title
+        hours
+        price
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :title,
-        :hours,
-        :price,
-        :created_at,
-        :updated_at
+      %i[
+        id
+        title
+        hours
+        price
+        created_at
+        updated_at
       ]
     end
 

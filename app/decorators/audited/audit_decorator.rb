@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Audited::AuditDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
@@ -5,29 +7,29 @@ class Audited::AuditDecorator < Tramway::Core::ApplicationDecorator
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :username,
-        :action,
-        :audited_changes,
+      %i[
+        id
+        username
+        action
+        audited_changes
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :username,
-        :action,
-        :audited_changes,
-        :version,
-        :comment,
-        :remote_address,
-        :request_uuid,
-        :created_at,
+      %i[
+        id
+        username
+        action
+        audited_changes
+        version
+        comment
+        remote_address
+        request_uuid
+        created_at
       ]
     end
 

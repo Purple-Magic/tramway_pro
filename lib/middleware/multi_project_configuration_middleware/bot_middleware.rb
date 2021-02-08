@@ -6,11 +6,21 @@ module MultiProjectConfigurationMiddleware
       @app = app
     end
 
+    PAIRS = {
+      'BotTelegram::Scenario::ProgressRecord' => 'MultiProjectCallbacks::BotTelegram::Scenario::ProgressRecordConcern',
+      'BotTelegram::Scenario::Step' => 'MultiProjectCallbacks::BotTelegram::Scenario::StepConcern'
+    }.freeze
+
+    FORMS = ['BotTelegram::Scenario::ProgressRecordForm', 'BotTelegram::Scenario::StepForm'].freeze
+
     def call(env)
-      ::BotTelegram::Scenario::ProgressRecord.include MultiProjectCallbacks::BotTelegram::Scenario::ProgressRecordConcern
-      ::Admin::BotTelegram::Scenario::ProgressRecordForm.include MultiProjectCallbacks::BotTelegram::Scenario::ProgressRecordForm
-      ::BotTelegram::Scenario::Step.include MultiProjectCallbacks::BotTelegram::Scenario::StepConcern
-      ::Admin::BotTelegram::Scenario::StepForm.include MultiProjectCallbacks::BotTelegram::Scenario::StepForm
+      PAIRS.each do |pair|
+        pair.first.constantize.include pair.last.constantize
+      end
+
+      FORMS.each do |name|
+        "Admin::#{name}".constantize.include "MultiProjectCallbacks::#{name}".constantize
+      end
 
       @app.call(env)
     end

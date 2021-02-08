@@ -20,7 +20,7 @@ Tramway::Admin.navbar_structure(
   {
     estimations: [
       Estimation::Customer,
-      Estimation::Project,
+      Estimation::Project
     ]
   },
   {

@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 ## frozen_string_literal: true
 #
-#require 'rails_helper'
+# require 'rails_helper'
 #
-#describe 'Edit podcast page' do
+# describe 'Edit podcast page' do
 #  before { move_host_to it_way_host }
 #  before { create :podcast, project_id: it_way_id }
 #
@@ -20,4 +21,4 @@
 #    expect(page).to have_field 'record[title]', with: last_podcast.title
 #    expect(page).to have_field 'record[feed_url]', with: last_podcast.feed_url
 #  end
-#end
+# end

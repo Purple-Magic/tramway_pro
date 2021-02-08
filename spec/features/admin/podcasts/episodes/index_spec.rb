@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 ## frozen_string_literal: true
 #
-#require 'rails_helper'
+# require 'rails_helper'
 #
-#describe 'Mandatory form fields' do
+# describe 'Mandatory form fields' do
 #  before { move_host_to it_way_host }
 #  let!(:attributes) { attributes_for :event_admin_attributes }
 #
@@ -58,4 +59,4 @@
 #    expect(event.participant_form_fields.active.where(title: 'Email')).not_to be_empty
 #    expect(event.participant_form_fields.active.where(title: 'Номер телефона')).not_to be_empty
 #  end
-#end
+# end

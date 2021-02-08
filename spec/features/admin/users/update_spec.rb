@@ -4,10 +4,8 @@ require 'rails_helper'
 
 describe 'Update admin' do
   let!(:attributes) { attributes_for :admin_admin_attributes }
-  ProjectsHelper.projects.each do |project|
+  ProjectsHelper.projects_instead_of('listai', 'kalashnikovisme', 'tramway').each do |project|
     before { create :admin, project_id: project.id }
-
-    next if project.url.in? ['listai.test', 'kalashnikovisme.test', 'tramway.test']
 
     it "#{project.url}: should update admin" do
       puts "PROJECT URL: #{project.url}".yellow
@@ -29,7 +27,7 @@ describe 'Update admin' do
 
       click_on 'Сохранить', class: 'btn-success'
       admin.reload
-      attributes.keys.each do |attr|
+      attributes.each_key do |attr|
         next if attr == :password
 
         actual = admin.send(attr)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Estimation::ProjectForm < Tramway::Core::ApplicationForm
   properties :title, :state, :project_id
 
@@ -6,7 +8,7 @@ class Admin::Estimation::ProjectForm < Tramway::Core::ApplicationForm
   def initialize(object)
     super(object).tap do
       form_properties customer: :association,
-        title: :string
+                      title: :string
     end
   end
 end

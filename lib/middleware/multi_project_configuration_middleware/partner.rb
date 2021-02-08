@@ -38,7 +38,7 @@ module MultiProjectCallbacks
           where project_id: Project.where(url: ENV['PROJECT_URL']).first.id
         end
 
-        enumerize :partner_type, in: [ 'Tramway::Event::Event', 'Tramway::Conference::Unity', 'Estimation::Project' ]
+        enumerize :partner_type, in: ['Tramway::Event::Event', 'Tramway::Conference::Unity', 'Estimation::Project']
       end
     end
 

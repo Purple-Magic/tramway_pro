@@ -132,9 +132,9 @@ module MultiProjectCallbacks
           where project_id: Project.where(url: ENV['PROJECT_URL'])
         end
 
-        scope :partner_scope, -> (_user_id) { all }
-        [ :rsm, :night ].each do |team|
-          scope "#{team}_scope".to_sym, -> (_user_id) { all }
+        scope :partner_scope, ->(_user_id) { all }
+        %i[rsm night].each do |team|
+          scope "#{team}_scope".to_sym, ->(_user_id) { all }
         end
       end
     end

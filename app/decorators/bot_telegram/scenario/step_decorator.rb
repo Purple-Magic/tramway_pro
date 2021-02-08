@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class BotTelegram::Scenario::StepDecorator < Tramway::Core::ApplicationDecorator
   class << self
     def show_attributes
-      [
-        :title,
-        :text,
-        :options,
-        :reply_markup,
-        :file,
-        :delay,
-        :actions
+      %i[
+        title
+        text
+        options
+        reply_markup
+        file
+        delay
+        actions
       ]
     end
   end
@@ -36,9 +38,10 @@ class BotTelegram::Scenario::StepDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def actions
-    href = Tramway::Admin::Engine.routes.url_helpers.records_path(model: Audited::Audit, filter: { auditable_id_eq: object.id, auditable_type_eq: BotTelegram::Scenario::Step })
+    filter = { auditable_id_eq: object.id, auditable_type_eq: BotTelegram::Scenario::Step }
+    href = Tramway::Admin::Engine.routes.url_helpers.records_path(model: Audited::Audit, filter: filter)
     content_tag :a, href: href do
-      "Действия"
+      'Действия'
     end
   end
 end

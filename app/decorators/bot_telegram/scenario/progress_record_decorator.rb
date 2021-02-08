@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BotTelegram::Scenario::ProgressRecordDecorator < Tramway::Core::ApplicationDecorator
   decorate_associations :user
 
