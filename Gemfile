@@ -95,7 +95,6 @@ gem 'validates'
 gem 'whenever', require: false
 
 group :development do
-  gem 'isolator'
   gem 'web-console', '>= 3.3.0'
 end
 
