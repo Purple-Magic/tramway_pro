@@ -6,18 +6,19 @@
     .content
       %h2 Видео смотрят все!
   .box.center
-.link-panel
-  .links
-    = link_to 'https://vk.com/redmagicprod', target: '_blank', class: :vk do
-      = image_tag 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/vk.svg'
-    = link_to 'https://instagram.com/redmagicprod', target: '_blank', class: :instagram do
-      = image_tag 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg'
-  .services
-    %ul
-  .logo
-    = image_tag 'red_magic_logo.png'
-    %h3
-      RED MAGIC
+- if browser.device.mobile?
+  .link-panel
+    .links
+      = link_to 'https://vk.com/redmagicprod', target: '_blank', class: :vk do
+        = image_tag 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/vk.svg'
+      = link_to 'https://instagram.com/redmagicprod', target: '_blank', class: :instagram do
+        = image_tag 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg'
+    .services
+      %ul
+    .logo
+      = image_tag 'red_magic_logo.png'
+      %h3
+        RED MAGIC
 :javascript
   let box = document.querySelectorAll('.box');
   box.forEach(popup => popup.addEventListener('click', () => {

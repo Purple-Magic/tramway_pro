@@ -48,6 +48,7 @@ gem 'bigdecimal', '1.3.5'
 gem 'bootstrap', '>= 4.3.1'
 gem 'bootstrap-datepicker-rails', github: 'kostia/bootstrap-datepicker-rails'
 gem 'bootstrap-kaminari-views', github: 'kalashnikovisme/bootstrap-kaminari-views', branch: :master
+gem 'browser'
 gem 'carrierwave'
 gem 'ckeditor', '4.2.4'
 gem 'clipboard-rails'

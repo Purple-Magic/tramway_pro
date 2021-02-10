@@ -103,6 +103,7 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
+    browser (5.3.0)
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.31.0)
@@ -594,6 +595,7 @@ DEPENDENCIES
   bootstrap (>= 4.3.1)
   bootstrap-datepicker-rails!
   bootstrap-kaminari-views!
+  browser
   byebug
   capybara (= 3.31)
   capybara_helpers
