@@ -6,6 +6,7 @@ Tramway::Admin.set_singleton_models RedMagic, project: :red_magic
 
 Tramway::Admin.set_available_models(
   Tramway::Landing::Block,
+  Tramway::Landing::Tool,
   Tramway::Page::Page,
   Tramway::User::User,
   Estimation::Project,
@@ -26,7 +27,8 @@ Tramway::Admin.navbar_structure(
   {
     landing: [
       Tramway::Page::Page,
-      Tramway::Landing::Block
+      Tramway::Landing::Block,
+      Tramway::Landing::Tool
     ]
   },
   Tramway::User::User,

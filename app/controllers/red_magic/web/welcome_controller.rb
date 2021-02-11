@@ -7,6 +7,7 @@ class RedMagic::Web::WelcomeController < ApplicationController
 
   def index
     @blocks = ::Tramway::Landing::BlockDecorator.decorate ::Tramway::Landing::Block.on_main_page
+    @tools = ::Tramway::Landing::Tool.active
   end
 
   private
