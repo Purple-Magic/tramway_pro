@@ -219,8 +219,8 @@ GEM
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
     ffi (1.14.2)
-    font-awesome-rails (4.7.0.6)
-      railties (>= 3.2, < 6.2)
+    font-awesome-rails (4.7.0.7)
+      railties (>= 3.2, < 7)
     font_awesome5_rails (1.3.0)
       railties (>= 4.2)
     globalid (0.4.2)
@@ -515,7 +515,7 @@ GEM
       configus
     tramway-export (0.1.6.1)
       xls_exporter (>= 1.2)
-    tramway-landing (3.2.0.3)
+    tramway-landing (3.3)
     tramway-news (1.0.4.3)
     tramway-page (1.5.3.6)
     tramway-partner (1.0.4)
@@ -650,7 +650,7 @@ DEPENDENCIES
   tramway-core (= 2.0.0.6)
   tramway-event (= 1.12.6.2)
   tramway-export (= 0.1.6.1)
-  tramway-landing (= 3.2.0.3)
+  tramway-landing (= 3.3)
   tramway-news (= 1.0.4.3)
   tramway-page (= 1.5.3.6)
   tramway-partner (= 1.0.4)
