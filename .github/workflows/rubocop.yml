@@ -9,6 +9,9 @@ on:
       - develop
 jobs:
   build:
+    strategy:
+      matrix:
+        ruby-version: ['2.7.1']
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +20,7 @@ jobs:
     - name: Set up Ruby 2.7
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: 2.7.x
+        ruby-version: ${{ matrix.ruby-version }}
 
     - name: Build App
       run: |
