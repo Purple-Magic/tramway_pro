@@ -24,6 +24,7 @@ jobs:
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.7
+        bundle-cache: true
 
     - name: Install PostgreSQL 11 client
       run: |
@@ -40,7 +41,7 @@ jobs:
         cp config/database.sample.yml config/database.yml
         cp config/secrets.sample.yml config/secrets.yml
         bin/rails db:setup
-
+  run_tests:
     - name: Run Tests
       env:
         PGHOST: localhost
