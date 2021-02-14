@@ -43,6 +43,8 @@ jobs:
           bin/rails db:setup
   run_tests:
     steps:
+      - uses: actions/checkout@v1
+
       - name: Run Tests
         env:
           PGHOST: localhost
