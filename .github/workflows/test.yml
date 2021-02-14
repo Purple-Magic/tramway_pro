@@ -41,26 +41,26 @@ jobs:
           cp config/database.sample.yml config/database.yml
           cp config/secrets.sample.yml config/secrets.yml
           bin/rails db:setup
-  run_tests:
-    steps:
-      - name: Run Tests
-        env:
-          PGHOST: localhost
-          PGUSER: postgres
-          RAILS_ENV: test
-        run: |
-          bundle exec rspec
-  notification:
-    steps:
-      - name: Rocket.Chat Notification
-        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
-        if: always()
-        with:
-          type: ${{ job.status }}
-          job_name: '*Lint Check*'
-          mention: 'here'
-          mention_if: 'failure'
-          channel: '#random'
-          url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
-        commit: true
-      token: ${{ secrets.GITHUB_TOKEN }}
+#  run_tests:
+#    steps:
+#      - name: Run Tests
+#        env:
+#          PGHOST: localhost
+#          PGUSER: postgres
+#          RAILS_ENV: test
+#        run: |
+#          bundle exec rspec
+#  notification:
+#    steps:
+#      - name: Rocket.Chat Notification
+#        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
+#        if: always()
+#        with:
+#          type: ${{ job.status }}
+#          job_name: '*Lint Check*'
+#          mention: 'here'
+#          mention_if: 'failure'
+#          channel: '#random'
+#          url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
+#        commit: true
+#      token: ${{ secrets.GITHUB_TOKEN }}
