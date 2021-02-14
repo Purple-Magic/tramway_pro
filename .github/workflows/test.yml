@@ -8,7 +8,7 @@ on:
       - master
       - develop
 jobs:
-  build:
+  build_and_run_tests:
     runs-on: ubuntu-latest
 
     services:
@@ -41,18 +41,6 @@ jobs:
           cp config/database.sample.yml config/database.yml
           cp config/secrets.sample.yml config/secrets.yml
           bin/rails db:setup
-  run_tests:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Run Tests
-        env:
-          PGHOST: localhost
-          PGUSER: postgres
-          RAILS_ENV: test
-        run: |
           bundle exec rspec
 #  notification:
 #    steps:
