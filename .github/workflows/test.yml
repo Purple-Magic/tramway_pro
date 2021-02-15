@@ -42,11 +42,6 @@ jobs:
           cp config/secrets.sample.yml config/secrets.yml
           bin/rails db:setup
           bundle exec rspec
-  notification:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v1
 
       - name: Rocket.Chat Notification
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
