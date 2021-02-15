@@ -26,11 +26,6 @@ jobs:
           ruby-version: 2.7
           bundle-cache: true
 
-      - name: Rubocop
-        run: |
-          gem install rubocop
-          bundle exec rubocop
-
       - name: Install PostgreSQL 11 client
         run: |
           sudo apt-get -yqq install libpq-dev
@@ -46,9 +41,8 @@ jobs:
           cp config/database.sample.yml config/database.yml
           cp config/secrets.sample.yml config/secrets.yml
           bin/rails db:setup
-
-      - name: Run Tests
-        run: bundle exec rspec
+          bundle exec rspec
+          bundle exec rubocop
 
       - name: Rocket.Chat Notification
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
