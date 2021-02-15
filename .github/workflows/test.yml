@@ -49,7 +49,7 @@ jobs:
         with:
           username: bot_leopold
           type: ${{ job.status }}
-          job_name: '*Lint Check*'
+          job_name: '*Tramway Pro Tests*'
           mention: 'here'
           mention_if: 'failure'
           channel: '#purplemagic'
