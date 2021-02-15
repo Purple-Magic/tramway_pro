@@ -58,5 +58,5 @@ jobs:
           mention_if: 'failure'
           channel: '#random'
           url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
-        commit: true
-      token: ${{ secrets.GITHUB_TOKEN }}
+          commit: true
+          token: ${{ secrets.GITHUB_TOKEN }}
