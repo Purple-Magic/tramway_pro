@@ -27,6 +27,7 @@ jobs:
           bundle-cache: true
 
       - name: Rubocop
+        uses: actions/setup-ruby@v1
         run: |
           gem install rubocop
           bundle exec rubocop
@@ -48,6 +49,7 @@ jobs:
           bin/rails db:setup
 
       - name: Run Tests
+        uses: actions/setup-ruby@v1
           bundle exec rspec
 
       - name: Rocket.Chat Notification
