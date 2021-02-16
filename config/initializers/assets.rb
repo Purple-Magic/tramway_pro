@@ -10,5 +10,6 @@ Rails.application.config.assets.precompile += [
   '*.otf',
   'engineervol/web/welcome.css',
   'purple_magic/web/welcome.css',
-  'red_magic/web/welcome.css'
+  'red_magic/web/welcome.css',
+  'red_magic/web/projects.css'
 ]
