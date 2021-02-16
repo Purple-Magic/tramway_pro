@@ -4,6 +4,8 @@
   box-sizing: border-box;
 }
 
+$red_magic_color: #d43c3c;
+
 @font-face {
   font-family: 'Ebrima';
   src: asset-url('fonts/red_magic/ebrima.ttf');
@@ -70,31 +72,38 @@ section {
   width: 100%;
   height: 100vh;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   padding: 2rem;
   justify-content: space-between;
-  z-index: 1001;
+  z-index: 2002;
 
-  .logo {
-    z-index: 2000;
+  .header {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    img {
-      height: 7rem;
-    }
-    h3 {
-      font-family: 'Ebrima';
-      font-size: 2.5rem;
-      margin-left: 6px;
-      text-shadow: 0 0 3px #000, 0 0 5px #000;
-      color: #fff;
-    }
-  }
+    justify-content: space-between;
+    z-index: 2002;
 
-  .services {
-    z-index: 2000;
+    .burger {
+      z-index: 2002;
+    }
+
+    .logo {
+      z-index: 2000;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      img {
+        height: 7rem;
+      }
+      h3 {
+        font-family: 'Ebrima';
+        font-size: 2.5rem;
+        margin-left: 6px;
+        text-shadow: 0 0 3px #000, 0 0 5px #000;
+        color: #fff;
+      }
+    }
   }
 
   .links {
@@ -149,6 +158,60 @@ section {
         width: inherit;
       }
     }
+  }
+}
+
+.menu {
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $red_magic_color;
+  z-index: 2001;
+  transition: 1s;
+  clip-path: circle(0.0% at 0% 0%);
+
+  .services {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+    ul {
+      li {
+        list-style-type: "🍔 ";
+        font-size: 2rem;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        //clip-path: polygon(100% 0, 100% 0, 100% 0);
+      }
+    }
+  }
+
+  &.active {
+    clip-path: circle(140.9% at 0 0);
+
+    .services {
+      z-index: 2000;
+      ul {
+        li {
+         //animation: menuShow 1s linear;
+        }
+      }
+    }
+  }
+}
+
+@keyframes  menuShow {
+  30% {
+    clip-path: polygon(100% 0, 50% 0, 100% 100%);
+  }
+  0%, 100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
   }
 }
 
