@@ -4,16 +4,34 @@
   Авторские проекты команды Red Magic
 
 .row-projects
-  .project
+  .project.red_magic_live
     .cover.red_magic_live
       Red Magic Live
-  .project
+  .project.who_knew
     .cover.who_knew
       Хунью
 .row-projects
-  .project
+  .project.it_way
     .cover.it_way
       IT Way
-  .project
+  .project.red_magic_tv
     .cover.red_magic_tv
       Red Magic TV
+
+.it_way_page
+.who_knew_page
+.red_magic_tv_page
+.red_magic_live_page
+  
+:javascript
+  let project = document.querySelectorAll('.project');
+  project.forEach(popup => popup.addEventListener('click', () => {
+    [ 'it_way', 'red_magic_live', 'red_magic_tv', 'who_knew' ].forEach(function(project) {
+      let page = document.querySelectorAll('.' + project + '_page')[0]
+      if (popup.classList.contains(project)) {
+        page.classList.add('active')
+      } else {
+        page.classList.remove('active')
+      }
+    })
+  }))
