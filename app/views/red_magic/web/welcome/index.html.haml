@@ -7,19 +7,47 @@
     .content
       %h2 К нам приходят за видео, а мы делаем магию!
 .link-panel
+  .header
+    = link_to '#', class: :burger do
+      %h1
+        ☰
+    .logo
+      = image_tag 'red_magic_logo.png'
+      %h3
+        RED MAGIC
+    .one-more-component
   .links
     = link_to 'https://vk.com/redmagicprod', target: '_blank', class: :vk do
       = image_tag 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/vk.svg'
     = link_to 'https://instagram.com/redmagicprod', target: '_blank', class: :instagram do
       = image_tag 'https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/instagram.svg'
+
+.menu
   .services
     %ul
-  .logo
-    = image_tag 'red_magic_logo.png'
-    %h3
-      RED MAGIC
+      %li
+        = link_to '/page/stream' do
+          Прямые эфиры
+      %li
+        = link_to '/page/video' do
+          Съёмка видео
+      %li
+        = link_to '/page/animation' do
+          Анимация
+      %li
+        = link_to '/page/podcasts' do
+          Подкасты
+      %li
+        = link_to '/page/projects' do
+          Наши проекты
+
 :javascript
   let box = document.querySelectorAll('.box');
   box.forEach(popup => popup.addEventListener('click', () => {
     popup.classList.toggle('active')
+  }))
+  let burger = document.querySelectorAll('.burger')
+  burger.forEach(popup => popup.addEventListener('click', () => {
+    let menu = document.querySelectorAll('.menu')[0]
+    menu.classList.toggle('active')
   }))

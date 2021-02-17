@@ -1,7 +1,7 @@
-deploy:
-	ansible-playbook -i cm/inventory cm/deploy.yml
-restart:
-	ansible-playbook -i cm/inventory cm/restart.yml
+deploy_production:
+	ansible-playbook -i deploy/inventory deploy/deploy.yml
+restart_production:
+	ansible-playbook -i deploy/inventory deploy/restart.yml
 install:
 	echo "You should run it with sudo"
 	echo "127.0.0.1	it-way.test" >> /etc/hosts

@@ -8,7 +8,7 @@ on:
       - master
       - develop
 jobs:
-  build:
+  build_and_run_tests:
     runs-on: ubuntu-latest
 
     services:
@@ -18,33 +18,42 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-    - name: Set up Ruby 2.7
-      uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 2.7
+      - name: Set up Ruby 2.7
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundle-cache: true
 
-    - name: Install PostgreSQL 11 client
-      run: |
-        sudo apt-get -yqq install libpq-dev
+      - name: Install PostgreSQL 11 client
+        run: |
+          sudo apt-get -yqq install libpq-dev
 
-    - name: Build App
-      env:
-        PGHOST: localhost
-        PGUSER: postgres
-        RAILS_ENV: test
-      run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3
-        cp config/database.sample.yml config/database.yml
-        cp config/secrets.sample.yml config/secrets.yml
-        bin/rails db:setup
+      - name: Build App
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          RAILS_ENV: test
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+          cp config/database.sample.yml config/database.yml
+          cp config/secrets.sample.yml config/secrets.yml
+          bin/rails db:setup
+          bundle exec rspec
+          bundle exec rubocop
 
-    - name: Run Tests
-      env:
-        PGHOST: localhost
-        PGUSER: postgres
-        RAILS_ENV: test
-      run: |
-        bundle exec rspec
+      - name: Rocket.Chat Notification
+        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
+        if: always()
+        with:
+          username: bot_leopold
+          type: ${{ job.status }}
+          job_name: '*Tramway Pro Tests*'
+          mention: 'here'
+          mention_if: 'failure'
+          channel: '#purplemagic'
+          url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
+          commit: true
+          token: ${{ secrets.GITHUB_TOKEN }}

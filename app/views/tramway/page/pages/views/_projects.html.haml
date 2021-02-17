@@ -1,0 +1,44 @@
+= stylesheet_link_tag 'red_magic/web/projects'
+
+= content_for :title do
+  Авторские проекты команды Red Magic
+
+.row-projects
+  .project.red_magic_live
+    .cover.red_magic_live
+      Red Magic Live
+  .project.who_knew
+    .cover.who_knew
+      Хунью
+.row-projects
+  .project.it_way
+    .cover.it_way
+      IT Way
+  .project.red_magic_tv
+    .cover.red_magic_tv
+      Red Magic TV
+
+.project-page
+  .red_magic_live
+    %h1
+      Red Magic Live
+  .it_way
+    = render 'red_magic/web/projects/it_way'
+  .red_magic_tv
+    %h1
+      Red Magic TV
+  .who_knew
+    %h1
+      Хунью
+  
+:javascript
+  let project = document.querySelectorAll('.project');
+  project.forEach(popup => popup.addEventListener('click', () => {
+    [ 'it_way', 'red_magic_live', 'red_magic_tv', 'who_knew' ].forEach(function(project) {
+      let page = document.querySelectorAll('.project-page')[0]
+      if (popup.classList.contains(project)) {
+        page.classList.add('active')
+        page.classList.add(project + '_page')
+      }
+    })
+  }))
