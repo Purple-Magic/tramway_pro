@@ -106,7 +106,7 @@ $projects: it_way, who_knew, red_magic_live, red_magic_tv;
 
   @each $project in $projects {
     &.#{$project}_page {
-      h1.#{$project} {
+      .#{$project} {
         display: flex;
       }
     }
@@ -116,11 +116,13 @@ $projects: it_way, who_knew, red_magic_live, red_magic_tv;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 
-  h1 {
+  div {
     display: none;
-    font-weight: bold;
-    font-size: 5rem;
-    text-transform: uppercase;
-    color: white;
+    h1 {
+      font-weight: bold;
+      font-size: 5rem;
+      text-transform: uppercase;
+      color: white;
+    }
   }
 }
