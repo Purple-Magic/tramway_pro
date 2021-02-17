@@ -37,6 +37,7 @@
       font-size: 3rem;
       font-weight: bold;
       color: white;
+      cursor: pointer;
 
       &.it_way {
         background-color: $it_way_color;
@@ -88,8 +89,21 @@ $projects: it_way, who_knew, red_magic_live, red_magic_tv;
   align-items: center;
   justify-content: center;
 
+  @each $project in $projects {
+    &.#{$project}_page {
+      .#{$project} {
+        display: flex;
+      }
+    }
+  }
+
   &.it_way_page {
     background-color: $it_way_color;
+    div {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   &.who_knew_page {
@@ -104,24 +118,22 @@ $projects: it_way, who_knew, red_magic_live, red_magic_tv;
     background-color: $red_magic_live_color;
   }
 
-  @each $project in $projects {
-    &.#{$project}_page {
-      .#{$project} {
-        display: flex;
-      }
-    }
-  }
-
   &.active {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 
   div {
     display: none;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
     h1 {
       font-weight: bold;
-      font-size: 5rem;
+      font-size: 10rem;
       text-transform: uppercase;
+      color: white;
+    }
+    h2 {
       color: white;
     }
   }
