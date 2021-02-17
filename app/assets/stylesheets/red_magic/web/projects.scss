@@ -76,12 +76,17 @@
   }
 }
 
+$projects: it_way, who_knew, red_magic_live, red_magic_tv;
+
 .project-page {
   clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-  transition: 2s;
+  transition: 1.5s;
   width: 100%;
   height: 100vh;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &.it_way_page {
     background-color: $it_way_color;
@@ -99,7 +104,23 @@
     background-color: $red_magic_live_color;
   }
 
+  @each $project in $projects {
+    &.#{$project}_page {
+      h1.#{$project} {
+        display: flex;
+      }
+    }
+  }
+
   &.active {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  h1 {
+    display: none;
+    font-weight: bold;
+    font-size: 5rem;
+    text-transform: uppercase;
+    color: white;
   }
 }
