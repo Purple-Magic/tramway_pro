@@ -81,9 +81,14 @@
   transition: 2s;
   width: 100%;
   height: 100vh;
+  z-index: 2;
 
   &.it_way_page {
     background-color: $it_way_color;
+  }
+
+  &.who_knew_page {
+    background-color: $who_knew_color;
   }
 
   &.red_magic_tv_page {
@@ -92,10 +97,6 @@
 
   &.red_magic_live_page {
     background-color: $red_magic_live_color;
-  }
-
-  &.who_knew_page {
-    background-color: $who_knew_color;
   }
 
   &.active {

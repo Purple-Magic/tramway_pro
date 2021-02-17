@@ -18,20 +18,16 @@
     .cover.red_magic_tv
       Red Magic TV
 
-.it_way_page.project-page
-.who_knew_page.project-page
-.red_magic_tv_page.project-page
-.red_magic_live_page.project-page
+.project-page
   
 :javascript
   let project = document.querySelectorAll('.project');
   project.forEach(popup => popup.addEventListener('click', () => {
     [ 'it_way', 'red_magic_live', 'red_magic_tv', 'who_knew' ].forEach(function(project) {
-      let page = document.querySelectorAll('.' + project + '_page')[0]
+      let page = document.querySelectorAll('.project-page')[0]
       if (popup.classList.contains(project)) {
         page.classList.add('active')
-      } else {
-        page.classList.remove('active')
+        page.classList.add(project + '_page')
       }
     })
   }))
