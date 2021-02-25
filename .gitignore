@@ -31,3 +31,10 @@ config/environments/*.local.yml
 *.csv#
 bin/podcast/description/description.html
 bin/podcast/moments/moments.csv
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity

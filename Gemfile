@@ -92,6 +92,7 @@ gem 'trap', '3.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn-rails'
 gem 'validates'
+gem 'webpacker'
 gem 'whenever', require: false
 
 group :development do

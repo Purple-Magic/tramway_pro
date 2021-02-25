@@ -8,6 +8,7 @@ Rails.application.config.assets.precompile += [
   '*.js',
   '*.ttf',
   '*.otf',
+  'node_modules/*',
   'engineervol/web/welcome.css',
   'purple_magic/web/welcome.css',
   'red_magic/web/welcome.css',

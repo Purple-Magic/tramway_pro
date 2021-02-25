@@ -1,4 +1,4 @@
-// Convert time to a format of hours, minutes, seconds, and milliseconds
+import { create } from '../../crud'
 
 document.addEventListener("DOMContentLoaded", function() {
   function timeToString(time) {
@@ -21,19 +21,13 @@ document.addEventListener("DOMContentLoaded", function() {
     return `${formattedMM}:${formattedSS}:${formattedMS}`;
   }
 
-  // Declare variables to use in our functions below
-
   let startTime;
   let elapsedTime = 0;
   let timerInterval;
 
-  // Create function to modify innerHTML
-
   function print(txt) {
     document.getElementById("display").innerHTML = txt;
   }
-
-  // Create "start", "pause" and "reset" functions
 
   function start() {
     startTime = Date.now() - elapsedTime;
@@ -48,15 +42,10 @@ document.addEventListener("DOMContentLoaded", function() {
     clearInterval(timerInterval);
     showButton("PLAY");
   }
-
-  function reset() {
-    clearInterval(timerInterval);
-    print("00:00:00");
-    elapsedTime = 0;
-    showButton("PLAY");
+  
+  const save = () => {
+    create('hui')
   }
-
-  // Create function to display buttons
 
   function showButton(buttonKey) {
     const buttonToShow = buttonKey === "PLAY" ? playButton : pauseButton;
@@ -64,13 +53,12 @@ document.addEventListener("DOMContentLoaded", function() {
     buttonToShow.style.display = "block";
     buttonToHide.style.display = "none";
   }
-  // Create event listeners
 
   let playButton = document.getElementById("playButton");
   let pauseButton = document.getElementById("pauseButton");
-  let resetButton = document.getElementById("resetButton");
+  let buttonSave = document.getElementById("buttonSave");
 
   playButton.addEventListener("click", start);
   pauseButton.addEventListener("click", pause);
-  resetButton.addEventListener("click", reset);
+  buttonSave.addEventListener("click", save);
 });

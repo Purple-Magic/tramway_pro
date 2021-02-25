@@ -1,16 +1,17 @@
 = content_for :title do
   Запись подкаста
-= javascript_include_tag 'it_way/podcasts/highlights'
+-#= javascript_pack_tag 'it_way/podcasts/highlights'
+= javascript_pack_tag 'application'
 = stylesheet_link_tag 'it_way/podcasts/highlights'
 .stopwatch
   %h1
-    %span.gold GOLD
-    STOPWATCH
+    %span.gold IT Way Podcast
+    Хайлайты
   .circle
     %span#display.time 00:00:00
   .controls
     %button.buttonPlay
       %img#playButton{src: "https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/play-button_opkxmt.svg"}/
       %img#pauseButton{src: "https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/pause-button_pinhpy.svg"}/
-    %button.buttonReset
-      %img#resetButton{src: "https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/reset-button_mdv6wf.svg"}/
+    %button#buttonSave
+      Сохранить

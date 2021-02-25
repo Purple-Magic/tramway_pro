@@ -2,6 +2,11 @@
   "name": "tramway_pro",
   "private": true,
   "dependencies": {
-    "axios": "latest"
+    "@rails/webpacker": "4.3.0",
+    "axios": "latest",
+    "requirejs": "latest"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.11.2"
   }
 }
