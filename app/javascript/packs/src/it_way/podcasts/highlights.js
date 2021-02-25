@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   
   const save = () => {
-    create('hui')
+    create('Podcast::Highlight', { time: timeToString(elapsedTime) })
   }
 
   function showButton(buttonKey) {

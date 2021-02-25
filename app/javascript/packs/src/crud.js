@@ -1,6 +1,15 @@
 import axios from 'axios'
 
-const apiUrl = './'
+const config = {
+  development: {
+    api: 'http://it-way.test:3000',
+  },
+  production: {
+    api: 'http://it-way.pro',
+  },
+}
+
+const apiUrl = config[process.env.RAILS_ENV || 'development'].api
 
 export const index = (entity, params) => {
   return axios.get(`${apiUrl}/${entity}`, { params })
@@ -13,14 +22,11 @@ export const show = (entity, params) => {
   return axios.get(`${apiUrl}/${entity}`)
 }
 
-export const create = (entity, params, args = null) => {
-  let updatedArgs = args
-  if (!args) {
-    updatedArgs = Object.keys(params)
-  }
+export const create = (entity, params) => {
   const bodyFormData = new FormData();
-  updatedArgs.forEach((arg) => {
+  const args = Object.keys(params)
+  args.forEach((arg) => {
     bodyFormData.set(arg, params[arg])
   })
-  return axios.post(`${apiUrl}/${entity}`, bodyFormData)
+  return axios.post(`${apiUrl}/api/v1/records?model=${entity}`, bodyFormData)
 }
