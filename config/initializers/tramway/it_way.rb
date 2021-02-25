@@ -5,10 +5,10 @@ Tramway::Admin.set_available_models Word,
   ItWay::Certificate,
   Podcast,
   project: :conference, role: :admin
-# Tramway::Api.set_available_models(
-#  { Word => [ :index ] },
-#  project: :it_way
-# )
+Tramway::Api.set_available_models(
+ { Podcast::Highlight => [ :create ] },
+ project: :it_way
+)
 Tramway::Admin.navbar_structure(
   Tramway::Conference::Unity,
   {

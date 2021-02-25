@@ -475,7 +475,7 @@ GEM
     tilt (2.0.10)
     time_difference (0.7.0)
       activesupport (~> 5.1)
-    tramway-admin (2.0.0.2)
+    tramway-admin (2.0.0.3)
       aasm
       bootstrap-kaminari-views (= 0.0.5)
       copyright_mafa (~> 0.1.2, >= 0.1.2)
@@ -495,7 +495,7 @@ GEM
       tramway-core (>= 1.9.2)
     tramway-auth (2.0.2)
     tramway-conference (1.9.5.1)
-    tramway-core (2.0.0.6)
+    tramway-core (2.0.0.7)
       audited (>= 4.8.0)
       bootstrap (>= 4.1.2)
       carrierwave
@@ -644,10 +644,10 @@ DEPENDENCIES
   state_machine_buttons (= 2.0)
   telegram-bot-ruby
   time_difference
-  tramway-admin (= 2.0.0.2)
+  tramway-admin (= 2.0.0.3)
   tramway-api (= 1.8.6.6)
   tramway-conference (= 1.9.5.1)
-  tramway-core (= 2.0.0.6)
+  tramway-core (= 2.0.0.7)
   tramway-event (= 1.12.6.2)
   tramway-export (= 0.1.6.1)
   tramway-landing (= 3.3.0.1)
