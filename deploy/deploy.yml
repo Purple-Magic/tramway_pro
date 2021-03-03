@@ -68,8 +68,8 @@
       args:
         chdir: "{{ release_path }}"
 
-    - name: NPM install
-      shell: "cd {{ release_path }} && /bin/bash -ilc 'npm install'"
+    - name: YARN install
+      shell: "cd {{ release_path }} && /bin/bash -ilc 'yarn'"
       args:
         chdir: "{{ release_path }}"
 
