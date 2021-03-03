@@ -4,8 +4,7 @@
   "dependencies": {
     "@rails/webpacker": "4.3.0",
     "axios": "latest",
-    "requirejs": "latest",
-    "fsevents": "latest"
+    "requirejs": "latest"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.11.2"
