@@ -89,20 +89,19 @@ $projects: it_way, who_knew, red_magic_live, red_magic_tv;
   align-items: center;
   justify-content: center;
 
-  @each $project in $projects {
-    &.#{$project}_page {
-      .#{$project} {
-        display: flex;
-      }
-    }
-  }
-
   &.it_way_page {
     background-color: $it_way_color;
     div {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+    }
+
+    .videos-row {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 480px;
     }
   }
 
@@ -120,21 +119,41 @@ $projects: it_way, who_knew, red_magic_live, red_magic_tv;
 
   &.active {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+    @each $project in $projects {
+      &.#{$project}_page {
+        .#{$project} {
+          display: flex;
+        }
+      }
+    }
   }
 
-  div {
-    display: none;
-    width: 100%;
-    height: 100%;
-    padding: 2rem;
-    h1 {
-      font-weight: bold;
-      font-size: 10rem;
-      text-transform: uppercase;
-      color: white;
+  @each $project in $projects {
+    .#{$project} {
+      display: none;
+      width: 100%;
+      height: 100%;
+      padding: 2rem;
+      h1 {
+        font-weight: bold;
+        font-size: 10rem;
+        text-transform: uppercase;
+        color: white;
+      }
+      h2 {
+        color: white;
+      }
     }
-    h2 {
-      color: white;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .row-projects {
+    flex-direction: column;
+    .project {
+      width: 100%;
+      height: 25vh;
     }
   }
 }
