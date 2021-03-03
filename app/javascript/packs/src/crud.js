@@ -23,10 +23,10 @@ export const show = (entity, params) => {
 }
 
 export const create = (entity, params) => {
-  const bodyFormData = new FormData();
+  const bodyFormData = new FormData()
   const args = Object.keys(params)
   args.forEach((arg) => {
-    bodyFormData.set(arg, params[arg])
+    bodyFormData.set(`data[attributes][${arg}]`, params[arg])
   })
   return axios.post(`${apiUrl}/api/v1/records?model=${entity}`, bodyFormData)
 }

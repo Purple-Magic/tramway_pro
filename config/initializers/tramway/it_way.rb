@@ -7,7 +7,7 @@ Tramway::Admin.set_available_models Word,
   project: :conference, role: :admin
 Tramway::Api.set_available_models(
   { Podcast::Highlight => [ :create ] },
-  project: :it_way
+  project: :conference
 )
 Tramway::Admin.navbar_structure(
   Tramway::Conference::Unity,
