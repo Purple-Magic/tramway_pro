@@ -5,7 +5,7 @@ const config = {
     api: 'http://it-way.test:3000',
   },
   production: {
-    api: 'http://it-way.pro',
+    api: 'https://it-way.pro',
   },
 }
 
