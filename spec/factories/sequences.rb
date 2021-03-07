@@ -25,7 +25,7 @@ FactoryBot.define do
   sequence :url do |n|
     "http://site#{n}.com"
   end
-  sequence :date, aliases: [ :time ] do |n|
+  sequence :date, aliases: [:time] do |n|
     Time.zone.today + n.day
   end
   sequence :colour do

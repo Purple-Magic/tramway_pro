@@ -1,8 +1,8 @@
 ## frozen_string_literal: true
 #
-#require 'rails_helper'
+# require 'rails_helper'
 #
-#describe 'Create podcast highlight' do
+# describe 'Create podcast highlight' do
 #  let!(:attributes) { attributes_for :podcast_highlight }
 #
 #  before { create :page, slug: 'podcast_highlight', view: 'podcast_highlight', project_id: it_way_id, view_state: :published }
@@ -16,4 +16,4 @@
 #    click_on 'Сохранить'
 #    expect(Podcast::Highlight.count).to eq(count + 1)
 #  end
-#end
+# end

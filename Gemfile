@@ -90,10 +90,10 @@ gem 'time_difference'
 gem 'trap', '3.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn-rails'
+gem 'uuid'
 gem 'validates'
 gem 'webpacker'
 gem 'whenever', require: false
-gem 'uuid'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
