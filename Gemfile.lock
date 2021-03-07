@@ -473,7 +473,7 @@ GEM
       tramway-core (>= 1.18.6)
       tramway-user (>= 2.1.3.2)
       trap (= 3.0)
-    tramway-api (1.8.6.10)
+    tramway-api (1.8.6.11)
       active_model_serializers (= 0.10.5)
       knock
       tramway-core (>= 1.9.2)
@@ -634,7 +634,7 @@ DEPENDENCIES
   telegram-bot-ruby
   time_difference
   tramway-admin (= 2.0.0.3)
-  tramway-api (= 1.8.6.10)
+  tramway-api (= 1.8.6.11)
   tramway-conference (= 1.9.5.1)
   tramway-core (= 2.0.0.7)
   tramway-event (= 1.12.6.2)
