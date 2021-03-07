@@ -3,6 +3,7 @@ on:
     branches:
       - master
       - develop
+      - feature/ruby-3.0
   pull_request:
     branches:
       - master
@@ -20,10 +21,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Set up Ruby 2.7
+      - name: Set up Ruby 3.0
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: 3.0
           bundle-cache: true
 
       - name: Install PostgreSQL 11 client
