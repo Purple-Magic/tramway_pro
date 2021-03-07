@@ -79,7 +79,7 @@ PATH
 PATH
   remote: ../tramway-dev/tramway-api
   specs:
-    tramway-api (1.8.6.12)
+    tramway-api (1.8.6.13)
       active_model_serializers (= 0.10.12)
       knock
       tramway-core (>= 1.9.2)
