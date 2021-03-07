@@ -7,6 +7,7 @@ module MultiProjectConfigurationMiddleware
     end
 
     def call(env)
+      ::Tramway::Api::ApplicationController.include MultiProjectCallbacks::ApiMiddleware::Application
       ::Tramway::Api::V1::ApplicationController.include MultiProjectCallbacks::ApiMiddleware::Application
       ::Tramway::Api::V1::RecordsController.include MultiProjectCallbacks::ApiMiddleware::Records
 
