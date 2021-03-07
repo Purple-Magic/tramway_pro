@@ -59,7 +59,7 @@ PATH
 PATH
   remote: ../tramway-core
   specs:
-    tramway-core (2.0.0.7)
+    tramway-core (2.0.0.8)
       audited (>= 4.8.0)
       bootstrap (>= 4.1.2)
       carrierwave
@@ -79,7 +79,7 @@ PATH
 PATH
   remote: ../tramway-dev/tramway-api
   specs:
-    tramway-api (1.8.6.11)
+    tramway-api (1.8.6.12)
       active_model_serializers (= 0.10.12)
       knock
       tramway-core (>= 1.9.2)
