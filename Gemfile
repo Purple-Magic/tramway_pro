@@ -103,7 +103,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara', '3.31'
   gem 'launchy'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen', '3.4.1'
   gem 'pry'
   gem 'pry-nav'
   gem 'rspec-rails', '~> 3.5'
