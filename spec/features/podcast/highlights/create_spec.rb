@@ -6,7 +6,8 @@
 # describe 'Create podcast highlight' do
 #  let!(:attributes) { attributes_for :podcast_highlight }
 #
-#  before { create :page, slug: 'podcast_highlight', view: 'podcast_highlight', project_id: it_way_id, view_state: :published }
+#  before { create :page, slug: 'podcast_highlight', view: 'podcast_highlight',
+#  project_id: it_way_id, view_state: :published }
 #
 #  it 'IT Ways hould create podcast highlight' do
 #    move_host_to it_way_host
