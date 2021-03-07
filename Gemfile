@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 ruby '3.0.0'
-gem 'rails', '5.1.7'
+gem 'rails', '6.1.3'
 
 gem 'tramway-admin', '2.0.0.3'
 gem 'tramway-api', '1.8.6.10'
