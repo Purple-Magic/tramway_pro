@@ -28,7 +28,6 @@ RSpec.configure do |config|
   config.include NavbarHelper
   config.include TramwayHelpers
   config.include CapybaraHelpers
-  config.include ActionDispatch::TestProcess::FixtureFile
 
   ActiveRecord::Base.logger.level = 1
 
