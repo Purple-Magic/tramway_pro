@@ -47,7 +47,7 @@ FactoryBot.define do
     Base64.encode64(File.open('public/temp.png', 'rb').read)
   end
   sequence :file_image do |_n|
-    Rack::Test::UploadedFile.new('public/temp.png', 'image/png')
+    fixture_file_upload('public/temp.png', 'image/png')
   end
   sequence :latitude do |_n|
     rand(-90.0..90.0).round(5)
