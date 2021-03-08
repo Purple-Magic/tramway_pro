@@ -26,6 +26,10 @@ class Estimation::TaskDecorator < Tramway::Core::ApplicationDecorator
     result.round
   end
 
+  def description
+    raw object.description
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
@@ -47,6 +51,8 @@ class Estimation::TaskDecorator < Tramway::Core::ApplicationDecorator
         title
         hours
         price
+        specialists_count
+        description
         created_at
         updated_at
       ]

@@ -14,7 +14,7 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def self.show_attributes
-    %i[id title table]
+    %i[id title table description]
   end
 
   def self.show_associations
@@ -28,6 +28,10 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
       summary_row
       footer
     end
+  end
+
+  def description
+    raw object.description
   end
 
   def summary

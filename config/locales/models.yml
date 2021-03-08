@@ -51,6 +51,7 @@ ru:
         coefficients: Коэфициенты
         ending_summary: Окончательная сумма
         project_state: Состояние проекта
+        description: Описание
       estimation/customer:
         title: Название
         logo: Логотип
@@ -64,6 +65,7 @@ ru:
         sum: Сумма
         sum_with_coefficients: Сумма для заказчика
         specialists_count: Количество специалистов
+        description: Описание
       estimation/coefficient:
         estimation_project: Проект
         title: Название
