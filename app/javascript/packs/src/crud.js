@@ -2,10 +2,10 @@ import axios from 'axios'
 
 const config = {
   development: {
-    api: 'http://it-way.test:3000',
+    api: 'http://red-magic.test:3000',
   },
   production: {
-    api: 'https://it-way.pro',
+    api: 'https://red-magic.ru',
   },
 }
 
@@ -15,11 +15,11 @@ export const index = (entity, params) => {
   return axios.get(`${apiUrl}/api/v1/records?model=${entity}`, { params })
 }
 
-export const show = (entity, params) => {
+export const show = (entity, id, params = null) => {
   if (params) {
-    return axios.get(`${apiUrl}/${entity}`, { params })
+    return axios.get(`${apiUrl}/api/v1/records/${id}?model=${entity}`, { params })
   }
-  return axios.get(`${apiUrl}/${entity}`)
+  return axios.get(`${apiUrl}/api/v1/records/${id}?model=${entity}`)
 }
 
 export const create = (entity, params) => {

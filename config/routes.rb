@@ -3,7 +3,6 @@
 Rails.application.routes.draw do
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:it_way]) do
     mount Tramway::Conference::Engine => '/'
-    mount Tramway::Api::Engine, at: '/api', as: :it_way_api
     scope module: :it_way do
       resources :certificates, only: :show
       resources :podcasts, only: :show
@@ -52,5 +51,6 @@ Rails.application.routes.draw do
     mount Tramway::Admin::Engine, at: '/admin', as: :red_magic_admin
     mount Tramway::Auth::Engine, at: '/auth', as: :red_magic_auth
     mount Tramway::Page::Engine, at: '/page', as: :red_magic
+    mount Tramway::Api::Engine, at: '/api', as: :red_magic_api
   end
 end
