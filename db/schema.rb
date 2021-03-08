@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210308200457) do
+ActiveRecord::Schema.define(version: 20210308201418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -213,6 +213,7 @@ ActiveRecord::Schema.define(version: 20210308200457) do
     t.float "hours"
     t.float "price"
     t.integer "specialists_count", default: 1
+    t.text "description"
   end
 
   create_table "it_way_certificates", force: :cascade do |t|
