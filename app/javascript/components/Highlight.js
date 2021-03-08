@@ -5,7 +5,7 @@ import { Row, Col, Form } from 'react-bootstrap'
 
 const podcastOptions = (podcasts) => {
   return podcasts.map((podcast) => {
-    return <option value={podcast.id} key={podcast.id}>{podcast.title}</option>
+    return <option value={podcast.id} key={podcast.id}>{podcast.attributes.title}</option>
   })
 }
 

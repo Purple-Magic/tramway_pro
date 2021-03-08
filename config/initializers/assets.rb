@@ -19,5 +19,5 @@ Rails.application.config.assets.precompile += [
   'purple_magic/web/welcome.css',
   'red_magic/web/welcome.css',
   'red_magic/web/projects.css',
-  'it_way/podcasts/highlights.css'
+  'red_magic/podcasts/highlights.css'
 ]
