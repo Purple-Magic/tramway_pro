@@ -5,7 +5,7 @@ const config = {
     api: 'http://red-magic.test:3000',
   },
   production: {
-    api: 'https://red-magic.ru',
+    api: 'http://red-magic.ru',
   },
 }
 
