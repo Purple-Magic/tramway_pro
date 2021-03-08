@@ -8,7 +8,6 @@ module MultiProjectConfigurationMiddleware
 
     def call(env)
       ::Tramway::Api::ApplicationController.include MultiProjectCallbacks::ApiMiddleware::Application
-      #::Tramway::Api::V1::ApplicationController.include MultiProjectCallbacks::ApiMiddleware::Application
       ::Tramway::Api::V1::RecordsController.include MultiProjectCallbacks::ApiMiddleware::Records
 
       @app.call(env)
@@ -22,19 +21,6 @@ module MultiProjectCallbacks
       extend ActiveSupport::Concern
 
       included do
-        actions = [:index]
-        actions.each do |action|
-          before_render "after_#{action}".to_sym, only: action
-        end
-
-        def after_index
-          project = Project.where(url: ENV['PROJECT_URL']).first
-          unless params[:model] == 'Project'
-            @records = decorator_class.decorate @records.original_array.where project_id: project.id
-          end
-          @counts = build_counts project
-        end
-
         before_action :add_project_id, only: %i[create update]
 
         def add_project_id

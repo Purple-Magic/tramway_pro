@@ -13,6 +13,7 @@ Tramway::Admin.set_available_models(
   Estimation::Task,
   Estimation::Customer,
   Estimation::Coefficient,
+  Podcast,
   project: :red_magic
 )
 
@@ -29,6 +30,11 @@ Tramway::Admin.navbar_structure(
       Tramway::Page::Page,
       Tramway::Landing::Block,
       Tramway::Landing::Tool
+    ]
+  },
+  {
+    podcasts: [
+      Podcast,
     ]
   },
   Tramway::User::User,

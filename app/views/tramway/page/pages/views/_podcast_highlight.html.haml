@@ -3,15 +3,21 @@
 -#= javascript_pack_tag 'it_way/podcasts/highlights'
 = javascript_pack_tag 'application'
 = stylesheet_link_tag 'it_way/podcasts/highlights'
-.stopwatch
-  %h1
-    %span.gold IT Way Podcast
-    Хайлайты
-  .circle
-    %span#display.time 00:00:00
-  .controls
-    %button.buttonPlay
-      %img#playButton{src: "https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/play-button_opkxmt.svg"}/
-      %img#pauseButton{src: "https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/pause-button_pinhpy.svg"}/
-    %button#buttonSave
-      Сохранить
+= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.5/css/mdb.min.css'
+= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.5/js/mdb.js'
+.row
+  .col
+    .stopwatch
+      %h1
+        %span.gold Podcast
+        Хайлайты
+      .circle
+        %span#display.time 00:00:00
+      .controls
+        %button.buttonPlay
+          %img#playButton{src: "https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/play-button_opkxmt.svg"}/
+          %img#pauseButton{src: "https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/pause-button_pinhpy.svg"}/
+        %button#buttonSave.btn.btn-warning
+          Запомнить
+  .col
+    = react_component("Highlight", { greeting: "Hello from react-rails." })

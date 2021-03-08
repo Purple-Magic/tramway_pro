@@ -16,3 +16,7 @@
 // const imagePath = (name) => images(name, true)
 
 import * as highlights from './src/it_way/podcasts/highlights'
+// Support component names relative to this directory:
+var componentRequireContext = require.context("components", true);
+var ReactRailsUJS = require("react_ujs");
+ReactRailsUJS.useContext(componentRequireContext);
