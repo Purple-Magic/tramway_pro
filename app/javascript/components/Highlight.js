@@ -19,6 +19,9 @@ class Highlight extends React.Component {
       podcasts: [],
       params: {},
     }
+
+    this.createEpisode = this.createEpisode.bind(this)
+
     setInterval(() => {
       if (this.state.episode) {
         index('Podcast::Highlight').then((response) => {
@@ -44,6 +47,14 @@ class Highlight extends React.Component {
         ...this.state.params,
         [attribute]: value
       }
+    })
+  }
+
+  createEpisode() {
+    create('Podcast::Episode', this.state.params).then((response) => {
+      this.setState({
+        episode: response.data.data,
+      })
     })
   }
 
@@ -77,7 +88,7 @@ class Highlight extends React.Component {
             </Form.Label>
             <Form.Control type="text" onChange={(e) => { this.change('number', e.target.value) }}/>
           </Form.Group>
-          <Button onClick={() => { create('Podcast::Episode', this.state.params) } }>Создать</Button>
+          <Button onClick={this.createEpisode}>Создать</Button>
         </Form>
       )
     }
