@@ -41,6 +41,12 @@ class Highlight extends React.Component {
     })
   }
 
+  componentDidUpdate() {
+    if (this.state.episode) {
+      document.getElementById('episodeId').value = this.state.episode.id
+    }
+  }
+
   change(attribute, value) {
     this.setState({
       params: {
