@@ -9,13 +9,13 @@ class Highlight extends React.Component {
     this.state = {
       highlights: [],
     }
-    //setInterval(() => {
-      index('Podcast::Highlight').then((collection) => {
+    setInterval(() => {
+      index('Podcast::Highlight').then((response) => {
         this.setState({
-          highlights: collection,
+          highlights: response.data.data,
         })
       })
-      //}, 1000)
+    }, 1000)
   }
 
   render () {
@@ -23,10 +23,10 @@ class Highlight extends React.Component {
       <React.Fragment>
         <ul>
           {
-            highlights.map((highlight) => {
-              <li>
-                {highlight.time}
-              </li>
+            this.state.highlights.map((highlight) => {
+              return (<li key={highlight.id}>
+                {highlight.attributes.time}
+              </li>)
             })
           }
         </ul>
