@@ -5,4 +5,6 @@ class Podcast::Episode < ApplicationRecord
 
   belongs_to :podcast
   has_many :highlights, class_name: 'Podcast::Highlight'
+
+  uploader :file, :file, extensions: [ :ogg, :mp3, :wav ]
 end

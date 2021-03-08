@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210308071521) do
+ActiveRecord::Schema.define(version: 20210308091845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -265,6 +265,7 @@ ActiveRecord::Schema.define(version: 20210308071521) do
     t.integer "project_id"
     t.uuid "guid"
     t.uuid "uuid", default: -> { "uuid_generate_v4()" }
+    t.text "file"
   end
 
   create_table "podcast_highlights", force: :cascade do |t|
