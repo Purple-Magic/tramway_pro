@@ -57,7 +57,7 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
 
   def header
     concat(content_tag(:thead) do
-      %i[title hours price specialists_count sum sum_with_coefficients].each do |attribute|
+      %i[title hours price specialists_count description sum sum_with_coefficients].each do |attribute|
         concat(content_tag(:th) do
           concat(Estimation::Task.human_attribute_name(attribute))
         end)
@@ -68,7 +68,7 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
   def body
     tasks.each do |task|
       concat(content_tag(:tr) do
-        %i[title hours price specialists_count sum sum_with_coefficients].each do |attribute|
+        %i[title hours price specialists_count description sum sum_with_coefficients].each do |attribute|
           concat(content_tag(:td) do
             concat task.send(attribute)
           end)
@@ -82,12 +82,12 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
     coefficients.each do |coeff|
       result *= coeff.scale
     end
-    result
+    result.round
   end
 
   def summary_row
     concat(content_tag(:tr) do
-      3.times do
+      4.times do
         concat(content_tag(:td))
       end
       concat(content_tag(:td) do
