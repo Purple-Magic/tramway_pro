@@ -41,7 +41,9 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   
   const save = () => {
-    create('Podcast::Highlight', { time: timeToString(elapsedTime) })
+    const time = timeToString(elapsedTime)
+    const episode_id = document.getElementById('episodeId').value
+    create('Podcast::Highlight', { time, episode_id })
   }
 
   function showButton(buttonKey) {
