@@ -40,3 +40,22 @@ Tramway::Admin.navbar_structure(
   Tramway::User::User,
   project: :red_magic
 )
+
+Tramway::Api.set_available_models(
+  {
+    Podcast::Highlight => [
+      :create,
+      index: lambda do |records, _current_user|
+        project = Project.where(url: ENV['PROJECT_URL']).first
+        records.where project_id: project.id
+      end
+    ],
+    Podcast => [
+      index: lambda do |records, _current_user|
+        project = Project.where(url: ENV['PROJECT_URL']).first
+        records.where project_id: project.id
+      end
+    ]
+  },
+  project: :red_magic
+)

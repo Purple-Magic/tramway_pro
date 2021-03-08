@@ -2,10 +2,10 @@ import axios from 'axios'
 
 const config = {
   development: {
-    api: 'http://it-way.test:3000',
+    api: 'http://red-magic.test:3000',
   },
   production: {
-    api: 'https://it-way.pro',
+    api: 'https://red-magic.ru',
   },
 }
 

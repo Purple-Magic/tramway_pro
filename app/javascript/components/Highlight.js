@@ -18,13 +18,13 @@ class Highlight extends React.Component {
       episode: null,
       podcasts: [],
     }
-    setInterval(() => {
+    //setInterval(() => {
       index('Podcast::Highlight').then((response) => {
         this.setState({
           highlights: response.data.data,
         })
       })
-    }, 1000)
+      //}, 1000)
   }
 
   componentDidMount() {
