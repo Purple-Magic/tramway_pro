@@ -1,11 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { index, show, create } from '../packs/src/crud'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form, ListGroup } from 'react-bootstrap'
 
 const podcastOptions = (podcasts) => {
   return podcasts.map((podcast) => {
     return <option value={podcast.id} key={podcast.id}>{podcast.attributes.title}</option>
+  })
+}
+
+const highlightsList = (highlights) => {
+  return highlights.map((highlight) => {
+    return (
+      <li key={highlight.id}>
+        {highlight.attributes.time}
+      </li>
+    )
   })
 }
 
@@ -25,9 +35,12 @@ class Highlight extends React.Component {
     setInterval(() => {
       if (this.state.episode) {
         show('Podcast::Episode', this.state.episode.id).then((response) => {
-          this.setState({
-            highlights: response.data.included.filter(item => item.type == 'podcast-highlights')
-          })
+          const included = response.data.included
+          if (included) {
+            this.setState({
+              highlights: included.filter(item => item.type == 'podcast-highlights')
+            })
+          }
         })
       }
     }, 1000)
@@ -67,15 +80,9 @@ class Highlight extends React.Component {
   render () {
     if (this.state.episode) {
       return (
-        <ul>
-          {
-            this.state.highlights.map((highlight) => {
-              return (<li key={highlight.id}>
-                {highlight.attributes.time}
-              </li>)
-            })
-          }
-        </ul>
+        <ListGroup>
+          { highlightsList(this.state.highlights) }
+        </ListGroup>
       );
     } else {
       return (
