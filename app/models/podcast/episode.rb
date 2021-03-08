@@ -7,4 +7,18 @@ class Podcast::Episode < ApplicationRecord
   has_many :highlights, class_name: 'Podcast::Highlight'
 
   uploader :file, :file, extensions: [ :ogg, :mp3, :wav ]
+
+  aasm column: :montage_state do
+    state :recording, initial: true
+    state :recorded
+    state :montaged
+
+    event :montage, before: :cut_highlights do
+      transitions from: :recording, to: :montaged
+      transitions from: :recorded, to: :montaged
+    end
+  end
+
+  def cut_highlights
+  end
 end

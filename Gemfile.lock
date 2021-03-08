@@ -294,6 +294,7 @@ GEM
     mini_portile2 (2.5.0)
     minitest (5.14.4)
     more_html_tags (0.2.0)
+    multi_json (1.15.0)
     multipart-post (2.1.1)
     nio4r (2.5.4)
     nokogiri (1.11.1)
@@ -459,6 +460,8 @@ GEM
     ssrf_filter (1.0.7)
     state_machine_buttons (2.0)
       smart_buttons
+    streamio-ffmpeg (3.0.2)
+      multi_json (~> 1.8)
     systemu (2.6.5)
     telegram-bot-ruby (0.13.0)
       faraday
@@ -645,6 +648,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sprockets (>= 3.7.2)
   state_machine_buttons (= 2.0)
+  streamio-ffmpeg
   telegram-bot-ruby
   time_difference
   tramway-admin (= 2.0.0.3)
