@@ -14,9 +14,11 @@
         .circle
           %span#display.time 00:00:00
         .controls
-          %button.buttonPlay
-            %img#playButton{src: "https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/play-button_opkxmt.svg"}/
-            %img#pauseButton{src: "https://res.cloudinary.com/https-tinloof-com/image/upload/v1593360448/blog/time-in-js/pause-button_pinhpy.svg"}/
+          %button.buttonPlay.btn.btn-warning
+            %span#playButton
+              Начать
+            %span#pauseButton
+              Пауза
           %button#buttonSave.btn.btn-warning
             Запомнить
           %input{ type: :hidden, id: :episodeId }
