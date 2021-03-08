@@ -15,11 +15,11 @@ export const index = (entity, params) => {
   return axios.get(`${apiUrl}/api/v1/records?model=${entity}`, { params })
 }
 
-export const show = (entity, params) => {
+export const show = (entity, id, params = null) => {
   if (params) {
-    return axios.get(`${apiUrl}/${entity}`, { params })
+    return axios.get(`${apiUrl}/api/v1/records/${id}?model=${entity}`, { params })
   }
-  return axios.get(`${apiUrl}/${entity}`)
+  return axios.get(`${apiUrl}/api/v1/records/${id}?model=${entity}`)
 }
 
 export const create = (entity, params) => {

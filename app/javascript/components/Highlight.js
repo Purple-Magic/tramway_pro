@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { index, create } from '../packs/src/crud'
+import { index, show, create } from '../packs/src/crud'
 import { Button, Form } from 'react-bootstrap'
 
 const podcastOptions = (podcasts) => {
@@ -24,9 +24,9 @@ class Highlight extends React.Component {
 
     setInterval(() => {
       if (this.state.episode) {
-        index('Podcast::Highlight').then((response) => {
+        show('Podcast::Episode', this.state.episode.id).then((response) => {
           this.setState({
-            highlights: response.data.data,
+            highlights: response.data.included.filter(item => item.type == 'podcast-highlights')
           })
         })
       }
