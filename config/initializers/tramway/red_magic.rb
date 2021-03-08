@@ -14,6 +14,7 @@ Tramway::Admin.set_available_models(
   Estimation::Customer,
   Estimation::Coefficient,
   Podcast,
+  Podcast::Episode,
   project: :red_magic
 )
 

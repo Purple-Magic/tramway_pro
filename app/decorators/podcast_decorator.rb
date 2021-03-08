@@ -6,4 +6,10 @@ class PodcastDecorator < Tramway::Core::ApplicationDecorator
   decorate_association :episodes
 
   alias name title
+
+  class << self
+    def show_associations
+      [ :episodes ]
+    end
+  end
 end
