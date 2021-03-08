@@ -11,7 +11,7 @@ ruby '2.7.2'
 gem 'rails', '5.1.7'
 
 gem 'tramway-admin', '2.0.0.3'
-gem 'tramway-api', '1.8.6.14'
+gem 'tramway-api', '1.8.7'
 gem 'tramway-conference', '1.9.5.1'
 gem 'tramway-core', '2.0.0.8'
 gem 'tramway-event', '1.12.6.2'
@@ -41,7 +41,7 @@ gem 'tramway-user', '2.1.3.3'
 
 gem 'aasm'
 gem 'actionview', '>= 5.1.6.2'
-gem 'active_model_serializers', '0.10.5' # 0.10.6 breaks the returned json, need to investigate
+gem 'active_model_serializers', '0.10.12'
 gem 'audited', '>= 4.8.0'
 gem 'bcrypt'
 gem 'bigdecimal', '1.3.5'

@@ -12,7 +12,7 @@ const config = {
 const apiUrl = config[process.env.RAILS_ENV || 'development'].api
 
 export const index = (entity, params) => {
-  return axios.get(`${apiUrl}/${entity}`, { params })
+  return axios.get(`${apiUrl}/api/v1/records?model=${entity}`, { params })
 }
 
 export const show = (entity, params) => {
