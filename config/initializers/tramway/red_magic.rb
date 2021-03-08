@@ -55,7 +55,8 @@ Tramway::Api.set_available_models(
         project = Project.where(url: ENV['PROJECT_URL']).first
         records.where project_id: project.id
       end
-    ]
+    ],
+    Podcast::Episode => [ :create ]
   },
   project: :red_magic
 )

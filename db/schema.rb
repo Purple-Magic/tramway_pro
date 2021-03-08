@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210308061720) do
+ActiveRecord::Schema.define(version: 20210308070223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,22 +172,6 @@ ActiveRecord::Schema.define(version: 20210308061720) do
     t.integer "project_id"
   end
 
-  create_table "episodes", force: :cascade do |t|
-    t.integer "podcast_id"
-    t.text "title"
-    t.integer "number"
-    t.integer "season"
-    t.text "description"
-    t.datetime "published_at"
-    t.text "image"
-    t.text "explicit"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "state"
-    t.integer "project_id"
-    t.uuid "guid"
-  end
-
   create_table "estimation_coefficients", force: :cascade do |t|
     t.integer "estimation_project_id"
     t.text "state"
@@ -264,6 +248,23 @@ ActiveRecord::Schema.define(version: 20210308061720) do
     t.text "state"
     t.integer "book_id"
     t.integer "project_id"
+  end
+
+  create_table "podcast_episodes", force: :cascade do |t|
+    t.integer "podcast_id"
+    t.text "title"
+    t.integer "number"
+    t.integer "season"
+    t.text "description"
+    t.datetime "published_at"
+    t.text "image"
+    t.text "explicit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "state"
+    t.integer "project_id"
+    t.uuid "guid"
+    t.uuid "uuid", default: -> { "uuid_generate_v4()" }
   end
 
   create_table "podcast_highlights", force: :cascade do |t|

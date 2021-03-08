@@ -10,7 +10,7 @@ module MultiProjectConfigurationMiddleware
       ::Admin::PodcastForm.include MultiProjectCallbacks::PodcastCallbacks::PodcastForm
       ::Podcast.include MultiProjectCallbacks::PodcastCallbacks::PodcastConcern
       #::Admin::EpisodeForm.include MultiProjectCallbacks::EpisodeCallbacks::EpisodeForm
-      ::Episode.include MultiProjectCallbacks::EpisodeCallbacks::EpisodeConcern
+      ::Podcast::Episode.include MultiProjectCallbacks::EpisodeCallbacks::EpisodeConcern
 
       @app.call(env)
     end

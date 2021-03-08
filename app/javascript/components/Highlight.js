@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { index } from '../packs/src/crud'
-import { Row, Col, Form } from 'react-bootstrap'
+import { index, create } from '../packs/src/crud'
+import { Button, Form } from 'react-bootstrap'
 
 const podcastOptions = (podcasts) => {
   return podcasts.map((podcast) => {
@@ -17,14 +17,17 @@ class Highlight extends React.Component {
       highlights: [],
       episode: null,
       podcasts: [],
+      params: {},
     }
-    //setInterval(() => {
-      index('Podcast::Highlight').then((response) => {
-        this.setState({
-          highlights: response.data.data,
+    setInterval(() => {
+      if (this.state.episode) {
+        index('Podcast::Highlight').then((response) => {
+          this.setState({
+            highlights: response.data.data,
+          })
         })
-      })
-      //}, 1000)
+      }
+    }, 1000)
   }
 
   componentDidMount() {
@@ -32,6 +35,15 @@ class Highlight extends React.Component {
       this.setState({
         podcasts: response.data.data,
       })
+    })
+  }
+
+  change(attribute, value) {
+    this.setState({
+      params: {
+        ...this.state.params,
+        [attribute]: value
+      }
     })
   }
 
@@ -59,6 +71,13 @@ class Highlight extends React.Component {
               { podcastOptions(this.state.podcasts) }
             </Form.Control>
           </Form.Group>
+          <Form.Group>
+            <Form.Label>
+              Введите номер эпизода
+            </Form.Label>
+            <Form.Control type="text" onChange={(e) => { this.change('number', e.target.value) }}/>
+          </Form.Group>
+          <Button onClick={() => { create('Podcast::Episode', this.state.params) } }>Создать</Button>
         </Form>
       )
     }
