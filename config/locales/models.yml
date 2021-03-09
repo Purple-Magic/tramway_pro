@@ -62,6 +62,7 @@ ru:
         title: Название задачи
         hours: Количество часов
         price: Цена за час
+        price_with_coefficients: Цена за час с коэффициентами
         sum: Сумма
         sum_with_coefficients: Сумма для заказчика
         specialists_count: Количество специалистов

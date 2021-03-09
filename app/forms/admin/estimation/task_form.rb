@@ -12,7 +12,7 @@ class Admin::Estimation::TaskForm < Tramway::Core::ApplicationForm
                       hours: :numeric,
                       price: :numeric,
                       specialists_count: :numeric,
-                      description: :ckeditor
+                      description: :text
     end
   end
 end
