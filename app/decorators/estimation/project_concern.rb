@@ -2,11 +2,7 @@
 
 module Estimation::ProjectConcern
   def ending_summary
-    result = summary
-    coefficients.each do |coeff|
-      result *= coeff.scale
-    end
-    result.round
+    tasks.sum(&:sum_with_coefficients)
   end
 
   def summary_row
