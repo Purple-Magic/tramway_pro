@@ -6,14 +6,10 @@ module Estimation::TaskConcern
     object.estimation_project.coefficients.each do |coeff|
       result *= coeff.scale
     end
-    result.round
+    result.round(2)
   end
 
   def sum_with_coefficients
-    result = object.sum
-    object.estimation_project.coefficients.each do |coeff|
-      result *= coeff.scale
-    end
-    result.round
+    price_with_coefficients * object.hours * object.specialists_count
   end
 end
