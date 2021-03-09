@@ -61,3 +61,10 @@ Tramway::Api.set_available_models(
   },
   project: :red_magic
 )
+
+Tramway::Export.set_exportable_models(
+  {
+    Estimation::Project => [ :tasks ]
+  },
+  project: :red_magic
+)

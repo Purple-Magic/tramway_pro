@@ -6,4 +6,8 @@ class Estimation::Task < ApplicationRecord
   validates :title, presence: true
   validates :hours, presence: true
   validates :price, presence: true
+
+  def sum
+    hours * price * specialists_count
+  end
 end

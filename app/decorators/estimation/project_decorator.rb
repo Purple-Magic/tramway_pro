@@ -21,6 +21,20 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
     %i[tasks coefficients]
   end
 
+  def additional_buttons
+    {
+      show: [
+        {
+          url: ::Tramway::Export::Engine.routes.url_helpers.export_path(object.id, model: object.class, collection: :tasks),
+          inner: lambda do
+            fa_icon 'file-excel'
+          end,
+          color: :success
+        }
+      ]
+    }
+  end
+
   def table
     content_tag :table do
       header
@@ -57,9 +71,11 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
 
   def header
     concat(content_tag(:thead) do
-      %i[title hours price specialists_count sum sum_with_coefficients].each do |attribute|
+      %i[title hours price price_with_coefficients specialists_count description sum sum_with_coefficients].each do |attribute|
         concat(content_tag(:th) do
-          concat(Estimation::Task.human_attribute_name(attribute))
+          concat(content_tag(:span, style: 'font-size: 10pt') do
+            Estimation::Task.human_attribute_name(attribute)
+          end)
         end)
       end
     end)
@@ -68,7 +84,7 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
   def body
     tasks.each do |task|
       concat(content_tag(:tr) do
-        %i[title hours price specialists_count sum sum_with_coefficients].each do |attribute|
+        %i[title hours price price_with_coefficients specialists_count description sum sum_with_coefficients].each do |attribute|
           concat(content_tag(:td) do
             concat task.send(attribute)
           end)
@@ -82,12 +98,12 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
     coefficients.each do |coeff|
       result *= coeff.scale
     end
-    result
+    result.round
   end
 
   def summary_row
     concat(content_tag(:tr) do
-      3.times do
+      5.times do
         concat(content_tag(:td))
       end
       concat(content_tag(:td) do

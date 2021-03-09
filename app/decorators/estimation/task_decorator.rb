@@ -14,25 +14,16 @@ class Estimation::TaskDecorator < Tramway::Core::ApplicationDecorator
     :specialists_count
   )
 
-  def sum
-    object.hours * object.price * object.specialists_count
-  end
-
-  def sum_with_coefficients
-    result = sum
-    object.estimation_project.coefficients.each do |coeff|
-      result *= coeff.scale
-    end
-    result.round
-  end
+  include Estimation::TaskConcern
 
   def description
-    raw object.description
+    content_tag :span, style: 'font-size: 12px' do
+      object.description
+    end
   end
 
   class << self
     def collections
-      # [ :all, :scope1, :scope2 ]
       [:all]
     end
 

@@ -475,12 +475,12 @@ GEM
     tilt (2.0.10)
     time_difference (0.7.0)
       activesupport (~> 5.1)
-    tramway-admin (2.0.0.3)
+    tramway-admin (2.1)
       aasm
       bootstrap-kaminari-views (= 0.0.5)
       copyright_mafa (~> 0.1.2, >= 0.1.2)
       font-awesome-rails (~> 4.7, >= 4.7.0.1)
-      kaminari (~> 1.1.1, >= 1.1.1)
+      kaminari (>= 1.1.1)
       ransack
       selectize-rails
       smart_buttons (>= 1.0)
@@ -496,7 +496,7 @@ GEM
       uuid
     tramway-auth (2.0.2)
     tramway-conference (1.9.5.1)
-    tramway-core (2.0.0.8)
+    tramway-core (2.0.1)
       audited (>= 4.8.0)
       bootstrap (>= 4.1.2)
       carrierwave
@@ -514,11 +514,11 @@ GEM
       simple_form (>= 5.0.0)
     tramway-event (1.12.6.2)
       configus
-    tramway-export (0.1.6.1)
+    tramway-export (0.2)
       xls_exporter (>= 1.2)
     tramway-landing (3.3.0.1)
     tramway-news (1.0.4.3)
-    tramway-page (1.5.4)
+    tramway-page (1.5.4.1)
     tramway-partner (1.0.4)
     tramway-profiles (1.4.1.1)
     tramway-site (0.1.0.5)
@@ -651,15 +651,15 @@ DEPENDENCIES
   streamio-ffmpeg
   telegram-bot-ruby
   time_difference
-  tramway-admin (= 2.0.0.3)
+  tramway-admin (= 2.1)
   tramway-api (= 1.8.7.1)
   tramway-conference (= 1.9.5.1)
-  tramway-core (= 2.0.0.8)
+  tramway-core (= 2.0.1)
   tramway-event (= 1.12.6.2)
-  tramway-export (= 0.1.6.1)
+  tramway-export (= 0.2)
   tramway-landing (= 3.3.0.1)
   tramway-news (= 1.0.4.3)
-  tramway-page (= 1.5.4)
+  tramway-page (= 1.5.4.1)
   tramway-partner (= 1.0.4)
   tramway-profiles (= 1.4.1.1)
   tramway-site (= 0.1.0.5)
