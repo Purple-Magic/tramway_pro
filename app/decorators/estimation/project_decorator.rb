@@ -22,21 +22,13 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def additional_buttons
-    {
-      show: [
-        {
-          url: ::Tramway::Export::Engine.routes.url_helpers.export_path(object.id, model: object.class, collection: :tasks),
-          inner: lambda do
-            fa_icon 'file-excel'
-          end,
-          color: :success
-        }
-      ]
-    }
+    url = ::Tramway::Export::Engine.routes.url_helpers.export_path(object.id, model: object.class, collection: :tasks)
+
+    { show: [{ url: url, inner: -> { fa_icon 'file-excel' }, color: :success }] }
   end
 
   def table
-    content_tag :table do
+    content_tag(:table) do
       header
       body
       summary_row
@@ -69,9 +61,13 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
 
   private
 
+  COLUMNS = %i[title hours price price_with_coefficients specialists_count description sum sum_with_coefficients].freeze
+
+  include Estimation::ProjectConcern
+
   def header
     concat(content_tag(:thead) do
-      %i[title hours price price_with_coefficients specialists_count description sum sum_with_coefficients].each do |attribute|
+      COLUMNS.each do |attribute|
         concat(content_tag(:th) do
           concat(content_tag(:span, style: 'font-size: 10pt') do
             Estimation::Task.human_attribute_name(attribute)
@@ -84,7 +80,7 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
   def body
     tasks.each do |task|
       concat(content_tag(:tr) do
-        %i[title hours price price_with_coefficients specialists_count description sum sum_with_coefficients].each do |attribute|
+        COLUMNS.each do |attribute|
           concat(content_tag(:td) do
             concat task.send(attribute)
           end)
@@ -93,46 +89,18 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
     end
   end
 
-  def ending_summary
-    result = summary
-    coefficients.each do |coeff|
-      result *= coeff.scale
-    end
-    result.round
-  end
-
-  def summary_row
-    concat(content_tag(:tr) do
-      5.times do
-        concat(content_tag(:td))
-      end
-      concat(content_tag(:td) do
-        concat(content_tag(:b) do
-          concat(Estimation::Project.human_attribute_name(:summary))
-        end)
-      end)
-      %i[summary ending_summary].each do |number|
-        concat(content_tag(:td) do
-          concat(content_tag(:b) do
-            concat(send(number))
-          end)
-        end)
-      end
-    end)
-  end
-
   def footer
     coefficients.each do |coefficient|
       concat(content_tag(:tr) do
         concat(content_tag(:td) do
           concat coefficient.title
         end)
+
         concat(content_tag(:td) do
           concat "#{(coefficient.scale * 100 - 100).round(0)} %"
         end)
-        4.times do
-          concat(content_tag(:td))
-        end
+
+        4.times { concat(content_tag(:td)) }
       end)
     end
   end

@@ -11,7 +11,8 @@ class Estimation::TaskDecorator < Tramway::Core::ApplicationDecorator
     :price,
     :created_at,
     :updated_at,
-    :specialists_count
+    :specialists_count,
+    :sum
   )
 
   include Estimation::TaskConcern

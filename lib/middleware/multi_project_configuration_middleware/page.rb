@@ -48,6 +48,8 @@ module MultiProjectCallbacks
             engine_module = "::Tramway::#{engine_loaded.camelize}".constantize
             @application = "#{engine_module}::#{engine_module.application.to_s.camelize}".constantize.first
             @application_engine = engine_loaded
+          else
+            @application
           end
         end
       end

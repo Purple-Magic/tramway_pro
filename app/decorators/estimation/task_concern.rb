@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Estimation::TaskConcern
   def price_with_coefficients
     result = object.price
