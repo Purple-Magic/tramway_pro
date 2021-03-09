@@ -10,7 +10,7 @@ class Estimation::CoefficientDecorator < Tramway::Core::ApplicationDecorator
     :state,
     :scale,
     :created_at,
-    :updated_at,
+    :updated_at
   )
 
   def title
