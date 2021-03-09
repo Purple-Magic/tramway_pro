@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Podcast::EpisodeForm < Tramway::Core::ApplicationForm
   properties :podcast_id, :number, :project_id, :file
 

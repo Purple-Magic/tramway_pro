@@ -35,7 +35,7 @@ Tramway::Admin.navbar_structure(
   },
   {
     podcasts: [
-      Podcast,
+      Podcast
     ]
   },
   Tramway::User::User,
@@ -44,7 +44,7 @@ Tramway::Admin.navbar_structure(
 
 Tramway::Api.set_available_models(
   {
-    Podcast::Highlight => [ :create ],
+    Podcast::Highlight => [:create],
     Podcast => [
       index: lambda do |records, _current_user|
         project = Project.where(url: ENV['PROJECT_URL']).first
@@ -53,10 +53,10 @@ Tramway::Api.set_available_models(
     ],
     Podcast::Episode => [
       :create,
-      show: lambda do |record, _current_user|
+      { show: lambda do |record, _current_user|
         project = Project.where(url: ENV['PROJECT_URL']).first
         record.project_id == project.id
-      end
+      end }
     ]
   },
   project: :red_magic
@@ -64,7 +64,7 @@ Tramway::Api.set_available_models(
 
 Tramway::Export.set_exportable_models(
   {
-    Estimation::Project => [ :tasks ]
+    Estimation::Project => [:tasks]
   },
   project: :red_magic
 )
