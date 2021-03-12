@@ -28,5 +28,6 @@ export const create = (entity, params) => {
   args.forEach((arg) => {
     bodyFormData.set(`data[attributes][${arg}]`, params[arg])
   })
+  bodyFormData.set(`data[attributes][project_id]`, 9) // FIXME should be set in the middleware
   return axios.post(`${apiUrl}/api/v1/records?model=${entity}`, bodyFormData)
 }
