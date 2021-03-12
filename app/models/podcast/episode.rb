@@ -8,7 +8,7 @@ class Podcast::Episode < ApplicationRecord
 
   uploader :file, :file, extensions: %i[ogg mp3 wav]
 
-  aasm column: :montage_state do
+  aasm :montage, column: :montage_state do
     state :recording, initial: true
     state :recorded
     state :montaged
