@@ -64,7 +64,10 @@ Tramway::Api.set_available_models(
 
 Tramway::Export.set_exportable_models(
   {
-    Estimation::Project => [:tasks]
+    Estimation::Project => [:tasks],
+  },
+  {
+    Podcast::Episode => [:highlights]
   },
   project: :red_magic
 )
