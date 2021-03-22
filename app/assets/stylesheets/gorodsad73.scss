@@ -9,6 +9,9 @@
   }
 }
 
+$background-green: #00AB84; 
+$button-green: #88B04B;
+
 * {
   margin: 0;
   padding: 0;
@@ -16,7 +19,7 @@
 }
 
 body {
-  background: #111;
+  background: $background-green;
   padding-bottom: 2000px;
 }
 
@@ -82,8 +85,18 @@ section {
       max-width: 400px;
       color: #fff;
       box-shadow: 0 25px 35px rgba(0,0,0,0.1);
-      border-bottom: 6px solid #4ac7ff;
+      border-bottom: 6px solid $button-green;
+
+      a {
+        background-color: $button-green;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        color: white;
+        font-family: 'Jura';
+        font-size: 1.5rem;
+      }
     }
   }
 }
-
