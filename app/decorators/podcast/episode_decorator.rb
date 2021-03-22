@@ -3,14 +3,40 @@
 class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   decorate_association :highlights
 
+  delegate_attributes :number
+
   class << self
     def show_associations
       [ :highlights ]
+    end
+
+    def show_attributes
+      [ :title, :number, :file, :highlights_files ]
     end
   end
 
   def title
     "Выпуск №#{object.number}"
+  end
+
+  def file
+    file_view object.file
+  end
+
+  def highlights_files
+    parts = Dir["#{Rails.root}/public/podcasts/#{object.podcast.title.gsub(' ', '_')}/#{number}/*"]
+
+    content_tag :table do
+      parts.each do |part|
+        concat(content_tag(:tr) do
+          concat(content_tag(:td) do
+            short_name = part.split('/').last
+
+            link_to short_name, "/#{part.split('/')[-4..-1].join('/')}"
+          end)
+        end)
+      end
+    end
   end
 
   def additional_buttons
