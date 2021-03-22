@@ -52,5 +52,15 @@ Rails.application.routes.draw do
     mount Tramway::Auth::Engine, at: '/auth', as: :red_magic_auth
     mount Tramway::Page::Engine, at: '/page', as: :red_magic
     mount Tramway::Api::Engine, at: '/api', as: :red_magic_api
+
+    namespace :red_magic do
+      namespace :api do
+        namespace :v1 do
+          namespace :podcast do
+            resources :highlights, only: :create
+          end
+        end
+      end
+    end
   end
 end

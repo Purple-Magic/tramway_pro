@@ -21,6 +21,7 @@ public/assets/
 public/uploads/
 public/system/
 public/*.mp4
+public/podcasts/
 config/secrets.yml
 config/database.yml
 
