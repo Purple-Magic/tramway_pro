@@ -36,8 +36,9 @@ class Podcast::Episode < ApplicationRecord
       hour = highlight.time.split(':')[0]
       minutes = highlight.time.split(':')[1]
       seconds = highlight.time.split(':')[2]
-      begin_time = (DateTime.new(2020, 01, 01, hour.to_i, minutes.to_i, seconds.to_i) - 2.minutes).strftime '%H:%M:%S'
-      end_time = highlight.time
+      highlight_time = DateTime.new(2020, 01, 01, hour.to_i, minutes.to_i, seconds.to_i)
+      begin_time = (highlight_time - 2.minutes).strftime '%H:%M:%S'
+      end_time = highlight_time + 10.seconds
       system "ffmpeg -i #{filename} -ss #{begin_time} -to #{end_time} -c copy #{Rails.root}/public/podcasts/#{podcast.title.gsub(' ', '_')}/#{number}/part-#{index + 1}.mp3"
     end
   end
@@ -49,7 +50,7 @@ class Podcast::Episode < ApplicationRecord
   
     if file.path.split('.').last == 'ogg'
       filename += '.mp3'
-      system "ffmpeg -i #{file.path} #{filename}"
+      system "ffmpeg -y -i #{file.path} #{filename}"
     end
   
     return filename
