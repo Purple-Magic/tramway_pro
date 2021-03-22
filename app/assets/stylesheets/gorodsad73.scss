@@ -21,15 +21,16 @@ body {
 }
 
 body:before {
-  content: 'Parallax';
+  content: 'Город-сад';
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  font-size: 16em;
+  font-size: 10em;
   font-weight: 700;
   color: transparent;
   -webkit-text-stroke: 1px #555;
+  font-family: 'Jura';
 }
 
 section {
