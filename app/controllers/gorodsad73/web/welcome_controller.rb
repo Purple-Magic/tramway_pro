@@ -17,8 +17,30 @@ class Gorodsad73::Web::WelcomeController < ApplicationController
       )
     end
     pages_blocks = Tramway::Landing::Block.active.with_navbar_link.where(project_id: project.id, page_id: main_page.id)
-    @links = pages_links + Tramway::Landing::BlockLinkDecorator.decorate(
-      pages_blocks.order(position: :asc)
-    )
+    profile_page = Tramway::Page::Page.find_by slug: :profile
+    price_page = Tramway::Page::Page.find_by slug: :price
+    contacts_page = Tramway::Page::Page.find_by slug: :contacts
+    @links = {
+      right: [
+        Tramway::Landing::Navbar::LinkDecorator.decorate(
+          {
+            title: 'Профиль',
+            link: Tramway::Page::Engine.routes.url_helpers.page_path(profile_page.slug)  
+          }
+        ),
+        Tramway::Landing::Navbar::LinkDecorator.decorate(
+          {
+            title: 'Посчитаем бюджет',
+            link: Tramway::Page::Engine.routes.url_helpers.page_path(price_page.slug)  
+          }
+        ),
+        Tramway::Landing::Navbar::LinkDecorator.decorate(
+          {
+            title: 'Контакты',
+            link: Tramway::Page::Engine.routes.url_helpers.page_path(contacts_page.slug)  
+          }
+        )
+      ]
+    }
   end
 end
