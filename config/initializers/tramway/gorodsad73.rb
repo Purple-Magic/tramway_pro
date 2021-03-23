@@ -17,3 +17,15 @@ Tramway::Admin.navbar_structure(
   Tramway::User::User,
   project: :gorodsad73
 )
+
+Tramway::Landing.set_navbar(
+  {
+    left: [
+      {
+        title: 'Профиль',
+        link: '#'
+      }
+    ]
+  },
+  project: :gorodsad73
+)
