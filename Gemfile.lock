@@ -468,7 +468,7 @@ GEM
     streamio-ffmpeg (3.0.2)
       multi_json (~> 1.8)
     systemu (2.6.5)
-    telegram-bot-ruby (0.13.0)
+    telegram-bot-ruby (0.15.0)
       faraday
       inflecto
       virtus
@@ -655,7 +655,7 @@ DEPENDENCIES
   sprockets (>= 3.7.2)
   state_machine_buttons (= 2.0)
   streamio-ffmpeg
-  telegram-bot-ruby
+  telegram-bot-ruby (= 0.15.0)
   time_difference
   tramway-admin (= 2.1.0.2)
   tramway-api (= 1.8.7.1)
