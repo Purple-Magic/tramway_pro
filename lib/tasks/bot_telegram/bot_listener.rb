@@ -14,15 +14,20 @@ class BotTelegram::BotListener
       bot_record = Bot.find_by name: ENV['RUNNING_BOT_NAME']
       Telegram::Bot::Client.run(bot_record.token) do |bot|
         bot.listen do |message|
-          user = user_from message
-          chat = chat_from message
-          log_message message, user, chat, bot_record
-          if bot_record.custom
-            scenario_class = "BotTelegram::#{bot_record.scenario.camelize.capitalize}::Scenario".constantize
-            scenario = scenario_class.new message, bot, bot_record, chat
-            scenario.run
+          if message.present?
+            user = user_from message
+            chat = chat_from message
+            log_message message, user, chat, bot_record
+            if bot_record.custom
+              scenario_class = "BotTelegram::#{bot_record.scenario.camelize.capitalize}::Scenario".constantize
+              scenario = scenario_class.new message, bot, bot_record, chat
+              scenario.run
+            else
+              BotTelegram::Scenario.run message, bot, bot_record
+            end
           else
-            BotTelegram::Scenario.run message, bot, bot_record
+            error = "Empty message in bot #{bot.id}"
+            Rails.env.development? ? puts(error) : Raven.capture_exception(error)
           end
         end
       rescue Telegram::Bot::Exceptions::ResponseError => e
