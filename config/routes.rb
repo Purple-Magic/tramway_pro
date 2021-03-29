@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq'
+
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:it_way]) do
     mount Tramway::Conference::Engine => '/'
     scope module: :it_way do
