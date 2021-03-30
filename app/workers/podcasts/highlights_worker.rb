@@ -1,4 +1,4 @@
-module Podcast
+module Podcasts
   class HighlightsWorker
     include Sidekiq::Worker
 
