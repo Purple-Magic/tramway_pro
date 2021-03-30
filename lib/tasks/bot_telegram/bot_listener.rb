@@ -18,12 +18,14 @@ class BotTelegram::BotListener
             user = user_from message
             chat = chat_from message
             log_message message, user, chat, bot_record
-            if bot_record.custom
-              scenario_class = "BotTelegram::#{bot_record.scenario.camelize.capitalize}::Scenario".constantize
-              scenario = scenario_class.new message, bot, bot_record, chat
-              scenario.run
-            else
-              BotTelegram::Scenario.run message, bot, bot_record
+            if message.try :text
+              if bot_record.custom
+                scenario_class = "BotTelegram::#{bot_record.scenario.camelize.capitalize}::Scenario".constantize
+                scenario = scenario_class.new message, bot, bot_record, chat
+                scenario.run
+              else
+                BotTelegram::Scenario.run message, bot, bot_record
+              end
             end
           else
             error = "Empty message in bot #{bot_record.id}"
