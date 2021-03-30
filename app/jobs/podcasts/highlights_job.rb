@@ -1,6 +1,6 @@
 module Podcasts
-  class HighlightsWorker
-    include Sidekiq::Worker
+  class HighlightsJob < ActiveJob::Base
+    queue_as :default
 
     def perform(*args)
       episode = Podcast::Episode.find id
