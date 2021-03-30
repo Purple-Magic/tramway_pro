@@ -55,5 +55,6 @@ module TramwayPro
     config.middleware.use ::MultiProjectConfigurationMiddleware::PurpleMagicCallback
     config.middleware.use ::MultiProjectConfigurationMiddleware::BotMiddleware
     config.middleware.use ::Middleware::MultiProjectConfigurationMiddleware::Sites
+    config.active_job.queue_adapter = :sidekiq
   end
 end
