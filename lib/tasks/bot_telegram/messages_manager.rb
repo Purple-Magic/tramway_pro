@@ -4,9 +4,7 @@ module BotTelegram::MessagesManager
   def log_message(message, user, chat, bot)
     file_path = "#{Rails.root}/lib/tasks/bot_telegram/bot_message_attributes.yml"
     telegram_message_attributes = YAML.load_file(file_path)['telegram_message']['attributes']
-    if message.class.to_s == 'Telegram::Bot::Types::ChatMemberUpdated'
-      Rails.env.development? ? puts(message) : Raven.capture_exception('ChatMemberUpdated', message)
-    else
+    if message.text.present?
       BotTelegram::Message.create! text: message.text, user_id: user.id, chat_id: chat.id,
                                    bot_id: bot.id,
                                    project_id: Project.find_by(title: 'PurpleMagic').id,
