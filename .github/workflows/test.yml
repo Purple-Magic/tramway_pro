@@ -28,6 +28,7 @@ jobs:
 
       - name: Install PostgreSQL 11 client
         run: |
+          vfdkjvnfkjn
           sudo apt-get -yqq install libpq-dev
 
       - name: Build App
