@@ -49,7 +49,7 @@ gem 'bootstrap', '>= 4.3.1'
 gem 'bootstrap-datepicker-rails', github: 'kostia/bootstrap-datepicker-rails'
 gem 'bootstrap-kaminari-views', github: 'kalashnikovisme/bootstrap-kaminari-views', branch: :master
 gem 'browser'
-gem 'carrierwave'
+gem 'carrierwave', '>= 2.2.1'
 gem 'ckeditor', '4.2.4'
 gem 'clipboard-rails'
 gem 'coffee-rails'
