@@ -11,7 +11,7 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[name team options users_count messages messages_count]
+      %i[name team options users_count messages messages_count stats]
     end
 
     def show_associations
@@ -21,6 +21,29 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
 
   def options
     yaml_view object.options
+  end
+
+  def stats
+    content_tag(:table) do
+      concat(content_tag(:thead) do
+        concat(content_tag(:th) do
+          concat BotTelegram::Scenario::Step.human_attribute_name(:text)
+        end)
+        concat(content_tag(:th) do
+          concat BotTelegram::Scenario::Step.human_attribute_name(:progress_records_count)
+        end)
+      end)
+      object.steps.active.each do |st|
+        concat(content_tag(:tr) do
+          concat(content_tag(:td) do
+            concat st.text
+          end)
+          concat(content_tag(:td) do
+            concat st.progress_records.count
+          end)
+        end)
+      end
+    end
   end
 
   def users_count
