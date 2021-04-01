@@ -52,7 +52,6 @@ jobs:
           type: ${{ job.status }}
           job_name: '*Tramway Pro Tests*'
           mention: 'here'
-          mention_if: 'failure'
           channel: '#purplemagic'
           url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
           commit: true
