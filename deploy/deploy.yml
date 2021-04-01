@@ -64,7 +64,7 @@
         - node_modules
 
     - name: Bundle
-      shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle install --path {{ shared_path }}/bundle --without development test --deployment --quiet"
+      shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle install --quiet"
       args:
         chdir: "{{ release_path }}"
 

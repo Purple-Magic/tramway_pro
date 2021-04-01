@@ -25,19 +25,19 @@ class Gorodsad73::Web::WelcomeController < ApplicationController
         Tramway::Landing::Navbar::LinkDecorator.decorate(
           {
             title: 'Профиль',
-            link: Tramway::Page::Engine.routes.url_helpers.page_path(profile_page.slug)  
+            link: Tramway::Page::Engine.routes.url_helpers.page_path(profile_page.slug)
           }
         ),
         Tramway::Landing::Navbar::LinkDecorator.decorate(
           {
             title: 'Посчитаем бюджет',
-            link: Tramway::Page::Engine.routes.url_helpers.page_path(price_page.slug)  
+            link: Tramway::Page::Engine.routes.url_helpers.page_path(price_page.slug)
           }
         ),
         Tramway::Landing::Navbar::LinkDecorator.decorate(
           {
             title: 'Контакты',
-            link: Tramway::Page::Engine.routes.url_helpers.page_path(contacts_page.slug)  
+            link: Tramway::Page::Engine.routes.url_helpers.page_path(contacts_page.slug)
           }
         )
       ]

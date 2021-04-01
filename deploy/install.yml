@@ -40,6 +40,11 @@
     - name: Install bundler
       shell: /usr/share/rvm/bin/rvm {{ ruby_version }} do gem install bundler
 
+    - name: Configurate bundler
+      shell: /usr/share/rvm/bin/bundle config set deployment 'true'
+      shell: /usr/share/rvm/bin/bundle config set path '/srv/tramway_pro/shared/bundle'
+      shell: /usr/share/rvm/bin/bundle config set without 'development test'
+
     - name: Prepare for installing nodejs
       shell: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 

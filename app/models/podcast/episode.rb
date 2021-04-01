@@ -23,7 +23,7 @@ class Podcast::Episode < ApplicationRecord
 
   def cut_highlights
     filename = convert_file
-  
+
     podcasts_directory = "#{Rails.root}/public/podcasts/"
     FileUtils.mkdir_p podcasts_directory
 
@@ -36,23 +36,23 @@ class Podcast::Episode < ApplicationRecord
       hour = highlight.time.split(':')[0]
       minutes = highlight.time.split(':')[1]
       seconds = highlight.time.split(':')[2]
-      highlight_time = DateTime.new(2020, 01, 01, hour.to_i, minutes.to_i, seconds.to_i)
+      highlight_time = DateTime.new(2020, 0o1, 0o1, hour.to_i, minutes.to_i, seconds.to_i)
       begin_time = (highlight_time - 2.minutes).strftime '%H:%M:%S'
       end_time = (highlight_time + 10.seconds).strftime '%H:%M:%S'
       system "ffmpeg -y -i #{filename} -ss #{begin_time} -to #{end_time} -c copy #{Rails.root}/public/podcasts/#{podcast.title.gsub(' ', '_')}/#{number}/part-#{index + 1}.mp3"
     end
   end
-  
+
   private
-  
+
   def convert_file
     filename = file.path.split('.')[0..-2].join('.')
-  
+
     if file.path.split('.').last == 'ogg'
       filename += '.mp3'
       system "ffmpeg -y -i #{file.path} #{filename}"
     end
-  
-    return filename
+
+    filename
   end
 end
