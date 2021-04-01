@@ -24,13 +24,7 @@ class Podcast::Episode < ApplicationRecord
   def cut_highlights
     filename = convert_file
 
-    podcasts_directory = "#{Rails.root}/public/podcasts/"
-    FileUtils.mkdir_p podcasts_directory
-
-    current_podcast_directory = "#{Rails.root}/public/podcasts/#{podcast.title.gsub(' ', '_')}/"
-    FileUtils.mkdir_p current_podcast_directory
-    current_episode_directory = "#{Rails.root}/public/podcasts/#{podcast.title.gsub(' ', '_')}/#{number}/"
-    FileUtils.mkdir_p current_episode_directory
+    directory = prepare_directory
 
     highlights.each_with_index do |highlight, index|
       hour = highlight.time.split(':')[0]
@@ -39,7 +33,7 @@ class Podcast::Episode < ApplicationRecord
       highlight_time = DateTime.new(2020, 0o1, 0o1, hour.to_i, minutes.to_i, seconds.to_i)
       begin_time = (highlight_time - 2.minutes).strftime '%H:%M:%S'
       end_time = (highlight_time + 10.seconds).strftime '%H:%M:%S'
-      system "ffmpeg -y -i #{filename} -ss #{begin_time} -to #{end_time} -c copy #{Rails.root}/public/podcasts/#{podcast.title.gsub(' ', '_')}/#{number}/part-#{index + 1}.mp3"
+      system "ffmpeg -y -i #{filename} -ss #{begin_time} -to #{end_time} -c copy #{directory}/part-#{index + 1}.mp3"
     end
   end
 
@@ -54,5 +48,16 @@ class Podcast::Episode < ApplicationRecord
     end
 
     filename
+  end
+
+  def prepare_directory
+    podcasts_directory = "#{Rails.root}/public/podcasts/"
+    FileUtils.mkdir_p podcasts_directory
+
+    current_podcast_directory = "#{Rails.root}/public/podcasts/#{podcast.title.gsub(' ', '_')}/"
+    FileUtils.mkdir_p current_podcast_directory
+    "#{Rails.root}/public/podcasts/#{podcast.title.gsub(' ', '_')}/#{number}/".tap do |dir|
+      FileUtils.mkdir_p dir
+    end
   end
 end
