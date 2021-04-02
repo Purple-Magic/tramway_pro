@@ -97,6 +97,31 @@ $projects: it_way, who_knew, red_magic_live, red_magic_tv;
       align-items: center;
     }
 
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      width: 75%;
+      padding-left: 5rem;
+      padding-right: 5rem;
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        h2 {
+          font-weight: bold;
+          color: white;
+          font-size: 4.5rem;
+        }
+
+        span {
+          color: white;
+        }
+      }
+    }
+
     .videos-row {
       display: flex;
       flex-direction: row;

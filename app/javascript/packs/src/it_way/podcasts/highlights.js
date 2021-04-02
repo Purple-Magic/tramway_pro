@@ -57,7 +57,9 @@ document.addEventListener("DOMContentLoaded", function() {
   let pauseButton = document.getElementById("pauseButton");
   let buttonSave = document.getElementById("buttonSave");
 
-  playButton.addEventListener("click", start);
-  pauseButton.addEventListener("click", pause);
-  buttonSave.addEventListener("click", save);
+  if (playButton) {
+    playButton.addEventListener("click", start);
+    pauseButton.addEventListener("click", pause);
+    buttonSave.addEventListener("click", save);
+  }
 });
