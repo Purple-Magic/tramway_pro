@@ -6,8 +6,19 @@ class Projects extends React.Component {
     super(props)
 
     this.state = {
-
+      showStates: {
+        it_way: 'hidden',
+        red_magic_live: 'hidden',
+        who_knew: 'hidden',
+        red_magic_tv: 'hidden',
+      },
     }
+
+    this.show = this.show.bind(this)
+  }
+
+  show(project) {
+    this.setState({ showStates: { [project]: 'active' } })
   }
 
   render() {
@@ -18,7 +29,7 @@ class Projects extends React.Component {
             [ 'Red Magic Live', 'Who knew' ].map((project) => {
               const snakeCaseName = snakeCase(project)
               return (
-                <div className={`project ${snakeCaseName}`}>
+                <div className={`project ${snakeCaseName}`} onClick={() => { this.show(snakeCaseName) }}>
                   <div className={`cover ${snakeCaseName}`}>
                     {project}
                   </div>
@@ -32,7 +43,7 @@ class Projects extends React.Component {
             [ 'IT Way', 'Red Magic TV' ].map((project) => {
               const snakeCaseName = snakeCase(project)
               return (
-                <div className={`project ${snakeCaseName}`}>
+                <div className={`project ${snakeCaseName}`} onClick={() => { this.show(snakeCaseName) }}>
                   <div className={`cover ${snakeCaseName}`}>
                     {project}
                   </div>
@@ -41,7 +52,7 @@ class Projects extends React.Component {
             })
           }
         </div>
-        <div className="project-page it_way_page">
+        <div className={`project-page it_way_page ${this.state.showStates.it_way}`}>
           <div className="red_magic_live">
             <h1>
               Red Magic Live
