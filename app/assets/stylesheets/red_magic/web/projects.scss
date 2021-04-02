@@ -122,6 +122,43 @@ $projects: it_way, who_knew, red_magic_live, red_magic_tv;
       }
     }
 
+    .product {
+      margin-bottom: 5rem;
+      width: 75%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      &:first-child {
+        margin-top: 5rem;
+      }
+
+      .right {
+        margin-right: 3rem;
+      }
+
+      .left {
+        margin-left: 3rem;
+      }
+
+      .description {
+        .right {
+          display: flex;
+          justify-content: flex-end;
+        }
+        width: 50%;
+        h3 {
+          color: white;
+          text-align: justify;
+        }
+      }
+
+      video {
+        width: 40rem;
+      }
+    }
+
     .videos-row {
       display: flex;
       flex-direction: row;

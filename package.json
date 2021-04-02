@@ -16,6 +16,7 @@
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.1",
     "react-dom": "^17.0.1",
+    "react-iframe": "^1.8.0",
     "react_ujs": "^2.6.1",
     "requirejs": "latest",
     "snake-case": "^3.0.4",

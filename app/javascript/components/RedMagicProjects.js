@@ -2,6 +2,7 @@ import React from 'react'
 import { snakeCase } from "snake-case"
 import LinkIcon from './LinkIcon'
 import styled from 'styled-components'
+import Iframe from 'react-iframe'
 
 const CloseButton = styled(LinkIcon)`
   color: white;
@@ -107,7 +108,24 @@ class Projects extends React.Component {
               </div>
             </div>
             <div className="product">
-              <iframe src="https://vk.com/video_ext.php?oid=-99102435&id=456239071&hash=5c752043ab873296&hd=2" width="853" height="480" frameBorder="0" allowFullScreen></iframe>
+              <div className="description right">
+                <h3>
+                  Отчётные видео с конференций и форумов. Это поставленные видео, где коротко, а самое главное, интересно рассказывается о крупных мероприятиях.
+                </h3>
+              </div>
+              <div className="video left">
+                <video poster='/system/red_magic/video_poster.png' src="/system/red_magic/center.mp4" autoPlay={ true } loop={ true } muted={ true }></video>
+              </div>
+            </div>
+            <div className="product">
+              <div className="video right">
+                <video poster='/system/red_magic/video_poster.png' src="/system/red_magic/center.mp4" autoPlay={ true } loop={ true } muted={ true }></video>
+              </div>
+              <div className="description left">
+                <h3>
+                  Видео выступлений на конференциях
+                </h3>
+              </div>
             </div>
           </div>
           <div className="red_magic_tv">
