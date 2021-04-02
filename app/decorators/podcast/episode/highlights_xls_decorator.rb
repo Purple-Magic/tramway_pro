@@ -5,7 +5,7 @@ class Podcast::Episode::HighlightsXlsDecorator < Tramway::Export::Xls::Applicati
 
   class << self
     def columns
-      [ :time ]
+      [:time]
     end
 
     def filename

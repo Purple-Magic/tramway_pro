@@ -7,11 +7,11 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def show_associations
-      [ :highlights ]
+      [:highlights]
     end
 
     def show_attributes
-      [ :title, :number, :file, :highlights_files ]
+      %i[title number file highlights_files]
     end
   end
 
@@ -32,7 +32,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
           concat(content_tag(:td) do
             short_name = part.split('/').last
 
-            link_to short_name, "/#{part.split('/')[-4..-1].join('/')}"
+            link_to short_name, "/#{part.split('/')[-4..].join('/')}"
           end)
         end)
       end
@@ -40,13 +40,17 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def additional_buttons
-    export_url = ::Tramway::Export::Engine.routes.url_helpers.export_path(object.id, model: object.class, collection: :highlights)
+    export_url = ::Tramway::Export::Engine.routes.url_helpers.export_path(
+      object.id,
+      model: object.class,
+      collection: :highlights
+    )
     cut_highlights_url = Rails.application.routes.url_helpers.red_magic_api_v1_podcast_highlights_path(id: object.id)
 
     {
       show: [
         { url: export_url, inner: -> { fa_icon 'file-excel' }, color: :success },
-        { url: cut_highlights_url, method: :post, inner: -> { fa_icon :highlighter }, color: :success },
+        { url: cut_highlights_url, method: :post, inner: -> { fa_icon :highlighter }, color: :success }
       ]
     }
   end

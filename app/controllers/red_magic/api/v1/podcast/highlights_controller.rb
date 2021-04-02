@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RedMagic::Api::V1::Podcast::HighlightsController < RedMagic::Api::V1::ApplicationController
   def create
     ::PodcastsHighlightsJob.perform_later params[:id]

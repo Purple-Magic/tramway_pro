@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PodcastsHighlightsJob < ActiveJob::Base
   queue_as :default
 
