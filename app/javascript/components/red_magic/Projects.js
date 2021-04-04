@@ -1,7 +1,9 @@
 import React from 'react'
 import { snakeCase } from "snake-case"
-import LinkIcon from './LinkIcon'
+import LinkIcon from '../LinkIcon'
 import styled from 'styled-components'
+import Iframe from 'react-iframe'
+import Product from './Product'
 
 const CloseButton = styled(LinkIcon)`
   color: white;
@@ -106,9 +108,10 @@ class Projects extends React.Component {
                 </span>
               </div>
             </div>
-            <div className="product">
-              <iframe src="https://vk.com/video_ext.php?oid=-99102435&id=456239071&hash=5c752043ab873296&hd=2" width="853" height="480" frameBorder="0" allowFullScreen></iframe>
-            </div>
+            <Product video={{ side: 'left', src: "/system/red_magic/center.mp4", poster: '/system/red_magic/video_poster.png' }} description="Отчётные видео с конференций и форумов. Это поставленные видео, где коротко, а самое главное, интересно рассказывается о крупных мероприятиях." logo={this.props.logo} />
+            <Product video={{ side: 'right', src: "/system/red_magic/center.mp4", poster: '/system/red_magic/video_poster.png' }} description="Видео выступлений на конференциях" logo={this.props.logo}/>
+            <Product video={{ side: 'left', src: "/system/red_magic/center.mp4", poster: '/system/red_magic/video_poster.png' }} description="Трёхдневный онлайн фестиваль! 26 часов образовательного и развлекательного канала из трёх локаций в два канала." logo={this.props.logo} />
+            <Product video={{ side: 'right', src: "/system/red_magic/center.mp4", poster: '/system/red_magic/video_poster.png' }} description="Бесконечный анимационный cтрим для работы в стиле популярного lofi girl. Автор анимации noTea (тут должна быть ссылка)" logo={this.props.logo} />
           </div>
           <div className="red_magic_tv">
             <h1>

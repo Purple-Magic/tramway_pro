@@ -83,7 +83,6 @@ $projects: it_way, who_knew, red_magic_live, red_magic_tv;
   clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
   transition: 1.5s;
   width: 100%;
-  height: 100vh;
   z-index: 2;
   display: flex;
   align-items: center;
@@ -104,7 +103,7 @@ $projects: it_way, who_knew, red_magic_live, red_magic_tv;
       width: 75%;
       padding-left: 5rem;
       padding-right: 5rem;
-
+      margin-bottom: 5rem;
       .stat {
         display: flex;
         flex-direction: column;
@@ -119,6 +118,67 @@ $projects: it_way, who_knew, red_magic_live, red_magic_tv;
         span {
           color: white;
         }
+      }
+    }
+
+    .product {
+      margin-bottom: 5rem;
+      width: 75%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .right {
+        margin-right: 3rem;
+      }
+
+      .left {
+        margin-left: 3rem;
+      }
+
+      .description {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+
+        .right {
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        h3 {
+          color: white;
+          text-align: justify;
+        }
+
+        a.play-button {
+          margin-top: 2rem;
+          display: flex;
+          flex-direction: row;
+          padding: 1rem 2rem;
+          cursor: pointer;
+
+          img {
+            width: 3rem;
+          }
+
+          span {
+            font-size: 2rem;
+            color: white;
+            margin-left: 1rem;
+          }
+
+          &:hover {
+            box-shadow: 0px 0px 8px #fff;
+          }
+        }
+      }
+
+      video {
+        width: 40rem;
+        cursor: pointer;
+        z-index: 2;
       }
     }
 
