@@ -138,19 +138,47 @@ $projects: it_way, who_knew, red_magic_live, red_magic_tv;
       }
 
       .description {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+
         .right {
           display: flex;
           justify-content: flex-end;
         }
-        width: 50%;
+
         h3 {
           color: white;
           text-align: justify;
+        }
+
+        a.play-button {
+          margin-top: 2rem;
+          display: flex;
+          flex-direction: row;
+          padding: 1rem 2rem;
+          cursor: pointer;
+
+          img {
+            width: 3rem;
+          }
+
+          span {
+            font-size: 2rem;
+            color: white;
+            margin-left: 1rem;
+          }
+
+          &:hover {
+            box-shadow: 0px 0px 8px #fff;
+          }
         }
       }
 
       video {
         width: 40rem;
+        cursor: pointer;
+        z-index: 2;
       }
     }
 

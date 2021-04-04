@@ -108,10 +108,10 @@ class Projects extends React.Component {
                 </span>
               </div>
             </div>
-            <Product video={{ side: 'left', src: "/system/red_magic/center.mp4", poster: '/system/red_magic/video_poster.png' }} description="Отчётные видео с конференций и форумов. Это поставленные видео, где коротко, а самое главное, интересно рассказывается о крупных мероприятиях." />
-            <Product video={{ side: 'right', src: "/system/red_magic/center.mp4", poster: '/system/red_magic/video_poster.png' }} description="Видео выступлений на конференциях" />
-            <Product video={{ side: 'left', src: "/system/red_magic/center.mp4", poster: '/system/red_magic/video_poster.png' }} description="Трёхдневный онлайн фестиваль! 26 часов образовательного и развлекательного канала из трёх локаций в два канала." />
-            <Product video={{ side: 'right', src: "/system/red_magic/center.mp4", poster: '/system/red_magic/video_poster.png' }} description="Бесконечный анимационный cтрим для работы в стиле популярного lofi girl. Автор анимации noTea (тут должна быть ссылка)" />
+            <Product video={{ side: 'left', src: "/system/red_magic/center.mp4", poster: '/system/red_magic/video_poster.png' }} description="Отчётные видео с конференций и форумов. Это поставленные видео, где коротко, а самое главное, интересно рассказывается о крупных мероприятиях." logo={this.props.logo} />
+            <Product video={{ side: 'right', src: "/system/red_magic/center.mp4", poster: '/system/red_magic/video_poster.png' }} description="Видео выступлений на конференциях" logo={this.props.logo}/>
+            <Product video={{ side: 'left', src: "/system/red_magic/center.mp4", poster: '/system/red_magic/video_poster.png' }} description="Трёхдневный онлайн фестиваль! 26 часов образовательного и развлекательного канала из трёх локаций в два канала." logo={this.props.logo} />
+            <Product video={{ side: 'right', src: "/system/red_magic/center.mp4", poster: '/system/red_magic/video_poster.png' }} description="Бесконечный анимационный cтрим для работы в стиле популярного lofi girl. Автор анимации noTea (тут должна быть ссылка)" logo={this.props.logo} />
           </div>
           <div className="red_magic_tv">
             <h1>

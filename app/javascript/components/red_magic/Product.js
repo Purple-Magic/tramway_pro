@@ -12,9 +12,16 @@ class Product extends React.Component {
           <h3>
             {this.props.description}
           </h3>
+          <a className="play-button">
+            <img src={this.props.logo} />
+            <span>
+              Смотреть
+            </span>
+          </a>
         </div>
         <div className={`video ${this.props.video.side}`}>
-          <video poster={this.props.video.poster} src={this.props.video.src} autoPlay={ true } loop={ true } muted={ true }></video>
+          <video onMouseEnter={() => this.videoOnMouseEnter()} onMouseLeave={() => this.videoOnMouseLeave()} poster={this.props.video.poster} src={this.props.video.src} autoPlay={ true } loop={ true } muted={ true }>
+          </video>
         </div>
       </div>
     );
