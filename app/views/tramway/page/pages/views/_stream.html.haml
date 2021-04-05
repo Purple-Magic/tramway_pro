@@ -1,13 +1,10 @@
+= javascript_pack_tag 'application'
 = stylesheet_link_tag 'red_magic/web/stream'
 
 %header
   = image_tag '/system/red_magic/stream/header.jpg', class: 'banner'
   = link_to 'RED MAGIC', '#', class: 'logo'
-  .toggle-button
-    %span.burger
-      ☰
-    %span.close
-      ×
+
   %nav
     %ul
       %li
@@ -20,6 +17,7 @@
         = link_to 'Portfolio', '#'
       %li
         = link_to 'Team', '#'
+  = react_component('red_magic/Toggle', {})
 
 %section
   %h2
@@ -32,7 +30,3 @@
     const header = document.querySelector('header');
     header.classList.toggle('sticky', window.scrollY > 0);
   });
-
-  document.querySelectorAll('.toggle-button')[0].onclick = function() {
-    this.classList.toggle('active');
-  }

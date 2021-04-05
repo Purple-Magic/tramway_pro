@@ -147,8 +147,16 @@ section {
         cursor: pointer;
         background: #fff;
         font-size: 30px;
-        padding: 5px 12px;
+        z-index: 99;
         display: block;
+
+        &.hidden {
+          padding: 5px 12px;
+        }
+
+        &.show {
+          padding: 5px 15px;
+        }
       }
     }
   }
