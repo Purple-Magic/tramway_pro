@@ -103,6 +103,10 @@ header {
       }
     }
   }
+
+  .toggle-button.hidden {
+    display: none;
+  }
 }
 
 section {
@@ -190,6 +194,12 @@ section {
         opacity: 1;
         visibility: visible;
         font-size: 2rem;
+      }
+    }
+
+    &.hidden {
+      ul {
+        display: none;
       }
     }
   }

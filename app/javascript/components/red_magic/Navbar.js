@@ -26,14 +26,11 @@ class Navbar extends React.Component {
           <ul>
             {
               this.props.links.map((link) => {
-                if (this.state.showState === 'show') {
-                  return (
-                    <li>
-                      <a href={link.url}>{link.text}</a>
-                    </li>
-                  )
-                }
-                return <></>
+                return (
+                  <li>
+                    <a href={link.url}>{link.text}</a>
+                  </li>
+                )
               })
             }
           </ul>
