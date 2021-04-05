@@ -5,19 +5,8 @@
   = image_tag '/system/red_magic/stream/header.jpg', class: 'banner'
   = link_to 'RED MAGIC', '#', class: 'logo'
 
-  %nav
-    %ul
-      %li
-        = link_to 'Home', '#'
-      %li
-        = link_to 'About', '#'
-      %li
-        = link_to 'Service', '#'
-      %li
-        = link_to 'Portfolio', '#'
-      %li
-        = link_to 'Team', '#'
-  = react_component('red_magic/Toggle', {})
+  - links = [ { url: '#', text: 'Home' }, { url: '#', text: 'About' }, { url: '#', text: 'Service' }, { url: '#', text: 'Portfolio' }, { url: '#', text: 'Team' } ]
+  = react_component('red_magic/Navbar', { links: links })
 
 %section
   %h2
