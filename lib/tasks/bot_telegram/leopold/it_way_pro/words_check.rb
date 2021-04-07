@@ -6,9 +6,9 @@ module BotTelegram::Leopold
       return unless text.present?
 
       Word.all.map do |word|
-        include_main = text.include?(word.main)
+        include_main = text.match?(/ #{word.main} /)
         include_synonim = word.synonims&.map do |synonim|
-          text.include? synonim
+          text.match?(/ #{synonim} /)
         end&.include? true
 
         return word if include_main || include_synonim
