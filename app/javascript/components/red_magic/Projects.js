@@ -47,7 +47,10 @@ class Projects extends React.Component {
               return (
                 <div className={`project ${snakeCaseName}`} onClick={() => { this.show(snakeCaseName) }}>
                   <div className={`cover ${snakeCaseName}`}>
-                    {project}
+                    <div>
+                      {project}
+                      <button className="more-info">Подробнее</button>
+                    </div>
                   </div>
                 </div>
               )
@@ -60,8 +63,11 @@ class Projects extends React.Component {
               const snakeCaseName = snakeCase(project)
               return (
                 <div className={`project ${snakeCaseName}`} onClick={() => { this.show(snakeCaseName) }}>
-                  <div className={`cover ${snakeCaseName}`}>
-                    {project}
+                  <div className={`cover ${snakeCaseName}`} style={{ 'background-image': "url(/system/red_magic/projects/it_way-cover.gif)" }}>
+                    <div>
+                      {project}
+                      <button className="more-info">Подробнее</button>
+                    </div>
                   </div>
                 </div>
               )
