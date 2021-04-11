@@ -39,6 +39,7 @@
       color: white;
       cursor: pointer;
       background-size: cover;
+      text-shadow: 0 0 3px #000, 0 0 5px #000;
 
       div {
         display: flex;
@@ -47,7 +48,6 @@
       button {
         //display: none;
         border: none;
-        background-color: #FF4500;
         color: white;
         padding: 1rem;
         font-size: 2rem;
@@ -56,48 +56,48 @@
       }
 
       &.it_way {
-        background-color: $it_way_color;
 	flex-direction: column-reverse;
 	align-items: flex-start;
         div {
           flex-direction: row;
           button {
             margin-left: 1rem;
+            background-color: $it_way_color;
           }
         } 
       }
 
       &.red_magic_tv {
-        background-color: $red_magic_color;
 	flex-direction: column-reverse;
 	align-items: flex-end;
         div {
           flex-direction: row-reverse;
           button {
             margin-right: 1rem;
+            background-color: $red_magic_color;
           }
         } 
       }
 
       &.red_magic_live {
-        background-color: $red_magic_live_color;
 	flex-direction: column;
 	align-items: flex-start;
         div {
           button {
             margin-left: 1rem;
+            background-color: $red_magic_live_color;
           }
         }
       }
 
       &.who_knew {
-        background-color: $who_knew_color;
 	flex-direction: column;
 	align-items: flex-end;
         div {
           flex-direction: row-reverse;
           button {
             margin-right: 1rem;
+            background-color: $who_knew_color;
           }
         } 
       }
