@@ -13,6 +13,26 @@ const CloseButton = styled(LinkIcon)`
   font-size: 3rem;
 `
 
+const Project = (project, component) => {
+  const snakeCaseName = snakeCase(project)
+  const image = `url(/system/red_magic/projects/${snakeCaseName}-${component.state.hoverStates[snakeCaseName] ? 'cover.gif' : 'first-frame.jpg'})`
+  return (
+    <div className={`project ${snakeCaseName}`} onClick={() => { component.show(snakeCaseName) }}>
+      <div
+        className={`cover ${snakeCaseName}`}
+        onMouseEnter={() => component.hover(snakeCaseName)}
+        onMouseLeave={() => component.unHover(snakeCaseName)}
+        style={{ 'background-image': image }}
+      >
+        <div>
+          {project}
+          <button className="more-info" onClick={() => component.show(snakeCaseName)}>Подробнее</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 class Projects extends React.Component {
   constructor(props) {
     super(props)
@@ -24,9 +44,17 @@ class Projects extends React.Component {
         who_knew: 'hidden',
         red_magic_tv: 'hidden',
       },
+      hoverStates: {
+        it_way: false,
+        red_magic_live: false,
+        who_knew: false,
+        red_magic_tv: false,
+      },
     }
 
     this.show = this.show.bind(this)
+    this.hover = this.hover.bind(this)
+    this.unHover = this.unHover.bind(this)
   }
 
   show(project) {
@@ -37,35 +65,25 @@ class Projects extends React.Component {
     this.setState({ showStates: { [project]: 'hidden' } })
   }
 
+  hover(project) {
+    this.setState({ hoverStates: { [project]: true } })
+  }
+
+  unHover(project) {
+    this.setState({ hoverStates: { [project]: false } })
+  }
+
   render() {
     return (
       <>
         <div className="row-projects">
           {
-            [ 'Red Magic Live', 'Who knew' ].map((project) => {
-              const snakeCaseName = snakeCase(project)
-              return (
-                <div className={`project ${snakeCaseName}`} onClick={() => { this.show(snakeCaseName) }}>
-                  <div className={`cover ${snakeCaseName}`}>
-                    {project}
-                  </div>
-                </div>
-              )
-            })
+            [ 'Red Magic Live', 'Who knew' ].map((name) => Project(name, this))
           }
         </div>
         <div className="row-projects">
           {
-            [ 'IT Way', 'Red Magic TV' ].map((project) => {
-              const snakeCaseName = snakeCase(project)
-              return (
-                <div className={`project ${snakeCaseName}`} onClick={() => { this.show(snakeCaseName) }}>
-                  <div className={`cover ${snakeCaseName}`}>
-                    {project}
-                  </div>
-                </div>
-              )
-            })
+            [ 'IT Way', 'Red Magic TV' ].map((name) => Project(name, this))
           }
         </div>
         <div className={`project-page it_way_page ${this.state.showStates.it_way}`}>

@@ -38,29 +38,68 @@
       font-weight: bold;
       color: white;
       cursor: pointer;
+      background-size: cover;
+      text-shadow: 0 0 3px #000, 0 0 5px #000;
+
+      div {
+        display: flex;
+      }
+
+      button {
+        //display: none;
+        border: none;
+        color: white;
+        padding: 1rem;
+        font-size: 2rem;
+        text-transform: uppercase;
+        clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);
+      }
 
       &.it_way {
-        background-color: $it_way_color;
 	flex-direction: column-reverse;
 	align-items: flex-start;
+        div {
+          flex-direction: row;
+          button {
+            margin-left: 1rem;
+            background-color: $it_way_color;
+          }
+        } 
       }
 
       &.red_magic_tv {
-        background-color: $red_magic_color;
 	flex-direction: column-reverse;
 	align-items: flex-end;
+        div {
+          flex-direction: row-reverse;
+          button {
+            margin-right: 1rem;
+            background-color: $red_magic_color;
+          }
+        } 
       }
 
       &.red_magic_live {
-        background-color: $red_magic_live_color;
 	flex-direction: column;
 	align-items: flex-start;
+        div {
+          button {
+            margin-left: 1rem;
+            background-color: $red_magic_live_color;
+          }
+        }
       }
 
       &.who_knew {
-        background-color: $who_knew_color;
 	flex-direction: column;
 	align-items: flex-end;
+        div {
+          flex-direction: row-reverse;
+          button {
+            margin-right: 1rem;
+            background-color: $who_knew_color;
+          }
+        } 
       }
     }
 
@@ -69,8 +108,15 @@
         &.it_way, &.red_magic_live {
           clip-path: polygon(0 0, 100% 0, 43% 100%, 0% 100%);
         }
+
         &.red_magic_tv, &.who_knew {
           clip-path: polygon(0 0, 100% 0, 100% 100%, 43% 100%);
+        }
+
+        button {
+          display: block;
+          transition: 0.5s ease-in-out;
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
         }
       }
     }
