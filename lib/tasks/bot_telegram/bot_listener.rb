@@ -11,10 +11,10 @@ class BotTelegram::BotListener
     include BotTelegram::MessagesManager
 
     def perform
-      bot_record = Bot.find_by name: ENV['RUNNING_BOT_NAME']
+      bot_record = Bot.find ENV['RUNNING_BOT_ID']
       Telegram::Bot::Client.run(bot_record.token) do |bot|
         bot.listen do |message|
-          if message.present? && message.try(:text)
+          if message.present? && (message.try(:text) || message.try(:sticker))
             user = user_from message
             chat = chat_from message
             log_message message, user, chat, bot_record

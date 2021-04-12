@@ -5,7 +5,7 @@ module BotTelegram::MessagesManager
     file_path = "#{Rails.root}/lib/tasks/bot_telegram/bot_message_attributes.yml"
     telegram_message_attributes = YAML.load_file(file_path)['telegram_message']['attributes']
 
-    BotTelegram::Message.create! text: message.text, user_id: user.id, chat_id: chat.id,
+    BotTelegram::Message.create! text: message.try(:text), user_id: user.id, chat_id: chat.id,
                                  bot_id: bot.id,
                                  project_id: Project.find_by(title: 'PurpleMagic').id,
                                  options: (telegram_message_attributes.reduce({}) do |hash, attribute|
@@ -24,7 +24,7 @@ module BotTelegram::MessagesManager
     when 'String'
       bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj
     when 'BotTelegram::Scenario::Step'
-      if message_obj.text.present?
+      if message_obj.try(:text).present?
         if message_obj.reply_markup.present?
           bot.api.send_message(
             chat_id: message_telegram.chat.id,
@@ -33,7 +33,7 @@ module BotTelegram::MessagesManager
             parse_mode: :markdown
           )
         else
-          bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj&.text, parse_mode: :markdown
+          bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj.text, parse_mode: :markdown
         end
       end
       send_file bot, message_telegram, message_obj if message_obj.file.path.present?
