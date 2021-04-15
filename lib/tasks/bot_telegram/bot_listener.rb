@@ -14,7 +14,7 @@ class BotTelegram::BotListener
       bot_record = Bot.find ENV['RUNNING_BOT_ID']
       Telegram::Bot::Client.run(bot_record.token) do |bot|
         bot.listen do |message|
-          if message.present? && (message.try(:text) || message.try(:sticker))
+          if can_be_processed? message
             user = user_from message
             chat = chat_from message
             log_message message, user, chat, bot_record
@@ -37,6 +37,10 @@ class BotTelegram::BotListener
       scenario_class = "BotTelegram::#{bot_record.scenario.camelize.capitalize}::Scenario".constantize
       scenario = scenario_class.new message, bot, bot_record, chat
       scenario.run
+    end
+
+    def can_be_processed?(message)
+      message.present? && (message.try(:text) || message.try(:sticker))
     end
   end
 end

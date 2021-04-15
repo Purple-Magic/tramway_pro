@@ -43,10 +43,11 @@
 
       div {
         display: flex;
+        justify-content: space-between;
+        width: 100%;
       }
 
       button {
-        //display: none;
         border: none;
         color: white;
         padding: 1rem;
@@ -105,14 +106,6 @@
 
     &:hover {
       .cover {
-        &.it_way, &.red_magic_live {
-          clip-path: polygon(0 0, 100% 0, 43% 100%, 0% 100%);
-        }
-
-        &.red_magic_tv, &.who_knew {
-          clip-path: polygon(0 0, 100% 0, 100% 100%, 43% 100%);
-        }
-
         button {
           display: block;
           transition: 0.5s ease-in-out;
