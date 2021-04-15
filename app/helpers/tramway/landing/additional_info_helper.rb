@@ -1,6 +1,6 @@
 module Tramway
   module Landing
-    module ApplicationHelper
+    module AdditionalInfoHelper
       include ::Tramway::Core::ApplicationHelper
       include ::Tramway::Admin::ApplicationHelper
 
