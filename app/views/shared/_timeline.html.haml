@@ -1,0 +1,15 @@
+= stylesheet_link_tag 'shared/timeline'
+
+.timeline
+  - events.each_with_index do |event, index|
+    .timeline-container{ class: event[:type] }
+      .timeline-icon
+        = fa_icon event[:icon]
+      .timeline-body
+        %h4.timeline-title
+          %span.badge
+            = event[:badge]
+        %p
+          = event[:description]
+        %p.timeline-subtitle
+          = event[:subtitle]

@@ -9,11 +9,57 @@
   .bottom-area
     = link_to '⬇', '#', class: 'arrow-down'
 
-%section
-  %h2
-    Header huider
-  %p
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+%section.text-left.first
+  .text
+    %h2
+      Мы любим делать прямые эфиры
+    %p
+      В 2020-х прямые эфиры станут самым популярным способом доставлять информацию до конечного пользователя. Пользователи могут смотреть прямые эфиры в каждом приложении. Благодаря пандемии огромное количество бизнесов и команд переделали свой контент, чтобы его легче можно было подавать в формате прямого эфира.
+  = image_tag '/system/red_magic/stream/1.jpg'
+
+%section.text-right
+  .text
+    %h2
+      Ориентир на самый качественный и популярный контент
+    %p
+      В своей работе мы достигаем качества контента от самых известных и популярных брендов, которые производят видеоконтент. Для обеспечения такого высокого качества мы уделяем огромное время подготовке и продакшену видеоконтента
+  = image_tag '/system/red_magic/stream/2.jpg'
+
+%section.text-left
+  .text
+    %h2
+      Автоматизация
+    %p
+      Наша задача сделать услугу онлайн-трансляций более доступной для бизнеса. Поэтому мы ищем способы автоматизации процессов для удешевления услуг. Мы переносим технологические моменты из плоскости технического оснащения в плоскость использования профессиональных навыков наших сотрудников.
+  = image_tag '/system/red_magic/stream/3.png'
+
+%section.text-right
+  .text
+    %h2
+      Плотная работа с заказчиками
+    %p
+      Мы помогаем нашим заказчикам готовится к прямым эфирам для того, чтобы техническая команда и "герои" эфира работали совместно, и каждый участник процесса знал свои задачи и выполнял их качественно.
+  = image_tag '/system/red_magic/stream/4.jpg'
+
+%section.text-left{ style: 'justify-content: space-between' }
+  .text
+    %h2
+      Наш процесс
+  = render 'shared/timeline', events: red_magic_timeline
+
+%section.text-left
+  .text
+    %h2
+      Red Magic - это многопрофильная команда
+    %p
+      На каждом прямом эфире в команде обязательно присутствуют специалисты в следующих отраслях.
+      %ul
+        %li видеограф для организации качественного изображения
+        %li звукорежиссёр для организации качественного звука
+        %li ИТ-специалист для настройки серверной инфраструктуры в случае проблем с сетевым оборудованием
+        %li опытный ведущий - запасной игрок, который поможет прямому эфиру продолжится вне зависимости от ситуации
+      Каждый из перечисленных специалистов обладает многими годами опыта в своей специализации. Параллельно каждый из них может заменить другого члена команды в непредвиденной ситуации
+  = image_tag '/system/red_magic/stream/4.jpg'
 
 :javascript
   window.addEventListener('scroll', function() {
