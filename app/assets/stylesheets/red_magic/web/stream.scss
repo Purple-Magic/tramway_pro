@@ -32,6 +32,10 @@ header {
       transform: translate(0, -50%);
     }
 
+    .bottom-area {
+      visibility: hidden;
+    }
+
     .banner {
       opacity: 0.1;
     }
@@ -73,6 +77,32 @@ header {
     text-decoration: none;
     z-index: 1;
     text-align: center;
+  }
+
+  .bottom-area {
+    position: fixed;
+    bottom: 2rem;
+    width: inherit;
+    display: flex;
+    justify-content: center;
+    left: 0;
+
+    .arrow-down {
+      font-size: 5rem;
+      color: white;
+      text-shadow: 0 0 3px #000, 0 0 5px #000;
+      font-weight: bold;
+      animation: animate 2s linear infinite;
+    }
+
+    @keyframes animate {
+      0%, 100% {
+        transform: translateY(-20px);
+      }
+      50% {
+        transform: translateY(20px);
+      }
+    }
   }
 
   nav {

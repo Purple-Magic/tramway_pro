@@ -6,6 +6,8 @@
   = link_to 'Прямые эфиры', '#', class: 'logo'
   - links = [ { url: '#', text: 'Съёмка видео' }, { url: '#', text: 'Анимация' }, { url: '#', text: 'Подкасты' }, { url: '#', text: 'Наши проекты' }, { url: '#', text: 'Команда' } ]
   = react_component('red_magic/Navbar', { links: links })
+  .bottom-area
+    = link_to '⬇', '#', class: 'arrow-down'
 
 %section
   %h2
