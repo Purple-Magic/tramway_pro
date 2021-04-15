@@ -32,6 +32,10 @@ header {
       transform: translate(0, -50%);
     }
 
+    .bottom-area {
+      visibility: hidden;
+    }
+
     .banner {
       opacity: 0.1;
     }
@@ -44,7 +48,6 @@ header {
         ul {
           transform: translateX(0);
           opacity: 1;
-          transition-delay: 0.75s;
           margin-bottom: 0px;
         }
       }
@@ -73,6 +76,32 @@ header {
     text-decoration: none;
     z-index: 1;
     text-align: center;
+  }
+
+  .bottom-area {
+    position: fixed;
+    bottom: 2rem;
+    width: inherit;
+    display: flex;
+    justify-content: center;
+    left: 0;
+
+    .arrow-down {
+      font-size: 5rem;
+      color: white;
+      text-shadow: 0 0 3px #000, 0 0 5px #000;
+      font-weight: bold;
+      animation: animate 2s linear infinite;
+    }
+
+    @keyframes animate {
+      0%, 100% {
+        transform: translateY(-20px);
+      }
+      50% {
+        transform: translateY(20px);
+      }
+    }
   }
 
   nav {
@@ -111,15 +140,47 @@ header {
 }
 
 section {
-  margin-top: 50vh;
   padding: 100px;
+  display: flex;
 
-  h2 {
-    font-size: 3em;
+  &.first {
+    margin-top: 50vh;
   }
 
-  p {
-    font-size: 1.2em;
+  &.text-left {
+    flex-direction: row;
+    
+    .text {
+      padding-right: 6rem;
+    }
+  }
+
+  &.text-right {
+    flex-direction: row-reverse;
+
+    .text {
+      padding-left: 6rem;
+    }
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      font-size: 3em;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    p {
+      font-size: 1.2em;
+      text-align: justify;
+    }
+  }
+
+  img {
+    height: 400px;
   }
 }
 

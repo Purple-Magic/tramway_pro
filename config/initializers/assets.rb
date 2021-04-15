@@ -21,5 +21,6 @@ Rails.application.config.assets.precompile += [
   'red_magic/web/projects.css',
   'red_magic/web/stream.css',
   'red_magic/podcasts/highlights.css',
-  'gorodsad73.css'
+  'gorodsad73.css',
+  'shared/timeline.css'
 ]
