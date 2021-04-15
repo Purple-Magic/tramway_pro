@@ -3,4 +3,3 @@
 module ApplicationHelper
   include Tramway::Landing::ApplicationHelper
 end
-
