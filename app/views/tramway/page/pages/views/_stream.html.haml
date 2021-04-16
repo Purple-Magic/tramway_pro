@@ -5,7 +5,7 @@
   = image_tag '/system/red_magic/stream/header.jpg', class: 'banner'
   = link_to 'Прямые эфиры', '#', class: 'logo'
   - links = [ { url: '#', text: 'Съёмка видео' }, { url: '#', text: 'Анимация' }, { url: '#', text: 'Подкасты' }, { url: '#', text: 'Наши проекты' }, { url: '#', text: 'Команда' } ]
-  - red_magic_timeline = YAML.load_file("#{Rails.root}/lib/yaml/red_magic_timeline.yml")
+  - red_magic_timeline = YAML.load_file("#{Rails.root}/lib/yaml/red_magic_timeline.yml").map(&:with_indifferent_access)
   = react_component('red_magic/Navbar', { links: links })
   .bottom-area
     = link_to '⬇', '#', class: 'arrow-down'
