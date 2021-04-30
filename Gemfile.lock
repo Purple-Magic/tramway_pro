@@ -369,7 +369,7 @@ GEM
       tilt
     redis (4.2.5)
     regexp_parser (1.8.2)
-    rexml (3.2.4)
+    rexml (3.2.5)
     rmagick (2.16.0)
     rspec-core (3.9.3)
       rspec-support (~> 3.9.3)
