@@ -107,7 +107,7 @@ ru:
     podcast:
       plural: подкасты
       genitive: подкаст
-    episode:
+    podcast/episode:
       plural: эпизоды
       genitive: эпизод
     bot_telegram/scenario/step:

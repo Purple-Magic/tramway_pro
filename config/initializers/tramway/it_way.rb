@@ -4,6 +4,7 @@ Tramway::Export.set_exportable_models Tramway::Event::Participant, project: :con
 Tramway::Admin.set_available_models Word,
   ItWay::Certificate,
   Podcast,
+  Podcast::Episode,
   project: :conference, role: :admin
 Tramway::Admin.navbar_structure(
   Tramway::Conference::Unity,
@@ -29,7 +30,7 @@ Tramway::Admin.navbar_structure(
       Tramway::Profiles::SocialNetwork
     ]
   },
-  Podcast,
+  Podcast::Episode,
   {
     other_functions: [
       Word,

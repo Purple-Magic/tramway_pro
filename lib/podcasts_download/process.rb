@@ -13,6 +13,8 @@ module PodcastsDownload::Process
                          'episode'
                        when :published_at
                          'pubDate'
+                       when :file_url
+                        'enclosure'
                        else
                          attribute_name.to_s
                        end
@@ -22,35 +24,38 @@ module PodcastsDownload::Process
       case attribute_name
       when 'image'
         attribute.attributes['href'].value
+      when 'enclosure'
+        attribute.attributes['url'].value
       else
         attribute.children.first.content
       end
     end
 
     def run
-      podcasts = Podcast.active
+      podcasts = Podcast.active.where project_id: IT_WAY_PROJECT_ID
       podcasts.each do |podcast|
-        #        url = podcast.feed_url
-        #        open(url) do |rss| #FIXME The use of URI.open is a serious security risk
-        #          xml = Nokogiri::XML(rss.read)
-        #          channel = xml.children.first.children[1]
-        #          items = channel.children.map do |node|
-        #            node if node.respond_to?(:name) && node.name == 'item'
-        #          end.compact.reverse
-        #          items.each do |item|
-        #            guid = item_attribute item, 'guid'
-        #            episode = Episode.find_or_initialize_by guid: guid, project_id: IT_WAY_PROJECT_ID
-        #            Episode::EPISODE_ATTRIBUTES.each do |attr|
-        #              value = item_attribute item, attr
-        #              if episode.id.present?
-        #                episode.send "#{attr}=", value unless episode.send(attr) == value
-        #              else
-        #                episode.send "#{attr}=", value
-        #              end
-        #              episode.save!
-        #            end
-        #          end
-        #        end
+        url = podcast.feed_url
+        open(url) do |rss| #FIXME The use of URI.open is a serious security risk
+          xml = Nokogiri::XML(rss.read)
+          channel = xml.children.first.children[1]
+          items = channel.children.map do |node|
+            node if node.respond_to?(:name) && node.name == 'item'
+          end.compact.reverse
+          items.each do |item|
+            guid = item_attribute item, 'guid'
+            episode = Podcast::Episode.find_or_initialize_by guid: guid, project_id: IT_WAY_PROJECT_ID
+            Podcast::Episode::EPISODE_ATTRIBUTES.each do |attr|
+              value = item_attribute item, attr
+              if episode.id.present?
+                episode.send "#{attr}=", value unless episode.send(attr) == value
+              else
+                episode.send "#{attr}=", value
+                episode.podcast_id = podcast.id unless episode.podcast_id.present?
+              end
+              episode.save!
+            end
+          end
+        end
       end
     end
   end

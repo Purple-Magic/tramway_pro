@@ -3,7 +3,7 @@
 class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   decorate_association :highlights
 
-  delegate_attributes :number
+  delegate_attributes :number, :file_url
 
   class << self
     def show_associations
@@ -11,12 +11,21 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[title number file highlights_files]
+      %i[title number file highlights_files image mp3]
     end
   end
 
   def title
     "Выпуск №#{object.number}"
+  end
+
+  def image
+    image_tag(object.image, style: 'height: 200px')
+  end
+
+  def mp3
+    file_url = object.attributes['file_url']
+    link_to file_url, file_url
   end
 
   def file
@@ -31,7 +40,6 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
         concat(content_tag(:tr) do
           concat(content_tag(:td) do
             short_name = part.split('/').last
-
             link_to short_name, "/#{part.split('/')[-4..].join('/')}"
           end)
         end)
@@ -53,5 +61,8 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
         { url: cut_highlights_url, method: :post, inner: -> { fa_icon :highlighter }, color: :success }
       ]
     }
+  end
+
+  def montage_button_color(event)
   end
 end
