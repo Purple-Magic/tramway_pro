@@ -5,7 +5,7 @@ require 'open-uri'
 
 module PodcastsDownload::Process
   class << self
-    IT_WAY_PROJECT_ID = 2
+    RED_MAGIC_PROJECT_ID = 9
 
     def item_attribute(item, attribute_name)
       attribute_name = case attribute_name
@@ -34,7 +34,7 @@ module PodcastsDownload::Process
     end
 
     def run
-      podcasts = Podcast.active.where project_id: IT_WAY_PROJECT_ID
+      podcasts = Podcast.active.where project_id: RED_MAGIC_PROJECT_ID
       podcasts.each do |podcast|
         url = podcast.feed_url
         open(url) do |rss| #FIXME The use of URI.open is a serious security risk
@@ -45,15 +45,15 @@ module PodcastsDownload::Process
           end.compact.reverse
           items.each do |item|
             guid = item_attribute item, 'guid'
-            episode = Podcast::Episode.find_or_initialize_by guid: guid, project_id: IT_WAY_PROJECT_ID
+            episode = Podcast::Episode.find_or_initialize_by guid: guid, project_id: RED_MAGIC_PROJECT_ID
             Podcast::Episode::EPISODE_ATTRIBUTES.each do |attr|
               value = item_attribute item, attr
               if episode.id.present?
                 episode.send "#{attr}=", value unless episode.send(attr) == value
               else
                 episode.send "#{attr}=", value
-                episode.podcast_id = podcast.id unless episode.podcast_id.present?
               end
+              episode.podcast_id = podcast.id unless episode.podcast_id.present?
               episode.save!
             end
           end
