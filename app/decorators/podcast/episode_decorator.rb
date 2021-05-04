@@ -11,7 +11,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[title number file highlights_files image mp3]
+      %i[title number file image mp3 description highlights_files]
     end
   end
 
@@ -26,6 +26,10 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   def mp3
     file_url = object.attributes['file_url']
     link_to file_url, file_url
+  end
+
+  def description
+    raw object.description
   end
 
   def file

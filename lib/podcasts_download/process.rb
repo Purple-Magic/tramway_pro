@@ -13,8 +13,10 @@ module PodcastsDownload::Process
                          'episode'
                        when :published_at
                          'pubDate'
+                       when :description
+                         'encoded'
                        when :file_url
-                        'enclosure'
+                         'enclosure'
                        else
                          attribute_name.to_s
                        end
