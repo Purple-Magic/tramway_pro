@@ -1,0 +1,5 @@
+naming:
+  number: 'episode'
+  published_at: 'pubDate'
+  description: 'encoded'
+  file_url: 'enclosure'
