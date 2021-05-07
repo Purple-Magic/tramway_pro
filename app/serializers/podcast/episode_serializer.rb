@@ -4,6 +4,10 @@ class Podcast::EpisodeSerializer < Tramway::Api::V1::ApplicationSerializer
   attributes :podcast_id, :number, :title, :number, :season, :description, :published_at, :image, :explicit, :file_url,
     :duration
 
+  def title
+    object.title.split(' Episode')[0]
+  end
+
   def published_at
     object.published_at.strftime('%d.%m.%Y')
   end
