@@ -3,7 +3,7 @@
 require 'fileutils'
 
 class Podcast::Episode < ApplicationRecord
-  EPISODE_ATTRIBUTES = %i[title season number description published_at image explicit file_url].freeze
+  EPISODE_ATTRIBUTES = %i[title season number description published_at image explicit file_url duration].freeze
 
   belongs_to :podcast
   has_many :highlights, class_name: 'Podcast::Highlight'
