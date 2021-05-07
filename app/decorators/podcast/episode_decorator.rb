@@ -67,6 +67,5 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     }
   end
 
-  def montage_button_color(event)
-  end
+  def montage_button_color(event); end
 end
