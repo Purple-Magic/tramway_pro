@@ -56,7 +56,7 @@ Tramway::Api.set_available_models(
       {
         index: lambda do |records, _current_user|
           project = Project.where(url: ENV['PROJECT_URL']).first
-          records.where(project_id: project.id).where.not(file_url: nil)
+          records.where(project_id: project.id).where.not(file_url: nil).order(number: :desc)
         end
       },
       { show: lambda do |record, _current_user|
