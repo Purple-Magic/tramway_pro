@@ -8,6 +8,10 @@ class Podcast::EpisodeSerializer < Tramway::Api::V1::ApplicationSerializer
     object.published_at.strftime('%d.%m.%Y')
   end
 
+  def image
+    object.image.present? ? object.image : object.podcast.default_image.url
+  end
+
   has_many :highlights, serializer: Podcast::HighlightSerializer
   belongs_to :podcast, serializer: PodcastSerializer
 end

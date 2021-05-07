@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210507150057) do
+ActiveRecord::Schema.define(version: 20210507165456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -291,6 +291,7 @@ ActiveRecord::Schema.define(version: 20210507150057) do
     t.text "state"
     t.integer "project_id"
     t.uuid "uuid", default: -> { "uuid_generate_v4()" }
+    t.text "default_image"
   end
 
   create_table "projects", force: :cascade do |t|
