@@ -13,7 +13,7 @@ class Podcast::EpisodeSerializer < Tramway::Api::V1::ApplicationSerializer
   end
 
   def image
-    object.image.present? ? object.image : object.podcast.default_image.url
+    object.image.present? ? object.image : "http://#{ENV['PROJECT_URL']}#{object.podcast.default_image.url}"
   end
 
   has_many :highlights, serializer: Podcast::HighlightSerializer
