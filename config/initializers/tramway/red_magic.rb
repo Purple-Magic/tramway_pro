@@ -15,6 +15,7 @@ Tramway::Admin.set_available_models(
   Estimation::Coefficient,
   Podcast,
   Podcast::Episode,
+  Video,
   project: :red_magic
 )
 
@@ -36,6 +37,11 @@ Tramway::Admin.navbar_structure(
   {
     podcasts: [
       Podcast
+    ]
+  },
+  {
+    videos: [
+      Video
     ]
   },
   Tramway::User::User,
@@ -63,6 +69,14 @@ Tramway::Api.set_available_models(
         project = Project.where(url: ENV['PROJECT_URL']).first
         record.project_id == project.id
       end }
+    ],
+    Video => [
+      {
+        index: lambda do |records, _current_user|
+          project = Project.where(url: ENV['PROJECT_URL']).first
+          records.active.where(project_id: project.id)
+        end
+      },
     ]
   },
   project: :red_magic

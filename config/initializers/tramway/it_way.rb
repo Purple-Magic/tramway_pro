@@ -5,7 +5,6 @@ Tramway::Admin.set_available_models Word,
   ItWay::Certificate,
   Podcast,
   Podcast::Episode,
-  Video,
   project: :conference, role: :admin
 Tramway::Admin.navbar_structure(
   Tramway::Conference::Unity,
@@ -29,12 +28,6 @@ Tramway::Admin.navbar_structure(
       Tramway::Page::Page,
       Tramway::Landing::Block,
       Tramway::Profiles::SocialNetwork
-    ]
-  },
-  {
-    content: [
-      Podcast::Episode,
-      Video,
     ]
   },
   {
