@@ -30,7 +30,6 @@ Tramway::Admin.navbar_structure(
       Tramway::Profiles::SocialNetwork
     ]
   },
-  Podcast::Episode,
   {
     other_functions: [
       Word,
