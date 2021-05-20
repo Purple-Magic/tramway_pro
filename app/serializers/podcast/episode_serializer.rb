@@ -5,11 +5,11 @@ class Podcast::EpisodeSerializer < Tramway::Api::V1::ApplicationSerializer
     :duration
 
   def title
-    object.title.split(' Episode')[0]
+    object.title&.split(' Episode')&.first
   end
 
   def published_at
-    object.published_at.strftime('%d.%m.%Y')
+    object.published_at&.strftime('%d.%m.%Y')
   end
 
   def image
