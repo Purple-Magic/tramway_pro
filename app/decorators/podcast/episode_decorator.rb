@@ -20,12 +20,12 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def image
-    image_tag(object.image, style: 'height: 200px')
+    image_tag(object.image, style: 'height: 200px') if object.image.present?
   end
 
   def mp3
     file_url = object.attributes['file_url']
-    link_to file_url, file_url
+    link_to file_url, file_url if file_url.present?
   end
 
   def description
