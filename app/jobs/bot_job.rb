@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'lib/tasks/bot_telegram/bot_listener'
+require_relative '../../lib/tasks/bot_telegram/bot_listener'
 
 class BotJob < ActiveJob::Base
   queue_as :bot
