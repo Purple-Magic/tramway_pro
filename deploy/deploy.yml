@@ -63,11 +63,6 @@
         - public/uploads
         - node_modules
 
-    # FIXME upgrade server to not catch out of memory
-    - name: Stop telegram bots
-      ignore_errors: yes
-      shell: "ps aux | grep -ie bot | awk '{print $2}' | xargs kill -9 "
-
     - name: Bundle
       shell: "/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle install"
       args:
