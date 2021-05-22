@@ -10,8 +10,8 @@ class BotTelegram::BotListener
     include BotTelegram::Info
     include BotTelegram::MessagesManager
 
-    def perform
-      bot_record = Bot.find ENV['RUNNING_BOT_ID']
+    def perform(id)
+      bot_record = Bot.find id
       Telegram::Bot::Client.run(bot_record.token) do |bot|
         bot.listen do |message|
           if can_be_processed? message
@@ -44,5 +44,3 @@ class BotTelegram::BotListener
     end
   end
 end
-
-BotTelegram::BotListener.perform
