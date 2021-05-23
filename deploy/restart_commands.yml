@@ -15,3 +15,8 @@
   shell: "/bin/bash -ilc '/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec sidekiq -d' &"
   args:
     chdir: "{{ app_path }}/current"
+
+- name: Start telegram bots
+  shell: "cd /srv/tramway_pro/current && /bin/bash -lic 'exec bundle exec rails runner lib/tasks/bot_telegram/start_bots.rb'"
+  args:
+    chdir: "{{ app_path }}/current"
