@@ -35,6 +35,7 @@ class VideoDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def preview
+    image_tag object.preview
   end
 
   def link
