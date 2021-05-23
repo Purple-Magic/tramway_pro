@@ -2,3 +2,4 @@ concurrency: 30
 queues:
   - default
   - bot
+backtrace: true
