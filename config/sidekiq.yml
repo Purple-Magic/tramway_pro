@@ -1,3 +1,4 @@
+concurrency: 8
 queues:
   - default
   - bot
