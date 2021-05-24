@@ -10,6 +10,7 @@ module Youtube
 
       {
         title: response[:items].first[:snippet][:title],
+        description: response[:items].first[:snippet][:description],
         preview: response[:items].first[:snippet][:thumbnails][:maxres][:url]
       }
     end
