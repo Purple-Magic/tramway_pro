@@ -12,6 +12,7 @@ class Admin::VideoForm < Tramway::Core::ApplicationForm
     model.save.tap do
       data = video_info value.split("/").last
       model.title = data[:title]
+      model.description = data[:description]
       model.preview = data[:preview]
       model.save!
     end

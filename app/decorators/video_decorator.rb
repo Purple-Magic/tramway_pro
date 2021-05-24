@@ -24,6 +24,7 @@ class VideoDecorator < Tramway::Core::ApplicationDecorator
       [
         :preview,
         :link,
+        :description,
         :created_at,
         :updated_at,
       ]
@@ -32,6 +33,10 @@ class VideoDecorator < Tramway::Core::ApplicationDecorator
 
   def title
     "Video #{object.id}"
+  end
+
+  def description
+    raw object.description
   end
 
   def preview
