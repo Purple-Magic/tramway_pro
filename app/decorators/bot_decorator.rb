@@ -7,7 +7,7 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def list_attributes
-      %i[users_count messages_count custom]
+      %i[users_count users_finished messages_count custom]
     end
 
     def show_attributes
@@ -56,7 +56,7 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
 
   def users_finished
     if object.team.night?
-      object.progress_records.where(bot_telegram_scenario_step_id: object.finish_step.id).count
+      object.progress_records.where(bot_telegram_scenario_step_id: object.finish_step.id).uniq(&:bot_telegram_user_id).count
     else
       'N/A'
     end

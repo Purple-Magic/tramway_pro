@@ -19,7 +19,7 @@ class Bot < ApplicationRecord
 
   def finish_step
     if team.night?
-      steps.active.where(options: nil).first
+      steps.active.where(options: nil).or(steps.active.where(options: '').or(steps.active.where(options: false))).first
     end
   end
 end
