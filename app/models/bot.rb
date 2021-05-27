@@ -16,4 +16,10 @@ class Bot < ApplicationRecord
 
   store_accessor :options, :custom
   store_accessor :options, :scenario
+
+  def finish_step
+    if team.night?
+      steps.active.where(options: nil).first
+    end
+  end
 end
