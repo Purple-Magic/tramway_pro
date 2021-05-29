@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Podcast::EpisodeSerializer < Tramway::Api::V1::ApplicationSerializer
+  has_many :highlights, serializer: Podcast::HighlightSerializer
+  belongs_to :podcast, serializer: PodcastSerializer
+
   attributes :podcast_id, :number, :title, :number, :season, :description, :published_at, :image, :explicit, :file_url,
     :duration
 
@@ -16,6 +19,7 @@ class Podcast::EpisodeSerializer < Tramway::Api::V1::ApplicationSerializer
     object.image.present? ? object.image : "http://#{ENV['PROJECT_URL']}#{object.podcast.default_image.url}"
   end
 
-  has_many :highlights, serializer: Podcast::HighlightSerializer
-  belongs_to :podcast, serializer: PodcastSerializer
+  def file_url
+    object.attributes['file_url']
+  end
 end

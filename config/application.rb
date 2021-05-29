@@ -28,6 +28,7 @@ require_relative '../lib/middleware/multi_project_configuration_middleware/podca
 require_relative '../lib/middleware/multi_project_configuration_middleware/purple_magic_callback'
 require_relative '../lib/middleware/multi_project_configuration_middleware/bot_middleware'
 require_relative '../lib/middleware/multi_project_configuration_middleware/sites'
+require_relative '../lib/middleware/multi_project_configuration_middleware/news'
 
 Bundler.require(*Rails.groups)
 
@@ -54,6 +55,7 @@ module TramwayPro
     config.middleware.use ::MultiProjectConfigurationMiddleware::Podcasts
     config.middleware.use ::MultiProjectConfigurationMiddleware::PurpleMagicCallback
     config.middleware.use ::MultiProjectConfigurationMiddleware::BotMiddleware
+    config.middleware.use ::MultiProjectConfigurationMiddleware::News
     config.middleware.use ::Middleware::MultiProjectConfigurationMiddleware::Sites
     config.active_job.queue_adapter = :sidekiq
   end
