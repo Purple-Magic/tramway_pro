@@ -22,4 +22,8 @@ class Podcast::EpisodeSerializer < Tramway::Api::V1::ApplicationSerializer
   def file_url
     object.attributes['file_url']
   end
+
+  def description
+    object.raw_description
+  end
 end

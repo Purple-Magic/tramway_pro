@@ -4,20 +4,7 @@ doc = File.open(Rails.root.join('bin', 'podcast', 'description', 'description.ht
   Nokogiri::HTML(f, nil, Encoding::UTF_8.to_s)
 end
 
-def recursively_build(elements)
-  elements.map do |element|
-    case element.name
-    when 'text', 'h1'
-      element.text
-    when 'a'
-      "#{element.text} #{element[:href]}"
-    when 'li'
-      "  * #{recursively_build(element.children)}"
-    else
-      recursively_build element.children
-    end
-  end.join("\n")
-end
+include Podcast::EpisodeConcern
 
-text = recursively_build doc.elements
+text = recursively_build_description doc.elements
 puts text

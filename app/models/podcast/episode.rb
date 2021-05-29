@@ -37,6 +37,12 @@ class Podcast::Episode < ApplicationRecord
     end
   end
 
+  include Podcast::EpisodeConcern
+
+  def raw_description
+    recursively_build_description Nokogiri::HTML(description).elements
+  end
+
   private
 
   def convert_file
