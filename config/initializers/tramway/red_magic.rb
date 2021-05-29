@@ -9,6 +9,7 @@ Tramway::Admin.set_available_models(
   Tramway::Landing::Tool,
   Tramway::Page::Page,
   Tramway::User::User,
+  Tramway::News::News,
   Estimation::Project,
   Estimation::Task,
   Estimation::Customer,
@@ -16,7 +17,6 @@ Tramway::Admin.set_available_models(
   Podcast,
   Podcast::Episode,
   Video,
-  Tramway::News::News,
   project: :red_magic
 )
 
@@ -79,7 +79,7 @@ Tramway::Api.set_available_models(
       {
         index: lambda do |records, _current_user|
           project = Project.where(url: ENV['PROJECT_URL']).first
-          records.where(project_id: project.id).where.not(file_url: nil).order(number: :desc)
+          records.where(project_id: project.id).order(published_at: :desc)
         end
       },
       {
