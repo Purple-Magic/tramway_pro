@@ -3,12 +3,14 @@
 class Tramway::News::NewsSerializer < Tramway::Api::V1::ApplicationSerializer
   attributes :title, :body, :published_at, :photo
 
+  include ActionView::Helpers::OutputSafetyHelper
+
   def photo
     object.photo.url
   end
 
   def published_at
-    object.published_at.strftime '%d.%m.%Y %H:%M'
+    object.published_at&.strftime '%d.%m.%Y %H:%M'
   end
 
   def body
