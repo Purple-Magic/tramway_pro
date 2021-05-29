@@ -16,6 +16,7 @@ Tramway::Admin.set_available_models(
   Podcast,
   Podcast::Episode,
   Video,
+  Tramway::News::News,
   project: :red_magic
 )
 
@@ -45,6 +46,7 @@ Tramway::Admin.navbar_structure(
     ]
   },
   Tramway::User::User,
+  Tramway::News::News,
   project: :red_magic
 )
 
@@ -65,10 +67,27 @@ Tramway::Api.set_available_models(
           records.where(project_id: project.id).where.not(file_url: nil).order(number: :desc)
         end
       },
-      { show: lambda do |record, _current_user|
-        project = Project.where(url: ENV['PROJECT_URL']).first
-        record.project_id == project.id
-      end }
+      {
+        show: lambda do |record, _current_user|
+          project = Project.where(url: ENV['PROJECT_URL']).first
+          record.project_id == project.id
+        end
+      }
+    ],
+    Tramway::News::News => [
+      :create,
+      {
+        index: lambda do |records, _current_user|
+          project = Project.where(url: ENV['PROJECT_URL']).first
+          records.where(project_id: project.id).where.not(file_url: nil).order(number: :desc)
+        end
+      },
+      {
+        show: lambda do |record, _current_user|
+          project = Project.where(url: ENV['PROJECT_URL']).first
+          record.project_id == project.id
+        end
+      }
     ],
     Video => [
       {
