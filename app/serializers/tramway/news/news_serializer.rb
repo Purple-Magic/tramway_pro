@@ -6,7 +6,7 @@ class Tramway::News::NewsSerializer < Tramway::Api::V1::ApplicationSerializer
   include ActionView::Helpers::OutputSafetyHelper
 
   def photo
-    object.photo.url
+    "http://#{ENV['PROJECT_URL']}#{object.photo.url}"
   end
 
   def published_at
