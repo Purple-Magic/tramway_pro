@@ -4,6 +4,7 @@ class Tramway::News::NewsSerializer < Tramway::Api::V1::ApplicationSerializer
   attributes :title, :body, :published_at, :photo
 
   include ActionView::Helpers::OutputSafetyHelper
+  include ActionView::Helpers::TextHelper
 
   def photo
     "http://#{ENV['PROJECT_URL']}#{object.photo.url}"
@@ -14,6 +15,6 @@ class Tramway::News::NewsSerializer < Tramway::Api::V1::ApplicationSerializer
   end
 
   def body
-    raw object.body
+    strip_tags object.body
   end
 end
