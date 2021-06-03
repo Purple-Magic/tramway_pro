@@ -43,6 +43,10 @@ class Podcast::Episode < ApplicationRecord
     recursively_build_description Nokogiri::HTML(description).elements
   end
 
+  def parts_directory_name
+    "#{current_podcast_directory}/#{number}/"
+  end
+
   private
 
   def convert_file
@@ -56,13 +60,19 @@ class Podcast::Episode < ApplicationRecord
     filename
   end
 
+  def podcasts_directory
+    "/srv/tramway_pro/shared/public/podcasts/"
+  end
+
+  def current_podcast_directory
+    "#{podcasts_directory}#{podcast.title.gsub(' ', '_')}/"
+  end
+
   def prepare_directory
-    podcasts_directory = "#{Rails.root}/public/podcasts/"
     FileUtils.mkdir_p podcasts_directory
 
-    current_podcast_directory = "#{Rails.root}/public/podcasts/#{podcast.title.gsub(' ', '_')}/"
     FileUtils.mkdir_p current_podcast_directory
-    "#{Rails.root}/public/podcasts/#{podcast.title.gsub(' ', '_')}/#{number}/".tap do |dir|
+    parts_directory_name.tap do |dir|
       FileUtils.mkdir_p dir
     end
   end
