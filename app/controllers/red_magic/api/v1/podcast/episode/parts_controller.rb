@@ -14,3 +14,4 @@ module RedMagic
       end
     end
   end
+end
