@@ -64,6 +64,10 @@ Rails.application.routes.draw do
         namespace :v1 do
           namespace :podcast do
             resources :highlights, only: :create
+
+            namespace :episodes do
+              resources :parts, only: :index
+            end
           end
         end
       end
