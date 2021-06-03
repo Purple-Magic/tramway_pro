@@ -37,7 +37,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def highlights_files
-    parts = Dir["#{Rails.root}/public/podcasts/#{object.podcast.title.gsub(' ', '_')}/#{number}/*"]
+    parts = Dir["#{object.parts_directory_name}/*.mp3"]
 
     content_tag :table do
       parts.each do |part|
