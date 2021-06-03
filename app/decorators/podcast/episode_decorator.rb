@@ -59,13 +59,13 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     )
 
     cut_highlights_url = Rails.application.routes.url_helpers.red_magic_api_v1_podcast_highlights_path(id: object.id)
-    download_all_parts = Rails.application.routes.url_helpers.red_magic_api_v1_podcast_episode_
+    #download_all_parts = Rails.application.routes.url_helpers.red_magic_api_v1_podcast_episode_
 
     {
       show: [
         { url: export_url, inner: -> { fa_icon 'file-excel' }, color: :success },
-        { url: cut_highlights_url, method: :post, inner: -> { fa_icon :highlighter }, color: :success },
         { url: cut_highlights_url, method: :post, inner: -> { fa_icon :highlighter }, color: :success }
+        #{ url: cut_highlights_url, method: :post, inner: -> { fa_icon :highlighter }, color: :success }
       ]
     }
   end
