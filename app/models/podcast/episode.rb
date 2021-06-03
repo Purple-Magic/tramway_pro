@@ -61,7 +61,7 @@ class Podcast::Episode < ApplicationRecord
   end
 
   def podcasts_directory
-    "/srv/tramway_pro/shared/public/podcasts/"
+    "/#{Rails.root}/public/podcasts/"
   end
 
   def current_podcast_directory
