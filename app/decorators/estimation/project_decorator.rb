@@ -23,8 +23,14 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
 
   def additional_buttons
     url = ::Tramway::Export::Engine.routes.url_helpers.export_path(object.id, model: object.class, collection: :tasks)
+    new_task_path = Tramway::Admin::Engine.routes.url_helpers.new_record_path(model: Estimation::Task, estimation_task: { estimation_project: 6 })
 
-    { show: [{ url: url, inner: -> { fa_icon 'file-excel' }, color: :success }] }
+    {
+      show: [
+        { url: url, inner: -> { fa_icon 'file-excel' }, color: :success },
+        { url: new_task_path, inner: -> { fa_icon :plus }, color: :primary }
+      ]
+    }
   end
 
   def table
