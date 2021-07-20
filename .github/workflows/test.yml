@@ -56,6 +56,7 @@ jobs:
           bundle-cache: true
 
       - name: End-2-end testing
+        run:
           bundle exec rspec
 
       - name: Rocket.Chat Notification
@@ -84,6 +85,7 @@ jobs:
           bundle-cache: true
 
       - name: Running Linter
+        run:
           bundle exec rubocop
 
       - name: Rocket.Chat Notification
