@@ -39,7 +39,7 @@ jobs:
           gem install bundler
   tests:
     runs-on: ubuntu-latest
-    need: build
+    needs: build
 
     services:
       postgres:
@@ -75,7 +75,7 @@ jobs:
 
   rubocop:
     runs-on: ubuntu-latest
-    need: build
+    needs: build
 
     steps:
       - uses: actions/checkout@v1
