@@ -9,12 +9,8 @@ class TramwayDev::Web::WelcomeController < ApplicationController
     main_page = Tramway::Page::Page.where(project_id: project, page_type: :main).active.first
     @blocks = Tramway::Landing::BlockDecorator.decorate Tramway::Landing::Block.on_main_page
     pages_links = Tramway::Page::Page.where(project_id: project.id).where.not(page_type: :main).active.map do |page|
-      Tramway::Landing::Navbar::LinkDecorator.decorate(
-        {
-          title: page.title,
-          link: Tramway::Page::Engine.routes.url_helpers.page_path(page.slug)
-        }
-      )
+      link = Tramway::Page::Engine.routes.url_helpers.page_path(page.slug)
+      Tramway::Landing::Navbar::LinkDecorator.decorate({ title: page.title, link: link })
     end
     pages_blocks = Tramway::Landing::Block.active.with_navbar_link.where(project_id: project.id, page_id: main_page.id)
     @links = pages_links + Tramway::Landing::BlockLinkDecorator.decorate(

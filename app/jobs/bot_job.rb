@@ -11,6 +11,6 @@ class BotJob < ActiveJob::Base
   end
 
   def self.cancel!(jid)
-    Sidekiq.redis {|c| c.setex("cancelled-#{jid}", 86400, 1) }
+    Sidekiq.redis { |c| c.setex("cancelled-#{jid}", 86_400, 1) }
   end
 end

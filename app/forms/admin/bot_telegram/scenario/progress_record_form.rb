@@ -9,8 +9,8 @@ class Admin::BotTelegram::Scenario::ProgressRecordForm < Tramway::Core::Applicat
   def initialize(object)
     super(object).tap do
       form_properties user: :association,
-                      step: :association,
-                      answer: :text
+        step: :association,
+        answer: :text
     end
   end
 end

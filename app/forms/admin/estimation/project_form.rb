@@ -8,8 +8,8 @@ class Admin::Estimation::ProjectForm < Tramway::Core::ApplicationForm
   def initialize(object)
     super(object).tap do
       form_properties customer: :association,
-                      title: :string,
-                      description: :ckeditor
+        title: :string,
+        description: :ckeditor
     end
   end
 end

@@ -45,6 +45,7 @@ ru:
         messages_count: Количество сообщений
         custom: Кастомный
         users_finished: Пользователей прошло квест
+        link: Ссылка
       estimation/project:
         name: Название
         title: Название

@@ -19,12 +19,12 @@ class Admin::Audited::AuditForm < Tramway::Core::ApplicationForm
       #     }
       #   }
       form_properties username: :string,
-                      action: :string,
-                      audited_changes: :text,
-                      version: :integer,
-                      comment: :string,
-                      remote_address: :string,
-                      request_uuid: :string
+        action: :string,
+        audited_changes: :text,
+        version: :integer,
+        comment: :string,
+        remote_address: :string,
+        request_uuid: :string
     end
   end
 end

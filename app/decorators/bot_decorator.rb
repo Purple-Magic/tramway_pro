@@ -7,7 +7,7 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def list_attributes
-      %i[users_count users_finished messages_count custom]
+      %i[users_count link users_finished messages_count custom]
     end
 
     def show_attributes
@@ -17,6 +17,10 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
     def show_associations
       [:steps]
     end
+  end
+
+  def link
+    link_to "@#{object.slug}", "https://t.me/#{object.slug}", target: '_blank' if object.slug.present?
   end
 
   def options

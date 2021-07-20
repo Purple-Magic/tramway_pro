@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::VideoForm < Tramway::Core::ApplicationForm
   properties :url, :project_id
 
@@ -10,7 +12,7 @@ class Admin::VideoForm < Tramway::Core::ApplicationForm
   def url=(value)
     model.url = value
     model.save.tap do
-      data = video_info value.split("/").last
+      data = video_info value.split('/').last
       model.title = data[:title]
       model.description = data[:description]
       model.preview = data[:preview]
