@@ -19,8 +19,8 @@ describe 'Update participant' do
     title = "#{participant.values['Фамилия']} #{participant.values['Имя']}"
     click_on_table_item title
     find('.btn.btn-warning', match: :first).click
-    fill_in 'record[Фамилия]', with: attributes[:'Фамилия']
-    fill_in 'record[Имя]', with: attributes[:'Имя']
+    fill_in 'record[Фамилия]', with: attributes[:Фамилия]
+    fill_in 'record[Имя]', with: attributes[:Имя]
     fill_in 'record[Место учёбы / работы]', with: attributes[:'Место учёбы / работы']
     fill_in 'record[Номер телефона]', with: attributes[:'Номер телефона']
     fill_in 'record[Email]', with: attributes[:Email]
@@ -46,8 +46,8 @@ describe 'Update participant' do
     click_on 'Участники'
     click_on_table_item "#{participant.values['Фамилия']} #{participant.values['Имя']}"
     find('.btn.btn-warning', match: :first).click
-    fill_in 'record[Фамилия]', with: attributes[:'Фамилия']
-    fill_in 'record[Имя]', with: attributes[:'Имя']
+    fill_in 'record[Фамилия]', with: attributes[:Фамилия]
+    fill_in 'record[Имя]', with: attributes[:Имя]
     fill_in 'record[Место учёбы / работы]', with: attributes[:'Место учёбы / работы']
     fill_in 'record[Номер телефона]', with: attributes[:'Номер телефона']
     fill_in 'record[Email]', with: attributes[:Email]
