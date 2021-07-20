@@ -45,7 +45,7 @@ gem 'active_model_serializers', '0.10.12'
 gem 'audited', '>= 4.8.0'
 gem 'bcrypt'
 gem 'bigdecimal', '1.3.5'
-gem 'bootstrap', '>= 4.3.1'
+gem 'bootstrap', '4.6.0'
 gem 'bootstrap-datepicker-rails', github: 'kostia/bootstrap-datepicker-rails'
 gem 'bootstrap-kaminari-views', github: 'kalashnikovisme/bootstrap-kaminari-views', branch: :master
 gem 'browser'
