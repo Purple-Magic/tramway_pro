@@ -40,6 +40,11 @@ jobs:
           bundle install --jobs 4 --retry 3
 
       - name: Setup application
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          RAILS_ENV: test
+        run: |
           cp config/database.sample.yml config/database.yml
           cp config/secrets.sample.yml config/secrets.yml
           bin/rails db:setup
