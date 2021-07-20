@@ -7,13 +7,13 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.7.3'
+ruby '2.7.4'
 gem 'rails', '5.1.7'
 
 gem 'tramway-admin', '2.1.0.2'
 gem 'tramway-api', '1.8.7.1'
 gem 'tramway-conference', '1.9.5.1'
-gem 'tramway-core', '2.0.1'
+gem 'tramway-core', '2.0.1.1'
 gem 'tramway-event', '1.12.6.2'
 gem 'tramway-export', '0.2.0.3'
 gem 'tramway-landing', '3.3.0.3'
@@ -77,7 +77,7 @@ gem 'rails-html-sanitizer', '>= 1.0.4'
 gem 'rake', '>= 12.3.3'
 gem 'ransack'
 gem 'react-rails'
-gem 'rmagick'
+gem 'rmagick', '4.2.2'
 gem 'russian'
 gem 'russia_regions', '0.0.6'
 gem 'safe_target_blank'
