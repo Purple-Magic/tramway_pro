@@ -6,8 +6,8 @@ class Admin::WordForm < Tramway::Core::ApplicationForm
   def initialize(obj)
     super(obj).tap do
       form_properties main: :string,
-                      synonims: :string,
-                      description: :text
+        synonims: :string,
+        description: :text
     end
   end
 

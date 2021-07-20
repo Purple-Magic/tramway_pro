@@ -95,7 +95,7 @@ Tramway::Api.set_available_models(
           project = Project.where(url: ENV['PROJECT_URL']).first
           records.active.where(project_id: project.id)
         end
-      },
+      }
     ]
   },
   project: :red_magic

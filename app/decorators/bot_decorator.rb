@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class BotDecorator < Tramway::Core::ApplicationDecorator
-  delegate_attributes :name, :team
+  delegate_attributes :name, :team, :finished_users
 
   decorate_association :steps
 
   class << self
     def list_attributes
-      %i[users_count users_finished messages_count custom]
+      %i[users_count link users_finished messages_count custom]
     end
 
     def show_attributes
@@ -17,6 +17,10 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
     def show_associations
       [:steps]
     end
+  end
+
+  def link
+    link_to "@#{object.slug}", "https://t.me/#{object.slug}", target: '_blank' if object.slug.present?
   end
 
   def options
@@ -56,7 +60,7 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
 
   def users_finished
     if object.team.night?
-      object.progress_records.where(bot_telegram_scenario_step_id: object.finish_step.id).uniq(&:bot_telegram_user_id).count
+      finished_users.count
     else
       'N/A'
     end

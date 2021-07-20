@@ -14,8 +14,8 @@ describe 'IT Way: Creating participant' do
     count = Tramway::Event::Participant.count
     visit "/events/#{event.id}"
 
-    fill_in 'tramway_event_participant[Фамилия]', with: attributes[:'Фамилия']
-    fill_in 'tramway_event_participant[Имя]', with: attributes[:'Имя']
+    fill_in 'tramway_event_participant[Фамилия]', with: attributes[:Фамилия]
+    fill_in 'tramway_event_participant[Имя]', with: attributes[:Имя]
     fill_in 'tramway_event_participant[Место учёбы / работы]', with: attributes[:'Место учёбы / работы']
     fill_in 'tramway_event_participant[Номер телефона]', with: attributes[:'Номер телефона']
     fill_in 'tramway_event_participant[Email]', with: attributes[:Email]
@@ -28,8 +28,8 @@ describe 'IT Way: Creating participant' do
   it 'should create participant and show events page' do
     visit "/events/#{event.id}"
 
-    fill_in 'tramway_event_participant[Фамилия]', with: attributes[:'Фамилия']
-    fill_in 'tramway_event_participant[Имя]', with: attributes[:'Имя']
+    fill_in 'tramway_event_participant[Фамилия]', with: attributes[:Фамилия]
+    fill_in 'tramway_event_participant[Имя]', with: attributes[:Имя]
     fill_in 'tramway_event_participant[Место учёбы / работы]', with: attributes[:'Место учёбы / работы']
     fill_in 'tramway_event_participant[Номер телефона]', with: attributes[:'Номер телефона']
     fill_in 'tramway_event_participant[Email]', with: attributes[:Email]
@@ -42,8 +42,8 @@ describe 'IT Way: Creating participant' do
   it 'should create participant with needed arguments' do
     visit "/events/#{event.id}"
 
-    fill_in 'tramway_event_participant[Фамилия]', with: attributes[:'Фамилия']
-    fill_in 'tramway_event_participant[Имя]', with: attributes[:'Имя']
+    fill_in 'tramway_event_participant[Фамилия]', with: attributes[:Фамилия]
+    fill_in 'tramway_event_participant[Имя]', with: attributes[:Имя]
     fill_in 'tramway_event_participant[Место учёбы / работы]', with: attributes[:'Место учёбы / работы']
     fill_in 'tramway_event_participant[Номер телефона]', with: attributes[:'Номер телефона']
     fill_in 'tramway_event_participant[Email]', with: attributes[:Email]
@@ -66,8 +66,8 @@ describe 'IT Way: Creating participant' do
     it 'should show event creator data' do
       visit "/events/#{event.id}"
 
-      fill_in 'tramway_event_participant[Фамилия]', with: attributes[:'Фамилия']
-      fill_in 'tramway_event_participant[Имя]', with: attributes[:'Имя']
+      fill_in 'tramway_event_participant[Фамилия]', with: attributes[:Фамилия]
+      fill_in 'tramway_event_participant[Имя]', with: attributes[:Имя]
       fill_in 'tramway_event_participant[Место учёбы / работы]', with: attributes[:'Место учёбы / работы']
       fill_in 'tramway_event_participant[Номер телефона]', with: attributes[:'Номер телефона']
       fill_in 'tramway_event_participant[Email]', with: attributes[:Email]

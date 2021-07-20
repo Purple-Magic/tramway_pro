@@ -8,8 +8,8 @@ class Admin::Estimation::CoefficientForm < Tramway::Core::ApplicationForm
   def initialize(object)
     super(object).tap do
       form_properties estimation_project: :association,
-                      title: :string,
-                      scale: :float
+        title: :string,
+        scale: :float
     end
   end
 end

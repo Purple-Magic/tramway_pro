@@ -22,8 +22,8 @@ describe 'Create participant' do
     click_on 'Сохранить', class: 'btn-success'
 
     find('.btn.btn-warning', match: :first).click
-    fill_in 'record[Фамилия]', with: attributes[:'Фамилия']
-    fill_in 'record[Имя]', with: attributes[:'Имя']
+    fill_in 'record[Фамилия]', with: attributes[:Фамилия]
+    fill_in 'record[Имя]', with: attributes[:Имя]
     fill_in 'record[Место учёбы / работы]', with: attributes[:'Место учёбы / работы']
     fill_in 'record[Номер телефона]', with: attributes[:'Номер телефона']
     fill_in 'record[Email]', with: attributes[:Email]
@@ -54,14 +54,14 @@ describe 'Create participant' do
     click_on 'Сохранить', class: 'btn-success'
 
     find('.btn.btn-warning', match: :first).click
-    fill_in 'record[Фамилия]', with: attributes[:'Фамилия']
-    fill_in 'record[Имя]', with: attributes[:'Имя']
+    fill_in 'record[Фамилия]', with: attributes[:Фамилия]
+    fill_in 'record[Имя]', with: attributes[:Имя]
     fill_in 'record[Место учёбы / работы]', with: attributes[:'Место учёбы / работы']
     fill_in 'record[Номер телефона]', with: attributes[:'Номер телефона']
     fill_in 'record[Email]', with: attributes[:Email]
 
     click_on 'Сохранить', class: 'btn-success'
 
-    expect(page).to have_content "#{attributes[:'Фамилия']} #{attributes[:'Имя']} | Участник"
+    expect(page).to have_content "#{attributes[:Фамилия]} #{attributes[:Имя]} | Участник"
   end
 end

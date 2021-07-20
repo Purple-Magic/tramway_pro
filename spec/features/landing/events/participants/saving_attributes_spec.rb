@@ -11,14 +11,14 @@ describe 'IT Way: Creating participant' do
     it 'saving participant data in the form' do
       visit "/events/#{event.id}"
 
-      fill_in 'tramway_event_participant[Имя]', with: attributes[:'Имя']
+      fill_in 'tramway_event_participant[Имя]', with: attributes[:Имя]
       fill_in 'tramway_event_participant[Место учёбы / работы]', with: attributes[:'Место учёбы / работы']
       fill_in 'tramway_event_participant[Номер телефона]', with: attributes[:'Номер телефона']
       fill_in 'tramway_event_participant[Email]', with: attributes[:Email]
 
       click_on 'Отправить заявку'
 
-      expect(page).to have_field('tramway_event_participant[Имя]', with: attributes[:'Имя'])
+      expect(page).to have_field('tramway_event_participant[Имя]', with: attributes[:Имя])
       expect(page).to(
         have_field('tramway_event_participant[Место учёбы / работы]', with: attributes[:'Место учёбы / работы'])
       )

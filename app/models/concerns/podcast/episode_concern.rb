@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Podcast::EpisodeConcern
   def recursively_build_description(elements)
     elements.map do |element|

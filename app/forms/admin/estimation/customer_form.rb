@@ -6,8 +6,8 @@ class Admin::Estimation::CustomerForm < Tramway::Core::ApplicationForm
   def initialize(object)
     super(object).tap do
       form_properties title: :string,
-                      logo: :file,
-                      url: :string
+        logo: :file,
+        url: :string
     end
   end
 end

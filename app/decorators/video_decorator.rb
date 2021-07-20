@@ -1,32 +1,34 @@
+# frozen_string_literal: true
+
 class VideoDecorator < Tramway::Core::ApplicationDecorator
   delegate_attributes(
-        :id,
-        :url,
-        :created_at,
-        :updated_at,
+    :id,
+    :url,
+    :created_at,
+    :updated_at
   )
 
   class << self
     def collections
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :url,
-        :created_at,
-        :updated_at,
+      %i[
+        id
+        url
+        created_at
+        updated_at
       ]
     end
 
     def show_attributes
-      [
-        :preview,
-        :link,
-        :description,
-        :created_at,
-        :updated_at,
+      %i[
+        preview
+        link
+        description
+        created_at
+        updated_at
       ]
     end
   end

@@ -8,24 +8,9 @@ Tramway::Admin.set_available_models(
 )
 
 Tramway::Admin.navbar_structure(
-  {
-    landing: [
-      Tramway::Page::Page,
-      Tramway::Landing::Block
-    ]
-  },
+  { landing: [Tramway::Page::Page, Tramway::Landing::Block] },
   Tramway::User::User,
   project: :gorodsad73
 )
 
-Tramway::Landing.set_navbar(
-  {
-    left: [
-      {
-        title: 'Профиль',
-        link: '#'
-      }
-    ]
-  },
-  project: :gorodsad73
-)
+Tramway::Landing.set_navbar({ left: [{ title: 'Профиль', link: '#' }] }, project: :gorodsad73)

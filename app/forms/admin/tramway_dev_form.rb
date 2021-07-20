@@ -6,9 +6,9 @@ class Admin::TramwayDevForm < Tramway::Core::ApplicationForm
   def initialize(obj)
     super(obj).tap do
       form_properties title: :string,
-                      public_name: :string,
-                      tagline: :string,
-                      name: :string
+        public_name: :string,
+        tagline: :string,
+        name: :string
     end
   end
 end

@@ -58,8 +58,9 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
       collection: :highlights
     )
 
-    cut_highlights_url = Rails.application.routes.url_helpers.red_magic_api_v1_podcast_highlights_path(id: object.id)
-    download_all_parts = Rails.application.routes.url_helpers.red_magic_api_v1_podcast_episodes_parts_path(id: object.id)
+    path_helpers = Rails.application.routes.url_helpers
+    cut_highlights_url = path_helpers.red_magic_api_v1_podcast_highlights_path(id: object.id)
+    download_all_parts = path_helpers.red_magic_api_v1_podcast_episodes_parts_path(id: object.id)
 
     {
       show: [
