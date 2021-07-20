@@ -6,7 +6,7 @@ class BotJob < ActiveJob::Base
   queue_as :bot
   sidekiq_options backtrace: 20
 
-  def perform(id)
+  def perform(id, _bot_name)
     BotTelegram::BotListener.perform id
   end
 
