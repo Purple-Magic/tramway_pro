@@ -18,8 +18,12 @@ class Bot < ApplicationRecord
   store_accessor :options, :scenario
 
   def finish_step
-    if team.night?
-      steps.active.where(options: nil).or(steps.active.where(options: '').or(steps.active.where(options: false))).first
-    end
+    return unless team.night?
+
+    steps.active.where(options: nil).or(steps.active.where(options: '').or(steps.active.where(options: false))).first
+  end
+
+  def finished_users
+    progress_records.where(bot_telegram_scenario_step_id: object.finish_step.id).uniq(&:bot_telegram_user_id)
   end
 end

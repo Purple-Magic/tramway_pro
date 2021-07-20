@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class BotDecorator < Tramway::Core::ApplicationDecorator
-  delegate_attributes :name, :team
+  delegate_attributes :name, :team, :finished_users
 
   decorate_association :steps
 
@@ -60,7 +60,7 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
 
   def users_finished
     if object.team.night?
-      object.progress_records.where(bot_telegram_scenario_step_id: object.finish_step.id).uniq(&:bot_telegram_user_id).count
+      finished_users.count
     else
       'N/A'
     end

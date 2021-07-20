@@ -3,8 +3,9 @@
 class TramwayDev::Web::WelcomeController < ApplicationController
   layout 'tramway/landing/application'
 
+  before_action :application
+
   def index
-    @application = Constraints::DomainConstraint.new(request.domain).application_class.camelize.constantize.first
     project = Project.find_by(url: ENV['PROJECT_URL'])
     main_page = Tramway::Page::Page.where(project_id: project, page_type: :main).active.first
     @blocks = Tramway::Landing::BlockDecorator.decorate Tramway::Landing::Block.on_main_page
@@ -16,5 +17,9 @@ class TramwayDev::Web::WelcomeController < ApplicationController
     @links = pages_links + Tramway::Landing::BlockLinkDecorator.decorate(
       pages_blocks.order(position: :asc)
     )
+  end
+
+  def application
+    @application = Constraints::DomainConstraint.new(request.domain).application_class.camelize.constantize.first
   end
 end

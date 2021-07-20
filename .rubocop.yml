@@ -2,6 +2,8 @@ Documentation:
   Enabled: false
 Metrics/LineLength:
   Max: 120
+  Exclude:
+    - app/controllers/red_magic/api/v1/podcast/episodes/parts_controller.rb
 Metrics/BlockLength:
   Enabled: false
   Include:

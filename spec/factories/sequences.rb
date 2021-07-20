@@ -29,7 +29,7 @@ FactoryBot.define do
     Time.zone.today + n.day
   end
   sequence :colour do
-    (1..6).reduce('') { |str| str + (('a'..'f').to_a + ('0'..'9').to_a).sample }
+    (1..6).reduce('') { |str, _i| str + (('a'..'f').to_a + ('0'..'9').to_a).sample }
   end
   sequence :filename do |n|
     "file#{n}.png"
