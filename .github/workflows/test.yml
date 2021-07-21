@@ -21,7 +21,7 @@ jobs:
           bundle-cache: true
 
       - name: Install rubocop
-        run:
+        run: |
           gem install rake -v '13.0.6'
           gem install rubocop
 
