@@ -22,13 +22,11 @@ jobs:
 
       - name: Install rubocop
         run: |
-          gem install rake -v '13.0.6'
-          gem install concurrent-ruby -v '1.1.9'
           gem install rubocop
 
       - name: Running Linter
         run:
-          bundle exec rubocop
+          rubocop
 
       - name: Rocket.Chat Notification
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
