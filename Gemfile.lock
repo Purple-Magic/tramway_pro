@@ -525,7 +525,7 @@ GEM
       uuid
     tramway-auth (2.0.2)
     tramway-conference (1.9.5.1)
-    tramway-core (2.0.1.1)
+    tramway-core (2.0.1.2)
       audited (>= 4.8.0)
       bootstrap (>= 4.1.2)
       carrierwave
@@ -689,7 +689,7 @@ DEPENDENCIES
   tramway-admin (= 2.1.0.2)
   tramway-api (= 1.8.7.1)
   tramway-conference (= 1.9.5.1)
-  tramway-core (= 2.0.1.1)
+  tramway-core (= 2.0.1.2)
   tramway-event (= 1.12.6.2)
   tramway-export (= 0.2.0.3)
   tramway-landing (= 3.3.0.3)

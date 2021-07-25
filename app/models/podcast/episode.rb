@@ -8,9 +8,9 @@ class Podcast::Episode < ApplicationRecord
   belongs_to :podcast
   has_many :highlights, class_name: 'Podcast::Highlight'
 
-  uploader :cover, :photo, extensions: %i[jpg]
-  uploader :file, :file, extensions: %i[ogg mp3 wav]
-  uploader :ready_file, :file, extensions: %i[ogg mp3 wav]
+  uploader :ready_file, :file
+  uploader :file, :file
+  uploader :cover, :photo
 
   aasm :montage, column: :montage_state do
     state :recording, initial: true
