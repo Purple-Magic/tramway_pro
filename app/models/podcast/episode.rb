@@ -37,6 +37,7 @@ class Podcast::Episode < ApplicationRecord
       hour = highlight.time.split(':')[0]
       minutes = highlight.time.split(':')[1]
       seconds = highlight.time.split(':')[2]
+
       highlight_time = DateTime.new(2020, 0o1, 0o1, hour.to_i, minutes.to_i, seconds.to_i)
       begin_time = (highlight_time - 2.minutes).strftime '%H:%M:%S'
       end_time = (highlight_time + 10.seconds).strftime '%H:%M:%S'
@@ -52,6 +53,15 @@ class Podcast::Episode < ApplicationRecord
 
   def parts_directory_name
     "#{current_podcast_directory}/#{number}/"
+  end
+
+  def prepare_directory
+    FileUtils.mkdir_p podcasts_directory
+
+    FileUtils.mkdir_p current_podcast_directory
+    parts_directory_name.tap do |dir|
+      FileUtils.mkdir_p dir
+    end
   end
 
   private
@@ -73,14 +83,5 @@ class Podcast::Episode < ApplicationRecord
 
   def current_podcast_directory
     "#{podcasts_directory}#{podcast.title.gsub(' ', '_')}/"
-  end
-
-  def prepare_directory
-    FileUtils.mkdir_p podcasts_directory
-
-    FileUtils.mkdir_p current_podcast_directory
-    parts_directory_name.tap do |dir|
-      FileUtils.mkdir_p dir
-    end
   end
 end
