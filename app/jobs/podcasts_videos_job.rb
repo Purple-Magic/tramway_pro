@@ -6,6 +6,7 @@ class PodcastsVideosJob < ActiveJob::Base
   def perform(id)
     episode = ::Podcast::Episode.find id
 
+    episode.prepare_directory
     command = "ffmpeg -y -loop 1 -i #{episode.cover.path} -i #{episode.ready_file.path} -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest #{episode.parts_directory_name}/video.mp4"
     system command
   rescue StandardError => e
