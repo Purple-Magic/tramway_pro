@@ -1,2 +1,2 @@
-rails: bundle exec rails s
+rails: rails s
 sidekiq: bundle exec sidekiq
