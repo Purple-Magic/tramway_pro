@@ -11,12 +11,22 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[title number file image mp3 description montage_state highlights_files]
+      %i[title number file ready_file cover video image mp3 description montage_state highlights_files]
     end
   end
 
   def title
     "Выпуск №#{object.number}"
+  end
+
+  def video
+    path_helpers = Rails.application.routes.url_helpers
+    path = path_helpers.red_magic_api_v1_podcast_episodes_video_path(object.id)
+    link_to 'Download', path
+  end
+
+  def cover
+    file_view object.cover
   end
 
   def image
@@ -34,6 +44,10 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   def file
     file_view object.file
+  end
+
+  def ready_file
+    file_view object.ready_file
   end
 
   def highlights_files
@@ -61,12 +75,14 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     path_helpers = Rails.application.routes.url_helpers
     cut_highlights_url = path_helpers.red_magic_api_v1_podcast_highlights_path(id: object.id)
     download_all_parts = path_helpers.red_magic_api_v1_podcast_episodes_parts_path(id: object.id)
+    video_generate_path = path_helpers.red_magic_api_v1_podcast_episodes_videos_path(id: object.id)
 
     {
       show: [
         { url: export_url, inner: -> { fa_icon 'file-excel' }, color: :success },
         { url: cut_highlights_url, method: :post, inner: -> { fa_icon :highlighter }, color: :success },
-        { url: download_all_parts, method: :get, inner: -> { fa_icon :download }, color: :success }
+        { url: download_all_parts, method: :get, inner: -> { fa_icon :download }, color: :success },
+        { url: video_generate_path, method: :post, inner: -> { fa_icon :video }, color: :success }
       ]
     }
   end

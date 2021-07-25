@@ -67,6 +67,7 @@ Rails.application.routes.draw do
 
             namespace :episodes do
               resources :parts, only: :index
+              resources :videos, only: [ :create, :show ]
             end
           end
         end
