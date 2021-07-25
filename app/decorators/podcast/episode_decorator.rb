@@ -3,7 +3,7 @@
 class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   decorate_association :highlights
 
-  delegate_attributes :number, :file_url
+  delegate_attributes :number, :file_url, :montage_state
 
   class << self
     def show_associations
@@ -11,7 +11,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[title number file image mp3 description highlights_files]
+      %i[title number file image mp3 description montage_state highlights_files]
     end
   end
 
@@ -66,7 +66,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
       show: [
         { url: export_url, inner: -> { fa_icon 'file-excel' }, color: :success },
         { url: cut_highlights_url, method: :post, inner: -> { fa_icon :highlighter }, color: :success },
-        { url: download_all_parts, method: :get, inner: -> { fa_icon :highlighter }, color: :success }
+        { url: download_all_parts, method: :get, inner: -> { fa_icon :download }, color: :success }
       ]
     }
   end
