@@ -13,7 +13,12 @@ class Podcast::Episode < ApplicationRecord
   aasm :montage, column: :montage_state do
     state :recording, initial: true
     state :recorded
+    state :highlighted
     state :montaged
+
+    event :highlight_it do
+      transitions from: [ :recording, :recorded ], to: :highlighted
+    end
 
     event :montage, before: :cut_highlights do
       transitions from: :recording, to: :montaged

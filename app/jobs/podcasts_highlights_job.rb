@@ -6,5 +6,6 @@ class PodcastsHighlightsJob < ActiveJob::Base
   def perform(id)
     episode = Podcast::Episode.find id
     episode.cut_highlights
+    episode.highlight_it
   end
 end
