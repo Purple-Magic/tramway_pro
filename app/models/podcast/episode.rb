@@ -17,7 +17,7 @@ class Podcast::Episode < ApplicationRecord
     state :montaged
 
     event :highlight_it do
-      transitions from: [ :recording, :recorded ], to: :highlighted
+      transitions from: %i[recording recorded], to: :highlighted
     end
 
     event :montage, before: :cut_highlights do
