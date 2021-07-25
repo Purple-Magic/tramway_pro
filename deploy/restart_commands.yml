@@ -9,10 +9,10 @@
 
 - name: Stop sidekiq
   ignore_errors: yes
-  shell: "ps aux | grep -ie sidekiq | awk '{print $2}' | xargs kill -9 "
+  shell: "ps aux | grep -ie sidekiq | awk '{print $2}' | xargs kill -9"
 
 - name: Start sidekiq
-  shell: "/bin/bash -ilc '/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec sidekiq -d' &"
+  shell: "/bin/bash -ilc 'nohup /usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec sidekiq &'"
   args:
     chdir: "{{ app_path }}/current"
 
