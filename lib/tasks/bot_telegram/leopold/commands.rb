@@ -17,7 +17,6 @@ module BotTelegram::Leopold::Commands
   end
 
   def add_description(text)
-    binding.pry
     if condition_to_action? text, :add_description
       word = Word.includes(:audits).where(audits: { user_id: chat.telegram_chat_id }, description: nil).last
       if word.present?
