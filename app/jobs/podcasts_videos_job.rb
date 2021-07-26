@@ -8,8 +8,6 @@ class PodcastsVideosJob < ActiveJob::Base
 
     episode.prepare_directory
     command = "ffmpeg #{options(episode)}"
-    binding.pry
-    # "-y -loop 1 -i #{episode.cover.path} -i #{episode.ready_file.path} -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest -strict -2 #{output}"
     system command
   rescue StandardError => e
     Rails.env.development? ? Rails.logger.error("logger.info : #{e.message}") : Raven.capture_exception(e)
