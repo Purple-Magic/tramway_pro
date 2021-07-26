@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/LineLength
 class RedMagic::Api::V1::Podcast::Episodes::VideosController < RedMagic::Api::V1::Podcast::Episodes::ApplicationController
+  # rubocop:enable Metrics/LineLength
   def create
     ::PodcastsVideosJob.perform_later params[:id]
 

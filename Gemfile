@@ -101,8 +101,8 @@ gem 'webpacker'
 gem 'whenever', require: false
 
 group :development do
-  gem 'web-console', '>= 3.3.0'
   gem 'foreman'
+  gem 'web-console', '>= 3.3.0'
 end
 
 group :development, :test do

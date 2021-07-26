@@ -21,6 +21,22 @@ module BotTelegram::Leopold::Commands
       word = Word.includes(:audits).where(audits: { user_id: chat.telegram_chat_id }, description: nil).last
       if word.present?
         word.update! description: text
+        message_to_chat bot, chat, bot_record.options['please_add_synonims']
+      else
+        message_to_chat bot, chat, bot_record.options['looks_like_you_did_not_create_any_word']
+      end
+    else
+      empty_word_message
+    end
+  end
+
+  def add_synonims(text)
+    if condition_to_action? text, :add_synonims
+      word = Word.includes(:audits).where(audits: { user_id: chat.telegram_chat_id },
+        synonims: nil).where.not(description: nil).last
+      if word.present?
+        synonims = text.split(',')
+        word.update! synonims: synonims
         message_to_chat bot, chat, bot_record.options['we_will_review_it']
       else
         message_to_chat bot, chat, bot_record.options['looks_like_you_did_not_create_any_word']
