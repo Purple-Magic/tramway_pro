@@ -7,16 +7,34 @@ module Ffmpeg::CommandBuilder
     inputs.each do |input|
       line += "-i #{input} "
     end
-    arguments = []
-    arguments << "c:v #{options[:video_codec]}" if options[:video_codec].present?
-    arguments << "tune #{options[:tune]}" if options[:tune].present?
-    arguments << "c:a #{options[:audio_codec]}" if options[:audio_codec].present?
-    arguments << "pix_fmt #{options[:pixel_format]}" if options[:pixel_format].present?
-    arguments << 'shortest' if options[:shortest]
+    arguments = build_arguments options
     arguments << "strict -#{options[:strict]}" if options[:strict].present?
     arguments.each do |argument|
       line += "-#{argument} "
     end
     "#{line}#{output}"
+  end
+
+  private
+
+  ARGUMENTS = {
+    video_codec: 'c:v',
+    tune: :tune,
+    audio_codec: 'c:a',
+    pixel_format: :pix_fmt,
+    shortest: :boolean
+  }
+
+  def build_arguments(options)
+    ARGUMENTS.map do |pair|
+      if options[pair[0]].present?
+        case pair[1]
+        when :boolean
+          pair[0]
+        else
+          "#{pair[1]} #{options[pair[0]]}"
+        end
+      end
+    end
   end
 end
