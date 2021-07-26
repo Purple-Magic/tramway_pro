@@ -32,7 +32,8 @@ module BotTelegram::Leopold::Commands
 
   def add_synonims(text)
     if condition_to_action? text, :add_synonims
-      word = Word.includes(:audits).where(audits: { user_id: chat.telegram_chat_id }, synonims: nil).where.not(description: nil).last
+      word = Word.includes(:audits).where(audits: { user_id: chat.telegram_chat_id },
+        synonims: nil).where.not(description: nil).last
       if word.present?
         synonims = text.split(',')
         word.update! synonims: synonims

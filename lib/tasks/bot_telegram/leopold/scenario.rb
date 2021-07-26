@@ -11,7 +11,7 @@ class BotTelegram::Leopold::Scenario
   include ::BotTelegram::Leopold::Commands
 
   IT_WAY_CHAT_ID = '-1001141858122'
-  COMMANDS = ['add_word', 'add_description', 'add_synonims'].freeze
+  COMMANDS = %w[add_word add_description add_synonims].freeze
 
   attr_reader :bot, :bot_record, :chat, :message_from_telegram
 

@@ -7,7 +7,7 @@ class PodcastsHighlightsJob < ActiveJob::Base
     episode = Podcast::Episode.find id
     episode.cut_highlights
     episode.highlight_it
-  rescue
+  rescue StandardError
     Rails.env.development? ? puts(e) : Raven.capture_exception(e)
   end
 end
