@@ -11,7 +11,7 @@ module Ffmpeg
       arguments << "tune #{options[:tune]}" if options[:tune].present?
       arguments << "c:a #{options[:audio_codec]}" if options[:audio_codec].present?
       arguments << "pix_fmt #{options[:pixel_format]}" if options[:pixel_format].present?
-      arguments << "shortest" if options[:shortest]
+      arguments << 'shortest' if options[:shortest]
       arguments << "strict -#{options[:strict]}" if options[:strict].present?
       arguments.each do |argument|
         line += "-#{argument} "
