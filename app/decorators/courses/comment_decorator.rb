@@ -68,8 +68,4 @@ class Courses::CommentDecorator < Tramway::Core::ApplicationDecorator
       # }
     end
   end
-
-  def title
-    object.text
-  end
 end
