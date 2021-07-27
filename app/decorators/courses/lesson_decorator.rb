@@ -1,6 +1,6 @@
 class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
-  decorate_associations :videos
+  decorate_associations :videos, :topic
 
   delegate_attributes(
         :id,
@@ -22,7 +22,7 @@ class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
       [
         :id,
         :title,
-        :topic_id,
+        :topic,
         :state,
       ]
     end
@@ -31,15 +31,17 @@ class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
       [
         :id,
         :title,
-        :topic_id,
         :state,
+        :topic_link,
         :created_at,
         :updated_at,
       ]
     end
 
     def show_associations
-      [ :videos ]
+      [
+        :videos
+      ]
     end
 
     def list_filters
@@ -59,5 +61,9 @@ class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
       #   }
       # }
     end
+  end
+
+  def topic_link
+    link_to(topic.title, ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.topic_id, model: 'Courses::Topic'))
   end
 end
