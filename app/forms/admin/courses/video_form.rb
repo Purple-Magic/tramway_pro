@@ -1,5 +1,5 @@
 class Admin::Courses::VideoForm < Tramway::Core::ApplicationForm
-  properties :lesson_id, :text, :state
+  properties :lesson_id, :text, :state, :project_id
 
   def initialize(object)
     super(object).tap do
