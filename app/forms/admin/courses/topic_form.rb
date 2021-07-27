@@ -1,12 +1,13 @@
 class Admin::Courses::TopicForm < Tramway::Core::ApplicationForm
-  properties :title, :state, :project_id
+  properties :title, :state, :project_id, :position
 
   association :course
 
   def initialize(object)
     super(object).tap do
       form_properties title: :string,
-        course: :association
+        course: :association,
+        position: :numeric
     end
   end
 end
