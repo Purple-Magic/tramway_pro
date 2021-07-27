@@ -14,6 +14,11 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
     :updated_at
   )
 
+  def title
+    "#{object.position}  | #{object.title}"
+  end
+
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]

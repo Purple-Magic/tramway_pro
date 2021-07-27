@@ -8,13 +8,16 @@ class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
 
   delegate_attributes(
     :id,
-    :title,
     :topic_id,
     :state,
     :position,
     :created_at,
     :updated_at
   )
+
+  def title
+    "#{object.position}  | #{object.title}"
+  end
 
   class << self
     def collections
