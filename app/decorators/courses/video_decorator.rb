@@ -2,7 +2,7 @@
 
 class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
-  decorate_associations :comments
+  decorate_association :comments, as: :video
 
   delegate_attributes(
     :id,
