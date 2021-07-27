@@ -7,6 +7,7 @@ class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
         :title,
         :topic_id,
         :state,
+        :position,
         :created_at,
         :updated_at,
   )

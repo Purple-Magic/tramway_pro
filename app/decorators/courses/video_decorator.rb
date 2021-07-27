@@ -7,6 +7,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
         :lesson_id,
         :text,
         :state,
+        :position,
         :created_at,
         :updated_at,
   )
