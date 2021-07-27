@@ -20,7 +20,6 @@ Rails.application.routes.draw do
 
     mount Tramway::Admin::Engine, at: '/admin', as: :kalash_admin
     mount Tramway::Auth::Engine, at: '/auth', as: :kalash_auth
-    # mount Tramway::Site::Engine => '/'
   end
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:tramway_dev]) do
