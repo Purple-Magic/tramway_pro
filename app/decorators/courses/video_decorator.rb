@@ -14,11 +14,6 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
     :updated_at
   )
 
-  def title
-    "#{object.position}  | #{object.title}"
-  end
-
-
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
@@ -69,6 +64,8 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def title
-    "Video ##{object.id} for Lesson #{object.lesson_id}"
+    "#{object.position} | Video ##{object.id} for Lesson #{object.lesson_id}"
   end
+
+  alias name title
 end
