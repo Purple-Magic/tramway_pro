@@ -36,8 +36,7 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_associations
-      # Associations you want to show in admin dashboard
-      # [ :messages ]
+      [ :topics ]
     end
 
     def list_filters

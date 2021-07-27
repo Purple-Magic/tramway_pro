@@ -1,6 +1,6 @@
 class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
-  # decorate_associations :messages, :posts
+  decorate_associations :comments
 
   delegate_attributes(
         :id,
@@ -38,8 +38,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_associations
-      # Associations you want to show in admin dashboard
-      # [ :messages ]
+      [ :comments ]
     end
 
     def list_filters
@@ -59,5 +58,9 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
       #   }
       # }
     end
+  end
+
+  def title
+    "Video ##{object.id} for Lesson #{object.lesson_id}"
   end
 end
