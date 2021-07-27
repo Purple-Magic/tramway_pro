@@ -1,6 +1,23 @@
+Tramway::Core.initialize_application model_class: RedMagic
+
 Tramway::Admin.set_available_models Course,
   Courses::Topic,
   Courses::Lesson,
   Courses::Video,
   Courses::Comment,
-project: :kalashnikovisme
+  TimeLog,
+  project: :kalashnikovisme
+
+Tramway::Admin.navbar_structure(
+  {
+    courses: [
+      Course,
+      Courses::Topic,
+      Courses::Lesson,
+      Courses::Video,
+      Courses::Comment,
+      TimeLog
+    ]
+  },
+  project: :kalashnikovisme
+)

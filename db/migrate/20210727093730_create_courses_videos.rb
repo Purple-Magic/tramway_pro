@@ -4,6 +4,7 @@ class CreateCoursesVideos < ActiveRecord::Migration[5.1]
       t.integer :lesson_id
       t.text :text
       t.text :state
+      t.integer :project_id
 
       t.timestamps
     end

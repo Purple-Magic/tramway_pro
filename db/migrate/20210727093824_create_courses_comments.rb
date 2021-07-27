@@ -5,6 +5,7 @@ class CreateCoursesComments < ActiveRecord::Migration[5.1]
       t.text :begin_time
       t.text :end_time
       t.text :state
+      t.integer :project_id
 
       t.timestamps
     end

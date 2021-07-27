@@ -4,6 +4,7 @@ class CreateCoursesLessons < ActiveRecord::Migration[5.1]
       t.text :title
       t.integer :topic_id
       t.text :state
+      t.integer :project_id
 
       t.timestamps
     end

@@ -10,6 +10,11 @@ red_magic: &red_magic
   public_name: RedMagic
   favicon: '/red-magic.ico'
 
+kalashnikovisme: &kalashnikovisme
+  name: kalashnikovisme
+  title: Kalashnikovisme
+  public_name: "kalashnikovisme"
+
 development:
   it_way: it-way.test
   kalashnikovisme: kalashnikovisme.test
@@ -22,7 +27,6 @@ development:
   red_magic: red-magic.test
   engines:
     'it-way.test': conference
-    'kalashnikovisme.test': site
   application_class:
     'tramway.test': tramway_dev
     'listai.test': listai_app
@@ -39,6 +43,8 @@ development:
       <<: *purple_magic
     'red-magic.test':
       <<: *red_magic
+    'kalashnikovisme.test':
+      <<: *kalashnikovisme
 
 production:
   it_way: it-way.pro
@@ -51,7 +57,6 @@ production:
   red_magic: red-magic.ru
   engines:
     'it-way.pro': conference
-    'kalashnikovisme.ru': site
   application_class:
     'tramway.pro': tramway_dev
     'listai.io': listai_app
@@ -68,6 +73,8 @@ production:
       <<: *purple_magic
     'red-magic.ru':
       <<: *red_magic
+    'kalashnikovisme.ru':
+      <<: *kalashnikovisme
 
 test:
   it_way: it-way.test
@@ -80,7 +87,6 @@ test:
   red_magic: red-magic.test
   engines:
     'it-way.test': conference
-    'kalashnikovisme.test': site
   application_class:
     'tramway.test': tramway_dev
     'listai.test': listai_app
@@ -97,3 +103,5 @@ test:
       <<: *purple_magic
     'red-magic.test':
       <<: *red_magic
+    'kalashnikovisme.test':
+      <<: *kalashnikovisme
