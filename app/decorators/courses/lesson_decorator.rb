@@ -19,6 +19,8 @@ class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
     "#{object.position}  | #{object.title}"
   end
 
+  alias name title
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
