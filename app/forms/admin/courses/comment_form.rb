@@ -1,5 +1,5 @@
 class Admin::Courses::CommentForm < Tramway::Core::ApplicationForm
-  properties :video_id, :begin_time, :end_time, :state
+  properties :video_id, :begin_time, :end_time, :state, :project_id
 
   def initialize(object)
     super(object).tap do

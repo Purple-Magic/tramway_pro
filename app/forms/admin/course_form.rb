@@ -1,5 +1,5 @@
 class Admin::CourseForm < Tramway::Core::ApplicationForm
-  properties :title, :state
+  properties :title, :state, :project_id
 
   def initialize(object)
     super(object).tap do
