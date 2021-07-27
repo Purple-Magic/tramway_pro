@@ -4,7 +4,7 @@ class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   decorate_association :topic
 
-  decorate_association :video, as: :lesson
+  decorate_association :videos, as: :lesson
 
   delegate_attributes(
     :id,
