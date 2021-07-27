@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Courses::TopicForm < Tramway::Core::ApplicationForm
   properties :title, :state, :project_id, :position
 

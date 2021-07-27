@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Courses::CommentForm < Tramway::Core::ApplicationForm
   properties :begin_time, :end_time, :project_id, :text
 

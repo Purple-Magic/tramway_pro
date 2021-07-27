@@ -1,41 +1,43 @@
+# frozen_string_literal: true
+
 class TimeLogDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
   delegate_attributes(
-        :id,
-        :associated_type,
-        :associated_id,
-        :time_spent,
-        :comment,
-        :created_at,
-        :updated_at,
+    :id,
+    :associated_type,
+    :associated_id,
+    :time_spent,
+    :comment,
+    :created_at,
+    :updated_at
   )
 
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :associated_type,
-        :associated_id,
-        :time_spent,
+      %i[
+        id
+        associated_type
+        associated_id
+        time_spent
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :associated_type,
-        :associated_id,
-        :time_spent,
-        :comment,
-        :created_at,
-        :updated_at,
+      %i[
+        id
+        associated_type
+        associated_id
+        time_spent
+        comment
+        created_at
+        updated_at
       ]
     end
 
