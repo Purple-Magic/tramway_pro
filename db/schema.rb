@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210725015334) do
+ActiveRecord::Schema.define(version: 20210727115002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,51 @@ ActiveRecord::Schema.define(version: 20210725015334) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.text "title"
+    t.text "state"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "courses_comments", force: :cascade do |t|
+    t.integer "video_id"
+    t.text "begin_time"
+    t.text "end_time"
+    t.text "state"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "courses_lessons", force: :cascade do |t|
+    t.text "title"
+    t.integer "topic_id"
+    t.text "state"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "courses_topics", force: :cascade do |t|
+    t.text "title"
+    t.integer "course_id"
+    t.text "state"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "courses_videos", force: :cascade do |t|
+    t.integer "lesson_id"
+    t.text "text"
+    t.text "state"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "elections_candidates", force: :cascade do |t|
@@ -338,6 +383,16 @@ ActiveRecord::Schema.define(version: 20210725015334) do
     t.datetime "updated_at", null: false
     t.text "title"
     t.text "state"
+  end
+
+  create_table "time_logs", force: :cascade do |t|
+    t.text "associated_type"
+    t.integer "associated_id"
+    t.text "time_spent"
+    t.text "comment"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tramway_conference_unities", force: :cascade do |t|

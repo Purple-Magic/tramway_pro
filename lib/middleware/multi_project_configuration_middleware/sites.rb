@@ -10,7 +10,7 @@ module Middleware
       end
 
       def call(env)
-        ::Tramway::Site::Web::WelcomeController.include ::MultiProjectCallbacks::Sites
+        #::Tramway::Site::Web::WelcomeController.include ::MultiProjectCallbacks::Sites
 
         @app.call(env)
       end

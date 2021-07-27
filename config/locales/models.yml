@@ -14,6 +14,7 @@ ru:
       estimation/task: Задача 
       estimation/coefficient: Коэффициент
       video: Видео
+      course: Курс
     attributes:
       word:
         main: Определение
@@ -139,6 +140,24 @@ ru:
     video:
       genitive: видео
       plural: видео
+    course:
+      plural: курсы
+      genitive: курс
+    courses/topic:
+      plural: темы
+      genitive: тему
+    courses/lesson:
+      plural: уроки
+      genitive: урок
+    courses/video:
+      plural: видео
+      genitive: видео
+    courses/comment:
+      plural: комментарии
+      genitive: комментарий
+    time_log:
+      plural: таймлоги
+      genitive: таймлог
   state_machines:
     word:
       review_state:
