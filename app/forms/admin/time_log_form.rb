@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::TimeLogForm < Tramway::Core::ApplicationForm
   properties :associated_type, :associated_id, :time_spent, :comment
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Courses::Lesson < ApplicationRecord
   belongs_to :topic, class_name: 'Courses::Topic'
 

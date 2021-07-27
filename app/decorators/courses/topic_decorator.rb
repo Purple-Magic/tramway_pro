@@ -1,45 +1,47 @@
+# frozen_string_literal: true
+
 class Courses::TopicDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   decorate_associations :lessons
 
   delegate_attributes(
-        :id,
-        :title,
-        :course_id,
-        :state,
-        :position,
-        :created_at,
-        :updated_at,
+    :id,
+    :title,
+    :course_id,
+    :state,
+    :position,
+    :created_at,
+    :updated_at
   )
 
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :title,
-        :course_id,
-        :state,
+      %i[
+        id
+        title
+        course_id
+        state
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :title,
-        :course_id,
-        :state,
-        :created_at,
-        :updated_at,
+      %i[
+        id
+        title
+        course_id
+        state
+        created_at
+        updated_at
       ]
     end
 
     def show_associations
-      [ :lessons ]
+      [:lessons]
     end
 
     def list_filters

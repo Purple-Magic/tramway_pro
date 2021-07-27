@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Courses::Video < ApplicationRecord
   belongs_to :lesson, class_name: 'Courses::Lesson'
 

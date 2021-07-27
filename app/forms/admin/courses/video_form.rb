@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Courses::VideoForm < Tramway::Core::ApplicationForm
   properties :text, :project_id, :position
 
