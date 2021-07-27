@@ -14,6 +14,10 @@ class Courses::CommentDecorator < Tramway::Core::ApplicationDecorator
     :updated_at
   )
 
+  def title
+    "Video ##{object.video.id} - #{object.text.first(30)}..."
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
