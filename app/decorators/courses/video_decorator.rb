@@ -14,6 +14,10 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
     :updated_at
   )
 
+  def link
+    ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.id, model: object.class)
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
