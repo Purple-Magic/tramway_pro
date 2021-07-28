@@ -12,6 +12,30 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
     :updated_at
   )
 
+  def tree
+    content_tag :ul do
+      topics.each do |topic|
+        concat(content_tag(:li) do
+          concat(link_to(topic.title, topic.link))
+          concat(content_tag(:ul) do
+            topic.lessons.each do |lesson|
+              concat(content_tag(:li) do
+                concat(link_to(lesson.title, lesson.link))
+                concat(content_tag(:ul) do
+                  lesson.videos.each do |video|
+                    concat(content_tag(:li) do
+                      link_to video.title, video.link
+                    end)
+                  end
+                end)
+              end)
+            end
+          end)
+        end)
+      end
+    end
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
@@ -31,7 +55,7 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
       %i[
         id
         title
-        state
+        tree
         created_at
         updated_at
       ]

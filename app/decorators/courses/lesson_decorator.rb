@@ -19,6 +19,10 @@ class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
     "#{object.position}  | #{object.title}"
   end
 
+  def link
+    ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.id, model: object.class)
+  end
+
   alias name title
 
   class << self
