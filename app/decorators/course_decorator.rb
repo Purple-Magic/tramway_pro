@@ -12,30 +12,6 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
     :updated_at
   )
 
-  def tree
-    content_tag :ul do
-      topics.each do |topic|
-        concat(content_tag(:li) do
-          concat(link_to(topic.title, topic.link))
-          concat(content_tag(:ul) do
-            topic.lessons.each do |lesson|
-              concat(content_tag(:li) do
-                concat(link_to(lesson.title, lesson.link))
-                concat(content_tag(:ul) do
-                  lesson.videos.each do |video|
-                    concat(content_tag(:li) do
-                      link_to video.title, video.link
-                    end)
-                  end
-                end)
-              end)
-            end
-          end)
-        end)
-      end
-    end
-  end
-
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
@@ -82,5 +58,43 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
       #   }
       # }
     end
+  end
+
+  def tree
+    content_tag :ul do
+      topics.each do |topic|
+        topic_row topic
+      end
+    end
+  end
+
+  private
+
+  def topic_row(topic)
+    concat(content_tag(:li) do
+      concat(link_to(topic.title, topic.link))
+      concat(content_tag(:ul) do
+        topic.lessons.each do |lesson|
+          lesson_row lesson
+        end
+      end)
+    end)
+  end
+
+  def lesson_row(lesson)
+    concat(content_tag(:li) do
+      concat(link_to(lesson.title, lesson.link))
+      concat(content_tag(:ul) do
+        lesson.videos.each do |video|
+          video_row(video)
+        end
+      end)
+    end)
+  end
+
+  def video_row(video)
+    concat(content_tag(:li) do
+      link_to video.title, video.link
+    end)
   end
 end
