@@ -150,8 +150,8 @@ ru:
       plural: уроки
       genitive: урок
     courses/video:
-      plural: видео
-      genitive: видео
+      plural: сценарий для видео
+      genitive: сценарий для видео
     courses/comment:
       plural: комментарии
       genitive: комментарий
