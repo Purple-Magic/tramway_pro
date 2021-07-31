@@ -11,7 +11,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[title number file ready_file cover video image mp3 description montage_state highlights_files]
+      %i[title number file ready_file premontage_file cover video image mp3 description montage_state highlights_files]
     end
   end
 
@@ -92,4 +92,8 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def montage_button_color(event); end
+
+  def premontage_file
+    file_view object.premontage_file
+  end
 end

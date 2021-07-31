@@ -11,6 +11,7 @@ class Podcast::Episode < ApplicationRecord
   uploader :ready_file, :file
   uploader :file, :file
   uploader :cover, :photo
+  uploader :premontage_file, :file
 
   aasm :montage, column: :montage_state do
     state :recording, initial: true
@@ -77,9 +78,9 @@ class Podcast::Episode < ApplicationRecord
     system "ffmpeg -y -i #{filename} -af silenceremove=stop_periods=-1:stop_duration=1:stop_threshold=-30dB #{output}" 
 
     File.open(output) do |f|
-      montage_file = f
+      self.premontage_file = f
     end
-    save!
+    self.save!
   end
 
   private
