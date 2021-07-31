@@ -62,7 +62,7 @@ Rails.application.routes.draw do
       namespace :api do
         namespace :v1 do
           namespace :podcast do
-            resources :highlights, only: :create
+            resources :episodes, only: :update
 
             namespace :episodes do
               resources :parts, only: :index
