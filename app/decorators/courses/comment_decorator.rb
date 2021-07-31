@@ -86,6 +86,6 @@ class Courses::CommentDecorator < Tramway::Core::ApplicationDecorator
 
   def video_link
     link_to video.title,
-            ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.video_id, model: 'Courses::Video')
+      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.video_id, model: 'Courses::Video')
   end
 end
