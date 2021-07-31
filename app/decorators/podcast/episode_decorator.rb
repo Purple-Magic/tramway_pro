@@ -50,8 +50,12 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     file_view object.ready_file
   end
 
+  def montage_file
+    link_to 'Download', object.montage_file.url
+  end
+
   def highlights_files
-    parts = Dir["#{object.parts_directory_name}/*.mp3"]
+    parts = Dir["#{object.parts_directory_name}/part-*.mp3"]
 
     content_tag :table do
       parts.each do |part|
@@ -73,14 +77,14 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     )
 
     path_helpers = Rails.application.routes.url_helpers
-    cut_highlights_url = path_helpers.red_magic_api_v1_podcast_highlights_path(id: object.id)
+    montage_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: object.id)
     download_all_parts = path_helpers.red_magic_api_v1_podcast_episodes_parts_path(id: object.id)
     video_generate_path = path_helpers.red_magic_api_v1_podcast_episodes_videos_path(id: object.id)
 
     {
       show: [
         { url: export_url, inner: -> { fa_icon 'file-excel' }, color: :success },
-        { url: cut_highlights_url, method: :post, inner: -> { fa_icon :highlighter }, color: :success },
+        { url: montage_url, method: :patch, inner: -> { fa_icon :highlighter }, color: :success },
         { url: download_all_parts, method: :get, inner: -> { fa_icon :download }, color: :success },
         { url: video_generate_path, method: :post, inner: -> { fa_icon :video }, color: :success }
       ]
