@@ -2,7 +2,7 @@
 
 class Courses::CommentDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
-  # decorate_associations :messages, :posts
+  decorate_association :video
 
   delegate_attributes(
     :id,
@@ -10,6 +10,7 @@ class Courses::CommentDecorator < Tramway::Core::ApplicationDecorator
     :begin_time,
     :end_time,
     :state,
+    :text,
     :created_at,
     :updated_at
   )
@@ -39,6 +40,9 @@ class Courses::CommentDecorator < Tramway::Core::ApplicationDecorator
         video_id
         begin_time
         end_time
+        file
+        video_link
+        text
         state
         created_at
         updated_at
@@ -67,5 +71,21 @@ class Courses::CommentDecorator < Tramway::Core::ApplicationDecorator
       #   }
       # }
     end
+  end
+
+  def file
+    file_view object.file
+  end
+
+  def comment_state_button_color(event)
+    case event
+    when :do_it
+      :success
+    end
+  end
+
+  def video_link
+    link_to video.title,
+            ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.video_id, model: 'Courses::Video')
   end
 end

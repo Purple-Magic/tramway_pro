@@ -7,7 +7,6 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
   delegate_attributes(
     :id,
     :lesson_id,
-    :text,
     :state,
     :position,
     :created_at,
@@ -16,6 +15,10 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
 
   def link
     ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.id, model: object.class)
+  end
+
+  def text
+    raw object.text
   end
 
   class << self
