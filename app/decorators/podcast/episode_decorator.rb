@@ -3,7 +3,7 @@
 class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   decorate_association :highlights
 
-  delegate_attributes :number, :file_url, :montage_state
+  delegate_attributes :number, :file_url
 
   class << self
     def show_associations
@@ -17,6 +17,10 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   def title
     "Выпуск №#{object.number}"
+  end
+
+  def montage_state
+    state_machine_view object, :montage_state
   end
 
   def video
@@ -77,14 +81,14 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     )
 
     path_helpers = Rails.application.routes.url_helpers
-    montage_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: object.id)
+    montage_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: object.id, process: :finish_record)
     download_all_parts = path_helpers.red_magic_api_v1_podcast_episodes_parts_path(id: object.id)
     video_generate_path = path_helpers.red_magic_api_v1_podcast_episodes_videos_path(id: object.id)
 
     {
       show: [
         { url: export_url, inner: -> { fa_icon 'file-excel' }, color: :success },
-        { url: montage_url, method: :patch, inner: -> { fa_icon :highlighter }, color: :success },
+        { url: montage_url, method: :patch, inner: -> { 'Finish record' }, color: :success },
         { url: download_all_parts, method: :get, inner: -> { fa_icon :download }, color: :success },
         { url: video_generate_path, method: :post, inner: -> { fa_icon :video }, color: :success }
       ]
