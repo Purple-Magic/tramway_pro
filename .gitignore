@@ -33,6 +33,7 @@ config/environments/*.local.yml
 *.csv#
 bin/podcast/description/description.html
 bin/podcast/moments/moments.csv
+.env
 
 /public/packs
 /public/packs-test

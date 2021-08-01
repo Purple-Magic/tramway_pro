@@ -3,10 +3,19 @@
 class PodcastsMontageJob < ActiveJob::Base
   def perform(id)
     episode = Podcast::Episode.find id
+
+    directory = episode.prepare_directory
+    external_filename = system("ssh -t #{ENV['STREAM_SERVER_USER']}@#{ENV['STREAM_SERVER_IP']} 'ls /root/Documents/Mumble-*'").last
+    system("scp #{ENV['STREAM_SERVER_USER']}@#{ENV['STREAM_SERVER_IP']}:/root/Documents/#{external_filename} #{directory}/#{external_filename}")
+    
+    File.open("#{directory}/#{external_filename}") do |f|
+      episode.file = f
+    end
+    episode.save!
+    
     episode.montage
 
     filename = episode.convert_file
-    directory = episode.prepare_directory
 
     # TODO: use lib/ffmpeg/builder.rb
     output = "#{directory}/montage.mp3"
