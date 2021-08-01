@@ -95,6 +95,7 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.16)
+    bcrypt_pbkdf (1.1.0)
     bigdecimal (1.3.5)
     bindex (0.8.1)
     bootstrap (4.6.0)
@@ -195,6 +196,7 @@ GEM
       dry-equalizer (~> 0.2)
       dry-initializer (~> 3.0)
       dry-schema (~> 1.5, >= 1.5.2)
+    ed25519 (1.2.4)
     enumerize (2.4.0)
       activesupport (>= 3.2)
     erubi (1.10.0)
@@ -614,6 +616,7 @@ DEPENDENCIES
   active_model_serializers (= 0.10.12)
   audited (>= 4.8.0)
   bcrypt
+  bcrypt_pbkdf (>= 1.0)
   bigdecimal (= 1.3.5)
   bootstrap (= 4.6.0)
   bootstrap-datepicker-rails!
@@ -630,6 +633,7 @@ DEPENDENCIES
   config
   copyright_mafa
   dotenv-rails
+  ed25519 (>= 1.2)
   enumerize
   factory_bot_rails (= 5.1.1)
   faker
