@@ -8,7 +8,7 @@ class PodcastsDownloadExternalFileJob < ActiveJob::Base
     directory = directory.gsub("//", '/')
     result = ''
     Net::SSH.start('167.71.46.15', 'root') do |ssh|
-      result = 'ls /root/Documents/Mumble-*'
+      result = ssh.exec! 'ls /root/Documents/Mumble-*'
       external_filename = result.split(' ').last.split('/').last
       system("scp root@167.71.46.15:/root/Documents/#{external_filename} #{directory}/#{external_filename}")
     end
