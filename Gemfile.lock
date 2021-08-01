@@ -311,6 +311,7 @@ GEM
     more_html_tags (0.2.0)
     multi_json (1.15.0)
     multipart-post (2.1.1)
+    net-ssh (6.1.0)
     nio4r (2.5.7)
     nokogiri (1.11.7)
       mini_portile2 (~> 2.5.0)
@@ -649,6 +650,7 @@ DEPENDENCIES
   mimemagic (= 0.4.3)
   mini_magick (>= 4.9.4)
   more_html_tags (>= 0.2.0)
+  net-ssh
   nokogiri (>= 1.10.8)
   pg (= 0.21.0)
   pg_search
