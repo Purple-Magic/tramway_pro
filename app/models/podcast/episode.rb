@@ -70,6 +70,7 @@ class Podcast::Episode < ApplicationRecord
 
   def montage
     filename = convert_file
+    Rails.logger.info "FILENAME #{filename}"
 
     directory = prepare_directory
 
