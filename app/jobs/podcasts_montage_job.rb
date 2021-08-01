@@ -6,6 +6,7 @@ class PodcastsMontageJob < ActiveJob::Base
 
   def perform(id)
     episode = Podcast::Episode.find id
+    episode.montage
 
     filename = episode.convert_file
     directory = episode.prepare_directory
