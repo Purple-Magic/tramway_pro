@@ -36,6 +36,7 @@
       with_items:
         - database.yml
         - secrets.yml
+        - sidekiq.yml
 
     - name: Create tmp
       file:

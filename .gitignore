@@ -24,6 +24,7 @@ public/*.mp4
 public/podcasts/
 config/secrets.yml
 config/database.yml
+config/sidekiq.yml
 
 config/settings.local.yml
 config/settings/*.local.yml

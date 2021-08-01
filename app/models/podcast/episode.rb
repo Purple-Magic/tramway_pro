@@ -84,9 +84,7 @@ class Podcast::Episode < ApplicationRecord
   end
 
   def convert_file
-    filename = file.path.split('.')[0..-1].join('.')
-
-    return filename if File.file? filename
+    filename = file.path.split('.')[0..-2].join('.')
 
     filename.tap do
       if file.path.split('.').last == 'ogg'
