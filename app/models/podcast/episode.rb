@@ -85,12 +85,12 @@ class Podcast::Episode < ApplicationRecord
   end
 
   def convert_file
-    filename = file.path.split('.')[0..-2].join('.')
+    filename = file.path.split('.')[0..-1].join('.')
 
     filename.tap do
       if file.path.split('.').last == 'ogg'
         filename += '.mp3'
-        system "ffmpeg -y -i #{file.path} #{filename}"
+        system "ffmpeg -y -i #{file.path} -c:a libmp3lame #{filename}"
       end
     end
   end
