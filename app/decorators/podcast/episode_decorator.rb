@@ -79,7 +79,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     path_helpers = Rails.application.routes.url_helpers
     finish_record_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: object.id, process: :finish_record)
     prepare_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: object.id, process: :prepare)
-    montage_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: object.id, process: :montage)
+    montage_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: object.id, process: :to_montage)
     finish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: object.id, process: :finish)
     download_all_parts = path_helpers.red_magic_api_v1_podcast_episodes_parts_path(id: object.id)
     video_generate_path = path_helpers.red_magic_api_v1_podcast_episodes_videos_path(id: object.id)

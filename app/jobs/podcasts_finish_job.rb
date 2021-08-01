@@ -12,6 +12,5 @@ class PodcastsFinishJob < ActiveJob::Base
 
     episode.save!
     episode.cut_highlights
-    episode.highlight_it
   end
 end

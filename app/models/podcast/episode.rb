@@ -43,7 +43,7 @@ class Podcast::Episode < ApplicationRecord
       end
     end
 
-    event :montage do
+    event :to_montage do
       transitions from: :prepared, to: :montaged
 
       after do
