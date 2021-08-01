@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PodcastsMontageJob < ActiveJob::Base
-  queue_as :default
+  queue_as :podcast
 
   def perform(id)
     episode = Podcast::Episode.find id

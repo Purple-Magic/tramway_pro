@@ -2,4 +2,5 @@ concurrency: 30
 queues:
   - default
   - bot
+  - podcast
 backtrace: true
