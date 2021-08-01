@@ -5,7 +5,9 @@ class PodcastsDownloadExternalFileJob < ActiveJob::Base
     directory = episode.prepare_directory
     directory = directory.gsub("//", '/')
     command = "ssh -t root@167.71.46.15 'ls /root/Documents/Mumble-*'"
-    external_filename = `#{command}`.split(' ').last.split('/').last
+    result = `#{command}`
+    sleep 5
+    external_filename = result.split(' ').last.split('/').last
     system("scp #{ENV['STREAM_SERVER_USER']}@#{ENV['STREAM_SERVER_IP']}:/root/Documents/#{external_filename} #{directory}/#{external_filename}")
   end
 end
