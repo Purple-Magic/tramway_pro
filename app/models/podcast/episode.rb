@@ -75,15 +75,13 @@ class Podcast::Episode < ApplicationRecord
 
     # TODO: use lib/ffmpeg/builder.rb
     output = "#{directory}/montage.mp3"
-    system "ffmpeg -y -i #{filename} -af silenceremove=stop_periods=-1:stop_duration=1:stop_threshold=-30dB,acompressor=threshold=-12dB:ratio=2:attack=200:release=1000,volume=-0.5dB #{output}"
+    system "ffmpeg -y -i #{filename} -c:a libx264 -af silenceremove=stop_periods=-1:stop_duration=1:stop_threshold=-30dB,acompressor=threshold=-12dB:ratio=2:attack=200:release=1000,volume=-0.5dB #{output}"
 
     File.open(output) do |f|
       self.premontage_file = f
     end
     save!
   end
-
-  private
 
   def convert_file
     filename = file.path.split('.')[0..-1].join('.')
@@ -97,6 +95,8 @@ class Podcast::Episode < ApplicationRecord
       end
     end
   end
+
+  private
 
   def podcasts_directory
     "/#{Rails.root}/public/podcasts/"
