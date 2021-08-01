@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Podcasts::VideosJob < ActiveJob::Base
+class PodcastsVideosJob < ActiveJob::Base
   def perform(id)
     episode = ::Podcast::Episode.find id
 

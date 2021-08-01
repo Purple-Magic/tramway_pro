@@ -26,54 +26,39 @@ class Podcast::Episode < ApplicationRecord
     end
 
     event :finish_record do
-      before do
+      transitions from: :recording, to: :recorded
+
+      after do
+        save!
         PodcastsDownloadExternalFileJob.perform_later self.id
       end
-
-      transitions from: :recording, to: :recorded
     end
 
     event :prepare do
-      before do
-        directory = self.prepare_directory
-        external_filename = Dir["#{directory}/*.ogg"].last
-
-        File.open("#{directory}/#{external_filename}") do |f|
-          episode.file = f
-        end
-
-        self.save!
-      end
-
       transitions from: :recorded, to: :prepared
+
+      after do
+        save!
+        PodcastsPrepareJob.perform_later self.id
+      end
     end
 
     event :montage do
-      before do
-        filename = self.convert_file
-
-        output = "#{directory}/montage.mp3"
-
-        system "ffmpeg -y -i #{filename} -c:a libx264 -af silenceremove=stop_periods=-1:stop_duration=1:stop_threshold=-30dB,acompressor=threshold=-12dB:ratio=2:attack=200:release=1000,volume=-0.5dB #{output}"
-      end
-
       transitions from: :prepared, to: :montaged
+
+      after do
+        save!
+        PodcastsMontageJob.perform_later self.id
+      end
     end
 
     event :finish do
-      before do
-        output = "#{directory}/montage.mp3"
-
-        File.open(output) do |f|
-          episode.premontage_file = f
-        end
-
-        episode.save!
-        episode.cut_highlights
-        episode.highlight_it
-      end
-
       transitions from: :montaged, to: :finished
+
+      after do
+        save!
+        PodcastsFinishJob.perform_later self.id
+      end
     end
   end
 
