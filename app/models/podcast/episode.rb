@@ -16,16 +16,49 @@ class Podcast::Episode < ApplicationRecord
   aasm :montage, column: :montage_state do
     state :recording, initial: true
     state :recorded
+    state :prepared
     state :highlighted
     state :montaged
+    state :finished
 
     event :highlight_it do
       transitions from: %i[recording recorded], to: :highlighted
     end
 
-    event :montage, before: :cut_highlights do
-      transitions from: :recording, to: :montaged
-      transitions from: :recorded, to: :montaged
+    event :finish_record do
+      transitions from: :recording, to: :recorded
+
+      after do
+        save!
+        PodcastsDownloadExternalFileJob.perform_later self.id
+      end
+    end
+
+    event :prepare do
+      transitions from: :recorded, to: :prepared
+
+      after do
+        save!
+        PodcastsPrepareJob.perform_later self.id
+      end
+    end
+
+    event :to_montage do
+      transitions from: :prepared, to: :montaged
+
+      after do
+        save!
+        PodcastsMontageJob.perform_later self.id
+      end
+    end
+
+    event :finish do
+      transitions from: :montaged, to: :finished
+
+      after do
+        save!
+        PodcastsFinishJob.perform_later self.id
+      end
     end
   end
 
