@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class PodcastsVideosJob < ActiveJob::Base
-  queue_as :default
+  queue_as :podcast
+  sidekiq_options backtrace: 20
 
   def perform(id)
     episode = ::Podcast::Episode.find id

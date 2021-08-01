@@ -2,6 +2,7 @@
 
 class PodcastsHighlightsJob < ActiveJob::Base
   queue_as :podcast
+  sidekiq_options backtrace: 20
 
   def perform(id)
     episode = Podcast::Episode.find id
