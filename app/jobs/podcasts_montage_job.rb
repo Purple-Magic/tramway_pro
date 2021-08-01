@@ -6,6 +6,8 @@ class PodcastsMontageJob < ActiveJob::Base
   def perform(id)
     episode = Podcast::Episode.find id
     episode.montage
+    episode.cut_highlights
+    episode.highlight_it
   rescue StandardError => e
     Rails.env.development? ? puts(e) : Raven.capture_exception(e)
   end
