@@ -26,6 +26,9 @@ class PodcastsMontageJob < ActiveJob::Base
       episode.premontage_file = f
     end
     episode.save!
+
+    episode.cut_highlights
+    episode.highlight_it
   rescue StandardError => e
     Rails.env.development? ? puts(e) : Raven.capture_exception(e)
   end
