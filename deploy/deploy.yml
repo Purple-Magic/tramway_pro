@@ -55,6 +55,7 @@
         dest={{ release_path }}/{{ item }}
         state=link
       with_items:
+        - .env
         - log
         - tmp/pids
         - tmp/cache
