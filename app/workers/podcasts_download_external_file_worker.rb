@@ -26,7 +26,8 @@ class PodcastsDownloadExternalFileWorker < ApplicationWorker
     episode.convert
     episode.save!
     output = "#{directory}/montage.mp3"
-    `ffmpeg -y -i #{filename} -vcodec libx264 -af silenceremove=stop_periods=-1:stop_duration=1:stop_threshold=-30dB,acompressor=threshold=-12dB:ratio=2:attack=200:release=1000,volume=-0.5dB -b:a 320k #{output}`
+
+    episode.montage filename, output
 
     File.open(output) do |f|
       episode.premontage_file = f
