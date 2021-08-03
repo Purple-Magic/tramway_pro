@@ -16,10 +16,20 @@ class Podcast::Episode < ApplicationRecord
   aasm :montage, column: :montage_state do
     state :recording, initial: true
     state :recorded
+    state :downloaded
+    state :converted
     state :prepared
     state :highlighted
     state :montaged
     state :finished
+
+    event :download do
+      transitions to: :downloaded
+    end
+
+    event :convert do
+      transitions to: :converted
+    end
 
     event :highlight_it do
       transitions to: :highlighted
@@ -36,29 +46,14 @@ class Podcast::Episode < ApplicationRecord
 
     event :prepare do
       transitions to: :prepared
-
-      after do
-        save!
-        PodcastsPrepareWorker.perform_async self.id
-      end
     end
 
     event :to_montage do
       transitions to: :montaged
-
-      after do
-        save!
-        PodcastsMontageWorker.perform_async self.id
-      end
     end
 
     event :finish do
       transitions to: :finished
-
-      after do
-        save!
-        PodcastsFinishWorker.perform_async self.id
-      end
     end
   end
 
