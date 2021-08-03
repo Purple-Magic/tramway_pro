@@ -27,10 +27,10 @@ class PodcastsDownloadExternalFileWorker < ApplicationWorker
     episode.save!
     output = "#{directory}/montage.mp3"
 
-    episode.montage filename, output
-
-    File.open(output) do |f|
-      episode.premontage_file = f
+    if episode.montage(filename, output)
+      File.open(output) do |f|
+        episode.premontage_file = f
+      end
     end
 
     episode.prepare
