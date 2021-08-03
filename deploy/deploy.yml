@@ -63,6 +63,7 @@
         - vendor/bundle
         - public/system
         - public/uploads
+        - public/podcasts
         - node_modules
 
     - name: Bundle
@@ -84,11 +85,6 @@
       shell: "/bin/bash -lic '/usr/share/rvm/bin/rvm {{ ruby_version }} do {{ release_path }}/bin/rake db:migrate'"
       args:
         chdir: "{{ release_path }}"
-
-        #- name: Update crontab
-        #shell: "/bin/bash -lic '/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec whenever --update-crontab'"
-        #args:
-        #chdir: "{{ release_path }}"
 
     - name: Linking current
       file:

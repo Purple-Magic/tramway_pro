@@ -76,7 +76,7 @@ class Podcast::Episode < ApplicationRecord
       begin_time = (highlight_time - 2.minutes).strftime '%H:%M:%S'
       end_time = (highlight_time + 10.seconds).strftime '%H:%M:%S'
       # TODO: use lib/ffmpeg/builder.rb
-      system "ffmpeg -y -i #{filename} -ss #{begin_time} -to #{end_time} -c copy #{directory}/part-#{index + 1}.mp3"
+      system "ffmpeg -y -i #{filename} -ss #{begin_time} -to #{end_time} -b:a 320k -c copy #{directory}/part-#{index + 1}.mp3"
     end
   end
 
@@ -109,7 +109,7 @@ class Podcast::Episode < ApplicationRecord
 
     # TODO: use lib/ffmpeg/builder.rb
     output = "#{directory}/montage.mp3"
-    system "ffmpeg -y -i #{filename} -af silenceremove=stop_periods=-1:stop_duration=1:stop_threshold=-30dB,acompressor=threshold=-12dB:ratio=2:attack=200:release=1000,volume=-0.5dB -c:a libmp3lame #{output}"
+    system "ffmpeg -y -i #{filename} -af silenceremove=stop_periods=-1:stop_duration=1:stop_threshold=-30dB,acompressor=threshold=-12dB:ratio=2:attack=200:release=1000,volume=-0.5dB -c:a libmp3lame -b:a 320k #{output}"
 
     File.open(output) do |f|
       self.premontage_file = f
