@@ -1,3 +1,4 @@
 Sidekiq.configure_server do |config|
-  Rails.logger = Sidekiq::Logging.logger
+  config.logger = Logger.new("./log/sidekiq.log")
+  config.logger.level = ::Logger::INFO
 end

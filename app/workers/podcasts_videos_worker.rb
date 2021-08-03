@@ -3,6 +3,8 @@
 class PodcastsVideosWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
+  version 1
+
   def perform(id)
     episode = ::Podcast::Episode.find id
 
