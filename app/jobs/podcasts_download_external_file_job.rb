@@ -12,5 +12,7 @@ class PodcastsDownloadExternalFileJob < ActiveJob::Base
       external_filename = result.split(' ').last.split('/').last
       system("scp root@167.71.46.15:/root/Documents/#{external_filename} #{directory}/#{external_filename}")
     end
+  rescue StandardError => e
+    Rails.env.development? ? Rails.logger.error("logger.info : #{e.message}") : Raven.capture_exception(e)
   end
 end
