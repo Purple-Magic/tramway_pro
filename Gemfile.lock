@@ -470,6 +470,8 @@ GEM
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
+    sidekiq-batch (0.1.6)
+      sidekiq (>= 3)
     simple_form (5.0.3)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -683,6 +685,7 @@ DEPENDENCIES
   sentry-raven
   shoulda-matchers (~> 2.8.0)
   sidekiq
+  sidekiq-batch
   simple_form (>= 5.0.0)
   smart_buttons (= 1.0.0.1)
   spring
