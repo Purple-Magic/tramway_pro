@@ -22,11 +22,11 @@ class Podcast::Episode < ApplicationRecord
     state :finished
 
     event :highlight_it do
-      transitions from: %i[recording recorded], to: :highlighted
+      transitions to: :highlighted
     end
 
     event :finish_record do
-      transitions from: :recording, to: :recorded
+      transitions to: :recorded
 
       after do
         save!
@@ -35,7 +35,7 @@ class Podcast::Episode < ApplicationRecord
     end
 
     event :prepare do
-      transitions from: :recorded, to: :prepared
+      transitions to: :prepared
 
       after do
         save!
@@ -44,7 +44,7 @@ class Podcast::Episode < ApplicationRecord
     end
 
     event :to_montage do
-      transitions from: :prepared, to: :montaged
+      transitions to: :montaged
 
       after do
         save!
@@ -53,7 +53,7 @@ class Podcast::Episode < ApplicationRecord
     end
 
     event :finish do
-      transitions from: :montaged, to: :finished
+      transitions to: :finished
 
       after do
         save!
