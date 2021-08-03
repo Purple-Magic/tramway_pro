@@ -1,7 +1,0 @@
-concurrency: 30
-queues:
-  - default
-  - bot
-  - podcast
-backtrace: true
-logfile: ./log/sidekiq.log
