@@ -1,4 +1,7 @@
 class PodcastsFinishWorker
+  include Sidekiq::Worker
+  sidekiq_options queue: :podcast
+
   def perform(id)
     episode = Podcast::Episode.find id
 

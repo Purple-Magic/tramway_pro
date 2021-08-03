@@ -12,7 +12,7 @@
   shell: "ps aux | grep -ie sidekiq | awk '{print $2}' | xargs kill -9"
 
 - name: Start sidekiq
-  shell: "/bin/bash -ilc 'exec bundle exec sidekiq &'"
+  shell: "/bin/bash -ilc '/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec sidekiq -C {{ app_path }}/current/config/sidekiq.yml &'"
   args:
     chdir: "{{ app_path }}/current"
 
