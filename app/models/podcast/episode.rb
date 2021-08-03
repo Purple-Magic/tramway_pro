@@ -127,7 +127,7 @@ class Podcast::Episode < ApplicationRecord
     filename.tap do
       if file.path.split('.').last == 'ogg'
         filename += '.mp3'
-        system "ffmpeg -y -i #{file.path} -c:a libmp3lame #{filename}"
+        system "ffmpeg -y -i #{file.path} -b:a 320k -c:a libmp3lame #{filename}"
       end
     end
   end
