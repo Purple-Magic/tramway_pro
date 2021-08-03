@@ -11,5 +11,7 @@ class PodcastsPrepareJob < ActiveJob::Base
     end
 
     episode.save!
+  rescue StandardError => e
+    Rails.env.development? ? Rails.logger.error("logger.info : #{e.message}") : Raven.capture_exception(e)
   end
 end
