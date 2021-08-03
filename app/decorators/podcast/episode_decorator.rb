@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
-  decorate_association :highlights
+  decorate_associations :highlights, :podcast
 
   delegate_attributes :number, :file_url, :montage_state
 
@@ -11,8 +11,13 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[title number file ready_file premontage_file cover video image mp3 description montage_state highlights_files]
+      %i[podcast_link number file ready_file premontage_file cover video image mp3 description montage_state highlights_files]
     end
+  end
+
+  def podcast_link
+    link_to podcast.title,
+      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.podcast_id, model: 'Podcast')
   end
 
   def title

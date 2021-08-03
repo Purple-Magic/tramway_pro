@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-class PodcastsVideosJob < ActiveJob::Base
+class PodcastsVideosWorker
+  include Sidekiq::Worker
+  sidekiq_options queue: :podcast
+
   def perform(id)
     episode = ::Podcast::Episode.find id
 

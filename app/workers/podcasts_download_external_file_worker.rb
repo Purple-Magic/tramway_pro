@@ -1,6 +1,9 @@
 require 'net/ssh'
 
-class PodcastsDownloadExternalFileJob < ActiveJob::Base
+class PodcastsDownloadExternalFileWorker
+  include Sidekiq::Worker
+  sidekiq_options queue: :podcast
+
   def perform(id)
     episode = Podcast::Episode.find id
 

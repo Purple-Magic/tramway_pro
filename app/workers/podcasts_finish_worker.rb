@@ -1,4 +1,4 @@
-class PodcastsFinishJob < ActiveJob::Base
+class PodcastsFinishWorker
   def perform(id)
     episode = Podcast::Episode.find id
 

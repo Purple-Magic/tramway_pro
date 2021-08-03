@@ -5,7 +5,7 @@ require 'fileutils'
 class Podcast::Episode < ApplicationRecord
   EPISODE_ATTRIBUTES = %i[title season number description published_at image explicit file_url duration].freeze
 
-  belongs_to :podcast
+  belongs_to :podcast, class_name: 'Podcast'
   has_many :highlights, class_name: 'Podcast::Highlight'
 
   uploader :ready_file, :file
@@ -30,7 +30,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        PodcastsDownloadExternalFileJob.perform_later self.id
+        PodcastsDownloadExternalFileWorker.perform_async self.id
       end
     end
 
@@ -39,7 +39,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        PodcastsPrepareJob.perform_later self.id
+        PodcastsPrepareWorker.perform_async self.id
       end
     end
 
@@ -48,7 +48,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        PodcastsMontageJob.perform_later self.id
+        PodcastsMontageWorker.perform_async self.id
       end
     end
 
@@ -57,7 +57,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        PodcastsFinishJob.perform_later self.id
+        PodcastsFinishWorker.perform_async self.id
       end
     end
   end
