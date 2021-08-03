@@ -4,7 +4,7 @@ class PodcastsFinishJob < ActiveJob::Base
 
     directory = episode.prepare_directory
     directory = directory.gsub("//", '/')
-    output = "#{directory}/montage.mp3"
+    output = episode.converted_file + '.mp3'
 
     File.open(output) do |f|
       episode.premontage_file = f
