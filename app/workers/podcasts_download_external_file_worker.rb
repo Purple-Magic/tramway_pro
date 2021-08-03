@@ -1,7 +1,6 @@
 require 'net/ssh'
 
-class PodcastsDownloadExternalFileWorker
-  include Sidekiq::Worker
+class PodcastsDownloadExternalFileWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
   def perform(id)

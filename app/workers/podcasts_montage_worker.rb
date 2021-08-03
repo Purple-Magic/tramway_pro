@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class PodcastsMontageWorker
-  include Sidekiq::Worker
+class PodcastsMontageWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
   def perform(id)

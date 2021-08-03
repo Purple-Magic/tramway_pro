@@ -1,5 +1,4 @@
-class PodcastsPrepareWorker
-  include Sidekiq::Worker
+class PodcastsPrepareWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
   def perform(id)
