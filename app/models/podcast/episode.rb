@@ -21,6 +21,7 @@ class Podcast::Episode < ApplicationRecord
     state :prepared
     state :highlighted
     state :montaged
+    state :normalized
     state :finished
 
     event :download do
@@ -50,6 +51,10 @@ class Podcast::Episode < ApplicationRecord
 
     event :to_montage do
       transitions to: :montaged
+    end
+
+    event :to_normalize do
+      transitions to: :normalize
     end
 
     event :finish do
@@ -97,8 +102,15 @@ class Podcast::Episode < ApplicationRecord
   include Ffmpeg::CommandBuilder
 
   def montage(filename, output)
-    temp_output = "#{output}temp"
+    temp_output = (output.split('.')[0..-2] + ["temp", "mp3"]).join('.')
     command = "ffmpeg -y -i #{filename} -vcodec libx264 -af silenceremove=stop_periods=-1:stop_duration=1.4:stop_threshold=-30dB,acompressor=threshold=-12dB:ratio=2:attack=200:release=1000,volume=-0.5dB -b:a 320k #{temp_output} && mv #{temp_output} #{output}"
+    Rails.logger.info command
+    system command
+  end
+
+  def normalize(filename, output)
+    temp_output = (output.split('.')[0..-2] + ["temp", "mp3"]).join('.')
+    command = "ffmpeg-normalize #{filename} -o #{temp_output} -b:a 320k -c:a libmp3lame -t -8 && mv #{temp_output} #{output}"
     Rails.logger.info command
     system command
   end
