@@ -27,10 +27,17 @@ class PodcastsDownloadExternalFileWorker < ApplicationWorker
     episode.save!
     output = "#{directory}/montage.mp3"
 
-    if episode.montage(filename, output)
-      File.open(output) do |f|
-        episode.premontage_file = f
-      end
+    episode.montage(filename, output)
+
+    index = 0
+    until File.exist?(output)
+      sleep 1
+      index += 1
+      Rails.logger.info "Montage file does not exist for #{index} seconds"
+    end
+
+    File.open(output) do |f|
+      episode.premontage_file = f
     end
 
     episode.prepare
