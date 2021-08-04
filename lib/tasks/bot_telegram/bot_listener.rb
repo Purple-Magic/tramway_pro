@@ -24,7 +24,7 @@ class BotTelegram::BotListener
               BotTelegram::Scenario.run message, bot, bot_record
             end
           else
-            error = "Empty message in bot #{bot_record.id}"
+            error = "Empty message in bot #{bot_record.name}"
             Rails.env.development? ? puts(error) : Raven.capture_exception(error)
           end
         end
