@@ -97,7 +97,9 @@ class Podcast::Episode < ApplicationRecord
   include Ffmpeg::CommandBuilder
 
   def montage(filename, output)
-    system "ffmpeg -y -i #{filename} -vcodec libx264 -af silenceremove=stop_periods=-1:stop_duration=1:stop_threshold=-30dB,acompressor=threshold=-12dB:ratio=2:attack=200:release=1000,volume=-0.5dB -b:a 320k #{output}"
+    command = "ffmpeg -y -i #{filename} -vcodec libx264 -af silenceremove=stop_periods=-1:stop_duration=1:stop_threshold=-30dB,acompressor=threshold=-12dB:ratio=2:attack=200:release=1000,volume=-0.5dB -b:a 320k #{output}"
+    Rails.logger.info command
+    system command
   end
 
   def converted_file
