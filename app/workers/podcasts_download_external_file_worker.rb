@@ -43,9 +43,22 @@ class PodcastsDownloadExternalFileWorker < ApplicationWorker
     episode.prepare
     episode.save!
 
-    episode.save!
-    episode.cut_highlights
+    output = "#{directory}/normalize.mp3"
+    episode.normalize(episode.premontage_file.path, output)
 
+    index = 0
+    until File.exist?(output)
+      sleep 1
+      index += 1
+      Rails.logger.info "Normalized file does not exist for #{index} seconds"
+    end
+    File.open(output) do |f|
+      episode.premontage_file = f
+    end
+    episode.to_normalize
+    episode.save!
+
+    episode.cut_highlights
     episode.highlight_it
     episode.save!
   rescue StandardError => e
