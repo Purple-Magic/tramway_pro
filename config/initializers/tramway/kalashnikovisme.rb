@@ -21,7 +21,7 @@ Tramway::Admin.navbar_structure(
       Courses::Comment,
       TimeLog
     ],
-    Tramway::User::User,
   },
+  Tramway::User::User,
   project: :kalashnikovisme
 )
