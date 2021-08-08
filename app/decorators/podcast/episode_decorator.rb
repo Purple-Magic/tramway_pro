@@ -83,12 +83,14 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
     path_helpers = Rails.application.routes.url_helpers
     finish_record_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: object.id, process: :finish_record)
+    download_all_parts = path_helpers.red_magic_api_v1_podcast_episodes_parts_path(id: object.id)
     video_generate_path = path_helpers.red_magic_api_v1_podcast_episodes_videos_path(id: object.id)
 
     {
       show: [
         { url: export_url, inner: -> { fa_icon 'file-excel' }, color: :success },
         { url: finish_record_url, method: :patch, inner: -> { 'Finish record' }, color: :success },
+        { url: download_all_parts, method: :get, inner: -> { fa_icon :download }, color: :success },
         { url: video_generate_path, method: :post, inner: -> { fa_icon :video }, color: :success }
       ]
     }
