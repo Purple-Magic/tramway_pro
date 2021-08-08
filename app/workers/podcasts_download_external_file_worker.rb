@@ -58,6 +58,7 @@ class PodcastsDownloadExternalFileWorker < ApplicationWorker
     episode.to_normalize
     episode.save!
 
+    episode.convert_file
     episode.cut_highlights
     episode.highlight_it
     episode.save!
