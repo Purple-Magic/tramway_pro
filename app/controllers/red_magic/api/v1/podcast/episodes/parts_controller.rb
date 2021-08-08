@@ -4,7 +4,9 @@ class RedMagic::Api::V1::Podcast::Episodes::PartsController < RedMagic::Api::V1:
   def index
     episode = ::Podcast::Episode.find params[:id]
     files = Dir["#{episode.parts_directory_name}/part*.mp3"]
-    system "zip #{episode.parts_directory_name}/parts.zip #{files.join(' ')}"
+    command = "zip #{episode.parts_directory_name}/parts.zip #{files.join(' ')}"
+    Rails.logger.info command
+    system command
 
     sleep 5
 
