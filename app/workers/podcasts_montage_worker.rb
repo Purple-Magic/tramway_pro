@@ -71,8 +71,9 @@ class PodcastsMontageWorker < ApplicationWorker
       episode.premontage_file = f
     end
 
-    episode.to_normalize
+    episode.music_add
     episode.save!
+
     episode.convert_file
     episode.cut_highlights
     episode.highlight_it

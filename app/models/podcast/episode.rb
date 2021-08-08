@@ -22,6 +22,7 @@ class Podcast::Episode < ApplicationRecord
     state :highlighted
     state :montaged
     state :normalized
+    state :music_added
     state :finished
 
     event :download do
@@ -55,6 +56,10 @@ class Podcast::Episode < ApplicationRecord
 
     event :to_normalize do
       transitions to: :normalized
+    end
+
+    event :music_add do
+      transitions to: :music_added
     end
 
     event :finish do
@@ -140,11 +145,11 @@ class Podcast::Episode < ApplicationRecord
     (samples_count + 2).times do |i|
       parts += "[#{i}:0]"
     end
-    concatination = "concat=n=#{samples_count + 2}:v=0:a=1[out]' -map '[out]' -b:a 320k #{output}"
+    concatination = "concat=n=#{samples_count + 2}:v=0:a=1[out]' -map '[out]' -b:a 320k #{temp_output}"
 
     command = "#{beg} #{audios} #{finish} #{filter} '#{parts} #{concatination}"
     Rails.logger.info command
-    system command
+    system "#{command} 2> #{Rails.root}/log/#{Rails.env}.log && mv #{temp_output} #{output}"
   end
 
   def converted_file
