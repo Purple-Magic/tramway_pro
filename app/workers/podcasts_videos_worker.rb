@@ -7,7 +7,8 @@ class PodcastsVideosWorker < ApplicationWorker
     episode = ::Podcast::Episode.find id
 
     episode.prepare_directory
-    command = "ffmpeg #{options(episode)}"
+    command = "ffmpeg #{options(episode)} 2> #{episode.parts_directory_name}/video_render.txt"
+    Rails.logger.info command
     system command
   rescue StandardError => e
     Rails.env.development? ? Rails.logger.error("logger.info : #{e.message}") : Raven.capture_exception(e)
