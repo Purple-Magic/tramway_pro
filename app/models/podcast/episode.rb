@@ -75,7 +75,7 @@ class Podcast::Episode < ApplicationRecord
       highlight_time = DateTime.new(2020, 0o1, 0o1, hour.to_i, minutes.to_i, seconds.to_i)
       begin_time = (highlight_time - 90.seconds).strftime '%H:%M:%S'
       end_time = (highlight_time + 10.seconds).strftime '%H:%M:%S'
-      command = "ffmpeg -y -i #{filename} -c:a libmp3lame -ss #{begin_time} -to #{end_time} -b:a 320k -c copy #{directory}/part-#{index + 1}.mp3 2> #{parts_directory_name}/cut_highlights-output.txt"
+      command = "ffmpeg -y -i #{filename}.mp3 -c:a libmp3lame -ss #{begin_time} -to #{end_time} -b:a 320k -c copy #{directory}/part-#{index + 1}.mp3 2> #{parts_directory_name}/cut_highlights-output.txt"
       Rails.logger.info command
       # TODO: use lib/ffmpeg/builder.rb
       system command
@@ -124,14 +124,14 @@ class Podcast::Episode < ApplicationRecord
   def convert_file
     filename = converted_file
 
-    filename.tap do
-      if file.path.split('.').last == 'ogg'
-        filename += '.mp3'
-        command = "ffmpeg -y -i #{file.path} -b:a 320k -c:a libmp3lame #{filename}"
-        Rails.logger.info command
-        system command
-      end
+    if file.path.split('.').last == 'ogg'
+      filename += '.mp3'
+      command = "ffmpeg -y -i #{file.path} -b:a 320k -c:a libmp3lame #{filename}"
+      Rails.logger.info command
+      system command
     end
+
+    filename
   end
 
   private
