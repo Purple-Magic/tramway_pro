@@ -3,13 +3,13 @@
 class PodcastDecorator < Tramway::Core::ApplicationDecorator
   delegate_attributes :title
 
-  decorate_association :episodes
+  decorate_associations :musics, :episodes
 
   alias name title
 
   class << self
     def show_associations
-      [:episodes]
+      [:musics, :episodes]
     end
   end
 end
