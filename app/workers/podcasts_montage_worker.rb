@@ -1,6 +1,6 @@
 require 'net/ssh'
 
-class PodcastsDownloadExternalFileWorker < ApplicationWorker
+class PodcastsMontageWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
   def perform(id)
@@ -58,6 +58,21 @@ class PodcastsDownloadExternalFileWorker < ApplicationWorker
     episode.to_normalize
     episode.save!
 
+    output = "#{directory}/with_music.mp3"
+    episode.add_music(episode.premontage_file.path, output)
+
+    index = 0
+    until File.exist?(output)
+      sleep 1
+      index += 1
+      Rails.logger.info "With music file does not exist for #{index} seconds"
+    end
+    File.open(output) do |f|
+      episode.premontage_file = f
+    end
+
+    episode.to_normalize
+    episode.save!
     episode.convert_file
     episode.cut_highlights
     episode.highlight_it
