@@ -16,7 +16,7 @@ class Courses::CommentDecorator < Tramway::Core::ApplicationDecorator
   )
 
   def title
-    "Video ##{object.video.id} - #{object.text.first(30)}..."
+    "#{object.begin_time.present? && object.end_time.present? ? "#{object.begin_time} - #{object.end_time} - " : ''}#{object.text}#{object.file.present? ? ' Файл приложен' : ''}"
   end
 
   class << self

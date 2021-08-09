@@ -22,6 +22,7 @@ class Podcast::Episode < ApplicationRecord
     state :highlighted
     state :montaged
     state :normalized
+    state :music_added
     state :finished
 
     event :download do
@@ -41,7 +42,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        PodcastsDownloadExternalFileWorker.perform_async self.id
+        PodcastsMontageWorker.perform_async self.id
       end
     end
 
@@ -55,6 +56,10 @@ class Podcast::Episode < ApplicationRecord
 
     event :to_normalize do
       transitions to: :normalized
+    end
+
+    event :music_add do
+      transitions to: :music_added
     end
 
     event :finish do
@@ -115,6 +120,36 @@ class Podcast::Episode < ApplicationRecord
     command = "ffmpeg-normalize #{filename} -o #{temp_output} -b:a 320k -c:a libmp3lame -t -8 2> #{parts_directory_name}/normalize-output.txt && mv #{temp_output} #{output}"
     Rails.logger.info command
     system command
+  end
+
+  def add_music(filename, output)
+    temp_output = (output.split('.')[0..-2] + ["temp", "mp3"]).join('.')
+    music_render_command = ''
+    begin_music = podcast.musics.where(music_type: :begin).first.file.path
+    begin_music_object = FFMPEG::Movie.new begin_music
+    finish_music = podcast.musics.where(music_type: :finish).first.file.path
+    finish_music_object = FFMPEG::Movie.new podcast.musics.where(music_type: :finish).first.file.path
+    sample_music = podcast.musics.where(music_type: :sample).first.file.path
+    sample_music_object = FFMPEG::Movie.new podcast.musics.where(music_type: :sample).first.file.path
+    normalized_podcast_object = FFMPEG::Movie.new premontage_file.path
+    samples_count = (normalized_podcast_object.duration - (begin_music_object.duration + finish_music_object.duration)) / sample_music_object.duration
+
+    beg = "ffmpeg -i #{begin_music}"
+    filter = "-filter_complex"
+    audios = ''
+    samples_count.times do |i|
+      audios += "-i #{sample_music} "
+    end
+    finish = "-i #{finish_music} "
+    parts = ""
+    (samples_count + 2).times do |i|
+      parts += "[#{i}:0]"
+    end
+    concatination = "concat=n=#{samples_count + 2}:v=0:a=1[out]' -map '[out]' -b:a 320k #{temp_output}"
+
+    command = "#{beg} #{audios} #{finish} #{filter} '#{parts} #{concatination}"
+    Rails.logger.info command
+    system "#{command} 2> #{Rails.root}/log/#{Rails.env}.log && mv #{temp_output} #{output}"
   end
 
   def converted_file
