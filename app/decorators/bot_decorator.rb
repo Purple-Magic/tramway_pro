@@ -11,11 +11,38 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[name team options users_count messages messages_count users_finished stats]
+      %i[name team options users_count messages messages_count users_finished scenario stats]
     end
 
     def show_associations
       [:steps]
+    end
+  end
+
+  def scenario
+    content_tag(:div) do
+      concat(javascript_include_tag('https://unpkg.com/gojs@2.1/release/go.js'))
+      concat(content_tag(:div, id: :scenario, style: 'width: 500px; height: 200px') do
+      end) 
+      concat(content_tag(:script) do
+        <<-JAVASCRIPT
+        var goJS = go.GraphObject.make;
+
+        var myDiagram = goJS(go.Diagram, `scenario`);
+        myDiagram.nodeTemplate = goJS(go.Node, `Horizontal`, { background: `#44CCFF` },
+          goJS(go.Picture, { margin: 10, width: 50, height: 50, background: `red` },
+            new go.Binding(`source`)), goJS(go.TextBlock, `Default Text`,
+            { margin: 12, stroke: `white`, font: `bold 16px sans-serif` },
+            new go.Binding(`text`, `name`))
+        );
+
+        myDiagram.model = new go.Model([
+          { key: `A` },
+          { key: `B`, parent: `A` },
+          { key: `C`, parent: `B` }
+        ])
+        JAVASCRIPT
+      end)
     end
   end
 
