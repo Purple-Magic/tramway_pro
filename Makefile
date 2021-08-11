@@ -21,5 +21,5 @@ run_telegram_bots:
 stop_telegram_bots:
 	sh stop_telegram_bots.sh
 restart_telegram_bots:
-	make run_telegram_bots
 	make stop_telegram_bots
+	make run_telegram_bots
