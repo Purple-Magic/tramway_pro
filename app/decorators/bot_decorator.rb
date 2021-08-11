@@ -11,7 +11,7 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[name team options users_count messages messages_count users_finished scenario stats]
+      %i[name team link options users_count messages messages_count users_finished scenario stats]
     end
 
     def show_associations
