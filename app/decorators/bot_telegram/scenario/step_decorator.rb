@@ -44,4 +44,14 @@ class BotTelegram::Scenario::StepDecorator < Tramway::Core::ApplicationDecorator
       'Действия'
     end
   end
+
+  def links
+    content_tag(:ul) do
+      (object.options || {}).each do |option|
+        concat(content_tag(:li) do
+          "#{option[0]}: #{option[1]}"
+        end)
+      end
+    end
+  end
 end
