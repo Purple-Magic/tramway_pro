@@ -152,7 +152,7 @@ class Podcast::Episode < ApplicationRecord
     Rails.logger.info command
     system "#{command}"
     ready_output = (output.split('.')[0..-2] + ["ready", "mp3"]).join('.')
-    system "ffmpeg -y -i #{temp_output} -i #{premontage_file.path} -filter_complex amix=inputs=2:duration=first:dropout_transition=3 #{ready_output}"
+    system "ffmpeg -y -i #{temp_output} -i #{premontage_file.path} -filter_complex amix=inputs=2:duration=first:dropout_transition=3 #{ready_output} 2> #{parts_directory_name}/merge-music-output.txt"
     system "mv #{ready_output} #{output}" 
   end
 
