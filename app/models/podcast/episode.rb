@@ -12,6 +12,7 @@ class Podcast::Episode < ApplicationRecord
   uploader :file, :file
   uploader :cover, :photo
   uploader :premontage_file, :file
+  uploader :trailer, :file
 
   aasm :montage, column: :montage_state do
     state :recording, initial: true
@@ -24,6 +25,7 @@ class Podcast::Episode < ApplicationRecord
     state :normalized
     state :music_added
     state :trailer_is_ready
+    state :trailer_rendered
     state :finished
 
     event :download do
@@ -65,6 +67,15 @@ class Podcast::Episode < ApplicationRecord
 
     event :trailer_get_ready do
       transitions to: :trailer_is_ready
+
+      after do
+        save!
+        PodcastsTrailerWorker.perform_async self.id
+      end
+    end
+
+    event :trailer_finish do
+      transitions to: :trailer_rendered
     end
 
     event :finish do
@@ -166,7 +177,23 @@ class Podcast::Episode < ApplicationRecord
     system "mv #{ready_output} #{output}" 
   end
 
-  def build_trailer
+  def build_trailer(output)
+    temp_output = (output.split('.')[0..-2] + ["temp", "mp3"]).join('.')
+    using_highlights = highlights.where(using_state: :using).order(:trailer_position)
+    trailer_separator = podcast.musics.where(music_type: :trailer_separator).first.file.path
+    command = using_highlights.reduce("ffmpeg -y ") do |com, highlight|
+      com += "-i #{highlight.file.path} "
+      com += "-i #{trailer_separator} "
+    end
+    command +=  "-filter_complex '"
+    (using_highlights.count * 2).times do |i|
+      command += "[#{i}:0]"
+    end
+
+    command += " concat=n=#{using_highlights.count * 2}:v=0:a=1[out]' -map '[out]' -b:a 320k #{temp_output} 2> #{parts_directory_name}/build_trailer-output.txt"
+    Rails.logger.info command
+    system "#{command}"
+    system "mv #{temp_output} #{output}" 
   end
 
   def converted_file
