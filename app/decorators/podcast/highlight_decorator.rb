@@ -7,7 +7,7 @@ class Podcast::HighlightDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def show_attributes
-      [:episode_link, :time, :cut_begin_time, :cut_end_time, :using_state]
+      [:episode_link, :listen, :time, :cut_begin_time, :cut_end_time, :using_state]
     end
   end
 
@@ -18,5 +18,12 @@ class Podcast::HighlightDecorator < Tramway::Core::ApplicationDecorator
   def episode_link
     link_to episode.title,
       ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.episode_id, model: 'Podcast::Episode')
+  end
+
+  def listen
+    content_tag(:audio, controls: true) do
+      content_tag(:source, src: object.file.url) do
+      end
+    end
   end
 end

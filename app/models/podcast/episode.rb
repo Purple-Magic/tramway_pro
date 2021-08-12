@@ -23,6 +23,7 @@ class Podcast::Episode < ApplicationRecord
     state :montaged
     state :normalized
     state :music_added
+    state :trailer_is_ready
     state :finished
 
     event :download do
@@ -62,6 +63,10 @@ class Podcast::Episode < ApplicationRecord
       transitions to: :music_added
     end
 
+    event :trailer_get_ready do
+      transitions to: :trailer_is_ready
+    end
+
     event :finish do
       transitions to: :finished
     end
@@ -80,10 +85,15 @@ class Podcast::Episode < ApplicationRecord
       highlight_time = DateTime.new(2020, 0o1, 0o1, hour.to_i, minutes.to_i, seconds.to_i)
       begin_time = (highlight_time - 90.seconds).strftime '%H:%M:%S'
       end_time = (highlight_time + 10.seconds).strftime '%H:%M:%S'
-      command = "ffmpeg -y -i #{filename} -ss #{begin_time} -to #{end_time} -b:a 320k -c copy #{directory}/part-#{index + 1}.mp3 2> #{parts_directory_name}/cut_highlights-output.txt"
-      Rails.logger.info command
+      output = "#{directory}/part-#{index + 1}.mp3"
       # TODO: use lib/ffmpeg/builder.rb
+      command = "ffmpeg -y -i #{filename} -ss #{begin_time} -to #{end_time} -b:a 320k -c copy #{output} 2> #{parts_directory_name}/cut_highlights-output.txt"
+      Rails.logger.info command
       system command
+      File.open(output) do |f|
+        highlight.file = f
+      end
+      highlight.save!
     end
   end
 
@@ -154,6 +164,9 @@ class Podcast::Episode < ApplicationRecord
     ready_output = (output.split('.')[0..-2] + ["ready", "mp3"]).join('.')
     system "ffmpeg -y -i #{temp_output} -i #{premontage_file.path} -filter_complex amix=inputs=2:duration=first:dropout_transition=3 #{ready_output} 2> #{parts_directory_name}/merge-music-output.txt"
     system "mv #{ready_output} #{output}" 
+  end
+
+  def build_trailer
   end
 
   def converted_file
