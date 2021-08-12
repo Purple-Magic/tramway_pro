@@ -24,6 +24,8 @@ class Bot < ApplicationRecord
   end
 
   def finished_users
+    return [] unless finish_step.present?
+
     progress_records.where(bot_telegram_scenario_step_id: finish_step.id).uniq(&:bot_telegram_user_id)
   end
 end
