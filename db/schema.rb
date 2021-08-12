@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210808215301) do
+ActiveRecord::Schema.define(version: 20210812132710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -336,6 +336,10 @@ ActiveRecord::Schema.define(version: 20210808215301) do
     t.datetime "updated_at", null: false
     t.text "time"
     t.uuid "uuid", default: -> { "uuid_generate_v4()" }
+    t.text "using_state"
+    t.text "cut_begin_time"
+    t.text "cut_end_time"
+    t.integer "trailer_position"
   end
 
   create_table "podcast_musics", force: :cascade do |t|
