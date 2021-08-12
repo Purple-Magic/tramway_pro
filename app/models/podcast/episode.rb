@@ -6,7 +6,7 @@ class Podcast::Episode < ApplicationRecord
   EPISODE_ATTRIBUTES = %i[title season number description published_at image explicit file_url duration].freeze
 
   belongs_to :podcast, class_name: 'Podcast'
-  has_many :highlights, class_name: 'Podcast::Highlight'
+  has_many :highlights, -> { order(:time) }, class_name: 'Podcast::Highlight'
 
   uploader :ready_file, :file
   uploader :file, :file
