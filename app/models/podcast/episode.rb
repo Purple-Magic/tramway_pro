@@ -125,14 +125,15 @@ class Podcast::Episode < ApplicationRecord
   def add_music(filename, output)
     temp_output = (output.split('.')[0..-2] + ["temp", "mp3"]).join('.')
     music_render_command = ''
+    raise 'No music for this podcast' unless podcast.musics.any?
     begin_music = podcast.musics.where(music_type: :begin).first.file.path
     begin_music_object = FFMPEG::Movie.new begin_music
     finish_music = podcast.musics.where(music_type: :finish).first.file.path
-    finish_music_object = FFMPEG::Movie.new podcast.musics.where(music_type: :finish).first.file.path
+    finish_music_object = FFMPEG::Movie.new finish_music
     sample_music = podcast.musics.where(music_type: :sample).first.file.path
-    sample_music_object = FFMPEG::Movie.new podcast.musics.where(music_type: :sample).first.file.path
+    sample_music_object = FFMPEG::Movie.new sample_music
     normalized_podcast_object = FFMPEG::Movie.new premontage_file.path
-    samples_count = (normalized_podcast_object.duration - (begin_music_object.duration + finish_music_object.duration)) / sample_music_object.duration
+    samples_count = ((normalized_podcast_object.duration - (begin_music_object.duration + finish_music_object.duration)) / sample_music_object.duration).round
 
     beg = "ffmpeg -i #{begin_music}"
     filter = "-filter_complex"
