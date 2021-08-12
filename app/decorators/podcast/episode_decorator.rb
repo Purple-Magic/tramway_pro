@@ -11,7 +11,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[podcast_link number file ready_file premontage_file trailer cover video image mp3 description montage_state highlights_files]
+      %i[podcast_link number file ready_file premontage_file trailer cover trailer_video video image mp3 description montage_state highlights_files]
     end
   end
 
@@ -37,6 +37,13 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   def trailer
     content_tag(:audio, controls: true) do
       content_tag(:source, src: object.trailer.url) do
+      end
+    end
+  end
+
+  def trailer_video
+    content_tag(:video, controls: true, width: '400px') do
+      content_tag(:source, src: object.trailer_video.url) do
       end
     end
   end
