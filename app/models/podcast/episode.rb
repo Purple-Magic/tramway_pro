@@ -13,6 +13,8 @@ class Podcast::Episode < ApplicationRecord
   uploader :cover, :photo
   uploader :premontage_file, :file
   uploader :trailer, :file
+  uploader :trailer_video, :file
+  uploader :full_video, :file
 
   aasm :montage, column: :montage_state do
     state :recording, initial: true
@@ -29,6 +31,7 @@ class Podcast::Episode < ApplicationRecord
     state :concatination_in_progress
     state :finishing
     state :ready_audio
+    state :video_trailer_is_ready
     state :finished
 
     event :download do
@@ -92,6 +95,10 @@ class Podcast::Episode < ApplicationRecord
         save!
         PodcastsFinishWorker.perform_async self.id
       end
+    end
+
+    event :make_video_trailer_ready do
+      transitions to: :video_trailer_is_ready
     end
 
     event :done do
@@ -203,7 +210,7 @@ class Podcast::Episode < ApplicationRecord
     using_highlights.each do |highlight|
       raise "You should pick begin and end time for Highlight #{highlight.id}" if !highlight.cut_begin_time.present? && !highlight.cut_end_time.present?
       highlight_output = "#{directory}/#{highlight.id}.mp3"
-      command = "ffmpeg -y -i #{highlight.file.path} -ss #{highlight.cut_begin_time} -to #{highlight.cut_end_time} -b:a 320k -c copy #{highlight_output}"
+      command = "ffmpeg -y -i #{highlight.file.path} -ss #{highlight.cut_begin_time} -to #{highlight.cut_end_time} -b:a 320k -c copy #{highlight_output} 2> #{parts_directory_name}/highlight-#{id}.txt"
       Rails.logger.info command
       system command
 
@@ -238,6 +245,14 @@ class Podcast::Episode < ApplicationRecord
     temp_output = (output.split('.')[0..-2] + ["temp", "mp3"]).join('.')
   
     command = "ffmpeg -y -i #{trailer.path} -i #{premontage_file.path} -filter_complex '[0:0][1:0] concat=n=2:v=0:a=1[out]' -map '[out]' -b:a 320k #{temp_output} 2> #{parts_directory_name}/concatination-output.txt && mv #{temp_output} #{output}"
+    Rails.logger.info command
+    system command
+  end
+
+  def render_video_trailer(output)
+    video_temp_output = (output.split('.')[0..-2] + ["temp", "mp4"]).join('.')
+
+    command = "ffmpeg -loop 1 -i #{cover.path} -i #{trailer.path} -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest #{video_temp_output} 2> #{parts_directory_name}/video-trailer-output.txt && mv #{video_temp_output} #{output}"
     Rails.logger.info command
     system command
   end

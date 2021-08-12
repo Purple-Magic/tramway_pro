@@ -6,6 +6,7 @@ class PodcastsFinishWorker < ApplicationWorker
 
     directory = episode.prepare_directory
     directory = directory.gsub("//", '/')
+
     output = "#{directory}/ready_file.mp3"
     episode.concat_trailer_and_episode(output)
 
@@ -21,6 +22,23 @@ class PodcastsFinishWorker < ApplicationWorker
     end
 
     episode.make_audio_ready
+    episode.save!
+
+    output = "#{directory}/trailer.mp4"
+    episode.render_video_trailer(output)
+
+    index = 0
+    until File.exist?(output)
+      sleep 1
+      index += 1
+      Rails.logger.info "Video Trailer file does not exist for #{index} seconds"
+    end
+
+    File.open(output) do |f|
+      episode.trailer_video = f
+    end
+
+    episode.make_video_trailer_ready
     episode.save!
   end
 end
