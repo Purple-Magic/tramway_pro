@@ -78,6 +78,11 @@ class PodcastsMontageWorker < ApplicationWorker
     episode.cut_highlights
     episode.highlight_it
     episode.save!
+
+#    output = "#{directory}/trailer.mp3"
+#    episode.build_trailer
+#    episode.trailer_get_ready
+#    episode.save!
   rescue StandardError => e
     Rails.env.development? ? Rails.logger.error("logger.info : #{e.message}") : Raven.capture_exception(e)
   end
