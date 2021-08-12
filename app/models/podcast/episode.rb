@@ -146,7 +146,7 @@ class Podcast::Episode < ApplicationRecord
     (samples_count + 2).times do |i|
       parts += "[#{i}:0]"
     end
-    concatination = "concat=n=#{samples_count + 2}:v=0:a=1[out]' -map '[out]' -b:a 320k #{temp_output}"
+    concatination = "concat=n=#{samples_count + 2}:v=0:a=1[out]' -map '[out]' -b:a 320k #{temp_output} 2> #{parts_directory_name}/add_music-output.txt"
 
     command = "#{beg} #{audios} #{finish} #{filter} '#{parts} #{concatination}"
     Rails.logger.info command
