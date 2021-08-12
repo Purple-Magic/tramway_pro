@@ -125,16 +125,17 @@ class Podcast::Episode < ApplicationRecord
   def add_music(filename, output)
     temp_output = (output.split('.')[0..-2] + ["temp", "mp3"]).join('.')
     music_render_command = ''
+    raise 'No music for this podcast' unless podcast.musics.any?
     begin_music = podcast.musics.where(music_type: :begin).first.file.path
     begin_music_object = FFMPEG::Movie.new begin_music
     finish_music = podcast.musics.where(music_type: :finish).first.file.path
-    finish_music_object = FFMPEG::Movie.new podcast.musics.where(music_type: :finish).first.file.path
+    finish_music_object = FFMPEG::Movie.new finish_music
     sample_music = podcast.musics.where(music_type: :sample).first.file.path
-    sample_music_object = FFMPEG::Movie.new podcast.musics.where(music_type: :sample).first.file.path
+    sample_music_object = FFMPEG::Movie.new sample_music
     normalized_podcast_object = FFMPEG::Movie.new premontage_file.path
-    samples_count = (normalized_podcast_object.duration - (begin_music_object.duration + finish_music_object.duration)) / sample_music_object.duration
+    samples_count = ((normalized_podcast_object.duration - (begin_music_object.duration + finish_music_object.duration)) / sample_music_object.duration).round
 
-    beg = "ffmpeg -i #{begin_music}"
+    beg = "ffmpeg -y -i #{begin_music}"
     filter = "-filter_complex"
     audios = ''
     samples_count.times do |i|
@@ -149,7 +150,10 @@ class Podcast::Episode < ApplicationRecord
 
     command = "#{beg} #{audios} #{finish} #{filter} '#{parts} #{concatination}"
     Rails.logger.info command
-    system "#{command} 2> #{Rails.root}/log/#{Rails.env}.log && mv #{temp_output} #{output}"
+    system "#{command}"
+    ready_output = (output.split('.')[0..-2] + ["ready", "mp3"]).join('.')
+    system "ffmpeg -y -i #{temp_output} -i #{premontage_file.path} -filter_complex amix=inputs=2:duration=first:dropout_transition=3 #{ready_output}"
+    system "mv #{ready_output} #{output}" 
   end
 
   def converted_file
