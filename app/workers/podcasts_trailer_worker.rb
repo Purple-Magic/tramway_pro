@@ -16,7 +16,6 @@ class PodcastsTrailerWorker < ApplicationWorker
       Rails.logger.info "Trailer file does not exist for #{index} seconds"
     end
 
-    binding.pry
     File.open(output) do |f|
       episode.trailer = f
     end

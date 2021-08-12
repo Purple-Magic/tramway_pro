@@ -179,8 +179,9 @@ class Podcast::Episode < ApplicationRecord
 
   def build_trailer(output)
     temp_output = (output.split('.')[0..-2] + ["temp", "mp3"]).join('.')
-    using_highlights = highlights.where(using_state: :using).order(:trailer_position)
     trailer_separator = podcast.musics.where(music_type: :trailer_separator).first.file.path
+    using_highlights = highlights.where(using_state: :using).order(:trailer_position)
+    raise 'You should pick some highlights as using' unless using_highlights.any?
     command = using_highlights.reduce("ffmpeg -y ") do |com, highlight|
       com += "-i #{highlight.file.path} "
       com += "-i #{trailer_separator} "
@@ -192,8 +193,7 @@ class Podcast::Episode < ApplicationRecord
 
     command += " concat=n=#{using_highlights.count * 2}:v=0:a=1[out]' -map '[out]' -b:a 320k #{temp_output} 2> #{parts_directory_name}/build_trailer-output.txt"
     Rails.logger.info command
-    system "#{command}"
-    system "mv #{temp_output} #{output}" 
+    system "#{command} && mv #{temp_output} #{output}" 
   end
 
   def converted_file
