@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210812152728) do
+ActiveRecord::Schema.define(version: 20210812155224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -342,6 +342,7 @@ ActiveRecord::Schema.define(version: 20210812152728) do
     t.text "cut_end_time"
     t.integer "trailer_position"
     t.text "file"
+    t.text "ready_file"
   end
 
   create_table "podcast_musics", force: :cascade do |t|

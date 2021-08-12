@@ -182,8 +182,31 @@ class Podcast::Episode < ApplicationRecord
     trailer_separator = podcast.musics.where(music_type: :trailer_separator).first.file.path
     using_highlights = highlights.where(using_state: :using).order(:trailer_position)
     raise 'You should pick some highlights as using' unless using_highlights.any?
+
+    directory = output.split('/')[0..-2].join('/')
+    using_highlights.each do |highlight|
+      raise "You should pick begin and end time for Highlight #{highlight.id}" if !highlight.cut_begin_time.present? && !highlight.cut_end_time.present?
+      highlight_output = "#{directory}/#{highlight.id}.mp3"
+      command = "ffmpeg -y -i #{highlight.file.path} -ss #{highlight.cut_begin_time} -to #{highlight.cut_end_time} -b:a 320k -c copy #{highlight_output}"
+      Rails.logger.info command
+      puts command
+      system command
+
+      index = 0
+      until File.exist?(highlight_output)
+        sleep 1
+        index += 1
+        Rails.logger.info "Highlight ready file #{highlight.id} does not exist for #{index} seconds"
+      end
+
+      File.open(highlight_output) do |f|
+        highlight.ready_file = f
+      end
+      highlight.save!
+    end
+
     command = using_highlights.reduce("ffmpeg -y ") do |com, highlight|
-      com += "-i #{highlight.file.path} "
+      com += "-i #{highlight.ready_file.path} "
       com += "-i #{trailer_separator} "
     end
     command +=  "-filter_complex '"

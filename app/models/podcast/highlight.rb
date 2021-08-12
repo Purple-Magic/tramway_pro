@@ -6,4 +6,5 @@ class Podcast::Highlight < ApplicationRecord
   enumerize :using_state, in: [ :using, :not_using ], default: :not_using
 
   uploader :file, :file
+  uploader :ready_file, :file
 end
