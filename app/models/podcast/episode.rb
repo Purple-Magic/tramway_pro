@@ -26,6 +26,9 @@ class Podcast::Episode < ApplicationRecord
     state :music_added
     state :trailer_is_ready
     state :trailer_rendered
+    state :concatination_in_progress
+    state :finishing
+    state :ready_audio
     state :finished
 
     event :download do
@@ -78,7 +81,20 @@ class Podcast::Episode < ApplicationRecord
       transitions to: :trailer_rendered
     end
 
+    event :make_audio_ready do
+      transitions to: :ready_audio
+    end
+
     event :finish do
+      transitions to: :finishing
+
+      after do
+        save!
+        PodcastsFinishWorker.perform_async self.id
+      end
+    end
+
+    event :done do
       transitions to: :finished
     end
   end
@@ -189,7 +205,6 @@ class Podcast::Episode < ApplicationRecord
       highlight_output = "#{directory}/#{highlight.id}.mp3"
       command = "ffmpeg -y -i #{highlight.file.path} -ss #{highlight.cut_begin_time} -to #{highlight.cut_end_time} -b:a 320k -c copy #{highlight_output}"
       Rails.logger.info command
-      puts command
       system command
 
       index = 0
@@ -217,6 +232,14 @@ class Podcast::Episode < ApplicationRecord
     command += " concat=n=#{using_highlights.count * 2}:v=0:a=1[out]' -map '[out]' -b:a 320k #{temp_output} 2> #{parts_directory_name}/build_trailer-output.txt"
     Rails.logger.info command
     system "#{command} && mv #{temp_output} #{output}" 
+  end
+
+  def concat_trailer_and_episode(output)
+    temp_output = (output.split('.')[0..-2] + ["temp", "mp3"]).join('.')
+  
+    command = "ffmpeg -y -i #{trailer.path} -i #{premontage_file.path} -filter_complex '[0:0][1:0] concat=n=2:v=0:a=1[out]' -map '[out]' -b:a 320k #{temp_output} 2> #{parts_directory_name}/concatination-output.txt && mv #{temp_output} #{output}"
+    Rails.logger.info command
+    system command
   end
 
   def converted_file
