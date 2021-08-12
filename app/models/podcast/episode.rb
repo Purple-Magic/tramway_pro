@@ -210,7 +210,7 @@ class Podcast::Episode < ApplicationRecord
     using_highlights.each do |highlight|
       raise "You should pick begin and end time for Highlight #{highlight.id}" if !highlight.cut_begin_time.present? && !highlight.cut_end_time.present?
       highlight_output = "#{directory}/#{highlight.id}.mp3"
-      command = "ffmpeg -y -i #{highlight.file.path} -ss #{highlight.cut_begin_time} -to #{highlight.cut_end_time} -b:a 320k -c copy #{highlight_output} 2> #{parts_directory_name}/highlight-#{id}.txt"
+      command = "ffmpeg -y -i #{highlight.file.path} -ss #{highlight.cut_begin_time} -to #{highlight.cut_end_time} -b:a 320k -c copy #{highlight_output} 2> #{parts_directory_name}/highlight-#{highlight.id}.txt"
       Rails.logger.info command
       system command
 
@@ -253,6 +253,26 @@ class Podcast::Episode < ApplicationRecord
     video_temp_output = (output.split('.')[0..-2] + ["temp", "mp4"]).join('.')
 
     command = "ffmpeg -loop 1 -i #{cover.path} -i #{trailer.path} -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest #{video_temp_output} 2> #{parts_directory_name}/video-trailer-output.txt && mv #{video_temp_output} #{output}"
+    Rails.logger.info command
+    system command
+  end
+
+  def render_full_video(output)
+    inputs = [cover.path, ready_file.path]
+    options = options_line(
+      inputs: inputs,
+      output: output,
+      yes: true,
+      loop_value: 1,
+      video_codec: :libx264,
+      tune: :stillimage,
+      audio_codec: :aac,
+      bitrate_audio: '192k',
+      pixel_format: 'yuv420p',
+      shortest: true,
+      strict: 2
+    )
+    command = "ffmpeg #{options} 2> #{parts_directory_name}/video_render.txt"
     Rails.logger.info command
     system command
   end

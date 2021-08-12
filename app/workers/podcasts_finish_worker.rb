@@ -40,5 +40,22 @@ class PodcastsFinishWorker < ApplicationWorker
 
     episode.make_video_trailer_ready
     episode.save!
+
+    output = "#{directory}/full_video.mp4"
+    episode.render_full_video(output)
+
+    index = 0
+    until File.exist?(output)
+      sleep 1
+      index += 1
+      Rails.logger.info "Full video file does not exist for #{index} seconds"
+    end
+
+    File.open(output) do |f|
+      episode.full_video = f
+    end
+
+    episode.finish
+    episode.save!
   end
 end
