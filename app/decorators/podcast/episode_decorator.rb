@@ -11,7 +11,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[podcast_link number file ready_file premontage_file trailer cover trailer_video video image mp3 description montage_state highlights_files]
+      %i[podcast_link number file ready_file premontage_file trailer cover trailer_video full_video image mp3 description montage_state highlights_files]
     end
   end
 
@@ -22,12 +22,6 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   def title
     "Выпуск №#{object.number}"
-  end
-
-  def video
-    path_helpers = Rails.application.routes.url_helpers
-    path = path_helpers.red_magic_api_v1_podcast_episodes_video_path(object.id)
-    link_to 'Download', path
   end
 
   def cover
@@ -44,6 +38,13 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   def trailer_video
     content_tag(:video, controls: true, width: '400px') do
       content_tag(:source, src: object.trailer_video.url) do
+      end
+    end
+  end
+
+  def full_video
+    content_tag(:video, controls: true, width: '400px') do
+      content_tag(:source, src: object.full_video.url) do
       end
     end
   end
