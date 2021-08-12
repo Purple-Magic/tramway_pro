@@ -210,7 +210,7 @@ class Podcast::Episode < ApplicationRecord
     using_highlights.each do |highlight|
       raise "You should pick begin and end time for Highlight #{highlight.id}" if !highlight.cut_begin_time.present? && !highlight.cut_end_time.present?
       highlight_output = "#{directory}/#{highlight.id}.mp3"
-      command = "ffmpeg -y -i #{highlight.file.path} -ss #{highlight.cut_begin_time} -to #{highlight.cut_end_time} -b:a 320k -c copy #{highlight_output} 2> #{parts_directory_name}/highlight-#{id}.txt"
+      command = "ffmpeg -y -i #{highlight.file.path} -ss #{highlight.cut_begin_time} -to #{highlight.cut_end_time} -b:a 320k -c copy #{highlight_output} 2> #{parts_directory_name}/highlight-#{highlight.id}.txt"
       Rails.logger.info command
       system command
 
