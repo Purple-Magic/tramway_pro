@@ -11,6 +11,8 @@ class BotTelegram::Scenario::Step < ApplicationRecord
 
   search_by :options
 
+  validates :text, length: { maximum: 1999 }, allow_blank: true
+
   scope :partner_scope, ->(_user_id) { all }
   %i[rsm night purple_magic].each do |team|
     scope "#{team}_scope".to_sym, ->(_user_id) { joins(:bot).where('bots.team = ?', team) }
