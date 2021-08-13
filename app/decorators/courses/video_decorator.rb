@@ -22,6 +22,11 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
     raw object.text
   end
 
+  def lesson_link
+    link_to lesson.title,
+      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.lesson_id, model: 'Courses::Lesson')
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
@@ -30,17 +35,14 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
 
     def list_attributes
       %i[
-        id
-        lesson_id
-        text
-        state
+        lesson_link
       ]
     end
 
     def show_attributes
       %i[
         id
-        lesson_id
+        lesson_link
         text
         state
         created_at
