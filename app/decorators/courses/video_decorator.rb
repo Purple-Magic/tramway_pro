@@ -3,6 +3,7 @@
 class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   decorate_association :comments, as: :video
+  decorate_association :lesson
 
   delegate_attributes(
     :id,
@@ -71,7 +72,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def title
-    "#{object.position} | Video ##{object.id} for Lesson #{object.lesson_id}"
+    "#{lesson.topic.position}-#{lesson.position}-#{position} Video"
   end
 
   alias name title
