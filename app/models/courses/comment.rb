@@ -9,7 +9,7 @@ class Courses::Comment < ApplicationRecord
     state :unviewed, initial: true
     state :done
 
-    event :do_ti do
+    event :do_it do
       transitions from: :unviewed, to: :done
     end
   end
