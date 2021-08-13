@@ -182,3 +182,7 @@ ru:
           send_to_customer: Отправлена заказчику
           confirmed_by_customer: Проект запущен
           decline: Проект отклонён
+    courses/comment:
+      comment_state:
+        events:
+          do_it: Готово
