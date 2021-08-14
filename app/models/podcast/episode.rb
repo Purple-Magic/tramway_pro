@@ -286,7 +286,7 @@ class Podcast::Episode < ApplicationRecord
 
     if file.path.split('.').last == 'ogg'
       filename += '.mp3'
-      command = "ffmpeg -y -i #{file.path} -b:a 320k -c:a libmp3lame #{filename}"
+      command = "ffmpeg -y -i #{file.path} -b:a 320k -c:a libmp3lame #{filename} 2> #{parts_directory_name}/convert_file-output.txt"
       Rails.logger.info command
       system command
     end

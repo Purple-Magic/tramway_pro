@@ -8,6 +8,8 @@ class PodcastsMontageWorker < ApplicationWorker
 
     directory = episode.prepare_directory
     directory = directory.gsub("//", '/')
+
+    # Download
     external_filename = ''
     Net::SSH.start('167.71.46.15', 'root') do |ssh|
       result = ssh.exec! 'ls /root/Documents/Mumble-*'
@@ -22,9 +24,20 @@ class PodcastsMontageWorker < ApplicationWorker
     episode.download
     episode.save!
 
+    # Convert
     filename = episode.convert_file
+
+    index = 0
+    until File.exist?(filename)
+      sleep 1
+      index += 1
+      Rails.logger.info "Convert file does not exist for #{index} seconds"
+    end
+
     episode.convert
     episode.save!
+
+    # Montage
     output = "#{directory}/montage.mp3"
 
     episode.montage(filename, output)
@@ -43,6 +56,7 @@ class PodcastsMontageWorker < ApplicationWorker
     episode.prepare
     episode.save!
 
+    # Normalize
     output = "#{directory}/normalize.mp3"
     episode.normalize(episode.premontage_file.path, output)
 
@@ -58,6 +72,7 @@ class PodcastsMontageWorker < ApplicationWorker
     episode.to_normalize
     episode.save!
 
+    # Add music
     output = "#{directory}/with_music.mp3"
     episode.add_music(episode.premontage_file.path, output)
 
@@ -74,6 +89,7 @@ class PodcastsMontageWorker < ApplicationWorker
     episode.music_add
     episode.save!
 
+    # Cut highlights
     episode.convert_file
     episode.cut_highlights
     episode.highlight_it
