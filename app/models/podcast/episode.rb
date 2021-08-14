@@ -117,8 +117,8 @@ class Podcast::Episode < ApplicationRecord
       seconds = highlight.time.split(':')[2]
 
       highlight_time = DateTime.new(2020, 0o1, 0o1, hour.to_i, minutes.to_i, seconds.to_i)
-      begin_time = (highlight_time - 90.seconds).strftime '%H:%M:%S'
-      end_time = (highlight_time + 10.seconds).strftime '%H:%M:%S'
+      begin_time = (highlight_time - 60.seconds).strftime '%H:%M:%S'
+      end_time = (highlight_time + 30.seconds).strftime '%H:%M:%S'
       output = "#{directory}/part-#{index + 1}.mp3"
       # TODO: use lib/ffmpeg/builder.rb
       command = "ffmpeg -y -i #{filename} -ss #{begin_time} -to #{end_time} -b:a 320k -c copy #{output} 2> #{parts_directory_name}/cut_highlights-output.txt"
