@@ -24,6 +24,12 @@ class PodcastsMontageWorker < ApplicationWorker
     episode.download
     episode.save!
 
+    # Cut highlights
+    episode.convert_file
+    episode.cut_highlights
+    episode.highlight_it
+    episode.save!
+
     # Convert
     filename = episode.convert_file
 
@@ -87,12 +93,6 @@ class PodcastsMontageWorker < ApplicationWorker
     end
 
     episode.music_add
-    episode.save!
-
-    # Cut highlights
-    episode.convert_file
-    episode.cut_highlights
-    episode.highlight_it
     episode.save!
   rescue StandardError => e
     Rails.env.development? ? Rails.logger.error("logger.info : #{e.message}") : Raven.capture_exception(e)
