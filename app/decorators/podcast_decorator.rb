@@ -9,7 +9,7 @@ class PodcastDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def show_associations
-      [:musics, :episodes]
+      %i[musics episodes]
     end
   end
 end

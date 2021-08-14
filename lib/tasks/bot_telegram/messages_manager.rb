@@ -45,18 +45,20 @@ module BotTelegram::MessagesManager
   def send_file(bot, message_telegram, message_obj)
     mime_type = case message_obj.file.file.file[-3..]
                 when 'jpg'
-                  [ :photo, 'image/jpeg' ]
+                  [:photo, 'image/jpeg']
                 when 'mp3'
-                  [ :voice, 'audio/mpeg' ]
+                  [:voice, 'audio/mpeg']
                 end
     params = {
       chat_id: message_telegram.chat.id,
       mime_type[0] => Faraday::UploadIO.new(message_obj.file.file.file, mime_type[1])
     }
-    params.merge!(
-      reply_markup: Telegram::Bot::Types::ReplyKeyboardMarkup.new(**message_obj.reply_markup),
-      parse_mode: :markdown
-    ) if message_obj.reply_markup.present?
+    if message_obj.reply_markup.present?
+      params.merge!(
+        reply_markup: Telegram::Bot::Types::ReplyKeyboardMarkup.new(**message_obj.reply_markup),
+        parse_mode: :markdown
+      )
+    end
 
     bot.api.public_send "send_#{mime_type[0]}", **params
   end

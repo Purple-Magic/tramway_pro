@@ -51,7 +51,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        PodcastsMontageWorker.perform_async self.id
+        PodcastsMontageWorker.perform_async id
       end
     end
 
@@ -76,7 +76,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        PodcastsTrailerWorker.perform_async self.id
+        PodcastsTrailerWorker.perform_async id
       end
     end
 
@@ -93,7 +93,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        PodcastsFinishWorker.perform_async self.id
+        PodcastsFinishWorker.perform_async id
       end
     end
 
@@ -153,23 +153,24 @@ class Podcast::Episode < ApplicationRecord
   include Ffmpeg::CommandBuilder
 
   def montage(filename, output)
-    temp_output = (output.split('.')[0..-2] + ["temp", "mp3"]).join('.')
+    temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
     command = "ffmpeg -y -i #{filename} -vcodec libx264 -af silenceremove=stop_periods=-1:stop_duration=1.4:stop_threshold=-30dB,acompressor=threshold=-12dB:ratio=2:attack=200:release=1000,volume=-0.5dB -b:a 320k #{temp_output} 2> #{parts_directory_name}/montage-output.txt && mv #{temp_output} #{output}"
     Rails.logger.info command
     system command
   end
 
   def normalize(filename, output)
-    temp_output = (output.split('.')[0..-2] + ["temp", "mp3"]).join('.')
+    temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
     command = "ffmpeg-normalize #{filename} -o #{temp_output} -b:a 320k -c:a libmp3lame -t -8 2> #{parts_directory_name}/normalize-output.txt && mv #{temp_output} #{output}"
     Rails.logger.info command
     system command
   end
 
-  def add_music(filename, output)
-    temp_output = (output.split('.')[0..-2] + ["temp", "mp3"]).join('.')
+  def add_music(_filename, output)
+    temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
     music_render_command = ''
     raise 'No music for this podcast' unless podcast.musics.any?
+
     begin_music = podcast.musics.where(music_type: :begin).first.file.path
     begin_music_object = FFMPEG::Movie.new begin_music
     finish_music = podcast.musics.where(music_type: :finish).first.file.path
@@ -180,13 +181,13 @@ class Podcast::Episode < ApplicationRecord
     samples_count = ((normalized_podcast_object.duration - (begin_music_object.duration + finish_music_object.duration)) / sample_music_object.duration).round
 
     beg = "ffmpeg -y -i #{begin_music}"
-    filter = "-filter_complex"
+    filter = '-filter_complex'
     audios = ''
-    samples_count.times do |i|
+    samples_count.times do |_i|
       audios += "-i #{sample_music} "
     end
     finish = "-i #{finish_music} "
-    parts = ""
+    parts = ''
     (samples_count + 2).times do |i|
       parts += "[#{i}:0]"
     end
@@ -194,21 +195,24 @@ class Podcast::Episode < ApplicationRecord
 
     command = "#{beg} #{audios} #{finish} #{filter} '#{parts} #{concatination}"
     Rails.logger.info command
-    system "#{command}"
-    ready_output = (output.split('.')[0..-2] + ["ready", "mp3"]).join('.')
+    system command.to_s
+    ready_output = (output.split('.')[0..-2] + %w[ready mp3]).join('.')
     system "ffmpeg -y -i #{temp_output} -i #{premontage_file.path} -filter_complex amix=inputs=2:duration=first:dropout_transition=3 #{ready_output} 2> #{parts_directory_name}/merge-music-output.txt"
-    system "mv #{ready_output} #{output}" 
+    system "mv #{ready_output} #{output}"
   end
 
   def build_trailer(output)
-    temp_output = (output.split('.')[0..-2] + ["temp", "mp3"]).join('.')
+    temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
     trailer_separator = podcast.musics.where(music_type: :trailer_separator).first.file.path
     using_highlights = highlights.where(using_state: :using).order(:trailer_position)
     raise 'You should pick some highlights as using' unless using_highlights.any?
 
     directory = output.split('/')[0..-2].join('/')
     using_highlights.each do |highlight|
-      raise "You should pick begin and end time for Highlight #{highlight.id}" if !highlight.cut_begin_time.present? && !highlight.cut_end_time.present?
+      if !highlight.cut_begin_time.present? && !highlight.cut_end_time.present?
+        raise "You should pick begin and end time for Highlight #{highlight.id}"
+      end
+
       highlight_output = "#{directory}/#{highlight.id}.mp3"
       command = "ffmpeg -y -i #{highlight.file.path} -ss #{highlight.cut_begin_time} -to #{highlight.cut_end_time} -b:a 320k -c copy #{highlight_output} 2> #{parts_directory_name}/highlight-#{highlight.id}.txt"
       Rails.logger.info command
@@ -227,30 +231,32 @@ class Podcast::Episode < ApplicationRecord
       highlight.save!
     end
 
-    command = using_highlights.reduce("ffmpeg -y ") do |com, highlight|
+    command = using_highlights.reduce('ffmpeg -y ') do |com, highlight|
       com += "-i #{highlight.ready_file.path} "
       com += "-i #{trailer_separator} "
     end
-    command +=  "-filter_complex '"
+    command += "-filter_complex '"
     (using_highlights.count * 2).times do |i|
       command += "[#{i}:0]"
     end
 
     command += " concat=n=#{using_highlights.count * 2}:v=0:a=1[out]' -map '[out]' -b:a 320k #{temp_output} 2> #{parts_directory_name}/build_trailer-output.txt"
     Rails.logger.info command
-    system "#{command} && mv #{temp_output} #{output}" 
+    system "#{command} && mv #{temp_output} #{output}"
   end
 
   def concat_trailer_and_episode(output)
-    temp_output = (output.split('.')[0..-2] + ["temp", "mp3"]).join('.')
-  
+    temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
+
     command = "ffmpeg -y -i #{trailer.path} -i #{premontage_file.path} -filter_complex '[0:0][1:0] concat=n=2:v=0:a=1[out]' -map '[out]' -b:a 320k #{temp_output} 2> #{parts_directory_name}/concatination-output.txt && mv #{temp_output} #{output}"
     Rails.logger.info command
     system command
   end
 
   def render_video_trailer(output)
-    video_temp_output = (output.split('.')[0..-2] + ["temp", "mp4"]).join('.')
+    raise 'You should add episode cover' unless cover.present?
+
+    video_temp_output = (output.split('.')[0..-2] + %w[temp mp4]).join('.')
 
     command = "ffmpeg -loop 1 -i #{cover.path} -i #{trailer.path} -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest #{video_temp_output} 2> #{parts_directory_name}/video-trailer-output.txt && mv #{video_temp_output} #{output}"
     Rails.logger.info command
@@ -278,7 +284,7 @@ class Podcast::Episode < ApplicationRecord
   end
 
   def converted_file
-    filename = file.path.split('.')[0..-1].join('.')
+    filename = file.path.split('.')[0..].join('.')
   end
 
   def convert_file

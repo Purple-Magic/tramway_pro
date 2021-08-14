@@ -7,12 +7,12 @@ class Podcast::HighlightDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def show_attributes
-      [:episode_link, :listen, :time, :cut_begin_time, :cut_end_time, :using_state]
+      %i[episode_link listen time cut_begin_time cut_end_time using_state]
     end
   end
 
   def title
-    "#{object.time} - #{object.using_state}"
+    "#{object.trailer_position} | #{object.time} - #{object.using_state}"
   end
 
   def episode_link

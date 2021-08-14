@@ -6,5 +6,5 @@ class Podcast < ApplicationRecord
 
   uploader :default_image, :photo, extensions: %i[png jpg jpeg]
 
-  enumerize :podcast_type, in: [ :sample, :without_music, :different_music ]
+  enumerize :podcast_type, in: %i[sample without_music different_music]
 end

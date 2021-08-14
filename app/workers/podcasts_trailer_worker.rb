@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PodcastsTrailerWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
@@ -5,7 +7,7 @@ class PodcastsTrailerWorker < ApplicationWorker
     episode = Podcast::Episode.find id
 
     directory = episode.prepare_directory
-    directory = directory.gsub("//", '/')
+    directory = directory.gsub('//', '/')
     output = "#{directory}/trailer.mp3"
     episode.build_trailer(output)
 

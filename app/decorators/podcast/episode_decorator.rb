@@ -11,7 +11,8 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[podcast_link number file ready_file premontage_file trailer cover trailer_video full_video image mp3 description montage_state]
+      %i[podcast_link number file ready_file premontage_file trailer cover trailer_video full_video image mp3
+         description montage_state]
     end
   end
 
@@ -80,14 +81,15 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   def additional_buttons
     path_helpers = Rails.application.routes.url_helpers
     finish_record_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: object.id, process: :finish_record)
-    trailer_get_ready_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: object.id, process: :trailer_get_ready)
+    trailer_get_ready_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: object.id,
+      process: :trailer_get_ready)
     finish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: object.id, process: :finish)
 
     {
       show: [
         { url: finish_record_url, method: :patch, inner: -> { 'Finish record' }, color: :success },
         { url: trailer_get_ready_url, method: :patch, inner: -> { 'Trailer get ready' }, color: :success },
-        { url: finish_url, method: :patch, inner: -> { 'Finish' }, color: :success },
+        { url: finish_url, method: :patch, inner: -> { 'Finish' }, color: :success }
       ]
     }
   end
