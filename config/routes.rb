@@ -63,11 +63,6 @@ Rails.application.routes.draw do
         namespace :v1 do
           namespace :podcast do
             resources :episodes, only: :update
-
-            namespace :episodes do
-              resources :parts, only: :index
-              resources :videos, only: %i[create show]
-            end
           end
         end
       end
