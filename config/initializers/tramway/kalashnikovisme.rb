@@ -20,7 +20,7 @@ Tramway::Admin.navbar_structure(
       Courses::Video,
       Courses::Comment,
       TimeLog
-    ],
+    ]
   },
   Tramway::User::User,
   project: :kalashnikovisme

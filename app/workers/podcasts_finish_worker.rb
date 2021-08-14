@@ -5,7 +5,7 @@ class PodcastsFinishWorker < ApplicationWorker
     episode = Podcast::Episode.find id
 
     directory = episode.prepare_directory
-    directory = directory.gsub("//", '/')
+    directory = directory.gsub('//', '/')
 
     output = "#{directory}/ready_file.mp3"
     episode.concat_trailer_and_episode(output)

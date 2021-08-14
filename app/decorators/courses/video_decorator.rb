@@ -31,7 +31,8 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
                      end
       t.sub(
         comment.phrase,
-        content_tag(:span, style: 'background-color: yellow; cursor: pointer', data: { toggle: :popover, html: true, content: comment_html }) do
+        content_tag(:span, style: 'background-color: yellow; cursor: pointer',
+data: { toggle: :popover, html: true, content: comment_html }) do
           comment.phrase
         end.html_safe
       )

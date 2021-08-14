@@ -114,11 +114,13 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def additional_buttons
-    add_scenario_step_url = Tramway::Admin::Engine.routes.url_helpers.new_record_path(model: 'BotTelegram::Scenario::Step', 'bot_telegram/scenario/step' => { bot:  object.id }, redirect: "/admin/records/#{object.id}?model=Bot")
+    add_scenario_step_url = Tramway::Admin::Engine.routes.url_helpers.new_record_path(
+      model: 'BotTelegram::Scenario::Step', 'bot_telegram/scenario/step' => { bot: object.id }, redirect: "/admin/records/#{object.id}?model=Bot"
+    )
 
     {
       show: [
-        { url: add_scenario_step_url, inner: -> { fa_icon :plus }, color: :success },
+        { url: add_scenario_step_url, inner: -> { fa_icon :plus }, color: :success }
       ]
     }
   end

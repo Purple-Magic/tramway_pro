@@ -7,7 +7,7 @@ class PodcastsMontageWorker < ApplicationWorker
     episode = Podcast::Episode.find id
 
     directory = episode.prepare_directory
-    directory = directory.gsub("//", '/')
+    directory = directory.gsub('//', '/')
 
     # Download
     external_filename = ''
@@ -15,7 +15,8 @@ class PodcastsMontageWorker < ApplicationWorker
       result = ssh.exec! 'ls /root/Documents/Mumble-*'
       external_filename = result.split(' ').last.split('/').last
     end
-    Net::SCP.download!('167.71.46.15', 'root', "/root/Documents/#{external_filename}",  "#{directory}/#{external_filename}")
+    Net::SCP.download!('167.71.46.15', 'root', "/root/Documents/#{external_filename}",
+      "#{directory}/#{external_filename}")
 
     File.open("#{directory}/#{external_filename}") do |f|
       episode.file = f
@@ -63,20 +64,20 @@ class PodcastsMontageWorker < ApplicationWorker
     episode.save!
 
     # Normalize
-#    output = "#{directory}/normalize.mp3"
-#    episode.normalize(episode.premontage_file.path, output)
-#
-#    index = 0
-#    until File.exist?(output)
-#      sleep 1
-#      index += 1
-#      Rails.logger.info "Normalized file does not exist for #{index} seconds"
-#    end
-#    File.open(output) do |f|
-#      episode.premontage_file = f
-#    end
-#    episode.to_normalize
-#    episode.save!
+    #    output = "#{directory}/normalize.mp3"
+    #    episode.normalize(episode.premontage_file.path, output)
+    #
+    #    index = 0
+    #    until File.exist?(output)
+    #      sleep 1
+    #      index += 1
+    #      Rails.logger.info "Normalized file does not exist for #{index} seconds"
+    #    end
+    #    File.open(output) do |f|
+    #      episode.premontage_file = f
+    #    end
+    #    episode.to_normalize
+    #    episode.save!
 
     # Add music
     output = "#{directory}/with_music.mp3"
