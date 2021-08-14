@@ -107,8 +107,5 @@ Tramway::Export.set_exportable_models(
   {
     Estimation::Project => [:tasks]
   },
-  {
-    Podcast::Episode => [:highlights]
-  },
   project: :red_magic
 )
