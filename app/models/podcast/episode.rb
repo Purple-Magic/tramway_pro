@@ -254,6 +254,8 @@ class Podcast::Episode < ApplicationRecord
   end
 
   def render_video_trailer(output)
+    raise 'You should add episode cover' unless cover.present?
+
     video_temp_output = (output.split('.')[0..-2] + %w[temp mp4]).join('.')
 
     command = "ffmpeg -loop 1 -i #{cover.path} -i #{trailer.path} -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest #{video_temp_output} 2> #{parts_directory_name}/video-trailer-output.txt && mv #{video_temp_output} #{output}"
