@@ -11,7 +11,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[podcast_link number file ready_file premontage_file trailer cover trailer_video full_video image mp3 description montage_state highlights_files]
+      %i[podcast_link number file ready_file premontage_file trailer cover trailer_video full_video image mp3 description montage_state]
     end
   end
 
@@ -75,21 +75,6 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   def montage_file
     link_to 'Download', object.montage_file.url
-  end
-
-  def highlights_files
-    parts = Dir["#{object.parts_directory_name}/part-*.mp3"]
-
-    content_tag :table do
-      parts.each do |part|
-        concat(content_tag(:tr) do
-          concat(content_tag(:td) do
-            short_name = part.split('/').last
-            link_to short_name, "/#{part.split('/')[-4..].join('/')}"
-          end)
-        end)
-      end
-    end
   end
 
   def additional_buttons
