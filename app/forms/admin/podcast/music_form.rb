@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Podcast::MusicForm < Tramway::Core::ApplicationForm
   properties :file, :music_type, :project_id
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PodcastsTrailerWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 

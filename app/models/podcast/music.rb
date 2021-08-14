@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Podcast::Music < ApplicationRecord
   belongs_to :podcast, class_name: 'Podcast'
 

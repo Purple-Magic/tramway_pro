@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'net/ssh'
 
 class PodcastsMontageWorker < ApplicationWorker
@@ -13,7 +15,7 @@ class PodcastsMontageWorker < ApplicationWorker
     external_filename = ''
     Net::SSH.start('167.71.46.15', 'root') do |ssh|
       result = ssh.exec! 'ls /root/Documents/Mumble-*'
-      external_filename = result.split(' ').last.split('/').last
+      external_filename = result.split.last.split('/').last
     end
     Net::SCP.download!('167.71.46.15', 'root', "/root/Documents/#{external_filename}",
       "#{directory}/#{external_filename}")

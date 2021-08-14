@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Podcast::HighlightForm < Tramway::Core::ApplicationForm
   properties :using_state, :cut_begin_time, :cut_end_time, :trailer_position, :project_id
 
