@@ -23,17 +23,17 @@ class Podcast::Episode < ApplicationRecord
        trailer_is_ready trailer_rendered concatination_in_progress finishing ready_audio
        video_trailer_is_ready finished].each { |s| state s }
 
-    event :download, -> { transitions to: :downloaded }
-    event :convert, -> { transitions to: :converted }
-    event :highlight_it, -> { transitions to: :highlighted }
-    event :prepare, -> { transitions to: :prepared }
-    event :to_montage, -> { transitions to: :montaged }
-    event :to_normalize, -> { transitions to: :normalized }
-    event :music_add, -> { transitions to: :music_added }
-    event :trailer_finish, -> { transitions to: :trailer_rendered }
-    event :make_audio_ready, -> { transitions to: :ready_audio }
-    event :make_video_trailer_ready, -> { transitions to: :video_trailer_is_ready }
-    event :done, -> { transitions to: :finished }
+    event(:download) { transitions to: :downloaded }
+    event(:convert) { transitions to: :converted }
+    event(:highlight_it) { transitions to: :highlighted }
+    event(:prepare) { transitions to: :prepared }
+    event(:to_montage) { transitions to: :montaged }
+    event(:to_normalize) { transitions to: :normalized }
+    event(:music_add) { transitions to: :music_added }
+    event(:trailer_finish) { transitions to: :trailer_rendered }
+    event(:make_audio_ready) { transitions to: :ready_audio }
+    event(:make_video_trailer_ready) { transitions to: :video_trailer_is_ready }
+    event(:done) { transitions to: :finished }
 
     event :finish_record do
       transitions to: :recorded
