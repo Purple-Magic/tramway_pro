@@ -180,20 +180,12 @@ class Podcast::Episode < ApplicationRecord
     normalized_podcast_object = FFMPEG::Movie.new premontage_file.path
     samples_count = ((normalized_podcast_object.duration - (begin_music_object.duration + finish_music_object.duration)) / sample_music_object.duration).round
 
-    beg = "ffmpeg -y -i #{begin_music}"
-    filter = '-filter_complex'
-    audios = ''
-    samples_count.times do |_i|
-      audios += "-i #{sample_music} "
-    end
-    finish = "-i #{finish_music} "
-    parts = ''
-    (samples_count + 2).times do |i|
-      parts += "[#{i}:0]"
-    end
-    concatination = "concat=n=#{samples_count + 2}:v=0:a=1[out]' -map '[out]' -b:a 320k #{temp_output} 2> #{parts_directory_name}/add_music-output.txt"
-
-    command = "#{beg} #{audios} #{finish} #{filter} '#{parts} #{concatination}"
+    render_command = content_concat(
+      inputs: [begin_music] + samples_count.map { |_i| sample_music } + [finish_music],
+      output: temp_output
+    )
+    move_command = move_to(temp_output, output)
+    command = "#{render_command} && #{move_command}"
     Rails.logger.info command
     system command.to_s
 
