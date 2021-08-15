@@ -31,22 +31,19 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   def trailer
     content_tag(:audio, controls: true) do
-      content_tag(:source, src: object.trailer.url) do
-      end
+      content_tag(:source, '', src: object.trailer.url)
     end
   end
 
   def trailer_video
     content_tag(:video, controls: true, width: '400px') do
-      content_tag(:source, src: object.trailer_video.url) do
-      end
+      content_tag(:source, '', src: object.trailer_video.url)
     end
   end
 
   def full_video
     content_tag(:video, controls: true, width: '400px') do
-      content_tag(:source, src: object.full_video.url) do
-      end
+      content_tag(:source, '', src: object.full_video.url)
     end
   end
 
@@ -69,8 +66,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   def ready_file
     content_tag(:audio, controls: true) do
-      content_tag(:source, src: object.ready_file.url) do
-      end
+      content_tag(:source, '', src: object.ready_file.url)
     end
   end
 
@@ -98,8 +94,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   def premontage_file
     content_tag(:audio, controls: true) do
-      content_tag(:source, src: object.premontage_file.url) do
-      end
+      content_tag(:source, '', src: object.premontage_file.url)
     end
   end
 end

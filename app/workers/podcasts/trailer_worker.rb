@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PodcastsTrailerWorker < ApplicationWorker
+class Podcasts::TrailerWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
   def perform(id)
@@ -18,9 +18,7 @@ class PodcastsTrailerWorker < ApplicationWorker
       Rails.logger.info "Trailer file does not exist for #{index} seconds"
     end
 
-    File.open(output) do |f|
-      episode.trailer = f
-    end
+    episode.update_file! output, :trailer
 
     episode.trailer_finish
     episode.save!

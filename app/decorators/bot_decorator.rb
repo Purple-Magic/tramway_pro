@@ -90,11 +90,7 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def messages_count
-    if object.custom
-      object.messages.count
-    else
-      object.progress_records.uniq.count
-    end
+    object.custom ? object.messages.count : object.progress_records.uniq.count
   end
 
   def messages
@@ -106,22 +102,15 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def custom
-    if object.custom
-      I18n.t('helpers.yes')
-    else
-      I18n.t('helpers.no')
-    end
+    object.custom ? I18n.t('helpers.yes') : I18n.t('helpers.no')
   end
 
   def additional_buttons
     add_scenario_step_url = Tramway::Admin::Engine.routes.url_helpers.new_record_path(
-      model: 'BotTelegram::Scenario::Step', 'bot_telegram/scenario/step' => { bot: object.id }, redirect: "/admin/records/#{object.id}?model=Bot"
+      model: 'BotTelegram::Scenario::Step',
+      'bot_telegram/scenario/step' => { bot: object.id }, redirect: "/admin/records/#{object.id}?model=Bot"
     )
 
-    {
-      show: [
-        { url: add_scenario_step_url, inner: -> { fa_icon :plus }, color: :success }
-      ]
-    }
+    { show: [{ url: add_scenario_step_url, inner: -> { fa_icon :plus }, color: :success }] }
   end
 end
