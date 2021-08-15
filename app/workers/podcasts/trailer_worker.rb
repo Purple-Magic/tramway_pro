@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PodcastsTrailerWorker < ApplicationWorker
+class Podcasts::TrailerWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
   def perform(id)

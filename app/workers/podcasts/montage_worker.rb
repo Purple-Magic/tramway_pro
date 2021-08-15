@@ -2,7 +2,7 @@
 
 require 'net/ssh'
 
-class PodcastsMontageWorker < ApplicationWorker
+class Podcasts::MontageWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
   def perform(id)
@@ -61,7 +61,7 @@ class PodcastsMontageWorker < ApplicationWorker
 
     wait_for_file_rendered output, :montage
 
-    save_premontage_file episode, output
+    episode.update_premontage_file output
 
     episode.prepare
     episode.save!
@@ -72,7 +72,7 @@ class PodcastsMontageWorker < ApplicationWorker
     episode.add_music(episode.premontage_file.path, output)
 
     wait_for_file_rendered output, :with_music
-    save_premontage_file episode, output
+    episode.update_premontage_fil output
 
     episode.music_add
     episode.save!
@@ -85,12 +85,5 @@ class PodcastsMontageWorker < ApplicationWorker
       index += 1
       Rails.logger.info "#{file_type} file does not exist for #{index} seconds"
     end
-  end
-
-  def save_premontage_file(episode, output)
-    File.open(output) do |f|
-      episode.premontage_file = f
-    end
-    episode.save!
   end
 end
