@@ -27,7 +27,7 @@ module Ffmpeg::CommandBuilder
 
   def content_concat(inputs:, output:)
     complex_option = ''
-    filter_complex = inputs.times do |i|
+    inputs.times do |i|
       complex_option += "[#{i}:0]"
     end
     options = options_line(
@@ -37,6 +37,19 @@ module Ffmpeg::CommandBuilder
       filter_complex: "#{complex_option} concat=n=#{inputs.count}:v=0:a=1[out]",
       map: '[out]',
       audio_bitrate: '320k'
+    )
+    "ffmpeg #{options}"
+  end
+
+  def cut_content(input:, begin_time:, end_time:, output:)
+    options = options_line(
+      yes: true,
+      inputs: [input],
+      output: output,
+      ss: begin_time,
+      to: end_time,
+      audio_bitrate: '320k',
+      copy: :copy
     )
     "ffmpeg #{options}"
   end
@@ -63,7 +76,8 @@ module Ffmpeg::CommandBuilder
     audio_codec: 'c:a',
     pixel_format: :pix_fmt,
     shortest: :boolean,
-    audio_bitrate: 'b:a'
+    audio_bitrate: 'b:a',
+    copy: 'c'
   }.freeze
 
   def build_arguments(options)

@@ -214,7 +214,12 @@ class Podcast::Episode < ApplicationRecord
       end
 
       highlight_output = "#{directory}/#{highlight.id}.mp3"
-      command = "ffmpeg -y -i #{highlight.file.path} -ss #{highlight.cut_begin_time} -to #{highlight.cut_end_time} -b:a 320k -c copy #{highlight_output} 2> #{parts_directory_name}/highlight-#{highlight.id}.txt"
+      render_command = cut_content(
+        input: highlight.file.path,
+        begin_time: highlight.cut_begin_time,
+        end_time: highlight.cut_end_time,
+        output: highlight_output
+      )
       Rails.logger.info command
       system command
 
