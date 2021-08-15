@@ -154,14 +154,13 @@ class Podcast::Episode < ApplicationRecord
 
   def montage(filename, output)
     temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
-    command = "ffmpeg -y -i #{filename} -vcodec libx264 -af silenceremove=stop_periods=-1:stop_duration=1.4:stop_threshold=-30dB,acompressor=threshold=-12dB:ratio=2:attack=200:release=1000,volume=-0.5dB -b:a 320k #{temp_output} 2> #{parts_directory_name}/montage-output.txt && mv #{temp_output} #{output}"
-    Rails.logger.info command
-    system command
-  end
-
-  def normalize(filename, output)
-    temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
-    command = "ffmpeg-normalize #{filename} -o #{temp_output} -b:a 320k -c:a libmp3lame -t -8 2> #{parts_directory_name}/normalize-output.txt && mv #{temp_output} #{output}"
+    render_command = use_filters(
+      input: filename,
+      output: temp_output
+    )
+    render_command = use_filters(input: filename, output: temp_output)
+    move_command = move_to(temp_output, output)
+    command = "#{render_command} && #{move_command}"
     Rails.logger.info command
     system command
   end

@@ -64,6 +64,18 @@ module Ffmpeg::CommandBuilder
     "ffmpeg #{options}"
   end
 
+  def use_filters(input:, output:)
+    options = options_line(
+      yes: true,
+      inputs: [input],
+      output: output,
+      video_codec: :libx264,
+      add_filters: 'silenceremove=stop_periods=-1:stop_duration=1.4:stop_threshold=-30dB,acompressor=threshold=-12dB:ratio=2:attack=200:release=1000,volume=-0.5dB',
+      audio_bitrate: '320k'
+    )
+    "ffmpeg #{options}"
+  end
+
   def options_line(inputs:, output:, **options)
     line = options[:yes] ? '-y ' : ''
     line += "-loop #{options[:loop_value]} " if options[:loop_value].present?
@@ -87,7 +99,8 @@ module Ffmpeg::CommandBuilder
     pixel_format: :pix_fmt,
     shortest: :boolean,
     audio_bitrate: 'b:a',
-    copy: 'c'
+    copy: 'c',
+    add_filters: 'af'
   }.freeze
 
   def build_arguments(options)
