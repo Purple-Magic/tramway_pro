@@ -16,7 +16,9 @@ class Courses::CommentDecorator < Tramway::Core::ApplicationDecorator
   )
 
   def title
-    "#{object.begin_time.present? && object.end_time.present? ? "#{object.begin_time} - #{object.end_time} - " : ''}#{object.text}#{object.file.present? ? '. Файл приложен' : ''}"
+    return '' unless object.begin_time.present? && object.end_time.present?
+
+    "#{object.begin_time} - #{object.end_time} - "
   end
 
   class << self
@@ -47,29 +49,6 @@ class Courses::CommentDecorator < Tramway::Core::ApplicationDecorator
         created_at
         updated_at
       ]
-    end
-
-    def show_associations
-      # Associations you want to show in admin dashboard
-      # [ :messages ]
-    end
-
-    def list_filters
-      # {
-      #   filter_name: {
-      #     type: :select,
-      #     select_collection: filter_collection,
-      #     query: lambda do |list, value|
-      #       list.where some_attribute: value
-      #     end
-      #   },
-      #   date_filter_name: {
-      #     type: :dates,
-      #     query: lambda do |list, begin_date, end_date|
-      #       list.where 'created_at > ? AND created_at < ?', begin_date, end_date
-      #     end
-      #   }
-      # }
     end
   end
 

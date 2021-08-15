@@ -22,8 +22,7 @@ class Podcast::HighlightDecorator < Tramway::Core::ApplicationDecorator
 
   def listen
     content_tag(:audio, controls: true) do
-      content_tag(:source, src: object.file.url) do
-      end
+      content_tag(:source, '', src: object.file.url)
     end
   end
 end
