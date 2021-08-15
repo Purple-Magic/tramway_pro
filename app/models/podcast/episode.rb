@@ -38,27 +38,38 @@ class Podcast::Episode < ApplicationRecord
     event :finish_record do
       transitions to: :recorded
 
-      after -> { save!; Podcasts::MontageWorker.perform_async id }
+      after do
+        save!
+        Podcasts::MontageWorker.perform_async id
+      end
     end
 
     event :trailer_get_ready do
       transitions to: :trailer_is_ready
 
-      after -> { save!; Podcasts::TrailerWorker.perform_async id }
+      after do
+        save!
+        Podcasts::TrailerWorker.perform_async id
+      end
     end
 
     event :finish do
       transitions to: :finishing
 
-      after -> { save!; Podcasts::FinishWorker.perform_async id }
+      after do
+        save!
+        Podcasts::FinishWorker.perform_async id
+      end
     end
   end
 
+  include Ffmpeg::CommandBuilder
   include Podcast::Episodes::DescriptionConcern
   include Podcast::Episodes::HighlightsConcern
   include Podcast::Episodes::MusicConcern
   include Podcast::Episodes::TrailerConcern
   include Podcast::Episodes::VideoConcern
+  include Podcast::Episodes::MontageConcern
 
   def parts_directory_name
     "#{current_podcast_directory}/#{number}/"
@@ -71,17 +82,6 @@ class Podcast::Episode < ApplicationRecord
     parts_directory_name.tap do |dir|
       FileUtils.mkdir_p dir
     end
-  end
-
-  include Ffmpeg::CommandBuilder
-
-  def montage(filename, output)
-    temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
-    render_command = use_filters(input: filename, output: temp_output)
-    move_command = move_to(temp_output, output)
-    command = "#{render_command} && #{move_command}"
-    Rails.logger.info command
-    system command
   end
 
   def move_to(temp_output, output)
