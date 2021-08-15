@@ -169,10 +169,6 @@ class Podcast::Episode < ApplicationRecord
     temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
     raise 'No music for this podcast' unless podcast.musics.any?
 
-    normalized_object = FFMPEG::Movie.new premontage_file.path
-    samples_duration = normalized_object.duration - find_music(:begin)[:duration] - find_music(:finish)[:duration]
-    samples_count = (samples_duration / find_music(:sample)[:duration]).round
-
     render_command = content_concat(
       inputs: [find_music(:begin)[:path]] + samples_count.map { sample_music } + [find_music(:finish)[:path]],
       output: temp_output
@@ -188,14 +184,6 @@ class Podcast::Episode < ApplicationRecord
     command = "#{render_command} && #{move_command}"
     Rails.logger.info command
     system command
-  end
-
-  def find_music(music_type)
-    path = podcast.musics.where(music_type: music_type).first.file.path
-    {
-      path: path,
-      duration: FFMPEG::Movie.new(path).duration
-    }
   end
 
   def build_trailer(output)
@@ -290,6 +278,14 @@ class Podcast::Episode < ApplicationRecord
 
   private
 
+  def samples_count
+    return @samples_count if @samples_count.present?
+
+    normalized_object = FFMPEG::Movie.new premontage_file.path
+    samples_duration = normalized_object.duration - find_music(:begin)[:duration] - find_music(:finish)[:duration]
+    @samples_count = (samples_duration / find_music(:sample)[:duration]).round
+  end
+
   def cut_using_highlights(using_highlights, output)
     directory = output.split('/')[0..-2].join('/')
     using_highlights.each do |highlight|
@@ -317,6 +313,14 @@ class Podcast::Episode < ApplicationRecord
 
   def podcasts_directory
     "/#{Rails.root}/public/podcasts/"
+  end
+
+  def find_music(music_type)
+    path = podcast.musics.where(music_type: music_type).first.file.path
+    {
+      path: path,
+      duration: FFMPEG::Movie.new(path).duration
+    }
   end
 
   def current_podcast_directory
