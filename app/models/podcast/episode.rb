@@ -207,34 +207,7 @@ class Podcast::Episode < ApplicationRecord
     using_highlights = highlights.where(using_state: :using).order(:trailer_position)
     raise 'You should pick some highlights as using' unless using_highlights.any?
 
-    directory = output.split('/')[0..-2].join('/')
-    using_highlights.each do |highlight|
-      if !highlight.cut_begin_time.present? && !highlight.cut_end_time.present?
-        raise "You should pick begin and end time for Highlight #{highlight.id}"
-      end
-
-      highlight_output = "#{directory}/#{highlight.id}.mp3"
-      render_command = cut_content(
-        input: highlight.file.path,
-        begin_time: highlight.cut_begin_time,
-        end_time: highlight.cut_end_time,
-        output: highlight_output
-      )
-      Rails.logger.info command
-      system command
-
-      index = 0
-      until File.exist?(highlight_output)
-        sleep 1
-        index += 1
-        Rails.logger.info "Highlight ready file #{highlight.id} does not exist for #{index} seconds"
-      end
-
-      File.open(highlight_output) do |f|
-        highlight.ready_file = f
-      end
-      highlight.save!
-    end
+    cut_using_highlights using_highlights, output
 
     inputs = using_highlights.map do |highlight|
       [highlight.ready_file.path, trailer_separator]
@@ -319,6 +292,31 @@ class Podcast::Episode < ApplicationRecord
   end
 
   private
+
+  def cut_using_highlights(using_highlights, output)
+    directory = output.split('/')[0..-2].join('/')
+    using_highlights.each do |highlight|
+      if !highlight.cut_begin_time.present? && !highlight.cut_end_time.present?
+        raise "You should pick begin and end time for Highlight #{highlight.id}"
+      end
+
+      highlight_output = "#{directory}/#{highlight.id}.mp3"
+      render_command = cut_content(
+        input: highlight.file.path,
+        begin_time: highlight.cut_begin_time,
+        end_time: highlight.cut_end_time,
+        output: highlight_output
+      )
+      move_command = move_to(temp_output, output)
+      command = "#{render_command} && #{move_command}"
+      Rails.logger.info command
+      system command
+
+      wait_for_file_rendered highlight_output, "Highlight #{highlight.id}"
+
+      update_file! highlight_output, :ready_file
+    end
+  end
 
   def podcasts_directory
     "/#{Rails.root}/public/podcasts/"
