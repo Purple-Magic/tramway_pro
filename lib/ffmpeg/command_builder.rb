@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 module Ffmpeg::CommandBuilder
+  CODECS = {
+    mp3: :libmp3lame
+  }.freeze
+
+  def convert_to(format, input:, output:)
+    "ffmpeg -y -i #{input} -b:a 320k -c:a #{CODECS[format]} #{output}"
+  end
+
   def options_line(inputs:, output:, **options)
     line = options[:yes] ? '-y ' : ''
     line += "-loop #{options[:loop_value]} " if options[:loop_value].present?
