@@ -258,9 +258,15 @@ class Podcast::Episode < ApplicationRecord
 
     video_temp_output = (output.split('.')[0..-2] + %w[temp mp4]).join('.')
 
-    command = "ffmpeg -loop 1 -i #{cover.path} -i #{trailer.path} -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest #{video_temp_output} 2> #{parts_directory_name}/video-trailer-output.txt && mv #{video_temp_output} #{output}"
+    render_command = render_video_from(cover.path, trailer.path, output: video_temp_output
+    move_command = move_to(temp_output, output)
+    command = "#{render_command} && #{move_command}"
     Rails.logger.info command
     system command
+  end
+
+  def move_to(temp_output, output)
+    "mv #{temp_output} #{output}"
   end
 
   def render_full_video(output)
@@ -284,7 +290,7 @@ class Podcast::Episode < ApplicationRecord
   end
 
   def converted_file
-    filename = file.path.split('.')[0..].join('.')
+    file.path.split('.')[0..].join('.')
   end
 
   def convert_file

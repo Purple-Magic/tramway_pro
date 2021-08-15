@@ -3,10 +3,14 @@
 module Ffmpeg::CommandBuilder
   CODECS = {
     mp3: :libmp3lame
-  }.freeze
+  }
 
   def convert_to(format, input:, output:)
     "ffmpeg -y -i #{input} -b:a 320k -c:a #{CODECS[format]} #{output}"
+  end
+
+  def render_video_from(image, sound, output:)
+    "ffmpeg -loop 1 -i #{image} -i #{sound} -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest #{output} 2> #{parts_directory_name}/video-trailer-output.txt && mv #{video_temp_output} #{output}"
   end
 
   def options_line(inputs:, output:, **options)
