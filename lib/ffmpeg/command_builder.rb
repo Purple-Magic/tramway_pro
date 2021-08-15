@@ -10,18 +10,8 @@ module Ffmpeg::CommandBuilder
   end
 
   def render_video_from(image, sound, output:)
-    options = options_line(
-      yes: true,
-      loop_value: 1,
-      inputs: [image, sound],
-      video_codec: :libx264,
-      tune: :stillimage,
-      audio_codec: :aac,
-      audio_bitrate: '192k',
-      pixel_format: :yuv420p,
-      shortest: true,
-      output: output
-    )
+    options = options_line(yes: true, loop_value: 1, inputs: [image, sound], video_codec: :libx264, tune: :stillimage,
+      audio_codec: :aac, audio_bitrate: '192k', pixel_format: :yuv420p, shortest: true, output: output)
     "ffmpeg #{options}"
   end
 
