@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Podcast::EpisodeConcern
+module Podcast::Episodes::DescriptionConcern
   def recursively_build_description(elements)
     elements.map do |element|
       case element.name
@@ -14,5 +14,9 @@ module Podcast::EpisodeConcern
         recursively_build_description element.children
       end
     end.join("\n")
+  end
+
+  def raw_description
+    recursively_build_description Nokogiri::HTML(description).elements
   end
 end
