@@ -65,14 +65,19 @@ module Ffmpeg::CommandBuilder
   end
 
   def use_filters(input:, output:)
+    silenceremove = 'silenceremove=stop_periods=-1:stop_duration=1.4:stop_threshold=-30dB'
+    acompressor = 'acompressor=threshold=-12dB:ratio=2:attack=200:release=1000'
+    volume = 'volume=-0.5dB'
+
     options = options_line(
       yes: true,
       inputs: [input],
       output: output,
       video_codec: :libx264,
-      add_filters: 'silenceremove=stop_periods=-1:stop_duration=1.4:stop_threshold=-30dB,acompressor=threshold=-12dB:ratio=2:attack=200:release=1000,volume=-0.5dB',
+      add_filters: "#{silenceremove},#{acompressor},#{volume}",
       audio_bitrate: '320k'
     )
+
     "ffmpeg #{options}"
   end
 
