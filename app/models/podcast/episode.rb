@@ -18,91 +18,39 @@ class Podcast::Episode < ApplicationRecord
 
   aasm :montage, column: :montage_state do
     state :recording, initial: true
-    state :recorded
-    state :downloaded
-    state :converted
-    state :prepared
-    state :highlighted
-    state :montaged
-    state :normalized
-    state :music_added
-    state :trailer_is_ready
-    state :trailer_rendered
-    state :concatination_in_progress
-    state :finishing
-    state :ready_audio
-    state :video_trailer_is_ready
-    state :finished
 
-    event :download do
-      transitions to: :downloaded
-    end
+    %i[recorded downloaded converted prepared highlighted montaged normalized music_added
+       trailer_is_ready trailer_rendered concatination_in_progress finishing ready_audio
+       video_trailer_is_ready finished].each { |s| state s }
 
-    event :convert do
-      transitions to: :converted
-    end
-
-    event :highlight_it do
-      transitions to: :highlighted
-    end
+    event :download, -> { transitions to: :downloaded }
+    event :convert, -> { transitions to: :converted }
+    event :highlight_it, -> { transitions to: :highlighted }
+    event :prepare, -> { transitions to: :prepared }
+    event :to_montage, -> { transitions to: :montaged }
+    event :to_normalize, -> { transitions to: :normalized }
+    event :music_add, -> { transitions to: :music_added }
+    event :trailer_finish, -> { transitions to: :trailer_rendered }
+    event :make_audio_ready, -> { transitions to: :ready_audio }
+    event :make_video_trailer_ready, -> { transitions to: :video_trailer_is_ready }
+    event :done, -> { transitions to: :finished }
 
     event :finish_record do
       transitions to: :recorded
 
-      after do
-        save!
-        Podcasts::MontageWorker.perform_async id
-      end
-    end
-
-    event :prepare do
-      transitions to: :prepared
-    end
-
-    event :to_montage do
-      transitions to: :montaged
-    end
-
-    event :to_normalize do
-      transitions to: :normalized
-    end
-
-    event :music_add do
-      transitions to: :music_added
+      after -> { save!; Podcasts::MontageWorker.perform_async id }
     end
 
     event :trailer_get_ready do
       transitions to: :trailer_is_ready
 
-      after do
-        save!
-        Podcasts::TrailerWorker.perform_async id
-      end
-    end
-
-    event :trailer_finish do
-      transitions to: :trailer_rendered
-    end
-
-    event :make_audio_ready do
-      transitions to: :ready_audio
+      after -> { save!; Podcasts::TrailerWorker.perform_async id }
     end
 
     event :finish do
       transitions to: :finishing
 
-      after do
-        save!
-        Podcasts::FinishWorker.perform_async id
-      end
-    end
-
-    event :make_video_trailer_ready do
-      transitions to: :video_trailer_is_ready
-    end
-
-    event :done do
-      transitions to: :finished
+      after -> { save!; Podcasts::FinishWorker.perform_async id }
     end
   end
 
