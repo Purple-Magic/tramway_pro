@@ -54,6 +54,16 @@ module Ffmpeg::CommandBuilder
     "ffmpeg #{options}"
   end
 
+  def merge_content(inputs:, output:)
+    options = options_line(
+      yes: true,
+      inputs: inputs,
+      output: output,
+      filter_complex: 'amix=inputs=2:duration=first:dropout_transition=3'
+    )
+    "ffmpeg #{options}"
+  end
+
   def options_line(inputs:, output:, **options)
     line = options[:yes] ? '-y ' : ''
     line += "-loop #{options[:loop_value]} " if options[:loop_value].present?
