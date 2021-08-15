@@ -5,8 +5,6 @@ require 'net/ssh'
 class PodcastsMontageWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
-  include Podcasts::Concerns
-
   def perform(id)
     episode = Podcast::Episode.find id
 
