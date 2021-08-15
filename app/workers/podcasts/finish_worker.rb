@@ -3,6 +3,8 @@
 class Podcasts::FinishWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
+  include Podcasts::Concerns
+
   def perform(id)
     episode = Podcast::Episode.find id
 
@@ -12,12 +14,7 @@ class Podcasts::FinishWorker < ApplicationWorker
     output = "#{directory}/ready_file.mp3"
     episode.concat_trailer_and_episode(output)
 
-    index = 0
-    until File.exist?(output)
-      sleep 1
-      index += 1
-      Rails.logger.info "Trailer file does not exist for #{index} seconds"
-    end
+    wait_for_file_rendered output, :trailer
 
     episode.update_file! output, :ready_file
 
@@ -27,12 +24,7 @@ class Podcasts::FinishWorker < ApplicationWorker
     output = "#{directory}/trailer.mp4"
     episode.render_video_trailer(output)
 
-    index = 0
-    until File.exist?(output)
-      sleep 1
-      index += 1
-      Rails.logger.info "Video Trailer file does not exist for #{index} seconds"
-    end
+    wait_for_file_rendered output, :video_trailer
 
     episode.update_file! output, :trailer_video
 
@@ -42,12 +34,7 @@ class Podcasts::FinishWorker < ApplicationWorker
     output = "#{directory}/full_video.mp4"
     episode.render_full_video(output)
 
-    index = 0
-    until File.exist?(output)
-      sleep 1
-      index += 1
-      Rails.logger.info "Full video file does not exist for #{index} seconds"
-    end
+    wait_for_file_rendered output, :full_video
 
     episode.update_file! output, :full_video
 

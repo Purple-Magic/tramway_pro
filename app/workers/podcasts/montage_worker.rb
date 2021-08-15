@@ -5,6 +5,8 @@ require 'net/ssh'
 class Podcasts::MontageWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
+  include Podcasts::Concerns
+
   def perform(id)
     episode = Podcast::Episode.find id
 
@@ -76,14 +78,5 @@ class Podcasts::MontageWorker < ApplicationWorker
 
     episode.music_add
     episode.save!
-  end
-
-  def wait_for_file_rendered(output, file_type)
-    index = 0
-    until File.exist?(output)
-      sleep 1
-      index += 1
-      Rails.logger.info "#{file_type} file does not exist for #{index} seconds"
-    end
   end
 end

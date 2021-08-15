@@ -18,9 +18,7 @@ class Podcasts::TrailerWorker < ApplicationWorker
       Rails.logger.info "Trailer file does not exist for #{index} seconds"
     end
 
-    File.open(output) do |f|
-      episode.trailer = f
-    end
+    episode.update_file! output, :trailer
 
     episode.trailer_finish
     episode.save!
