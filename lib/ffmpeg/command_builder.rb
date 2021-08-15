@@ -25,6 +25,18 @@ module Ffmpeg::CommandBuilder
     "ffmpeg #{options}"
   end
 
+  def content_concat(inputs:, output:)
+    options = options_line(
+      yes: true,
+      inputs: inputs,
+      output: output,
+      filter_complex: '[0:0][1:0] concat=n=2:v=0:a=1[out]',
+      map: '[out]',
+      audio_bitrate: '320k'
+    )
+    "ffmpeg #{options}"
+  end
+
   def options_line(inputs:, output:, **options)
     line = options[:yes] ? '-y ' : ''
     line += "-loop #{options[:loop_value]} " if options[:loop_value].present?

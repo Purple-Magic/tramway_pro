@@ -248,7 +248,9 @@ class Podcast::Episode < ApplicationRecord
   def concat_trailer_and_episode(output)
     temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
 
-    command = "ffmpeg -y -i #{trailer.path} -i #{premontage_file.path} -filter_complex '[0:0][1:0] concat=n=2:v=0:a=1[out]' -map '[out]' -b:a 320k #{temp_output} 2> #{parts_directory_name}/concatination-output.txt && mv #{temp_output} #{output}"
+    render_command = content_concat inputs: [trailer.path, premontage_file.path], output: temp_output
+    move_command = move_to(temp_output, output)
+    command = "#{render_command} && #{move_command}"
     Rails.logger.info command
     system command
   end
