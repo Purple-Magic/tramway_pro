@@ -26,11 +26,15 @@ module Ffmpeg::CommandBuilder
   end
 
   def content_concat(inputs:, output:)
+    complex_option = ''
+    filter_complex = inputs.times do |i|
+      complex_option += "[#{i}:0]"
+    end
     options = options_line(
       yes: true,
       inputs: inputs,
       output: output,
-      filter_complex: '[0:0][1:0] concat=n=2:v=0:a=1[out]',
+      filter_complex: "#{complex_option} concat=n=#{inputs.count}:v=0:a=1[out]",
       map: '[out]',
       audio_bitrate: '320k'
     )

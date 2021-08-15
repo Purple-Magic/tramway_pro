@@ -231,18 +231,16 @@ class Podcast::Episode < ApplicationRecord
       highlight.save!
     end
 
-    command = using_highlights.reduce('ffmpeg -y ') do |com, highlight|
-      com += "-i #{highlight.ready_file.path} "
-      com += "-i #{trailer_separator} "
-    end
-    command += "-filter_complex '"
-    (using_highlights.count * 2).times do |i|
-      command += "[#{i}:0]"
-    end
+    inputs = using_highlights.map do |highlight|
+      [highlight.ready_file.path, trailer_separator]
+    end.flatten
 
-    command += " concat=n=#{using_highlights.count * 2}:v=0:a=1[out]' -map '[out]' -b:a 320k #{temp_output} 2> #{parts_directory_name}/build_trailer-output.txt"
+    render_command = content_concat inputs: inputs, output: temp_output
+    move_command = move_to(temp_output, output)
+    command = "#{render_command} && #{move_command}"
+
     Rails.logger.info command
-    system "#{command} && mv #{temp_output} #{output}"
+    system command
   end
 
   def concat_trailer_and_episode(output)
