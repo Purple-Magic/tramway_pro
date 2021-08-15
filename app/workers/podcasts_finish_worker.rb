@@ -3,51 +3,59 @@
 class PodcastsFinishWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
-  include Podcasts::Concerns
-
   def perform(id)
     episode = Podcast::Episode.find id
 
     directory = episode.prepare_directory
     directory = directory.gsub('//', '/')
 
-    concatinate_parts episode, directory
-    render_video_trailer episode, directory
-    render_full_video episode, directory
-  end
-
-  private
-
-  def concatinate_parts(episode, directory)
     output = "#{directory}/ready_file.mp3"
     episode.concat_trailer_and_episode(output)
 
-    wait_for_file_rendered output, :ready_file
+    index = 0
+    until File.exist?(output)
+      sleep 1
+      index += 1
+      Rails.logger.info "Trailer file does not exist for #{index} seconds"
+    end
 
-    episode.update_file! output, :ready_file
+    File.open(output) do |f|
+      episode.ready_file = f
+    end
+
     episode.make_audio_ready
     episode.save!
-  end
 
-  def render_video_trailer(episode, directory)
     output = "#{directory}/trailer.mp4"
     episode.render_video_trailer(output)
 
-    wait_for_file_rendered output, :video_trailer
+    index = 0
+    until File.exist?(output)
+      sleep 1
+      index += 1
+      Rails.logger.info "Video Trailer file does not exist for #{index} seconds"
+    end
 
-    episode.update_file! output, :trailer_video
+    File.open(output) do |f|
+      episode.trailer_video = f
+    end
 
     episode.make_video_trailer_ready
     episode.save!
-  end
 
-  def render_full_video(episode, directory)
     output = "#{directory}/full_video.mp4"
     episode.render_full_video(output)
 
-    wait_for_file_rendered output, :full_video
+    index = 0
+    until File.exist?(output)
+      sleep 1
+      index += 1
+      Rails.logger.info "Full video file does not exist for #{index} seconds"
+    end
 
-    episode.update_file! output, :full_video
+    File.open(output) do |f|
+      episode.full_video = f
+    end
 
     episode.finish
     episode.save!
