@@ -40,7 +40,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        Podcasts::MontageWorker.perform_async id
+        PodcastsMontageWorker.perform_async id
       end
     end
 
@@ -49,7 +49,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        Podcasts::TrailerWorker.perform_async id
+        PodcastsTrailerWorker.perform_async id
       end
     end
 
@@ -58,7 +58,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        Podcasts::FinishWorker.perform_async id
+        PodcastsFinishWorker.perform_async id
       end
     end
   end

@@ -2,7 +2,7 @@
 
 require 'net/ssh'
 
-class Podcasts::MontageWorker < ApplicationWorker
+class PodcastsMontageWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
   include Podcasts::Concerns

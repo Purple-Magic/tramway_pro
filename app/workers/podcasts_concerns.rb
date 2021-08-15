@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Podcasts::Concerns
+module PodcastsConcerns
   def wait_for_file_rendered(output, file_type)
     index = 0
     until File.exist?(output)

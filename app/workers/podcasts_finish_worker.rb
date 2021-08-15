@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Podcasts::FinishWorker < ApplicationWorker
+class PodcastsFinishWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
   include Podcasts::Concerns
