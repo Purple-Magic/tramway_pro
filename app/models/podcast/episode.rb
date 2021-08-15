@@ -300,9 +300,9 @@ class Podcast::Episode < ApplicationRecord
     filename
   end
 
-  def update_premontage_file(output)
+  def update_file!(output, file_type)
     File.open(output) do |f|
-      premontage_file = f
+      send "#{file_type}=", f
     end
     save!
   end

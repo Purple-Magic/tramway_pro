@@ -19,9 +19,7 @@ class Podcasts::FinishWorker < ApplicationWorker
       Rails.logger.info "Trailer file does not exist for #{index} seconds"
     end
 
-    File.open(output) do |f|
-      episode.ready_file = f
-    end
+    episode.update_file! output, :ready_file
 
     episode.make_audio_ready
     episode.save!
@@ -36,9 +34,7 @@ class Podcasts::FinishWorker < ApplicationWorker
       Rails.logger.info "Video Trailer file does not exist for #{index} seconds"
     end
 
-    File.open(output) do |f|
-      episode.trailer_video = f
-    end
+    episode.update_file! output, :trailer_video
 
     episode.make_video_trailer_ready
     episode.save!
@@ -53,9 +49,7 @@ class Podcasts::FinishWorker < ApplicationWorker
       Rails.logger.info "Full video file does not exist for #{index} seconds"
     end
 
-    File.open(output) do |f|
-      episode.full_video = f
-    end
+    episode.update_file! output, :full_video
 
     episode.finish
     episode.save!

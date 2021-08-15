@@ -61,7 +61,7 @@ class Podcasts::MontageWorker < ApplicationWorker
 
     wait_for_file_rendered output, :montage
 
-    episode.update_premontage_file output
+    episode.update_file! output, :premontage_file
 
     episode.prepare
     episode.save!
@@ -72,7 +72,7 @@ class Podcasts::MontageWorker < ApplicationWorker
     episode.add_music(episode.premontage_file.path, output)
 
     wait_for_file_rendered output, :with_music
-    episode.update_premontage_fil output
+    episode.update_file! output, :premontage_file
 
     episode.music_add
     episode.save!
