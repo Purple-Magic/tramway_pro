@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Podcast::Episodes::TopicForm < Tramway::Core::ApplicationForm
   properties :episode_id, :title, :link, :state, :project_id, :discus_state, :timestamp
 
