@@ -9,9 +9,14 @@ class PodcastsFinishWorker < ApplicationWorker
     directory = episode.prepare_directory
     directory = directory.gsub('//', '/')
 
-    concat_parts directory, episode
+    #concat_parts directory, episode
+    #Rails.logger.info 'Concatination completed'
+
     render_trailer directory, episode
+    Rails.logger.info 'Render trailer video completed'
+
     render_full_video directory, episode
+    Rails.logger.info 'Render fulll video completed'
   end
 
   private

@@ -35,8 +35,7 @@ module Podcast::Episodes::TrailerConcern
         end_time: highlight.cut_end_time,
         output: highlight_output
       )
-      move_command = move_to(temp_output, output)
-      command = "#{render_command} && #{move_command}"
+      command = render_command
       Rails.logger.info command
       system command
 
@@ -54,5 +53,14 @@ module Podcast::Episodes::TrailerConcern
     command = "#{render_command} && #{move_command}"
     Rails.logger.info command
     system command
+  end
+
+  def wait_for_file_rendered(output, file_type)
+    index = 0
+    until File.exist?(output)
+      sleep 1
+      index += 1
+      Rails.logger.info "#{file_type} file does not exist for #{index} seconds"
+    end
   end
 end

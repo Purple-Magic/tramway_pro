@@ -7,7 +7,7 @@ module Podcast::Episodes::VideoConcern
     video_temp_output = (output.split('.')[0..-2] + %w[temp mp4]).join('.')
 
     render_command = render_video_from(cover.path, trailer.path, output: video_temp_output)
-    move_command = move_to(temp_output, output)
+    move_command = move_to(video_temp_output, output)
     command = "#{render_command} && #{move_command}"
     Rails.logger.info command
     system command
