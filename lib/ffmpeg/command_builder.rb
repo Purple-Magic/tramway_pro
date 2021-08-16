@@ -108,6 +108,6 @@ module Ffmpeg::CommandBuilder
       else
         "#{pair[1]} #{options[pair[0]]}"
       end
-    end
+    end.compact
   end
 end

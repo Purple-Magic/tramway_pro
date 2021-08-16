@@ -12,8 +12,8 @@ class PodcastsMontageWorker < ApplicationWorker
     directory = directory.gsub('//', '/')
     download episode, directory
     cut_highlights episode
-    convert episode
-    montage episode, directory
+    filename = convert episode
+    montage episode, directory, filename
     add_music episode, directory
   rescue StandardError => e
     Rails.env.development? ? Rails.logger.error("logger.info : #{e.message}") : Raven.capture_exception(e)
@@ -48,13 +48,15 @@ class PodcastsMontageWorker < ApplicationWorker
   def convert(episode)
     filename = episode.convert_file
 
-    wait_for_file_rendered filename, :convert
+    filename.tap do
+      wait_for_file_rendered filename, :convert
 
-    episode.convert
-    episode.save!
+      episode.convert
+      episode.save!
+    end
   end
 
-  def montage(episode, directory)
+  def montage(episode, directory, filename)
     output = "#{directory}/montage.mp3"
 
     episode.montage(filename, output)
