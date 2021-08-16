@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RedMagic::Api::V1::Podcast::EpisodesController < RedMagic::Api::V1::Podcast::Episodes::ApplicationController
+class RedMagic::Api::V1::Podcast::EpisodesController < RedMagic::Api::V1::Podcast::ApplicationController
   def update
     episode = Podcast::Episode.find params[:id]
     episode.send params[:process]
