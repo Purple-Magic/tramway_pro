@@ -11,10 +11,19 @@ class PodcastsMontageWorker < ApplicationWorker
     directory = episode.prepare_directory
     directory = directory.gsub('//', '/')
     download episode, directory
+
     cut_highlights episode
+    Rails.logger.info 'Cut highlights completed!'
+
     filename = convert episode
+    Rails.logger.info 'Converting completed!'
+
     montage episode, directory, filename
+    Rails.logger.info 'Montage completed!'
+
     add_music episode, directory
+    Rails.logger.info 'Adding of music completed!'
+
   rescue StandardError => e
     Rails.env.development? ? Rails.logger.error("logger.info : #{e.message}") : Raven.capture_exception(e)
   end
