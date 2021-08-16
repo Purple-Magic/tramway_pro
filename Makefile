@@ -3,6 +3,9 @@ deploy_production:
 restart_production:
 	ansible-playbook -i deploy/inventory deploy/restart.yml
 install:
+	cp config/database.sample.yml config/database.yml
+	cp config/secrets.sample.yml config/secrets.yml
+	cp config/sidekiq.sample.yml config/sidekiq.yml
 	echo "You should run it with sudo"
 	echo "127.0.0.1	it-way.test" >> /etc/hosts
 	echo "127.0.0.1 sportschool-ulsk.test" >> /etc/hosts

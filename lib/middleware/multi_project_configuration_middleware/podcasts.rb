@@ -9,7 +9,6 @@ module MultiProjectConfigurationMiddleware
     def call(env)
       ::Admin::PodcastForm.include MultiProjectCallbacks::PodcastCallbacks::PodcastForm
       ::Podcast.include MultiProjectCallbacks::PodcastCallbacks::PodcastConcern
-      #::Admin::EpisodeForm.include MultiProjectCallbacks::EpisodeCallbacks::EpisodeForm
       ::Podcast::Episode.include MultiProjectCallbacks::EpisodeCallbacks::EpisodeConcern
 
       @app.call(env)

@@ -81,7 +81,7 @@ jobs:
         run: |
           cp config/database.sample.yml config/database.yml
           cp config/secrets.sample.yml config/secrets.yml
-          bin/rails db:setup
+          bin/rails db:create db:migrate db:seed
           bundle exec rspec
 
       - name: Rocket.Chat Notification

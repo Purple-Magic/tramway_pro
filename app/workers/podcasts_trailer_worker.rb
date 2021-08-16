@@ -11,16 +11,9 @@ class PodcastsTrailerWorker < ApplicationWorker
     output = "#{directory}/trailer.mp3"
     episode.build_trailer(output)
 
-    index = 0
-    until File.exist?(output)
-      sleep 1
-      index += 1
-      Rails.logger.info "Trailer file does not exist for #{index} seconds"
-    end
+    wait_for_file_rendered output, :trailer
 
-    File.open(output) do |f|
-      episode.trailer = f
-    end
+    episode.update_file! output, :trailer
 
     episode.trailer_finish
     episode.save!
