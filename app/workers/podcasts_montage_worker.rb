@@ -23,7 +23,6 @@ class PodcastsMontageWorker < ApplicationWorker
 
     add_music episode, directory
     Rails.logger.info 'Adding of music completed!'
-
   rescue StandardError => e
     Rails.env.development? ? Rails.logger.error("logger.info : #{e.message}") : Raven.capture_exception(e)
   end
