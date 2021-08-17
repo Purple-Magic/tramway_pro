@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210816050453) do
+ActiveRecord::Schema.define(version: 20210816101945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -330,6 +330,7 @@ ActiveRecord::Schema.define(version: 20210816050453) do
     t.text "trailer"
     t.text "full_video"
     t.text "trailer_video"
+    t.datetime "record_time"
   end
 
   create_table "podcast_episodes_topics", force: :cascade do |t|

@@ -1,4 +1,5 @@
-import { create } from '../../crud'
+import { create, update, index } from '../../crud'
+import _ from 'underscore'
 
 document.addEventListener("DOMContentLoaded", function() {
   function timeToString(time) {
@@ -33,6 +34,10 @@ document.addEventListener("DOMContentLoaded", function() {
       print(timeToString(elapsedTime));
     }, 10);
     showButton("PAUSE");
+    index('Podcast::Episode').then((response) => {
+      const lastEpisodeId = _.first(response.data.data).id
+      update('Podcast::Episode', lastEpisodeId, { montage_state: 'recording' })
+    })
   }
 
   function pause() {
