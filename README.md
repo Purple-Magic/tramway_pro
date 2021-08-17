@@ -129,4 +129,4 @@ It means that you should rename your middleware file and class to another. Looks
 
 ### Role scope issue
 
-If you have issue looks like this `#{user.role}_scope undefined for ActiveRecord::Relation[]` you should add this scope in `lib/middleware/multi_project_configuration_middleware/event.rb` at `ParticipantConcern`
+If you have issue looks like this `#{user.role}_scope undefined for ActiveRecord::Relation[]` you should add this scope in `lib/middleware/multi_project_configuration_middleware/event.rb` at `ParticipantConcern` and restart server
