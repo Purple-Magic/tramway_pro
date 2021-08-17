@@ -17,9 +17,9 @@ class Podcast::Episode < ApplicationRecord
   uploader :full_video, :file
 
   aasm :montage, column: :montage_state do
-    state :recording, initial: true
+    state :ready_to_start, initial: true
 
-    %i[recorded downloaded converted prepared highlighted montaged normalized music_added
+    %i[recording recorded downloaded converted prepared highlighted montaged normalized music_added
        trailer_is_ready trailer_rendered concatination_in_progress finishing ready_audio
        video_trailer_is_ready finished].each { |s| state s }
 

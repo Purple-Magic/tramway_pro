@@ -31,3 +31,13 @@ export const create = (entity, params) => {
   bodyFormData.set(`data[attributes][project_id]`, 9) // FIXME should be set in the middleware
   return axios.post(`${apiUrl}/api/v1/records?model=${entity}`, bodyFormData)
 }
+
+export const update = (entity, id, params) => {
+  const bodyFormData = new FormData()
+  const args = Object.keys(params)
+  args.forEach((arg) => {
+    bodyFormData.set(`data[attributes][${arg}]`, params[arg])
+  })
+  bodyFormData.set(`data[attributes][project_id]`, 9) // FIXME should be set in the middleware
+  return axios.patch(`${apiUrl}/api/v1/records/${id}?model=${entity}`, bodyFormData)
+}

@@ -43,8 +43,8 @@ module BotTelegram::MessagesManager
   end
 
   def send_file(bot, message_telegram, message_obj)
-    mime_type = case message_obj.file.file.file[-3..]
-                when 'jpg'
+    mime_type = case message_obj.file.file.file[-3..].downcase
+                when 'jpg', 'png'
                   [:photo, 'image/jpeg']
                 when 'mp3'
                   [:voice, 'audio/mpeg']

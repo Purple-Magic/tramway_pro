@@ -63,10 +63,11 @@ Tramway::Api.set_available_models(
     ],
     Podcast::Episode => [
       :create,
+      :update,
       {
         index: lambda do |records, _current_user|
           project = Project.where(url: ENV['PROJECT_URL']).first
-          records.where(project_id: project.id).where.not(file_url: nil).order(number: :desc)
+          records.where(project_id: project.id).order(number: :desc)
         end
       },
       {
@@ -76,7 +77,7 @@ Tramway::Api.set_available_models(
         end
       }
     ],
-    Podcast::Episodes::Topic => [ :create ],
+    Podcast::Episodes::Topic => [:create],
     Tramway::News::News => [
       :create,
       {
