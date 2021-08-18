@@ -22,6 +22,14 @@ Tramway::Admin.set_available_models(
   project: :red_magic
 )
 
+Tramway::Admin.set_available_models(
+  Podcast,
+  Podcast::Episode,
+  Podcast::Highlight,
+  Podcast::Music,
+  project: :red_magic,
+  role: :podcast
+)
 Tramway::Admin.navbar_structure(
   RedMagic,
   {

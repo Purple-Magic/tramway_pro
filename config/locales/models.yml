@@ -186,3 +186,20 @@ ru:
       comment_state:
         events:
           do_it: Готово
+    podcast/episode:
+      montage:
+        events:
+          download: download
+          convert: convert
+          highlight_it: highlight_it
+          prepare: prepare
+          to_montage: to_montage
+          to_normalize: to_normalize
+          music_add: music_add
+          trailer_finish: trailer_finish
+          make_audio_ready: make_audio_ready
+          make_video_trailer_ready: make_video_trailer_ready
+          done: done
+          finish_record: finish_record
+          trailer_get_ready: trailer_get_ready
+          finish: finish
