@@ -90,7 +90,9 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     }
   end
 
-  def montage_button_color(event); end
+  def montage_button_color(event)
+    :success
+  end
 
   def premontage_file
     content_tag(:audio, controls: true) do
