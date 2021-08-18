@@ -93,7 +93,8 @@ data: { toggle: :popover, html: true, content: comment_html }) do
   end
 
   def title
-    "#{lesson.topic.position}-#{lesson.position}-#{position} Video | #{object.comments.count} comments | #{object.comments.where(comment_state: :done).count} comments done"
+    info = "#{object.comments.count} comments | #{object.comments.where(comment_state: :done).count} comments done"
+    "#{lesson.topic.position}-#{lesson.position}-#{position} Video | #{info}"
   end
 
   alias name title
