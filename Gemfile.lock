@@ -285,6 +285,7 @@ GEM
       bcrypt (~> 3.1)
       jwt (~> 1.5)
       rails (>= 4.2)
+    kwalify (0.7.2)
     launchy (2.5.0)
       addressable (~> 2.7)
     listen (3.1.5)
@@ -385,6 +386,10 @@ GEM
       railties (>= 3.2)
       tilt
     redis (4.3.1)
+    reek (6.0.6)
+      kwalify (~> 0.7.0)
+      parser (~> 3.0.0)
+      rainbow (>= 2.0, < 4.0)
     regexp_parser (1.8.2)
     rexml (3.2.5)
     rmagick (4.2.2)
@@ -672,6 +677,7 @@ DEPENDENCIES
   ransack
   react-rails
   redactor-rails!
+  reek
   rmagick (= 4.2.2)
   rspec-json_expectations
   rspec-rails (~> 3.5)

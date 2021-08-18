@@ -117,6 +117,7 @@ group :development, :test do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'pry'
   gem 'pry-nav'
+  gem 'reek'
   gem 'rspec-rails', '~> 3.5'
   gem 'rubocop', '1.18.3'
   gem 'rubocop-rails'
