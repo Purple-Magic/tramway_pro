@@ -87,6 +87,7 @@ jobs:
     needs:
       - rubocop
       - syntax_check
+      - smell_check
 
     services:
       postgres:
