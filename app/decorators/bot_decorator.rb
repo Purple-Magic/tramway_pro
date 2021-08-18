@@ -74,11 +74,8 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def users_count
-    if object.custom
-      object.messages.map(&:user).flatten.uniq.count
-    else
-      object.users.uniq.count
-    end
+    count = object.custom ? object.messages.map(&:user).flatten.uniq.count : object.users.uniq.count
+    link_to count, Tramway::Admin::Engine.routes.url_helpers.records_path(model: 'BotTelegram::User', filter: { bots_id_eq: object.id })
   end
 
   def users_finished
