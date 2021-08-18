@@ -6,6 +6,7 @@ class BotTelegram::User < ApplicationRecord
   has_many :messages, class_name: 'BotTelegram::Message'
   has_many :progress_records, class_name: 'BotTelegram::Scenario::ProgressRecord', foreign_key: :bot_telegram_user_id
   has_many :steps, class_name: 'BotTelegram::Scenario::Step', through: :progress_records
+  has_many :bots, class_name: 'Bot', through: :steps
 
   search_by :first_name, :username, :last_name
 
