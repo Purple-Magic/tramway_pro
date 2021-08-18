@@ -8,6 +8,23 @@ on:
       - master
       - develop
 jobs:
+  syntax_check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Set up Ruby 2.7
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundle-cache: true
+
+      - name: Run syntax check
+        run: |
+          mkdir /tmp/syntax-check-results
+          find app bin config db lib spec -type f -name "*.rb" -o -name "*.rake" | xargs -l -P 0 -I{} ruby -c {} 1> /dev/null 2> >(tee -a /tmp/syntax-check-results.txt >&2)
+
   rubocop:
     runs-on: ubuntu-latest
 
