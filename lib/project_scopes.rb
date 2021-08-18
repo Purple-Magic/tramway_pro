@@ -9,5 +9,6 @@ module ProjectScopes
     end
 
     scope :rsm_scope, -> { all }
+    scope :podcast_scope, -> { all }
   end
 end
