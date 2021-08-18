@@ -90,7 +90,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     }
   end
 
-  def montage_button_color(event)
+  def montage_button_color(_event)
     :success
   end
 
