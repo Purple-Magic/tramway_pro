@@ -8,5 +8,5 @@ class Podcast < ApplicationRecord
 
   enumerize :podcast_type, in: %i[sample without_music different_music]
 
-  scope :podcast_scope, -> (_user_id) { all }
+  scope :podcast_scope, ->(_user_id) { all }
 end

@@ -8,7 +8,7 @@ class Podcast::Episode < ApplicationRecord
   belongs_to :podcast, class_name: 'Podcast'
   has_many :highlights, -> { order(:time) }, class_name: 'Podcast::Highlight'
 
-  scope :podcast_scope, -> (_user_id) { all }
+  scope :podcast_scope, ->(_user_id) { all }
 
   uploader :ready_file, :file
   uploader :file, :file
