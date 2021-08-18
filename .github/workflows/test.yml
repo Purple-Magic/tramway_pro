@@ -3,6 +3,7 @@ on:
     branches:
       - master
       - develop
+      - feature/add_syntax_check
   pull_request:
     branches:
       - master
