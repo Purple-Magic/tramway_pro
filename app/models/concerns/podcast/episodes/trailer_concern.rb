@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 module Podcast::Episodes::TrailerConcern
-  def build_trailer(output)
+  def build_trailer
+    output = "#{prepare_directory.gsub('//', '/')}/trailer.mp3"
     temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
+
     trailer_separator = podcast.musics.where(music_type: :trailer_separator).first.file.path
     using_highlights = highlights.where(using_state: :using).order(:trailer_position)
     raise 'You should pick some highlights as using' unless using_highlights.any?
@@ -19,6 +21,10 @@ module Podcast::Episodes::TrailerConcern
 
     Rails.logger.info command
     system command
+
+    wait_for_file_rendered output, :trailer
+    update_file! output, :trailer
+    trailer_finish!
   end
 
   def cut_using_highlights(using_highlights, output)
