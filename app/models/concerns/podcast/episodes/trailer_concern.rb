@@ -59,6 +59,9 @@ module Podcast::Episodes::TrailerConcern
     command = "#{render_command} && #{move_command}"
     Rails.logger.info command
     system command
+    wait_for_file_rendered output, :trailer
+    update_file! output, :ready_file
+    make_audio_ready!
   end
 
   def wait_for_file_rendered(output, file_type)
