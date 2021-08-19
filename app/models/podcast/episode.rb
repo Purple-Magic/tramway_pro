@@ -104,7 +104,11 @@ class Podcast::Episode < ApplicationRecord
       system command
     end
 
-    filename
+    filename.tap do
+      wait_for_file_rendered filename, :convert
+
+      convert!
+    end
   end
 
   def update_file!(output, file_type)

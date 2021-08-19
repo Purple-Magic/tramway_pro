@@ -18,6 +18,9 @@ module Podcast::Episodes::MusicConcern
     command = "#{render_command} && #{move_command}"
     Rails.logger.info command
     system command
+    wait_for_file_rendered output, :with_music
+    update_file! output, :premontage_file
+    music_add!
   end
 
   def samples_count

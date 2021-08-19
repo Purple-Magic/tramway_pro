@@ -2,6 +2,7 @@
 
 class ApplicationWorker
   include Sidekiq::Worker
+  include ExtendedLogger
 
   def wait_for_file_rendered(output, file_type)
     index = 0
