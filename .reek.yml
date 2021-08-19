@@ -1,6 +1,8 @@
 detectors:
   IrresponsibleModule:
     enabled: false
+  DuplicateMethodCall:
+    max_calls: 2
 directories:
   "app/workers":
     UtilityFunction:

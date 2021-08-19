@@ -13,16 +13,13 @@ class PodcastsMontageWorker < ApplicationWorker
     download episode, directory
 
     cut_highlights episode
-    Rails.logger.info 'Cut highlights completed!'
 
     filename = convert episode
     Rails.logger.info 'Converting completed!'
 
     montage episode, directory, filename
-    Rails.logger.info 'Montage completed!'
 
     add_music episode, directory
-    Rails.logger.info 'Adding of music completed!'
   rescue StandardError => e
     Rails.env.development? ? Rails.logger.error("logger.info : #{e.message}") : Raven.capture_exception(e)
   end
@@ -49,6 +46,7 @@ class PodcastsMontageWorker < ApplicationWorker
     episode.convert_file
     episode.cut_highlights
     episode.highlight_it!
+    Rails.logger.info 'Cut highlights completed!'
   end
 
   def convert(episode)
@@ -71,6 +69,7 @@ class PodcastsMontageWorker < ApplicationWorker
     episode.update_file! output, :premontage_file
 
     episode.prepare!
+    Rails.logger.info 'Montage completed!'
   end
 
   def add_music(episode, directory)
@@ -81,5 +80,6 @@ class PodcastsMontageWorker < ApplicationWorker
     episode.update_file! output, :premontage_file
 
     episode.music_add!
+    Rails.logger.info 'Adding of music completed!'
   end
 end
