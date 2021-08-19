@@ -15,8 +15,8 @@ class BotTelegram::BotListener
       Telegram::Bot::Client.run(bot_record.token) do |bot|
         bot.listen do |message|
           if can_be_processed? message
-            user = user_from message
-            chat = chat_from message
+            user = user_from message.from
+            chat = chat_from message.chat
             log_message message, user, chat, bot_record
             if bot_record.custom
               custom_bot_action bot_record: bot_record, bot: bot, chat: chat, message: message

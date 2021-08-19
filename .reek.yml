@@ -12,6 +12,8 @@ detectors:
       - "Youtube::Client"
       - "BotTelegram::MessagesManager"
       - "BotTelegram::Leopold::ItWayPro::WordsCheck"
+      - "BotTelegram::Leopold::Commands"
+      - "BotTelegram::Info"
   FeatureEnvy:
     exclude:
       - "BotTelegram::MessagesManager#message_to_user"
