@@ -45,25 +45,17 @@ class BotTelegram::Leopold::Scenario
     private_chat?(chat) || chat.telegram_chat_id.to_s == IT_WAY_CHAT_ID.to_s
   end
 
-  def private_chat?(chat)
-    chat.chat_type == 'private'
-  end
-
   def send_word(word)
     unless sended_recently? word
-      message_to_chat bot, chat, build_message_with_word(word)
+      message_to_chat bot, chat, "#{word.main} - #{word.description}"
       ::ItWay::WordUse.create! word_id: word.id, chat_id: chat.id
     end
-    message_to_chat bot, chat, bot_record.options['you_can_add_words'] if private_chat? chat
+    message_to_chat bot, chat, bot_record.options['you_can_add_words'] if chat.chat_type.private?
   end
 
   def sended_recently?(word)
     uses = ::ItWay::WordUse.where(word_id: word.id, chat_id: chat.id)
 
     uses.last&.created_at&.>(DateTime.now - 1.hour)
-  end
-
-  def build_message_with_word(word)
-    "#{word.main} - #{word.description}"
   end
 end

@@ -29,5 +29,4 @@ restart_telegram_bots:
 
 code_check:
 	rubocop -A
-	rubocop -a
 	reek
