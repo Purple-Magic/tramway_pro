@@ -7,3 +7,10 @@ directories:
   "app/workers":
     UtilityFunction:
       enabled: false
+  "db/migrate":
+    FeatureEnvy:
+      enabled: false
+    TooManyStatements:
+      enabled: false
+    UncommunicativeVariableName:
+      enabled: false
