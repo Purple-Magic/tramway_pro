@@ -44,10 +44,7 @@ jobs:
 
       - name: Run smell check
         run: |
-          reek app/
-          reek bin/
-          reek config/
-          reek lib/
+          reek
 
   rubocop:
     runs-on: ubuntu-latest
