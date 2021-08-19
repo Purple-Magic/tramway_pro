@@ -15,34 +15,34 @@ module BotTelegram::MessagesManager
 
   def message_to_chat(bot, chat, message)
     bot.api.send_message chat_id: chat.telegram_chat_id, text: message
-  rescue StandardError => e
-    Raven.capture_exception e
+  rescue StandardError => error
+    Raven.capture_exception error
   end
 
-  def message_to_user(bot, message_obj, message_telegram)
+  def message_to_user(bot_api, message_obj, chat_id)
     case message_obj.class.to_s
     when 'String'
-      bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj
+      bot_api.send_message chat_id: chat_id, text: message_obj
     when 'BotTelegram::Scenario::Step'
       if message_obj.try(:text).present?
         if message_obj.reply_markup.present?
-          bot.api.send_message(
-            chat_id: message_telegram.chat.id,
+          bot_api.send_message(
+            chat_id: chat_id,
             text: message_obj&.text,
             reply_markup: Telegram::Bot::Types::ReplyKeyboardMarkup.new(**message_obj.reply_markup),
             parse_mode: :markdown
           )
         else
-          bot.api.send_message chat_id: message_telegram.chat.id, text: message_obj.text, parse_mode: :markdown
+          bot_api.send_message chat_id: chat_id, text: message_obj.text, parse_mode: :markdown
         end
       end
-      send_file bot, message_telegram, message_obj if message_obj.file.path.present?
+      send_file bot_api, chat_id, message_obj if message_obj.file.path.present?
     end
-  rescue StandardError => e
-    Raven.capture_exception e
+  rescue StandardError => error
+    Raven.capture_exception error
   end
 
-  def send_file(bot, message_telegram, message_obj)
+  def send_file(bot_api, chat_id, message_obj)
     mime_type = case message_obj.file.file.file[-3..].downcase
                 when 'jpg', 'png'
                   [:photo, 'image/jpeg']
@@ -50,7 +50,7 @@ module BotTelegram::MessagesManager
                   [:voice, 'audio/mpeg']
                 end
     params = {
-      chat_id: message_telegram.chat.id,
+      chat_id: chat_id,
       mime_type[0] => Faraday::UploadIO.new(message_obj.file.file.file, mime_type[1])
     }
     if message_obj.reply_markup.present?
@@ -60,6 +60,6 @@ module BotTelegram::MessagesManager
       )
     end
 
-    bot.api.public_send "send_#{mime_type[0]}", **params
+    bot_api.public_send "send_#{mime_type[0]}", **params
   end
 end
