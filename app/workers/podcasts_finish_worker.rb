@@ -29,8 +29,7 @@ class PodcastsFinishWorker < ApplicationWorker
 
     episode.update_file! output, :ready_file
 
-    episode.make_audio_ready
-    episode.save!
+    episode.make_audio_ready!
   end
 
   def render_trailer(directory, episode)
@@ -41,8 +40,7 @@ class PodcastsFinishWorker < ApplicationWorker
 
     episode.update_file! output, :trailer_video
 
-    episode.make_video_trailer_ready
-    episode.save!
+    episode.make_video_trailer_ready!
   end
 
   def render_full_video(directory, episode)
@@ -53,7 +51,6 @@ class PodcastsFinishWorker < ApplicationWorker
 
     episode.update_file! output, :full_video
 
-    episode.finish
-    episode.save!
+    episode.finish!
   end
 end

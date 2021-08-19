@@ -42,15 +42,13 @@ class PodcastsMontageWorker < ApplicationWorker
       episode.file = f
     end
 
-    episode.download
-    episode.save!
+    episode.download!
   end
 
   def cut_highlights(episode)
     episode.convert_file
     episode.cut_highlights
-    episode.highlight_it
-    episode.save!
+    episode.highlight_it!
   end
 
   def convert(episode)
@@ -59,8 +57,7 @@ class PodcastsMontageWorker < ApplicationWorker
     filename.tap do
       wait_for_file_rendered filename, :convert
 
-      episode.convert
-      episode.save!
+      episode.convert!
     end
   end
 
@@ -73,8 +70,7 @@ class PodcastsMontageWorker < ApplicationWorker
 
     episode.update_file! output, :premontage_file
 
-    episode.prepare
-    episode.save!
+    episode.prepare!
   end
 
   def add_music(episode, directory)
@@ -84,7 +80,6 @@ class PodcastsMontageWorker < ApplicationWorker
     wait_for_file_rendered output, :with_music
     episode.update_file! output, :premontage_file
 
-    episode.music_add
-    episode.save!
+    episode.music_add!
   end
 end

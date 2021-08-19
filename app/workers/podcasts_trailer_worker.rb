@@ -15,7 +15,6 @@ class PodcastsTrailerWorker < ApplicationWorker
 
     episode.update_file! output, :trailer
 
-    episode.trailer_finish
-    episode.save!
+    episode.trailer_finish!
   end
 end
