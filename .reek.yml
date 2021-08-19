@@ -1,3 +1,7 @@
 detectors:
   IrresponsibleModule:
     enabled: false
+directories:
+  "app/workers":
+    UtilityFunction:
+      enabled: false
