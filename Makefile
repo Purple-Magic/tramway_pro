@@ -26,3 +26,8 @@ stop_telegram_bots:
 restart_telegram_bots:
 	make stop_telegram_bots
 	make run_telegram_bots
+
+code_check:
+	rubocop -A
+	rubocop -a
+	reek

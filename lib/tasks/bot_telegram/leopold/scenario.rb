@@ -8,10 +8,8 @@ class BotTelegram::Leopold::Scenario
   include ::BotTelegram::MessagesManager
   include ::BotTelegram::Info
   include ::BotTelegram::Leopold::ItWayPro::WordsCheck
-  include ::BotTelegram::Leopold::Commands
 
   IT_WAY_CHAT_ID = '-1001141858122'
-  COMMANDS = %w[add_word add_description add_synonims].freeze
 
   attr_reader :bot, :bot_record, :chat, :message_from_telegram
 
@@ -24,11 +22,12 @@ class BotTelegram::Leopold::Scenario
 
   def run
     if chat_to_answer? chat
-      command = get_command message_from_telegram.text
-      if command.present?
-        send command, message_from_telegram.text.gsub(%r{^/#{command} }, '').gsub(/^@myleopold_bot/, '')
+      text = message_from_telegram.text
+      command = BotTelegram::Leopold::Command.new text
+      if command.valid?
+        command.run
       else
-        words = words_to_explain(message_from_telegram.text)
+        words = words_to_explain(text)
         if words.class.to_s == 'Word'
           send_word words
         else
@@ -50,12 +49,6 @@ class BotTelegram::Leopold::Scenario
     chat.chat_type == 'private'
   end
 
-  def get_command(text)
-    COMMANDS.map do |command|
-      command if text&.match?(%r{^/#{command}})
-    end.compact.first
-  end
-
   def send_word(word)
     unless sended_recently? word
       message_to_chat bot, chat, build_message_with_word(word)
@@ -65,11 +58,9 @@ class BotTelegram::Leopold::Scenario
   end
 
   def sended_recently?(word)
-    last_use = ::ItWay::WordUse.where(word_id: word.id, chat_id: chat.id).last
+    uses = ::ItWay::WordUse.where(word_id: word.id, chat_id: chat.id)
 
-    return false unless last_use.present?
-
-    last_use.created_at > (DateTime.now - 1.hour)
+    uses.last&.created_at&.>(DateTime.now - 1.hour)
   end
 
   def build_message_with_word(word)

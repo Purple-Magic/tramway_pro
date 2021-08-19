@@ -7,6 +7,13 @@ detectors:
     max_params: 4
   TooManyStatements:
     max_statements: 10
+  UtilityFunction:
+    exclude:
+      - "Youtube::Client"
+      - "BotTelegram::MessagesManager"
+  FeatureEnvy:
+    exclude:
+      - "BotTelegram::MessagesManager#message_to_user"
 directories:
   "app/workers":
     UtilityFunction:
