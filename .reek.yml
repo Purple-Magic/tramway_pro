@@ -11,9 +11,12 @@ detectors:
     exclude:
       - "Youtube::Client"
       - "BotTelegram::MessagesManager"
+      - "BotTelegram::Leopold::ItWayPro::WordsCheck"
   FeatureEnvy:
     exclude:
       - "BotTelegram::MessagesManager#message_to_user"
+  NestedIterators:
+    max_allowed_nesting: 2
 directories:
   "app/workers":
     UtilityFunction:
