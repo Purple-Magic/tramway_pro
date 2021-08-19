@@ -38,6 +38,12 @@ RAILS_ENV=test rails db:create db:migrate db:seed
 bundle exec rspec
 ```
 
+### Before commit don't forget
+
+```shell
+make code_check
+```
+
 ### Воркфлоу работы с гемами tramway
 
 В случае, если изменения требуется сделать в гемах tramway, у задачи в trello будет стоять Метка `tramway`. Ссылка на [все карточки](https://trello.com/b/HVkPer5c/%D0%B3%D0%BE%D0%B4-%D0%BC%D0%BE%D0%BB%D0%BE%D0%B4%D1%8B%D1%85-2020?menu=filter&filter=label:tramway)
