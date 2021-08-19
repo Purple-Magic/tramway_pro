@@ -3,6 +3,8 @@ detectors:
     enabled: false
   DuplicateMethodCall:
     max_calls: 2
+  LongParameterList:
+    max_params: 4
 directories:
   "app/workers":
     UtilityFunction:

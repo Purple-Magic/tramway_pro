@@ -29,10 +29,11 @@ module BotTelegram::Scenario
     end
 
     def make_error(current_step, bot_record)
+      bot_options = bot_record.options
       if current_step.options['free_answer']
-        bot_record.options['standard_answer'] || 'Я запомнил это сообщение'
+        bot_options['standard_answer'] || 'Я запомнил это сообщение'
       else
-        (bot_record.options.present? && bot_record.options['standard_error']) || I18n.t('bot.standard_error')
+        (bot_options.present? && bot_options['standard_error']) || I18n.t('bot.standard_error')
       end
     end
 
@@ -44,12 +45,13 @@ module BotTelegram::Scenario
         project_id: project.id
       )
 
-      return unless current_step.delay.present? && current_step.delay != 0
+      delay = current_step.delay
+      return unless delay.present? && delay != 0
 
       next_step = find_next_step current_step, message_from_telegram, bot_record
       return unless next_step.present?
 
-      sleep current_step.delay
+      sleep delay
       send_step_message next_step, bot, message_from_telegram, bot_record
     end
 
