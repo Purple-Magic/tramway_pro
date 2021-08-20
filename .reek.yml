@@ -33,7 +33,12 @@ detectors:
       - "Podcast::Episodes::DescriptionConcern"
   NestedIterators:
     max_allowed_nesting: 2
+  TooManyMethods:
+    max_methods: 17
 directories:
+  "app/jobs":
+    UtilityFunction:
+      enabled: false
   "app/workers":
     UtilityFunction:
       enabled: false
