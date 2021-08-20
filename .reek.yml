@@ -35,6 +35,8 @@ detectors:
     max_allowed_nesting: 2
   TooManyMethods:
     max_methods: 17
+  RepeatedConditional:
+    max_ifs: 3
 directories:
   "app/jobs":
     UtilityFunction:
