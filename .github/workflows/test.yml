@@ -44,7 +44,7 @@ jobs:
 
       - name: Run smell check
         run: |
-          reek
+          reek -c .reek.yml
 
   rubocop:
     runs-on: ubuntu-latest
