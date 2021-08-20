@@ -18,17 +18,25 @@ detectors:
       - "Ffmpeg::CommandBuilder"
       - "ExtendedLogger"
       - "Constraints::DomainConstraint"
+      - "ProjectsHelper"
+      - "IntegrationHelpers"
+      - "ErrorsHelper"
+      - "CkeditorPictureUploader"
+      - "CkeditorAttachmentFileUploader"
   FeatureEnvy:
     exclude:
       - "BotTelegram::MessagesManager#message_to_user"
       - "MultiProjectConfigurationMiddleware"
       - "Ffmpeg::CommandBuilder"
       - "Constraints::DomainConstraint"
+      - "TramwayHelpers"
   NestedIterators:
     max_allowed_nesting: 2
 directories:
   "app/workers":
     UtilityFunction:
+      enabled: false
+    InstanceVariableAssumption:
       enabled: false
   "db/migrate":
     FeatureEnvy:

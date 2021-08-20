@@ -2,6 +2,7 @@
 
 require 'fileutils'
 
+# :reek:MissingSafeMethod { exclude: [ update_file! ] }
 class Podcast::Episode < ApplicationRecord
   EPISODE_ATTRIBUTES = %i[title season number description published_at image explicit file_url duration].freeze
 
@@ -23,7 +24,7 @@ class Podcast::Episode < ApplicationRecord
 
     %i[recording recorded downloaded converted prepared highlighted montaged normalized music_added
        trailer_is_ready trailer_rendered concatination_in_progress finishing ready_audio
-       video_trailer_is_ready finished].each { |s| state s }
+       video_trailer_is_ready finished].each { |state_name| state state_name }
 
     event(:download) { transitions to: :downloaded }
     event(:convert) { transitions to: :converted }
@@ -78,7 +79,7 @@ class Podcast::Episode < ApplicationRecord
   end
 
   def prepare_directory
-    FileUtils.mkdir_p podcasts_directory
+    FileUtils.mkdir_p PODCASTS_DIRECTORY
 
     FileUtils.mkdir_p current_podcast_directory
     parts_directory_name.tap do |dir|
@@ -112,19 +113,17 @@ class Podcast::Episode < ApplicationRecord
   end
 
   def update_file!(output, file_type)
-    File.open(output) do |f|
-      send "#{file_type}=", f
+    File.open(output) do |std_file|
+      public_send "#{file_type}=", std_file
     end
     save!
   end
 
   private
 
-  def podcasts_directory
-    "/#{Rails.root}/public/podcasts/"
-  end
+  PODCASTS_DIRECTORY = "/#{Rails.root}/public/podcasts/"
 
   def current_podcast_directory
-    "#{podcasts_directory}#{podcast.title.gsub(' ', '_')}/"
+    "#{PODCASTS_DIRECTORY}#{podcast.title.gsub(' ', '_')}/"
   end
 end
