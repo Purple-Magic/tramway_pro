@@ -15,10 +15,15 @@ detectors:
       - "BotTelegram::Leopold::Commands"
       - "BotTelegram::Info"
       - "MultiProjectCallbacks"
+      - "Ffmpeg::CommandBuilder"
+      - "ExtendedLogger"
+      - "Constraints::DomainConstraint"
   FeatureEnvy:
     exclude:
       - "BotTelegram::MessagesManager#message_to_user"
       - "MultiProjectConfigurationMiddleware"
+      - "Ffmpeg::CommandBuilder"
+      - "Constraints::DomainConstraint"
   NestedIterators:
     max_allowed_nesting: 2
 directories:
