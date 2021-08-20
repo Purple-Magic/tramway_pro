@@ -48,7 +48,8 @@ jobs:
 
       - name: Run smell check
         run: |
-          reek -f html -c .reek.yml
+          mkdir /tmp/smell-code-results
+          reek -f html -c .reek.yml 1> /dev/null 2> >(tee -a /tmp/smell-code-results.txt >&2)
 
       - name: Rocket.Chat Notification
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
