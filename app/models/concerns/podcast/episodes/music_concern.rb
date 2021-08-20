@@ -1,25 +1,13 @@
 # frozen_string_literal: true
 
 module Podcast::Episodes::MusicConcern
-  def add_music(_filename, output)
+  def add_music(_filename, _output)
     raise 'No music for this podcast' unless podcast.musics.any?
 
     music_output = update_output :music
-    command = content_concat(
-      inputs: [find_music(:begin)[:path]] + samples + [find_music(:finish)[:path]],
-      output: music_output
-    )
-    Rails.logger.info command
-    system command.to_s
+    render_whole_length_music music_output
+    merge_music_with_voices music_output
 
-    ready_output = update_output :ready
-    render_command = merge_content inputs: [music_output, premontage_file.path], output: ready_output
-    move_command = move_to(ready_output, output)
-    command = "#{render_command} && #{move_command}"
-    Rails.logger.info command
-    system command
-    wait_for_file_rendered output, :with_music
-    update_file! output, :premontage_file
     music_add!
   end
 
@@ -47,5 +35,25 @@ module Podcast::Episodes::MusicConcern
 
   def update_output(suffix)
     (output.split('.')[0..-2] + [suffix, :mp3]).join('.')
+  end
+
+  def render_whole_length_music(music_output)
+    command = content_concat(
+      inputs: [find_music(:begin)[:path]] + samples + [find_music(:finish)[:path]],
+      output: music_output
+    )
+    Rails.logger.info command
+    system command.to_s
+  end
+
+  def merge_music_with_voices(music_output)
+    ready_output = update_output :ready
+    render_command = merge_content inputs: [music_output, premontage_file.path], output: ready_output
+    move_command = move_to(ready_output, output)
+    command = "#{render_command} && #{move_command}"
+    Rails.logger.info command
+    system command
+    wait_for_file_rendered output, :with_music
+    update_file! output, :premontage_file
   end
 end
