@@ -40,7 +40,7 @@ jobs:
 
       - name: Install reek
         run: |
-          gem install reek
+          gem install reek -v '6.0.6'
 
       - name: Run smell check
         run: |
