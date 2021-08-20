@@ -11,6 +11,8 @@ module Podcast::Episodes::MusicConcern
     music_add!
   end
 
+  private
+
   def samples_count
     return @samples_count if @samples_count.present?
 
