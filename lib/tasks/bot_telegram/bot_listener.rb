@@ -12,7 +12,7 @@ class BotTelegram::BotListener
 
     def perform(id)
       bot_record = Bot.find id
-      Telegram::Bot::Client.run(bot_record.token) do |bot|
+      Telegram::Bot::Client.run(bot_record.token, url: 'http://localhost:9000') do |bot|
         bot.listen do |message|
           if can_be_processed? message
             process message, bot_record, bot
