@@ -5,4 +5,6 @@ class BotTelegram::Message < ApplicationRecord
 
   belongs_to :user, class_name: 'BotTelegram::User', optional: true
   belongs_to :bot, class_name: 'Bot'
+
+  enumerize :sender, in: [ :bot, :user ], default: :user
 end

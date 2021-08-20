@@ -22,7 +22,7 @@ module BotTelegram::Scenario
             send_step_message next_step, bot, message_from_telegram, bot_record
           else
             error = make_error current_step, bot_record
-            message_to_user bot.api, error, message_from_telegram.chat.id
+            message_to_user bot.api, bot_record, error, message_from_telegram.chat.id
           end
         end
       end
@@ -38,7 +38,7 @@ module BotTelegram::Scenario
     end
 
     def send_step_message(current_step, bot, message_from_telegram, bot_record)
-      message_to_user bot.api, current_step, message_from_telegram.chat.id
+      message_to_user bot.api, bot_record, current_step, message_from_telegram.chat.id
       BotTelegram::Scenario::ProgressRecord.create!(
         bot_telegram_user_id: user_from(message_from_telegram.from).id,
         bot_telegram_scenario_step_id: current_step.id,

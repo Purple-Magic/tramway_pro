@@ -8,6 +8,7 @@ require 'rspec/expectations'
 require 'rspec/json_expectations'
 
 RSpec.configure do |config|
+  config.infer_spec_type_from_file_location!
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
