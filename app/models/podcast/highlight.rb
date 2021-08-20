@@ -12,9 +12,10 @@ class Podcast::Highlight < ApplicationRecord
 
   include Podcast::SoundProcessConcern
 
-  def cut(directory)
+  def cut(output)
     raise "You should pick begin and end time for Highlight #{id}" if !cut_begin_time.present? && !cut_end_time.present?
 
+    directory = output.split('/')[0..-2].join('/')
     highlight_output = "#{directory}/#{id}.mp3"
     render_command = cut_content(
       input: file.path,
