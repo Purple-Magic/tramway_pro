@@ -42,6 +42,10 @@ jobs:
         run: |
           gem install reek -v '6.0.6'
 
+      - name: Show reek version
+        run: |
+          reek -v
+
       - name: Run smell check
         run: |
           reek -f html -c .reek.yml
