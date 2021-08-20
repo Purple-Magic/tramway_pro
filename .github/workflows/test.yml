@@ -44,7 +44,7 @@ jobs:
 
       - name: Run smell check
         run: |
-          /usr/bin/reek -c .reek.yml
+          reek -l
 
       - name: Rocket.Chat Notification
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
