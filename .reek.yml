@@ -38,6 +38,9 @@ detectors:
   RepeatedConditional:
     max_ifs: 3
 directories:
+  "app/controllers":
+    InstanceVariableAssumption:
+      enabled: false
   "app/jobs":
     UtilityFunction:
       enabled: false
