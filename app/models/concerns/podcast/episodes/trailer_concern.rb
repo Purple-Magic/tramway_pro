@@ -30,24 +30,7 @@ module Podcast::Episodes::TrailerConcern
   def cut_using_highlights(using_highlights, output)
     directory = output.split('/')[0..-2].join('/')
     using_highlights.each do |highlight|
-      if !highlight.cut_begin_time.present? && !highlight.cut_end_time.present?
-        raise "You should pick begin and end time for Highlight #{highlight.id}"
-      end
-
-      highlight_output = "#{directory}/#{highlight.id}.mp3"
-      render_command = cut_content(
-        input: highlight.file.path,
-        begin_time: highlight.cut_begin_time,
-        end_time: highlight.cut_end_time,
-        output: highlight_output
-      )
-      command = render_command
-      Rails.logger.info command
-      system command
-
-      wait_for_file_rendered highlight_output, "Highlight #{highlight.id}"
-
-      update_file! highlight_output, :ready_file
+      highlight.cut directory
     end
   end
 
@@ -62,14 +45,5 @@ module Podcast::Episodes::TrailerConcern
     wait_for_file_rendered output, :trailer
     update_file! output, :ready_file
     make_audio_ready!
-  end
-
-  def wait_for_file_rendered(output, file_type)
-    index = 0
-    until File.exist?(output)
-      sleep 1
-      index += 1
-      Rails.logger.info "#{file_type} file does not exist for #{index} seconds"
-    end
   end
 end

@@ -67,6 +67,7 @@ class Podcast::Episode < ApplicationRecord
   end
 
   include Ffmpeg::CommandBuilder
+  include Podcast::SoundProcessConcern
   include Podcast::Episodes::DescriptionConcern
   include Podcast::Episodes::HighlightsConcern
   include Podcast::Episodes::MusicConcern
@@ -110,13 +111,6 @@ class Podcast::Episode < ApplicationRecord
 
       convert!
     end
-  end
-
-  def update_file!(output, file_type)
-    File.open(output) do |std_file|
-      public_send "#{file_type}=", std_file
-    end
-    save!
   end
 
   private
