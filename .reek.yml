@@ -14,9 +14,11 @@ detectors:
       - "BotTelegram::Leopold::ItWayPro::WordsCheck"
       - "BotTelegram::Leopold::Commands"
       - "BotTelegram::Info"
+      - "MultiProjectCallbacks"
   FeatureEnvy:
     exclude:
       - "BotTelegram::MessagesManager#message_to_user"
+      - "MultiProjectConfigurationMiddleware"
   NestedIterators:
     max_allowed_nesting: 2
 directories:
