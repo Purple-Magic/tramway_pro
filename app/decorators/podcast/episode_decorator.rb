@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
-  decorate_associations :highlights, :podcast
+  decorate_associations :highlights, :podcast, :topics
 
   delegate_attributes :id, :number, :file_url, :montage_state
 
   class << self
     def show_associations
-      [:highlights]
+      [:highlights, :topics]
     end
 
     def show_attributes
