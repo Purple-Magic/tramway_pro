@@ -66,7 +66,7 @@ class PodcastsMontageWorker < ApplicationWorker
   end
 
   def run_filters(episode, filename)
-    episode.montage(filename, output)
+    episode.montage(filename)
     Rails.logger.info 'Montage completed!'
   end
 

@@ -7,6 +7,7 @@ module BotTelegram::Scenario
   class << self
     include ::BotTelegram::MessagesManager
     include ::BotTelegram::Info
+    include ::BotTelegram::StatsNotifications
 
     def run(message_from_telegram, bot, bot_record)
       user = user_from message_from_telegram.from
@@ -44,6 +45,9 @@ module BotTelegram::Scenario
         bot_telegram_scenario_step_id: current_step.id,
         project_id: project.id
       )
+      if current_step.finish?
+        notify_about_finishing_scenario message_from_telegram, bot_record
+      end
 
       delay = current_step.delay
       return unless delay.present? && delay != 0

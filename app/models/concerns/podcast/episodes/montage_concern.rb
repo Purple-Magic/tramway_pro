@@ -20,7 +20,6 @@ module Podcast::Episodes::MontageConcern
     move_command = move_to(temp_output, output)
     command = "#{render_command} && #{move_command}"
     Rails.logger.info command
-    binding.pry
     system command
   end
 end
