@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Podcast::Star < ApplicationRecord
   belongs_to :podcast, class_name: 'Podcast'
   has_and_belongs_to_many :stars, class_name: 'Podcast::Star'
