@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210816101945) do
+ActiveRecord::Schema.define(version: 20210821033935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -333,6 +333,11 @@ ActiveRecord::Schema.define(version: 20210816101945) do
     t.datetime "record_time"
   end
 
+  create_table "podcast_episodes_stars", force: :cascade do |t|
+    t.integer "episode_id"
+    t.integer "star_id"
+  end
+
   create_table "podcast_episodes_topics", force: :cascade do |t|
     t.integer "episode_id"
     t.text "title"
@@ -370,6 +375,16 @@ ActiveRecord::Schema.define(version: 20210816101945) do
     t.datetime "updated_at", null: false
     t.text "state"
     t.integer "project_id"
+  end
+
+  create_table "podcast_stars", force: :cascade do |t|
+    t.text "nickname"
+    t.text "link"
+    t.integer "podcast_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "project_id"
+    t.text "state"
   end
 
   create_table "podcasts", force: :cascade do |t|

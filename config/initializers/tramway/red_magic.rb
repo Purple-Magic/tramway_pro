@@ -4,6 +4,8 @@ Tramway::Core.initialize_application model_class: RedMagic
 
 Tramway::Admin.set_singleton_models RedMagic, project: :red_magic
 
+Tramway::Admin.forms = 'podcast/episodes/add_star', 'podcast/episode/remove_star'
+
 Tramway::Admin.set_available_models(
   Tramway::Landing::Block,
   Tramway::Landing::Tool,
@@ -19,6 +21,7 @@ Tramway::Admin.set_available_models(
   Podcast::Episodes::Topic,
   Podcast::Highlight,
   Podcast::Music,
+  Podcast::Star,
   Video,
   project: :red_magic
 )
@@ -29,6 +32,7 @@ Tramway::Admin.set_available_models(
   Podcast::Episodes::Topic,
   Podcast::Highlight,
   Podcast::Music,
+  Podcast::Star,
   project: :red_magic,
   role: :podcast
 )
