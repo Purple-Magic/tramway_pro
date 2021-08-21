@@ -11,6 +11,7 @@ class Podcast::Highlight < ApplicationRecord
   uploader :ready_file, :file
 
   include Podcast::SoundProcessConcern
+  include Ffmpeg::CommandBuilder
 
   def cut(output)
     raise "You should pick begin and end time for Highlight #{id}" if !cut_begin_time.present? && !cut_end_time.present?
@@ -32,16 +33,17 @@ class Podcast::Highlight < ApplicationRecord
     update_file! highlight_output, :ready_file
   end
 
-  def cut_from_whole_file(index)
-    filename = episode.convert_file
+  def cut_from_whole_file(filename, index)
     directory = episode.prepare_directory
 
+    binding.pry
     hour, minutes, seconds = time.split(':')
     highlight_time = DateTime.new(2020, 0o1, 0o1, hour.to_i, minutes.to_i, seconds.to_i)
     begin_time = (highlight_time - 60.seconds).strftime '%H:%M:%S'
     end_time = (highlight_time + 30.seconds).strftime '%H:%M:%S'
     output = "#{directory}/part-#{index + 1}.mp3"
     build_and_run_command(input: filename, begin_time: begin_time, end_time: end_time, output: output)
+    wait_for_file_rendered output, "Highlight #{id}"
     update_file! output, :file
   end
 

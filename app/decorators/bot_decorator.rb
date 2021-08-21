@@ -69,7 +69,7 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def custom
-    custom ? I18n.t('helpers.yes') : I18n.t('helpers.no')
+    object.custom ? I18n.t('helpers.yes') : I18n.t('helpers.no')
   end
 
   def additional_buttons

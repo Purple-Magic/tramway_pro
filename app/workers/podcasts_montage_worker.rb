@@ -5,6 +5,8 @@ require 'net/ssh'
 class PodcastsMontageWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
+  include BotTelegram::Leopold::Notify
+
   def perform(id)
     episode = Podcast::Episode.find id
     montage episode
@@ -16,10 +18,15 @@ class PodcastsMontageWorker < ApplicationWorker
 
   def montage(episode)
     download episode
+    send_notification_to :kalashnikovisme, 'Podcast Download is complete'
     cut_highlights episode
+    send_notification_to :kalashnikovisme, 'Podcast Cut highlights is complete'
     filename = convert episode
+    send_notification_to :kalashnikovisme, 'Podcast Convert is complete'
     run_filters episode, filename
+    send_notification_to :kalashnikovisme, 'Podcast filtering is complete'
     add_music episode
+    send_notification_to :kalashnikovisme, 'Podcast adding music is complete'
   end
 
   def download(episode)
@@ -48,7 +55,6 @@ class PodcastsMontageWorker < ApplicationWorker
   end
 
   def cut_highlights(episode)
-    episode.convert_file
     episode.cut_highlights
     episode.highlight_it!
     Rails.logger.info 'Cut highlights completed!'
