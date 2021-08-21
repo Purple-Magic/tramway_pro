@@ -36,7 +36,7 @@ RSpec.configure do |config|
     url = pair[1]
     next if Project.where(url: url).any?
 
-    Project.create! url: url
+    #Project.create! url: url
   end
   config.before(:all) do
     ActiveRecord::Base.descendants.each do |model|

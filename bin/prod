@@ -47,18 +47,11 @@ if ARGV[0] == 'get_db_to_test'
   tables = [
     :bots,
     :bot_telegram_scenario_steps,
+    :projects
   ]
-  schema_dump_command = "ssh -t #{ARGV[1]}@138.68.76.45 'pg_dump -Fc --no-acl --no-owner -v -s #{db_name} > #{dump}'"
-  puts schema_dump_command.green
-  system schema_dump_command
-  puts 'Downloading...'.green
-  system "scp #{ARGV[1]}@138.68.76.45:#{dump} /tmp/"
-  puts "Restoring #{restore_to} database".green
-  system "ssh -t #{ARGV[1]}@138.68.76.45 'rm -f #{dump}'"
   system 'dropdb tramway_pro_test --if-exists'
   system 'createdb tramway_pro_test'
-  system "pg_restore -d #{restore_to} /tmp/#{dump}"
-
+  system 'RAILS_ENV=test rails db:migrate'
   command = "ssh -t #{ARGV[1]}@138.68.76.45 'pg_dump --column-inserts -a #{tables.map { |table| "-t #{table} " }.join} -Fc --no-acl --no-owner -v #{db_name} > #{dump}'"
   puts command.green
   system command
@@ -72,8 +65,38 @@ if ARGV[0] == 'get_db_to_test'
   puts 'Copy prod db to backup folder...'.yellow
   system 'mkdir ~/backup.tramway.dbs'
   system "cp -r /tmp/#{dump} ~/backup.tramway.dbs/#{dump}"
-  system 'rails db:migrate'
-  system 'rails db:seed'
+  system 'RAILS_ENV=test rails db:seed'
+end
+
+if ARGV[0] == 'fast_restore_to_test'
+  puts 'You should add username on server'.red if ARGV[1].nil?
+  restore_to = ARGV[2] || :tramway_pro_test
+  at = Time.now.strftime('%Y-%m-%d--%H-%M')
+  dump = "tramway_pro--#{at}.dump"
+  puts 'Dumping production database'.green
+  system "scp #{ARGV[1]}@138.68.76.45:/srv/tramway_pro/shared/config/database.yml ./"
+  db_config = YAML.load_file('database.yml')
+  db_name = db_config['production']['database']
+  system 'rm -rf database.yml'
+  tables = [
+    :bots,
+    :bot_telegram_scenario_steps,
+    :projects
+  ]
+  command = "ssh -t #{ARGV[1]}@138.68.76.45 'pg_dump --column-inserts -a #{tables.map { |table| "-t #{table} " }.join} -Fc --no-acl --no-owner -v #{db_name} > #{dump}'"
+  puts command.green
+  system command
+  puts 'Downloading...'.green
+  system "scp #{ARGV[1]}@138.68.76.45:#{dump} /tmp/"
+  puts "Restoring #{restore_to} database".green
+  system "ssh -t #{ARGV[1]}@138.68.76.45 'rm -f #{dump}'"
+  system "pg_restore -d #{restore_to} /tmp/#{dump}"
+  puts 'Copy prod db for tests...'.yellow
+  system "cp -rf /tmp/#{dump} tmp/test.dump"
+  puts 'Copy prod db to backup folder...'.yellow
+  system 'mkdir ~/backup.tramway.dbs'
+  system "cp -r /tmp/#{dump} ~/backup.tramway.dbs/#{dump}"
+  system 'RAILS_ENV=test rails db:seed'
 end
 
 if ARGV[0] == 'get_files'

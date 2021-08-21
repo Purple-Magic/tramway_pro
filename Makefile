@@ -30,3 +30,8 @@ restart_telegram_bots:
 code_check:
 	rubocop -A
 	reek
+
+local_bot_test:
+	mv lib/tasks/bot_telegram/messages_manager.rb lib/tasks/bot_telegram/messages_manager.rb2
+	mv lib/tasks/bot_telegram/messages_manager.rb2 lib/tasks/bot_telegram/messages_manager.rb
+	RAILS_ENV=test rails c
