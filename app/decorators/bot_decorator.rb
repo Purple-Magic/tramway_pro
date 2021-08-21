@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class BotDecorator < Tramway::Core::ApplicationDecorator
-  delegate_attributes :name, :team, :finished_users
+  delegate_attributes :name, :team, :finished_users, :slug, :custom
 
   decorate_association :steps
 
@@ -20,76 +20,44 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def link
-    link_to "@#{object.slug}", "https://t.me/#{object.slug}", target: '_blank' if object.slug.present?
+    link_to "@#{slug}", "https://t.me/#{slug}", target: '_blank' if slug.present?
   end
 
   def options
     yaml_view object.options
   end
 
+  include Bot::ScenarioBuilder
+
   def scenario
     content_tag(:table) do
-      concat(content_tag(:thead)) do
-        concat(content_tag(:th)) do
-          concat BotTelegram::Scenario::Step.human_attribute_name(:name)
-        end
-        concat(content_tag(:th)) do
-          concat BotTelegram::Scenario::Step.human_attribute_name(:links)
-        end
-      end
-      steps.each do |st|
-        concat(content_tag(:tr) do
-          concat(content_tag(:td) do
-            concat st.name
-          end)
-          concat(content_tag(:td) do
-            concat st.links
-          end)
-        end)
-      end
+      scenario_header
+      scenario_steps_rows
     end
   end
 
+  include Bot::StatsBuilder
+
   def stats
     content_tag(:table) do
-      concat(content_tag(:thead) do
-        concat(content_tag(:th) do
-          concat BotTelegram::Scenario::Step.human_attribute_name(:text)
-        end)
-        concat(content_tag(:th) do
-          concat BotTelegram::Scenario::Step.human_attribute_name(:progress_records_count)
-        end)
-      end)
-      object.steps.active.each do |st|
-        concat(content_tag(:tr) do
-          concat(content_tag(:td) do
-            concat st.text
-          end)
-          concat(content_tag(:td) do
-            concat st.progress_records.count
-          end)
-        end)
-      end
+      stats_header
+      stats_steps_rows
     end
   end
 
   def users_count
-    count = object.custom ? object.messages.map(&:user).flatten.uniq.count : object.users.uniq.count
+    count = custom ? object.messages.map(&:user).flatten.uniq.count : object.users.uniq.count
     link_to count,
       Tramway::Admin::Engine.routes.url_helpers.records_path(model: 'BotTelegram::User',
         filter: { bots_id_eq: object.id })
   end
 
   def users_finished
-    if object.team.night?
-      finished_users.count
-    else
-      'N/A'
-    end
+    object.team.night? ? finished_users.count : 'N/A'
   end
 
   def messages_count
-    object.custom ? object.messages.count : object.progress_records.uniq.count
+    custom ? object.messages.count : object.progress_records.uniq.count
   end
 
   def messages
@@ -101,7 +69,7 @@ class BotDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def custom
-    object.custom ? I18n.t('helpers.yes') : I18n.t('helpers.no')
+    custom ? I18n.t('helpers.yes') : I18n.t('helpers.no')
   end
 
   def additional_buttons

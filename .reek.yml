@@ -1,0 +1,58 @@
+detectors:
+  IrresponsibleModule:
+    enabled: false
+  DuplicateMethodCall:
+    max_calls: 2
+  LongParameterList:
+    max_params: 4
+  TooManyStatements:
+    max_statements: 10
+  UtilityFunction:
+    exclude:
+      - "Youtube::Client"
+      - "BotTelegram::MessagesManager"
+      - "BotTelegram::Leopold::ItWayPro::WordsCheck"
+      - "BotTelegram::Leopold::Commands"
+      - "BotTelegram::Info"
+      - "MultiProjectCallbacks"
+      - "Ffmpeg::CommandBuilder"
+      - "ExtendedLogger"
+      - "Constraints::DomainConstraint"
+      - "ProjectsHelper"
+      - "IntegrationHelpers"
+      - "ErrorsHelper"
+      - "CkeditorPictureUploader"
+      - "CkeditorAttachmentFileUploader"
+  FeatureEnvy:
+    exclude:
+      - "BotTelegram::MessagesManager#message_to_user"
+      - "MultiProjectConfigurationMiddleware"
+      - "Ffmpeg::CommandBuilder"
+      - "Constraints::DomainConstraint"
+      - "TramwayHelpers"
+      - "Podcast::Episodes::DescriptionConcern"
+  NestedIterators:
+    max_allowed_nesting: 2
+  TooManyMethods:
+    max_methods: 17
+  RepeatedConditional:
+    max_ifs: 3
+directories:
+  "app/controllers":
+    InstanceVariableAssumption:
+      enabled: false
+  "app/jobs":
+    UtilityFunction:
+      enabled: false
+  "app/workers":
+    UtilityFunction:
+      enabled: false
+    InstanceVariableAssumption:
+      enabled: false
+  "db/migrate":
+    FeatureEnvy:
+      enabled: false
+    TooManyStatements:
+      enabled: false
+    UncommunicativeVariableName:
+      enabled: false

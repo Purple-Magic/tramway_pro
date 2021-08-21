@@ -27,8 +27,8 @@ module MultiProjectCallbacks
     module UserCallbacks
       extend ActiveSupport::Concern
       included do
-        p = Project.find_by(url: ENV['PROJECT_URL']).id
-        validates :email, uniqueness: true, if: -> { project_id == p && active? }
+        p_id = Project.find_by(url: ENV['PROJECT_URL']).id
+        validates :email, uniqueness: true, if: -> { project_id == p_id && active? }
 
         default_scope do
           where project_id: Project.where(url: ENV['PROJECT_URL'])

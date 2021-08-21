@@ -55,6 +55,7 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
     state_machine_view object, :project_state
   end
 
+  # :reek:ControlParameter { enabled: false }
   def project_state_button_color(event)
     case event
     when :send_to_customer
@@ -65,6 +66,7 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
       :warning
     end
   end
+  # :reek:ControlParameter { enabled: true }
 
   private
 
@@ -96,6 +98,7 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
     end
   end
 
+  # :reek:DuplicateMethodCall { enabled: false }
   def footer
     coefficients.each do |coefficient|
       concat(content_tag(:tr) do
@@ -111,4 +114,5 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
       end)
     end
   end
+  # :reek:ControlParameter { enabled: true }
 end

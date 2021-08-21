@@ -5,6 +5,7 @@ module Estimation::ProjectConcern
     tasks.sum(&:sum_with_coefficients)
   end
 
+  # :reek:DuplicateMethodCall { enabled: false }
   def summary_row
     concat(content_tag(:tr) do
       5.times { concat(content_tag(:td)) }
@@ -24,4 +25,5 @@ module Estimation::ProjectConcern
       end
     end)
   end
+  # :reek:ControlParameter { enabled: true }
 end

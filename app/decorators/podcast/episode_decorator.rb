@@ -3,7 +3,7 @@
 class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   decorate_associations :highlights, :podcast, :topics
 
-  delegate_attributes :number, :file_url, :montage_state
+  delegate_attributes :id, :number, :file_url, :montage_state
 
   class << self
     def show_associations
@@ -11,7 +11,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[podcast_link number file ready_file premontage_file trailer cover trailer_video full_video image mp3
+      %i[podcast_link number file ready_file premontage_file trailer cover trailer_video full_video image mp3_file
          description montage_state]
     end
   end
@@ -51,7 +51,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
     image_tag(object.image, style: 'height: 200px') if object.image.present?
   end
 
-  def mp3
+  def mp3_file
     file_url = object.attributes['file_url']
     link_to file_url, file_url if file_url.present?
   end
@@ -76,10 +76,9 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   def additional_buttons
     path_helpers = Rails.application.routes.url_helpers
-    finish_record_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: object.id, process: :finish_record)
-    trailer_get_ready_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: object.id,
-      process: :trailer_get_ready)
-    finish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: object.id, process: :finish)
+    finish_record_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish_record)
+    trailer_get_ready_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :trailer_get_ready)
+    finish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish)
 
     {
       show: [

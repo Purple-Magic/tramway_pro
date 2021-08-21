@@ -5,17 +5,6 @@ class PodcastsTrailerWorker < ApplicationWorker
 
   def perform(id)
     episode = Podcast::Episode.find id
-
-    directory = episode.prepare_directory
-    directory = directory.gsub('//', '/')
-    output = "#{directory}/trailer.mp3"
-    episode.build_trailer(output)
-
-    wait_for_file_rendered output, :trailer
-
-    episode.update_file! output, :trailer
-
-    episode.trailer_finish
-    episode.save!
+    episode.build_trailer
   end
 end

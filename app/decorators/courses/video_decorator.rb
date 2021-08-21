@@ -19,7 +19,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def text
-    marked_text = object.comments.where.not(phrase: nil).reduce(object.text) do |t, comment|
+    marked_text = object.comments.where.not(phrase: nil).reduce(object.text) do |txt, comment|
       comment_html = if comment.file.present?
                        content_tag(:div) do
                          concat comment.text
@@ -29,7 +29,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
                      else
                        comment.text
                      end
-      t.sub(
+      txt.sub(
         comment.phrase,
         content_tag(:span, style: 'background-color: yellow; cursor: pointer',
 data: { toggle: :popover, html: true, content: comment_html }) do

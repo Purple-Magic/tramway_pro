@@ -8,11 +8,12 @@ module Youtube::Client
   def video_info(id)
     url = "#{API_URL}&id=#{id}&key=#{Rails.application.secrets.YOUTUBE_API_KEY}"
     response = JSON.parse(Faraday.get(url).body).with_indifferent_access
+    snippet = response[:items].first[:snippet]
 
     {
-      title: response[:items].first[:snippet][:title],
-      description: response[:items].first[:snippet][:description],
-      preview: response[:items].first[:snippet][:thumbnails][:maxres][:url]
+      title: snippet[:title],
+      description: snippet[:description],
+      preview: snippet[:thumbnails][:maxres][:url]
     }
   end
 end

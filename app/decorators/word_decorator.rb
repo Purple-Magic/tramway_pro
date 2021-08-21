@@ -23,6 +23,7 @@ class WordDecorator < Tramway::Core::ApplicationDecorator
     object.synonims&.join(', ')
   end
 
+  # :reek:ControlParameter { enabled: false }
   def review_state_button_color(event)
     case event
     when :approve

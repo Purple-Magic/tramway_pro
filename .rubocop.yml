@@ -106,6 +106,8 @@ Style/StringChars:
   Enabled: true
 Style/SwapValues:
   Enabled: true
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
 AllCops:
   Include:
     - app/**/*.rb
