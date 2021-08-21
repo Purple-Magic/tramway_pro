@@ -10,6 +10,7 @@ class BotTelegram::Leopold::Scenario
   include ::BotTelegram::Leopold::ItWayPro::WordsCheck
 
   IT_WAY_CHAT_ID = '-1001141858122'
+  BOT_ID = 9
 
   attr_reader :bot, :bot_record, :chat, :message_from_telegram
 
