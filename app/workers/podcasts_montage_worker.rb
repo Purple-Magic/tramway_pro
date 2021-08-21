@@ -14,7 +14,7 @@ class PodcastsMontageWorker < ApplicationWorker
 
   private
 
-  def montage
+  def montage(episode)
     download episode
     cut_highlights episode
     filename = convert episode
