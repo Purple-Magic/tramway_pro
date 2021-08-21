@@ -23,7 +23,7 @@ class PodcastsMontageWorker < ApplicationWorker
   end
 
   def download(episode)
-    directory = prepare_directory.gsub('//', '/')
+    directory = episode.prepare_directory.gsub('//', '/')
     Net::SCP.download!(
       '167.71.46.15',
       'root',
