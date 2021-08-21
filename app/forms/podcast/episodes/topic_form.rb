@@ -8,5 +8,6 @@ class Podcast::Episodes::TopicForm < Tramway::Core::ApplicationForm
     model.save!
     model.discus
     model.save!
+    super
   end
 end
