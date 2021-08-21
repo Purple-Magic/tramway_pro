@@ -16,6 +16,7 @@ Tramway::Admin.set_available_models(
   Estimation::Coefficient,
   Podcast,
   Podcast::Episode,
+  Podcast::Episodes::Topic,
   Podcast::Highlight,
   Podcast::Music,
   Video,
@@ -25,6 +26,7 @@ Tramway::Admin.set_available_models(
 Tramway::Admin.set_available_models(
   Podcast,
   Podcast::Episode,
+  Podcast::Episodes::Topic,
   Podcast::Highlight,
   Podcast::Music,
   project: :red_magic,

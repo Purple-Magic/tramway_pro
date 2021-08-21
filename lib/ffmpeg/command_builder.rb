@@ -17,8 +17,8 @@ module Ffmpeg::CommandBuilder
 
   def content_concat(inputs:, output:)
     complex_option = ''
-    inputs.count.times do |i|
-      complex_option += "[#{i}:0]"
+    inputs.count.times do |index|
+      complex_option += "[#{index}:0]"
     end
     options = options_line(
       yes: true,
@@ -102,13 +102,14 @@ module Ffmpeg::CommandBuilder
 
   def build_arguments(options)
     ARGUMENTS.map do |pair|
-      next unless options[pair[0]].present?
+      key = pair[0]
+      next unless options[key].present?
 
       case pair[1]
       when :boolean
-        pair[0]
+        key
       else
-        "#{pair[1]} #{options[pair[0]]}"
+        "#{pair[1]} #{options[key]}"
       end
     end.compact
   end

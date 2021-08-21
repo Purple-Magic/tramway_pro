@@ -11,6 +11,9 @@ module Podcast::Episodes::VideoConcern
     command = "#{render_command} && #{move_command}"
     Rails.logger.info command
     system command
+    wait_for_file_rendered output, :video_trailer
+    update_file! output, :trailer_video
+    make_video_trailer_ready!
   end
 
   def render_full_video(output)
@@ -31,5 +34,8 @@ module Podcast::Episodes::VideoConcern
     command = "ffmpeg #{options} 2> #{parts_directory_name}/video_render.txt"
     Rails.logger.info command
     system command
+    wait_for_file_rendered output, :full_video
+    episode.update_file! output, :full_video
+    episode.finish!
   end
 end

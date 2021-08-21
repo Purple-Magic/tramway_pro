@@ -15,21 +15,14 @@ class BotTelegram::BotListener
       Telegram::Bot::Client.run(bot_record.token) do |bot|
         bot.listen do |message|
           if can_be_processed? message
-            user = user_from message
-            chat = chat_from message
-            log_message message, user, chat, bot_record
-            if bot_record.custom
-              custom_bot_action bot_record: bot_record, bot: bot, chat: chat, message: message
-            else
-              BotTelegram::Scenario.run message, bot, bot_record
-            end
+            process message, bot_record, bot
           else
             error = "Empty message in bot #{bot_record.name}"
             Rails.env.development? ? puts(error) : Raven.capture_exception(error)
           end
         end
-      rescue Telegram::Bot::Exceptions::ResponseError => e
-        Rails.env.development? ? puts(e) : Raven.capture_exception(e)
+      rescue Telegram::Bot::Exceptions::ResponseError => error
+        Rails.env.development? ? puts(error) : Raven.capture_exception(error)
       end
     end
 
@@ -41,6 +34,17 @@ class BotTelegram::BotListener
 
     def can_be_processed?(message)
       message.present? && (message.try(:text) || message.try(:sticker))
+    end
+
+    def process(message, bot_record, bot)
+      user = user_from message.from
+      chat = chat_from message.chat
+      log_message message, user, chat, bot_record
+      if bot_record.custom
+        custom_bot_action bot_record: bot_record, bot: bot, chat: chat, message: message
+      else
+        BotTelegram::Scenario.run message, bot, bot_record
+      end
     end
   end
 end

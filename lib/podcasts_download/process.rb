@@ -40,6 +40,7 @@ module PodcastsDownload::Process
       end
     end
 
+    # :reek:ManualDispatch { enabled: false }
     def run
       podcasts = Podcast.active.where project_id: RED_MAGIC_PROJECT_ID
       podcasts.each do |podcast|

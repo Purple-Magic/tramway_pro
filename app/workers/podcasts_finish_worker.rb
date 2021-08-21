@@ -6,54 +6,36 @@ class PodcastsFinishWorker < ApplicationWorker
   def perform(id)
     episode = Podcast::Episode.find id
 
-    directory = episode.prepare_directory
-    directory = directory.gsub('//', '/')
-
-    concat_parts directory, episode
-    Rails.logger.info 'Concatination completed'
-
-    render_trailer directory, episode
-    Rails.logger.info 'Render trailer video completed'
-
-    render_full_video directory, episode
-    Rails.logger.info 'Render fulll video completed'
+    @directory = episode.prepare_directory
+    @directory = directory.gsub('//', '/')
+    render episode
   end
 
   private
 
-  def concat_parts(directory, episode)
-    output = "#{directory}/ready_file.mp3"
-    episode.concat_trailer_and_episode(output)
-
-    wait_for_file_rendered output, :trailer
-
-    episode.update_file! output, :ready_file
-
-    episode.make_audio_ready
-    episode.save!
+  def finish(episode)
+    concat_parts episode
+    render_trailer episode
+    render_full_video episode
   end
 
-  def render_trailer(directory, episode)
-    output = "#{directory}/trailer.mp4"
+  def concat_parts(episode)
+    output = "#{@directory}/ready_file.mp3"
+    episode.concat_trailer_and_episode(output)
+    Rails.logger.info 'Concatination completed'
+  end
+
+  def render_trailer(episode)
+    output = "#{@directory}/trailer.mp4"
     episode.render_video_trailer(output)
 
-    wait_for_file_rendered output, :video_trailer
-
-    episode.update_file! output, :trailer_video
-
-    episode.make_video_trailer_ready
-    episode.save!
+    Rails.logger.info 'Render trailer video completed'
   end
 
-  def render_full_video(directory, episode)
-    output = "#{directory}/full_video.mp4"
+  def render_full_video(episode)
+    output = "#{@directory}/full_video.mp4"
     episode.render_full_video(output)
 
-    wait_for_file_rendered output, :full_video
-
-    episode.update_file! output, :full_video
-
-    episode.finish
-    episode.save!
+    Rails.logger.info 'Render fulll video completed'
   end
 end

@@ -34,6 +34,4 @@ module ProjectsHelper
   def projects_names
     %i[it_way]
   end
-
-  def project_one_of?(project, *names); end
 end

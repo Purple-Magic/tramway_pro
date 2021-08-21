@@ -56,12 +56,14 @@ class Courses::CommentDecorator < Tramway::Core::ApplicationDecorator
     file_view object.file
   end
 
+  # :reek:ControlParameter { enabled: false }
   def comment_state_button_color(event)
     case event
     when :do_it
       :success
     end
   end
+  # :reek:ControlParameter { enabled: true }
 
   def video_link
     link_to video.title,

@@ -7,84 +7,67 @@ class PodcastsMontageWorker < ApplicationWorker
 
   def perform(id)
     episode = Podcast::Episode.find id
-
-    directory = episode.prepare_directory
-    directory = directory.gsub('//', '/')
-    download episode, directory
-
-    cut_highlights episode
-    Rails.logger.info 'Cut highlights completed!'
-
-    filename = convert episode
-    Rails.logger.info 'Converting completed!'
-
-    montage episode, directory, filename
-    Rails.logger.info 'Montage completed!'
-
-    add_music episode, directory
-    Rails.logger.info 'Adding of music completed!'
-  rescue StandardError => e
-    Rails.env.development? ? Rails.logger.error("logger.info : #{e.message}") : Raven.capture_exception(e)
+    montage episode
+  rescue StandardError => error
+    log_error error
   end
 
   private
 
-  def download(episode, directory)
-    external_filename = ''
+  def montage
+    download episode
+    cut_highlights episode
+    filename = convert episode
+    run_filters episode, filename
+    add_music episode
+  end
+
+  def download(episode)
+    directory = prepare_directory.gsub('//', '/')
+    Net::SCP.download!(
+      '167.71.46.15',
+      'root',
+      "/root/Documents/#{external_filename}",
+      "#{directory}/#{external_filename}"
+    )
+
+    File.open("#{directory}/#{external_filename}") do |std_file|
+      episode.file = std_file
+    end
+
+    episode.download!
+  end
+
+  def external_filename
+    return @external_filename if @external_filename.present?
+
     Net::SSH.start('167.71.46.15', 'root') do |ssh|
       result = ssh.exec! 'ls /root/Documents/Mumble-*'
-      external_filename = result.split.last.split('/').last
+      return result.split.last.split('/').last
     end
-    Net::SCP.download!('167.71.46.15', 'root', "/root/Documents/#{external_filename}",
-      "#{directory}/#{external_filename}")
-
-    File.open("#{directory}/#{external_filename}") do |f|
-      episode.file = f
-    end
-
-    episode.download
-    episode.save!
   end
 
   def cut_highlights(episode)
     episode.convert_file
     episode.cut_highlights
-    episode.highlight_it
-    episode.save!
+    episode.highlight_it!
+    Rails.logger.info 'Cut highlights completed!'
   end
 
   def convert(episode)
-    filename = episode.convert_file
-
-    filename.tap do
-      wait_for_file_rendered filename, :convert
-
-      episode.convert
-      episode.save!
-    end
+    episode.convert_file
+    Rails.logger.info 'Converting completed!'
   end
 
-  def montage(episode, directory, filename)
-    output = "#{directory}/montage.mp3"
-
+  def run_filters(episode, filename)
     episode.montage(filename, output)
-
-    wait_for_file_rendered output, :montage
-
-    episode.update_file! output, :premontage_file
-
-    episode.prepare
-    episode.save!
+    Rails.logger.info 'Montage completed!'
   end
 
   def add_music(episode, directory)
     output = "#{directory}/with_music.mp3"
     episode.add_music(episode.premontage_file.path, output)
 
-    wait_for_file_rendered output, :with_music
-    episode.update_file! output, :premontage_file
-
-    episode.music_add
-    episode.save!
+    Rails.logger.info 'Adding of music completed!'
   end
 end
