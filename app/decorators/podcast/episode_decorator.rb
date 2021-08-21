@@ -7,7 +7,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def show_associations
-      [:highlights, :topics]
+      %i[highlights topics]
     end
 
     def show_attributes

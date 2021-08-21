@@ -71,7 +71,7 @@ class Podcast::Episodes::TopicDecorator < Tramway::Core::ApplicationDecorator
     end
   end
 
-  def discus_state_button_color(event)
+  def discus_state_button_color(_event)
     :success
   end
 end
