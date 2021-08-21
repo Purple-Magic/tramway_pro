@@ -36,7 +36,6 @@ class Podcast::Highlight < ApplicationRecord
   def cut_from_whole_file(filename, index)
     directory = episode.prepare_directory
 
-    binding.pry
     hour, minutes, seconds = time.split(':')
     highlight_time = DateTime.new(2020, 0o1, 0o1, hour.to_i, minutes.to_i, seconds.to_i)
     begin_time = (highlight_time - 60.seconds).strftime '%H:%M:%S'
