@@ -13,7 +13,9 @@ module Podcast::SoundProcessConcern
     until File.exist?(output)
       sleep 1
       index += 1
-      Rails.logger.info "#{file_type} file does not exist for #{index} seconds"
+      message = "#{file_type} file does not exist for #{index} seconds"
+      Rails.logger.info message
+      puts message
     end
   end
 end
