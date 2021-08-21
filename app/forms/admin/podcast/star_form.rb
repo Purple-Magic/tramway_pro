@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Podcast::StarForm < Tramway::Core::ApplicationForm
   properties :nickname, :link, :project_id
 

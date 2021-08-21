@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class Podcast::StarDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
   delegate_attributes(
-        :id,
-        :nickname,
-        :link,
-        :podcast_id,
-        :created_at,
-        :updated_at,
+    :id,
+    :nickname,
+    :link,
+    :podcast_id,
+    :created_at,
+    :updated_at
   )
 
   alias title nickname
@@ -16,26 +18,26 @@ class Podcast::StarDecorator < Tramway::Core::ApplicationDecorator
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :nickname,
-        :link,
-        :podcast_id,
+      %i[
+        id
+        nickname
+        link
+        podcast_id
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :nickname,
-        :link,
-        :podcast_id,
-        :created_at,
-        :updated_at,
+      %i[
+        id
+        nickname
+        link
+        podcast_id
+        created_at
+        updated_at
       ]
     end
 

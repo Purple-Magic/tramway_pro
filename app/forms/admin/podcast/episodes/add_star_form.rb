@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Podcast::Episodes::AddStarForm < Tramway::Core::ApplicationForm
   properties :star_ids
   association :stars

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Podcast::Episodes::RemoveStarForm < Tramway::Core::ApplicationForm
   properties :id
 

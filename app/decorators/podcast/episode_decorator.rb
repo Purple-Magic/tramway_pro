@@ -7,7 +7,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def show_associations
-      [:highlights, :topics, :stars]
+      %i[highlights topics stars]
     end
 
     def show_attributes
@@ -62,7 +62,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   def description_view
     content_tag(:div) do
-      concat("Ведущие:")
+      concat('Ведущие:')
       concat(content_tag(:ul) do
         stars.each do |star|
           concat(content_tag(:li) do
@@ -71,7 +71,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
         end
       end)
       concat(content_tag(:h1) do
-        "Темы выпуска"
+        'Темы выпуска'
       end)
       concat(content_tag(:ul) do
         topics.each do |topic|
