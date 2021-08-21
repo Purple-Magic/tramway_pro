@@ -19,6 +19,7 @@ Tramway::Admin.set_available_models(
   Podcast::Episodes::Topic,
   Podcast::Highlight,
   Podcast::Music,
+  Podcast::Star,
   Video,
   project: :red_magic
 )
@@ -29,6 +30,7 @@ Tramway::Admin.set_available_models(
   Podcast::Episodes::Topic,
   Podcast::Highlight,
   Podcast::Music,
+  Podcast::Star,
   project: :red_magic,
   role: :podcast
 )
