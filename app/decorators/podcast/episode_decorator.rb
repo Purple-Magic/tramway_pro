@@ -7,12 +7,12 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def show_associations
-      %i[highlights topics]
+      [:highlights]
     end
 
     def show_attributes
       %i[podcast_link number file ready_file premontage_file trailer cover trailer_video full_video image mp3_file
-         description montage_state description_view]
+         description montage_state]
     end
   end
 
