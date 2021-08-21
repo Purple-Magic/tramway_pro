@@ -14,7 +14,7 @@ class BotTelegram::Scenario::Step < ApplicationRecord
   validates :text, length: { maximum: 1999 }, allow_blank: true
 
   scope :partner_scope, ->(_user_id) { all }
-  scope :finish_step, -> {
+  scope :finish_step, lambda {
     active.where(options: nil).or(active.where(options: '').or(active.where(options: false))).first
   }
   %i[rsm night purple_magic].each do |team|
