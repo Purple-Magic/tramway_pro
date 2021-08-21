@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
-  decorate_associations :highlights, :podcast, :topics
+  decorate_associations :highlights, :podcast, :topics, :stars
 
   delegate_attributes :id, :number, :file_url, :montage_state
 
   class << self
     def show_associations
-      [:highlights, :topics]
+      [:highlights, :topics, :stars]
     end
 
     def show_attributes
@@ -61,12 +61,25 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def description_view
-    content_tag(:ul) do
-      topics.each do |topic|
-        concat(content_tag(:li) do
-          concat link_to topic.title, topic.link
-        end)
-      end
+    content_tag(:div) do
+      concat("Ведущие:")
+      concat(content_tag(:ul) do
+        stars.each do |star|
+          concat(content_tag(:li) do
+            concat link_to star.nickname, star.link
+          end)
+        end
+      end)
+      concat(content_tag(:h1) do
+        "Темы выпуска"
+      end)
+      concat(content_tag(:ul) do
+        topics.each do |topic|
+          concat(content_tag(:li) do
+            concat link_to topic.title, topic.link
+          end)
+        end
+      end)
     end
   end
 
