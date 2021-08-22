@@ -6,10 +6,10 @@ class BotTelegram::Leopold::Command
   COMMANDS = %w[add_word add_description add_synonims].freeze
 
   def initialize(text)
-    @name =  COMMANDS.map do |com|
+    @name = COMMANDS.map do |com|
       com if text&.match?(%r{^/#{com}})
     end.compact.first
-    @argument = text.gsub(%r{^/#{command} }, '').gsub(/^@myleopold_bot/, '')
+    @argument = text.gsub(%r{^/#{@name} }, '').gsub(/^@myleopold_bot/, '')
   end
 
   def valid?
