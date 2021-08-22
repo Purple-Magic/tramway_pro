@@ -25,7 +25,7 @@ class BotTelegram::Scenario::Step < ApplicationRecord
     options.present? || delay.present?
   end
 
-  def finish_step?
+  def finish?
     name == 'finish'
   end
 end
