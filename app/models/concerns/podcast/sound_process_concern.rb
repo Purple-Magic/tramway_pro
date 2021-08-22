@@ -15,7 +15,6 @@ module Podcast::SoundProcessConcern
       index += 1
       message = "#{file_type} file does not exist for #{index} seconds"
       Rails.logger.info message
-      puts message
     end
   end
 end
