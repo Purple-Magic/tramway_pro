@@ -52,7 +52,7 @@ class BotTelegram::Leopold::Scenario
       message_to_chat bot, chat, "#{word.main} - #{word.description}"
       ::ItWay::WordUse.create! word_id: word.id, chat_id: chat.id
     end
-    message_to_chat bot, chat, bot_record.options['you_can_add_words'] if chat.chat_type.private?
+    message_to_chat bot, chat, bot_record.options['you_can_add_words'] if chat.private?
   end
 
   def sended_recently?(word)
