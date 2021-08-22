@@ -3,6 +3,7 @@
 require_relative 'it_way_pro'
 require_relative 'it_way_pro/words_check'
 require_relative 'commands'
+require_relative 'command'
 
 class BotTelegram::Leopold::Scenario
   include ::BotTelegram::MessagesManager
