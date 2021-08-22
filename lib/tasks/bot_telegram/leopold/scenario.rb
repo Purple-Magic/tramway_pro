@@ -43,7 +43,7 @@ class BotTelegram::Leopold::Scenario
   end
 
   def chat_to_answer?(chat)
-    private_chat?(chat) || chat.telegram_chat_id.to_s == IT_WAY_CHAT_ID.to_s
+    chat.private? || chat.telegram_chat_id.to_s == IT_WAY_CHAT_ID.to_s
   end
 
   def send_word(word)
