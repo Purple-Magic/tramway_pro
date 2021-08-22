@@ -94,6 +94,10 @@ class Podcast::Episode < ApplicationRecord
     "mv #{temp_output} #{output}"
   end
 
+  def write_logs(command)
+    "#{command} 2> #{Rails.root}/log/render-#{Rails.env}.log"
+  end
+
   def converted_file
     file.path.split('.')[0..].join('.')
   end
@@ -103,7 +107,7 @@ class Podcast::Episode < ApplicationRecord
 
     if file.path.split('.').last == 'ogg'
       filename += '.mp3'
-      command = convert_to :mp3, input: file.path, output: filename
+      command = write_logs(convert_to(:mp3, input: file.path, output: filename))
       Rails.logger.info command
       system command
     end
