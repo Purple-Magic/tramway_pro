@@ -18,15 +18,15 @@ class PodcastsMontageWorker < ApplicationWorker
 
   def montage(episode)
     download episode
-    send_notification_to :kalashnikovisme, 'Podcast Download is complete'
+    send_notification_to_user :kalashnikovisme, 'Podcast Download is complete'
     cut_highlights episode
-    send_notification_to :kalashnikovisme, 'Podcast Cut highlights is complete'
+    send_notification_to_user :kalashnikovisme, 'Podcast Cut highlights is complete'
     filename = convert episode
-    send_notification_to :kalashnikovisme, 'Podcast Convert is complete'
+    send_notification_to_user :kalashnikovisme, 'Podcast Convert is complete'
     run_filters episode, filename
-    send_notification_to :kalashnikovisme, 'Podcast filtering is complete'
+    send_notification_to_user :kalashnikovisme, 'Podcast filtering is complete'
     add_music episode
-    send_notification_to :kalashnikovisme, 'Podcast adding music is complete'
+    send_notification_to_user :kalashnikovisme, 'Podcast adding music is complete'
   end
 
   def download(episode)
@@ -61,8 +61,9 @@ class PodcastsMontageWorker < ApplicationWorker
   end
 
   def convert(episode)
-    episode.convert_file
-    Rails.logger.info 'Converting completed!'
+    episode.convert_file.tap do
+      Rails.logger.info 'Converting completed!'
+    end
   end
 
   def run_filters(episode, filename)
@@ -70,9 +71,10 @@ class PodcastsMontageWorker < ApplicationWorker
     Rails.logger.info 'Montage completed!'
   end
 
-  def add_music(episode, directory)
+  def add_music(episode)
+    directory = episode.prepare_directory.gsub('//', '/')
     output = "#{directory}/with_music.mp3"
-    episode.add_music(episode.premontage_file.path, output)
+    episode.add_music(output)
 
     Rails.logger.info 'Adding of music completed!'
   end

@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module Podcast::Episodes::MusicConcern
-  def add_music(_filename, _output)
+  def add_music(output)
     raise 'No music for this podcast' unless podcast.musics.any?
 
-    music_output = update_output :music
+    music_output = update_output :music, output
     render_whole_length_music music_output
-    merge_music_with_voices music_output
+    merge_music_with_voices music_output, output
 
     music_add!
   end
@@ -35,7 +35,7 @@ module Podcast::Episodes::MusicConcern
     }
   end
 
-  def update_output(suffix)
+  def update_output(suffix, output)
     (output.split('.')[0..-2] + [suffix, :mp3]).join('.')
   end
 
@@ -48,8 +48,8 @@ module Podcast::Episodes::MusicConcern
     system command.to_s
   end
 
-  def merge_music_with_voices(music_output)
-    ready_output = update_output :ready
+  def merge_music_with_voices(music_output, output)
+    ready_output = update_output :ready, output
     render_command = merge_content inputs: [music_output, premontage_file.path], output: ready_output
     move_command = move_to(ready_output, output)
     command = "#{render_command} && #{move_command}"
