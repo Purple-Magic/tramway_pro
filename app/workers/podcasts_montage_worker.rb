@@ -61,8 +61,9 @@ class PodcastsMontageWorker < ApplicationWorker
   end
 
   def convert(episode)
-    episode.convert_file
-    Rails.logger.info 'Converting completed!'
+    episode.convert_file.tap do
+      Rails.logger.info 'Converting completed!'
+    end
   end
 
   def run_filters(episode, filename)
