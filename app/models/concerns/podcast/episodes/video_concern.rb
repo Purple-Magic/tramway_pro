@@ -12,7 +12,7 @@ module Podcast::Episodes::VideoConcern
 
     video_temp_output = (output.split('.')[0..-2] + %w[temp mp4]).join('.')
 
-    render_command = render_video_from(cover.path, trailer.path, output: video_temp_output)
+    render_command = write_logs render_video_from(cover.path, trailer.path, output: video_temp_output)
     move_command = move_to(video_temp_output, output)
     command = "#{render_command} && #{move_command}"
     Rails.logger.info command
@@ -37,7 +37,7 @@ module Podcast::Episodes::VideoConcern
       shortest: true,
       strict: 2
     )
-    command = "ffmpeg #{options} 2> #{parts_directory_name}/video_render.txt"
+    command = write_logs "ffmpeg #{options}"
     Rails.logger.info command
     system command
     wait_for_file_rendered output, :full_video
