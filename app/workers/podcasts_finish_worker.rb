@@ -23,7 +23,7 @@ class PodcastsFinishWorker < ApplicationWorker
     render_trailer episode
     send_notification_to_chat chat_id, "Трейлер выпуска готов! Сейчас закину сюда. Его можно скачать и в свои соц.сетки закинуть. Файл слишком большой, поэтом прикладываю ссылку http://red-magic.ru/#{episode.trailer_video.url}"
     render_full_video episode
-    send_notification_to_chat chat_id, "Полное видео готово! Его можно загружать на Youtube! Файл слишком большой, поэтом прикладываю ссылку http://red-magic.ru/#{episode.full_video.url}""
+    send_notification_to_chat chat_id, "Полное видео готово! Его можно загружать на Youtube! Файл слишком большой, поэтом прикладываю ссылку http://red-magic.ru/#{episode.full_video.url}"
   end
 
   def concat_parts(episode)
