@@ -50,7 +50,7 @@ module Podcast::Episodes::MusicConcern
 
   def merge_music_with_voices(music_output, output)
     ready_output = update_output :ready, output
-    render_command = merge_content inputs: [music_output, premontage_file.path], output: ready_output
+    render_command = write_logs merge_content(inputs: [music_output, premontage_file.path], output: ready_output)
     move_command = move_to(ready_output, output)
     command = "#{render_command} && #{move_command}"
     Rails.logger.info command
