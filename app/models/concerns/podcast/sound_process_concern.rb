@@ -17,4 +17,8 @@ module Podcast::SoundProcessConcern
       Rails.logger.info message
     end
   end
+
+  def write_logs(command)
+    "#{command} 2> #{Rails.root}/log/render-#{Rails.env}.log"
+  end
 end
