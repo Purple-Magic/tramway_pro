@@ -3,20 +3,26 @@
 class PodcastsFinishWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
+  include BotTelegram::Leopold::Notify
+
   def perform(id)
     episode = Podcast::Episode.find id
 
     @directory = episode.prepare_directory
     @directory = @directory.gsub('//', '/')
-    render episode
+    finish episode
   end
 
   private
 
   def finish(episode)
-    concat_parts episode
+    #send_notification_to_user :kalashnikovisme, 'Finishing podcast files'
+    #concat_parts episode
+    #send_notification_to_user :kalashnikovisme, 'File to upload is ready'
     render_trailer episode
+    send_notification_to_user :kalashnikovisme, 'Video trailer is ready'
     render_full_video episode
+    send_notification_to_user :kalashnikovisme, 'Full Video is ready'
   end
 
   def concat_parts(episode)
