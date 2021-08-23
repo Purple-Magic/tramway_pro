@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
-  decorate_associations :highlights, :podcast, :topics, :stars
+  decorate_associations :highlights, :podcast, :topics, :stars, :links
 
   delegate_attributes :id, :number, :file_url, :montage_state
 
   class << self
     def show_associations
-      %i[highlights topics stars]
+      %i[highlights topics stars links]
     end
 
     def show_attributes
@@ -80,6 +80,16 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
           end)
         end
       end)
+      if object.links.any?
+        concat(content_tag(:h3) do
+          'Ссылки'
+        end)
+        object.links.each do |link|
+          concat(content_tag(:li) do
+            link_to link.title, link.link
+          end)
+        end
+      end
       concat('Поддержи сообщество IT Way, чтобы мы делали кучу разного контента!')
       concat(link_to('Ссылка для поддержки', 'https://boosty.to/it_way_podcast'))
       concat(content_tag(:h1) do
