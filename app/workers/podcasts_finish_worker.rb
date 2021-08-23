@@ -16,9 +16,9 @@ class PodcastsFinishWorker < ApplicationWorker
   private
 
   def finish(episode)
-    #send_notification_to_user :kalashnikovisme, 'Finishing podcast files'
-    #concat_parts episode
-    #send_notification_to_user :kalashnikovisme, 'File to upload is ready'
+    send_notification_to_user :kalashnikovisme, 'Finishing podcast files'
+    concat_parts episode
+    send_notification_to_user :kalashnikovisme, 'File to upload is ready'
     render_trailer episode
     send_notification_to_user :kalashnikovisme, 'Video trailer is ready'
     render_full_video episode
