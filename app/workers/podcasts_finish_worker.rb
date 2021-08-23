@@ -19,12 +19,11 @@ class PodcastsFinishWorker < ApplicationWorker
     chat_id = BotTelegram::Leopold::Scenario::IT_WAY_PODCAST_ID
     send_notification_to_chat chat_id, 'Техническое сообщение: завершаю работу над подкастом'
     concat_parts episode
-    send_notification_to_chat chat_id, 'Аудио файл подкаста готов! Можно загружать на Red Circle. Сейчас ещё закину сюда на всякий случай.'
-    send_file_to_chat chat_id, episode.ready_file.path
+    send_notification_to_chat chat_id, "Аудио файл подкаста готов! Можно загружать на Red Circle. Файл слишком большой, поэтому прикладываю ссылку сюда. http://red-magic.ru/#{episode.ready_file.url}"
     render_trailer episode
-    send_notification_to_chat chat_id, 'Трейлер выпуска готов! Сейчас закину сюда. Его можно скачать и в свои соц.сетки закинуть.'
+    send_notification_to_chat chat_id, "Трейлер выпуска готов! Сейчас закину сюда. Его можно скачать и в свои соц.сетки закинуть. Файл слишком большой, поэтом прикладываю ссылку http://red-magic.ru/#{episode.trailer_video.url}"
     render_full_video episode
-    send_notification_to_chat chat_id, 'Полное видео готово! Его можно загружать на Youtube!'
+    send_notification_to_chat chat_id, "Полное видео готово! Его можно загружать на Youtube! Файл слишком большой, поэтом прикладываю ссылку http://red-magic.ru/#{episode.full_video.url}""
   end
 
   def concat_parts(episode)
