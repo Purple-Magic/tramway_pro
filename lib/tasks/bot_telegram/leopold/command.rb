@@ -9,7 +9,7 @@ class BotTelegram::Leopold::Command
     @name = COMMANDS.map do |com|
       com if text&.match?(%r{^/#{com}})
     end.compact.first
-    @argument = text.gsub(%r{^/#{@name} }, '').gsub(/^@myleopold_bot/, '')
+    @argument = text.present? ? text.gsub(%r{^/#{@name} }, '').gsub(/^@myleopold_bot/, '') : []
   end
 
   def valid?
