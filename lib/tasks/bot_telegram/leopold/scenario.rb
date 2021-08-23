@@ -40,7 +40,10 @@ class BotTelegram::Leopold::Scenario
         end
       end
     else
-      message_to_chat bot, chat, bot_record.options['not_my_group']
+      chat_id = chat.telegram_chat_id.to_s
+      unless chat_id == PROJECT_CHAT_QUEST_ID
+        message_to_chat bot, chat, bot_record.options['not_my_group']
+      end
     end
   end
 

@@ -41,6 +41,7 @@ module Ffmpeg::CommandBuilder
       audio_bitrate: '320k',
       copy: :copy
     )
+
     "ffmpeg #{options}"
   end
 
@@ -97,7 +98,9 @@ module Ffmpeg::CommandBuilder
     copy: 'c',
     add_filters: 'af',
     filter_complex: :filter_complex,
-    map: :map
+    map: :map,
+    ss: :ss,
+    to: :to
   }.freeze
 
   def build_arguments(options)

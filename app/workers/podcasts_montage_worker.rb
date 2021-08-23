@@ -17,6 +17,7 @@ class PodcastsMontageWorker < ApplicationWorker
   private
 
   def montage(episode)
+    send_notification_to_user :kalashnikovisme, 'Podcast process is started'
     download episode
     send_notification_to_user :kalashnikovisme, 'Podcast Download is complete'
     cut_highlights episode
