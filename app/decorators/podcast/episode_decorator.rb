@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
-  decorate_associations :highlights, :podcast, :topics, :stars
+  decorate_associations :highlights, :podcast, :topics, :stars, :links
 
   delegate_attributes :id, :number, :file_url, :montage_state
 
   class << self
     def show_associations
-      %i[highlights topics stars]
+      %i[highlights topics stars links]
     end
 
     def show_attributes
@@ -79,6 +79,44 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
             concat link_to topic.title, topic.link
           end)
         end
+      end)
+      if object.links.any?
+        concat(content_tag(:h3) do
+          'Ссылки'
+        end)
+        object.links.each do |link|
+          concat(content_tag(:li) do
+            link_to link.title, link.link
+          end)
+        end
+      end
+      concat('Поддержи сообщество IT Way, чтобы мы делали кучу разного контента!')
+      concat(link_to('Ссылка для поддержки', 'https://boosty.to/it_way_podcast'))
+      concat(content_tag(:h1) do
+        'Подписывайтесь на IT Way'
+      end)
+      links = {
+        'ВКонтакте' => 'https://vk.com/it_way',
+        'Чат в Telegram' => 'https://t.me/it_way_chat',
+        'Youtube' => 'https://www.youtube.com/c/ITWay',
+        'Twitter' => 'https://twitter.com/it_way_pro',
+        'Instagram' => 'https://instagram.com/it_way.pro',
+        'Комикс' => 'https://vk.com/asya_comics'
+      }
+      concat(content_tag(:ul) do
+        links.each do |pair|
+          concat(content_tag(:li) do
+            link_to *pair
+          end)
+        end
+      end)
+      concat(content_tag(:p) do
+        concat 'Музыка: инструментал песни M.G. - Абсурд, студия '
+        concat(link_to('ALPHA RECORDS', 'https://vk.com/alpharecords73'))
+      end)
+      concat(content_tag(:p) do
+        concat 'Автор логотипа - художник '
+        concat(link_to('Екатерина Нечаева', 'https://vk.com/kiborgvviborge'))
       end)
     end
   end
