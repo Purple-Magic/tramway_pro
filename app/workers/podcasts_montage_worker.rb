@@ -17,17 +17,18 @@ class PodcastsMontageWorker < ApplicationWorker
   private
 
   def montage(episode)
-    send_notification_to_user :kalashnikovisme, 'Podcast process is started'
+    chat_id = BotTelegram::Leopold::Scenario::IT_WAY_PODCAST_ID
+    send_notification_to_chat chat_id, 'Техническое сообщение. Монтаж подкаста начался!'
     download episode
-    send_notification_to_user :kalashnikovisme, 'Podcast Download is complete'
+    send_notification_to_chat chat_id, 'Техническое сообщение. Аудиозапись подгружена. Она корректна'
     cut_highlights episode
-    send_notification_to_user :kalashnikovisme, 'Podcast Cut highlights is complete'
+    send_notification_to_chat chat_id, "Техническое сообщение. Порезал хайлайты. Их можно идти и прослушивать, чтобы собрать трейлер. http://red-magic.ru/admin/records/#{episode.id}?model=Podcast::Episode"
     filename = convert episode
-    send_notification_to_user :kalashnikovisme, 'Podcast Convert is complete'
+    send_notification_to_chat chat_id, 'Техническое сообщение. Конвертирование прошло успешно'
     run_filters episode, filename
-    send_notification_to_user :kalashnikovisme, 'Podcast filtering is complete'
+    send_notification_to_chat chat_id, 'Техничеcкое сообщение. Фильтрация звуковой дорожки прошла успешно'
     add_music episode
-    send_notification_to_user :kalashnikovisme, 'Podcast adding music is complete'
+    send_notification_to_chat chat_id, "Техническое сообщение. Музыка наложена. Если вы уже подготовили трейлер. Можно запускать завершение. http://red-magic.ru/admin/records/#{episode.id}?model=Podcast::Episode"
   end
 
   def download(episode)

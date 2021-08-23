@@ -11,8 +11,9 @@ class BotTelegram::Leopold::Scenario
   include ::BotTelegram::Leopold::ItWayPro::WordsCheck
 
   IT_WAY_CHAT_ID = '-1001141858122'
-  PROJECT_CHAT_QUEST_ID = '-498758668'
   BOT_ID = 9
+  PROJECT_CHAT_QUEST_ID = '-498758668'
+  IT_WAY_PODCAST_ID = '-456783051'
 
   attr_reader :bot, :bot_record, :chat, :message_from_telegram
 
@@ -49,7 +50,11 @@ class BotTelegram::Leopold::Scenario
 
   def chat_to_answer?(chat)
     chat_id = chat.telegram_chat_id.to_s
-    (chat.private? || chat_id == IT_WAY_CHAT_ID.to_s) && chat_id != PROJECT_CHAT_QUEST_ID
+    chat_exceptions = {
+      project_chat_quest_id: PROJECT_CHAT_QUEST_ID,
+      it_way_podcast_id: IT_WAY_PODCAST_ID
+    }
+    (chat.private? || chat_id == IT_WAY_CHAT_ID.to_s) && chat_exceptions.values.include?(chat_id)
   end
 
   def send_word(word)
