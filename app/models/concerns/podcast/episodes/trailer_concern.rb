@@ -16,7 +16,7 @@ module Podcast::Episodes::TrailerConcern
   def concat_trailer_and_episode(output)
     temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
 
-    render_command = content_concat inputs: [trailer.path, premontage_file.path], output: temp_output
+    render_command = write_logs content_concat(inputs: [trailer.path, premontage_file.path], output: temp_output)
     move_command = move_to(temp_output, output)
     command = "#{render_command} && #{move_command}"
     Rails.logger.info command
