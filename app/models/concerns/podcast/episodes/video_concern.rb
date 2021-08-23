@@ -41,7 +41,7 @@ module Podcast::Episodes::VideoConcern
     Rails.logger.info command
     system command
     wait_for_file_rendered output, :full_video
-    episode.update_file! output, :full_video
-    episode.finish!
+    update_file! output, :full_video
+    finish!
   end
 end
