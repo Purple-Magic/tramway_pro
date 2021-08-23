@@ -18,7 +18,7 @@ class Podcast::Highlight < ApplicationRecord
 
     directory = output.split('/')[0..-2].join('/')
     highlight_output = "#{directory}/#{id}.mp3"
-    render_command = cut_content(
+    render_command = write_logs cut_content(
       input: file.path,
       begin_time: cut_begin_time,
       end_time: cut_end_time,
