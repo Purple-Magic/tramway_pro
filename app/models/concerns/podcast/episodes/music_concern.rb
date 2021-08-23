@@ -40,7 +40,7 @@ module Podcast::Episodes::MusicConcern
   end
 
   def render_whole_length_music(music_output)
-    command = content_concat(
+    command = write_logs content_concat(
       inputs: [find_music(:begin)[:path]] + samples + [find_music(:finish)[:path]],
       output: music_output
     )
