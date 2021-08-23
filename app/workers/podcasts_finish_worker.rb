@@ -7,7 +7,7 @@ class PodcastsFinishWorker < ApplicationWorker
     episode = Podcast::Episode.find id
 
     @directory = episode.prepare_directory
-    @directory = directory.gsub('//', '/')
+    @directory = @directory.gsub('//', '/')
     render episode
   end
 
