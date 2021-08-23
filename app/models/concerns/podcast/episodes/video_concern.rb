@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
 module Podcast::Episodes::VideoConcern
+  include BotTelegram::Leopold::Notify
+
   def render_video_trailer(output)
-    raise 'You should add episode cover' unless cover.present?
+    unless cover.present?
+      message = 'You should add episode cover' 
+      send_notification_to_user :kalashnikovisme, message
+      raise message
+    end
 
     video_temp_output = (output.split('.')[0..-2] + %w[temp mp4]).join('.')
 
