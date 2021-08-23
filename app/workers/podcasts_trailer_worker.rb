@@ -3,6 +3,8 @@
 class PodcastsTrailerWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
+  include BotTelegram::Leopold::Notify
+
   def perform(id)
     episode = Podcast::Episode.find id
     send_notification_to_user :kalashnikovisme, 'Podcast trailer render is started'
