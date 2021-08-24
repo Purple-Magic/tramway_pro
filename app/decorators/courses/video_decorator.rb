@@ -4,6 +4,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   decorate_association :comments, as: :video
   decorate_association :lesson
+  decorate_association :time_logs, as: :associated
 
   delegate_attributes(
     :id,
@@ -70,7 +71,7 @@ data: { toggle: :popover, html: true, content: comment_html }) do
     end
 
     def show_associations
-      [:comments]
+      [:comments, :time_logs]
     end
 
     def list_filters
