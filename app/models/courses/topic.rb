@@ -3,5 +3,5 @@
 class Courses::Topic < ApplicationRecord
   belongs_to :course, class_name: 'Course'
 
-  has_many :lessons, class_name: 'Courses::Lesson'
+  has_many :lessons, -> { order(:position) }, class_name: 'Courses::Lesson'
 end
