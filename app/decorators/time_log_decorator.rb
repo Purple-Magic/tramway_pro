@@ -14,6 +14,12 @@ class TimeLogDecorator < Tramway::Core::ApplicationDecorator
     :updated_at
   )
 
+  decorate_association :associated
+
+  def title
+    "#{associated.model.class} ##{associated.id} - #{object.created_at.strftime('%d.%m.%Y')}"
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
