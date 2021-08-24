@@ -12,7 +12,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
     def show_attributes
       %i[podcast_link number file ready_file premontage_file trailer cover trailer_video full_video image mp3_file
-         description description_view montage_state]
+         description description_view youtube_description montage_state]
     end
   end
 
@@ -119,6 +119,12 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
         concat(link_to('Екатерина Нечаева', 'https://vk.com/kiborgvviborge'))
       end)
     end
+  end
+
+  include Podcast::Episodes::DescriptionConcern
+
+  def youtube_description
+    raw recursively_build_description(Nokogiri::HTML(description_view.html_safe).elements).gsub("\n", '<br/>')
   end
 
   def file
