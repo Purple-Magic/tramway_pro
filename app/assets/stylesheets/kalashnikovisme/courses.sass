@@ -1,0 +1,25 @@
+ul.tree
+  list-style: none
+  ul
+    list-style: none
+  a
+    height: 3em
+    display: flex
+    align-items: center
+    border-bottom: 1px solid lightgray
+    text-decoration: none
+    color: inherit
+    padding-left: 1em
+    &:hover
+      background-color: lightgray
+    &.done
+      background-color: lightgreen
+      &:hover
+        background-color: darkgreen
+        color: white
+    &.in_progress
+      background-color: orange
+      &:hover
+        background-color: darkorange
+        color: white
+

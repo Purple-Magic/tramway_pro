@@ -61,10 +61,13 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def tree
-    content_tag :ul do
-      topics.each do |topic|
-        topic_row topic
-      end
+    content_tag :div do
+      concat stylesheet_link_tag '/assets/kalashnikovisme/courses'
+      concat(content_tag(:ul, class: :tree) do
+        topics.each do |topic|
+          topic_row topic
+        end
+      end)
     end
   end
 
@@ -83,7 +86,7 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
 
   def lesson_row(lesson)
     concat(content_tag(:li) do
-      concat(link_to(lesson.title, lesson.link))
+      concat(link_to(lesson.title, lesson.link, class: lesson.progress_status))
       concat(content_tag(:ul) do
         lesson.videos.each do |video|
           video_row(video)
@@ -93,8 +96,8 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def video_row(video)
-    concat(content_tag(:li) do
-      link_to video.title, video.link
+    concat(content_tag(:li, class: :bottom) do
+      link_to video.title, video.link, class: video.progress_status
     end)
   end
 end
