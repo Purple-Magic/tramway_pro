@@ -16,38 +16,6 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
     :progress_status
   )
 
-  def link
-    ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.id, model: object.class)
-  end
-
-  def text
-    marked_text = object.comments.where.not(phrase: nil).reduce(object.text) do |txt, comment|
-      comment_html = if comment.file.present?
-                       content_tag(:div) do
-                         concat comment.text
-                         concat content_tag(:br)
-                         concat link_to 'Загрузить', comment.file.url
-                       end
-                     else
-                       comment.text
-                     end
-      txt.sub(
-        comment.phrase,
-        content_tag(:span, style: 'background-color: yellow; cursor: pointer',
-data: { toggle: :popover, html: true, content: comment_html }) do
-          comment.phrase
-        end.html_safe
-      )
-    end
-
-    raw marked_text
-  end
-
-  def lesson_link
-    link_to lesson.title,
-      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.lesson_id, model: 'Courses::Lesson')
-  end
-
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
@@ -64,8 +32,8 @@ data: { toggle: :popover, html: true, content: comment_html }) do
       %i[
         id
         lesson_link
+        time_logged
         text
-        state
         created_at
         updated_at
       ]
@@ -108,5 +76,47 @@ data: { toggle: :popover, html: true, content: comment_html }) do
     )
 
     { show: [{ url: add_scenario_step_url, inner: -> { fa_icon :plus }, color: :success }] }
+  end
+
+  def link
+    ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.id, model: object.class)
+  end
+
+  def text
+    marked_text = object.comments.where.not(phrase: nil).reduce(object.text) do |txt, comment|
+      comment_html = if comment.file.present?
+                       content_tag(:div) do
+                         concat comment.text
+                         concat content_tag(:br)
+                         concat link_to 'Загрузить', comment.file.url
+                       end
+                     else
+                       comment.text
+                     end
+      txt.sub(
+        comment.phrase,
+        content_tag(:span, style: 'background-color: yellow; cursor: pointer',
+data: { toggle: :popover, html: true, content: comment_html }) do
+          comment.phrase
+        end.html_safe
+      )
+    end
+
+    raw marked_text
+  end
+
+  def lesson_link
+    link_to lesson.title,
+      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.lesson_id, model: 'Courses::Lesson')
+  end
+
+  def time_logged
+    content_tag(:ul) do
+      object.time_logs.map(&:user).each do |user|
+        concat(content_tag(:li) do
+          "#{user.first_name} #{user.last_name} - #{TimeLog.logged_by(user, object)}"
+        end)
+      end
+    end
   end
 end
