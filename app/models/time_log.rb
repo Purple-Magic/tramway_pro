@@ -15,7 +15,7 @@ class TimeLog < ApplicationRecord
 
   def minutes
     time_spent.split(' ').reduce(0) do |sum, part|
-      number = part.match(/[0-9]*/)
+      number = part.match(/[0-9]*/).to_s.to_i
       case part[-1]
       when 'h'
         sum += number * 60
