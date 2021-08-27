@@ -5,7 +5,7 @@ module Podcast::Episodes::VideoConcern
 
   def render_video_trailer(output)
     unless cover.present?
-      message = 'You should add episode cover' 
+      message = 'You should add episode cover'
       send_notification_to_user :kalashnikovisme, message
       raise message
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'telegram/bot'
 require_relative '../messages_manager'
 
@@ -25,7 +27,7 @@ module BotTelegram::Leopold::Notify
     bot_message.file = OpenStruct.new
     bot_message.file.file = OpenStruct.new
     bot_message.file.file.file = file
-    bot_message.reply_markup = nil 
+    bot_message.reply_markup = nil
     send_file bot.api, chat.telegram_chat_id, bot_message
   end
 
@@ -36,7 +38,7 @@ module BotTelegram::Leopold::Notify
     bot_message.file = OpenStruct.new
     bot_message.file.file = OpenStruct.new
     bot_message.file.file.file = file
-    bot_message.reply_markup = nil 
+    bot_message.reply_markup = nil
     send_file bot.api, chat_id, bot_message
   end
 end

@@ -22,13 +22,15 @@ class PodcastsMontageWorker < ApplicationWorker
     download episode
     send_notification_to_chat chat_id, 'Техническое сообщение. Аудиозапись подгружена. Она корректна'
     cut_highlights episode
-    send_notification_to_chat chat_id, "Техническое сообщение. Порезал хайлайты. Их можно идти и прослушивать, чтобы собрать трейлер. http://red-magic.ru/admin/records/#{episode.id}?model=Podcast::Episode"
+    send_notification_to_chat chat_id,
+      "Техническое сообщение. Порезал хайлайты. Их можно идти и прослушивать, чтобы собрать трейлер. http://red-magic.ru/admin/records/#{episode.id}?model=Podcast::Episode"
     filename = convert episode
     send_notification_to_chat chat_id, 'Техническое сообщение. Конвертирование прошло успешно'
     run_filters episode, filename
     send_notification_to_chat chat_id, 'Техничеcкое сообщение. Фильтрация звуковой дорожки прошла успешно'
     add_music episode
-    send_notification_to_chat chat_id, "Техническое сообщение. Музыка наложена. Если вы уже подготовили трейлер. Можно запускать завершение. http://red-magic.ru/admin/records/#{episode.id}?model=Podcast::Episode"
+    send_notification_to_chat chat_id,
+      "Техническое сообщение. Музыка наложена. Если вы уже подготовили трейлер. Можно запускать завершение. http://red-magic.ru/admin/records/#{episode.id}?model=Podcast::Episode"
   end
 
   def download(episode)

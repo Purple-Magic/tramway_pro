@@ -75,7 +75,7 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
 
   def topic_row(topic)
     concat(content_tag(:li) do
-      concat(link_to(topic.title, topic.link))
+      concat(link_to(topic.title, topic.link, class: topic.progress_status))
       concat(content_tag(:ul) do
         topic.lessons.each do |lesson|
           lesson_row lesson
