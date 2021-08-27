@@ -12,7 +12,8 @@ class Courses::TopicDecorator < Tramway::Core::ApplicationDecorator
     :state,
     :position,
     :created_at,
-    :updated_at
+    :updated_at,
+    :progress_status
   )
 
   def title
