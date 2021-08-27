@@ -7,7 +7,7 @@ class Courses::Lesson < ApplicationRecord
 
   def progress_status
     done_videos = videos.active.select { |video| video.progress_status == :done }
-    started_videos = videos.active.select { |video| video.progress_status != :not_started }
+    started_videos = videos.active.reject { |video| video.progress_status == :not_started }
     return :done if started_videos.any? && started_videos.count == done_videos.count
     return :in_progress if started_videos.count != done_videos.count
   end

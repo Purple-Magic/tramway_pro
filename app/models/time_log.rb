@@ -4,17 +4,15 @@ class TimeLog < ApplicationRecord
   belongs_to :associated, polymorphic: true
   belongs_to :user, class_name: 'Tramway::User::User'
 
-  enumerize :associated_type, in: [ Courses::Video ]
+  enumerize :associated_type, in: [Courses::Video]
 
-  scope :logged_by, -> (user, associated) do
-    minutes = associated.time_logs.where(user_id: user).sum do |time_log|
-      time_log.minutes
-    end
+  scope :logged_by, lambda { |user, associated|
+    minutes = associated.time_logs.where(user_id: user).sum(&:minutes)
     "#{minutes / 60}h #{minutes % 60}m"
-  end
+  }
 
   def minutes
-    time_spent.split(' ').reduce(0) do |sum, part|
+    time_spent.split.reduce(0) do |sum, part|
       number = part.match(/[0-9]*/).to_s.to_i
       case part[-1]
       when 'h'

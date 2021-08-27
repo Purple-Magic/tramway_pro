@@ -1,39 +1,41 @@
+# frozen_string_literal: true
+
 class Podcast::Episodes::LinkDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
   delegate_attributes(
-        :id,
-        :episode_id,
-        :title,
-        :link,
-        :created_at,
-        :updated_at,
+    :id,
+    :episode_id,
+    :title,
+    :link,
+    :created_at,
+    :updated_at
   )
 
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :episode_id,
-        :title,
-        :link,
+      %i[
+        id
+        episode_id
+        title
+        link
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :episode_id,
-        :title,
-        :link,
-        :created_at,
-        :updated_at,
+      %i[
+        id
+        episode_id
+        title
+        link
+        created_at
+        updated_at
       ]
     end
 

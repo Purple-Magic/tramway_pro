@@ -40,7 +40,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_associations
-      [:comments, :time_logs]
+      %i[comments time_logs]
     end
 
     def list_filters

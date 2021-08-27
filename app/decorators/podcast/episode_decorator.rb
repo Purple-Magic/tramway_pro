@@ -106,7 +106,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
       concat(content_tag(:ul) do
         links.each do |pair|
           concat(content_tag(:li) do
-            link_to *pair
+            link_to(*pair)
           end)
         end
       end)

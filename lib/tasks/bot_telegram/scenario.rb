@@ -45,9 +45,7 @@ module BotTelegram::Scenario
         bot_telegram_scenario_step_id: current_step.id,
         project_id: project.id
       )
-      if current_step.finish?
-        notify_about_finishing_scenario message_from_telegram, bot_record
-      end
+      notify_about_finishing_scenario message_from_telegram, bot_record if current_step.finish?
 
       delay = current_step.delay
       return unless delay.present? && delay != 0

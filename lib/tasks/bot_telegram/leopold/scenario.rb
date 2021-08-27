@@ -46,9 +46,7 @@ class BotTelegram::Leopold::Scenario
         it_way_podcast_id: IT_WAY_PODCAST_ID
       }
       chat_id = chat.telegram_chat_id.to_s
-      unless chat_exceptions.values.include? chat_id
-        message_to_chat bot, chat, bot_record.options['not_my_group']
-      end
+      message_to_chat bot, chat, bot_record.options['not_my_group'] unless chat_exceptions.values.include? chat_id
     end
   end
 
