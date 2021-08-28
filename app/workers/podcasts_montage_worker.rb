@@ -42,6 +42,7 @@ class PodcastsMontageWorker < ApplicationWorker
     end
 
     episode.download!
+    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     send_notification_to_chat chat_id, notification(:footage, :downloaded)
   end
 
@@ -58,6 +59,7 @@ class PodcastsMontageWorker < ApplicationWorker
     episode.cut_highlights
     episode.highlight_it!
     Rails.logger.info 'Cut highlights completed!'
+    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     send_notification_to_chat chat_id, notification(:highlights, :cut, episode_id: episode.id)
   end
 
@@ -79,6 +81,7 @@ class PodcastsMontageWorker < ApplicationWorker
     episode.add_music(output)
 
     Rails.logger.info 'Adding of music completed!'
+    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     send_notification_to_chat chat_id, notification(:music, :finished, episode_id: episode.id)
   end
 end
