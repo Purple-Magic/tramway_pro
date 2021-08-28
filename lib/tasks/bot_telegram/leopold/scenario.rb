@@ -11,8 +11,6 @@ class BotTelegram::Leopold::Scenario
   include ::BotTelegram::Leopold::ItWayPro
 
   BOT_ID = 9
-  PROJECT_CHAT_QUEST_ID = '-498758668'
-  IT_WAY_PODCAST_ID = '-456783051'
 
   attr_reader :bot, :bot_record, :chat, :message_from_telegram
 
@@ -24,7 +22,8 @@ class BotTelegram::Leopold::Scenario
   end
 
   def run
-    if chat_to_answer? chat
+    chat_decorator = BotTelegram::Leopold::ChatDecorator.new chat
+    if chat_decorator.to_answer?
       text = message_from_telegram.text
       command = BotTelegram::Leopold::Command.new text
       if command.valid?
@@ -34,19 +33,8 @@ class BotTelegram::Leopold::Scenario
       end
     else
       chat_id = chat.telegram_chat_id.to_s
-      message_to_chat bot, chat, bot_record.options['not_my_group'] unless chat_exceptions.values.include? chat_id
+      exceptions = ::BotTelegram::Leopold::ChatDecorator.exceptions
+      message_to_chat bot, chat, bot_record.options['not_my_group'] unless exceptions.values.include? chat_id
     end
-  end
-
-  def chat_exceptions
-    {
-      project_chat_quest_id: PROJECT_CHAT_QUEST_ID,
-      it_way_podcast_id: IT_WAY_PODCAST_ID
-    }
-  end
-
-  def chat_to_answer?(chat)
-    chat_id = chat.telegram_chat_id.to_s
-    (chat.private? || chat_id == ::BotTelegram::Leopold::ItWayPro::CHAT_ID) && !chat_exceptions.values.include?(chat_id)
   end
 end
