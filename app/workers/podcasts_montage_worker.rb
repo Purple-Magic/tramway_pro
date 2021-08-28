@@ -72,6 +72,7 @@ class PodcastsMontageWorker < ApplicationWorker
   def run_filters(episode, filename)
     episode.montage(filename)
     Rails.logger.info 'Montage completed!'
+    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     send_notification_to_chat chat_id, notification(:filter, :finished)
   end
 
