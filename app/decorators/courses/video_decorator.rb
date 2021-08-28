@@ -64,7 +64,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
 
   def title
     info = "#{object.comments.count} comments | #{object.comments.where(comment_state: :done).count} comments done"
-    "#{lesson.topic.position}-#{lesson.position}-#{position} Video | #{info}"
+    "#{lesson.topic.position}-#{lesson.position}-#{position} Видео | #{info}"
   end
 
   alias name title
@@ -117,6 +117,17 @@ data: { toggle: :popover, html: true, content: comment_html }) do
           "#{user.first_name} #{user.last_name} - #{TimeLog.logged_by(user, object)}"
         end)
       end
+    end
+  end
+
+  def video_state_button_color(event)
+    case event
+    when :write
+      :primary
+    when :shoot
+      :primary
+    when :finish
+      :success
     end
   end
 end

@@ -7,7 +7,7 @@ class Courses::Lesson < ApplicationRecord
 
   def progress_status
     done_videos = videos_with status: :done
-    started_videos = videos_without status: :not_started
+    started_videos = videos_without status: :ready
     if started_videos.any? && started_videos.count == videos.active.count && started_videos.count == done_videos.count
       return :done
     end
