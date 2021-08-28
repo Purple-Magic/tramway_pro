@@ -5,6 +5,9 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   delegate_attributes :id, :number, :file_url, :montage_state
 
+  include Podcast::Episodes::DescriptionConcern
+  include Podcast::Episodes::DescriptionConcern
+
   class << self
     def show_associations
       %i[highlights topics stars links]
@@ -59,69 +62,6 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   def description
     raw object.description
   end
-
-  def description_view
-    content_tag(:div) do
-      concat('Ведущие:')
-      concat(content_tag(:ul) do
-        stars.each do |star|
-          concat(content_tag(:li) do
-            concat link_to star.nickname, star.link
-          end)
-        end
-      end)
-      concat(content_tag(:h1) do
-        'Темы выпуска'
-      end)
-      concat(content_tag(:ul) do
-        topics.each do |topic|
-          concat(content_tag(:li) do
-            concat link_to topic.title, topic.link
-          end)
-        end
-      end)
-      if object.links.any?
-        concat(content_tag(:h3) do
-          'Ссылки'
-        end)
-        object.links.each do |link|
-          concat(content_tag(:li) do
-            link_to link.title, link.link
-          end)
-        end
-      end
-      concat('Поддержи сообщество IT Way, чтобы мы делали кучу разного контента!')
-      concat(link_to('Ссылка для поддержки', 'https://boosty.to/it_way_podcast'))
-      concat(content_tag(:h1) do
-        'Подписывайтесь на IT Way'
-      end)
-      links = {
-        'ВКонтакте' => 'https://vk.com/it_way',
-        'Чат в Telegram' => 'https://t.me/it_way_chat',
-        'Youtube' => 'https://www.youtube.com/c/ITWay',
-        'Twitter' => 'https://twitter.com/it_way_pro',
-        'Instagram' => 'https://instagram.com/it_way.pro',
-        'Комикс' => 'https://vk.com/asya_comics'
-      }
-      concat(content_tag(:ul) do
-        links.each do |pair|
-          concat(content_tag(:li) do
-            link_to(*pair)
-          end)
-        end
-      end)
-      concat(content_tag(:p) do
-        concat 'Музыка: инструментал песни M.G. - Абсурд, студия '
-        concat(link_to('ALPHA RECORDS', 'https://vk.com/alpharecords73'))
-      end)
-      concat(content_tag(:p) do
-        concat 'Автор логотипа - художник '
-        concat(link_to('Екатерина Нечаева', 'https://vk.com/kiborgvviborge'))
-      end)
-    end
-  end
-
-  include Podcast::Episodes::DescriptionConcern
 
   def youtube_description
     raw recursively_build_description(Nokogiri::HTML(description_view.html_safe).elements).gsub("\n", '<br/>')
