@@ -16,9 +16,9 @@ class TimeLog < ApplicationRecord
       number = part.match(/[0-9]*/).to_s.to_i
       case part[-1]
       when 'h'
-        sum += number * 60
+        sum + number * 60
       when 'm'
-        sum += number
+        sum + number
       end
     end
   end
