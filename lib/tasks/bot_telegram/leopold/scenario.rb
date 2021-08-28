@@ -8,9 +8,8 @@ require_relative 'command'
 class BotTelegram::Leopold::Scenario
   include ::BotTelegram::MessagesManager
   include ::BotTelegram::Info
-  include ::BotTelegram::Leopold::ItWayPro::WordsCheck
+  include ::BotTelegram::Leopold::ItWayPro
 
-  IT_WAY_CHAT_ID = '-1001141858122'
   BOT_ID = 9
   PROJECT_CHAT_QUEST_ID = '-498758668'
   IT_WAY_PODCAST_ID = '-456783051'
@@ -31,14 +30,7 @@ class BotTelegram::Leopold::Scenario
       if command.valid?
         command.run
       else
-        words = words_to_explain(text)
-        if words.class.to_s == 'Word'
-          send_word words
-        else
-          words&.each do |word|
-            send_word word
-          end
-        end
+        it_way_process text
       end
     else
       chat_id = chat.telegram_chat_id.to_s
@@ -55,20 +47,6 @@ class BotTelegram::Leopold::Scenario
 
   def chat_to_answer?(chat)
     chat_id = chat.telegram_chat_id.to_s
-    (chat.private? || chat_id == IT_WAY_CHAT_ID.to_s) && !chat_exceptions.values.include?(chat_id)
-  end
-
-  def send_word(word)
-    unless sended_recently? word
-      message_to_chat bot, chat, "#{word.main} - #{word.description}"
-      ::ItWay::WordUse.create! word_id: word.id, chat_id: chat.id
-    end
-    message_to_chat bot, chat, bot_record.options['you_can_add_words'] if chat.private?
-  end
-
-  def sended_recently?(word)
-    uses = ::ItWay::WordUse.where(word_id: word.id, chat_id: chat.id)
-
-    uses.last&.created_at&.>(DateTime.now - 1.hour)
+    (chat.private? || chat_id == ::BotTelegram::Leopold::ItWayPro::CHAT_ID) && !chat_exceptions.values.include?(chat_id)
   end
 end
