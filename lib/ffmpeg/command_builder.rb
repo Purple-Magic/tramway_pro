@@ -17,9 +17,7 @@ module Ffmpeg::CommandBuilder
 
   def content_concat(inputs:, output:)
     complex_option = ''
-    inputs.count.times do |index|
-      complex_option += "[#{index}:0]"
-    end
+    inputs.count.times { |index| complex_option += "[#{index}:0]" }
     options = options_line(
       yes: true,
       inputs: inputs,
