@@ -22,23 +22,15 @@ module BotTelegram::Leopold::Notify
   def send_file_to_user(username, file)
     bot_record = Bot.find BotTelegram::Leopold::Scenario::BOT_ID
     bot = ::Telegram::Bot::Client.new bot_record.token
-    chat = BotTelegram::Chat.find_by "options ->> 'username' = '#{username}'"
-    bot_message = OpenStruct.new
-    bot_message.file = OpenStruct.new
-    bot_message.file.file = OpenStruct.new
-    bot_message.file.file.file = file
-    bot_message.reply_markup = nil
+    chat = ::BotTelegram::Chat.find_by "options ->> 'username' = '#{username}'"
+    bot_message = ::BotTelegram::Leopold::Message.new file
     send_file bot.api, chat.telegram_chat_id, bot_message
   end
 
   def send_file_to_chat(chat_id, file)
     bot_record = Bot.find BotTelegram::Leopold::Scenario::BOT_ID
     bot = ::Telegram::Bot::Client.new bot_record.token
-    bot_message = OpenStruct.new
-    bot_message.file = OpenStruct.new
-    bot_message.file.file = OpenStruct.new
-    bot_message.file.file.file = file
-    bot_message.reply_markup = nil
+    bot_message = ::BotTelegram::Leopold::Message.new file
     send_file bot.api, chat_id, bot_message
   end
 end
