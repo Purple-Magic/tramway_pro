@@ -186,6 +186,12 @@ ru:
       comment_state:
         events:
           do_it: Готово
+    courses/video:
+      video_state:
+        events:
+          write: Сценарий написан
+          shoot: Отснят
+          finish: Закончен
     podcast/episode:
       montage:
         events:
