@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'net/ssh'
+require 'bot_telegram/leopold/chat_decorator'
 
 class PodcastsMontageWorker < ApplicationWorker
   sidekiq_options queue: :podcast
