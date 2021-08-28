@@ -112,7 +112,7 @@ data: { toggle: :popover, html: true, content: comment_html }) do
 
   def time_logged
     content_tag(:ul) do
-      object.time_logs.map(&:user).each do |user|
+      object.time_logs.map(&:user).uniq.each do |user|
         concat(content_tag(:li) do
           "#{user.first_name} #{user.last_name} - #{TimeLog.logged_by(user, object)}"
         end)
