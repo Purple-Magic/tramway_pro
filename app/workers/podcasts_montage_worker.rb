@@ -17,7 +17,7 @@ class PodcastsMontageWorker < ApplicationWorker
   private
 
   def montage(episode)
-    chat_id = BotTelegram::Leopold::Scenario::IT_WAY_PODCAST_ID
+    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     send_notification_to_chat chat_id, notification(:montage, :started)
     download episode
     send_notification_to_chat chat_id, notification(:footage, :downloaded)

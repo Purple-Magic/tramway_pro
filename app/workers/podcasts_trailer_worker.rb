@@ -6,7 +6,7 @@ class PodcastsTrailerWorker < ApplicationWorker
   include BotTelegram::Leopold::Notify
 
   def perform(id)
-    chat_id = BotTelegram::Leopold::Scenario::IT_WAY_PODCAST_ID
+    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     episode = Podcast::Episode.find id
     send_notification_to_chat chat_id, notification(:audio_trailer, :rendering_started)
     episode.build_trailer
