@@ -41,21 +41,20 @@ class BotTelegram::Leopold::Scenario
         end
       end
     else
-      chat_exceptions = {
-        project_chat_quest_id: PROJECT_CHAT_QUEST_ID,
-        it_way_podcast_id: IT_WAY_PODCAST_ID
-      }
       chat_id = chat.telegram_chat_id.to_s
       message_to_chat bot, chat, bot_record.options['not_my_group'] unless chat_exceptions.values.include? chat_id
     end
   end
 
-  def chat_to_answer?(chat)
-    chat_id = chat.telegram_chat_id.to_s
-    chat_exceptions = {
+  def chat_exceptions
+    {
       project_chat_quest_id: PROJECT_CHAT_QUEST_ID,
       it_way_podcast_id: IT_WAY_PODCAST_ID
     }
+  end
+
+  def chat_to_answer?(chat)
+    chat_id = chat.telegram_chat_id.to_s
     (chat.private? || chat_id == IT_WAY_CHAT_ID.to_s) && !chat_exceptions.values.include?(chat_id)
   end
 
