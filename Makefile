@@ -21,6 +21,8 @@ restore_production:
 
 run_telegram_bots:
 	bundle exec rails r lib/tasks/bot_telegram/start_bots.rb
+run_telegram_bot:
+	bundle exec rails r "bot = Bot.find($(BOT)); BotJob.perform_later bot.id, bot.name; puts :started"
 stop_telegram_bots:
 	sh stop_telegram_bots.sh
 restart_telegram_bots:
@@ -30,3 +32,4 @@ restart_telegram_bots:
 code_check:
 	rubocop -A
 	reek
+
