@@ -2,6 +2,7 @@
 
 require 'telegram/bot'
 require_relative '../messages_manager'
+require_relative './message'
 
 module BotTelegram::Leopold::Notify
   include BotTelegram::MessagesManager
