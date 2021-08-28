@@ -31,6 +31,6 @@ module BotTelegram::Leopold::Notify
     bot_record = Bot.find BotTelegram::Leopold::Scenario::BOT_ID
     bot = ::Telegram::Bot::Client.new bot_record.token
     bot_message = ::BotTelegram::Leopold::Message.new file
-    send_file bot.api, chat_id, bot_message
+    send_file bot.api, chat_id, bot_message.file
   end
 end
