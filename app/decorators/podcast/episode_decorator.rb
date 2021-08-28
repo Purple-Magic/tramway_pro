@@ -6,7 +6,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   delegate_attributes :id, :number, :file_url, :montage_state
 
   include Podcast::Episodes::DescriptionConcern
-  include Podcast::Episodes::DescriptionConcern
+  include Podcast::Episodes::DescriptionBuildConcern
 
   class << self
     def show_associations

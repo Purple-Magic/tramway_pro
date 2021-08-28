@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Podcast::Episodes::DescriptionConcern
+module Podcast::Episodes::DescriptionBuildConcern
   def recursively_build_description(elements)
     elements.map do |element|
       case element.name
