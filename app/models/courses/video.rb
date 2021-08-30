@@ -29,6 +29,7 @@ class Courses::Video < ApplicationRecord
     done_comments = comments.active.where(comment_state: :done)
     return :done if comments.active.any? && comments.count == done_comments.count
     return :in_progress if comments.active.count != done_comments.count
+
     video_state.to_sym
   end
 end
