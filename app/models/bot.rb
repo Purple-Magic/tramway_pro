@@ -38,6 +38,6 @@ class Bot < ApplicationRecord
   end
 
   def uniq_users_between(begin_date, end_date)
-    messages.where('created_at > ? && created_at < ?', begin_date, end_date).map(&:user).uniq
+    messages.where('created_at >= ? AND created_at <= ?', begin_date, end_date).map(&:user).uniq
   end
 end
