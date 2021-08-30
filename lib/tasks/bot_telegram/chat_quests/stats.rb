@@ -1,8 +1,8 @@
 module BotTelegram::ChatQuests::Stats
   def stats_between_dates(bot, begin_date, end_date)
-    # rubocop:disable Style/StringConcatenation
     <<-TXT
     🤖 #{bot.name}
+
     📅 Отчёт за период с #{begin_date.strftime('%d.%m.%Y')} по #{end_date.strftime('%d.%m.%Y')}
 
     🔶 Общее количество пользователей: #{bot.users.count}
