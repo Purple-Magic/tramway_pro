@@ -3,8 +3,9 @@
 class Bot < ApplicationRecord
   has_many :steps, -> { order(:name) }, class_name: 'BotTelegram::Scenario::Step'
   has_many :progress_records, through: :steps, class_name: 'BotTelegram::Scenario::ProgressRecord'
-  has_many :users, through: :progress_records, class_name: 'BotTelegram::User'
+  has_many :attenders, through: :progress_records, class_name: 'BotTelegram::User', source: :user
   has_many :messages, class_name: 'BotTelegram::Message'
+  has_many :users, through: :messages, class_name: 'BotTelegram::User'
 
   enumerize :team, in: %i[rsm night purple_magic]
 
