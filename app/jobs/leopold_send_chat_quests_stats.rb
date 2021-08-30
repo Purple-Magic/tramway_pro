@@ -10,11 +10,15 @@ class LeopoldSendChatQuestsStats < ActiveJob::Base
   include ::BotTelegram::Leopold::Notify
   include ::BotTelegram::ChatQuests::Stats
 
+  CHAT_QUESTS_BOTS_IDS = [2, 3, 4, 5, 6, 8, 10, 11, 12]
+
   def perform(*_args)
     bot = Bot.find ::BotTelegram::Leopold::Scenario::BOT_ID
     #send_notification_to_chat ::BotTelegram::Leopold::ChatDecorator::PROJECT_CHAT_QUEST_ID,
-      'Это сообщение: проверка. В ближайшие часы буду её слать каждые 10 минут, чтобы быть уверенным, что работаю стабильно. Чуть позже, Паша, это прекратит.'
-    send_notification_to_user :kalashnikovisme,
-      stats_between_dates(DateTime.now - 1.week, DateTime.now)
+      #'Это сообщение: проверка. В ближайшие часы буду её слать каждые 10 минут, чтобы быть уверенным, что работаю стабильно. Чуть позже, Паша, это прекратит.'
+    bots = Bot.where id: CHAT_QUESTS_BOTS_IDS
+    bots.each do |bot|
+    send_notification_to_user :kalashnikovisme, stats_between_dates(bot, DateTime.now - 1.week, DateTime.now)
+    end
   end
 end
