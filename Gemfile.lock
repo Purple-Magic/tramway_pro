@@ -201,6 +201,8 @@ GEM
       activesupport (>= 3.2)
     erubi (1.10.0)
     erubis (2.7.0)
+    et-orbi (1.2.4)
+      tzinfo
     execjs (2.8.1)
     factory_bot (5.1.2)
       activesupport (>= 4.2.0)
@@ -233,6 +235,9 @@ GEM
       nokogiri (>= 1.11.3)
       railties (>= 4.2)
     foreman (0.87.2)
+    fugit (1.5.1)
+      et-orbi (~> 1.1, >= 1.1.8)
+      raabro (~> 1.4)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     haml (5.2.2)
@@ -338,6 +343,7 @@ GEM
     pry-nav (0.3.0)
       pry (>= 0.9.10, < 0.13.0)
     public_suffix (4.0.6)
+    raabro (1.4.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-proxy (0.7.0)
@@ -479,6 +485,9 @@ GEM
       redis (>= 4.2.0)
     sidekiq-batch (0.1.6)
       sidekiq (>= 3)
+    sidekiq-cron (1.2.0)
+      fugit (~> 1.1)
+      sidekiq (>= 4.2.1)
     simple_form (5.0.3)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -695,6 +704,7 @@ DEPENDENCIES
   shoulda-matchers (~> 2.8.0)
   sidekiq
   sidekiq-batch
+  sidekiq-cron (~> 1.1)
   simple_form (>= 5.0.0)
   smart_buttons (= 1.0.0.1)
   spring

@@ -1,0 +1,4 @@
+leopold_send_chat_quest_stats:
+  cron: "*/10 * * * *"
+  class: LeopoldSendChatQuestsStats
+  queue: bot
