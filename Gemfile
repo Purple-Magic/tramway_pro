@@ -90,7 +90,7 @@ gem 'selectize-rails'
 gem 'sentry-raven'
 gem 'sidekiq'
 gem 'sidekiq-batch'
-gem "sidekiq-cron", "~> 1.1"
+gem 'sidekiq-cron', '~> 1.1'
 gem 'simple_form', '>= 5.0.0'
 gem 'smart_buttons', '1.0.0.1'
 gem 'sprockets', '>= 3.7.2'
