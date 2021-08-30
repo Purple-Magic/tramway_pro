@@ -1,0 +1,2 @@
+module BotTelegram::ChatQuests
+end

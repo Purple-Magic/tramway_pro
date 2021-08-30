@@ -29,4 +29,15 @@ class Bot < ApplicationRecord
 
     progress_records.where(bot_telegram_scenario_step_id: finish_step.id).uniq(&:bot_telegram_user_id)
   end
+
+  def new_users_between(begin_date, end_date)
+    users.map do |user|
+      first_message_created_at = user.messages.order(created_at: :asc).first.created_at 
+      user if first_message_created_at > begin_date && first_message_created_at < end_date
+    end.compact
+  end
+
+  def uniq_users_between(begin_date, end_date)
+    messages.where('created_at > ? && created_at < ?', begin_date, end_date).map(&:user).uniq
+  end
 end
