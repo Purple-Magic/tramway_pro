@@ -9,6 +9,7 @@ class BotTelegram::Leopold::Scenario
   include ::BotTelegram::MessagesManager
   include ::BotTelegram::Info
   include ::BotTelegram::Leopold::ItWayPro
+  include ::BotTelegram::Leopold::ChatsConcern
 
   BOT_ID = 9
 
@@ -33,7 +34,6 @@ class BotTelegram::Leopold::Scenario
       end
     else
       chat_id = chat.telegram_chat_id.to_s
-      exceptions = ::BotTelegram::Leopold::ChatDecorator.exceptions
       message_to_chat bot, chat, bot_record.options['not_my_group'] unless exceptions.values.include? chat_id
     end
   end
