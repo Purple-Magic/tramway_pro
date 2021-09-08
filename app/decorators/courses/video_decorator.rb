@@ -67,6 +67,10 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
     "#{lesson.topic.position}-#{lesson.position}-#{position} Видео | #{info}"
   end
 
+  def release_date
+    object.release_date.strftime('%d.%m.%Y')
+  end
+
   alias name title
 
   def additional_buttons

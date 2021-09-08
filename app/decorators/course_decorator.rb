@@ -97,7 +97,14 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
 
   def video_row(video)
     concat(content_tag(:li, class: :bottom) do
-      link_to video.title, video.link, class: video.progress_status
+      link_to video.link, class: video.progress_status do
+        concat(content_tag(:span) do
+          video.title
+        end)
+        concat(content_tag(:span) do
+          video.release_date
+        end)
+      end
     end)
   end
 end
