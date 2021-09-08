@@ -13,7 +13,8 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
     :position,
     :created_at,
     :updated_at,
-    :progress_status
+    :progress_status,
+    :release_date
   )
 
   class << self
@@ -36,6 +37,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
         text
         created_at
         updated_at
+        release_date
       ]
     end
 
