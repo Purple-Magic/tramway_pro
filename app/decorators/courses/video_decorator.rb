@@ -13,8 +13,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
     :position,
     :created_at,
     :updated_at,
-    :progress_status,
-    :release_date
+    :progress_status
   )
 
   class << self
@@ -70,7 +69,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def release_date
-    object.release_date.strftime('%d.%m.%Y')
+    object.release_date.strftime('%a, %d.%m.%Y')
   end
 
   alias name title
