@@ -1,4 +1,13 @@
 ru:
+  date:
+    abbr_day_names:
+      - пн
+      - вт
+      - ср
+      - чт
+      - пт
+      - сб
+      - вс
   admin:
     navbar:
       links:
