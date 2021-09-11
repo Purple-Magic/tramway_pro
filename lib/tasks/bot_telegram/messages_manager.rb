@@ -13,8 +13,16 @@ module BotTelegram::MessagesManager
                 end)
   end
 
-  def message_to_chat(bot, chat, message)
-    bot.api.send_message chat_id: chat.telegram_chat_id, text: message
+  def message_to_chat(bot, chat, message_obj)
+    case message_obj.class.to_s
+    when 'String'
+      bot.api.send_message chat_id: chat.telegram_chat_id, text: message_obj
+    when 'BotTelegram::Custom::Message'
+      bot.api.send_message chat_id: chat.telegram_chat_id, **message_obj.options
+      send_file bot.api, chat_id, message_obj if message_obj.file.present?
+    else
+      raise message_obj.class.to_s
+    end
   rescue StandardError => error
     Raven.capture_exception error
   end

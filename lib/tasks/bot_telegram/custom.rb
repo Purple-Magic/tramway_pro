@@ -1,0 +1,2 @@
+module BotTelegram::Custom
+end

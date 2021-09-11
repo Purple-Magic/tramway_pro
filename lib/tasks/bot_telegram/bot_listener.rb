@@ -26,9 +26,9 @@ class BotTelegram::BotListener
       end
     end
 
-    def custom_bot_action(bot_record:, bot:, chat:, message:)
+    def custom_bot_action(bot_record:, bot:, chat:, message:, message_object:)
       scenario_class = "BotTelegram::#{bot_record.scenario.camelize.capitalize}::Scenario".constantize
-      scenario = scenario_class.new message, bot, bot_record, chat
+      scenario = scenario_class.new message, bot, bot_record, chat, message_object
       scenario.run
     end
 
@@ -39,9 +39,9 @@ class BotTelegram::BotListener
     def process(message, bot_record, bot)
       user = user_from message.from
       chat = chat_from message.chat
-      log_message message, user, chat, bot_record
+      message_object = log_message message, user, chat, bot_record
       if bot_record.custom
-        custom_bot_action bot_record: bot_record, bot: bot, chat: chat, message: message
+        custom_bot_action bot_record: bot_record, bot: bot, chat: chat, message: message, message_object: message_object
       else
         BotTelegram::Scenario.run message, bot, bot_record
       end
