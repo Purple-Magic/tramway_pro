@@ -2,13 +2,13 @@ ru:
   podcast_engine:
     notifications:
       montage:
-        started: 'Техническое сообщение. Монтаж подкаста начался!'
+        started: 'Начал монтировать подкаст!'
         something_went_wrong: 'Я сломался. Идите, разбирайтесь, что со мной не так.'
       audio_trailer:
-        rendering_started: 'Техническое сообщение. Начал рендерить аудиотрейлер.'
-        rendering_over: 'Трейлер готов! Сейчас загружаю его в чатик. Проверьте и послушайте, норм?'
+        rendering_started: 'Начал рендерить аудиотрейлер.'
+        rendering_over: 'Сейчас загружаю его в чатик. Проверьте и послушайте, норм?'
       finish:
-        started: 'Техническое сообщение: завершаю работу над подкастом'
+        started: 'Завершаю работу над подкастом'
       audio:
         finished: "Аудио файл подкаста готов! Можно загружать на Red Circle. Файл слишком большой, поэтому прикладываю ссылку сюда. http://red-magic.ru/%{file_url}"
       video_trailer:
@@ -17,12 +17,12 @@ ru:
       video:
         finished: "Полное видео готово! Его можно загружать на Youtube! Файл слишком большой, поэтом прикладываю ссылку http://red-magic.ru/#{file_url}"
       footage:
-        downloaded: 'Техническое сообщение. Аудиозапись подгружена. Она корректна'
+        downloaded: 'Загрузил аудиозапись. Она корректна'
       highlights:
         cut: "Техническое сообщение. Порезал хайлайты. Их можно идти и прослушивать, чтобы собрать трейлер. http://red-magic.ru/admin/records/%{episode_id}?model=Podcast::Episode"
       convert:
-        finished: 'Техническое сообщение. Конвертирование прошло успешно'
+        finished: 'Сконвертировал файл'
       filter:
-        finished: 'Техничеcкое сообщение. Фильтрация звуковой дорожки прошла успешно'
+        finished: 'Отфильтровал звуковую дорожку'
       music:
-        finished: "Техническое сообщение. Музыка наложена. Если вы уже подготовили трейлер. Можно запускать завершение. http://red-magic.ru/admin/records/%{episode_id}?model=Podcast::Episode"
+        finished: "Наложил музыку. Если вы уже подготовили трейлер. Можно запускать завершение. http://red-magic.ru/admin/records/%{episode_id}?model=Podcast::Episode"
