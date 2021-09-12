@@ -13,6 +13,8 @@ class PodcastsMontageWorker < ApplicationWorker
     montage episode
   rescue StandardError => error
     log_error error
+    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
+    send_notification_to_chat chat_id, notification(:montage, :something_went_wrong)
   end
 
   private
