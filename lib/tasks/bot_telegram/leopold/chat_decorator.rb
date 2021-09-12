@@ -15,7 +15,7 @@ class BotTelegram::Leopold::ChatDecorator
     (@chat.private? || chat_id == ::BotTelegram::Leopold::ItWayPro::CHAT_ID) && !exceptions.values.include?(chat_id)
   end
 
-  def is_it_way_podcast?
+  def it_way_podcast?
     chat_id == IT_WAY_PODCAST_ID
   end
 end

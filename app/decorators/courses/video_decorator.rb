@@ -23,9 +23,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def list_attributes
-      %i[
-        lesson_link
-      ]
+      %i[lesson_link]
     end
 
     def show_attributes
@@ -127,9 +125,7 @@ data: { toggle: :popover, html: true, content: comment_html }) do
 
   def video_state_button_color(event)
     case event
-    when :write
-      :primary
-    when :shoot
+    when :write, :shoot
       :primary
     when :finish
       :success

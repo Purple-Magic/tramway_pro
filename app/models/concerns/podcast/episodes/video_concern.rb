@@ -5,7 +5,7 @@ module Podcast::Episodes::VideoConcern
 
   def render_video_trailer(output)
     unless cover.present?
-      message = 'Надо добавить обложку видео, чтобы я срендерил. Скорее всего, я сейчас буду повторять это сообщение периодически, пока обложку не добавите'
+      message = I18n.t('podcast_engine.notifications.video_trailer.you_need_to_episode_cover')
       chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
       send_notification_to_chat chat_id, message
       raise message
