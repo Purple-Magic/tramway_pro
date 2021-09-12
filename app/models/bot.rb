@@ -31,7 +31,7 @@ class Bot < ApplicationRecord
   end
 
   def new_users_between(begin_date, end_date)
-    users.map do |user|
+    users.uniq.map do |user|
       first_message_created_at = user.messages.order(created_at: :asc).first.created_at
       user if first_message_created_at.between?(begin_date, end_date)
     end.compact
