@@ -4,7 +4,7 @@ module Podcast::Episodes::TrailerConcern
   def build_trailer
     output = "#{prepare_directory.gsub('//', '/')}/trailer.mp3"
 
-    cut_using_highlights
+    cut_using_highlights output
 
     temp_output = update_output :temp, output
     render_command = write_logs(content_concat(inputs: content, output: temp_output))
@@ -39,7 +39,7 @@ module Podcast::Episodes::TrailerConcern
     end
   end
 
-  def cut_using_highlights
+  def cut_using_highlights(output)
     using_highlights.each do |highlight|
       highlight.cut output
     end
