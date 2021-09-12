@@ -123,6 +123,7 @@ data: { toggle: :popover, html: true, content: comment_html }) do
     end
   end
 
+  # :reek:ControlParameter { enabled: false }
   def video_state_button_color(event)
     case event
     when :write, :shoot
