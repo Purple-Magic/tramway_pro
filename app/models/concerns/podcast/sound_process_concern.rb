@@ -18,7 +18,9 @@ module Podcast::SoundProcessConcern
     end
   end
 
+  # :reek:UtilityFunction { enabled: false }
   def write_logs(command)
     "#{command} 2> #{Rails.root}/log/render-#{Rails.env}.log"
   end
+  # :reek:UtilityFunction { enabled: true }
 end

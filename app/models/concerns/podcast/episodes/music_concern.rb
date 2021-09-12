@@ -35,11 +35,11 @@ module Podcast::Episodes::MusicConcern
     }
   end
 
-  # :reek: UtilityFunction{ enabled: false }
+  # :reek:UtilityFunction { enabled: false }
   def update_output(suffix, output)
     (output.split('.')[0..-2] + [suffix, :mp3]).join('.')
   end
-  # :reek: UtilityFunction{ enabled: true }
+  # :reek:UtilityFunction { enabled: true }
 
   def render_whole_length_music(music_output)
     command = write_logs content_concat(

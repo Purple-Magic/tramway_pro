@@ -4,12 +4,7 @@ module Podcast::Episodes::VideoConcern
   include BotTelegram::Leopold::Notify
 
   def render_video_trailer(output)
-    unless cover.present?
-      message = I18n.t('podcast_engine.notifications.video_trailer.you_need_to_episode_cover')
-      chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
-      send_notification_to_chat chat_id, message
-      raise message
-    end
+    send_cover_error_notification unless cover.present?
 
     video_temp_output = (output.split('.')[0..-2] + %w[temp mp4]).join('.')
 
@@ -44,5 +39,14 @@ module Podcast::Episodes::VideoConcern
     wait_for_file_rendered output, :full_video
     update_file! output, :full_video
     finish!
+  end
+
+  private
+
+  def send_cover_error_notification
+    message = I18n.t('podcast_engine.notifications.video_trailer.you_need_to_episode_cover')
+    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
+    send_notification_to_chat chat_id, message
+    raise message
   end
 end
