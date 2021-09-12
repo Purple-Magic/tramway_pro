@@ -13,19 +13,20 @@ class BotTelegram::Leopold::Scenario
 
   BOT_ID = 9
 
-  attr_reader :bot, :bot_record, :chat, :message_from_telegram
+  attr_reader :bot, :bot_record, :chat, :message_from_telegram, :message
 
-  def initialize(message_from_telegram, bot, bot_record, chat)
+  def initialize(message_from_telegram, bot, bot_record, chat, message)
     @bot = bot
     @message_from_telegram = message_from_telegram
     @bot_record = bot_record
     @chat = chat
+    @message = message
   end
 
   def run
     chat_decorator = BotTelegram::Leopold::ChatDecorator.new chat
+    text = message_from_telegram.text
     if chat_decorator.to_answer?
-      text = message_from_telegram.text
       command = BotTelegram::Leopold::Command.new text
       if command.valid?
         command.run

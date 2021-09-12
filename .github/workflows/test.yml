@@ -98,10 +98,6 @@ jobs:
 
   tests: 
     runs-on: ubuntu-latest
-    needs:
-      - rubocop
-      - syntax_check
-      - smell_check
 
     services:
       postgres:

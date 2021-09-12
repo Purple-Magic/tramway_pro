@@ -26,9 +26,19 @@ class Courses::Video < ApplicationRecord
   end
 
   def progress_status
-    done_comments = comments.active.where(comment_state: :done)
-    return :done if comments.active.any? && comments.count == done_comments.count
-    return :in_progress if comments.active.count != done_comments.count
+    done_comments = comments.active.where(comment_state: :done).count
+    conditions = {
+      done: lambda do |all, done|
+        all.positive? && all == done
+      end,
+      in_progress: lambda do |all, done|
+        all != done
+      end
+    }
+
+    conditions.each do |condition|
+      return condition[0] if condition[1].call(comments.active.count, done_comments)
+    end
 
     video_state.to_sym
   end

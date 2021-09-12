@@ -37,6 +37,8 @@ detectors:
     max_methods: 17
   RepeatedConditional:
     max_ifs: 3
+  TooManyInstanceVariables:
+    max_instance_variables: 5
 directories:
   "app/controllers":
     InstanceVariableAssumption:

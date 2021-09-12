@@ -11,6 +11,7 @@ class TimeLog < ApplicationRecord
     "#{minutes / 60}h #{minutes % 60}m"
   }
 
+  # :reek:FeatureEnvy { enabled: false }
   def minutes
     time_spent.split.reduce(0) do |sum, part|
       number = part.match(/[0-9]*/).to_s.to_i
@@ -22,4 +23,5 @@ class TimeLog < ApplicationRecord
       end
     end
   end
+  # :reek:FeatureEnvy { enabled: true }
 end

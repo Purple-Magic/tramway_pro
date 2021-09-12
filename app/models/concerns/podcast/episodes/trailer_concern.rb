@@ -4,19 +4,12 @@ module Podcast::Episodes::TrailerConcern
   def build_trailer
     output = "#{prepare_directory.gsub('//', '/')}/trailer.mp3"
 
-    using_highlights.each do |highlight|
-      highlight.cut output
-    end
+    cut_highlights
 
-    trailer_separator = podcast.musics.where(music_type: :trailer_separator).first
-    content = using_highlights.sort_by(&:trailer_position).map do |content_file|
-      [content_file.ready_file.path, trailer_separator.file.path]
-    end.flatten
-    temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
+    temp_output = update_output :temp, output
     render_command = write_logs(content_concat(inputs: content, output: temp_output))
     move_command = move_to(temp_output, output)
     command = "#{render_command} && #{move_command}"
-    Rails.logger.info command
     system command
 
     wait_for_file_rendered output, :trailer
@@ -25,7 +18,7 @@ module Podcast::Episodes::TrailerConcern
   end
 
   def concat_trailer_and_episode(output)
-    temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
+    temp_output = update_output :temp, output
 
     render_command = write_logs content_concat(inputs: [trailer.path, premontage_file.path], output: temp_output)
     move_command = move_to(temp_output, output)
@@ -46,6 +39,12 @@ module Podcast::Episodes::TrailerConcern
     end
   end
 
+  def cut_highlights
+    using_highlights.each do |highlight|
+      highlight.cut output
+    end
+  end
+
   def files_inputs(using_highlights)
     trailer_separator = podcast.musics.where(music_type: :trailer_separator).first.file.path
     @files_inputs ||= using_highlights.map do |highlight|
@@ -61,5 +60,12 @@ module Podcast::Episodes::TrailerConcern
     command = "#{render_command} && #{move_command}"
     Rails.logger.info command
     system command
+  end
+
+  def content
+    trailer_separator = podcast.musics.where(music_type: :trailer_separator).first
+    using_highlights.sort_by(&:trailer_position).map do |content_file|
+      [content_file.ready_file.path, trailer_separator.file.path]
+    end.flatten
   end
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Podcast::Episodes::DescriptionBuildConcern
+  # :reek:FeatureEnvy { enabled: false }
   def recursively_build_description(elements)
     elements.map do |element|
       case element.name
@@ -15,6 +16,7 @@ module Podcast::Episodes::DescriptionBuildConcern
       end
     end.join("\n")
   end
+  # :reek:FeatureEnvy { enabled: true }
 
   def raw_description
     recursively_build_description Nokogiri::HTML(description).elements

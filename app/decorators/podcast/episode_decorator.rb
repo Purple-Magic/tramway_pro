@@ -7,6 +7,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   include Podcast::Episodes::DescriptionConcern
   include Podcast::Episodes::DescriptionBuildConcern
+  include Podcast::Episodes::VideoDecorator
 
   class << self
     def show_associations
@@ -35,18 +36,6 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   def trailer
     content_tag(:audio, controls: true) do
       content_tag(:source, '', src: object.trailer.url)
-    end
-  end
-
-  def trailer_video
-    content_tag(:video, controls: true, width: '400px') do
-      content_tag(:source, '', src: object.trailer_video.url)
-    end
-  end
-
-  def full_video
-    content_tag(:video, controls: true, width: '400px') do
-      content_tag(:source, '', src: object.full_video.url)
     end
   end
 

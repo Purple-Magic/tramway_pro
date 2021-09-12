@@ -37,6 +37,7 @@ Tramway::Admin.set_available_models(
   project: :red_magic,
   role: :podcast
 )
+
 Tramway::Admin.navbar_structure(
   RedMagic,
   {

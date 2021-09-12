@@ -95,10 +95,6 @@ class Podcast::Episode < ApplicationRecord
     "mv #{temp_output} #{output}"
   end
 
-  def write_logs(command)
-    "#{command} 2> #{Rails.root}/log/render-#{Rails.env}.log"
-  end
-
   def converted_file
     file.path.split('.')[0..].join('.')
   end

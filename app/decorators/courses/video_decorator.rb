@@ -23,9 +23,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def list_attributes
-      %i[
-        lesson_link
-      ]
+      %i[lesson_link]
     end
 
     def show_attributes
@@ -69,7 +67,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def release_date
-    object.release_date.strftime('%a, %d.%m.%Y')
+    object.release_date&.strftime('%a, %d.%m.%Y')
   end
 
   alias name title
@@ -125,11 +123,10 @@ data: { toggle: :popover, html: true, content: comment_html }) do
     end
   end
 
+  # :reek:ControlParameter { enabled: false }
   def video_state_button_color(event)
     case event
-    when :write
-      :primary
-    when :shoot
+    when :write, :shoot
       :primary
     when :finish
       :success

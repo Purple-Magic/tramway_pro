@@ -6,12 +6,21 @@ class Courses::Lesson < ApplicationRecord
   has_many :videos, -> { order(:position) }, class_name: 'Courses::Video'
 
   def progress_status
-    done_videos = videos_with status: :done
-    started_videos = videos_without status: :ready
-    if started_videos.any? && started_videos.count == videos.active.count && started_videos.count == done_videos.count
-      return :done
+    done_videos = videos_with(status: :done).count
+    started_videos = videos_without(status: :ready).count
+    conditions = {
+      done: lambda do |all, started, done, _with_comments_any|
+        started.positive? && started == all && started == done
+      end,
+      in_progress: lambda do |all, started, done, with_comments_any|
+        (all.positive? && with_comments_any) || started != done
+      end
+    }
+
+    conditions.each do |condition|
+      return condition[0] if condition[1].call(videos.active.count, started_videos, done_videos,
+        videos_with_comments_any)
     end
-    return :in_progress if (videos.active.any? && videos_with_comments_any) || started_videos.count != done_videos.count
   end
 
   def videos_with_comments_any

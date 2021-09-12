@@ -10,10 +10,9 @@ class LeopoldSendChatQuestsStats < ActiveJob::Base
   include ::BotTelegram::Leopold::Notify
   include ::BotTelegram::ChatQuests::Stats
 
-  CHAT_QUESTS_BOTS_IDS = [2, 3, 4, 5, 6, 8, 10, 11, 12]
+  CHAT_QUESTS_BOTS_IDS = [2, 3, 4, 5, 6, 8, 10, 11, 12].freeze
 
   def perform(*_args)
-    bot = Bot.find ::BotTelegram::Leopold::Scenario::BOT_ID
     bots = Bot.where id: CHAT_QUESTS_BOTS_IDS
     bots.each do |bot|
       send_notification_to_chat(

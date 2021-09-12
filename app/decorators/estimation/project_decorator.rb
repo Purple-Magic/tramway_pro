@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
-  delegate_attributes :title, :state
+  delegate_attributes :title, :state, :id
 
   decorate_associations :tasks, :coefficients
 
@@ -22,11 +22,11 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def additional_buttons
-    url = ::Tramway::Export::Engine.routes.url_helpers.export_path(object.id, model: object.class, collection: :tasks)
+    url = ::Tramway::Export::Engine.routes.url_helpers.export_path(id, model: object.class, collection: :tasks)
     new_task_path = Tramway::Admin::Engine.routes.url_helpers.new_record_path(
       model: Estimation::Task,
-      'estimation/task' => { estimation_project: object.id },
-      redirect: "/admin/records/#{object.id}?model=Estimation::Project"
+      'estimation/task' => { estimation_project: id },
+      redirect: "/admin/records/#{id}?model=Estimation::Project"
     )
 
     {
