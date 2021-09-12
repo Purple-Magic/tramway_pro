@@ -9,7 +9,6 @@ class BotTelegram::Leopold::Scenario
   include ::BotTelegram::MessagesManager
   include ::BotTelegram::Info
   include ::BotTelegram::Leopold::ItWayPro
-  include ::BotTelegram::Leopold::ItWayPodcast
   include ::BotTelegram::Leopold::ChatsConcern
 
   BOT_ID = 9
@@ -27,18 +26,16 @@ class BotTelegram::Leopold::Scenario
   def run
     chat_decorator = BotTelegram::Leopold::ChatDecorator.new chat
      text = message_from_telegram.text
-#    if chat_decorator.to_answer?
-#      command = BotTelegram::Leopold::Command.new text
-#      if command.valid?
-#        command.run
-#      else
-#        it_way_process text
-#      end
-#    elsif chat_decorator.is_it_way_podcast?
-      it_way_podcast_process bot, chat, message, text
-#    else
-#      chat_id = chat.telegram_chat_id.to_s
-#      message_to_chat bot, chat, bot_record.options['not_my_group'] unless exceptions.values.include? chat_id
-#    end
+    if chat_decorator.to_answer?
+      command = BotTelegram::Leopold::Command.new text
+      if command.valid?
+        command.run
+      else
+        it_way_process text
+      end
+    else
+      chat_id = chat.telegram_chat_id.to_s
+      message_to_chat bot, chat, bot_record.options['not_my_group'] unless exceptions.values.include? chat_id
+    end
   end
 end
