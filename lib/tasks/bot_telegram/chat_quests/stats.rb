@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BotTelegram::ChatQuests::Stats
   def stats_between_dates(bot, begin_date, end_date)
     <<-TXT

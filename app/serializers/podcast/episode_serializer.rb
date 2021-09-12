@@ -24,6 +24,6 @@ class Podcast::EpisodeSerializer < Tramway::Api::V1::ApplicationSerializer
   end
 
   def description
-    #object.raw_description
+    # object.raw_description
   end
 end

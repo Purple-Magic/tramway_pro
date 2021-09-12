@@ -25,7 +25,7 @@ class BotTelegram::Leopold::Scenario
 
   def run
     chat_decorator = BotTelegram::Leopold::ChatDecorator.new chat
-     text = message_from_telegram.text
+    text = message_from_telegram.text
     if chat_decorator.to_answer?
       command = BotTelegram::Leopold::Command.new text
       if command.valid?
