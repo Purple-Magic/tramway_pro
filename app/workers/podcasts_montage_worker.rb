@@ -55,6 +55,7 @@ class PodcastsMontageWorker < ApplicationWorker
     end
   end
 
+  # :reek:FeatureEnvy { enabled: false }
   def cut_highlights(episode)
     episode.cut_highlights
     episode.highlight_it!
@@ -62,6 +63,7 @@ class PodcastsMontageWorker < ApplicationWorker
     chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     send_notification_to_chat chat_id, notification(:highlights, :cut, episode_id: episode.id)
   end
+  # :reek:FeatureEnvy { enabled: true }
 
   def convert(episode)
     episode.convert_file.tap do
@@ -76,6 +78,7 @@ class PodcastsMontageWorker < ApplicationWorker
     send_notification_to_chat chat_id, notification(:filter, :finished)
   end
 
+  # :reek:FeatureEnvy { enabled: false }
   def add_music(episode)
     directory = episode.prepare_directory.gsub('//', '/')
     output = "#{directory}/with_music.mp3"
@@ -85,4 +88,5 @@ class PodcastsMontageWorker < ApplicationWorker
     chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     send_notification_to_chat chat_id, notification(:music, :finished, episode_id: episode.id)
   end
+  # :reek:FeatureEnvy { enabled: true }
 end

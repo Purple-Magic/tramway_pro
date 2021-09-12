@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module BotTelegram::ChatQuests::Stats
+  # :reek:UtilityFunction { enabled: false }
   def stats_between_dates(bot, begin_date, end_date)
     <<-TXT
     🤖 #{bot.name}
@@ -13,4 +14,5 @@ module BotTelegram::ChatQuests::Stats
     🔶 Общее количество сообщений: #{bot.messages.count}
     TXT
   end
+  # :reek:UtilityFunction { enabled: true }
 end
