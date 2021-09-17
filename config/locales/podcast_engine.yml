@@ -18,7 +18,7 @@ ru:
       footage:
         downloaded: 'Загрузил аудиозапись. Она корректна'
       highlights:
-        cut: "Техническое сообщение. Порезал хайлайты. Их можно идти и прослушивать, чтобы собрать трейлер. http://red-magic.ru/admin/records/%{episode_id}?model=Podcast::Episode"
+        cut: "Порезал хайлайты. Их можно идти и прослушивать, чтобы собрать несмешной трейлер. http://red-magic.ru/admin/records/%{episode_id}?model=Podcast::Episode"
       convert:
         finished: 'Сконвертировал файл'
       filter:
