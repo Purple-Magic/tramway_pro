@@ -3,6 +3,8 @@ deploy_production:
 restart_production:
 	ansible-playbook -i deploy/inventory deploy/restart.yml
 install:
+	sudo apt-get install imagemagick
+configure:
 	cp config/database.sample.yml config/database.yml
 	cp config/secrets.sample.yml config/secrets.yml
 	cp config/sidekiq.sample.yml config/sidekiq.yml
