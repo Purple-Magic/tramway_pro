@@ -1,24 +1,16 @@
-# [Choice] Ruby version: 2, 2.7, 2.6, 2.5
-ARG VARIANT=2
-FROM mcr.microsoft.com/vscode/devcontainers/ruby:${VARIANT}
+ARG VERSION=2.7.4
 
-# Install Rails
-RUN gem install rails webdrivers 
+FROM ruby:${VERSION}
 
-# Default value to allow debug server to serve content over GitHub Codespace's port forwarding service
-# The value is a comma-separated list of allowed domains 
-ENV RAILS_DEVELOPMENT_HOSTS=".githubpreview.dev"
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+WORKDIR /rails
+COPY Gemfile /rails/Gemfile
+COPY Gemfile.lock /rails/Gemfile.lock
+RUN bundle install
 
-# [Choice] Node.js version: lts, 16, 14, 12
-ARG NODE_VERSION="lts/*"
-RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+EXPOSE 3000
 
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
-
-# [Optional] Uncomment this line to install additional gems.
-# RUN gem install <your-gem-names-here>
-
-# [Optional] Uncomment this line to install global node packages.
-# RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+CMD ["rails", "server", "-b", "0.0.0.0"]
