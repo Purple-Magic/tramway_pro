@@ -16,6 +16,8 @@ class PodcastsFinishWorker < ApplicationWorker
   private
 
   def finish(episode)
+    return if episode.full_video.present?
+
     chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     send_notification_to_chat chat_id, notification(:finish, :started)
     concat_parts episode
