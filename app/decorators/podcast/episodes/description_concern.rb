@@ -17,7 +17,7 @@ module Podcast::Episodes::DescriptionConcern
     concat(content_tag(:ul) do
       stars.each do |star|
         concat(content_tag(:li) do
-          concat link_to star.nickname, star.link
+          concat link_to "@#{star.nickname}", star.link
         end)
       end
     end)
