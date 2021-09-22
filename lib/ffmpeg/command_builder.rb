@@ -53,12 +53,14 @@ module Ffmpeg::CommandBuilder
     "ffmpeg #{options}"
   end
 
+  NORMALIZATION_FILTER = "dynaudnorm=p=0.9:m=100:s=12:g=15"
+
   def normalize(input:, output:)
     options = options_line(
       yes: true,
       inputs: [input],
       output: output,
-      filter_complex: "dynaudnorm=p=1/sqrt(2):m=100:s=12:g=15"
+      add_filters: "\"#{NORMALIZATION_FILTER}\""
     )
 
     "ffmpeg #{options}"
@@ -74,7 +76,7 @@ module Ffmpeg::CommandBuilder
       inputs: [input],
       output: output,
       video_codec: :libx264,
-      add_filters: "#{silenceremove},#{acompressor},#{volume}",
+      add_filters: "\"#{silenceremove},#{acompressor},#{volume},#{NORMALIZATION_FILTER}\"",
       audio_bitrate: '320k'
     )
 

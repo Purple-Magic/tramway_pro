@@ -7,11 +7,13 @@ module Podcast::Episodes::TrailerConcern
     cut_using_highlights output
 
     render_trailer output
-
-    normalize_trailer output
-
     wait_for_file_rendered output, :trailer
     update_file! output, :trailer
+
+    normalize_trailer output
+    wait_for_file_rendered output, :trailer
+    update_file! output, :trailer
+
     trailer_finish!
   end
 
@@ -32,7 +34,7 @@ module Podcast::Episodes::TrailerConcern
 
   def normalize_trailer(output)
     temp_output = update_output :normalize, output
-    render_command = write_logs normalize(input: output, output: temp_output)
+    render_command = write_logs normalize(input: trailer.path, output: temp_output)
     move_command = move_to(temp_output, output)
     command = "#{render_command} && #{move_command}"
     system command

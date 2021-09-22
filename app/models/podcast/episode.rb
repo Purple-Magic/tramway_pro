@@ -55,8 +55,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        #PodcastsTrailerWorker.perform_async id
-        PodcastsTrailerWorker.new.perform id
+        PodcastsTrailerWorker.perform_async id
       end
     end
 
