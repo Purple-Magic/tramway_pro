@@ -55,7 +55,8 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        PodcastsTrailerWorker.perform_async id
+        #PodcastsTrailerWorker.perform_async id
+        PodcastsTrailerWorker.new.perform id
       end
     end
 
@@ -71,6 +72,7 @@ class Podcast::Episode < ApplicationRecord
 
   include Ffmpeg::CommandBuilder
   include Podcast::SoundProcessConcern
+  include Podcast::PathManagementConcern
   include Podcast::Episodes::DescriptionConcern
   include Podcast::Episodes::HighlightsConcern
   include Podcast::Episodes::MusicConcern

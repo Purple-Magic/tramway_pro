@@ -53,6 +53,17 @@ module Ffmpeg::CommandBuilder
     "ffmpeg #{options}"
   end
 
+  def normalize(input:, output:)
+    options = options_line(
+      yes: true,
+      inputs: [input],
+      output: output,
+      filter_complex: "dynaudnorm=p=1/sqrt(2):m=100:s=12:g=15"
+    )
+
+    "ffmpeg #{options}"
+  end
+
   def use_filters(input:, output:)
     silenceremove = 'silenceremove=stop_periods=-1:stop_duration=1.4:stop_threshold=-30dB'
     acompressor = 'acompressor=threshold=-12dB:ratio=2:attack=200:release=1000'
