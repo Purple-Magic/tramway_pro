@@ -71,6 +71,7 @@ class Podcast::Episode < ApplicationRecord
 
   include Ffmpeg::CommandBuilder
   include Podcast::SoundProcessConcern
+  include Podcast::PathManagementConcern
   include Podcast::Episodes::DescriptionConcern
   include Podcast::Episodes::HighlightsConcern
   include Podcast::Episodes::MusicConcern

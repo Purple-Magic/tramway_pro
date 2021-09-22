@@ -6,14 +6,14 @@ module Podcast::Episodes::TrailerConcern
 
     cut_using_highlights output
 
-    temp_output = update_output :temp, output
-    render_command = write_logs(content_concat(inputs: content, output: temp_output))
-    move_command = move_to(temp_output, output)
-    command = "#{render_command} && #{move_command}"
-    system command
-
+    render_trailer output
     wait_for_file_rendered output, :trailer
     update_file! output, :trailer
+
+    normalize_trailer output
+    wait_for_file_rendered output, :trailer
+    update_file! output, :trailer
+
     trailer_finish!
   end
 
@@ -31,6 +31,22 @@ module Podcast::Episodes::TrailerConcern
   end
 
   private
+
+  def normalize_trailer(output)
+    temp_output = update_output :normalize, output
+    render_command = write_logs normalize(input: trailer.path, output: temp_output)
+    move_command = move_to(temp_output, output)
+    command = "#{render_command} && #{move_command}"
+    system command
+  end
+
+  def render_trailer(output)
+    temp_output = update_output :temp, output
+    render_command = write_logs(content_concat(inputs: content, output: temp_output))
+    move_command = move_to(temp_output, output)
+    command = "#{render_command} && #{move_command}"
+    system command
+  end
 
   def using_highlights
     @collection ||= highlights.where(using_state: :using).order(:trailer_position)
