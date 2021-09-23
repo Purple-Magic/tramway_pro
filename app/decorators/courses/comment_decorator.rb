@@ -16,7 +16,7 @@ class Courses::CommentDecorator < Tramway::Core::ApplicationDecorator
   )
 
   def title
-    return '' unless object.begin_time.present? && object.end_time.present?
+    return object.text unless object.begin_time.present? && object.end_time.present?
 
     "#{object.begin_time} - #{object.end_time} - #{object.text}"
   end
