@@ -29,9 +29,7 @@ class Courses::Video < ApplicationRecord
     done_comments = comments.active.where(comment_state: :done).count
     conditions = {
       done: lambda do |all, done|
-        # HACK
-        #all.positive? && all == done
-        video_state == 'finished'
+        all.positive? && all == done
       end,
       in_progress: lambda do |all, done|
         all != done

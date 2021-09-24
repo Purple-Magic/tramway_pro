@@ -62,9 +62,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def title
-    # HACK
-    info = "#{object.comments.count} comments | #{object.finished? ? object.comments.count : object.comments.where(comment_state: :done).count} comments done"
-    #info = "#{object.comments.count} comments | #{object.comments.where(comment_state: :done).count} comments done"
+    info = "#{object.comments.count} comments | #{object.comments.where(comment_state: :done).count} comments done"
     "#{lesson.topic.position}-#{lesson.position}-#{position} Видео | #{info}"
   end
 
