@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Ffmpeg::PodcastSpecific
-  NORMALIZATION_FILTER = 'dynaudnorm=p=0.9:m=100:s=12:g=15'
+  NORMALIZATION_FILTER = 'dynaudnorm=p=0.8:m=100:s=12:g=15'
 
   def normalize(input:, output:)
     options = options_line(
