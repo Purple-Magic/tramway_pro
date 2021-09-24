@@ -8,9 +8,7 @@ class Courses::Topic < ApplicationRecord
   def progress_status
     done_lessons = lessons_with status: :done
     started_lessons = lessons_with(status: :in_progress).count
-    if lessons.active.count == done_lessons.count
-      return :done
-    end
+    return :done if lessons.active.count == done_lessons.count
 
     :in_progress if (lessons.active.any? && lessons_with_comments_any) || started_lessons != done_lessons.count
   end

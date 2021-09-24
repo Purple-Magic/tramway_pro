@@ -27,7 +27,7 @@ module Ffmpeg::Base
       output: output,
       filter_complex: "'#{complex_option} concat=n=#{count}:v=0:a=1[out]'",
       map: '\'[out]\'',
-      audio_bitrate: '320k'
+      audio_bitrate: '192k'
     )
     "ffmpeg #{options}"
   end
