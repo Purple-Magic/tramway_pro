@@ -10,6 +10,8 @@ module Podcast::Episodes::TrailerConcern
     wait_for_file_rendered output, :trailer
     update_file! output, :trailer
 
+    sleep 10
+
     normalize_trailer output
     wait_for_file_rendered output, :trailer
     update_file! output, :trailer
@@ -37,6 +39,7 @@ module Podcast::Episodes::TrailerConcern
     render_command = write_logs normalize(input: trailer.path, output: temp_output)
     move_command = move_to(temp_output, output)
     command = "#{render_command} && #{move_command}"
+    Rails.logger.info command
     system command
   end
 
@@ -45,6 +48,7 @@ module Podcast::Episodes::TrailerConcern
     render_command = write_logs(content_concat(inputs: content, output: temp_output))
     move_command = move_to(temp_output, output)
     command = "#{render_command} && #{move_command}"
+    Rails.logger.info command
     system command
   end
 
