@@ -29,10 +29,6 @@ Tramway::Admin.set_available_models Course,
 
 Tramway::Admin.navbar_structure(
   Course,
-  Courses::Topic,
-  Courses::Lesson,
-  Courses::Video,
-  Courses::Comment,
   TimeLog,
   Tramway::User::User,
   project: :kalashnikovisme
