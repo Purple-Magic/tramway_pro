@@ -48,11 +48,6 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
       ]
     end
 
-    def show_associations
-      # Associations you want to show in admin dashboard
-      # [ :messages ]
-    end
-
     def list_filters
       # {
       #   filter_name: {
@@ -76,6 +71,7 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
     ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.id, model: object.class)
   end
 
+  # :reek:ControlParameter { enabled: false }
   def preparedness_state_button_color(event)
     case event
     when :finish_writing
@@ -84,4 +80,5 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
       :success
     end
   end
+  # :reek:ControlParameter { enabled: true }
 end
