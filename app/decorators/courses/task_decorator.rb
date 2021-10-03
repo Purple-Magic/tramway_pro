@@ -75,4 +75,13 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
   def link
     ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.id, model: object.class)
   end
+
+  def preparedness_state_button_color(event)
+    case event
+    when :finish_writing
+      :primary
+    when :upload
+      :success
+    end
+  end
 end
