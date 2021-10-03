@@ -19,7 +19,7 @@ class Courses::Lesson < ApplicationRecord
         end,
         tasks: lambda do |all, started, done, _with_comments_any|
           tasks.any? ? started == all && started == done : true
-        end,
+        end
       },
       in_progress: {
         videos: lambda do |all, started, done, with_comments_any|
@@ -33,9 +33,9 @@ class Courses::Lesson < ApplicationRecord
 
     conditions.each do |condition|
       video_condition = condition[1][:videos].call(videos.active.count, started_videos, done_videos,
-                                                   videos_with_comments_any)
+        videos_with_comments_any)
       task_condition = condition[1][:tasks].call(tasks.active.count, started_tasks, done_tasks,
-                                                 tasks_with_comments_any)
+        tasks_with_comments_any)
       return condition[0] if video_condition && task_condition
     end
   end
