@@ -10,8 +10,8 @@ class Admin::Courses::TaskForm < Tramway::Core::ApplicationForm
       form_properties lesson: :association,
         position: :integer,
         text: :ckeditor,
-        max_time: :string,
-        min_time: :string
+        min_time: :string,
+        max_time: :string
     end
   end
 end
