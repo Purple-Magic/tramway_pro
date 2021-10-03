@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Courses::Comment < ApplicationRecord
-  belongs_to :video, class_name: 'Courses::Video'
+  belongs_to :associated, polymorphic: true
 
   uploader :file, :file
 
