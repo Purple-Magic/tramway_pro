@@ -2,7 +2,7 @@
 
 class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
-  decorate_association :comments, as: :video
+  decorate_association :comments, as: :associated
   decorate_association :lesson
   decorate_association :time_logs, as: :associated
 
