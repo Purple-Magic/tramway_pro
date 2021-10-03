@@ -18,7 +18,8 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
   decorate_association :lesson
 
   def title
-    "Задание #{lesson.topic.position}-#{lesson.position}-#{position}"
+    info = "#{object.comments.count} comments | #{object.comments.where(comment_state: :done).count} comments done"
+    "Задание #{lesson.topic.position}-#{lesson.position}-#{position} | #{info}"
   end
 
   class << self

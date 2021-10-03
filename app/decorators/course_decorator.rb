@@ -88,11 +88,13 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
     concat(content_tag(:li) do
       concat(link_to(lesson.title, lesson.link, class: lesson.progress_status))
       concat(content_tag(:ul) do
-        lesson.videos.each do |video|
-          video_row(video)
-        end
-        lesson.tasks.each do |task|
-          task_row(task)
+        (lesson.videos + lesson.tasks).sort_by(&:position).each do |item|
+          case item.model.class.to_s
+          when 'Courses::Video'
+            video_row item
+          when 'Courses::Task'
+            task_row item
+          end
         end
       end)
     end)
