@@ -3,7 +3,7 @@
 class Course < ApplicationRecord
   has_many :topics, class_name: 'Courses::Topic', foreign_key: :course_id
 
-  TEAMS = %i[slurm skillbox]
+  TEAMS = %i[slurm skillbox].freeze
 
   enumerize :team, in: TEAMS
 
