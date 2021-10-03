@@ -82,4 +82,27 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
     end
   end
   # :reek:ControlParameter { enabled: true }
+  
+  def text
+    marked_text = object.comments.where.not(phrase: nil).reduce(object.text) do |txt, comment|
+      comment_html = if comment.file.present?
+                       content_tag(:div) do
+                         concat comment.text
+                         concat content_tag(:br)
+                         concat link_to 'Загрузить', comment.file.url
+                       end
+                     else
+                       comment.text
+                     end
+      txt.sub(
+        comment.phrase,
+        content_tag(:span, style: 'background-color: yellow; cursor: pointer',
+data: { toggle: :popover, html: true, content: comment_html }) do
+          comment.phrase
+        end.html_safe
+      )
+    end
+
+    raw marked_text
+  end
 end
