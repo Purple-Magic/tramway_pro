@@ -76,6 +76,16 @@ ru:
         estimation_project: Проект
         title: Название
         scale: Значение
+      courses/lesson:
+        title: Название
+        topic_link: Ссылка на тему
+        videos: Видео
+        tasks: Задания
+      courses/task:
+        position: Номер
+        text: Текст задания
+        max_time: Максимальное время прохождения
+        min_time: Минимальное время прохождения
   cases:
     word:
       plural: слова
@@ -158,6 +168,9 @@ ru:
     time_log:
       plural: таймлоги
       genitive: таймлог
+    courses/task:
+      plural: задания
+      genitive: задание
   state_machines:
     word:
       review_state:

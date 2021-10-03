@@ -4,8 +4,8 @@ class CreateCoursesTasks < ActiveRecord::Migration[5.1]
       t.integer :lesson_id
       t.integer :position
       t.text :text
-      t.integer :max_time
-      t.integer :min_time
+      t.text :max_time
+      t.text :min_time
 
       t.timestamps
     end

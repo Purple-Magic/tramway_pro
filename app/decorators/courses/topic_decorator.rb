@@ -17,7 +17,7 @@ class Courses::TopicDecorator < Tramway::Core::ApplicationDecorator
   )
 
   def title
-    "#{object.position} | #{object.title}"
+    "Тема #{object.position} | #{object.title}"
   end
 
   def link

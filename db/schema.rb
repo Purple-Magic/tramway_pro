@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211003162454) do
+ActiveRecord::Schema.define(version: 20211003172036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -183,6 +183,8 @@ ActiveRecord::Schema.define(version: 20211003162454) do
     t.text "comment_state"
     t.text "file"
     t.text "phrase"
+    t.integer "associated_id"
+    t.text "associated_type"
   end
 
   create_table "courses_lessons", force: :cascade do |t|
@@ -199,10 +201,13 @@ ActiveRecord::Schema.define(version: 20211003162454) do
     t.integer "lesson_id"
     t.integer "position"
     t.text "text"
-    t.integer "max_time"
-    t.integer "min_time"
+    t.text "max_time"
+    t.text "min_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "state"
+    t.integer "project_id"
+    t.text "preparedness_state"
   end
 
   create_table "courses_topics", force: :cascade do |t|

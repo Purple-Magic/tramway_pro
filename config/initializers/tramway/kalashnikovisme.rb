@@ -8,6 +8,7 @@ Tramway::Admin.set_available_models Course,
   Courses::Lesson,
   Courses::Video,
   Courses::Comment,
+  Courses::Task,
   TimeLog,
   project: :kalashnikovisme
 
@@ -16,6 +17,7 @@ Tramway::Admin.set_available_models Course,
   Courses::Lesson,
   Courses::Video,
   Courses::Comment,
+  Courses::Task,
   role: :slurm,
   project: :kalashnikovisme
 
@@ -24,15 +26,12 @@ Tramway::Admin.set_available_models Course,
   Courses::Lesson,
   Courses::Video,
   Courses::Comment,
+  Courses::Task,
   role: :skillbox,
   project: :kalashnikovisme
 
 Tramway::Admin.navbar_structure(
   Course,
-  Courses::Topic,
-  Courses::Lesson,
-  Courses::Video,
-  Courses::Comment,
   TimeLog,
   Tramway::User::User,
   project: :kalashnikovisme

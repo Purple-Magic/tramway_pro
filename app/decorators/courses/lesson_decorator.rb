@@ -5,6 +5,7 @@ class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
   decorate_association :topic
 
   decorate_association :videos, as: :lesson
+  decorate_association :tasks, as: :lesson
 
   delegate_attributes(
     :id,
@@ -17,7 +18,7 @@ class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
   )
 
   def title
-    "#{topic.position}-#{object.position}  | #{object.title}"
+    "Урок #{topic.position}-#{object.position}  | #{object.title}"
   end
 
   def link
@@ -54,7 +55,8 @@ class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
 
     def show_associations
       [
-        :videos
+        :videos,
+        :tasks
       ]
     end
 
