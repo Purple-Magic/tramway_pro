@@ -54,9 +54,9 @@ class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_associations
-      [
-        :videos,
-        :tasks
+      %i[
+        videos
+        tasks
       ]
     end
 

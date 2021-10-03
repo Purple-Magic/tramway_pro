@@ -205,6 +205,11 @@ ru:
           write: Сценарий написан
           shoot: Отснят
           finish: Закончен
+    courses/task:
+      preparedness_state:
+        events:
+          finish_writing: Закончить написание
+          upload: Загружено
     podcast/episode:
       montage:
         events:

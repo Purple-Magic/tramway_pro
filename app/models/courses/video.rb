@@ -3,7 +3,9 @@
 class Courses::Video < ApplicationRecord
   belongs_to :lesson, class_name: 'Courses::Lesson'
 
-  has_many :comments, -> { order(comment_state: :desc).order(:begin_time) }, class_name: 'Courses::Comment', as: :associated
+  has_many :comments, lambda {
+                        order(comment_state: :desc).order(:begin_time)
+                      }, class_name: 'Courses::Comment', as: :associated
   has_many :time_logs, class_name: 'TimeLog', as: :associated
 
   aasm :video_state do

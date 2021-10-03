@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
   delegate_attributes(
-        :id,
-        :position,
-        :text,
-        :max_time,
-        :min_time,
-        :created_at,
-        :updated_at,
-        :progress_status
+    :id,
+    :position,
+    :text,
+    :max_time,
+    :min_time,
+    :created_at,
+    :updated_at,
+    :progress_status
   )
 
   decorate_association :lesson
@@ -22,27 +24,27 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :position,
-        :text,
-        :max_time,
+      %i[
+        id
+        position
+        text
+        max_time
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :position,
-        :text,
-        :max_time,
-        :min_time,
-        :created_at,
-        :updated_at,
+      %i[
+        id
+        position
+        text
+        max_time
+        min_time
+        created_at
+        updated_at
       ]
     end
 
@@ -72,5 +74,14 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
 
   def link
     ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.id, model: object.class)
+  end
+
+  def preparedness_state_button_color(event)
+    case event
+    when :finish_writing
+      :primary
+    when :upload
+      :success
+    end
   end
 end
