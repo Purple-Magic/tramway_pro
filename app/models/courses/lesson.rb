@@ -12,25 +12,6 @@ class Courses::Lesson < ApplicationRecord
     started_videos = videos_without(status: :ready).count
     started_tasks = tasks_without(status: :written).count
 
-    conditions = {
-      done: {
-        videos: lambda do |all, started, done, _with_comments_any|
-          started.positive? && started == all && started == done
-        end,
-        tasks: lambda do |all, started, done, _with_comments_any|
-          tasks.any? ? started == all && started == done : true
-        end
-      },
-      in_progress: {
-        videos: lambda do |all, started, done, with_comments_any|
-          (all.positive? && with_comments_any) || started != done
-        end,
-        tasks: lambda do |all, started, done, with_comments_any|
-          tasks.any? ? (all.positive? && with_comments_any) || started != done : true
-        end
-      }
-    }
-
     conditions.each do |condition|
       video_condition = condition[1][:videos].call(videos.active.count, started_videos, done_videos,
         videos_with_comments_any)
@@ -38,6 +19,35 @@ class Courses::Lesson < ApplicationRecord
         tasks_with_comments_any)
       return condition[0] if video_condition && task_condition
     end
+  end
+
+  def conditions
+    {
+      done: done_conditions,
+      in_progress: in_progress_conditions
+    }
+  end
+
+  def done_conditions
+    {
+      videos: lambda do |all, started, done, _with_comments_any|
+        started.positive? && started == all && started == done
+      end,
+      tasks: lambda do |all, started, done, _with_comments_any|
+        tasks.any? ? started == all && started == done : true
+      end
+    }
+  end
+
+  def in_progress_conditions
+    {
+      videos: lambda do |all, started, done, with_comments_any|
+        (all.positive? && with_comments_any) || started != done
+      end,
+      tasks: lambda do |all, started, done, with_comments_any|
+        tasks.any? ? (all.positive? && with_comments_any) || started != done : true
+      end
+    }
   end
 
   def videos_with_comments_any
