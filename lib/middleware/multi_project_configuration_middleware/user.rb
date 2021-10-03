@@ -34,7 +34,7 @@ module MultiProjectCallbacks
           where project_id: Project.where(url: ENV['PROJECT_URL'])
         end
 
-        enumerize :role, in: %i[admin user partner rsm night podcast], default: :admin
+        enumerize :role, in: %i[admin user partner rsm night podcast slurm skillbox], default: :admin
       end
     end
   end
