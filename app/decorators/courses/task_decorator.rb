@@ -22,6 +22,11 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
     "Задание #{lesson.topic.position}-#{lesson.position}-#{position} | #{info}"
   end
 
+  def lesson_link
+    link_to lesson.title,
+      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.lesson_id, model: 'Courses::Lesson')
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
@@ -40,6 +45,7 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
     def show_attributes
       %i[
         id
+        lesson_link
         position
         text
         max_time
