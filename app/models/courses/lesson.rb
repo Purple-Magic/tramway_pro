@@ -31,10 +31,10 @@ class Courses::Lesson < ApplicationRecord
   def done_conditions
     {
       videos: lambda do |all, started, done, _with_comments_any|
-        started.positive? && started == all && started == done
+        started.positive? && started == all && all == done
       end,
       tasks: lambda do |all, started, done, _with_comments_any|
-        tasks.any? ? started == all && started == done : true
+        tasks.any? ? started == all && all == done : true
       end
     }
   end
