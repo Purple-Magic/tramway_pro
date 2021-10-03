@@ -16,6 +16,7 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
   )
 
   decorate_association :lesson
+  decorate_association :comments, as: :associated
 
   def title
     info = "#{object.comments.count} comments | #{object.comments.where(comment_state: :done).count} comments done"
@@ -53,6 +54,10 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
         created_at
         updated_at
       ]
+    end
+
+    def show_associations
+      [ :comments ]
     end
 
     def list_filters
