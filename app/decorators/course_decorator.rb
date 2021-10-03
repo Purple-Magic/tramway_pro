@@ -91,6 +91,9 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
         lesson.videos.each do |video|
           video_row(video)
         end
+        lesson.tasks.each do |task|
+          task_row(task)
+        end
       end)
     end)
   end
@@ -103,6 +106,16 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
         end)
         concat(content_tag(:span) do
           video.release_date
+        end)
+      end
+    end)
+  end
+
+  def task_row(task)
+    concat(content_tag(:li, class: :bottom) do
+      link_to task.link, class: task.progress_status do
+        concat(content_tag(:span) do
+          task.title
         end)
       end
     end)

@@ -4,6 +4,7 @@ class Courses::Lesson < ApplicationRecord
   belongs_to :topic, class_name: 'Courses::Topic'
 
   has_many :videos, -> { order(:position) }, class_name: 'Courses::Video'
+  has_many :tasks, -> { order(:position) }, class_name: 'Courses::Task'
 
   def progress_status
     done_videos = videos_with(status: :done).count
