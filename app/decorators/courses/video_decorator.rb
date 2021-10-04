@@ -63,7 +63,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
 
   def title
     info = "#{object.comments.count} comments | #{object.comments.where(comment_state: :done).count} comments done"
-    "Видео #{lesson.topic.position}-#{lesson.position}-#{position} | #{info}"
+    "🎥 Видео #{lesson.topic.position}-#{lesson.position}-#{position} | #{info}"
   end
 
   def release_date

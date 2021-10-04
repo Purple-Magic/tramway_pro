@@ -20,7 +20,7 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
 
   def title
     info = "#{object.comments.count} comments | #{object.comments.where(comment_state: :done).count} comments done"
-    "Задание #{lesson.topic.position}-#{lesson.position}-#{position} | #{info}"
+    "📝 Задание #{lesson.topic.position}-#{lesson.position}-#{position} | #{info}"
   end
 
   def lesson_link
