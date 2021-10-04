@@ -8,6 +8,7 @@ class Courses::Task < ApplicationRecord
     state :writing, initial: true
     state :written
     state :uploaded
+    state :verified
 
     event :finish_writing do
       transitions from: :writing, to: :written
@@ -15,6 +16,10 @@ class Courses::Task < ApplicationRecord
 
     event :upload do
       transitions from: :written, to: :uploaded
+    end
+
+    event :verify do
+      transitions from: :uploaded, to: :verified
     end
   end
 
