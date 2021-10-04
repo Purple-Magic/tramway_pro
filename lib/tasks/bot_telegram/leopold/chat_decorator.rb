@@ -3,6 +3,7 @@
 class BotTelegram::Leopold::ChatDecorator
   PROJECT_CHAT_QUEST_ID = '-498758668'
   IT_WAY_PODCAST_ID = '-456783051'
+  STORY_MAKER_ID = '-559667872'
 
   include ::BotTelegram::Leopold::ChatsConcern
 
@@ -17,5 +18,9 @@ class BotTelegram::Leopold::ChatDecorator
 
   def it_way_podcast?
     chat_id == IT_WAY_PODCAST_ID
+  end
+
+  def story_maker?
+    chat_id == STORY_MAKER_ID
   end
 end

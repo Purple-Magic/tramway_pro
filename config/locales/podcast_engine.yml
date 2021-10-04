@@ -25,3 +25,7 @@ ru:
         finished: 'Отфильтровал звуковую дорожку'
       music:
         finished: "Наложил музыку. Если вы уже подготовили трейлер. Можно запускать завершение. http://red-magic.ru/admin/records/%{episode_id}?model=Podcast::Episode"
+      #FIXME REMOVE NEXT LINES
+    story:
+      converted: "Смонтировал историю %{name}. Скачать её можно по ссылке http://red-magic.ru/%{file_url}"
+
