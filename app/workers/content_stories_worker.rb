@@ -9,7 +9,7 @@ class ContentStoriesWorker < ApplicationWorker
     story = Content::Story.find id
     make story
     chat_id = BotTelegram::Leopold::ChatDecorator::STORY_MAKER_ID
-    send_notification_to_chat chat_id, notification(:story, :converted, name: story.original_file.file.filename, file_url: story.original_file.url)
+    send_notification_to_chat chat_id, notification(:story, :converted, name: story.story.file.filename, file_url: story.story.url)
   end
 
   private
