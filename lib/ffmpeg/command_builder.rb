@@ -32,7 +32,8 @@ module Ffmpeg::CommandBuilder
     filter_complex: :filter_complex,
     map: :map,
     ss: :ss,
-    to: :to
+    to: :to,
+    video_filter: 'filter:v'
   }.freeze
 
   def build_arguments(options)

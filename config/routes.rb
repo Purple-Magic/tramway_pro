@@ -65,6 +65,9 @@ Rails.application.routes.draw do
           namespace :podcast do
             resources :episodes, only: :update
           end
+          namespace :content do
+            resources :stories, only: :update
+          end
         end
       end
     end

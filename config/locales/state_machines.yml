@@ -1,0 +1,61 @@
+ru:
+  state_machines:
+    word:
+      review_state:
+        events:
+          approve: Подтвердить
+          revoke: Отменить
+    tramway/event/action:
+      action_state:
+        events:
+          do: Выполнить
+          decline: Отменить
+    estimation/project:
+      project_state:
+        states:
+          estimation_in_progress: В процессе оценки
+          estimation_done: Оценка готов
+          estimation_sent: Оценка отправлена заказчику
+          confirmed: Проект утверждён
+          declined: Проект отклонён
+        events:
+          finish_estimation: Завершить оценку
+          send_to_customer: Отправлена заказчику
+          confirmed_by_customer: Проект запущен
+          decline: Проект отклонён
+    courses/comment:
+      comment_state:
+        events:
+          do_it: Готово
+    courses/video:
+      video_state:
+        events:
+          write: Сценарий написан
+          shoot: Отснят
+          finish: Закончен
+    courses/task:
+      preparedness_state:
+        events:
+          finish_writing: Закончить написание
+          upload: Загружено
+    podcast/episode:
+      montage:
+        events:
+          download: download
+          convert: convert
+          highlight_it: highlight_it
+          prepare: prepare
+          to_montage: to_montage
+          to_normalize: to_normalize
+          music_add: music_add
+          trailer_finish: trailer_finish
+          make_audio_ready: make_audio_ready
+          make_video_trailer_ready: make_video_trailer_ready
+          done: done
+          finish_record: finish_record
+          trailer_get_ready: trailer_get_ready
+          finish: finish
+    content/story:
+      converting_state:
+        events:
+          convert: Сделать историю

@@ -7,7 +7,7 @@ class BotTelegram::MessageDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def list_attributes
-      %i[bot text created_at]
+      %i[bot text telegram_chat_id created_at]
     end
   end
 
@@ -21,5 +21,9 @@ class BotTelegram::MessageDecorator < Tramway::Core::ApplicationDecorator
 
   def created_at
     object.created_at.in_time_zone('Samara').strftime('%d.%m.%Y %H:%M:%S')
+  end
+
+  def telegram_chat_id
+    object.chat.telegram_chat_id
   end
 end
