@@ -20,7 +20,7 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
 
   def title
     info = "#{object.comments.count} comments | #{object.comments.where(comment_state: :done).count} comments done"
-    "Задание #{lesson.topic.position}-#{lesson.position}-#{position} | #{info}"
+    "📝 Задание #{lesson.topic.position}-#{lesson.position}-#{position} | #{info}"
   end
 
   def lesson_link
@@ -57,7 +57,7 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_associations
-      [ :comments ]
+      [:comments]
     end
 
     def list_filters
@@ -93,7 +93,7 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
     end
   end
   # :reek:ControlParameter { enabled: true }
-  
+
   def text
     marked_text = object.comments.where.not(phrase: nil).reduce(object.text) do |txt, comment|
       comment_html = if comment.file.present?

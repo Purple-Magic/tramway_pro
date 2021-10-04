@@ -16,12 +16,12 @@ ul.tree
     padding: 0em 1em
     &:hover
       background-color: lightgray
-    &.done
+    &.done, &.verified
       background-color: lightgreen
       &:hover
         background-color: darkgreen
         color: white
-    &.in_progress
+    &.in_progress, &.written
       background-color: orange
       &:hover
         background-color: darkorange
@@ -30,4 +30,9 @@ ul.tree
       background-color: #7fe5f0
       &:hover
         background-color: #0000ff
+        color: white
+    &.uploaded
+      background-color: yellow
+      &:hover
+        background-color: #D2691E
         color: white

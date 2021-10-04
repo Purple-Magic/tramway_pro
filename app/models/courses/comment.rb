@@ -4,8 +4,8 @@ class Courses::Comment < ApplicationRecord
   belongs_to :associated, polymorphic: true
 
   uploader :file, :file
-  
-  enumerize :associated_type, in: [ 'Courses::Video', 'Courses::Task' ]
+
+  enumerize :associated_type, in: ['Courses::Video', 'Courses::Task']
 
   aasm :comment_state do
     state :unviewed, initial: true
