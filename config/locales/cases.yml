@@ -1,0 +1,89 @@
+ru:
+  cases:
+    word:
+      plural: слова
+      genitive: слово
+    it_way/certificate:
+      plural: сертификаты
+      genitive: сертификат
+    tramway/user/user:
+      plural: пользователи
+    project:
+      plural: проекты
+      genitive: проект
+    listai/book:
+      genitive: книгу
+    listai/page:
+      genitive: страницу
+    tramway_dev:
+      plural: Сайт Tramway.pro
+      genitive: Сайт Tramway.pro
+    chat_quest_ulsk/message:
+      plural: Сценарии
+      genitive: сценарий
+    chat_quest_ulsk/game:
+      plural: Игры
+      genitive: игру
+    bot_telegram/user:
+      plural: Telegram-пользователи
+    bot_telegram/message:
+      plural: Сообщения
+    chat_quest_ulsk/chapter:
+      plural: главы
+      genitive: главу
+    podcast:
+      plural: подкасты
+      genitive: подкаст
+    podcast/episode:
+      plural: эпизоды
+      genitive: эпизод
+    bot_telegram/scenario/step:
+      plural: Сценарий бота
+      genitive: пункт сценария
+    bot_telegram/scenario/progress_record:
+      plural: Прогресс пользователей
+    purple_magic:
+      genitive: Purple Magic
+    bot:
+      plural: Боты
+      genitive: бота
+    audited/audit:
+      plural: События
+    estimation/project:
+      plural: проекты
+      genitive: проект
+    estimation/customer:
+      plural: клиенты
+      genitive: клиента
+    estimation/task:
+      genitive: задачу
+    estimation/coefficient:
+      genitive: коэффициент
+      plural: коэффициенты
+    video:
+      genitive: видео
+      plural: видео
+    course:
+      plural: курсы
+      genitive: курс
+    courses/topic:
+      plural: темы
+      genitive: тему
+    courses/lesson:
+      plural: уроки
+      genitive: урок
+    courses/video:
+      plural: сценарий для видео
+      genitive: сценарий для видео
+    courses/comment:
+      plural: комментарии
+      genitive: комментарий
+    time_log:
+      plural: таймлоги
+      genitive: таймлог
+    courses/task:
+      plural: задания
+      genitive: задание
+    content/story:
+      plural: истории
+      genitive: историю

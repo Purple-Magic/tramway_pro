@@ -92,10 +92,6 @@ class Podcast::Episode < ApplicationRecord
     end
   end
 
-  def move_to(temp_output, output)
-    "mv #{temp_output} #{output}"
-  end
-
   def converted_file
     file.path.split('.')[0..].join('.')
   end

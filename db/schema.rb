@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211003182739) do
+ActiveRecord::Schema.define(version: 20211004143518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,18 @@ ActiveRecord::Schema.define(version: 20211003182739) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
+  create_table "content_stories", force: :cascade do |t|
+    t.text "original_file"
+    t.text "story"
+    t.text "converting_state"
+    t.text "state"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "begin_time"
+    t.text "end_time"
   end
 
   create_table "courses", force: :cascade do |t|

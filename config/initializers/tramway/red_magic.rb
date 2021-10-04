@@ -23,7 +23,7 @@ Tramway::Admin.set_available_models(
   Podcast::Highlight,
   Podcast::Music,
   Podcast::Star,
-  Video,
+  Content::Story,
   project: :red_magic
 )
 
@@ -59,8 +59,8 @@ Tramway::Admin.navbar_structure(
     ]
   },
   {
-    videos: [
-      Video
+    content: [
+      Content::Story
     ]
   },
   Tramway::User::User,
