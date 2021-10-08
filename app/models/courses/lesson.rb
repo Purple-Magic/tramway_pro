@@ -6,6 +6,12 @@ class Courses::Lesson < ApplicationRecord
   has_many :videos, -> { order(:position) }, class_name: 'Courses::Video'
   has_many :tasks, -> { order(:position) }, class_name: 'Courses::Task'
 
+  ::Course::TEAMS.each do |team|
+    scope "#{team}_scope".to_sym, lambda { |_user_id|
+      joins(topic: :course).where 'courses.team' => team
+    }
+  end
+
   def progress_status
     done_videos = videos_with(status: :done).count
     done_tasks = tasks_with(status: :uploaded).count
