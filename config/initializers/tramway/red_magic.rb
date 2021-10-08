@@ -53,11 +53,7 @@ Tramway::Admin.navbar_structure(
       Tramway::Landing::Tool
     ]
   },
-  {
-    podcasts: [
-      Podcast
-    ]
-  },
+  Podcast,
   {
     content: [
       Content::Story
