@@ -4,6 +4,12 @@ class Courses::Task < ApplicationRecord
   belongs_to :lesson, class_name: 'Courses::Lesson'
   has_many :comments, -> { order(comment_state: :desc) }, class_name: 'Courses::Comment', as: :associated
 
+  ::Course::TEAMS.each do |team|
+    scope "#{team}_scope".to_sym, lambda { |_user_id|
+      joins(lesson: { topic: :course }).where 'courses.team' => team
+    }
+  end
+
   aasm :preparedness_state do
     state :writing, initial: true
     state :written
