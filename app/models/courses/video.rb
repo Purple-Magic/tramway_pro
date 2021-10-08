@@ -8,6 +8,12 @@ class Courses::Video < ApplicationRecord
                       }, class_name: 'Courses::Comment', as: :associated
   has_many :time_logs, class_name: 'TimeLog', as: :associated
 
+  ::Course::TEAMS.each do |team|
+    scope "#{team}_scope".to_sym, lambda { |_user_id|
+      joins(lesson: { topic: :course }).where 'courses.team' => team
+    }
+  end
+
   aasm :video_state do
     state :ready, initial: true
     state :written

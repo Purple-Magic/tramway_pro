@@ -2,7 +2,7 @@
 
 class Courses::CommentDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
-  decorate_association :video
+  decorate_association :associated
 
   delegate_attributes(
     :id,
@@ -43,7 +43,7 @@ class Courses::CommentDecorator < Tramway::Core::ApplicationDecorator
         begin_time
         end_time
         file
-        video_link
+        associated_link
         text
         state
         created_at
@@ -65,8 +65,8 @@ class Courses::CommentDecorator < Tramway::Core::ApplicationDecorator
   end
   # :reek:ControlParameter { enabled: true }
 
-  def video_link
-    link_to video.title,
-      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.video_id, model: 'Courses::Video')
+  def associated_link
+    link_to associated.title,
+      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.associated_id, model: object.associated_type)
   end
 end
