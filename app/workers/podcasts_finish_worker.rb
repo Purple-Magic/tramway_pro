@@ -11,6 +11,8 @@ class PodcastsFinishWorker < ApplicationWorker
     @directory = episode.prepare_directory
     @directory = @directory.gsub('//', '/')
     finish episode
+  rescue StandardError => error
+    Rails.env.development? ? puts(error) : Raven.capture_exception(error)
   end
 
   private
