@@ -20,3 +20,8 @@ ru:
         bots: Боты
         estimations: Оценки
         content: Контент
+  tramway:
+    admin:
+      sessions:
+        new:
+          title: Авторизуйтесь
