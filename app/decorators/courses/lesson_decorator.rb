@@ -18,7 +18,6 @@ class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
   )
 
   def title
-    raise
     "Урок #{topic.position}-#{object.position}  | #{object.title}"
   end
 
