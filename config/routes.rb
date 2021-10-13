@@ -51,6 +51,12 @@ Rails.application.routes.draw do
     mount Tramway::Page::Engine, at: '/page', as: :gorod_page
   end
 
+  constraints Constraints::DomainConstraint.new(Settings[Rails.env][:benchkiller]) do
+    root to: 'benchkiller/web/welcome#index'
+
+    mount Tramway::Admin::Engine, at: '/admin', as: :benchkiller_admin
+  end
+
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:red_magic]) do
     root to: 'red_magic/web/welcome#index'
 
