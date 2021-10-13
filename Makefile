@@ -17,6 +17,7 @@ configure:
 	echo "127.0.0.1	purple-magic.test" >> /etc/hosts
 	echo "127.0.0.1 gorodsad73.test" >> /etc/hosts
 	echo "127.0.0.1	red-magic.test" >> /etc/hosts
+	echo "127.0.0.1	freedvs.test" >> /etc/hosts
 restore_production:
 	bin/prod get_db $(USER)
 	rails db:seed
