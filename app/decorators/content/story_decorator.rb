@@ -37,9 +37,7 @@ class Content::StoryDecorator < Tramway::Core::ApplicationDecorator
 
   def converting_state_button_color(event)
     case event
-    when :convert
-      :success
-    when :make_done
+    when :convert, :make_done
       :success
     end
   end
