@@ -47,4 +47,11 @@ class Content::Story < ApplicationRecord
     move_command = move_to(video_temp_output, output)
     "#{ffmpeg_render_command} && #{move_command}"
   end
+
+  def options_for_notification
+    {
+      name: story.story.file.filename,
+      file_url: story.story.url
+    }
+  end
 end
