@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Content::Story < ApplicationRecord
   uploader :original_file, :file
   uploader :story, :file

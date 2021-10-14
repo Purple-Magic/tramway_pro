@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ContentStoriesWorker < ApplicationWorker
   sidekiq_options queue: :content
 
@@ -9,7 +11,8 @@ class ContentStoriesWorker < ApplicationWorker
     story = Content::Story.find id
     make story
     chat_id = BotTelegram::Leopold::ChatDecorator::STORY_MAKER_ID
-    send_notification_to_chat chat_id, notification(:story, :converted, name: story.story.file.filename, file_url: story.story.url)
+    send_notification_to_chat chat_id,
+      notification(:story, :converted, name: story.story.file.filename, file_url: story.story.url)
   end
 
   private
@@ -22,7 +25,7 @@ class ContentStoriesWorker < ApplicationWorker
       output: video_temp_output,
       ss: story.begin_time,
       to: story.end_time,
-      video_filter: "\"crop=607:1080:600:0\""
+      video_filter: '"crop=607:1080:600:0"'
     )}"
     move_command = move_to(video_temp_output, output)
     command = "#{render_command} && #{move_command}"
@@ -30,7 +33,7 @@ class ContentStoriesWorker < ApplicationWorker
     system command
     wait_for_file_rendered output, :story
     File.open(output) do |std_file|
-      story.public_send "story=", std_file
+      story.public_send 'story=', std_file
     end
     story.save!
   end

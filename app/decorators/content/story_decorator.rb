@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class Content::StoryDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
   delegate_attributes(
-        :id,
-        :converting_state,
-        :state,
-        :project_id,
-        :created_at,
-        :updated_at,
+    :id,
+    :converting_state,
+    :state,
+    :project_id,
+    :created_at,
+    :updated_at
   )
 
   def title
@@ -28,7 +30,7 @@ class Content::StoryDecorator < Tramway::Core::ApplicationDecorator
     convert_url = path_helpers.red_magic_api_v1_content_story_path(id: id, process: :convert)
     {
       show: [
-        { url: convert_url, method: :patch, inner: -> { 'Convert' }, color: :success },
+        { url: convert_url, method: :patch, inner: -> { 'Convert' }, color: :success }
       ]
     }
   end
@@ -45,28 +47,28 @@ class Content::StoryDecorator < Tramway::Core::ApplicationDecorator
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :original_file,
-        :story,
-        :converting_state,
+      %i[
+        id
+        original_file
+        story
+        converting_state
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :original_file,
-        :story,
-        :converting_state,
-        :state,
-        :project_id,
-        :created_at,
-        :updated_at,
+      %i[
+        id
+        original_file
+        story
+        converting_state
+        state
+        project_id
+        created_at
+        updated_at
       ]
     end
 
