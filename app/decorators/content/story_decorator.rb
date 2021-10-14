@@ -35,12 +35,14 @@ class Content::StoryDecorator < Tramway::Core::ApplicationDecorator
     }
   end
 
+  # :reek:ControlParameter { enabled: false }
   def converting_state_button_color(event)
     case event
     when :convert, :make_done
       :success
     end
   end
+  # :reek:ControlParameter { enabled: true }
 
   class << self
     def collections
