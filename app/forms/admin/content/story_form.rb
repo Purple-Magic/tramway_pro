@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Content::StoryForm < Tramway::Core::ApplicationForm
   properties :original_file, :story, :project_id, :begin_time, :end_time, :converting_state
 

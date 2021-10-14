@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class BotTelegram::Leopold::Command
-  include ::BotTelegram::Leopold::Commands
+class BotTelegram::Benchkiller::Command
+  COMMANDS = %w[start].freeze
 
-  COMMANDS = %w[add_word add_description add_synonims].freeze
+  attr_reader :name, :argument
 
   def initialize(text, slug)
     @name = COMMANDS.map do |com|
@@ -14,9 +14,5 @@ class BotTelegram::Leopold::Command
 
   def valid?
     @name.present?
-  end
-
-  def run
-    public_send @name, @argument
   end
 end
