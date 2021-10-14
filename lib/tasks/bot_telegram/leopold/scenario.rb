@@ -4,30 +4,19 @@ require_relative 'it_way_pro'
 require_relative 'it_way_pro/words_check'
 require_relative 'commands'
 require_relative 'command'
+require_relative '../custom/scenario'
 
-class BotTelegram::Leopold::Scenario
-  include ::BotTelegram::MessagesManager
-  include ::BotTelegram::Info
+class BotTelegram::Leopold::Scenario < ::BotTelegram::Custom::Scenario
   include ::BotTelegram::Leopold::ItWayPro
   include ::BotTelegram::Leopold::ChatsConcern
 
   BOT_ID = 9
 
-  attr_reader :bot, :bot_record, :chat, :message_from_telegram, :message
-
-  def initialize(message_from_telegram, bot, bot_record, chat, message)
-    @bot = bot
-    @message_from_telegram = message_from_telegram
-    @bot_record = bot_record
-    @chat = chat
-    @message = message
-  end
-
   def run
     chat_decorator = BotTelegram::Leopold::ChatDecorator.new chat
     text = message_from_telegram.text
     if chat_decorator.to_answer?
-      command = BotTelegram::Leopold::Command.new text
+      command = BotTelegram::Leopold::Command.new text, bot_record.slug
       if command.valid?
         command.run
       else
