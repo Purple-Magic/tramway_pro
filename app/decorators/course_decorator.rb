@@ -55,7 +55,7 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
       end)
       concat(content_tag(:tr) do
         content_tag :td do
-          #object.video_duration
+          object.video_duration
         end
       end)
     end
