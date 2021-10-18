@@ -38,7 +38,7 @@ class Podcast::Highlight < ApplicationRecord
 
     hour, minutes, seconds = time.split(':')
     highlight_time = DateTime.new(2020, 0o1, 0o1, hour.to_i, minutes.to_i, seconds.to_i)
-    begin_time = (highlight_time - 60.seconds).strftime '%H:%M:%S'
+    begin_time = compute_begin_time highlight_time 
     end_time = (highlight_time + 30.seconds).strftime '%H:%M:%S'
     output = "#{directory}/part-#{index + 1}.mp3"
     build_and_run_command(input: filename, begin_time: begin_time, end_time: end_time, output: output)
@@ -52,5 +52,13 @@ class Podcast::Highlight < ApplicationRecord
     command = write_logs cut_content(**options)
     Rails.logger.info command
     system command
+  end
+
+  def compute_begin_time(highlight_time)
+    if highlight_time > DataTime.new(2020, 1, 1, 0, 1, 0)
+      (highlight_time - 60.seconds).strftime '%H:%M:%S'
+    else
+      ""
+    end
   end
 end
