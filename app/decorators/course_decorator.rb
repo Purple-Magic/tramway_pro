@@ -50,7 +50,13 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
     content_tag :table do
       concat(content_tag(:thead) do
         concat(content_tag(:th) do
+          'Количество видео'
+        end)
+        concat(content_tag(:th) do
           'Продолжительность видео'
+        end)
+        concat(content_tag(:th) do
+          'Количество задач'
         end)
         concat(content_tag(:th) do
           'Продолжительность задач'
@@ -58,7 +64,13 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
       end)
       concat(content_tag(:tr) do
         concat(content_tag(:td) do
+          object.videos.count.to_s
+        end)
+        concat(content_tag(:td) do
           object.video_duration
+        end)
+        concat(content_tag(:td) do
+          object.tasks.count.to_s
         end)
         concat(content_tag(:td) do
           object.tasks_duration
