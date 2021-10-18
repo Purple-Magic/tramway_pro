@@ -13,7 +13,8 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
     :position,
     :created_at,
     :updated_at,
-    :progress_status
+    :progress_status,
+    :duration
   )
 
   class << self
@@ -31,6 +32,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
         id
         lesson_link
         time_logged
+        duration
         text
         created_at
         updated_at
@@ -63,7 +65,7 @@ class Courses::VideoDecorator < Tramway::Core::ApplicationDecorator
 
   def title
     info = "#{object.comments.active.count} comments | #{object.comments.active.where(comment_state: :done).count} comments done"
-    "🎥 Видео #{lesson.topic.position}-#{lesson.position}-#{position} | #{info}"
+    "🎥 Видео #{lesson.topic.position}-#{lesson.position}-#{position} | #{info} | #{object.duration}"
   end
 
   def release_date
