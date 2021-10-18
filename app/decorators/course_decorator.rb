@@ -48,15 +48,16 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
 
   def data
     content_tag :table do
-      content_tag :thead do
+      concat(content_tag(:thead) do
         content_tag :th do
           'Продолжительность видео'
         end
-      end
-      content_tag :tr do
+      end)
+      concat(content_tag(:tr) do
         content_tag :td do
+          #object.video_duration
         end
-      end
+      end)
     end
   end
 
