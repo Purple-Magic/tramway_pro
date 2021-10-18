@@ -31,6 +31,7 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
       %i[
         id
         title
+        data
         tree
         created_at
         updated_at
@@ -42,21 +43,20 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def list_filters
-      # {
-      #   filter_name: {
-      #     type: :select,
-      #     select_collection: filter_collection,
-      #     query: lambda do |list, value|
-      #       list.where some_attribute: value
-      #     end
-      #   },
-      #   date_filter_name: {
-      #     type: :dates,
-      #     query: lambda do |list, begin_date, end_date|
-      #       list.where 'created_at > ? AND created_at < ?', begin_date, end_date
-      #     end
-      #   }
-      # }
+    end
+  end
+
+  def data
+    content_tag :table do
+      content_tag :thead do
+        content_tag :th do
+          'Продолжительность видео'
+        end
+      end
+      content_tag :tr do
+        content_tag :td do
+        end
+      end
     end
   end
 

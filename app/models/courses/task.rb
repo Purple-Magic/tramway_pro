@@ -35,8 +35,8 @@ class Courses::Task < ApplicationRecord
       done: lambda do |all, done|
         all.positive? && all == done
       end,
-      in_progress: lambda do |all, done|
-        all != done
+      in_progress: lambda do |_all, _done|
+        preparedness_state == 'writing'
       end
     }
 
@@ -44,6 +44,6 @@ class Courses::Task < ApplicationRecord
       return condition[0] if condition[1].call(comments.active.count, done_comments)
     end
 
-    preparedness_state.to_sym
+    preparedness_state == 'written' ? :done : preparedness_state.to_sym
   end
 end
