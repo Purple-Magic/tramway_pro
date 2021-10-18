@@ -2,8 +2,9 @@
 
 class Course < ApplicationRecord
   has_many :topics, class_name: 'Courses::Topic', foreign_key: :course_id
-  has_many :lessons, class_name: 'Courses::Lesson', through: :topics
-  has_many :videos, class_name: 'Courses::Video', through: :lessons
+  has_many :lessons, -> { active }, class_name: 'Courses::Lesson', through: :topics
+  has_many :videos, -> { active }, class_name: 'Courses::Video', through: :lessons
+  has_many :tasks, -> { active }, class_name: 'Courses::Task', through: :lessons
 
   TEAMS = %i[slurm skillbox].freeze
 
@@ -17,8 +18,18 @@ class Course < ApplicationRecord
 
   def video_duration
     minutes = videos.active.sum do |video|
-      video.duration.gsub('m', '')
+      video.duration.gsub('m', '').to_i
     end
-    "#{minutes}m"
+    "#{minutes / 60}h #{minutes % 60}m"
+  end
+
+  def tasks_duration
+    min_minutes = tasks.active.sum do |task|
+      task.min_time.gsub('m', '').to_i
+    end
+    max_minutes = tasks.active.sum do |task|
+      task.max_time.gsub('m', '').to_i
+    end
+    "#{min_minutes / 60}h #{min_minutes % 60}m - #{max_minutes / 60}h #{max_minutes % 60}m"
   end
 end
