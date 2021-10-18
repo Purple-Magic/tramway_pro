@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211004143518) do
+ActiveRecord::Schema.define(version: 20211018075513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -242,6 +242,7 @@ ActiveRecord::Schema.define(version: 20211004143518) do
     t.integer "position"
     t.text "video_state"
     t.datetime "release_date"
+    t.text "duration"
   end
 
   create_table "elections_candidates", force: :cascade do |t|
