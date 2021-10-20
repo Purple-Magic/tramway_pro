@@ -31,6 +31,7 @@ module BotTelegram::MessagesManager
   # :reek:FeatureEnvy { enabled: true }
 
   def message_to_user(bot_api, message_obj, chat_id)
+    bot_api = bot_api.api
     case message_obj.class.to_s
     when 'String'
       bot_api.send_message chat_id: chat_id, text: message_obj
@@ -49,7 +50,6 @@ module BotTelegram::MessagesManager
       end
       send_file bot_api, chat_id, message_obj if message_obj.file.path.present?
     when 'BotTelegram::Custom::Message'
-      binding.pry
       bot_api.send_message chat_id: chat_id, **message_obj.options
     end
   rescue StandardError => error

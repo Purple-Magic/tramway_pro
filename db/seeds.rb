@@ -5,6 +5,6 @@ if Rails.env.test? || Rails.env.development?
     project.update! url: project.url.gsub(/\..*$/, '.test')
   end
   Bot.find_each do |bot|
-    bot.update! token: '1468112382:AAEebxrV8YNkcZYOy3ium7aN066LEAe7Mpk'
+    bot.update! token: '2002248998:AAGiZfHKXfhuTl_sC2goM21BzN2ScCuP9hg'
   end
 end
