@@ -39,7 +39,7 @@ class BotTelegram::BotListener
     end
 
     def can_be_processed?(message)
-      message.present? && (message.try(:text) || message.try(:sticker)) && message.try(:data)
+      message.present? && (message.try(:text) || message.try(:sticker) || message.try(:data))
     end
 
     def process(message, bot_record, bot)

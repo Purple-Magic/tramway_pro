@@ -8,9 +8,9 @@ class BotTelegram::Benchkiller::Command
   def initialize(message, slug)
     if message.text.present?
       @name = COMMANDS.map do |com|
-        com if text&.match?(%r{^/#{com}})
+        com if message.text&.match?(%r{^/#{com}})
       end.compact.first
-      @argument = text.present? ? text.gsub(%r{^/#{@name} }, '').gsub(/^@#{slug}/, '') : []
+      @argument = message.text.present? ? message.text.gsub(%r{^/#{@name} }, '').gsub(/^@#{slug}/, '') : []
     elsif message.data.present?
     end
   end

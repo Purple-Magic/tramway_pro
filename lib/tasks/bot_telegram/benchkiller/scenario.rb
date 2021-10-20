@@ -10,7 +10,7 @@ class BotTelegram::Benchkiller::Scenario < ::BotTelegram::Custom::Scenario
   def run
     chat_decorator = BotTelegram::Benchkiller::ChatDecorator.new chat
     if chat_decorator.to_answer?
-      if text.present?
+      if message_from_telegram.text.present?
         command = BotTelegram::Benchkiller::Command.new message_from_telegram, bot_record.slug
         public_send command.name, command.argument if command.valid?
       else
