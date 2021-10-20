@@ -26,7 +26,7 @@ module BotTelegram::MessagesManager
       raise message_obj.class.to_s
     end
   rescue StandardError => error
-    Raven.capture_exception error
+    Airbrake.notify error
   end
   # :reek:FeatureEnvy { enabled: true }
 
@@ -53,7 +53,7 @@ module BotTelegram::MessagesManager
       bot_api.send_message chat_id: chat_id, **message_obj.options
     end
   rescue StandardError => error
-    Raven.capture_exception error
+    Airbrake.notify error
   end
 
   def send_file(bot_api, chat_id, message_obj)
