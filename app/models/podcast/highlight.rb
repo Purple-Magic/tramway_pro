@@ -55,7 +55,7 @@ class Podcast::Highlight < ApplicationRecord
   end
 
   def compute_begin_time(highlight_time)
-    if highlight_time > DataTime.new(2020, 1, 1, 0, 1, 0)
+    if highlight_time > DateTime.new(2020, 1, 1, 0, 1, 0)
       (highlight_time - 60.seconds).strftime '%H:%M:%S'
     else
       ""
