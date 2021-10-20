@@ -5,11 +5,14 @@ class BotTelegram::Benchkiller::Command
 
   attr_reader :name, :argument
 
-  def initialize(text, slug)
-    @name = COMMANDS.map do |com|
-      com if text&.match?(%r{^/#{com}})
-    end.compact.first
-    @argument = text.present? ? text.gsub(%r{^/#{@name} }, '').gsub(/^@#{slug}/, '') : []
+  def initialize(message, slug)
+    if message.text.present?
+      @name = COMMANDS.map do |com|
+        com if text&.match?(%r{^/#{com}})
+      end.compact.first
+      @argument = text.present? ? text.gsub(%r{^/#{@name} }, '').gsub(/^@#{slug}/, '') : []
+    elsif message.data.present?
+    end
   end
 
   def valid?
