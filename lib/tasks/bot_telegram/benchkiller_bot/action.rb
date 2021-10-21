@@ -56,27 +56,51 @@ class BotTelegram::BenchkillerBot::Action
     if portfolio_url.present? && portfolio_url.scan(URI.regexp).present?
       if company.update portfolio_url: portfolio_url
         send_message_to_user "Ссылка на портфолио вашей компании успешно обновлена. Теперь это #{portfolio_url}"
+        user.set_finished_state_for bot: bot_record
       else
         send_message_to_user "К сожалению, не удалось обновить ссылку на портфолио вашей компании. Обратитесь в поддержку сервиса Benchkiller"
+        user.set_finished_state_for bot: bot_record
       end
     else
       send_message_to_user "Вам следует ввести валидную ссылку на портфолио. Ссылка должна содержать http:// или https://"
     end
   end
 
-  def set_company_url
+  def set_company_url(company_url)
+    if company_url.present? && company_url.scan(URI.regexp).present?
+      if company.update company_url: company_url
+        send_message_to_user "Ссылка на сайт вашей компании успешно обновлена. Теперь это #{company_url}"
+        user.set_finished_state_for bot: bot_record
+      else
+        send_message_to_user "К сожалению, не удалось обновить ссылку на сайт вашей компании. Обратитесь в поддержку сервиса Benchkiller"
+        user.set_finished_state_for bot: bot_record
+      end
+    else
+      send_message_to_user "Вам следует ввести валидную ссылку на сайт. Ссылка должна содержать http:// или https://"
+    end
   end
 
-  def set_email
+  def set_email(email)
+    if email.present? && email.scan(URI::MailTo::EMAIL_REGEXP).present?
+      if company.update email: email
+        send_message_to_user "Контактная почта вашей компании успешно обновлена. Теперь это #{email}"
+        user.set_finished_state_for bot: bot_record
+      else
+        send_message_to_user "К сожалению, не удалось обновить контактную почту вашей компании. Обратитесь в поддержку сервиса Benchkiller"
+        user.set_finished_state_for bot: bot_record
+      end
+    else
+      send_message_to_user "Вам следует ввести валидный адрес электронной почты"
+    end
   end
 
-  def set_place
+  def set_place(portfolio_url)
   end
 
-  def set_phone
+  def set_phone(portfolio_url)
   end
 
-  def set_regions_to_cooperate
+  def set_regions_to_cooperate(portfolio_url)
   end
 
   private
