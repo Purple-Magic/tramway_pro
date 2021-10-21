@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BotTelegram::Benchkiller::Command
+class BotTelegram::BenchkillerBot::Command
   COMMANDS = [
     :start,
     :set_company_name,

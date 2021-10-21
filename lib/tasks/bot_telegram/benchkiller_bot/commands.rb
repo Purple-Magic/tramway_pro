@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module BotTelegram::Benchkiller::Commands
+module BotTelegram::BenchkillerBot::Commands
   def start(_text)
     answer = 'Добро пожаловать! Здесь вы можете заполнить данные о своей компании.'
     inline_keyboard = [
@@ -28,6 +28,10 @@ module BotTelegram::Benchkiller::Commands
 
   def set_company_name(argument)
     message = 'Введите название компании'
+
+    BotTelegram::Users::State.create! user_id: user.id,
+      bot_id: bot_record.id,
+      current_state: :waiting_for_set_company_name
 
     message_to_user bot, message, chat.telegram_chat_id
   end

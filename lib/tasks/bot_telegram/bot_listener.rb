@@ -28,13 +28,14 @@ class BotTelegram::BotListener
     end
 
     def custom_bot_action(**options)
-      scenario_class = "BotTelegram::#{options[:bot_record].scenario.camelize.capitalize}::Scenario".constantize
+      scenario_class = "BotTelegram::#{options[:bot_record].scenario.camelize}::Scenario".constantize
       scenario = scenario_class.new(
         options[:message],
         options[:bot],
         options[:bot_record],
         options[:chat],
-        options[:message_object]
+        options[:message_object],
+        options[:user]
       )
       scenario.run
     end
@@ -56,7 +57,7 @@ class BotTelegram::BotListener
       chat = chat_from message.message.chat
       callback_object = log_callback message, user, chat, bot_record
       if bot_record.custom
-        custom_bot_action bot_record: bot_record, bot: bot, chat: chat, message: message, callback_object: callback_object
+        custom_bot_action bot_record: bot_record, bot: bot, chat: chat, message: message, callback_object: callback_object, user: user
       else
         BotTelegram::Scenario.run message, bot, bot_record
       end
@@ -67,7 +68,7 @@ class BotTelegram::BotListener
       chat = chat_from message.chat
       message_object = log_message message, user, chat, bot_record
       if bot_record.custom
-        custom_bot_action bot_record: bot_record, bot: bot, chat: chat, message: message, message_object: message_object
+        custom_bot_action bot_record: bot_record, bot: bot, chat: chat, message: message, message_object: message_object, user: user
       else
         BotTelegram::Scenario.run message, bot, bot_record
       end

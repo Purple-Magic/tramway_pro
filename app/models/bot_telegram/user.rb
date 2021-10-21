@@ -7,6 +7,7 @@ class BotTelegram::User < ApplicationRecord
   has_many :progress_records, class_name: 'BotTelegram::Scenario::ProgressRecord', foreign_key: :bot_telegram_user_id
   has_many :steps, class_name: 'BotTelegram::Scenario::Step', through: :progress_records
   has_many :bots, class_name: 'Bot', through: :steps
+  has_many :states, class_name: 'BotTelegram::Users::State'
 
   search_by :first_name, :username, :last_name
 
@@ -17,5 +18,9 @@ class BotTelegram::User < ApplicationRecord
       records = BotTelegram::Scenario::ProgressRecord.where(bot_telegram_scenario_step_id: step_ids)
       BotTelegram::User.where id: records.map(&:bot_telegram_user_id)
     }
+  end
+
+  def current_state
+    states.last&.current_state
   end
 end

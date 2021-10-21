@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211021001533) do
+ActiveRecord::Schema.define(version: 20211021024600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,32 @@ ActiveRecord::Schema.define(version: 20211021001533) do
     t.index ["created_at"], name: "index_audits_on_created_at"
     t.index ["request_uuid"], name: "index_audits_on_request_uuid"
     t.index ["user_id", "user_type"], name: "user_index"
+  end
+
+  create_table "benchkiller_companies", force: :cascade do |t|
+    t.text "title"
+    t.jsonb "data"
+    t.text "state"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "benchkiller_companies_users", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "user_id"
+    t.text "state"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "benchkiller_users", force: :cascade do |t|
+    t.integer "bot_telegram_user_id"
+    t.text "state"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "bot_telegram_chats", force: :cascade do |t|
@@ -97,6 +123,15 @@ ActiveRecord::Schema.define(version: 20211021001533) do
     t.integer "project_id"
     t.text "state"
     t.text "telegram_id"
+  end
+
+  create_table "bot_telegram_users_states", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "bot_id"
+    t.text "current_state"
+    t.text "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "bots", force: :cascade do |t|
