@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module BotTelegram::BenchkillerBot
-  PROJECT_ID = 11
+  PROJECT_ID = 7
 
   ACTIONS_DATA = {
     set_company_name: {
