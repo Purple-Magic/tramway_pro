@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 require_relative '../custom/scenario'
+require_relative 'chat_decorator'
+require_relative 'command'
+require_relative 'commands'
+require_relative 'action'
 
 class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
   include ::BotTelegram::BenchkillerBot::Commands
