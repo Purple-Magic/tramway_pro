@@ -51,8 +51,6 @@ Tramway::Admin.set_available_models(
 
 Tramway::Admin.set_available_models(
   Bot,
-  BotTelegram::User,
-  BotTelegram::Message,
   Benchkiller::User,
   Benchkiller::Company,
   role: :benchkiller,
