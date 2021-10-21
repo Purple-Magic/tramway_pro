@@ -20,7 +20,15 @@ class BotTelegram::User < ApplicationRecord
     }
   end
 
-  def current_state
-    states.last&.current_state
+  def current_state(bot)
+    states.where(bot_id: bot.id).last&.current_state
+  end
+
+  def set_finished_state_for(bot:)
+    states.create! bot_id: bot.id, current_state: :finished
+  end
+
+  def finished_state_for?(bot:)
+    states.where(bot_id: bot.id).last&.current_state == 'finished'
   end
 end
