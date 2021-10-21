@@ -11,6 +11,10 @@ class Benchkiller::UserDecorator < Tramway::Core::ApplicationDecorator
         :updated_at,
   )
 
+  def title
+    object.telegram_user.username
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
@@ -19,10 +23,6 @@ class Benchkiller::UserDecorator < Tramway::Core::ApplicationDecorator
 
     def list_attributes
       [
-        :id,
-        :bot_telegram_user_id,
-        :state,
-        :project_id,
       ]
     end
 
