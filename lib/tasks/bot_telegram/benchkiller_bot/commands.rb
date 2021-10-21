@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module BotTelegram::BenchkillerBot::Commands
+  include BotTelegram::BenchkillerBot
+
   def start(_text)
     answer = 'Добро пожаловать! Здесь вы можете заполнить данные о своей компании.'
     inline_keyboard = [
@@ -42,6 +44,9 @@ module BotTelegram::BenchkillerBot::Commands
   end
 
   def get_company_card(argument)
+    card = ::Benchkiller::CompanyDecorator.decorate(company(user)).bot_card
+
+    message_to_user bot, card, chat.telegram_chat_id
   end
 end
 

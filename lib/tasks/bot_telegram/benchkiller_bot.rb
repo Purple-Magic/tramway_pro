@@ -33,4 +33,12 @@ module BotTelegram::BenchkillerBot
       state: :waiting_for_set_regions_to_cooperate
     }
   }
+
+  def benchkiller_user(telegram_user)
+    @benchkiller_user ||= ::Benchkiller::User.active.find_by bot_telegram_user_id: telegram_user.id
+  end
+
+  def company(telegram_user)
+    benchkiller_user(telegram_user)&.companies.first
+  end
 end

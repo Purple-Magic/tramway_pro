@@ -2,6 +2,7 @@ require 'uri'
 
 class BotTelegram::BenchkillerBot::Action
   include ::BotTelegram::MessagesManager
+  include ::BotTelegram::BenchkillerBot
 
   attr_reader :message, :user, :chat, :bot, :bot_record
 
@@ -27,11 +28,11 @@ class BotTelegram::BenchkillerBot::Action
 
   def set_company_name(company_name)
     if company_name.present?
-      unless benchkiller_user.present?
+      unless benchkiller_user(user).present?
         ::Benchkiller::User.create! bot_telegram_user_id: user.id,
           project_id: BotTelegram::BenchkillerBot::PROJECT_ID
       end
-      company = benchkiller_user.companies.first
+      company = benchkiller_user(user).companies.first
       if company.present?
         old_company_name = company.title
         if company.update title: company_name
@@ -43,7 +44,7 @@ class BotTelegram::BenchkillerBot::Action
       else
         company = ::Benchkiller::Company.create! title: company_name,
           project_id: BotTelegram::BenchkillerBot::PROJECT_ID
-        company.companies_users.create! user_id: benchkiller_user.id
+        company.companies_users.create! user_id: benchkiller_user(user).id
         send_message_to_user "Ваша компания #{company_name} успешно создана на Benchkiller"
         user.set_finished_state_for bot: bot_record
       end
@@ -54,7 +55,7 @@ class BotTelegram::BenchkillerBot::Action
 
   def set_portfolio_url(portfolio_url)
     if portfolio_url.present? && portfolio_url.scan(URI.regexp).present?
-      if company.update portfolio_url: portfolio_url
+      if company(user).update portfolio_url: portfolio_url
         send_message_to_user "Ссылка на портфолио вашей компании успешно обновлена. Теперь это #{portfolio_url}"
         user.set_finished_state_for bot: bot_record
       else
@@ -68,7 +69,7 @@ class BotTelegram::BenchkillerBot::Action
 
   def set_company_url(company_url)
     if company_url.present? && company_url.scan(URI.regexp).present?
-      if company.update company_url: company_url
+      if company(user).update company_url: company_url
         send_message_to_user "Ссылка на сайт вашей компании успешно обновлена. Теперь это #{company_url}"
         user.set_finished_state_for bot: bot_record
       else
@@ -82,7 +83,7 @@ class BotTelegram::BenchkillerBot::Action
 
   def set_email(email)
     if email.present? && email.scan(URI::MailTo::EMAIL_REGEXP).present?
-      if company.update email: email
+      if company(user).update email: email
         send_message_to_user "Контактная почта вашей компании успешно обновлена. Теперь это #{email}"
         user.set_finished_state_for bot: bot_record
       else
@@ -96,7 +97,7 @@ class BotTelegram::BenchkillerBot::Action
 
   def set_place(place)
     if place.present?
-      if company.update place: place
+      if company(user).update place: place
         send_message_to_user "Место расположения вашей команды успешно обновлено. Теперь это #{place}"
         user.set_finished_state_for bot: bot_record
       else
@@ -110,7 +111,7 @@ class BotTelegram::BenchkillerBot::Action
 
   def set_phone(phone)
     if phone.present?
-      if company.update phone: phone
+      if company(user).update phone: phone
         send_message_to_user "Контактный телефон вашей компании успешно обновлен. Теперь это #{phone}"
         user.set_finished_state_for bot: bot_record
       else
@@ -124,7 +125,7 @@ class BotTelegram::BenchkillerBot::Action
 
   def set_regions_to_cooperate(regions_to_cooperate)
     if regions_to_cooperate.present?
-      if company.update regions_to_cooperate: regions_to_cooperate
+      if company(user).update regions_to_cooperate: regions_to_cooperate
         send_message_to_user "Регионы сотрудничества вашей компании успешно обновлены. Теперь это #{regions_to_cooperate}"
         user.set_finished_state_for bot: bot_record
       else
@@ -137,14 +138,6 @@ class BotTelegram::BenchkillerBot::Action
   end
 
   private
-
-  def benchkiller_user
-    @benchkiller_user ||= ::Benchkiller::User.active.find_by bot_telegram_user_id: user.id
-  end
-
-  def company
-    benchkiller_user&.companies.first
-  end
 
   def send_message_to_user(text)
     message_to_chat bot, chat, text
