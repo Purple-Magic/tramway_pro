@@ -10,12 +10,8 @@ class BotTelegram::Benchkiller::Scenario < ::BotTelegram::Custom::Scenario
   def run
     chat_decorator = BotTelegram::Benchkiller::ChatDecorator.new chat
     if chat_decorator.to_answer?
-      if message_from_telegram.text.present?
-        command = BotTelegram::Benchkiller::Command.new message_from_telegram, bot_record.slug
-        public_send command.name, command.argument if command.valid?
-      else
-        command = BotTelegram::Benchkiller::Commdn
-      end
+      command = BotTelegram::Benchkiller::Command.new message_from_telegram, bot_record.slug
+      public_send command.name, command.argument if command.valid?
     else
       chat_id = chat.telegram_chat_id.to_s
       message_to_chat bot, chat, bot_record.options['not_my_group'] unless exceptions.values.include? chat_id

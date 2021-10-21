@@ -9,6 +9,7 @@ class BotTelegram::BotListener
   class << self
     include BotTelegram::Info
     include BotTelegram::MessagesManager
+    include BotTelegram::CallbacksManager
 
     def perform(id)
       bot_record = Bot.find id
@@ -42,7 +43,26 @@ class BotTelegram::BotListener
       message.present? && (message.try(:text) || message.try(:sticker) || message.try(:data))
     end
 
-    def process(message, bot_record, bot)
+    def process(object, bot_record, bot)
+      if object.is_a? Telegram::Bot::Types::CallbackQuery
+        process_callback object, bot_record, bot
+      else
+        process_message object, bot_record, bot
+      end
+    end
+
+    def process_callback(message, bot_record, bot)
+      user = user_from message.from
+      chat = chat_from message.message.chat
+      callback_object = log_callback message, user, chat, bot_record
+      if bot_record.custom
+        custom_bot_action bot_record: bot_record, bot: bot, chat: chat, message: message, callback_object: callback_object
+      else
+        BotTelegram::Scenario.run message, bot, bot_record
+      end
+    end
+
+    def process_message(message, bot_record, bot)
       user = user_from message.from
       chat = chat_from message.chat
       message_object = log_message message, user, chat, bot_record

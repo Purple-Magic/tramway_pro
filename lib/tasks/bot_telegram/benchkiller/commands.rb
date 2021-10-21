@@ -5,23 +5,29 @@ module BotTelegram::Benchkiller::Commands
     answer = 'Добро пожаловать! Здесь вы можете заполнить данные о своей компании.'
     inline_keyboard = [
       [
-        ['Изменить название компании', { answer: 'Введите название компании:' }],
-        ['Изменить адрес сайта', { answer: 'Введите ссылку на сайт:' }]
+        ['Изменить название компании', { data: { command: :set_company_name } }],
+        ['Изменить адрес сайта', { data: { command: :set_company_url } }]
       ],
       [
-        ['Изменить ссылку на портфолио', { answer: 'Введите ссылку на портфолио:' }],
-        ['Изменить почту', { answer: 'Введите контактную почту:' }]
+        ['Изменить ссылку на портфолио', { data: { command: :set_portfolio_url } }],
+        ['Изменить почту', { data: { command: :set_email } }]
       ],
       [
-        ['Изменить телефон', { answer: 'Введите контактный телефон:' }],
-        ['Расположение вашей команды', { answer: 'Введите регион расположения:' }]
+        ['Изменить телефон', { data: { command: :set_phone } }],
+        ['Расположение вашей команды', { data: { command: :set_place } }]
       ],
       [
-        ['Регионы сотрудничества', { answer: 'Введите регионы для работы:' }],
-        ['Посмотреть карточку компании', { answer: 'Тест' }]
+        ['Регионы сотрудничества', { data: { command: :set_regions_to_cooperate } }],
+        ['Посмотреть карточку компании', { data: { command: :get_company_card } }]
       ]
     ]
     message = ::BotTelegram::Custom::Message.new text: answer, inline_keyboard: inline_keyboard
+
+    message_to_user bot, message, chat.telegram_chat_id
+  end
+
+  def set_company_name
+    message = 'Введите название компании'
 
     message_to_user bot, message, chat.telegram_chat_id
   end
