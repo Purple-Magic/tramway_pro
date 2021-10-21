@@ -29,6 +29,6 @@ class BotTelegram::User < ApplicationRecord
   end
 
   def finished_state_for?(bot:)
-    states.where(bot_id: bot.id).last&.current_state == 'finished'
+    states.empty? || states.where(bot_id: bot.id).last&.current_state == 'finished'
   end
 end
