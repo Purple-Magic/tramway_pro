@@ -18,6 +18,8 @@ Tramway::Admin.set_available_models(
   Estimation::Task,
   Estimation::Customer,
   Estimation::Coefficient,
+  Benchkiller::User,
+  Benchkiller::Company,
   project: :purple_magic
 )
 
@@ -47,6 +49,16 @@ Tramway::Admin.set_available_models(
   project: :purple_magic
 )
 
+Tramway::Admin.set_available_models(
+  Bot,
+  BotTelegram::User,
+  BotTelegram::Message,
+  Benchkiller::User,
+  Benchkiller::Company,
+  role: :night,
+  project: :purple_magic
+)
+
 Tramway::Admin.navbar_structure(
   PurpleMagic,
   {
@@ -65,7 +77,10 @@ Tramway::Admin.navbar_structure(
     ]
   },
   {
-    rsm_project_office_bot: []
+    benchkiller: [
+      Benchkiller::User,
+      Benchkiller::Company
+    ]
   },
   Audited::Audit,
   Tramway::User::User,
