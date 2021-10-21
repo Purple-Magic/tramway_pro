@@ -94,13 +94,46 @@ class BotTelegram::BenchkillerBot::Action
     end
   end
 
-  def set_place(portfolio_url)
+  def set_place(place)
+    if place.present?
+      if company.update place: place
+        send_message_to_user "Место расположения вашей команды успешно обновлено. Теперь это #{place}"
+        user.set_finished_state_for bot: bot_record
+      else
+        send_message_to_user "К сожалению, не удалось обновить место расположения вашей команды. Обратитесь в поддержку сервиса Benchkiller"
+        user.set_finished_state_for bot: bot_record
+      end
+    else
+      send_message_to_user "Вам следует ввести место расположение вашей команды" 
+    end
   end
 
-  def set_phone(portfolio_url)
+  def set_phone(phone)
+    if phone.present?
+      if company.update phone: phone
+        send_message_to_user "Контактный телефон вашей компании успешно обновлен. Теперь это #{phone}"
+        user.set_finished_state_for bot: bot_record
+      else
+        send_message_to_user "К сожалению, не удалось обновить контактный телефон вашей компании. Обратитесь в поддержку сервиса Benchkiller"
+        user.set_finished_state_for bot: bot_record
+      end
+    else
+      send_message_to_user "Вам следует ввести валидный контактный телефон вашей компании" 
+    end
   end
 
-  def set_regions_to_cooperate(portfolio_url)
+  def set_regions_to_cooperate(regions_to_cooperate)
+    if regions_to_cooperate.present?
+      if company.update regions_to_cooperate: regions_to_cooperate
+        send_message_to_user "Регионы сотрудничества вашей компании успешно обновлены. Теперь это #{regions_to_cooperate}"
+        user.set_finished_state_for bot: bot_record
+      else
+        send_message_to_user "К сожалению, не удалось обновить Регионы сотрудничества вашей компании. Обратитесь в поддержку сервиса Benchkiller"
+        user.set_finished_state_for bot: bot_record
+      end
+    else
+      send_message_to_user "Вам следует ввести регионы сотрудничества вашей компании"
+    end
   end
 
   private
