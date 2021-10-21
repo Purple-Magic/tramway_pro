@@ -55,7 +55,7 @@ Tramway::Admin.set_available_models(
   BotTelegram::Message,
   Benchkiller::User,
   Benchkiller::Company,
-  role: :night,
+  role: :benchkiller,
   project: :purple_magic
 )
 
