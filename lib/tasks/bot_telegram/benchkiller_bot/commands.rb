@@ -26,50 +26,18 @@ module BotTelegram::BenchkillerBot::Commands
     message_to_user bot, message, chat.telegram_chat_id
   end
 
-  SET_ACTIONS_DATA = {
-    set_company_name: {
-      message: 'Введите название компании',
-      state: :waiting_for_set_company_name
-    },
-    set_portfolio_url: {
-      message: 'Введите ссылку на портфолио',
-      state: :waiting_for_set_portfolio_url
-    },
-    set_company_url: {
-      message: 'Введите адрес сайта компании',
-      state: :waiting_for_set_company_url
-    },
-    set_email: {
-      message: 'Введите контактный email',
-      state: :waiting_for_set_email
-    },
-    set_place: {
-      message: 'Введите расположение вашей команды',
-      state: :waiting_for_set_place
-    },
-    set_phone: {
-      message: 'Введите контактный телефон',
-      state: :waiting_for_set_phone
-    },
-    set_regions_to_cooperate: {
-      message: 'Введите регионы сотрудничества',
-      state: :waiting_for_set_regions_to_cooperate
-    }
-  }
 
-  def common_set_action(action, argument)
-    message = SET_ACTIONS_DATA[action][:message]
-
+  def common_set_action(action, state, message, argument)
     BotTelegram::Users::State.create! user_id: user.id,
       bot_id: bot_record.id,
-      current_state: SET_ACTIONS_DATA[action][:state]
+      current_state: state
 
     message_to_user bot, message, chat.telegram_chat_id
   end
 
-  ::BotTelegram::BenchkillerBot::Action::STATES_ACTIONS_RELATION.values.each do |action|
-    define_method(action) do |argument|
-      common_set_action action, argument
+  BotTelegram::BenchkillerBot::ACTIONS_DATA.each do |action|
+    define_method(action[0]) do |argument|
+      common_set_action action[0], action[1][:state], action[1][:message], argument
     end
   end
 
