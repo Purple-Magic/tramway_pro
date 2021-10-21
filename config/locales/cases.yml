@@ -87,3 +87,9 @@ ru:
     content/story:
       plural: истории
       genitive: историю
+    benchkiller/company:
+      plural: компании
+      genitive: компанию
+    benchkiller/user:
+      plural: пользователи
+      genitive: пользователя

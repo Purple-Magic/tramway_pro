@@ -16,6 +16,8 @@ ru:
       video: Видео
       course: Курс
       content/story: История
+      benchkiller/company: Компания
+      benchkiller/user: Пользователи
     attributes:
       word:
         main: Определение
