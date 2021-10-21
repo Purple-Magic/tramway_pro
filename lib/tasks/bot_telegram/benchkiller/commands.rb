@@ -26,9 +26,31 @@ module BotTelegram::Benchkiller::Commands
     message_to_user bot, message, chat.telegram_chat_id
   end
 
-  def set_company_name
+  def set_company_name(argument)
     message = 'Введите название компании'
 
     message_to_user bot, message, chat.telegram_chat_id
   end
+
+  def set_portfolio_url(argument)
+  end
+
+  def set_company_url(argument)
+  end
+
+  def set_email(argument)
+  end
+  
+  def set_place(argument)
+  end
+
+  def set_phone(argument)
+  end
+
+  def set_regions_to_cooperate(argument)
+  end
+
+  def get_company_card(argument)
+  end
 end
+

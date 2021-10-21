@@ -1,7 +1,17 @@
 # frozen_string_literal: true
 
 class BotTelegram::Benchkiller::Command
-  COMMANDS = %w[start].freeze
+  COMMANDS = [
+    :start,
+    :set_company_name,
+    :set_company_url,
+    :set_portfolio_url,
+    :set_email,
+    :set_phone,
+    :set_place,
+    :set_regions_to_cooperate,
+    :get_company_card
+  ]
 
   attr_reader :name, :argument
 
@@ -9,7 +19,7 @@ class BotTelegram::Benchkiller::Command
     if message.is_a? Telegram::Bot::Types::CallbackQuery
       data = JSON.parse(message.data).with_indifferent_access
       @name = COMMANDS.select do |com|
-        data[:command].present?
+        data[:command] == com.to_s
       end.first
       @argument = data[:argument]
     else
