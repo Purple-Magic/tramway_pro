@@ -12,7 +12,7 @@ class BotTelegram::Custom::Message
 
   def build_options(button)
     button_options = { text: button[0] }
-    button_options.merge! switch_inline_query_current_chat: button[1][:answer] if button[1][:answer].present?
+    button_options.merge! callback_data: button[1][:data].to_json if button[1][:data].present?
     Telegram::Bot::Types::InlineKeyboardButton.new(**button_options)
   end
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BotTelegram::Benchkiller::ChatDecorator
+class BotTelegram::BenchkillerBot::ChatDecorator
   def initialize(chat)
     @chat = chat
   end
