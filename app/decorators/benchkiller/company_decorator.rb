@@ -36,6 +36,21 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
     TXT
   end
 
+  def data_view
+    content_tag(:table) do
+      data&.each do |pair|
+        concat(content_tag(:tr) do
+          concat(content_tag(:td) do
+            pair[0]
+          end)
+          concat(content_tag(:td) do
+            pair[1]
+          end)
+        end)
+      end
+    end
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
@@ -46,8 +61,7 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
       [
         :id,
         :title,
-        :data,
-        :state,
+        :data_view
       ]
     end
 
@@ -55,9 +69,7 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
       [
         :id,
         :title,
-        :data,
-        :state,
-        :project_id,
+        :data_view,
         :created_at,
         :updated_at,
       ]
