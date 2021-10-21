@@ -4,7 +4,7 @@ require 'telegram/bot'
 require_relative 'scenario'
 require_relative 'leopold'
 require_relative 'leopold/scenario'
-require_relative 'benchkiller/scenario'
+require_relative 'benchkiller_bot/scenario'
 
 class BotTelegram::BotListener
   class << self
