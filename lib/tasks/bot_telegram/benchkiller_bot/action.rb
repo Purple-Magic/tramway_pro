@@ -28,7 +28,7 @@ class BotTelegram::BenchkillerBot::Action
   def set_company_name(company_name)
     if company_name.present?
       unless benchkiller_user.present?
-        benchkiller_user = ::Benchkiller::User.create! bot_telegram_user_id: user.id,
+        ::Benchkiller::User.create! bot_telegram_user_id: user.id,
           project_id: BotTelegram::BenchkillerBot::PROJECT_ID
       end
       company = benchkiller_user.companies.first
@@ -53,14 +53,14 @@ class BotTelegram::BenchkillerBot::Action
   end
 
   def set_portfolio_url(portfolio_url)
-    if portfolio_url.present? && portfolio_url.scan(URI.regexp)
+    if portfolio_url.present? && portfolio_url.scan(URI.regexp).present?
       if company.update portfolio_url: portfolio_url
-        send_message_to_user "Ссылка на портфолио вашей компании успешно обновлена"
+        send_message_to_user "Ссылка на портфолио вашей компании успешно обновлена. Теперь это #{portfolio_url}"
       else
         send_message_to_user "К сожалению, не удалось обновить ссылку на портфолио вашей компании. Обратитесь в поддержку сервиса Benchkiller"
       end
     else
-      send_message_to_user "Вам следует ввести валидную ссылку на портфолио"
+      send_message_to_user "Вам следует ввести валидную ссылку на портфолио. Ссылка должна содержать http:// или https://"
     end
   end
 
