@@ -39,6 +39,6 @@ module BotTelegram::BenchkillerBot
   end
 
   def company(telegram_user)
-    benchkiller_user(telegram_user)&.companies.first
+    benchkiller_user(telegram_user)&.companies&.first
   end
 end
