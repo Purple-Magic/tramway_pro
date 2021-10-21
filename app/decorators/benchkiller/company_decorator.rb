@@ -36,20 +36,36 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
     TXT
   end
 
+
   def data_view
     content_tag(:table) do
       data&.each do |pair|
         concat(content_tag(:tr) do
           concat(content_tag(:td) do
-            pair[0]
+            object.class.human_attribute_name pair[0]
           end)
           concat(content_tag(:td) do
-            pair[1]
+            data_view_mode pair
           end)
         end)
       end
     end
   end
+
+  private
+
+  def data_view_mode(pair)
+    if pair[0].in? ['email']
+      mail_to pair[1]
+    elsif pair[0].in? ['phone']
+      link_to pair[1], "tel:#{pair[1]}"
+    elsif pair[0].in? ['company_url', 'portfolio_url']
+      link_to pair[1], pair[1], target: '_blank'
+    else
+      pair[1]
+    end
+  end
+
 
   class << self
     def collections
