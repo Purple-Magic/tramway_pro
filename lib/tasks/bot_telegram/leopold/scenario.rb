@@ -16,7 +16,7 @@ class BotTelegram::Leopold::Scenario < ::BotTelegram::Custom::Scenario
     chat_decorator = BotTelegram::Leopold::ChatDecorator.new chat
     text = message_from_telegram.text
     if chat_decorator.to_answer?
-      command = BotTelegram::Leopold::Command.new text, bot_record.slug
+      command = BotTelegram::Leopold::Command.new text, bot_record.slug, bot
       if command.valid?
         command.run
       else
