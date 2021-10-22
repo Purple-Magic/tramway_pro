@@ -25,13 +25,13 @@ module BotTelegram::Leopold::Notify
     bot = ::Telegram::Bot::Client.new bot_record.token
     chat = ::BotTelegram::Chat.find_by "options ->> 'username' = '#{username}'"
     bot_message = ::BotTelegram::Leopold::Message.new file
-    send_file bot, chat.telegram_chat_id, bot_message
+    send_file bot.api, chat.telegram_chat_id, bot_message
   end
 
   def send_file_to_chat(chat_id, file)
     bot_record = Bot.find BotTelegram::Leopold::Scenario::BOT_ID
     bot = ::Telegram::Bot::Client.new bot_record.token
     bot_message = ::BotTelegram::Leopold::Message.new file
-    send_file bot, chat_id, bot_message.file
+    send_file bot.api, chat_id, bot_message.file
   end
 end
