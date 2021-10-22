@@ -5,7 +5,10 @@ class BotTelegram::Leopold::Command
 
   COMMANDS = %w[add_word add_description add_synonims].freeze
 
-  def initialize(text, slug)
+  attr_reader :name, :argument, :bot
+
+  def initialize(text, slug, bot)
+    @bot = bot
     @name = COMMANDS.map do |com|
       com if text&.match?(%r{^/#{com}})
     end.compact.first
@@ -17,6 +20,6 @@ class BotTelegram::Leopold::Command
   end
 
   def run
-    public_send @name, @argument
+    public_send name, argument
   end
 end
