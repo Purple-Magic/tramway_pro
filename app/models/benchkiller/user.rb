@@ -4,4 +4,6 @@ class Benchkiller::User < ApplicationRecord
   has_many :companies, through: :companies_users
 
   scope :benchkiller_scope, lambda { |_user| all }
+
+  delegate :username, to: :telegram_user
 end
