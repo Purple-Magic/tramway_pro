@@ -1,6 +1,6 @@
 class Benchkiller::Company < ApplicationRecord
   has_many :companies_users, class_name: 'Benchkiller::CompaniesUser'
-  has_many :users, through: :companies_users
+  has_many :users, through: :companies_users, class_name: 'Benchkiller::User'
 
   store_accessor :data, :portfolio_url
   store_accessor :data, :company_url

@@ -36,6 +36,20 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
     TXT
   end
 
+  def users
+    content_tag(:table) do
+      object.users.each do |user|
+        concat(content_tag(:tr) do
+          concat(content_tag(:td) do
+            concat(user.id)
+          end)
+          concat(content_tag(:td) do
+            link_to user.username, Tramway::Admin::Engine.routes.url_helpers.record_path(user.id, model: user.class)
+          end)
+        end)
+      end
+    end
+  end
 
   def data_view
     content_tag(:table) do
@@ -88,12 +102,12 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
         :data_view,
         :created_at,
         :updated_at,
+        :users
       ]
     end
 
     def show_associations
-      # Associations you want to show in admin dashboard
-      # [ :messages ]
+      [  ]
     end
 
     def list_filters
