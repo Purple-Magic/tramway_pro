@@ -12,7 +12,7 @@ class Benchkiller::UserDecorator < Tramway::Core::ApplicationDecorator
   )
 
   def title
-    object.telegram_user.username
+    object.telegram_user.username || "#{object.telegram_user.first_name} #{object.telegram_user.last_name}"
   end
 
   class << self
