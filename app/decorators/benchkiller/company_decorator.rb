@@ -36,6 +36,10 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
     TXT
   end
 
+  def review_state
+    state_machine_view object, :review_state
+  end
+
   def users
     content_tag(:table) do
       object.users.each do |user|
@@ -72,6 +76,8 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
       :success
     when :decline
       :danger
+    when :return_to_unviewed
+      :warning
     end
   end
 
@@ -98,7 +104,8 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
 
     def list_attributes
       [
-        :data_view
+        :data_view,
+        :review_state
       ]
     end
 
@@ -114,7 +121,7 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_associations
-      [  ]
+      [ ]
     end
 
     def list_filters

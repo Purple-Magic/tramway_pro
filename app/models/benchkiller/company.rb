@@ -23,5 +23,9 @@ class Benchkiller::Company < ApplicationRecord
     event :decline do
       transitions from: :unviewed, to: :declined
     end
+
+    event :return_to_unviewed do
+      transitions from: [ :approved, :declined ], to: :unviewed
+    end
   end
 end

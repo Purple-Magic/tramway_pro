@@ -61,6 +61,11 @@ ru:
           convert: Сделать историю
     benchkiller/company:
       review_state:
+        states:
+          unviewed: Непросмотренная
+          approved: Подтверждённая
+          declined: Отклонённая
         events:
           approve: Подтвердить
           decline: Отклонить
+          return_to_unviewed: Отметить, как непроверенный
