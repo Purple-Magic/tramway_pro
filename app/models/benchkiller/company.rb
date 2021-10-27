@@ -10,4 +10,18 @@ class Benchkiller::Company < ApplicationRecord
   store_accessor :data, :regions_to_cooperate
 
   scope :benchkiller_scope, lambda { |_user| all }
+
+  aasm :review_state do
+    state :unviewed, initial: true
+    state :approved
+    state :declined
+
+    event :approve do
+      transitions from: :unviewed, to: :approved
+    end
+
+    event :decline do
+      transitions from: :unviewed, to: :declined
+    end
+  end
 end

@@ -59,3 +59,8 @@ ru:
       converting_state:
         events:
           convert: Сделать историю
+    benchkiller/company:
+      review_state:
+        events:
+          approve: Подтвердить
+          decline: Отклонить

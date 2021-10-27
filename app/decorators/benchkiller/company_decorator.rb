@@ -66,6 +66,15 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
     end
   end
 
+  def review_state_button_color(event)
+    case event
+    when :approve
+      :success
+    when :decline
+      :danger
+    end
+  end
+
   private
 
   def data_view_mode(pair)
@@ -74,7 +83,7 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
     elsif pair[0].in? ['phone']
       link_to pair[1], "tel:#{pair[1]}"
     elsif pair[0].in? ['company_url', 'portfolio_url']
-      link_to pair[1], pair[1], target: '_blank'
+      link_to pair[1].truncate(60), pair[1], target: '_blank'
     else
       pair[1]
     end
@@ -89,8 +98,6 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
 
     def list_attributes
       [
-        :id,
-        :title,
         :data_view
       ]
     end
