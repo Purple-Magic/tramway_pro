@@ -5,6 +5,7 @@ class BotTelegram::Scenario::StepDecorator < Tramway::Core::ApplicationDecorator
     def show_attributes
       %i[
         title
+        bot_link
         text
         options
         reply_markup
@@ -35,6 +36,10 @@ class BotTelegram::Scenario::StepDecorator < Tramway::Core::ApplicationDecorator
 
   def reply_markup
     yaml_view object.reply_markup
+  end
+
+  def bot_link
+    link_to object.bot.name, Tramway::Admin::Engine.routes.url_helpers.record_path(object.bot.id, model: Bot)
   end
 
   def actions
