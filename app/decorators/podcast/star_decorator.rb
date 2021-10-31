@@ -13,7 +13,14 @@ class Podcast::StarDecorator < Tramway::Core::ApplicationDecorator
     :updated_at
   )
 
+  decorate_associations :podcast
+
   alias title nickname
+
+  def podcast_link
+    link_to podcast.title,
+      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.podcast_id, model: 'Podcast')
+  end
 
   class << self
     def collections
@@ -32,7 +39,7 @@ class Podcast::StarDecorator < Tramway::Core::ApplicationDecorator
 
     def show_attributes
       %i[
-        id
+        podcast_link
         nickname
         link
         podcast_id
