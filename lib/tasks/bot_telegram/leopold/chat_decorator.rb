@@ -4,6 +4,7 @@ class BotTelegram::Leopold::ChatDecorator
   PROJECT_CHAT_QUEST_ID = '-498758668'
   IT_WAY_PODCAST_ID = '-456783051'
   STORY_MAKER_ID = '-559667872'
+  DO_RE_MISSII = '-516113848'
 
   include ::BotTelegram::Leopold::ChatsConcern
 

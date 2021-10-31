@@ -21,7 +21,7 @@ class PodcastsRenderVideoWorker < ApplicationWorker
   def render_video(episode)
     return if episode.full_video.present?
 
-    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
+    chat_id = BotTelegram::Leopold::ChatDecorator::DO_RE_MISSII
     render_full_video episode
     send_notification_to_chat chat_id, notification(:video, :finished, file_url: episode.full_video.url)
   end
