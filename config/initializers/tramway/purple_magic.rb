@@ -80,6 +80,12 @@ Tramway::Admin.navbar_structure(
       Benchkiller::Company
     ]
   },
+  {
+    estimations: [
+      Estimation::Customer,
+      Estimation::Project
+    ]
+  },
   Audited::Audit,
   Tramway::User::User,
   project: :purple_magic
