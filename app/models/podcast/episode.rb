@@ -67,6 +67,15 @@ class Podcast::Episode < ApplicationRecord
         PodcastsFinishWorker.perform_async id
       end
     end
+
+    event :render_video do
+      transitions to: :finishing
+
+      after do
+        save!
+        PodcastsRenderVideoWorker.new.perform id
+      end
+    end
   end
 
   include Ffmpeg::CommandBuilder

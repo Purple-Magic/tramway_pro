@@ -107,6 +107,15 @@ ru:
         feed_url: Адрес главной RSS-ленты
         default_image: Стандартная картинка
         podcast_type: Тип подкаста
+        musics: Сэмплы
+        episodes: Эпизоды
+        stars: Ведущие
+      podcast/episode:
+        number: Номер эпизода
+        file: Исходный файл
+        ready_file: Готовый файл
+        cover: Обложка выпуска
+        podcast: Подкаст
   enumerize:
     podcast:
       podcast_type:
