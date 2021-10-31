@@ -93,3 +93,6 @@ ru:
     benchkiller/user:
       plural: пользователи
       genitive: пользователя
+    podcast/star:
+      plural: ведущие
+      genitive: ведущего 
