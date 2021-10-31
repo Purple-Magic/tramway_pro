@@ -102,3 +102,15 @@ ru:
         portfolio_url: Ссылка на портфолио
         regions_to_cooperate: Регионы сотрудничества
         review_state: Статус отсмотра
+      podcast:
+        title: Название подкаста
+        feed_url: Адрес главной RSS-ленты
+        default_image: Стандартная картинка
+        podcast_type: Тип подкаста
+  enumerize:
+    podcast:
+      podcast_type:
+        sample: Монтируется с сэмплом на фоне
+        without_music: Монтируется без музыки
+        different_music: С несколькими сэмплами
+        handmade: Монтируется вовне
