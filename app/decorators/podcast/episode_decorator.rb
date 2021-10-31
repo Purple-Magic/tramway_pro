@@ -72,17 +72,29 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   def additional_buttons
     path_helpers = Rails.application.routes.url_helpers
-    finish_record_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish_record)
-    trailer_get_ready_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :trailer_get_ready)
-    finish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish)
 
-    {
-      show: [
-        { url: finish_record_url, method: :patch, inner: -> { 'Finish record' }, color: :success },
-        { url: trailer_get_ready_url, method: :patch, inner: -> { 'Trailer get ready' }, color: :success },
-        { url: finish_url, method: :patch, inner: -> { 'Finish' }, color: :success }
-      ]
-    }
+    case object.podcast.podcast_type.to_sym
+    when :sample
+      finish_record_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish_record)
+      trailer_get_ready_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :trailer_get_ready)
+      finish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish)
+
+      {
+        show: [
+          { url: finish_record_url, method: :patch, inner: -> { 'Finish record' }, color: :success },
+          { url: trailer_get_ready_url, method: :patch, inner: -> { 'Trailer get ready' }, color: :success },
+          { url: finish_url, method: :patch, inner: -> { 'Finish' }, color: :success }
+        ]
+      }
+    when :handmade
+      render_video_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :render_video)
+
+      {
+        show: [
+          { url: render_video_url, method: :patch, inner: -> { 'Render video' }, color: :success },
+        ]
+      }
+    end
   end
 
   def montage_button_color(_event)

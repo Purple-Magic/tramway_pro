@@ -4,6 +4,7 @@ class PodcastsFinishWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
   include BotTelegram::Leopold::Notify
+  include PodcastsWorkerConcern
 
   def perform(id)
     episode = Podcast::Episode.find id
@@ -41,12 +42,5 @@ class PodcastsFinishWorker < ApplicationWorker
     episode.render_video_trailer(output)
 
     Rails.logger.info 'Render trailer video completed'
-  end
-
-  def render_full_video(episode)
-    output = "#{@directory}/full_video.mp4"
-    episode.render_full_video(output)
-
-    Rails.logger.info 'Render fulll video completed'
   end
 end

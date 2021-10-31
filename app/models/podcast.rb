@@ -7,7 +7,7 @@ class Podcast < ApplicationRecord
 
   uploader :default_image, :photo, extensions: %i[png jpg jpeg]
 
-  enumerize :podcast_type, in: %i[sample without_music different_music]
+  enumerize :podcast_type, in: %i[sample without_music different_music handmade]
 
   scope :podcast_scope, ->(_user_id) { all }
 end
