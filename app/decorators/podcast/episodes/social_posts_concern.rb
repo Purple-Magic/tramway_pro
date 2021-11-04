@@ -1,6 +1,6 @@
 module Podcast::Episodes::SocialPostsConcern
   def vk_post_text
-    text = object.public_title
+    text = object.public_title || ''
     text += "<br/><br/>Ведущие:<br/>"
     object.stars.each do |star|
       if star.vk.present?
