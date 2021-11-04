@@ -10,4 +10,8 @@ class Podcast::Episodes::Star < ApplicationRecord
   delegate :last_name, to: :star
   delegate :nickname, to: :star
   delegate :link, to: :star
+
+  scope :main, -> { where star_type: :main }
+  scope :guest, -> { where star_type: :guest }
+  scope :minor, -> { where star_type: :minor }
 end

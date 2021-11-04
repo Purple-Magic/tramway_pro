@@ -4,6 +4,8 @@ module Podcast::Episodes::DescriptionConcern
   def description_view
     content_tag(:div) do
       stars_list
+      guest_list
+      minor_list
       topics_list
       links_list
       static_content
@@ -15,7 +17,29 @@ module Podcast::Episodes::DescriptionConcern
   def stars_list
     concat('Ведущие:')
     concat(content_tag(:ul) do
-      stars.each do |star|
+      object.stars.main.each do |star|
+        concat(content_tag(:li) do
+          concat link_to "@#{star.nickname}", star.link
+        end)
+      end
+    end)
+  end
+
+  def guest_list
+    concat('Гости:')
+    concat(content_tag(:ul) do
+      object.stars.guest.each do |star|
+        concat(content_tag(:li) do
+          concat link_to "@#{star.nickname}", star.link
+        end)
+      end
+    end)
+  end
+
+  def minor_list
+    concat('Эпизодическое участие:')
+    concat(content_tag(:ul) do
+      object.stars.minor.each do |star|
         concat(content_tag(:li) do
           concat link_to "@#{star.nickname}", star.link
         end)
