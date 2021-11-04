@@ -8,6 +8,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   include Podcast::Episodes::DescriptionConcern
   include Podcast::Episodes::DescriptionBuildConcern
   include Podcast::Episodes::VideoDecorator
+  include Podcast::Episodes::SocialPostsConcern
 
   class << self
     def show_associations
@@ -16,7 +17,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
     def show_attributes
       %i[podcast_link number file ready_file premontage_file trailer cover trailer_video full_video 
-         description_view youtube_description montage_state]
+         description_view youtube_description vk_post_text montage_state]
     end
   end
 

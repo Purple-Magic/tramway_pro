@@ -10,7 +10,11 @@ class Podcast::StarDecorator < Tramway::Core::ApplicationDecorator
     :link,
     :podcast_id,
     :created_at,
-    :updated_at
+    :updated_at,
+    :vk,
+    :twitter,
+    :instagram,
+    :telegram
   )
 
   decorate_associations :podcast
@@ -42,6 +46,10 @@ class Podcast::StarDecorator < Tramway::Core::ApplicationDecorator
         podcast_link
         nickname
         link
+        vk
+        twitter
+        instagram
+        telegram
         podcast_id
         created_at
         updated_at
@@ -49,8 +57,7 @@ class Podcast::StarDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_associations
-      # Associations you want to show in admin dashboard
-      # [ :messages ]
+      [ ]
     end
 
     def list_filters
