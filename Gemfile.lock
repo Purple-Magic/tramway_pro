@@ -480,6 +480,8 @@ GEM
     sentry-raven (3.1.2)
       faraday (>= 1.0)
     sexp_processor (4.15.3)
+    shortener (0.8.2)
+      voight_kampff (~> 1.1.2)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
     sidekiq (6.2.1)
@@ -599,6 +601,8 @@ GEM
       axiom-types (~> 0.1)
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
+    voight_kampff (1.1.4)
+      rack (>= 1.4, < 3.0)
     web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -705,6 +709,7 @@ DEPENDENCIES
   selectize-rails
   selenium-webdriver
   sentry-raven
+  shortener
   shoulda-matchers (~> 2.8.0)
   sidekiq
   sidekiq-batch

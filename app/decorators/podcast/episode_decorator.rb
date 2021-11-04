@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
-  decorate_associations :highlights, :podcast, :topics, :stars, :links
+  decorate_associations :highlights, :podcast, :topics, :stars, :links, :instances
 
   delegate_attributes :id, :number, :file_url, :montage_state
 
@@ -11,12 +11,12 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def show_associations
-      %i[highlights topics stars links]
+      %i[highlights topics stars links instances]
     end
 
     def show_attributes
-      %i[podcast_link number file ready_file premontage_file trailer cover trailer_video full_video image mp3_file
-         description description_view youtube_description montage_state]
+      %i[podcast_link number file ready_file premontage_file trailer cover trailer_video full_video 
+         description_view youtube_description vk_description montage_state]
     end
   end
 

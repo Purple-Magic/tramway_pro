@@ -10,6 +10,7 @@ class Podcast::Episode < ApplicationRecord
   has_many :highlights, -> { order(:time) }, class_name: 'Podcast::Highlight'
   has_many :topics, -> { order(:created_at) }, class_name: 'Podcast::Episodes::Topic'
   has_many :links, class_name: 'Podcast::Episodes::Link'
+  has_many :instances, class_name: 'Podcast::Episodes::Instance'
   has_and_belongs_to_many :stars, class_name: 'Podcast::Star'
 
   scope :podcast_scope, ->(_user_id) { all }
