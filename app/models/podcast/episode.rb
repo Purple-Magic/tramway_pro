@@ -30,7 +30,6 @@ class Podcast::Episode < ApplicationRecord
        trailer_is_ready trailer_rendered concatination_in_progress finishing ready_audio
        video_trailer_is_ready finished published].each { |state_name| state state_name }
 
-    event(:download) { transitions to: :downloaded }
     event(:convert) { transitions to: :converted }
     event(:highlight_it) { transitions to: :highlighted }
     event(:prepare) { transitions to: :prepared }
@@ -41,6 +40,15 @@ class Podcast::Episode < ApplicationRecord
     event(:make_audio_ready) { transitions to: :ready_audio }
     event(:make_video_trailer_ready) { transitions to: :video_trailer_is_ready }
     event(:done) { transitions to: :finished }
+
+    event :download do
+      transitions to: :downloaded
+
+      after do
+        save!
+        PodcastsDownloadWorker.perform_async id
+      end
+    end
 
     event :finish_record do
       transitions to: :recorded
@@ -83,7 +91,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        PodcastsPublishWorker.new.perform id
+        PodcastsPublishWorker.perform_async id
       end
     end
   end

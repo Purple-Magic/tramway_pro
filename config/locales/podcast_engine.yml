@@ -1,6 +1,8 @@
 ru: 
   podcast_engine:
     notifications:
+      download:
+        finished: 'Загрузил файл с Mumble сервера'
       montage:
         started: 'Начал монтировать подкаст!'
         something_went_wrong: 'Я сломался. Идите, разбирайтесь, что со мной не так.'
