@@ -132,6 +132,8 @@ ru:
         links: Ссылки выпуска
         instances: Эпизоды в разных сервисах
         stars: Ведущие
+        vk_post_text: Текст поста для ВКонтакте
+        telegram_post_text: Текст поста для Telegram
       podcast/episodes/instance:
         episode: Эпизод
         service: Сервис подкастов
