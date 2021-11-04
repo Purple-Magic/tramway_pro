@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Podcast::EpisodeForm < Tramway::Core::ApplicationForm
-  properties :project_id, :file, :ready_file, :cover, :number, :public_title
+  properties :project_id, :file, :ready_file, :cover, :number, :public_title, :montage_process
 
   association :podcast
 
@@ -12,7 +12,8 @@ class Admin::Podcast::EpisodeForm < Tramway::Core::ApplicationForm
         number: :numeric,
         file: :file,
         ready_file: :file,
-        cover: :file
+        cover: :file,
+        montage_process: :default
     end
   end
 end

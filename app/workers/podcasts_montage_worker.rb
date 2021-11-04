@@ -24,7 +24,9 @@ class PodcastsMontageWorker < ApplicationWorker
     cut_highlights episode
     filename = convert episode
     send_notification_to_chat chat_id, notification(:convert, :finished)
-    run_filters episode, filename
+    unless episode.montage_process == 'without_filters'
+      run_filters episode, filename
+    end
     add_music episode
   end
 

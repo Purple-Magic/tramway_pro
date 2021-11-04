@@ -13,6 +13,8 @@ class Podcast::Episode < ApplicationRecord
   has_many :instances, class_name: 'Podcast::Episodes::Instance'
   has_many :stars, class_name: 'Podcast::Episodes::Star'
 
+  enumerize :montage_process, in: [ :default, :without_filters ], default: :default
+
   scope :podcast_scope, ->(_user_id) { all }
 
   uploader :ready_file, :file
