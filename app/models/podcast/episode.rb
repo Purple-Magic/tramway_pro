@@ -11,7 +11,7 @@ class Podcast::Episode < ApplicationRecord
   has_many :topics, -> { order(:created_at) }, class_name: 'Podcast::Episodes::Topic'
   has_many :links, class_name: 'Podcast::Episodes::Link'
   has_many :instances, class_name: 'Podcast::Episodes::Instance'
-  has_and_belongs_to_many :stars, class_name: 'Podcast::Star'
+  has_many :stars, class_name: 'Podcast::Episodes::Star'
 
   scope :podcast_scope, ->(_user_id) { all }
 
@@ -28,7 +28,7 @@ class Podcast::Episode < ApplicationRecord
 
     %i[recording recorded downloaded converted prepared highlighted montaged normalized music_added
        trailer_is_ready trailer_rendered concatination_in_progress finishing ready_audio
-       video_trailer_is_ready finished].each { |state_name| state state_name }
+       video_trailer_is_ready finished published].each { |state_name| state state_name }
 
     event(:download) { transitions to: :downloaded }
     event(:convert) { transitions to: :converted }
@@ -75,6 +75,15 @@ class Podcast::Episode < ApplicationRecord
       after do
         save!
         PodcastsRenderVideoWorker.perform_async id
+      end
+    end
+
+    event :publish do
+      transitions to: :published
+
+      after do
+        save!
+        PodcastsPublishWorker.new.perform id
       end
     end
   end
