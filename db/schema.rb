@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211027051425) do
+ActiveRecord::Schema.define(version: 20211104180323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -401,6 +401,16 @@ ActiveRecord::Schema.define(version: 20211027051425) do
     t.datetime "record_time"
   end
 
+  create_table "podcast_episodes_instances", force: :cascade do |t|
+    t.integer "episode_id"
+    t.text "state"
+    t.integer "project_id"
+    t.text "service"
+    t.text "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "podcast_episodes_links", force: :cascade do |t|
     t.integer "episode_id"
     t.text "title"
@@ -518,6 +528,22 @@ ActiveRecord::Schema.define(version: 20211027051425) do
     t.datetime "updated_at", null: false
     t.text "title"
     t.text "state"
+  end
+
+  create_table "shortened_urls", id: :serial, force: :cascade do |t|
+    t.integer "owner_id"
+    t.string "owner_type", limit: 20
+    t.text "url", null: false
+    t.string "unique_key", limit: 10, null: false
+    t.string "category"
+    t.integer "use_count", default: 0, null: false
+    t.datetime "expires_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["category"], name: "index_shortened_urls_on_category"
+    t.index ["owner_id", "owner_type"], name: "index_shortened_urls_on_owner_id_and_owner_type"
+    t.index ["unique_key"], name: "index_shortened_urls_on_unique_key", unique: true
+    t.index ["url"], name: "index_shortened_urls_on_url"
   end
 
   create_table "time_logs", force: :cascade do |t|

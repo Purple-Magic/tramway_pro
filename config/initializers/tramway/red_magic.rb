@@ -20,6 +20,7 @@ Tramway::Admin.set_available_models(
   Podcast::Episode,
   Podcast::Episodes::Topic,
   Podcast::Episodes::Link,
+  Podcast::Episodes::Instance,
   Podcast::Highlight,
   Podcast::Music,
   Podcast::Star,

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     mount Tramway::Conference::Engine => '/'
     mount Tramway::Api::Engine, at: '/api', as: :it_way_api
 
+    get '/:id' => "shortener/shortened_urls#show"
+
     scope module: :it_way do
       resources :certificates, only: :show
       resources :podcasts, only: :show

@@ -116,6 +116,22 @@ ru:
         ready_file: Готовый файл
         cover: Обложка выпуска
         podcast: Подкаст
+        podcast_link: Подкаст
+        premontage_file: Сведение без музыки
+        trailer: Аудио-трейлер
+        trailer_video: Видео-трейлер
+        full_video: Полное видео
+        image: Загруженная из RSS картинка
+        mp3_file: Загруженный из RSS MP3
+        description: Загруженное из RSS описание
+        description_view: Составление описание для Red Circle
+        youtube_description: Составленное описание для Youtube
+        montage_state: Статус монтажа выпуска
+        highlights: Хайлайты
+        topics: Темы выпуска
+        links: Ссылки выпуска
+        instances: Эпизоды в разных сервисах
+        stars: Ведущие
   enumerize:
     podcast:
       podcast_type:
