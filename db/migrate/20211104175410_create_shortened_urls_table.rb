@@ -3,10 +3,10 @@ class CreateShortenedUrlsTable < ActiveRecord::Migration[4.2]
     create_table :shortened_urls do |t|
       # we can link this to a user for interesting things
       t.integer :owner_id
-      t.string :owner_type, limit: 20
+      t.string :owner_type
 
       # the real url that we will redirect to
-      t.text :url, null: false, length: 2083
+      t.text :url, null: false
 
       # the unique key
       t.string :unique_key, limit: 10, null: false

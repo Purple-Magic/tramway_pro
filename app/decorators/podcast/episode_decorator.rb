@@ -16,7 +16,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
     def show_attributes
       %i[podcast_link number file ready_file premontage_file trailer cover trailer_video full_video 
-         description_view youtube_description montage_state]
+         description_view youtube_description vk_description montage_state]
     end
   end
 

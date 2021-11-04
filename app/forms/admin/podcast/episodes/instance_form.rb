@@ -1,25 +1,19 @@
 class Admin::Podcast::Episodes::InstanceForm < Tramway::Core::ApplicationForm
   properties :state, :project_id, :service, :link
 
+  association :episode
+
   def initialize(object)
     super(object).tap do
-      # Here is the mapping from model attributes to simple_form inputs.
-      # form_properties title: :string,
-      #   logo: :file,
-      #   description: :ckeditor,
-      #   games: :association,
-      #   date: :date_picker,
-      #   text: :text,
-      #   birth_date: {
-      #     type: :default,
-      #     input_options: {
-      #       hint: 'It should be more than 18'
-      #     }
-      #   }
-      form_properties state: :text,
-        project_id: :integer,
-        service: :text,
-        link: :text
+      form_properties episode: :association,
+        service: :default,
+        link: :string
+    end
+  end
+
+  def submit(params)
+    super(params).tap do
+      ::Shortener::ShortenedUrl.generate(params[:link], owner: model)
     end
   end
 end

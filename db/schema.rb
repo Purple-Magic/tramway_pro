@@ -532,7 +532,7 @@ ActiveRecord::Schema.define(version: 20211104180323) do
 
   create_table "shortened_urls", id: :serial, force: :cascade do |t|
     t.integer "owner_id"
-    t.string "owner_type", limit: 20
+    t.string "owner_type"
     t.text "url", null: false
     t.string "unique_key", limit: 10, null: false
     t.string "category"

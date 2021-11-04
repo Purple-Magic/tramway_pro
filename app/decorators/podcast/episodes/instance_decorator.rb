@@ -1,6 +1,6 @@
 class Podcast::Episodes::InstanceDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
-  # decorate_associations :messages, :posts
+  decorate_associations :episode
 
   delegate_attributes(
         :id,
@@ -11,6 +11,19 @@ class Podcast::Episodes::InstanceDecorator < Tramway::Core::ApplicationDecorator
         :created_at,
         :updated_at,
   )
+
+  def title
+    "#{object.service} ссылка эпизода ##{object.episode.number}"
+  end
+
+  def shortened_url
+    "http://it-way.pro/#{object.shortened_urls.last.unique_key}"
+  end
+
+  def episode_link
+    link_to episode.title,
+      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.episode_id, model: 'Podcast::Episode')
+  end
 
   class << self
     def collections
@@ -29,8 +42,9 @@ class Podcast::Episodes::InstanceDecorator < Tramway::Core::ApplicationDecorator
 
     def show_attributes
       [
+        :episode_link,
         :id,
-        :state,
+        :shortened_url,
         :project_id,
         :service,
         :link,
@@ -40,8 +54,7 @@ class Podcast::Episodes::InstanceDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_associations
-      # Associations you want to show in admin dashboard
-      # [ :messages ]
+      []
     end
 
     def list_filters

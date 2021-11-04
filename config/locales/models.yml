@@ -132,6 +132,10 @@ ru:
         links: Ссылки выпуска
         instances: Эпизоды в разных сервисах
         stars: Ведущие
+      podcast/episodes/instance:
+        episode: Эпизод
+        service: Сервис подкастов
+        link: Ссылка на выпуск
   enumerize:
     podcast:
       podcast_type:
