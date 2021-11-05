@@ -15,6 +15,7 @@ module Podcast::Episodes::VideoConcern
     system command
     wait_for_file_rendered output, :video_trailer
     update_file! output, :trailer_video
+    ::Shortener::ShortenedUrl.generate(trailer_video.url, owner: self)
     make_video_trailer_ready!
   end
 
