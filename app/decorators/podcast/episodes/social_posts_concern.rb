@@ -32,6 +32,7 @@ module Podcast::Episodes::SocialPostsConcern
     instances.each do |instance|
       text += "#{instance.service.capitalize}: #{instance.shortened_url}<br/>"
     end
+    text += "<br/>"
     text += "Музыка @alpharecords73 (ALPHA RECORDS)<br/>"
     text += "Художник: @kiborgvviborge (noTea)"
     raw text
