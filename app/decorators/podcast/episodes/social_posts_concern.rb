@@ -70,9 +70,10 @@ module Podcast::Episodes::SocialPostsConcern
     instances.each do |instance|
       text += "#{instance.service.capitalize}: #{instance.shortened_url}\n"
     end
-    text += "\n"
     text += "Художник: @cathrinenotea"
+    text += "\n"
     text += "ОБЯЗАТЕЛЬНО ПОСЛУШАЙТЕ ТРЕЙЛЕР ВЫПУСКА! Приложил его сюда :)"
+    text += "\n"
     text += "http://it-way.pro/#{object.shortened_urls.find_by(url: object.trailer_video.url)&.unique_key}"
   end
 end
