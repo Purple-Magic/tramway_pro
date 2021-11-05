@@ -32,6 +32,7 @@ module Podcast::Episodes::SocialPostsConcern
     instances.each do |instance|
       text += "#{instance.service.capitalize}: #{instance.shortened_url}<br/>"
     end
+    text += "RSS: http://bit.ly/2JuDkYY<br/>"
     text += "<br/>"
     text += "Музыка @alpharecords73 (ALPHA RECORDS)<br/>"
     text += "Художник: @kiborgvviborge (noTea)"
@@ -71,6 +72,7 @@ module Podcast::Episodes::SocialPostsConcern
     instances.each do |instance|
       text += "#{instance.service.capitalize}: #{instance.shortened_url}\n"
     end
+    text += "RSS: http://bit.ly/2JuDkYY\n"
     text += "Художник: @cathrinenotea"
     text += "\n"
     text += "ОБЯЗАТЕЛЬНО ПОСЛУШАЙТЕ ТРЕЙЛЕР ВЫПУСКА! Приложил его сюда :)"
