@@ -2,11 +2,14 @@
 
 module Podcast::Episodes::MontageConcern
   def montage(filename)
-    directory = prepare_directory.gsub('//', '/')
-    output = "#{directory}/montage.mp3"
-    temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
+    output = file.path
+    if montage_process == 'default'
+      directory = prepare_directory.gsub('//', '/')
+      output = "#{directory}/montage.mp3"
+      temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
 
-    build_and_run_command filename, output, temp_output
+      build_and_run_command filename, output, temp_output
+    end
 
     wait_for_file_rendered output, :montage
     update_file! output, :premontage_file
