@@ -76,6 +76,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
     case object.podcast.podcast_type.to_sym
     when :sample
+      download_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :download)
       finish_record_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish_record)
       trailer_get_ready_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :trailer_get_ready)
       finish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish)
@@ -83,6 +84,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
 
       {
         show: [
+          { url: download_url, method: :patch, inner: -> { 'Download' }, color: :success },
           { url: finish_record_url, method: :patch, inner: -> { 'Finish record' }, color: :success },
           { url: trailer_get_ready_url, method: :patch, inner: -> { 'Trailer get ready' }, color: :success },
           { url: finish_url, method: :patch, inner: -> { 'Finish' }, color: :success },
