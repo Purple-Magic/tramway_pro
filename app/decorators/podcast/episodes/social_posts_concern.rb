@@ -73,6 +73,6 @@ module Podcast::Episodes::SocialPostsConcern
     text += "\n"
     text += "Художник: @cathrinenotea"
     text += "ОБЯЗАТЕЛЬНО ПОСЛУШАЙТЕ ТРЕЙЛЕР ВЫПУСКА! Приложил его сюда :)"
-    text += "http://it-way.pro/#{object.shortened_urls.find_by(url: object.trailer_video.url).unique_key}"
+    text += "http://it-way.pro/#{object.shortened_urls.find_by(url: object.trailer_video.url)&.unique_key}"
   end
 end
