@@ -96,6 +96,7 @@ module Podcast::Episodes::SocialPostsConcern
       id = "instagram_text_for_#{object.id}"
       concat(content_tag(:span, id: id) do
         text = object.public_title || ''
+        text += "Слушайте на Яндекс.Музыке, Google Podcasts, Youtube и других сервисах подкастов"
         text += "\n\nВедущие:\n"
         object.stars.main.each do |star|
           if star.instagram.present?
