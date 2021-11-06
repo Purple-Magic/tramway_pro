@@ -143,6 +143,14 @@ class Podcast::Episode < ApplicationRecord
     end
   end
 
+  def with_guests?
+    stars.guest.any?
+  end
+
+  def with_minor?
+    stars.minor.any?
+  end
+
   private
 
   PODCASTS_DIRECTORY = "/#{Rails.root}/public/podcasts/"
