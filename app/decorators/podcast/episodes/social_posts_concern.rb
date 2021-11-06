@@ -73,7 +73,9 @@ module Podcast::Episodes::SocialPostsConcern
       text += "#{instance.service.capitalize}: #{instance.shortened_url}\n"
     end
     text += "RSS: http://bit.ly/2JuDkYY\n"
+    text += "\n"
     text += "Художник: @cathrinenotea"
+    text += "\n"
     text += "\n"
     text += "ОБЯЗАТЕЛЬНО ПОСЛУШАЙТЕ ТРЕЙЛЕР ВЫПУСКА! Приложил его сюда :)"
     text += "\n"
