@@ -75,9 +75,10 @@ module Podcast::Episodes::SocialPostsConcern
     text += "RSS: http://bit.ly/2JuDkYY\n"
     text += "\n"
     text += "Художник: @cathrinenotea"
-    text += "\n"
-    text += "\n"
-    text += "ОБЯЗАТЕЛЬНО ПОСЛУШАЙТЕ ТРЕЙЛЕР ВЫПУСКА! Приложил его сюда :)"
+  end
+
+  def telegram_post_text_with_trailer
+    text = "ОБЯЗАТЕЛЬНО ПОСЛУШАЙТЕ ТРЕЙЛЕР ВЫПУСКА! Приложил его сюда :)"
     text += "\n"
     text += "http://it-way.pro/#{object.shortened_urls.find_by(url: object.trailer_video.url)&.unique_key}"
   end
