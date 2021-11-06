@@ -4,8 +4,8 @@ module Podcast::Episodes::DescriptionConcern
   def description_view
     content_tag(:div) do
       stars_list
-      guest_list
-      minor_list
+      guest_list if object.with_guests?
+      minor_list if object.with_minor?
       topics_list
       links_list
       static_content
