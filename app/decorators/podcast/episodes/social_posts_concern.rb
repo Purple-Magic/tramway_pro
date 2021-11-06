@@ -96,6 +96,7 @@ module Podcast::Episodes::SocialPostsConcern
       id = "instagram_text_for_#{object.id}"
       concat(content_tag(:span, id: id) do
         text = object.public_title || ''
+        text += "Слушайте на Яндекс.Музыке, Google Podcasts, Youtube и других сервисах подкастов"
         text += "\n\nВедущие:\n"
         object.stars.main.each do |star|
           if star.instagram.present?
@@ -133,5 +134,46 @@ module Podcast::Episodes::SocialPostsConcern
       end)
       concat copy_to_clipboard id
     end
+  end
+
+  def twitter_post_text
+    text = object.public_title || ''
+    text += "<br/><br/>Ведущие:<br/>"
+    object.stars.main.each do |star|
+      if star.twitter.present?
+        text += "🎙 @#{star.twitter}"
+      else
+        text += "🎙 #{star.first_name} #{star.last_name}"
+      end
+      text += "<br/>"
+    end
+    if object.with_guests?
+      text += "<br/>Гости:<br/>"
+      object.stars.guest.each do |star|
+        if star.twitter.present?
+          text += "@#{star.twitter}"
+        else
+          text += "#{star.first_name} #{star.last_name}"
+        end
+        text += "<br/>"
+      end
+    end
+    if object.with_minor?
+      text += "<br/>Эпизодическое участие:<br/>"
+      object.stars.minor.each do |star|
+        if star.twitter.present?
+          text += "@#{star.twitter}"
+        else
+          text += "#{star.first_name} #{star.last_name}"
+        end
+        text += "<br/>"
+      end
+    end
+    text += "<br/>"
+    instances.each do |instance|
+      text += "#{instance.service.capitalize}: #{instance.shortened_url}<br/>"
+    end
+    text += "RSS: http://bit.ly/2JuDkYY<br/>"
+    raw text
   end
 end
