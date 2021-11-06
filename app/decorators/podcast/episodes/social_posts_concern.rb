@@ -78,7 +78,7 @@ module Podcast::Episodes::SocialPostsConcern
   end
 
   def telegram_post_text_with_trailer
-    text = "ОБЯЗАТЕЛЬНО ПОСЛУШАЙТЕ ТРЕЙЛЕР ВЫПУСКА! Приложил его сюда :)"
+    text = "Обязательно послушайте трейлер выпуска! Приложил его сюда :)"
     text += "\n"
     text += "http://it-way.pro/#{object.shortened_urls.find_by(url: object.trailer_video.url)&.unique_key}"
   end
