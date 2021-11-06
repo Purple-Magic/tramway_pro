@@ -135,4 +135,45 @@ module Podcast::Episodes::SocialPostsConcern
       concat copy_to_clipboard id
     end
   end
+
+  def twitter_post_text
+    text = object.public_title || ''
+    text += "<br/><br/>Ведущие:<br/>"
+    object.stars.main.each do |star|
+      if star.twitter.present?
+        text += "🎙 @#{star.twitter}"
+      else
+        text += "🎙 #{star.first_name} #{star.last_name}"
+      end
+      text += "<br/>"
+    end
+    if object.with_guests?
+      text += "<br/>Гости:<br/>"
+      object.stars.guest.each do |star|
+        if star.twitter.present?
+          text += "@#{star.twitter}"
+        else
+          text += "#{star.first_name} #{star.last_name}"
+        end
+        text += "<br/>"
+      end
+    end
+    if object.with_minor?
+      text += "<br/>Эпизодическое участие:<br/>"
+      object.stars.minor.each do |star|
+        if star.twitter.present?
+          text += "@#{star.twitter}"
+        else
+          text += "#{star.first_name} #{star.last_name}"
+        end
+        text += "<br/>"
+      end
+    end
+    text += "<br/>"
+    instances.each do |instance|
+      text += "#{instance.service.capitalize}: #{instance.shortened_url}<br/>"
+    end
+    text += "RSS: http://bit.ly/2JuDkYY<br/>"
+    raw text
+  end
 end
