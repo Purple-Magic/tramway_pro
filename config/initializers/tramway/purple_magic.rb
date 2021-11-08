@@ -20,6 +20,7 @@ Tramway::Admin.set_available_models(
   Estimation::Coefficient,
   Benchkiller::User,
   Benchkiller::Company,
+  Benchkiller::Notification,
   project: :purple_magic
 )
 
@@ -77,7 +78,8 @@ Tramway::Admin.navbar_structure(
   {
     benchkiller: [
       Benchkiller::User,
-      Benchkiller::Company
+      Benchkiller::Company,
+      Benchkiller::Notification
     ]
   },
   {

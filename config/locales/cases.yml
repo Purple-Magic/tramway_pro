@@ -93,6 +93,9 @@ ru:
     benchkiller/user:
       plural: пользователи
       genitive: пользователя
+    benchkiller/notification:
+      plural: уведомления
+      genitive: уведомление
     podcast/star:
       plural: ведущие
       genitive: ведущего 

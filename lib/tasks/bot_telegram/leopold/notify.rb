@@ -1,37 +1,22 @@
 # frozen_string_literal: true
 
-require 'telegram/bot'
-require_relative '../messages_manager'
-require_relative './message'
+require_relative '../custom/notify/file'
+require_relative '../custom/notify/text'
 
 module BotTelegram::Leopold::Notify
-  include BotTelegram::MessagesManager
-
   def send_notification_to_user(username, message)
-    bot_record = Bot.find BotTelegram::Leopold::Scenario::BOT_ID
-    bot = ::Telegram::Bot::Client.new bot_record.token
-    chat = BotTelegram::Chat.find_by "options ->> 'username' = '#{username}'"
-    message_to_user bot.api, message, chat.telegram_chat_id
+    ::BotTelegram::Custom::Notify::Text.send_to_user BotTelegram::Leopold::Scenario::BOT_ID, username, message
   end
 
   def send_notification_to_chat(chat_id, message)
-    bot_record = Bot.find BotTelegram::Leopold::Scenario::BOT_ID
-    bot = ::Telegram::Bot::Client.new bot_record.token
-    message_to_user bot.api, message, chat_id
+    ::BotTelegram::Custom::Notify::Text.send_to_chat BotTelegram::Leopold::Scenario::BOT_ID, chat_id, message
   end
 
   def send_file_to_user(username, file)
-    bot_record = Bot.find BotTelegram::Leopold::Scenario::BOT_ID
-    bot = ::Telegram::Bot::Client.new bot_record.token
-    chat = ::BotTelegram::Chat.find_by "options ->> 'username' = '#{username}'"
-    bot_message = ::BotTelegram::Leopold::Message.new file
-    send_file bot.api, chat.telegram_chat_id, bot_message
+    ::BotTelegram::Custom::Notify::File.send_to_user BotTelegram::Leopold::Scenario::BOT_ID, username, file
   end
 
   def send_file_to_chat(chat_id, file)
-    bot_record = Bot.find BotTelegram::Leopold::Scenario::BOT_ID
-    bot = ::Telegram::Bot::Client.new bot_record.token
-    bot_message = ::BotTelegram::Leopold::Message.new file
-    send_file bot.api, chat_id, bot_message.file
+    ::BotTelegram::Custom::Notify::File.send_to_chat BotTelegram::Leopold::Scenario::BOT_ID, chat_id, file
   end
 end
