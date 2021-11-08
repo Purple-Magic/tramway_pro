@@ -3,6 +3,10 @@
 module BotTelegram::BenchkillerBot
   PROJECT_ID = 7
 
+  BOT_ID = 13
+
+  MAIN_CHAT_ID = '-1001076312571'
+
   ACTIONS_DATA = {
     set_company_name: {
       message: 'Введите название компании',
