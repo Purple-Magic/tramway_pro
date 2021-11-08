@@ -2,3 +2,8 @@ leopold_send_chat_quest_stats:
   cron: "0 0 * * 1"
   class: LeopoldSendChatQuestsStats
   queue: bot
+
+benchkiller_send_planned_notifications:
+  cron: "* * * * *"
+  class: BenchkillerSendPlannedNotifications 
+  queue: benchkiller

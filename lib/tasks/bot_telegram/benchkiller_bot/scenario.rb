@@ -21,15 +21,6 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
         action = BotTelegram::BenchkillerBot::Action.new message_from_telegram, user, chat, bot, bot_record
         action.run
       end
-    else
-      chat_id = chat.telegram_chat_id.to_s
-      message_to_chat bot, chat, bot_record.options['not_my_group'] unless exceptions.values.include? chat_id
     end
-  end
-
-  def exceptions
-    {
-      bot_test: '-1001797189343'
-    }
   end
 end
