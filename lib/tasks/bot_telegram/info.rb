@@ -2,12 +2,10 @@
 
 module BotTelegram::Info
   def user_from(sender)
-    user = BotTelegram::User.active.find_or_create_by! telegram_id: sender.id
+    user = BotTelegram::User.active.find_or_create_by! telegram_id: sender.id, username: sender.username
     user.update! first_name: sender.first_name,
       last_name: sender.last_name,
-      username: sender.username,
       project_id: Project.find_by(title: 'PurpleMagic').id,
-      telegram_id: sender.id,
       options: {
         can_join_groups: sender.can_join_groups,
         can_read_all_group_messages: sender.can_read_all_group_messages,
