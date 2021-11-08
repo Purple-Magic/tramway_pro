@@ -11,6 +11,8 @@ class Benchkiller::Company < ApplicationRecord
 
   scope :benchkiller_scope, lambda { |_user| all }
 
+  search_by :title
+
   aasm :review_state do
     state :unviewed, initial: true
     state :approved
