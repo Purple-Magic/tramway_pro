@@ -8,8 +8,7 @@ class BenchkillerSendPlannedNotifications < ActiveJob::Base
   include ::BotTelegram::BenchkillerBot::Notify
 
   def perform(*_args)
-    # FIXME set working with time zones
-    time = (DateTime.now + 4.hours).strftime('%H:%M')
+    time = DateTime.now.in_time_zone("Moscow").strftime('%H:%M')
     ::Benchkiller::Notification.active.find_each do |notification|
       if time == notification.send_at
         send_notification_to_chat(
