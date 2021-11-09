@@ -4,14 +4,13 @@ require 'net/ssh'
 require 'bot_telegram/leopold/chat_decorator'
 
 class PodcastsDownloadWorker < ApplicationWorker
-  sidekiq_options queue: :podcast
+  sidekiq_options queue: :podcast, retry: false
 
   include BotTelegram::Leopold::Notify
 
   def perform(id)
     episode = Podcast::Episode.find id
     download episode
-    send_notification_to_chat chat_id, notification(:download, :finished)
   rescue StandardError => error
     log_error error
     chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
