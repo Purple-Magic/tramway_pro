@@ -12,8 +12,6 @@ class PodcastsDownloadWorker < ApplicationWorker
     chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     episode = Podcast::Episode.find id
     download episode
-    sleep 5
-    send_notification_to_chat chat_id, notification(:footage, :downloaded)
   rescue StandardError => error
     log_error error
     send_notification_to_chat chat_id, notification(:montage, :something_went_wrong)
@@ -22,6 +20,8 @@ class PodcastsDownloadWorker < ApplicationWorker
   private
 
   def download(episode)
+    return if episode.file.present?
+
     directory = episode.prepare_directory.gsub('//', '/')
     Net::SCP.download!(
       '167.71.46.15',
@@ -35,6 +35,7 @@ class PodcastsDownloadWorker < ApplicationWorker
     end
 
     episode.download!
+    send_notification_to_chat chat_id, notification(:footage, :downloaded)
   end
 
   def external_filename
