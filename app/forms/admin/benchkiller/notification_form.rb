@@ -7,7 +7,7 @@ class Admin::Benchkiller::NotificationForm < Tramway::Core::ApplicationForm
         send_at: {
           type: :string,
           input_options: {
-            placeholder: '00:00'
+            placeholder: '00:00 (МСК)'
           }
         }
     end
