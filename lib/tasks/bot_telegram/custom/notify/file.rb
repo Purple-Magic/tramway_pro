@@ -1,3 +1,5 @@
+require_relative '../../leopold/message'
+
 module BotTelegram::Custom::Notify::File
   class << self
     include BotTelegram::MessagesManager
