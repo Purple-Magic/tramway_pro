@@ -13,6 +13,10 @@ class Benchkiller::NotificationDecorator < Tramway::Core::ApplicationDecorator
         :updated_at,
   )
 
+  def title
+    "#{object.send_at} - #{object.text}"
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
