@@ -1,36 +1,20 @@
-class Benchkiller::OfferDecorator < Tramway::Core::ApplicationDecorator
+class Benchkiller::TagDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
   delegate_attributes(
         :id,
-        :message_id,
-        :state,
+        :title,
         :project_id,
+        :state,
         :created_at,
         :updated_at,
   )
 
-  decorate_associations :tags
+  decorate_associations :offers
 
-  def title
-    user = object.message.user
-    user_title = "#{user.username.present? ? user.username : 'No username'}: #{user.first_name} #{user.last_name}"
-    "#{user_title}: #{object.message.text&.first(15)...}"
-  end
-
-  def tags_list
-    content_tag(:ul) do
-      tags.each do |tag|
-        concat(content_tag(:li) do
-          tag.title
-        end)
-      end
-    end
-  end
-
-  def text
-    object.message.text
+  def offers_count
+    offers.count
   end
 
   class << self
@@ -41,18 +25,14 @@ class Benchkiller::OfferDecorator < Tramway::Core::ApplicationDecorator
 
     def list_attributes
       [
-        :text,
-        :tags_list
+        :offers_count
       ]
     end
 
     def show_attributes
       [
         :id,
-        :message_id,
-        :state,
-        :text,
-        :tags_list,
+        :title,
         :created_at,
         :updated_at,
       ]

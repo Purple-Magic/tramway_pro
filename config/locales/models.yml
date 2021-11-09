@@ -19,6 +19,7 @@ ru:
       benchkiller/company: Компания
       benchkiller/user: Пользователи
       benchkiller/offer: Предложение
+      benchkiller/tag: Тэг
     attributes:
       word:
         main: Определение

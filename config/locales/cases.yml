@@ -102,3 +102,6 @@ ru:
     benchkiller/offer:
       plural: предложения
       genitive: предложение
+    benchkiller/tag:
+      plural: тэги
+      genitive: тэг
