@@ -1,4 +1,4 @@
-class Benchkiller::Benchkiller::CompanyForm < Tramway::Core::ApplicationForm
+class Admin::Benchkiller::CompanyForm < Tramway::Core::ApplicationForm
   properties :title, :data, :state, :project_id
 
   def initialize(object)

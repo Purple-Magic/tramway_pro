@@ -8,4 +8,6 @@ class BotTelegram::Message < ApplicationRecord
   belongs_to :chat, class_name: 'BotTelegram::Chat', optional: true
 
   enumerize :message_type, in: [ :regular, :callback ], default: :regular
+
+  search_by :text, user: [ :username, :first_name ]
 end

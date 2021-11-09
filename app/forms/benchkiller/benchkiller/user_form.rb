@@ -1,5 +1,5 @@
-class Benchkiller::Benchkiller::CompanyForm < Tramway::Core::ApplicationForm
-  properties :title, :data, :state, :project_id
+class Admin::Benchkiller::UserForm < Tramway::Core::ApplicationForm
+  properties :bot_telegram_user_id, :state, :project_id
 
   def initialize(object)
     super(object).tap do
@@ -16,8 +16,7 @@ class Benchkiller::Benchkiller::CompanyForm < Tramway::Core::ApplicationForm
       #       hint: 'It should be more than 18'
       #     }
       #   }
-      form_properties title: :text,
-        data: :string,
+      form_properties bot_telegram_user_id: :integer,
         state: :text,
         project_id: :integer
     end
