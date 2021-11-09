@@ -4,16 +4,18 @@ require 'net/ssh'
 require 'bot_telegram/leopold/chat_decorator'
 
 class PodcastsDownloadWorker < ApplicationWorker
-  sidekiq_options queue: :podcast, retry: false
+  sidekiq_options queue: :podcast
 
   include BotTelegram::Leopold::Notify
 
   def perform(id)
+    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     episode = Podcast::Episode.find id
     download episode
+    sleep 5
+    send_notification_to_chat chat_id, notification(:footage, :downloaded)
   rescue StandardError => error
     log_error error
-    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     send_notification_to_chat chat_id, notification(:montage, :something_went_wrong)
   end
 
@@ -33,8 +35,6 @@ class PodcastsDownloadWorker < ApplicationWorker
     end
 
     episode.download!
-    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
-    send_notification_to_chat chat_id, notification(:footage, :downloaded)
   end
 
   def external_filename

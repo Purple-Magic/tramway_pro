@@ -13,7 +13,7 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
 
   def run
     chat_decorator = BotTelegram::BenchkillerBot::ChatDecorator.new chat
-    if chat.main_chat?
+    if chat_decorator.main_chat?
       ::Benchkiller::Offer.create! message_id: message.id
     end
     if chat_decorator.to_answer?
