@@ -138,6 +138,9 @@ ru:
         episode: Эпизод
         service: Сервис подкастов
         link: Ссылка на выпуск
+      benchkiller/notification:
+        text: Текст уведомления
+        send_at: Отправлять каждый день в
   enumerize:
     podcast:
       podcast_type:
