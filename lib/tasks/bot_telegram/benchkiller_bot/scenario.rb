@@ -13,6 +13,9 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
 
   def run
     chat_decorator = BotTelegram::BenchkillerBot::ChatDecorator.new chat
+    if chat.main_chat?
+      ::Benchkiller::Offer.create! message_id: message.id
+    end
     if chat_decorator.to_answer?
       if message_from_telegram.is_a?(Telegram::Bot::Types::CallbackQuery) || user.finished_state_for?(bot: bot_record)
         command = BotTelegram::BenchkillerBot::Command.new message_from_telegram, bot_record.slug

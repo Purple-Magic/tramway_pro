@@ -99,3 +99,6 @@ ru:
     podcast/star:
       plural: ведущие
       genitive: ведущего 
+    benchkiller/offer:
+      plural: предложения
+      genitive: предложение

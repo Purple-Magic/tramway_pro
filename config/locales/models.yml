@@ -18,6 +18,7 @@ ru:
       content/story: История
       benchkiller/company: Компания
       benchkiller/user: Пользователи
+      benchkiller/offer: Предложение
     attributes:
       word:
         main: Определение
