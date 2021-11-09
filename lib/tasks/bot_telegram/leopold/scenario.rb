@@ -23,8 +23,8 @@ class BotTelegram::Leopold::Scenario < ::BotTelegram::Custom::Scenario
         it_way_process text
       end
     else
-      chat_id = chat.telegram_chat_id.to_s
-      message_to_chat bot, chat, bot_record.options['not_my_group'] unless exceptions.values.include? chat_id
+    #  chat_id = chat.telegram_chat_id.to_s
+    #  message_to_chat bot, chat, bot_record.options['not_my_group'] unless exceptions.values.include? chat_id
     end
   end
 end
