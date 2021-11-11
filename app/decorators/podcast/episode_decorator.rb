@@ -54,7 +54,14 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def youtube_description
-    raw recursively_build_description(Nokogiri::HTML(description_view.html_safe).elements).gsub("\n", '<br/>')
+    text = "Вы можете прослушать выпуск подкаста на этих площадках:<br/>"
+    text += instances.map do |instance|
+      "* #{instance.service.capitalize} #{instance.shortened_url}"
+    end.join("<br/>")
+    text += "<br/>"
+    text += "<br/>"
+    text += recursively_build_description(Nokogiri::HTML(description_view.html_safe).elements).gsub("\n", '<br/>')
+    raw text
   end
 
   def file
