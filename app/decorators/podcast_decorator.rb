@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PodcastDecorator < Tramway::Core::ApplicationDecorator
-  delegate_attributes :title, :footer
+  delegate_attributes :title, :footer, :youtube_footer
 
   decorate_associations :stars, :musics, :episodes
 
