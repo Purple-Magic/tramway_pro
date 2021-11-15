@@ -67,6 +67,6 @@ module Podcast::Episodes::YoutubeDescriptionConcern
   end
 
   def youtube_static_content
-    @youtube_description += podcast.youtube_footer.&gsub("\n", "<br/>")
+    @youtube_description += podcast.youtube_footer&.gsub("\n", "<br/>")
   end
 end
