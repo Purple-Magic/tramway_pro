@@ -6,11 +6,15 @@ class Benchkiller::Web::SessionsController < ::Tramway::Auth::Web::ApplicationCo
   def create
     @session_form = ::Benchkiller::Auth::UserForm.new ::Benchkiller::User.active.joins(:telegram_user).where('bot_telegram_users.username = ?', params[:bot_telegram_user][:username]).first
     if @session_form.model.present?
-      if @session_form.validate params[:bot_telegram_user]
-        sign_in @session_form.model
-        redirect_to '/benchkiller/web/offers'
+      if @session_form.need_to_generate_password?
+        redirect_to ['/', '?', { flash: :you_need_to_generate_password }.to_query].join
       else
-        redirect_to '/'
+        if @session_form.validate params[:bot_telegram_user]
+          sign_in @session_form.model
+          redirect_to '/benchkiller/web/offers'
+        else
+          redirect_to '/'
+        end
       end
     else
       redirect_to '/'

@@ -8,6 +8,10 @@ class Benchkiller::Auth::UserForm < Tramway::Core::ApplicationForm
     end
   end
 
+  def need_to_generate_password?
+    !model.password_digest.present?
+  end
+
   private
 
   def add_wrong_username_or_password_error
