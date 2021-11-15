@@ -27,6 +27,7 @@ class PodcastsFinishWorker < ApplicationWorker
     send_notification_to_chat chat_id, notification(:audio, :finished, file_url: episode.ready_file.url)
     render_trailer episode
     send_notification_to_chat chat_id, notification(:video_trailer, :finished, file_url: episode.trailer_video.url)
+    render_instagram_stories episode
     render_full_video episode
     send_notification_to_chat chat_id, notification(:video, :finished, file_url: episode.full_video.url)
   end
@@ -42,5 +43,11 @@ class PodcastsFinishWorker < ApplicationWorker
     episode.render_video_trailer(output)
 
     Rails.logger.info 'Render trailer video completed'
+  end
+
+  def render_instagram_stories(episode)
+    episode.using_highlights.each do |highlight|
+      highlight.render_instagram_story
+    end
   end
 end

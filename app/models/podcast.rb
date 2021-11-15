@@ -10,4 +10,8 @@ class Podcast < ApplicationRecord
   enumerize :podcast_type, in: %i[sample without_music different_music handmade]
 
   scope :podcast_scope, ->(_user_id) { all }
+
+  def trailer_separator
+    podcast.musics.where(music_type: :trailer_separator).first
+  end
 end

@@ -83,9 +83,8 @@ module Podcast::Episodes::TrailerConcern
   end
 
   def content
-    trailer_separator = podcast.musics.where(music_type: :trailer_separator).first
     using_highlights.sort_by(&:trailer_position).map do |content_file|
-      [content_file.ready_file.path, trailer_separator.file.path]
+      [content_file.ready_file.path, podcast.trailer_separator.file.path]
     end.flatten
   end
 end
