@@ -105,3 +105,6 @@ ru:
     benchkiller/tag:
       plural: тэги
       genitive: тэг
+    podcast/episodes/star:
+      plural: звезды
+      genitive: звезду

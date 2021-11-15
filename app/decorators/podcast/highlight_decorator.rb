@@ -21,7 +21,7 @@ class Podcast::HighlightDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def listen
-    content_tag(:audio, controls: true) do
+    content_tag(:audio, controls: true, style: 'width: 100%') do
       content_tag(:source, '', src: object.file.url)
     end
   end
