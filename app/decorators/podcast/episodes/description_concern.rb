@@ -74,6 +74,7 @@ module Podcast::Episodes::DescriptionConcern
   end
 
   def static_content
+    concat(content_tag(:br))
     concat(raw(podcast.footer))
   end
 end
