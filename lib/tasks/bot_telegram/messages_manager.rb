@@ -33,7 +33,11 @@ module BotTelegram::MessagesManager
   def message_to_user(bot_api, message_obj, chat_id)
     case message_obj.class.to_s
     when 'String'
-      bot_api.send_message chat_id: chat_id, text: message_obj
+      bot_api.send_message(
+        chat_id: chat_id,
+        text: message_obj,
+        parse_mode: :markdown
+      )
     when 'BotTelegram::Scenario::Step'
       if message_obj.try(:text).present?
         if message_obj.reply_markup.present?
