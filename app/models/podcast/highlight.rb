@@ -9,6 +9,7 @@ class Podcast::Highlight < ApplicationRecord
 
   uploader :file, :file
   uploader :ready_file, :file
+  uploader :instagram_story, :file
 
   include Podcast::SoundProcessConcern
   include Ffmpeg::CommandBuilder
@@ -34,8 +35,6 @@ class Podcast::Highlight < ApplicationRecord
   end
 
   def cut_from_whole_file(filename, index)
-    directory = episode.prepare_directory
-
     hour, minutes, seconds = time.split(':')
     highlight_time = DateTime.new(2020, 0o1, 0o1, hour.to_i, minutes.to_i, seconds.to_i)
     begin_time = compute_begin_time highlight_time 
@@ -44,6 +43,14 @@ class Podcast::Highlight < ApplicationRecord
     build_and_run_command(input: filename, begin_time: begin_time, end_time: end_time, output: output)
     wait_for_file_rendered output, "Highlight #{id}"
     update_file! output, :file
+  end
+
+  def render_instagram_story
+    output = "#{directory}/story-#{index + 1}.mp4"
+  end
+
+  def directory
+    @directory ||= episode.prepare_directory
   end
 
   private
