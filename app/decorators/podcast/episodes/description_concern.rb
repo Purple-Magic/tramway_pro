@@ -74,49 +74,6 @@ module Podcast::Episodes::DescriptionConcern
   end
 
   def static_content
-    crowd_sourcing_link
-    social_networks
-    music_link
-    painter_link
-  end
-
-  def crowd_sourcing_link
-    concat('Поддержи сообщество IT Way, чтобы мы делали кучу разного контента!')
-    concat(link_to('Ссылка для поддержки', 'https://boosty.to/it_way_podcast'))
-  end
-
-  def social_networks
-    concat(content_tag(:h1) do
-      'Подписывайтесь на IT Way'
-    end)
-    links = {
-      'ВКонтакте' => 'https://vk.com/it_way',
-      'Чат в Telegram' => 'https://t.me/it_way_chat',
-      'Youtube' => 'https://www.youtube.com/c/ITWay',
-      'Twitter' => 'https://twitter.com/it_way_pro',
-      'Instagram' => 'https://instagram.com/it_way.pro',
-      'Комикс' => 'https://vk.com/asya_comics'
-    }
-    concat(content_tag(:ul) do
-      links.each do |pair|
-        concat(content_tag(:li) do
-          link_to(*pair)
-        end)
-      end
-    end)
-  end
-
-  def music_link
-    concat(content_tag(:p) do
-      concat 'Музыка: инструментал песни M.G. - Абсурд, студия '
-      concat(link_to('ALPHA RECORDS', 'https://vk.com/alpharecords73'))
-    end)
-  end
-
-  def painter_link
-    concat(content_tag(:p) do
-      concat 'Автор логотипа - художник '
-      concat(link_to('Екатерина Нечаева', 'https://vk.com/kiborgvviborge'))
-    end)
+    concat(raw(podcast.footer))
   end
 end
