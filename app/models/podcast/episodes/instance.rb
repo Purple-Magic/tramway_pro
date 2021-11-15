@@ -3,4 +3,6 @@ class Podcast::Episodes::Instance < ApplicationRecord
   has_many :shortened_urls, class_name: '::Shortener::ShortenedUrl', as: :owner
 
   enumerize :service, in: [ :yandex, :google, :youtube, :redcircle, :apple ]
+
+  validates :link, url: true
 end
