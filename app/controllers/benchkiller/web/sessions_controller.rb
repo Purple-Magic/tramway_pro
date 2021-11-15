@@ -4,16 +4,16 @@ class Benchkiller::Web::SessionsController < ::Tramway::Auth::Web::ApplicationCo
   before_action :redirect_if_signed_in, except: :destroy
 
   def create
-    @session_form = ::Tramway::Auth::SessionForm.new params[:model].constantize.active.find_by email: params[:user][:email]
+    @session_form = ::Benchkiller::Auth::UserForm.new ::Benchkiller::User.active.joins(:telegram_user).where('bot_telegram_users.username = ?', params[:bot_telegram_user][:username]).first
     if @session_form.model.present?
-      if @session_form.validate params[:user]
+      if @session_form.validate params[:bot_telegram_user]
         sign_in @session_form.model
-        redirect_to [params[:success_redirect], '?', { flash: :success_user_sign_in }.to_query].join || ::Tramway::Auth.root_path_for(@session_form.model.class)
+        redirect_to '/benchkiller/web/offers'
       else
-        redirect_to [params[:error_redirect], '?', { flash: :error_user_sign_in }.to_query].join || ::Tramway::Auth.root_path_for(@session_form.model.class)
+        redirect_to '/'
       end
     else
-      redirect_to [params[:error_redirect], '?', { flash: :error_user_sign_in }.to_query].join || ::Tramway::Auth.root_path_for(params[:model].constantize)
+      redirect_to '/'
     end
   end
 

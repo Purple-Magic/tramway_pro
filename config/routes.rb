@@ -56,6 +56,13 @@ Rails.application.routes.draw do
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:benchkiller]) do
     root to: 'benchkiller/web/welcome#index'
 
+    namespace :benchkiller do
+      namespace :web do
+        resources :sessions, only: [ :create, :destroy ]
+        resources :offers, only: :index
+      end
+    end
+
     mount Tramway::Admin::Engine, at: '/admin', as: :benchkiller_admin
   end
 
