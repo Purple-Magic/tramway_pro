@@ -1,0 +1,19 @@
+- case params[:flash]
+- when 'success_sign_in'
+  .alert.alert-success
+    %span
+      Авторизация прошла успешно
+= paginate @offers, theme: 'twitter-bootstrap-4'
+- model_class = ::Benchkiller::Offer
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:name)
+      %th= t 'helpers.links.actions'
+  %tbody
+    - @offers.each_with_index do |record, index|
+      %tr
+        %td
+          = link_to record.name, ''
+        %td.actions
+= paginate @offers, theme: 'twitter-bootstrap-4'
