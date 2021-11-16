@@ -11,9 +11,9 @@ class Benchkiller::Web::SessionsController < ::Tramway::Auth::Web::ApplicationCo
       else
         if @session_form.validate params[:bot_telegram_user]
           sign_in @session_form.model
-          redirect_to '/benchkiller/web/offers'
+          redirect_to ['/benchkiller/web/offers', '?', { flash: :success_sign_in }.to_query].join
         else
-          redirect_to '/'
+          redirect_to ['/', '?', { flash: :wrong_username_or_password }.to_query].join
         end
       end
     else

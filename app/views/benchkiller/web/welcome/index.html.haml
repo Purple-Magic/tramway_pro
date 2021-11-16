@@ -1,11 +1,16 @@
 .row
   .col-md-6
-    - if params[:flash] == 'you_need_to_generate_password'
+    - case params[:flash]
+    - when 'you_need_to_generate_password'
       .alert.alert-warning
         %span
           Вам нужно сгенерировать пароль. Перейдите в нашего
           = link_to 'бота', 'https://t.me/benchkiller_test_bot'
           и воспользуйтесь функцией "Создать пароль"
+    - when 'wrong_username_or_password'
+      .alert.alert-danger
+        %span
+          Неверный логин или пароль
     = simple_form_for @session_form.model, url: '/benchkiller/web/sessions', method: :post, html: { class: 'form-horizontal' } do |f|
       = f.input :username, as: :string
       = f.input :password
