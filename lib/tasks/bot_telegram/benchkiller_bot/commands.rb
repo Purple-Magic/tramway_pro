@@ -23,11 +23,14 @@ module BotTelegram::BenchkillerBot::Commands
       [
         ['Регионы сотрудничества', { data: { command: :set_regions_to_cooperate } }],
         ['Посмотреть карточку компании', { data: { command: :get_company_card } }]
+      ],
+      [
+        ['Создать пароль', { data: { command: :create_password } }]
       ]
     ]
     message = ::BotTelegram::Custom::Message.new text: answer, inline_keyboard: inline_keyboard
 
-    message_to_user bot, message, chat.telegram_chat_id
+    message_to_user bot.api, message, chat.telegram_chat_id
   end
 
 
@@ -49,6 +52,16 @@ module BotTelegram::BenchkillerBot::Commands
     card = ::Benchkiller::CompanyDecorator.decorate(company(user)).bot_card
 
     message_to_user bot, card, chat.telegram_chat_id
+  end
+
+  def create_password(argument)
+    new_password = SecureRandom.hex(16)
+    message_text = "Ваш новый пароль #{new_password}"
+    benchkiller_user = ::Benchkiller::User.active.find_by bot_telegram_user_id: user.id
+    benchkiller_user.password = new_password
+    benchkiller_user.save!
+
+    message_to_user bot.api, message_text, chat.telegram_chat_id
   end
 end
 

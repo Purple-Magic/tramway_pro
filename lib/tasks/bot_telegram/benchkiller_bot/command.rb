@@ -10,7 +10,8 @@ class BotTelegram::BenchkillerBot::Command
     :set_phone,
     :set_place,
     :set_regions_to_cooperate,
-    :get_company_card
+    :get_company_card,
+    :create_password
   ]
 
   attr_reader :name, :argument
