@@ -18,7 +18,7 @@ kalashnikovisme: &kalashnikovisme
 benchkiller: &benchkiller
   name: benchkiller
   title: BenchKiller
-  public_name: "Bench Killer"
+  public_name: "BenchKiller"
 
 development:
   it_way: it-way.test
@@ -63,7 +63,7 @@ production:
   purple_magic: purple-magic.com
   gorodsad73: gorodsad73.ru
   red_magic: red-magic.ru
-  benchkiller: freedvs.test
+  benchkiller: freedvs.com
   engines:
     'it-way.pro': conference
   application_class:
