@@ -1,8 +1,11 @@
 - case params[:flash]
 - when 'success_sign_in'
-  .alert.alert-success
+  .alert.alert-success.fade.show{ role: :alert }
     %span
       Авторизация прошла успешно
+    %button.close{ data: { dismiss: :alert }, aria: { label: 'Close'} }
+      %span{ aria: { hidden: true } }
+        &times;
 = paginate @offers, theme: 'twitter-bootstrap-4'
 - model_class = ::Benchkiller::Offer
 %table.table.table-striped.table-bordered
