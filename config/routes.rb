@@ -60,6 +60,7 @@ Rails.application.routes.draw do
       namespace :web do
         resources :sessions, only: [ :create, :destroy ]
         resources :offers, only: :index
+        resources :deliveries, only: [ :new, :create ]
       end
     end
 

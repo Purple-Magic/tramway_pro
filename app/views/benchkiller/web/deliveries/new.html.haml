@@ -1,0 +1,5 @@
+= simple_form_for @delivery_form, url: benchkiller_web_deliveries_path, method: :post do |f|
+  = f.label :text, @delivery_form.model.class.human_attribute_name(:text)
+  = f.input :text, as: :text, label: false, placeholder: 'Поддерживается markdown'
+  = f.input :receivers_ids, as: :hidden, input_html: { value: params.except('utf8', 'commit', 'controller', 'action').keys.join(',') }
+  = f.button :submit, class: 'btn btn-success'

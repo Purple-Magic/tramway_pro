@@ -143,6 +143,8 @@ ru:
       benchkiller/notification:
         text: Текст уведомления
         send_at: Отправлять каждый день в
+      benchkiller/delivery:
+        text: Текст рассылки
   enumerize:
     podcast:
       podcast_type:
