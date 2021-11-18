@@ -8,7 +8,7 @@ class Benchkiller::Web::DeliveriesController < Benchkiller::Web::ApplicationCont
     if @delivery_form.submit params[:benchkiller_delivery]
       redirect_to [benchkiller_web_offers_path, '?', { flash: :success_started_delivery }.to_query].join
     else
-      redirect_to [new_benchkiller_web_delivery_path, '?', { flash: "errors: #{@delivery_form.errors}" }.to_query].join
+      render :new
     end
   end
 end
