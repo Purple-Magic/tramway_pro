@@ -35,7 +35,6 @@ class PodcastsDownloadWorker < ApplicationWorker
     end
 
     episode.download!
-    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     send_notification_to_chat chat_id, notification(:footage, :downloaded)
   end
 
