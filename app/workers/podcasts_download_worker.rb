@@ -11,7 +11,7 @@ class PodcastsDownloadWorker < ApplicationWorker
   def perform(id)
     chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     episode = Podcast::Episode.find id
-    download episode
+    download episode, chat_id
   rescue StandardError => error
     log_error error
     send_notification_to_chat chat_id, notification(:montage, :something_went_wrong)
@@ -19,7 +19,7 @@ class PodcastsDownloadWorker < ApplicationWorker
 
   private
 
-  def download(episode)
+  def download(episode, chat_id)
     return if episode.file.present?
 
     directory = episode.prepare_directory.gsub('//', '/')
