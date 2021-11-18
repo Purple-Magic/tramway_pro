@@ -31,7 +31,7 @@ class Benchkiller::OfferDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def text
-    object.message.text
+    "#{object.message.user.username}: #{object.message.text}"
   end
 
   class << self

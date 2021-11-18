@@ -7,7 +7,7 @@ class Benchkiller::Web::DeliveryForm < Tramway::Core::ApplicationForm
       ::Benchkiller::Offer.find_by(uuid: uuid).id
     end
     super.tap do
-
+      ::BenchkillerDeliveryWorker.new.perform model.receivers_ids, model.text
     end
   end
 end
