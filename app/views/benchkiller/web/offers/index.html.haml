@@ -1,19 +1,42 @@
+- model_class = ::Benchkiller::Offer
+- current_path_method = :benchkiller_web_offers_path
+
 - case params[:flash]
 - when 'success_sign_in'
-  .alert.alert-success
+  .alert.alert-success.fade.show{ role: :alert }
     %span
       Авторизация прошла успешно
-= paginate @offers, theme: 'twitter-bootstrap-4'
-- model_class = ::Benchkiller::Offer
-%table.table.table-striped.table-bordered
-  %thead
-    %tr
-      %th= model_class.human_attribute_name(:name)
-      %th= t 'helpers.links.actions'
-  %tbody
-    - @offers.each_with_index do |record, index|
+    %button.close{ data: { dismiss: :alert }, aria: { label: 'Close'} }
+      %span{ aria: { hidden: true } }
+        &times;
+- when 'success_started_delivery'
+  .alert.alert-success.fade.show{ role: :alert }
+    %span
+      Рассылка успешно запущена
+    %button.close{ data: { dismiss: :alert }, aria: { label: 'Close'} }
+      %span{ aria: { hidden: true } }
+        &times;
+%h1.mb-4
+  Проекты и команды
+= form_tag new_benchkiller_web_delivery_path, method: :get do |f|
+  = submit_tag 'Сделать рассылку', class: 'btn btn-primary mb-4'
+  %ul.nav.nav-tabs
+    %li.nav-item
+      = link_to 'Проекты', public_send(current_path_method, { collection: :look_for }), class: "nav-link #{params[:collection].in?([ 'look_for', nil ]) ? :active : ''}"
+    %li.nav-item
+      = link_to 'Команды', public_send(current_path_method, { collection: :available }), class: "nav-link #{params[:collection].in?([ 'available' ]) ? :active : ''}"
+  %table.table.table-striped.table-bordered
+    %thead
       %tr
-        %td
-          = link_to record.name, ''
-        %td.actions
-= paginate @offers, theme: 'twitter-bootstrap-4'
+        %th
+        %th= model_class.human_attribute_name(:name)
+        %th= t 'helpers.links.actions'
+    %tbody
+      - @offers.each_with_index do |record, index|
+        %tr
+          %td
+            = check_box_tag record.uuid, params[record.uuid]
+          %td
+            = record.text
+          %td.actions
+  = paginate @offers, theme: 'twitter-bootstrap-4'

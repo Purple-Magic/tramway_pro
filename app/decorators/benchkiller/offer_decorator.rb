@@ -9,6 +9,7 @@ class Benchkiller::OfferDecorator < Tramway::Core::ApplicationDecorator
         :project_id,
         :created_at,
         :updated_at,
+        :uuid
   )
 
   decorate_associations :tags
@@ -30,7 +31,7 @@ class Benchkiller::OfferDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def text
-    object.message.text
+    "#{object.message.user.username}: #{object.message.text}"
   end
 
   class << self

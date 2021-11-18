@@ -15,3 +15,9 @@
       = f.input :username, as: :string
       = f.input :password
       = f.button :submit, t('helpers.links.enter'), class: 'btn btn-success'
+
+    .alert.alert-primary
+      %span
+        Впервые у нас? Перейдите в нашего 
+        = link_to 'бота', 'https://t.me/benchkiller_test_bot', target: '_blank'
+        и сгенерируйте себе пароль.

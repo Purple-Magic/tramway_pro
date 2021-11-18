@@ -56,7 +56,7 @@ module BotTelegram::BenchkillerBot::Commands
 
   def create_password(argument)
     new_password = SecureRandom.hex(16)
-    message_text = "Ваш новый пароль #{new_password}"
+    message_text = "Ваш новый пароль #{new_password}. Теперь переходите к нам на freedvs.com и вводите свой пароль."
     benchkiller_user = ::Benchkiller::User.active.find_by bot_telegram_user_id: user.id
     benchkiller_user.password = new_password
     benchkiller_user.save!
