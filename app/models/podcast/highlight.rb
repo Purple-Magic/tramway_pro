@@ -46,7 +46,7 @@ class Podcast::Highlight < ApplicationRecord
   end
 
   def render_instagram_story
-    output = "#{directory}/story-#{index + 1}.mp4"
+    #output = "#{directory}/story-#{index + 1}.mp4"
   end
 
   def directory
