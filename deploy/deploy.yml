@@ -81,7 +81,20 @@
       args:
         chdir: "{{ release_path }}"
 
-    - name: Assets
+    - name: Assets clean
+      shell: "/bin/bash -lic '/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec rails assets:clean'"
+      args:
+        chdir: "{{ release_path }}"
+
+    - name: Stop unicorn
+      shell: "[ -e /srv/tramway_pro/shared/tmp/pids/unicorn.pid  ] && kill `cat /srv/tramway_pro/shared/tmp/pids/unicorn.pid`"
+      ignore_errors: yes
+
+    - name: Stop sidekiq
+      ignore_errors: yes
+      shell: "ps aux | grep -ie sidekiq | awk '{print $2}' | xargs kill -9"
+
+    - name: Assets precompile
       shell: "/bin/bash -lic '/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec rails assets:precompile'"
       args:
         chdir: "{{ release_path }}"
