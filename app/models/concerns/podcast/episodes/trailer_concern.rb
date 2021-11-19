@@ -32,8 +32,6 @@ module Podcast::Episodes::TrailerConcern
     make_audio_ready!
   end
 
-  private
-
   def normalize_trailer(output)
     temp_output = update_output :normalize, output
     render_command = write_logs normalize(input: trailer.path, output: temp_output)
