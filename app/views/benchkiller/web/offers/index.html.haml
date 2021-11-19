@@ -34,7 +34,7 @@
       %tr
         %th
         %th= model_class.human_attribute_name(:name)
-        %th= t 'helpers.links.actions'
+        %th= model_class.human_attribute_name(:created_at)
     %tbody
       - @offers.each_with_index do |record, index|
         %tr
@@ -42,5 +42,6 @@
             = check_box_tag record.uuid, params[record.uuid]
           %td
             = record.text
-          %td.actions
+          %td
+            = record.created_at.strftime('%d.%m.%Y %H:%M')
   = paginate @offers, theme: 'twitter-bootstrap-4'
