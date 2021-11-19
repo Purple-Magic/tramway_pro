@@ -35,8 +35,7 @@ module BotTelegram::MessagesManager
     when 'String'
       bot_api.send_message(
         chat_id: chat_id,
-        text: message_obj,
-        parse_mode: :markdown
+        text: message_obj
       )
     when 'BotTelegram::Scenario::Step'
       if message_obj.try(:text).present?
