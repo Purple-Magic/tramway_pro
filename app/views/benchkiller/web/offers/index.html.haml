@@ -16,12 +16,8 @@
     %button.close{ data: { dismiss: :alert }, aria: { label: 'Close'} }
       %span{ aria: { hidden: true } }
         &times;
-%h1.mb-4{ style: 'display: flex; flex-direction: row; justify-content: space-between' }
+%h1.mb-4
   Проекты и команды
-  = form_tag public_send(current_path_method), style: 'display: flex; flex-direction: row; justify-content: space-between', method: :get do |f|
-    = text_field_tag :search, params[:search], class: 'text form-control'
-    = hidden_field_tag :collection, params[:collection]
-    = submit_tag 'Поиск', class: 'btn btn-primary mb-4'
 = form_tag new_benchkiller_web_delivery_path, method: :get do |f|
   = submit_tag 'Сделать рассылку', class: 'btn btn-primary mb-4'
   %ul.nav.nav-tabs
