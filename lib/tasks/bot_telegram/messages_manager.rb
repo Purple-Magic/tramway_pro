@@ -33,6 +33,7 @@ module BotTelegram::MessagesManager
   def message_to_user(bot_api, message_obj, chat_id)
     case message_obj.class.to_s
     when 'String'
+      sleep 1
       bot_api.send_message(
         chat_id: chat_id,
         text: message_obj
