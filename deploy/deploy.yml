@@ -76,6 +76,11 @@
       args:
         chdir: "{{ release_path }}"
 
+    - name: Update browserlist
+      shell: "cd {{ release_path }} && /bin/bash -ilc 'npx browserslist@latest --update-db'"
+      args:
+        chdir: "{{ release_path }}"
+
     - name: Assets
       shell: "/bin/bash -lic '/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec rails assets:precompile'"
       args:
