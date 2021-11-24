@@ -10,7 +10,7 @@ class Benchkiller::Delivery < ApplicationRecord
     state :done
 
     event :run do
-      transitions ready: :in_progress
+      transitions from: :ready, to: :in_progress
 
       after do
         save!
@@ -19,11 +19,15 @@ class Benchkiller::Delivery < ApplicationRecord
     end
 
     event :finish do
-      transitions in_progress: :done
+      transitions from: :in_progress, to: :done
     end
   end
 
   def receivers
     Benchkiller::Offer.where(id: receivers_ids).map(&:message).map(&:user)
+  end
+
+  def send_to_me
+    ::BenchkillerDeliveryWorker.perform_async [benchkiller_user_id], text
   end
 end

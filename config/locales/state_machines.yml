@@ -69,3 +69,8 @@ ru:
           approve: Подтвердить
           decline: Отклонить
           return_to_unviewed: Отметить, как непроверенный
+    benchkiller/delivery:
+      delivery_state:
+        events:
+          run: Начать рассылку
+          send_to_me: Отправить себе
