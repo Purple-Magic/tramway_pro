@@ -11,6 +11,8 @@ class Benchkiller::Company < ApplicationRecord
 
   scope :benchkiller_scope, lambda { |_user| all }
 
+  validates :title, uniqueness: true, if: -> { state == 'active' }
+
   search_by :title
 
   aasm :review_state do

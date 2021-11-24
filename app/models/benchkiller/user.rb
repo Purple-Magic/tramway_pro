@@ -7,5 +7,7 @@ class Benchkiller::User < ApplicationRecord
 
   scope :benchkiller_scope, lambda { |_user| all }
 
+  validates :bot_telegram_user_id, uniqueness: true, if: -> { state == 'active' }
+
   delegate :username, to: :telegram_user
 end
