@@ -11,6 +11,12 @@
         %span.navbar-toggler-icon
       .navbar-collapse.collapse#navbar
         %ul.navbar-nav
+      - if signed_in?
+        %ul.nav.navbar-nav.ml-auto
+          %li.nav-item
+            = link_to benchkiller_web_sign_out_path, class: 'nav-link' do
+              = fa_icon 'sign-out-alt'
+              = t('helpers.links.sign_out')
     %main.container
       = yield
     %footer{ style: 'padding-bottom: 1rem' }
