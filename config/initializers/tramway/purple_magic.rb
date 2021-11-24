@@ -23,6 +23,7 @@ Tramway::Admin.set_available_models(
   Benchkiller::Notification,
   Benchkiller::Offer,
   Benchkiller::Tag,
+  Benchkiller::Collation,
   project: :purple_magic
 )
 
@@ -59,6 +60,7 @@ Tramway::Admin.set_available_models(
   Benchkiller::Notification,
   Benchkiller::Offer,
   Benchkiller::Tag,
+  Benchkiller::Collation,
   role: :benchkiller,
   project: :purple_magic
 )
@@ -86,7 +88,8 @@ Tramway::Admin.navbar_structure(
       Benchkiller::Company,
       Benchkiller::Notification,
       Benchkiller::Offer,
-      Benchkiller::Tag
+      Benchkiller::Tag,
+      Benchkiller::Collation,
     ]
   },
   {

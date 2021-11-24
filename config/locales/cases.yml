@@ -108,3 +108,6 @@ ru:
     podcast/episodes/star:
       plural: звезды
       genitive: звезду
+    benchkiller/collation:
+      plural: словарь
+      genitive: сопоставление

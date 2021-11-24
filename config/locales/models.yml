@@ -21,6 +21,7 @@ ru:
       benchkiller/offer: Предложение
       benchkiller/tag: Тэг
       benchkiller/delivery: Рассылка
+      benchkiller/collation: Сопоставление
     attributes:
       word:
         main: Определение
@@ -150,6 +151,9 @@ ru:
         text_preview: Предпросмотр текста сообщения
       benchkiller/offer:
         name: Текст запроса
+      benchkiller/collation:
+        main: Главное слово
+        words: Слова на сопоставление
   enumerize:
     podcast:
       podcast_type:
