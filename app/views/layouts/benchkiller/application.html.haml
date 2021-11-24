@@ -2,6 +2,8 @@
   %head
     = stylesheet_link_tag    'tramway/admin/application', media: "all"
     = javascript_include_tag 'tramway/admin/application'
+  %title
+    = yield :title
   %body{ style: 'display: flex; flex-direction: column; justify-content: space-between; min-height: 100%' }
     %nav.navbar.navbar-expand-md.navbar-dark.bg-dark
       = link_to 'Benchkiller', '/', class: 'navbar-brand'
