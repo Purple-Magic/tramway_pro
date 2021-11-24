@@ -6,6 +6,7 @@ module BotTelegram::BenchkillerBot
   BOT_ID = 13
 
   MAIN_CHAT_ID = '-1001797189343'
+  ADMIN_CHAT_ID = '-671956366'
 
   ACTIONS_DATA = {
     set_company_name: {

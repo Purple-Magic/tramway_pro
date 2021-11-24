@@ -13,6 +13,7 @@ class Benchkiller::OfferDecorator < Tramway::Core::ApplicationDecorator
   )
 
   decorate_associations :tags
+  decorate_association :message
 
   def title
     user = object.message.user

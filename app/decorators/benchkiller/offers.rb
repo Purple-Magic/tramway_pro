@@ -1,0 +1,2 @@
+module Benchkiller::Offers
+end
