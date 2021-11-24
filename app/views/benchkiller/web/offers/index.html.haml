@@ -27,7 +27,8 @@
   = submit_tag 'Сделать рассылку', class: 'btn btn-primary mb-4'
   %ul.nav.nav-tabs
     %li.nav-item
-      = link_to 'Проекты', public_send(current_path_method, { collection: :lookfor }), class: "nav-link #{params[:collection].in?([ 'lookfor', nil ]) ? :active : ''}"
+      - on_lookfor_tab = params[:collection].to_s.in?([ 'lookfor' ])
+      = link_to 'Проекты', public_send(current_path_method, { collection: :lookfor }), class: "nav-link #{on_lookfor_tab ? :active : ''}"
     %li.nav-item
       = link_to 'Команды', public_send(current_path_method, { collection: :available }), class: "nav-link #{params[:collection].in?([ 'available' ]) ? :active : ''}"
   %table.table.table-striped.table-bordered

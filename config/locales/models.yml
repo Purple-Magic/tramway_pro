@@ -145,6 +145,8 @@ ru:
         send_at: Отправлять каждый день в
       benchkiller/delivery:
         text: Текст рассылки
+      benchkiller/offer:
+        name: Текст запроса
   enumerize:
     podcast:
       podcast_type:
