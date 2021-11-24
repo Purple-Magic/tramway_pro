@@ -8,7 +8,16 @@ class Benchkiller::Web::OffersController < Benchkiller::Web::ApplicationControll
     end
     offers = ::Benchkiller::Offer.where(id: offers_ids)
     if params[:search].present?
-      offers = offers.full_text_search params[:search]
+      collation = ::Benchkiller::Collation.full_text_search(params[:search]).first
+      if collation.present?
+        words = [collation.main] + collation.words
+        offers_ids = words.map do |word|
+          offers.full_text_search word
+        end.flatten.uniq.map(&:id)
+        offers = ::Benchkiller::Offer.where id: offers_ids
+      else
+        offers = offers.full_text_search params[:search]
+      end
     end
     @offers = ::Benchkiller::OfferDecorator.decorate offers.page params[:page]
   end
