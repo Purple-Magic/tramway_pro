@@ -5,11 +5,10 @@ require_relative 'chat_decorator'
 require_relative 'command'
 require_relative 'commands'
 require_relative 'action'
-require_relative 'notify'
 
 class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
   include ::BotTelegram::BenchkillerBot::Commands
-  include ::BotTelegram::BenchkillerBot::Notify
+  include ::BotTelegram::BenchkillerBot::AdminFeatures
 
   BOT_ID = 13
 
@@ -28,12 +27,5 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
         action.run
       end
     end
-  end
-
-  private
-
-  def send_approve_message_to_admin_chat(offer)
-    message = ::Benchkiller::Offers::AdminChatDecorator.decorate(offer).admin_message
-    send_notification_to_chat ::BotTelegram::BenchkillerBot::ADMIN_CHAT_ID, message
   end
 end

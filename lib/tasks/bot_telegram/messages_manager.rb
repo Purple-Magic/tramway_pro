@@ -20,7 +20,7 @@ module BotTelegram::MessagesManager
     when 'String'
       bot_api.send_message chat_id: chat.telegram_chat_id, text: message_obj
     when 'BotTelegram::Custom::Message'
-      bot_api.send_message chat_id: chat.telegram_chat_id, **message_obj.options
+      bot_api.send_message chat_id: chat.telegram_chat_id, **message_obj.options.merge(parse_mode: :markdown)
       send_file bot_api, chat_id, message_obj if message_obj.file.present?
     else
       raise message_obj.class.to_s
