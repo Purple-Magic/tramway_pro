@@ -1,0 +1,23 @@
+- model = Benchkiller::Delivery
+%h3.mb-4{ style: 'display: flex; justify-content: space-between' }
+  = "#{model.model_name.human} от #{DateTime.now.strftime('%d.%m.%Y')}"
+  = link_to fa_icon('pencil-alt'), edit_benchkiller_web_delivery_path(@delivery.uuid), class: 'btn btn-warning btn-xs'
+
+%table.table.table-striped.table-bordered
+  %tr
+    %td
+      %b
+        = model.human_attribute_name :whom
+    %td
+      = @delivery.receivers
+  %tr
+    %td
+      %b
+        = model.human_attribute_name :text_preview
+    %td
+      = @delivery.markdown_preview
+
+- t_scope = [:state_machines, 'benchkiller/delivery', :delivery_state, :events]
+- if @delivery.model.delivery_state.in? [ 'ready', 'sent_to_me' ]
+  = link_to t('run', scope: t_scope), run_process_benchkiller_web_delivery_path(@delivery.uuid, process: :run), class: 'btn btn-success'
+= link_to t('send_to_me', scope: t_scope), run_process_benchkiller_web_delivery_path(@delivery.uuid, process: :send_to_me), class: 'btn btn-primary'
