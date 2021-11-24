@@ -28,6 +28,6 @@ class Benchkiller::Delivery < ApplicationRecord
   end
 
   def send_to_me
-    ::BenchkillerDeliveryWorker.perform_async [benchkiller_user_id], text
+    ::BenchkillerDeliveryWorker.new.perform [benchkiller_user_id], text
   end
 end
