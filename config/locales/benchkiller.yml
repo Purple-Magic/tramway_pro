@@ -1,0 +1,9 @@
+ru:
+  benchkiller:
+    web:
+      deliveries:
+        new:
+          title: Создать рассылку
+      welcome:
+        index:
+          title: Авторизация

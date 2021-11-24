@@ -9,7 +9,7 @@ class Benchkiller::Web::DeliveryForm < Tramway::Core::ApplicationForm
     end
     super.tap do |result|
       if result && model.text.present?
-        ::BenchkillerDeliveryWorker.new.perform model.receivers_ids, model.text
+        ::BenchkillerDeliveryWorker.perform_async model.receivers_ids, model.text
       end
     end
   end

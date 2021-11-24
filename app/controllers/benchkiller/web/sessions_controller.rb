@@ -22,8 +22,8 @@ class Benchkiller::Web::SessionsController < ::Tramway::Auth::Web::ApplicationCo
   end
 
   def destroy
-    root_path = ::Tramway::Auth.root_path_for(current_user.class)
-    sign_out params[:model]
+    root_path = '/'
+    sign_out 'Benchkiller::User'
     redirect_to params[:redirect] || root_path
   end
 

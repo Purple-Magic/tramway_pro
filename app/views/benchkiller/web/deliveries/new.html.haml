@@ -1,5 +1,6 @@
+- deliveries_title
 = simple_form_for @delivery_form, url: benchkiller_web_deliveries_path, method: :post do |f|
   = f.label :text, @delivery_form.model.class.human_attribute_name(:text)
-  = f.input :text, as: :text, label: false, placeholder: 'Поддерживается markdown'
+  = f.input :text, as: :text, label: false, placeholder: 'Поддерживается markdown', input_html: { style: 'height: 50vh' }
   = f.input :receivers, as: :hidden, input_html: { value: @delivery_form.receivers.present? ? @delivery_form.receivers : params.except('utf8', 'commit', 'controller', 'action').keys.join(',') }
-  = f.button :submit, class: 'btn btn-success'
+  = f.button :submit, 'Начать рассылку', class: 'btn btn-success'

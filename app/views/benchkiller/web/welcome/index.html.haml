@@ -1,3 +1,4 @@
+- welcome_title
 .row
   .col-md-6
     - case params[:flash]
@@ -12,8 +13,10 @@
         %span
           Неверный логин или пароль
     = simple_form_for @session_form.model, url: '/benchkiller/web/sessions', method: :post, html: { class: 'form-horizontal' } do |f|
-      = f.input :username, as: :string
-      = f.input :password
+      = f.label 'Ваш никнейм в Telegram'
+      = f.input :username, as: :string, label: false
+      = f.label 'Пароль'
+      = f.input :password, label: false
       = f.button :submit, t('helpers.links.enter'), class: 'btn btn-success'
 
     .alert.alert-primary

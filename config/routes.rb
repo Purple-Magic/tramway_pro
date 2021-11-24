@@ -58,7 +58,8 @@ Rails.application.routes.draw do
 
     namespace :benchkiller do
       namespace :web do
-        resources :sessions, only: [ :create, :destroy ]
+        resources :sessions, only: [ :create ]
+        get 'sign_out', to: 'sessions#destroy'
         resources :offers, only: :index
         resources :deliveries, only: [ :new, :create ]
       end

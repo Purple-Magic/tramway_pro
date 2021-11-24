@@ -1,10 +1,9 @@
-bot = Bot.find 13
+ids = Benchkiller::Offer.active.map(&:message_id)
 
-bot.messages.each_with_index do |message, index|
-  if message.chat.telegram_chat_id == '-1001076312571'
-    unless Benchkiller::Offer.find_by(message_id: message.id).present?
-      Benchkiller::Offer.create! message_id: message.id, project_id: 7
-    end
-  end
-  print "#{index} of #{bot.messages.count}\r"
+chat = BotTelegram::Chat.find_by telegram_chat_id: '-1001076312571'
+messages = chat.messages.where.not(id: ids).includes(:chat)
+messages.each_with_index do |message, index|
+  Benchkiller::Offer.create! message_id: message.id, project_id: 7
+  print "#{index} of #{messages.count}\r"
 end
+

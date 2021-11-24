@@ -31,7 +31,23 @@ class Benchkiller::OfferDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def text
-    "#{object.message.user.username}: #{object.message.text}"
+    raw "@#{object.message.user.username}: #{upgraded_text_view}"
+  end
+
+  private
+
+  def upgraded_text_view
+    object.message.text.gsub("\n", "<br/>").split(' ').map do |part|
+      part.split('<br/>').map do |word|
+        if word.first == '#'
+          content_tag(:span, style: 'color: #007bff') do
+            word
+          end
+        else
+          word
+        end
+      end.join('<br/>')
+    end.join(' ')
   end
 
   class << self
