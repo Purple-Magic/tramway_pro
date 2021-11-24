@@ -100,6 +100,16 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
           { url: render_video_url, method: :patch, inner: -> { 'Render video' }, color: :success },
         ]
       }
+    when :without_music
+      finish_record_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish_record)
+      finish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish)
+
+      {
+        show: [
+          { url: finish_record_url, method: :patch, inner: -> { 'Finish record' }, color: :success },
+          { url: finish_url, method: :patch, inner: -> { 'Finish' }, color: :success }
+        ]
+      }
     end
   end
 
