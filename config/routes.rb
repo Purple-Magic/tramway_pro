@@ -61,7 +61,7 @@ Rails.application.routes.draw do
         resources :sessions, only: [ :create ]
         get 'sign_out', to: 'sessions#destroy'
         resources :offers, only: :index
-        resources :deliveries, only: [ :new, :create ]
+        resources :deliveries, only: [ :new, :create, :show ]
       end
     end
 

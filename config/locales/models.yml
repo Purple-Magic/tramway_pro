@@ -20,6 +20,7 @@ ru:
       benchkiller/user: Пользователи
       benchkiller/offer: Предложение
       benchkiller/tag: Тэг
+      benchkiller/delivery: Рассылка
     attributes:
       word:
         main: Определение
@@ -145,6 +146,8 @@ ru:
         send_at: Отправлять каждый день в
       benchkiller/delivery:
         text: Текст рассылки
+        whom: Кому
+        text_preview: Предпросмотр текста сообщения
       benchkiller/offer:
         name: Текст запроса
   enumerize:

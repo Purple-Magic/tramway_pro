@@ -1,0 +1,17 @@
+- model = Benchkiller::Delivery
+%h1.mb-4
+  = "#{model.model_name.human} от #{DateTime.now.strftime('%d.%m.%Y')}"
+
+%table.table.table-striped.table-bordered
+  %tr
+    %td
+      %b
+        = model.human_attribute_name :whom
+    %td
+      = @delivery.receivers
+  %tr
+    %td
+      %b
+        = model.human_attribute_name :text_preview
+    %td
+      = @delivery.markdown_preview

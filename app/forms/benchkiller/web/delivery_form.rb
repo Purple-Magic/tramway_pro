@@ -7,10 +7,7 @@ class Benchkiller::Web::DeliveryForm < Tramway::Core::ApplicationForm
     params[:receivers_ids] = params[:receivers].split(',').map do |uuid|
       ::Benchkiller::Offer.find_by(uuid: uuid).id
     end
-    super.tap do |result|
-      if result && model.text.present?
-        ::BenchkillerDeliveryWorker.perform_async model.receivers_ids, model.text
-      end
-    end
+
+    super
   end
 end
