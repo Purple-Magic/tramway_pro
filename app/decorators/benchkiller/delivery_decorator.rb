@@ -1,4 +1,6 @@
 class Benchkiller::DeliveryDecorator < Tramway::Core::ApplicationDecorator
+  delegate_attributes :uuid
+
   def receivers
     content_tag :ul do
       object.receivers.each do |receiver|

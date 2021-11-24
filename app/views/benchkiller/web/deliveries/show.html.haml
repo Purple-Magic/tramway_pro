@@ -1,6 +1,7 @@
 - model = Benchkiller::Delivery
-%h1.mb-4
+%h3.mb-4{ style: 'display: flex; justify-content: space-between' }
   = "#{model.model_name.human} от #{DateTime.now.strftime('%d.%m.%Y')}"
+  = link_to fa_icon('pencil-alt'), edit_benchkiller_web_delivery_path(@delivery.uuid), class: 'btn btn-warning btn-xs'
 
 %table.table.table-striped.table-bordered
   %tr

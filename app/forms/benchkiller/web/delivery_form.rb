@@ -3,9 +3,11 @@ class Benchkiller::Web::DeliveryForm < Tramway::Core::ApplicationForm
   attr_accessor :receivers
 
   def submit(params)
-    params[:project_id] = 7
-    params[:receivers_ids] = params[:receivers].split(',').map do |uuid|
-      ::Benchkiller::Offer.find_by(uuid: uuid).id
+    if params[:receivers_ids].present?
+      params[:project_id] = 7
+      params[:receivers_ids] = params[:receivers].split(',').map do |uuid|
+        ::Benchkiller::Offer.find_by(uuid: uuid).id
+      end
     end
 
     super
