@@ -1,6 +1,6 @@
 class Benchkiller::Web::OffersController < Benchkiller::Web::ApplicationController
   def index
-    params[:collection] ||= :look_for
+    params[:collection] ||= :lookfor
     offers_ids = if params[:collection] == 'all'
       ::Benchkiller::Offer.active.map(&:id)
     else

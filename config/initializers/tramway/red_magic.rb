@@ -114,7 +114,8 @@ Tramway::Api.set_available_models(
           records.active.where(project_id: project.id)
         end
       }
-    ]
+    ],
+    Benchkiller::Offer => [ :index ]
   },
   project: :red_magic
 )

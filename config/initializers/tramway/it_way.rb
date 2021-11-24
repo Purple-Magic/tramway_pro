@@ -6,6 +6,7 @@ Tramway::Admin.set_available_models Word,
   Podcast,
   Podcast::Episode,
   project: :conference, role: :admin
+
 Tramway::Admin.navbar_structure(
   Tramway::Conference::Unity,
   {
