@@ -3,7 +3,7 @@
 class Benchkiller::OfferSerializer < Tramway::Api::V1::ApplicationSerializer
   attributes :uuid, :title
 
-  association :tags
+  has_many :tags, serializer: ::Benchkiller::TagSerializer
 
   def title
     user = object.message.user
