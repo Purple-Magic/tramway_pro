@@ -14,7 +14,7 @@ class Benchkiller::Delivery < ApplicationRecord
 
       after do
         save!
-        ::BenchkillerDeliveryWorker.perform_async receivers_ids, text
+        ::BenchkillerDeliveryWorker.perform_async receivers.map(&:id), text
       end
     end
 
@@ -24,7 +24,7 @@ class Benchkiller::Delivery < ApplicationRecord
   end
 
   def receivers
-    Benchkiller::Offer.where(id: receivers_ids).map(&:message).map(&:user)
+    Benchkiller::Offer.where(id: receivers_ids).map(&:message).map(&:user).uniq
   end
 
   def send_to_me
