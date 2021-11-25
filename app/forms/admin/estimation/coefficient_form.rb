@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Estimation::CoefficientForm < Tramway::Core::ApplicationForm
-  properties :scale, :project_id, :title
+  properties :scale, :project_id, :title, :position
 
   association :estimation_project
 
@@ -9,7 +9,8 @@ class Admin::Estimation::CoefficientForm < Tramway::Core::ApplicationForm
     super(object).tap do
       form_properties estimation_project: :association,
         title: :string,
-        scale: :float
+        scale: :float,
+        position: :integer
     end
   end
 end

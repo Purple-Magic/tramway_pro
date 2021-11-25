@@ -103,7 +103,10 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
 
   # :reek:DuplicateMethodCall { enabled: false }
   def footer
-    coefficients.each do |coefficient|
+    result = summary
+    coefficients.sort_by(&:position).each do |coefficient|
+      prev_result = result
+      result *= coefficient.scale
       concat(content_tag(:tr) do
         concat(content_tag(:td) do
           concat coefficient.title
@@ -113,7 +116,11 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
           concat "#{(coefficient.scale * 100 - 100).round(0)} %"
         end)
 
-        4.times { concat(content_tag(:td)) }
+        concat(content_tag(:td) do
+          concat (result - prev_result).round 2
+        end)
+
+        5.times { concat(content_tag(:td)) }
       end)
     end
   end

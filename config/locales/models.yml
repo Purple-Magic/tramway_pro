@@ -83,6 +83,7 @@ ru:
         estimation_project: Проект
         title: Название
         scale: Значение
+        position: Порядок применения
       courses/lesson:
         title: Название
         topic_link: Ссылка на тему
