@@ -8,13 +8,15 @@ require_relative 'action'
 
 class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
   include ::BotTelegram::BenchkillerBot::Commands
+  include ::BotTelegram::BenchkillerBot::AdminFeatures
 
   BOT_ID = 13
 
   def run
     chat_decorator = BotTelegram::BenchkillerBot::ChatDecorator.new chat
     if chat_decorator.main_chat?
-      ::Benchkiller::Offer.create! message_id: message.id
+      offer = ::Benchkiller::Offer.create! message_id: message.id
+      send_approve_message_to_admin_chat offer
     end
     if chat_decorator.to_answer?
       if message_from_telegram.is_a?(Telegram::Bot::Types::CallbackQuery) || user.finished_state_for?(bot: bot_record)

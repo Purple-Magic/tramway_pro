@@ -10,11 +10,12 @@ class Estimation::CoefficientDecorator < Tramway::Core::ApplicationDecorator
     :state,
     :scale,
     :created_at,
-    :updated_at
+    :updated_at,
+    :position
   )
 
   def title
-    "#{object.title} #{object.scale}"
+    "#{object.position} | #{object.title} #{object.scale}"
   end
 
   class << self
