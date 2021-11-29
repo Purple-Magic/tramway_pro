@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211129014008) do
+ActiveRecord::Schema.define(version: 20211129213511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -437,6 +437,33 @@ ActiveRecord::Schema.define(version: 20211129014008) do
     t.text "state"
     t.integer "book_id"
     t.integer "project_id"
+  end
+
+  create_table "magic_wood_actors", force: :cascade do |t|
+    t.text "first_name"
+    t.text "last_name"
+    t.text "state"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "magic_wood_actors_attendings", force: :cascade do |t|
+    t.integer "estimation_project_id"
+    t.integer "actor_id"
+    t.text "state"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "magic_wood_actors_photos", force: :cascade do |t|
+    t.integer "actor_id"
+    t.integer "project_id"
+    t.text "state"
+    t.text "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "podcast_episodes", force: :cascade do |t|
