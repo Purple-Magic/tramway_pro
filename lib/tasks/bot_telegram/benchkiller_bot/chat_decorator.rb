@@ -6,7 +6,7 @@ class BotTelegram::BenchkillerBot::ChatDecorator
   end
 
   def to_answer?
-    @chat.private?
+    @chat.private? || admin_chat?
   end
 
   def main_chat?

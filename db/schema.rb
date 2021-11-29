@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211125002409) do
+ActiveRecord::Schema.define(version: 20211129014008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20211125002409) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "uuid", default: -> { "uuid_generate_v4()" }
+    t.text "approval_state"
   end
 
   create_table "benchkiller_offers_tags", force: :cascade do |t|
@@ -117,6 +118,16 @@ ActiveRecord::Schema.define(version: 20211125002409) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "password_digest"
+  end
+
+  create_table "bot_telegram_channels", force: :cascade do |t|
+    t.integer "bot_id"
+    t.text "title"
+    t.text "state"
+    t.integer "project_id"
+    t.text "telegram_channel_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "bot_telegram_chats", force: :cascade do |t|
