@@ -30,6 +30,12 @@ class MagicWood::ActorDecorator < Tramway::Core::ApplicationDecorator
     end
   end
 
+  def avatar
+    if photos.any?
+      image_tag photos.first.file.small.url
+    end
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
@@ -38,10 +44,7 @@ class MagicWood::ActorDecorator < Tramway::Core::ApplicationDecorator
 
     def list_attributes
       [
-        :id,
-        :first_name,
-        :last_name,
-        :state,
+        :avatar
       ]
     end
 
