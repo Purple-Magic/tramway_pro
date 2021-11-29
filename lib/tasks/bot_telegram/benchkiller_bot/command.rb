@@ -11,7 +11,9 @@ class BotTelegram::BenchkillerBot::Command
     :set_place,
     :set_regions_to_cooperate,
     :get_company_card,
-    :create_password
+    :create_password,
+    :approve_offer,
+    :decline_offer
   ]
 
   attr_reader :name, :argument

@@ -7,13 +7,21 @@ module BotTelegram::BenchkillerBot::AdminFeatures
     text = ::Benchkiller::Offers::AdminChatDecorator.decorate(offer).admin_message
     keyboard = [
       [
-        ['Подтвердить', { data: { command: :approve_offer, offer_id: offer.id } }],
-        ['Отклонить', { data: { command: :decline_offer, offer_id: offer.id } }]
+        ['Подтвердить', { data: { command: :approve_offer, argument: offer.id } }],
+        ['Отклонить', { data: { command: :decline_offer, argument: offer.id } }]
       ]
     ]
     message = ::BotTelegram::Custom::Message.new text: text, inline_keyboard: keyboard
     send_notification_to_chat ::BotTelegram::BenchkillerBot::ADMIN_CHAT_ID, message
   end
 
-  private
+  def approve_offer(argument)
+    offer = ::Benchkiller::Offer.find argument 
+    offer.approve
+  end
+
+  def decline_offer(argument)
+    offer = ::Benchkiller::Offer.find argument 
+    offer.decline
+  end
 end

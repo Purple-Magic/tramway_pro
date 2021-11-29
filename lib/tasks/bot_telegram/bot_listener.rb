@@ -65,11 +65,28 @@ class BotTelegram::BotListener
     end
 
     def process_message(message, bot_record, bot)
+      if message.from.present?
+        process_message_from_user message, bot_record, bot
+      else
+        process_message_from_channel message, bot_record, bot
+      end
+    end
+
+    def process_message_from_user(message, bot_record, bot)
       user = user_from message.from
       chat = chat_from message.chat
       message_object = log_message message, user, chat, bot_record
       if bot_record.custom
         custom_bot_action bot_record: bot_record, bot: bot, chat: chat, message: message, message_object: message_object, user: user
+      else
+        BotTelegram::Scenario.run message, bot, bot_record
+      end
+    end
+
+    def process_message_from_channel(message, bot_record, bot)
+      channel = channel_from message.chat, bot_record
+      if bot_record.custom
+        custom_bot_action bot_record: bot_record, bot: bot, message: message, user: channel
       else
         BotTelegram::Scenario.run message, bot, bot_record
       end

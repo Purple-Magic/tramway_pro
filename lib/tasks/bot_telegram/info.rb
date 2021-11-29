@@ -30,4 +30,12 @@ module BotTelegram::Info
                 end)
     chat.reload
   end
+
+  def channel_from(channel, bot_record)
+    channel_record = BotTelegram::Channel.active.find_or_create_by! telegram_channel_id: channel.id
+    channel_record.update! title: channel.title,
+      bot_id: bot_record.id,
+      project_id: Project.find_by(title: 'PurpleMagic').id
+    channel_record.reload
+  end
 end
