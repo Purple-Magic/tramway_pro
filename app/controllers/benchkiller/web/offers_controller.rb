@@ -18,6 +18,6 @@ class Benchkiller::Web::OffersController < Benchkiller::Web::ApplicationControll
         offers = offers.full_text_search params[:search]
       end
     end
-    @offers = ::Benchkiller::OfferDecorator.decorate offers.page params[:page]
+    @offers = ::Benchkiller::OfferDecorator.decorate offers.approved.page params[:page]
   end
 end

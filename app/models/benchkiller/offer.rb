@@ -3,6 +3,9 @@ class Benchkiller::Offer < ApplicationRecord
   has_and_belongs_to_many :tags, class_name: 'Benchkiller::Tag'
 
   scope :benchkiller_scope, lambda { |_user| all }
+  scope :approved, -> { where approval_state: :approved }
+  scope :declined, -> { where approval_state: :declined }
+  scope :unviewed, -> { where approval_state: :unviewed }
 
   search_by message: [ :text ]
 

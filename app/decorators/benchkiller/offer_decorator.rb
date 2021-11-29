@@ -35,6 +35,15 @@ class Benchkiller::OfferDecorator < Tramway::Core::ApplicationDecorator
     raw "@#{object.message.user.username}: #{upgraded_text_view}"
   end
 
+  def approval_state_button_color(event)
+    case event
+    when :approve
+      :success
+    when :decline
+      :danger
+    end
+  end
+
   private
 
   def upgraded_text_view
@@ -53,8 +62,7 @@ class Benchkiller::OfferDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def collections
-      # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [ :all, :unviewed, :approved, :declined ]
     end
 
     def list_attributes

@@ -167,3 +167,6 @@ ru:
       all: Всё
       lookfor: Проекты
       available: Команды
+      unviewed: Непросмотренные
+      approved: Подтверждённые
+      declined: Отклонённые

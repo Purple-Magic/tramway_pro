@@ -74,3 +74,8 @@ ru:
         events:
           run: Начать рассылку
           send_to_me: Отправить себе
+    benchkiller/offer:
+      approval_state:
+        events:
+          approve: Подтвердить
+          decline: Отклонить

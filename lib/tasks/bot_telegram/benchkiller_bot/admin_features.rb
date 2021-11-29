@@ -23,5 +23,6 @@ module BotTelegram::BenchkillerBot::AdminFeatures
   def decline_offer(argument)
     offer = ::Benchkiller::Offer.find argument 
     offer.decline
+    offer.save!
   end
 end
