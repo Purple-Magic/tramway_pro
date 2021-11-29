@@ -26,6 +26,9 @@ Tramway::Admin.set_available_models(
   Podcast::Music,
   Podcast::Star,
   Content::Story,
+  MagicWood::Actor,
+  MagicWood::Actors::Photo,
+  MagicWood::Actors::Attending,
   project: :red_magic
 )
 
@@ -59,6 +62,12 @@ Tramway::Admin.navbar_structure(
   {
     content: [
       Content::Story
+    ]
+  },
+  {
+    magic_wood: [
+      MagicWood::Actor,
+      MagicWood::Actors::Photo
     ]
   },
   Tramway::User::User,

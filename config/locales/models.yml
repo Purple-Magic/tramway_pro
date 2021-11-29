@@ -22,6 +22,8 @@ ru:
       benchkiller/tag: Тэг
       benchkiller/delivery: Рассылка
       benchkiller/collation: Сопоставление
+      magic_wood/actor: Актёр
+      magic_wood/actors/photo: Фото актёра
     attributes:
       word:
         main: Определение

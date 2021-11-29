@@ -17,8 +17,16 @@
             = link_to benchkiller_web_sign_out_path, class: 'nav-link' do
               = fa_icon 'sign-out-alt'
               = t('helpers.links.sign_out')
-    %main.container
-      = yield
+    %main.container-fluid{ style: 'padding-top: 3rem' }
+      .row
+        - if content_for?(:sidebar)
+          .col-lg-9
+            = yield
+          .col-lg-3.sidebar-canvas
+            = yield :sidebar
+        - else
+          .col-lg-12
+            = yield
     %footer{ style: 'padding-bottom: 1rem' }
       .container
         = copyright '2021', 'Benchkiller'

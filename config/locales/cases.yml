@@ -111,3 +111,12 @@ ru:
     benchkiller/collation:
       plural: словарь
       genitive: сопоставление
+    magic_wood/actor:
+      plural: актёры
+      genitive: актёра
+    magic_wood/actors/photo:
+      plural: фото актёра
+      genitive: фото актёра
+    magic_wood/actors/attending:
+      plural: участия в проектах
+      genitive: участие в проекте
