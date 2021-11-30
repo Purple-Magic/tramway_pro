@@ -6,7 +6,6 @@ class MagicWood::Actors::PhotoDecorator < Tramway::Core::ApplicationDecorator
     :actor_id,
     :project_id,
     :state,
-    :file,
     :created_at,
     :updated_at
   )
@@ -15,6 +14,10 @@ class MagicWood::Actors::PhotoDecorator < Tramway::Core::ApplicationDecorator
 
   def title
     "#{actor.title} Фото ##{id}"
+  end
+
+  def file
+    image_view object.file
   end
 
   class << self
