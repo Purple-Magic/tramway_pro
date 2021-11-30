@@ -1,6 +1,10 @@
 class Benchkiller::Web::DeliveriesController < Benchkiller::Web::ApplicationController
   def new
-    @delivery_form = ::Benchkiller::Web::DeliveryForm.new ::Benchkiller::Delivery.new
+    if params[:receivers_ids].present?
+      @delivery_form = ::Benchkiller::Web::DeliveryForm.new ::Benchkiller::Delivery.new
+    else
+      redirect_to [benchkiller_web_offers_path, '?', { flash: :no_offer_checked }.to_query].join
+    end
   end
 
   def create
