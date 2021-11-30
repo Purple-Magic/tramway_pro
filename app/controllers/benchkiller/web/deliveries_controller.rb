@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Benchkiller::Web::DeliveriesController < Benchkiller::Web::ApplicationController
   def new
     if params[:receivers_ids].present?
@@ -38,9 +40,7 @@ class Benchkiller::Web::DeliveriesController < Benchkiller::Web::ApplicationCont
 
   def run_process
     @delivery = ::Benchkiller::Delivery.find_by uuid: params[:id]
-    if params[:process].in? [ 'run', 'send_to_me' ]
-      @delivery.public_send(params[:process])
-    end
+    @delivery.public_send(params[:process]) if params[:process].in? %w[run send_to_me]
     case params[:process]
     when 'run'
       redirect_to [benchkiller_web_offers_path, '?', { flash: :success_started_delivery }.to_query].join

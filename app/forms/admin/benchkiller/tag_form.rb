@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Benchkiller::TagForm < Tramway::Core::ApplicationForm
   properties :title, :project_id, :state
 

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'Show block' do
-  ProjectsHelper.projects_instead_of('listai', 'kalashnikovisme', 'engineervol', 'tramway').each do |project|
+  ProjectsHelper.projects_instead_of('listai', 'kalashnikovisme', 'engineervol', 'tramway', 'freedvs').each do |project|
     before do
       landing_page = create :page, project_id: project.id
       create :block, project_id: project.id, page: landing_page

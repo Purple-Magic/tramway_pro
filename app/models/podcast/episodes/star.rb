@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class Podcast::Episodes::Star < ApplicationRecord
   belongs_to :episode, class_name: 'Podcast::Episode'
   belongs_to :star, class_name: 'Podcast::Star'
 
-  enumerize :star_type, in: [ :main, :guest, :minor ], default: :main
+  enumerize :star_type, in: %i[main guest minor], default: :main
 
   delegate :vk, to: :star
   delegate :telegram, to: :star

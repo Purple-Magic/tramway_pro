@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 class MagicWood::ActorDecorator < Tramway::Core::ApplicationDecorator
   delegate_attributes(
-        :id,
-        :first_name,
-        :last_name,
-        :state,
-        :project_id,
-        :created_at,
-        :updated_at,
+    :id,
+    :first_name,
+    :last_name,
+    :state,
+    :project_id,
+    :created_at,
+    :updated_at
   )
 
   decorate_associations :photos, :attendings
@@ -31,15 +33,13 @@ class MagicWood::ActorDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def avatar
-    if photos.any?
-      image_tag photos.first.file.small.url
-    end
+    image_tag photos.first.file.small.url if photos.any?
   end
 
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
@@ -55,7 +55,7 @@ class MagicWood::ActorDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_associations
-      [ :photos, :attendings ]
+      %i[photos attendings]
     end
 
     def list_filters

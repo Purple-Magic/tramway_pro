@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'notify'
 
 module BotTelegram::BenchkillerBot::AdminFeatures
@@ -16,12 +18,12 @@ module BotTelegram::BenchkillerBot::AdminFeatures
   end
 
   def approve_offer(argument)
-    offer = ::Benchkiller::Offer.find argument 
+    offer = ::Benchkiller::Offer.find argument
     offer.approve
   end
 
   def decline_offer(argument)
-    offer = ::Benchkiller::Offer.find argument 
+    offer = ::Benchkiller::Offer.find argument
     offer.decline
     offer.save!
   end

@@ -39,7 +39,7 @@ class Courses::Lesson < ApplicationRecord
       videos: lambda do |all, started, done, _with_comments_any|
         started.positive? && started == all && all == done
       end,
-      tasks: lambda do |all, started, done, _with_comments_any|
+      tasks: lambda do |_all, _started, _done, _with_comments_any|
         tasks.empty? || tasks.map(&:progress_status).uniq == [:done]
       end
     }

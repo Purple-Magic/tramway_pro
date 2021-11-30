@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Benchkiller::DeliveryDecorator < Tramway::Core::ApplicationDecorator
   delegate_attributes :uuid
 
@@ -13,7 +15,7 @@ class Benchkiller::DeliveryDecorator < Tramway::Core::ApplicationDecorator
 
   def markdown_preview
     content_tag :div do
-      options = [:hard_wrap, :autolink, :no_intra_emphasis, :fenced_code_blocks]
+      options = %i[hard_wrap autolink no_intra_emphasis fenced_code_blocks]
       Markdown.new(object.text, *options).to_html.html_safe
     end
   end

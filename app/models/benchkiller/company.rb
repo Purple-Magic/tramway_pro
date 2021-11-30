@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Benchkiller::Company < ApplicationRecord
   has_many :companies_users, class_name: 'Benchkiller::CompaniesUser'
   has_many :users, through: :companies_users, class_name: 'Benchkiller::User'
@@ -9,7 +11,7 @@ class Benchkiller::Company < ApplicationRecord
   store_accessor :data, :phone
   store_accessor :data, :regions_to_cooperate
 
-  scope :benchkiller_scope, lambda { |_user| all }
+  scope :benchkiller_scope, ->(_user) { all }
 
   validates :title, uniqueness: true, if: -> { state == 'active' }
 
@@ -29,7 +31,7 @@ class Benchkiller::Company < ApplicationRecord
     end
 
     event :return_to_unviewed do
-      transitions from: [ :approved, :declined ], to: :unviewed
+      transitions from: %i[approved declined], to: :unviewed
     end
   end
 end

@@ -46,8 +46,6 @@ class PodcastsFinishWorker < ApplicationWorker
   end
 
   def render_instagram_stories(episode)
-    episode.using_highlights.each do |highlight|
-      highlight.render_instagram_story
-    end
+    episode.using_highlights.each(&:render_instagram_story)
   end
 end

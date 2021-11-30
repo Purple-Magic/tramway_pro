@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BotTelegram::Custom::Notify::Text
   class << self
     include BotTelegram::MessagesManager

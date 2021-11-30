@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Benchkiller::UserForm < Tramway::Core::ApplicationForm
   properties :bot_telegram_user_id, :state, :project_id
 

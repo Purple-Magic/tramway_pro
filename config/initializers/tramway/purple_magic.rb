@@ -89,7 +89,7 @@ Tramway::Admin.navbar_structure(
       Benchkiller::Notification,
       Benchkiller::Offer,
       Benchkiller::Tag,
-      Benchkiller::Collation,
+      Benchkiller::Collation
     ]
   },
   {

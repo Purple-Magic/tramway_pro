@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Benchkiller::Auth::UserForm < Tramway::Core::ApplicationForm
   properties :username
   attr_accessor :password

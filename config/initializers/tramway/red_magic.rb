@@ -124,7 +124,7 @@ Tramway::Api.set_available_models(
         end
       }
     ],
-    Benchkiller::Offer => [ :index ]
+    Benchkiller::Offer => [:index]
   },
   project: :red_magic
 )

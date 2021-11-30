@@ -5,7 +5,7 @@ require 'rails_helper'
 describe 'Create block' do
   let!(:attributes) { attributes_for :block_admin_attributes }
 
-  ProjectsHelper.projects_instead_of('listai', 'kalashnikovisme', 'engineervol', 'tramway').each do |project|
+  ProjectsHelper.projects_instead_of('listai', 'kalashnikovisme', 'engineervol', 'tramway', 'freedvs').each do |project|
     before do
       create :page, project_id: project.id
     end

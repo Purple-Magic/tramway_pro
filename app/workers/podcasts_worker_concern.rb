@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PodcastsWorkerConcern
   def render_full_video(episode)
     output = "#{@directory}/full_video.mp4"

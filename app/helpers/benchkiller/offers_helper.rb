@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Benchkiller::OffersHelper
   def offers_title
     content_for :title do
