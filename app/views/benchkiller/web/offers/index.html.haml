@@ -39,6 +39,13 @@
     %button.close{ data: { dismiss: :alert }, aria: { label: 'Close'} }
       %span{ aria: { hidden: true } }
         &times;
+- when 'no_offer_checked'
+  .alert.alert-warning.fade.show{ role: :alert }
+    %span
+      Вам нужно отметить предложения проектов или команд для создания рассылки
+    %button.close{ data: { dismiss: :alert }, aria: { label: 'Close'} }
+      %span{ aria: { hidden: true } }
+        &times;
 = form_tag new_benchkiller_web_delivery_path, method: :get do |f|
   %h1.mb-4{ style: 'display: flex; flex-direction: row; justify-content: space-between' }
     Проекты и команды
