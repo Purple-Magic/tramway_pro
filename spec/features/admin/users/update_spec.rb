@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'Update admin' do
   let!(:attributes) { attributes_for :admin_admin_attributes }
-  ProjectsHelper.projects_instead_of('listai', 'kalashnikovisme', 'tramway').each do |project|
+  ProjectsHelper.projects_instead_of('listai', 'kalashnikovisme', 'tramway', 'freedvs').each do |project|
     before { create :admin, project_id: project.id }
 
     it "#{project.url}: should update admin" do

@@ -39,3 +39,5 @@ code_check:
 	rubocop -A
 	reek
 
+prepare_test_env:
+	RAILS_ENV=test rails db:create db:migrate db:seed

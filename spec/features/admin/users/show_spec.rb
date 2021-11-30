@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'Show admin' do
-  ProjectsHelper.projects_instead_of('listai', 'kalashnikovisme', 'tramway').each do |project|
+  ProjectsHelper.projects_instead_of('listai', 'kalashnikovisme', 'tramway', 'freedvs').each do |project|
     before { create :admin, project_id: project.id }
 
     it "#{project.url}: should show admin" do
