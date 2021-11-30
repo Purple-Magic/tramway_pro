@@ -42,8 +42,7 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
       [:topics]
     end
 
-    def list_filters
-    end
+    def list_filters; end
   end
 
   def data

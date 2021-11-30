@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if Rails.env.production?
   Airbrake.configure do |config|
     config.host = 'http://errors.tramway.pro:8079'

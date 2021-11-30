@@ -58,7 +58,8 @@ class BotTelegram::BotListener
       chat = chat_from message.message.chat
       callback_object = log_callback message, user, chat, bot_record
       if bot_record.custom
-        custom_bot_action bot_record: bot_record, bot: bot, chat: chat, message: message, callback_object: callback_object, user: user
+        custom_bot_action bot_record: bot_record, bot: bot, chat: chat, message: message,
+          callback_object: callback_object, user: user
       else
         BotTelegram::Scenario.run message, bot, bot_record
       end
@@ -77,7 +78,8 @@ class BotTelegram::BotListener
       chat = chat_from message.chat
       message_object = log_message message, user, chat, bot_record
       if bot_record.custom
-        custom_bot_action bot_record: bot_record, bot: bot, chat: chat, message: message, message_object: message_object, user: user
+        custom_bot_action bot_record: bot_record, bot: bot, chat: chat, message: message,
+          message_object: message_object, user: user
       else
         BotTelegram::Scenario.run message, bot, bot_record
       end

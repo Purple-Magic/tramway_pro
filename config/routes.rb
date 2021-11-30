@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     mount Tramway::Conference::Engine => '/'
     mount Tramway::Api::Engine, at: '/api', as: :it_way_api
 
-    get '/:id' => "shortener/shortened_urls#show"
+    get '/:id' => 'shortener/shortened_urls#show'
 
     scope module: :it_way do
       resources :certificates, only: :show
@@ -58,10 +58,10 @@ Rails.application.routes.draw do
 
     namespace :benchkiller do
       namespace :web do
-        resources :sessions, only: [ :create ]
+        resources :sessions, only: [:create]
         get 'sign_out', to: 'sessions#destroy'
         resources :offers, only: :index
-        resources :deliveries, only: [ :new, :create, :show, :edit, :update ] do
+        resources :deliveries, only: %i[new create show edit update] do
           member do
             get :run_process
           end

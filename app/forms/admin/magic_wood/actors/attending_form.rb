@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Admin::MagicWood::Actors::AttendingForm < Tramway::Core::ApplicationForm
   properties :state, :project_id
-  
+
   association :actor
   association :estimation_project
 

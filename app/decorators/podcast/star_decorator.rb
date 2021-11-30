@@ -57,7 +57,7 @@ class Podcast::StarDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_associations
-      [ ]
+      []
     end
 
     def list_filters

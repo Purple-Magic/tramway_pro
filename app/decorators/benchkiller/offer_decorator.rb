@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 class Benchkiller::OfferDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
   delegate_attributes(
-        :id,
-        :message_id,
-        :state,
-        :project_id,
-        :created_at,
-        :updated_at,
-        :uuid
+    :id,
+    :message_id,
+    :state,
+    :project_id,
+    :created_at,
+    :updated_at,
+    :uuid
   )
 
   decorate_associations :tags
@@ -47,7 +49,7 @@ class Benchkiller::OfferDecorator < Tramway::Core::ApplicationDecorator
   private
 
   def upgraded_text_view
-    object.message.text.gsub("\n", "<br/>").split(' ').map do |part|
+    object.message.text.gsub("\n", '<br/>').split.map do |part|
       part.split('<br/>').map do |word|
         if word.first == '#'
           content_tag(:span, style: 'color: #007bff') do
@@ -62,25 +64,25 @@ class Benchkiller::OfferDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def collections
-      [ :all, :unviewed, :approved, :declined ]
+      %i[all unviewed approved declined]
     end
 
     def list_attributes
-      [
-        :text,
-        :tags_list
+      %i[
+        text
+        tags_list
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :message_id,
-        :state,
-        :text,
-        :tags_list,
-        :created_at,
-        :updated_at,
+      %i[
+        id
+        message_id
+        state
+        text
+        tags_list
+        created_at
+        updated_at
       ]
     end
 

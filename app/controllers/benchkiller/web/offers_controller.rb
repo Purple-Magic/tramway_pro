@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class Benchkiller::Web::OffersController < Benchkiller::Web::ApplicationController
   def index
     params[:collection] ||= :lookfor
     offers_ids = if params[:collection] == 'all'
-      ::Benchkiller::Offer.active.map(&:id)
-    else
-      ::Benchkiller::Tag.active.includes(:offers).find_by(title: params[:collection]).offers.map(&:id)
-    end
+                   ::Benchkiller::Offer.active.map(&:id)
+                 else
+                   ::Benchkiller::Tag.active.includes(:offers).find_by(title: params[:collection]).offers.map(&:id)
+                 end
     offers = ::Benchkiller::Offer.where(id: offers_ids)
     if params[:search].present?
       collation = ::Benchkiller::Collation.full_text_search(params[:search]).first
@@ -28,12 +30,8 @@ class Benchkiller::Web::OffersController < Benchkiller::Web::ApplicationControll
       end
       offers = ::Benchkiller::Offer.where id: offers_ids
     end
-    if params[:begin_date].present?
-      offers = offers.where 'created_at > ?', params[:begin_date].to_date
-    end
-    if params[:end_date].present?
-      offers = offers.where 'created_at < ?', params[:end_date].to_date
-    end
+    offers = offers.where 'created_at > ?', params[:begin_date].to_date if params[:begin_date].present?
+    offers = offers.where 'created_at < ?', params[:end_date].to_date if params[:end_date].present?
     @full_offers_collection = offers.approved
     @offers = ::Benchkiller::OfferDecorator.decorate @full_offers_collection.page params[:page]
   end

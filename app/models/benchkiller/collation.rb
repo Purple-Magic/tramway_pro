@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Benchkiller::Collation < ApplicationRecord
   search_by :main, :words
 

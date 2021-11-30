@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
 class BotTelegram::BenchkillerBot::Command
-  COMMANDS = [
-    :start,
-    :set_company_name,
-    :set_company_url,
-    :set_portfolio_url,
-    :set_email,
-    :set_phone,
-    :set_place,
-    :set_regions_to_cooperate,
-    :get_company_card,
-    :create_password,
-    :approve_offer,
-    :decline_offer
-  ]
+  COMMANDS = %i[
+    start
+    set_company_name
+    set_company_url
+    set_portfolio_url
+    set_email
+    set_phone
+    set_place
+    set_regions_to_cooperate
+    get_company_card
+    create_password
+    approve_offer
+    decline_offer
+  ].freeze
 
   attr_reader :name, :argument
 

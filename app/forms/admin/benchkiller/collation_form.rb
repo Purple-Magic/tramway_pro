@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Benchkiller::CollationForm < Tramway::Core::ApplicationForm
   properties :project_id, :state, :main, :words
 
@@ -5,11 +7,11 @@ class Admin::Benchkiller::CollationForm < Tramway::Core::ApplicationForm
     super(object).tap do
       form_properties main: :string,
         words: {
-        type: :string,
-        input_options: {
-          placeholder: 'введите все сопоставления этого слова через запятую и без пробелов'
+          type: :string,
+          input_options: {
+            placeholder: 'введите все сопоставления этого слова через запятую и без пробелов'
+          }
         }
-      }
     end
   end
 

@@ -1,16 +1,18 @@
+# frozen_string_literal: true
+
 class Benchkiller::NotificationDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
   delegate_attributes(
-        :id,
-        :text,
-        :send_at,
-        :state,
-        :project_id,
-        :sending_state,
-        :created_at,
-        :updated_at,
+    :id,
+    :text,
+    :send_at,
+    :state,
+    :project_id,
+    :sending_state,
+    :created_at,
+    :updated_at
   )
 
   def title
@@ -20,28 +22,28 @@ class Benchkiller::NotificationDecorator < Tramway::Core::ApplicationDecorator
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :text,
-        :send_at,
-        :state,
+      %i[
+        id
+        text
+        send_at
+        state
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :text,
-        :send_at,
-        :state,
-        :project_id,
-        :sending_state,
-        :created_at,
-        :updated_at,
+      %i[
+        id
+        text
+        send_at
+        state
+        project_id
+        sending_state
+        created_at
+        updated_at
       ]
     end
 

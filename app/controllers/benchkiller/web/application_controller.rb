@@ -1,11 +1,11 @@
+# frozen_string_literal: true
+
 class Benchkiller::Web::ApplicationController < Benchkiller::ApplicationController
   layout 'benchkiller/application'
   before_action :authenticate_user!
 
   def authenticate_user!
-    if !current_user && !request.path.in?(['/'])
-      redirect_to '/'
-    end
+    redirect_to '/' if !current_user && !request.path.in?(['/'])
   end
 
   def current_user

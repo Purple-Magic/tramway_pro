@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BenchkillerSendOfferToPublicChannelWorker < ApplicationWorker
   sidekiq_options queue: :benchkiller
 

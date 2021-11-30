@@ -39,7 +39,7 @@ module BotTelegram::BenchkillerBot
       message: 'Введите регионы сотрудничества',
       state: :waiting_for_set_regions_to_cooperate
     }
-  }
+  }.freeze
 
   def benchkiller_user(telegram_user)
     @benchkiller_user ||= ::Benchkiller::User.active.find_by bot_telegram_user_id: telegram_user.id

@@ -14,7 +14,7 @@ class Podcast::Episode < ApplicationRecord
   has_many :stars, class_name: 'Podcast::Episodes::Star'
   has_many :shortened_urls, class_name: '::Shortener::ShortenedUrl', as: :owner
 
-  enumerize :montage_process, in: [ :default, :without_filters ], default: :default
+  enumerize :montage_process, in: %i[default without_filters], default: :default
 
   scope :podcast_scope, ->(_user_id) { all }
 

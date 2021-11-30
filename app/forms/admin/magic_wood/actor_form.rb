@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::MagicWood::ActorForm < Tramway::Core::ApplicationForm
   properties :first_name, :last_name, :state, :project_id
 

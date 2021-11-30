@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Benchkiller::ApplicationHelper
   def signed_in?
     session['benchkiller/user_id'].present?
@@ -5,7 +7,7 @@ module Benchkiller::ApplicationHelper
 
   CONTAINER_FLUID_PAGES = [
     { controller: 'benchkiller/web/offers', action: :index }
-  ]
+  ].freeze
 
   def container_fluid?
     CONTAINER_FLUID_PAGES.map do |path|

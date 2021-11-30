@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../leopold/message'
 
 module BotTelegram::Custom::Notify::File

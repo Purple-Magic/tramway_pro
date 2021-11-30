@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 class Benchkiller::Offer < ApplicationRecord
   belongs_to :message, class_name: 'BotTelegram::Message'
   has_and_belongs_to_many :tags, class_name: 'Benchkiller::Tag'
 
-  scope :benchkiller_scope, lambda { |_user| all }
+  scope :benchkiller_scope, ->(_user) { all }
   scope :approved, -> { where approval_state: :approved }
   scope :declined, -> { where approval_state: :declined }
   scope :unviewed, -> { where approval_state: :unviewed }
 
-  search_by message: [ :text ]
+  search_by message: [:text]
 
   aasm :approval_state do
     state :unviewed, initial: true
@@ -36,17 +38,17 @@ class Benchkiller::Offer < ApplicationRecord
   def available?
     collation = ::Benchkiller::Collation.full_text_search(:available).first
     tags.each do |tag|
-      return true if collation.all_words.include? tag.title      
+      return true if collation.all_words.include? tag.title
     end
-    return false
+    false
   end
 
   def lookfor?
     collation = ::Benchkiller::Collation.full_text_search(:lookfor).first
     tags.each do |tag|
-      return true if collation.all_words.include? tag.title      
+      return true if collation.all_words.include? tag.title
     end
-    return false
+    false
   end
 
   def parse!

@@ -33,8 +33,7 @@ module BotTelegram::BenchkillerBot::Commands
     message_to_user bot.api, message, chat.telegram_chat_id
   end
 
-
-  def common_set_action(action, state, message, argument)
+  def common_set_action(_action, state, message, _argument)
     BotTelegram::Users::State.create! user_id: user.id,
       bot_id: bot_record.id,
       current_state: state
@@ -48,13 +47,13 @@ module BotTelegram::BenchkillerBot::Commands
     end
   end
 
-  def get_company_card(argument)
+  def get_company_card(_argument)
     card = ::Benchkiller::CompanyDecorator.decorate(company(user)).bot_card
 
     message_to_user bot, card, chat.telegram_chat_id
   end
 
-  def create_password(argument)
+  def create_password(_argument)
     new_password = SecureRandom.hex(16)
     message_text = "Ваш новый пароль #{new_password}. Теперь переходите к нам на freedvs.com и вводите свой пароль."
     benchkiller_user = ::Benchkiller::User.active.find_by bot_telegram_user_id: user.id
@@ -64,4 +63,3 @@ module BotTelegram::BenchkillerBot::Commands
     message_to_user bot.api, message_text, chat.telegram_chat_id
   end
 end
-

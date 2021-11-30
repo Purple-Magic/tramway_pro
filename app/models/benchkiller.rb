@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Benchkiller
   def self.table_name_prefix
     'benchkiller_'

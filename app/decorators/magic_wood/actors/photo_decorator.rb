@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 class MagicWood::Actors::PhotoDecorator < Tramway::Core::ApplicationDecorator
   delegate_attributes(
-        :id,
-        :actor_id,
-        :project_id,
-        :state,
-        :file,
-        :created_at,
-        :updated_at,
+    :id,
+    :actor_id,
+    :project_id,
+    :state,
+    :file,
+    :created_at,
+    :updated_at
   )
 
   decorate_association :actor
@@ -18,27 +20,27 @@ class MagicWood::Actors::PhotoDecorator < Tramway::Core::ApplicationDecorator
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :actor_id,
-        :project_id,
-        :state,
+      %i[
+        id
+        actor_id
+        project_id
+        state
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :actor_id,
-        :project_id,
-        :state,
-        :file,
-        :created_at,
-        :updated_at,
+      %i[
+        id
+        actor_id
+        project_id
+        state
+        file
+        created_at
+        updated_at
       ]
     end
 

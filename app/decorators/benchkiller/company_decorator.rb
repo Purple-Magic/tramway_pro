@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
@@ -19,20 +21,20 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
   )
 
   def bot_card
-    <<-TXT
-Название: #{title}
-
-Сайт: #{company_url}
-
-Портфолио: #{portfolio_url}
-
-Почта: #{email}
-
-Телефон: #{phone}
-
-Регион: #{place}
-
-Регион работы: #{regions_to_cooperate}
+    <<~TXT
+            Название: #{title}
+      #{'      '}
+            Сайт: #{company_url}
+      #{'      '}
+            Портфолио: #{portfolio_url}
+      #{'      '}
+            Почта: #{email}
+      #{'      '}
+            Телефон: #{phone}
+      #{'      '}
+            Регион: #{place}
+      #{'      '}
+            Регион работы: #{regions_to_cooperate}
     TXT
   end
 
@@ -88,40 +90,39 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
       mail_to pair[1]
     elsif pair[0].in? ['phone']
       link_to pair[1], "tel:#{pair[1]}"
-    elsif pair[0].in? ['company_url', 'portfolio_url']
+    elsif pair[0].in? %w[company_url portfolio_url]
       link_to pair[1].truncate(60), pair[1], target: '_blank'
     else
       pair[1]
     end
   end
 
-
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :data_view,
-        :review_state
+      %i[
+        data_view
+        review_state
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :title,
-        :data_view,
-        :created_at,
-        :updated_at,
-        :users
+      %i[
+        id
+        title
+        data_view
+        created_at
+        updated_at
+        users
       ]
     end
 
     def show_associations
-      [ ]
+      []
     end
 
     def list_filters
