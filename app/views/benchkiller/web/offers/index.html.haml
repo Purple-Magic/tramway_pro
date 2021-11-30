@@ -21,6 +21,7 @@
       = hidden_field_tag :collection, params[:collection]
       .mb-3
         = submit_tag 'Поиск', class: 'btn btn-primary mb-4'
+        = link_to 'Сбросить', benchkiller_web_offers_path, class: 'btn btn-warning mb-4'
       :javascript
         $('.datepicker').datepicker({ language: 'ru' })
 - case params[:flash]
