@@ -17,7 +17,7 @@
             = link_to benchkiller_web_sign_out_path, class: 'nav-link' do
               = fa_icon 'sign-out-alt'
               = t('helpers.links.sign_out')
-    %main.container-fluid{ style: 'padding-top: 3rem' }
+    %main{ style: 'padding-top: 3rem', class: container_fluid? ? 'container-fluid' : 'container' }
       .row
         - if content_for?(:sidebar)
           .col-lg-9

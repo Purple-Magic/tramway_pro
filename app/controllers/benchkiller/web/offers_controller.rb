@@ -18,6 +18,23 @@ class Benchkiller::Web::OffersController < Benchkiller::Web::ApplicationControll
         offers = offers.full_text_search params[:search]
       end
     end
-    @offers = ::Benchkiller::OfferDecorator.decorate offers.approved.page params[:page]
+    if params[:regions].present?
+      companies = ::Benchkiller::Company.active.map do |company|
+        company if company.regions_to_cooperate&.include? params[:regions]
+      end.compact
+      users_ids = companies.map(&:users).flatten.map(&:telegram_user).map(&:id)
+      offers_ids = offers.map do |offer|
+        offer if offer.message.user_id.in? users_ids
+      end
+      offers = ::Benchkiller::Offer.where id: offers_ids
+    end
+    if params[:begin_date].present?
+      offers = offers.where 'created_at > ?', params[:begin_date].to_date
+    end
+    if params[:end_date].present?
+      offers = offers.where 'created_at < ?', params[:end_date].to_date
+    end
+    @full_offers_collection = offers.approved
+    @offers = ::Benchkiller::OfferDecorator.decorate @full_offers_collection.page params[:page]
   end
 end

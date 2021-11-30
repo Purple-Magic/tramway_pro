@@ -11,7 +11,7 @@
         = text_field_tag :search, params[:search], class: 'text form-control'
       .mb-3
         = label_tag 'Регионы сотрудничества'
-        = select_tag :regions, options_for_select([ "РФ", "РБ", "Украина"], ''), class: 'form-select form-control'
+        = select_tag :regions, options_for_select([ '', "РФ", "РБ", "Украина"], params[:regions]), class: 'form-select form-control'
       .mb-3
         = label_tag 'Отправлено после'
         = text_field_tag :begin_date, params[:begin_date], class: 'text form-control datepicker'
@@ -21,8 +21,9 @@
       = hidden_field_tag :collection, params[:collection]
       .mb-3
         = submit_tag 'Поиск', class: 'btn btn-primary mb-4'
+        = link_to 'Сбросить', benchkiller_web_offers_path, class: 'btn btn-warning mb-4'
       :javascript
-        $('.datepicker').datepicker()
+        $('.datepicker').datepicker({ language: 'ru' })
 - case params[:flash]
 - when 'success_sign_in'
   .alert.alert-success.fade.show{ role: :alert }
@@ -45,9 +46,12 @@
   %ul.nav.nav-tabs
     %li.nav-item
       - on_lookfor_tab = params[:collection].to_s.in?([ 'lookfor' ])
-      = link_to 'Проекты', public_send(current_path_method, { collection: :lookfor }), class: "nav-link #{on_lookfor_tab ? :active : ''}"
+      - lookfor_tab_name = on_lookfor_tab ? "Проекты (#{@full_offers_collection.count})" : 'Проекты'
+      = link_to lookfor_tab_name, public_send(current_path_method, { collection: :lookfor }), class: "nav-link #{on_lookfor_tab ? :active : ''}"
     %li.nav-item
-      = link_to 'Команды', public_send(current_path_method, { collection: :available }), class: "nav-link #{params[:collection].in?([ 'available' ]) ? :active : ''}"
+      - on_available_tab = params[:collection].in?([ 'available' ])
+      - available_tab_name = on_available_tab ? "Команды (#{@full_offers_collection.count})" : 'Команды'
+      = link_to available_tab_name, public_send(current_path_method, { collection: :available }), class: "nav-link #{on_available_tab ? :active : ''}"
   %table.table.table-striped.table-bordered
     %thead
       %tr
@@ -64,4 +68,3 @@
           %td
             = record.created_at.strftime('%d.%m.%Y %H:%M')
   = paginate @offers, theme: 'twitter-bootstrap-4'
-
