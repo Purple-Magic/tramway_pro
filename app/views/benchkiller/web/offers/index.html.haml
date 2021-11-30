@@ -22,7 +22,7 @@
       .mb-3
         = submit_tag 'Поиск', class: 'btn btn-primary mb-4'
       :javascript
-        $('.datepicker').datepicker()
+        $('.datepicker').datepicker({ language: 'ru' })
 - case params[:flash]
 - when 'success_sign_in'
   .alert.alert-success.fade.show{ role: :alert }
@@ -67,4 +67,3 @@
           %td
             = record.created_at.strftime('%d.%m.%Y %H:%M')
   = paginate @offers, theme: 'twitter-bootstrap-4'
-
