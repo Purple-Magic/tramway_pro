@@ -14,13 +14,12 @@ module BotTelegram::MessagesManager
   end
 
   # :reek:FeatureEnvy { enabled: false }
-  def message_to_chat(bot, chat, message_obj)
-    bot_api = bot.api
+  def message_to_chat(bot_api, chat_id, message_obj)
     case message_obj.class.to_s
     when 'String'
-      bot_api.send_message chat_id: chat.telegram_chat_id, text: message_obj
+      bot_api.send_message chat_id: chat_id, text: message_obj
     when 'BotTelegram::Custom::Message'
-      bot_api.send_message chat_id: chat.telegram_chat_id, **message_obj.options.merge(parse_mode: :markdown)
+      bot_api.send_message chat_id: chat_id, **message_obj.options.merge(parse_mode: :markdown)
       send_file bot_api, chat_id, message_obj if message_obj.file.present?
     else
       raise message_obj.class.to_s
