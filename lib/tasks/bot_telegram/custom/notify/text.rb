@@ -14,7 +14,7 @@ module BotTelegram::Custom::Notify::Text
     def send_to_chat(bot_id, chat_id, message)
       bot_record = Bot.find bot_id
       bot = ::Telegram::Bot::Client.new bot_record.token
-      message_to_user bot.api, message, chat_id
+      message_to_chat bot.api, message, chat_id
     end
 
     def send_to_channel(bot_id, channel_id, message)

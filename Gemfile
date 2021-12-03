@@ -107,6 +107,8 @@ gem 'uuid'
 gem 'validates'
 gem 'webpacker'
 gem 'whenever', require: false
+gem 'pry'
+gem 'pry-nav'
 
 group :development do
   gem 'foreman'
@@ -118,8 +120,6 @@ group :development, :test do
   gem 'capybara', '3.31'
   gem 'launchy'
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'pry'
-  gem 'pry-nav'
   gem 'reek'
   gem 'rspec-rails', '~> 3.5'
   gem 'rubocop', '1.18.3'
