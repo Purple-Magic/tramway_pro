@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if Rails.env.production?
+unless Rails.env.test?
   Airbrake.configure do |config|
     config.host = 'http://errors.tramway.pro:8079'
     config.project_id = 1

@@ -18,7 +18,7 @@ class Course < ApplicationRecord
 
   def video_duration
     minutes = videos.active.sum do |video|
-      video.duration.gsub('m', '').to_i
+      video.duration.present? ? video.duration.gsub('m', '').to_i : 0
     end
     "#{minutes / 60}h #{minutes % 60}m"
   end
