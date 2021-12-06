@@ -3,6 +3,7 @@
 class Estimation::Project < ApplicationRecord
   belongs_to :customer, class_name: 'Estimation::Customer'
   has_many :tasks, class_name: 'Estimation::Task', foreign_key: :estimation_project_id
+  has_many :expenses, class_name: 'Estimation::Expense', foreign_key: :estimation_project_id
   has_many :coefficients, class_name: 'Estimation::Coefficient', foreign_key: :estimation_project_id
 
   validates :title, presence: true

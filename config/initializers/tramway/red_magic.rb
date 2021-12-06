@@ -16,6 +16,7 @@ Tramway::Admin.set_available_models(
   Estimation::Task,
   Estimation::Customer,
   Estimation::Coefficient,
+  Estimation::Expense,
   Podcast,
   Podcast::Episode,
   Podcast::Episodes::Topic,
@@ -131,7 +132,7 @@ Tramway::Api.set_available_models(
 
 Tramway::Export.set_exportable_models(
   {
-    Estimation::Project => [:tasks]
+    Estimation::Project => [:tasks, :expenses]
   },
   project: :red_magic
 )

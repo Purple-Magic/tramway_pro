@@ -120,3 +120,6 @@ ru:
     magic_wood/actors/attending:
       plural: участия в проектах
       genitive: участие в проекте
+    estimation/expense:
+      plural: расходы
+      genitive: расходы
