@@ -60,13 +60,18 @@ ru:
         name: Название
         title: Название
         tasks: Задачи
-        table: Расчёты
         summary: Общая сумма
         coefficients: Коэфициенты
-        ending_summary: Окончательная сумма
+        summary_with_coefficients: Окончательная сумма
         project_state: Состояние проекта
         description: Описание
         expenses: Расходы
+        team_table: Расчёт команды
+        expenses_table: Расчёт расходов
+        coefficients_table: Коэффициенты
+        summary_table: Общие суммы
+        team_summary: Затраты на команду
+        expenses_summary: Дополнительные расходы
       estimation/customer:
         title: Название
         logo: Логотип
@@ -164,6 +169,9 @@ ru:
         count: Количество
         price: Цена
         description: Описание
+        price_with_coefficients: Цена с коэффициентами
+        sum: Сумма
+        sum_with_coefficients: Итоговая сумма
   enumerize:
     podcast:
       podcast_type:

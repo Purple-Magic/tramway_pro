@@ -13,7 +13,7 @@ module Estimation::Project::ExpensesTable
       EXPENSES_TABLE_COLUMNS.each do |attribute|
         concat(content_tag(:th) do
           concat(content_tag(:span, style: 'font-size: 10pt') do
-            Estimation::Task.human_attribute_name(attribute)
+            Estimation::Expense.human_attribute_name(attribute)
           end)
         end)
       end
