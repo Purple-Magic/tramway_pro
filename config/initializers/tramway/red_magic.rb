@@ -16,6 +16,7 @@ Tramway::Admin.set_available_models(
   Estimation::Task,
   Estimation::Customer,
   Estimation::Coefficient,
+  Estimation::Expense,
   Podcast,
   Podcast::Episode,
   Podcast::Episodes::Topic,

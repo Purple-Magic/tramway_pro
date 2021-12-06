@@ -66,6 +66,7 @@ ru:
         ending_summary: Окончательная сумма
         project_state: Состояние проекта
         description: Описание
+        expenses: Расходы
       estimation/customer:
         title: Название
         logo: Логотип
@@ -157,6 +158,12 @@ ru:
       benchkiller/collation:
         main: Главное слово
         words: Слова на сопоставление
+      estimation/expense:
+        estimation_project: Проект
+        title: Наименование
+        count: Количество
+        price: Цена
+        description: Описание
   enumerize:
     podcast:
       podcast_type:
