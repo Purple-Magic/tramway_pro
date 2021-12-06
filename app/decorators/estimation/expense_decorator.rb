@@ -17,6 +17,7 @@ class Estimation::ExpenseDecorator < Tramway::Core::ApplicationDecorator
   )
 
   include Estimation::CoefficientsConcern
+  include Estimation::ExpenseConcern
 
   class << self
     def collections
