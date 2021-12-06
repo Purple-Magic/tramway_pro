@@ -18,10 +18,6 @@ class Estimation::ExpenseDecorator < Tramway::Core::ApplicationDecorator
 
   include Estimation::CoefficientsConcern
 
-  def sum_with_coefficients
-    price_with_coefficients * object.count
-  end
-
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]

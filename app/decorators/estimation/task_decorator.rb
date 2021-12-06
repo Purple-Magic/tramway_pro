@@ -16,15 +16,12 @@ class Estimation::TaskDecorator < Tramway::Core::ApplicationDecorator
   )
 
   include Estimation::CoefficientsConcern
+  include Estimation::TaskConcern
 
   def description
     content_tag :span, style: 'font-size: 12px' do
       object.description
     end
-  end
-
-  def sum_with_coefficients
-    price_with_coefficients * object.hours * object.specialists_count
   end
 
   class << self

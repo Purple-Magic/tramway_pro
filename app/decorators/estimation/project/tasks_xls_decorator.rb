@@ -11,7 +11,7 @@ class Estimation::Project::TasksXlsDecorator < Tramway::Export::Xls::Application
     end
 
     def filename
-      'estimation.xls'
+      'tasks.xls'
     end
 
     def sheet_name
@@ -19,6 +19,7 @@ class Estimation::Project::TasksXlsDecorator < Tramway::Export::Xls::Application
     end
   end
 
+  include Estimation::CoefficientsConcern
   include Estimation::TaskConcern
 
   def price
