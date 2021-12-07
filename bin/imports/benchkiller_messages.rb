@@ -12,10 +12,16 @@ table.each_with_index do |row, index|
   user_id = BotTelegram::User.find_by(telegram_id: client[1]).id
   message_info = JSON.parse(row[2]).with_indifferent_access
   next if message_info[:message].nil?
-  chat_id = BotTelegram::Chat.find_or_create_by!(telegram_chat_id: message_info[:message][:chat][:id],
-                                                 title: message_info[:message][:chat][:title], chat_type: row[1], project_id: 7).id
+  BOT_ID = 13
+  chat_id = BotTelegram::Chat.find_or_create_by!(
+    telegram_chat_id: message_info[:message][:chat][:id],
+    title: message_info[:message][:chat][:title],
+    chat_type: row[1],
+    project_id: 7,
+    bot_id: BOT_ID
+  ).id
   message = BotTelegram::Message.create! chat_id: chat_id, user_id: user_id, text: row[10],
-    options: message_info, project_id: 7, bot_id: 13
+    options: message_info, project_id: 7, bot_id: BOT_ID
   message.update_column :created_at, DateTime.new(row[3])
   print "#{index} of #{table.count}\r"
 end
