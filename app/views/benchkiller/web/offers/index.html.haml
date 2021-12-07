@@ -11,13 +11,14 @@
         = text_field_tag :search, params[:search], class: 'text form-control'
       .mb-3
         = label_tag 'Регионы сотрудничества'
-        = select_tag :regions, options_for_select([ '', "РФ", "РБ", "Украина"], params[:regions]), class: 'form-select form-control'
-      .mb-3
-        = label_tag 'Отправлено после'
-        = text_field_tag :begin_date, params[:begin_date], class: 'text form-control datepicker'
-      .mb-3
-        = label_tag 'Отправлено до'
-        = text_field_tag :end_date, params[:end_date], class: 'text form-control datepicker'
+        = select_tag :regions, options_for_select([ 'Все регионы', "РФ", "РБ", "Украина"], params[:regions]), class: 'form-select form-control'
+      .mb-3{ style: 'display: flex; flex-direction: row; justify-content: space-between' }
+        .mr-2
+          = label_tag 'От'
+          = text_field_tag :begin_date, params[:begin_date], class: 'text form-control datepicker'
+        %div
+          = label_tag 'До'
+          = text_field_tag :end_date, params[:end_date], class: 'text form-control datepicker'
       = hidden_field_tag :collection, params[:collection]
       .mb-3
         = submit_tag 'Поиск', class: 'btn btn-primary mb-4'

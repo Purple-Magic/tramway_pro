@@ -8,25 +8,15 @@ module BotTelegram::BenchkillerBot::Commands
   def start(_text)
     answer = 'Добро пожаловать! Здесь вы можете заполнить данные о своей компании.'
     inline_keyboard = [
-      [
-        ['Изменить название компании', { data: { command: :set_company_name } }],
-        ['Изменить адрес сайта', { data: { command: :set_company_url } }]
-      ],
-      [
-        ['Изменить ссылку на портфолио', { data: { command: :set_portfolio_url } }],
-        ['Изменить почту', { data: { command: :set_email } }]
-      ],
-      [
-        ['Изменить телефон', { data: { command: :set_phone } }],
-        ['Расположение вашей команды', { data: { command: :set_place } }]
-      ],
-      [
-        ['Регионы сотрудничества', { data: { command: :set_regions_to_cooperate } }],
-        ['Посмотреть карточку компании', { data: { command: :get_company_card } }]
-      ],
-      [
-        ['Создать пароль', { data: { command: :create_password } }]
-      ]
+      ['Изменить название компании', { data: { command: :set_company_name } }],
+      ['Изменить адрес сайта', { data: { command: :set_company_url } }],
+      ['Изменить ссылку на портфолио', { data: { command: :set_portfolio_url } }],
+      ['Изменить почту', { data: { command: :set_email } }],
+      ['Изменить телефон', { data: { command: :set_phone } }],
+      ['Расположение вашей команды', { data: { command: :set_place } }],
+      ['Регионы сотрудничества', { data: { command: :set_regions_to_cooperate } }],
+      ['Посмотреть карточку компании', { data: { command: :get_company_card } }],
+      ['Создать пароль', { data: { command: :create_password } }]
     ]
     message = ::BotTelegram::Custom::Message.new text: answer, inline_keyboard: inline_keyboard
 
