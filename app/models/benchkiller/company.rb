@@ -28,7 +28,7 @@ class Benchkiller::Company < ApplicationRecord
       after do
         save!
         user = users.first
-        BenchkillerSendApprovementMessageWorker.new.perform user.id
+        BenchkillerSendApprovementMessageWorker.perform_async user.id
       end
     end
 
