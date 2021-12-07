@@ -24,6 +24,12 @@ class Benchkiller::Company < ApplicationRecord
 
     event :approve do
       transitions from: :unviewed, to: :approved
+
+      after do
+        save!
+        user = users.first
+        BenchkillerSendApprovementMessageWorker.new.perform user.id
+      end
     end
 
     event :decline do
