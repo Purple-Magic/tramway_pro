@@ -20,7 +20,7 @@ class Benchkiller::Web::OffersController < Benchkiller::Web::ApplicationControll
         offers = offers.full_text_search params[:search]
       end
     end
-    if params[:regions].present?
+    if params[:regions].present? && params[:regions] != 'Все регионы'
       companies = ::Benchkiller::Company.active.map do |company|
         company if company.regions_to_cooperate&.include? params[:regions]
       end.compact

@@ -11,7 +11,7 @@
         = text_field_tag :search, params[:search], class: 'text form-control'
       .mb-3
         = label_tag 'Регионы сотрудничества'
-        = select_tag :regions, options_for_select([ '', "РФ", "РБ", "Украина"], params[:regions]), class: 'form-select form-control'
+        = select_tag :regions, options_for_select([ 'Все регионы', "РФ", "РБ", "Украина"], params[:regions]), class: 'form-select form-control'
       .mb-3
         = label_tag 'Отправлено после'
         = text_field_tag :begin_date, params[:begin_date], class: 'text form-control datepicker'
