@@ -11,6 +11,9 @@
         %span.navbar-toggler-icon
       .navbar-collapse.collapse#navbar
         %ul.navbar-nav
+          = link_to benchkiller_web_offers_path, class: 'nav-link' do
+            = fa_icon :list
+            = 'Проекты и команды'
       - if signed_in?
         %ul.nav.navbar-nav.ml-auto
           %li.nav-item
