@@ -11,7 +11,8 @@ class Benchkiller::OfferDecorator < Tramway::Core::ApplicationDecorator
     :project_id,
     :created_at,
     :updated_at,
-    :uuid
+    :uuid,
+    :company
   )
 
   decorate_associations :tags

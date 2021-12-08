@@ -14,6 +14,9 @@ class Benchkiller::Company < ApplicationRecord
   scope :benchkiller_scope, ->(_user) { all }
 
   validates :title, uniqueness: true, if: -> { state == 'active' }
+  validates :company_url, url: true
+  validates :email, email: true
+  validates :portfolio_url, url: true
 
   search_by :title
 
@@ -39,5 +42,9 @@ class Benchkiller::Company < ApplicationRecord
     event :return_to_unviewed do
       transitions from: %i[approved declined], to: :unviewed
     end
+  end
+
+  def has_user?(user)
+    users.include? user
   end
 end

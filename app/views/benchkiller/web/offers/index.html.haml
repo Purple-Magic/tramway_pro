@@ -72,6 +72,22 @@
           %td
             = check_box_tag record.uuid, params[record.uuid]
           %td
+            - if record.company.present?
+              %div{ style: 'display: flex; flex-direction: row; justify-content: space-between' }
+                .media
+                  .mr-3
+                    = fa_icon :building
+                  .media-body
+                    %h5.mt-0
+                      = record.company.title
+                    %p
+                      %span
+                        На Benchkiller с
+                        = " "
+                        = record.created_at.strftime('%d.%m.%Y')
+                = link_to benchkiller_web_company_path(record.company.uuid), class: 'btn btn-primary btn-lg', style: 'height: 40px' do
+                  = fa_icon :share
+              %hr
             = record.text
           %td
             = record.created_at.strftime('%d.%m.%Y %H:%M')

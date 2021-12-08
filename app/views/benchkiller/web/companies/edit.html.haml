@@ -1,0 +1,23 @@
+= simple_form_for @company_form, url: benchkiller_web_company_path(@company_form.model.uuid), method: :patch do |f|
+  = f.label :title, @company_form.model.class.human_attribute_name(:title)
+  = f.input :title, as: :string, label: false
+
+  = f.label :company_url, @company_form.model.class.human_attribute_name(:company_url)
+  = f.input :company_url, as: :string, label: false
+
+  = f.label :email, @company_form.model.class.human_attribute_name(:email)
+  = f.input :email, as: :string, label: false
+
+  = f.label :portfolio_url, @company_form.model.class.human_attribute_name(:portfolio_url)
+  = f.input :portfolio_url, as: :string, label: false
+
+  = f.label :place, @company_form.model.class.human_attribute_name(:place)
+  = f.input :place, as: :string, label: false
+
+  = f.label :phone, @company_form.model.class.human_attribute_name(:phone)
+  = f.input :phone, as: :string, label: false
+
+  = f.label :regions_to_cooperate, @company_form.model.class.human_attribute_name(:regions_to_cooperate)
+  = f.input :regions_to_cooperate, as: :string, label: false
+
+  = f.button :submit, 'Изменить', class: 'btn btn-success'
