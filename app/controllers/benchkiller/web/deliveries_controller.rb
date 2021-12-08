@@ -2,7 +2,7 @@
 
 class Benchkiller::Web::DeliveriesController < Benchkiller::Web::ApplicationController
   def new
-    if params[:receivers_ids].present?
+    if receivers_ids_any?
       @delivery_form = ::Benchkiller::Web::DeliveryForm.new ::Benchkiller::Delivery.new
     else
       redirect_to [benchkiller_web_offers_path, '?', { flash: :no_offer_checked }.to_query].join
@@ -47,5 +47,11 @@ class Benchkiller::Web::DeliveriesController < Benchkiller::Web::ApplicationCont
     when 'send_to_me'
       redirect_to benchkiller_web_delivery_path(@delivery.uuid)
     end
+  end
+
+  private
+
+  def receivers_ids_any?
+    params.keys.map { |key| key.match?(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/) }.include? true
   end
 end

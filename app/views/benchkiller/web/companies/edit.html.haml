@@ -1,3 +1,4 @@
+- companies_title
 = simple_form_for @company_form, url: benchkiller_web_company_path(@company_form.model.uuid), method: :patch do |f|
   = f.label :title, @company_form.model.class.human_attribute_name(:title)
   = f.input :title, as: :string, label: false
