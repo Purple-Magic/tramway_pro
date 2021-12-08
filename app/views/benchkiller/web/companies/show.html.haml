@@ -1,5 +1,7 @@
 %h1.mb-4
   = @company.title
+  - if @company_has_user
+    = link_to fa_icon('pencil-alt'), edit_benchkiller_web_company_path(@company.uuid), class: 'btn btn-warning'
 
 %hr
 .row

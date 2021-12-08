@@ -31,3 +31,11 @@ ru:
               presence: не может быть пустым
             "Есть ли у тебя ноутбук, и можешь ли взять его с собой?":
               presence: не может быть пустым
+        benchkiller/company:
+          attributes:
+            company_url:
+              url: должен быть ссылкой в формате URL
+            email:
+              email: имеет неверный формат
+            portfolio_url:
+              url: должен быть ссылкой в формате URL

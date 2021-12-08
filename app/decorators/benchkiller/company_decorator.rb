@@ -16,7 +16,9 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
     :email,
     :place,
     :phone,
-    :regions_to_cooperate
+    :regions_to_cooperate,
+    :has_user?,
+    :uuid
   )
 
   def bot_card
