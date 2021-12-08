@@ -61,7 +61,7 @@
         %h5.mt-0
           Телефон
         %p
-          - if @company.phone
+          - if @company.phone.present?
             = tel_tag @company.phone
           - else
             Не опубликован
