@@ -8,7 +8,9 @@ module BotTelegram::Custom::Notify::Text
       bot_record = Bot.find bot_id
       bot = ::Telegram::Bot::Client.new bot_record.token
       chat = BotTelegram::Chat.where(bot_id: bot_id).find_by "options ->> 'username' = '#{username}'"
-      message_to_user bot.api, message, chat.telegram_chat_id
+      if chat.present?
+        message_to_user bot.api, message, chat.telegram_chat_id
+      end
     end
 
     def send_to_chat(bot_id, chat_id, message)

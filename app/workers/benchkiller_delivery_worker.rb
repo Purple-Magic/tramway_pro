@@ -7,8 +7,8 @@ class BenchkillerDeliveryWorker < ApplicationWorker
 
   def perform(ids, text)
     ids.each do |receiver_id|
-      user = ::Benchkiller::User.find(receiver_id)
-      send_notification_to_user user.telegram_user.username, text
+      user = ::BotTelegram::User.find(receiver_id)
+      send_notification_to_user user.username, text
     end
   end
 end
