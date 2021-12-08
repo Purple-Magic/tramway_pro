@@ -59,4 +59,11 @@ class Benchkiller::Offer < ApplicationRecord
       save!
     end
   end
+
+  def company
+    user = Benchkiller::User.find_by bot_telegram_user_id: message.user.id
+    if user.present?
+      user.companies.first
+    end
+  end
 end

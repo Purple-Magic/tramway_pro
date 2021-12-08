@@ -9,7 +9,6 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
     :title,
     :data,
     :state,
-    :project_id,
     :created_at,
     :updated_at,
     :portfolio_url,

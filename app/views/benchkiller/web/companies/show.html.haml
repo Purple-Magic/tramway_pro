@@ -1,0 +1,76 @@
+%h1.mb-4
+  = @company.title
+
+%hr
+.row
+  .col
+    .media
+      %h3.mr-3
+        = fa_icon :history
+      .media-body
+        %h5.mt-0
+          Дата регистрации на Benchkiller
+        %p
+          = @company.created_at.strftime('%d.%m.%Y')
+  .col
+    .media
+      %h3.mr-3
+        = fa_icon :link
+      .media-body
+        %h5.mt-0
+          Сайт компании
+        %p
+          = link_to @company.company_url, @company.company_url
+
+.row
+  .col
+    .media
+      %h3.mr-3
+        = fa_icon :city
+      .media-body
+        %h5.mt-0
+          Регион
+        %p
+          = @company.place
+  .col
+    .media
+      %h3.mr-3
+        = fa_icon :envelope
+      .media-body
+        %h5.mt-0
+          Email
+        %p
+          = mail_to @company.email
+.row
+  .col
+    .media
+      %h3.mr-3
+        = fa_icon :portrait
+      .media-body
+        %h5.mt-0
+          Портфолио
+        %p
+          = link_to @company.portfolio_url, @company.portfolio_url
+  .col
+    .media
+      %h3.mr-3
+        = fa_icon :phone
+      .media-body
+        %h5.mt-0
+          Телефон
+        %p
+          - if @company.phone
+            = tel_tag @company.phone
+          - else
+            Не опубликован
+
+.row
+  .col
+    .media
+      %h3.mr-3
+        = fa_icon :handshake
+      .media-body
+        %h5.mt-0
+          Регионы сотрудничества
+        %p
+          = @company.regions_to_cooperate
