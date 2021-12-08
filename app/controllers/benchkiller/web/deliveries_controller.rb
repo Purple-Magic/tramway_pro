@@ -2,7 +2,7 @@
 
 class Benchkiller::Web::DeliveriesController < Benchkiller::Web::ApplicationController
   def new
-    if params[:receivers_ids].present?
+    if receivers.any?
       @delivery_form = ::Benchkiller::Web::DeliveryForm.new ::Benchkiller::Delivery.new
     else
       redirect_to [benchkiller_web_offers_path, '?', { flash: :no_offer_checked }.to_query].join
@@ -16,6 +16,7 @@ class Benchkiller::Web::DeliveriesController < Benchkiller::Web::ApplicationCont
       @delivery_form.model.reload
       redirect_to benchkiller_web_delivery_path(@delivery_form.model.uuid)
     else
+      @receivers = Benchkiller::Offer.where uuid: @delivery_form.receivers.split(',')
       render :new
     end
   end
@@ -26,6 +27,7 @@ class Benchkiller::Web::DeliveriesController < Benchkiller::Web::ApplicationCont
 
   def edit
     @delivery_form = ::Benchkiller::Web::DeliveryForm.new ::Benchkiller::Delivery.find_by uuid: params[:id]
+    @receivers = Benchkiller::Offer.where id: @delivery_form.model.receivers_ids
   end
 
   def update
@@ -34,6 +36,7 @@ class Benchkiller::Web::DeliveriesController < Benchkiller::Web::ApplicationCont
       @delivery_form.model.reload
       redirect_to benchkiller_web_delivery_path(@delivery_form.model.uuid)
     else
+      @receivers = Benchkiller::Offer.where id: @delivery_form.model.receivers_ids
       render :edit
     end
   end
@@ -47,5 +50,12 @@ class Benchkiller::Web::DeliveriesController < Benchkiller::Web::ApplicationCont
     when 'send_to_me'
       redirect_to benchkiller_web_delivery_path(@delivery.uuid)
     end
+  end
+
+  private
+
+  def receivers
+    ids = params.keys.map { |key| key if key.match?(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/) }.compact
+    @receivers = Benchkiller::Offer.where(uuid: ids)
   end
 end

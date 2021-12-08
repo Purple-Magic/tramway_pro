@@ -16,7 +16,8 @@ class Benchkiller::Delivery < ApplicationRecord
 
       after do
         save!
-        ::BenchkillerDeliveryWorker.perform_async receivers.map(&:id), text
+        text_with_test_message = "#{text}\n\nЭта рассылка делается в тестовом режиме. Если у вас есть вопросы или предложения по этим рассылкам, напишите @Egurt73, Benchkiller"
+        ::BenchkillerDeliveryWorker.new.perform receivers.map(&:id), text_with_test_message
       end
     end
 
