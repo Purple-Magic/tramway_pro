@@ -1,4 +1,5 @@
 - deliveries_title
+= render 'benchkiller/web/deliveries/receivers_list'
 = simple_form_for @delivery_form, url: benchkiller_web_delivery_path(@delivery_form.model.uuid), method: :patch do |f|
   = f.label :text, @delivery_form.model.class.human_attribute_name(:text)
   = f.input :text, as: :text, label: false, placeholder: 'Поддерживается markdown', input_html: { style: 'height: 50vh' }

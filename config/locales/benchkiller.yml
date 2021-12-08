@@ -4,6 +4,8 @@ ru:
       deliveries:
         new:
           title: Создать рассылку
+        edit:
+          title: Редактировать рассылку
       welcome:
         index:
           title: Авторизация
