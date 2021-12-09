@@ -38,8 +38,7 @@ class BotTelegram::BenchkillerBot::Action
       if company.present?
         old_company_name = company.title
         if company.update title: company_name
-          message_to_chat bot.api, chat,
-            "Ваша компания #{old_company_name} переименована в #{company_name} на сервисе Benchkiller"
+          send_message_to_user "Ваша компания #{old_company_name} переименована в #{company_name} на сервисе Benchkiller"
           user.set_finished_state_for bot: bot_record
         else
           send_message_to_user 'К сожалению, ваша компания не переименована. Обратитесь в поддержку сервиса Benchkiller'
@@ -137,6 +136,6 @@ class BotTelegram::BenchkillerBot::Action
   private
 
   def send_message_to_user(text)
-    message_to_chat bot.api, chat, text
+    message_to_chat bot.api, chat.telegram_chat_id, text
   end
 end
