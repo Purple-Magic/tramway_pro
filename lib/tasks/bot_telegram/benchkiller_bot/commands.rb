@@ -40,7 +40,7 @@ module BotTelegram::BenchkillerBot::Commands
   def get_company_card(_argument)
     card = ::Benchkiller::CompanyDecorator.decorate(company(user)).bot_card
 
-    message_to_user bot, card, chat.telegram_chat_id
+    message_to_user bot.api, card, chat.telegram_chat_id
   end
 
   def create_password(_argument)
