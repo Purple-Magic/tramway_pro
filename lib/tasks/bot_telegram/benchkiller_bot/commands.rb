@@ -28,7 +28,7 @@ module BotTelegram::BenchkillerBot::Commands
       bot_id: bot_record.id,
       current_state: state
 
-    message_to_user bot, message, chat.telegram_chat_id
+    message_to_user bot.api, message, chat.telegram_chat_id
   end
 
   BotTelegram::BenchkillerBot::ACTIONS_DATA.each do |action|
