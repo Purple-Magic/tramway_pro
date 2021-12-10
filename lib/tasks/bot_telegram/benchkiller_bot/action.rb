@@ -18,8 +18,16 @@ class BotTelegram::BenchkillerBot::Action
 
   def run
     if user.current_state(bot_record).present? && current_action.present?
-      public_send current_action.keys.first, message.text
+      if user_tapped_on_another_command_button?
+        user.set_finished_state_for bot: bot_record
+      else
+        public_send current_action.keys.first, message.text
+      end
     end
+  end
+
+  def user_tapped_on_another_command_button?
+    message.is_a?(Telegram::Bot::Types::CallbackQuery)
   end
 
   def current_action
