@@ -12,31 +12,31 @@ module BotTelegram::BenchkillerBot
 
   ACTIONS_DATA = {
     set_company_name: {
-      message: 'Введите название компании',
+      message: 'Введите название компании. Для отмены введите /start',
       state: :waiting_for_set_company_name
     },
     set_portfolio_url: {
-      message: 'Введите ссылку на портфолио',
+      message: 'Введите ссылку на портфолио. Для отмены введите /start',
       state: :waiting_for_set_portfolio_url
     },
     set_company_url: {
-      message: 'Введите адрес сайта компании',
+      message: 'Введите адрес сайта компании. Для отмены введите /start',
       state: :waiting_for_set_company_url
     },
     set_email: {
-      message: 'Введите контактный email',
+      message: 'Введите контактный email. Для отмены введите /start',
       state: :waiting_for_set_email
     },
     set_place: {
-      message: 'Введите расположение вашей команды',
+      message: 'Введите расположение вашей команды. Для отмены введите /start',
       state: :waiting_for_set_place
     },
     set_phone: {
-      message: 'Введите контактный телефон',
+      message: 'Введите контактный телефон. Для отмены введите /start',
       state: :waiting_for_set_phone
     },
     set_regions_to_cooperate: {
-      message: 'Введите регионы сотрудничества',
+      message: 'Введите регионы сотрудничества. Для отмены введите /start',
       state: :waiting_for_set_regions_to_cooperate
     }
   }.freeze

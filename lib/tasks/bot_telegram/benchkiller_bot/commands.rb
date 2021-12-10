@@ -5,7 +5,7 @@ require_relative '../custom/message'
 module BotTelegram::BenchkillerBot::Commands
   include BotTelegram::BenchkillerBot
 
-  def start(_text)
+  def start(_text: nil)
     answer = 'Добро пожаловать! Здесь вы можете заполнить данные о своей компании.'
     inline_keyboard = [
       ['Изменить название компании', { data: { command: :set_company_name } }],
@@ -20,6 +20,7 @@ module BotTelegram::BenchkillerBot::Commands
     ]
     message = ::BotTelegram::Custom::Message.new text: answer, inline_keyboard: inline_keyboard
 
+    user.set_finished_state_for bot: bot_record
     message_to_user bot.api, message, chat.telegram_chat_id
   end
 

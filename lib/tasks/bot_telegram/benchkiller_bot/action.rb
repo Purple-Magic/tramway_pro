@@ -42,6 +42,7 @@ class BotTelegram::BenchkillerBot::Action
           user.set_finished_state_for bot: bot_record
         else
           send_message_to_user 'К сожалению, ваша компания не переименована. Обратитесь в поддержку сервиса Benchkiller'
+          user.set_finished_state_for bot: bot_record
         end
       else
         company = ::Benchkiller::Company.create! title: company_name,
@@ -61,6 +62,7 @@ class BotTelegram::BenchkillerBot::Action
         send_message_to_user "Ссылка на портфолио вашей компании успешно обновлена. Теперь это #{portfolio_url}"
       else
         send_message_to_user 'К сожалению, не удалось обновить ссылку на портфолио вашей компании. Обратитесь в поддержку сервиса Benchkiller'
+        user.set_finished_state_for bot: bot_record
       end
       user.set_finished_state_for bot: bot_record
     else
@@ -74,6 +76,7 @@ class BotTelegram::BenchkillerBot::Action
         send_message_to_user "Ссылка на сайт вашей компании успешно обновлена. Теперь это #{company_url}"
       else
         send_message_to_user 'К сожалению, не удалось обновить ссылку на сайт вашей компании. Обратитесь в поддержку сервиса Benchkiller'
+        user.set_finished_state_for bot: bot_record
       end
       user.set_finished_state_for bot: bot_record
     else
@@ -87,6 +90,7 @@ class BotTelegram::BenchkillerBot::Action
         send_message_to_user "Контактная почта вашей компании успешно обновлена. Теперь это #{email}"
       else
         send_message_to_user 'К сожалению, не удалось обновить контактную почту вашей компании. Обратитесь в поддержку сервиса Benchkiller'
+        user.set_finished_state_for bot: bot_record
       end
       user.set_finished_state_for bot: bot_record
     else
@@ -100,6 +104,7 @@ class BotTelegram::BenchkillerBot::Action
         send_message_to_user "Место расположения вашей команды успешно обновлено. Теперь это #{place}"
       else
         send_message_to_user 'К сожалению, не удалось обновить место расположения вашей команды. Обратитесь в поддержку сервиса Benchkiller'
+        user.set_finished_state_for bot: bot_record
       end
       user.set_finished_state_for bot: bot_record
     else
@@ -113,6 +118,7 @@ class BotTelegram::BenchkillerBot::Action
         send_message_to_user "Контактный телефон вашей компании успешно обновлен. Теперь это #{phone}"
       else
         send_message_to_user 'К сожалению, не удалось обновить контактный телефон вашей компании. Обратитесь в поддержку сервиса Benchkiller'
+        user.set_finished_state_for bot: bot_record
       end
       user.set_finished_state_for bot: bot_record
     else
@@ -126,6 +132,7 @@ class BotTelegram::BenchkillerBot::Action
         send_message_to_user "Регионы сотрудничества вашей компании успешно обновлены. Теперь это #{regions_to_cooperate}"
       else
         send_message_to_user 'К сожалению, не удалось обновить Регионы сотрудничества вашей компании. Обратитесь в поддержку сервиса Benchkiller'
+        user.set_finished_state_for bot: bot_record
       end
       user.set_finished_state_for bot: bot_record
     else
