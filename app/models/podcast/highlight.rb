@@ -11,6 +11,8 @@ class Podcast::Highlight < ApplicationRecord
   uploader :ready_file, :file
   uploader :instagram_story, :file
 
+  validate :time_format
+
   include Podcast::SoundProcessConcern
   include Ffmpeg::CommandBuilder
 
@@ -53,6 +55,14 @@ class Podcast::Highlight < ApplicationRecord
     @directory ||= episode.prepare_directory
   end
 
+  def minute
+    time.split(':')[1].to_i
+  end
+
+  def second
+    time.split(':')[2].to_i
+  end
+
   private
 
   def build_and_run_command(**options)
@@ -67,5 +77,11 @@ class Podcast::Highlight < ApplicationRecord
     else
       ''
     end
+  end
+
+  def time_format
+    return if time.match(/\d\d\:\d\d\:\d\d/) && minute < 60 && second < 60
+
+    errors.add(:time, 'invalid')
   end
 end
