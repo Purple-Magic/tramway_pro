@@ -123,3 +123,6 @@ ru:
     estimation/expense:
       plural: расходы
       genitive: расходы
+    estimation/cost:
+      plural: реальные затраты
+      genitive: реальную затрату

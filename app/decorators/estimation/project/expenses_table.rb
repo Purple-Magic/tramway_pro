@@ -6,7 +6,7 @@ module Estimation::Project::ExpensesTable
     end
   end
 
-  EXPENSES_TABLE_COLUMNS = %i[title price count price_with_coefficients description sum sum_with_coefficients].freeze
+  EXPENSES_TABLE_COLUMNS = %i[title price count price_with_coefficients description sum real_sum sum_with_coefficients].freeze
 
   def expenses_table_header
     concat(content_tag(:thead) do
@@ -25,7 +25,17 @@ module Estimation::Project::ExpensesTable
       concat(content_tag(:tr) do
         EXPENSES_TABLE_COLUMNS.each do |attribute|
           concat(content_tag(:td) do
-            concat expense.send(attribute)
+            case attribute
+            when :real_sum
+              concat(content_tag(:div, style: 'display: flex; flex-direction: row; justify-content: space-between') do
+                concat(expense.send(attribute))
+                concat(link_to(expense.cost_path, class: 'btn btn-warning btn-sm') do
+                  fa_icon('pencil-alt')
+                end)
+              end)
+            else
+              concat expense.send(attribute)
+            end
           end)
         end
       end)
