@@ -16,6 +16,7 @@ class Estimation::TaskDecorator < Tramway::Core::ApplicationDecorator
   )
 
   include Estimation::CoefficientsConcern
+  include Estimation::RealConcern
   include Estimation::TaskConcern
 
   def description

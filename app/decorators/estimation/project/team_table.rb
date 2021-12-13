@@ -8,7 +8,7 @@ module Estimation::Project::TeamTable
 
   private
 
-  TEAM_TABLE_COLUMNS = %i[title hours price price_with_coefficients specialists_count description sum sum_with_coefficients].freeze
+  TEAM_TABLE_COLUMNS = %i[title hours price price_with_coefficients specialists_count description sum real_sum sum_with_coefficients].freeze
 
   def team_table_header
     concat(content_tag(:thead) do
@@ -27,7 +27,17 @@ module Estimation::Project::TeamTable
       concat(content_tag(:tr) do
         TEAM_TABLE_COLUMNS.each do |attribute|
           concat(content_tag(:td) do
-            concat task.send(attribute)
+            case attribute
+            when :real_sum
+              concat(content_tag(:div, style: 'display: flex; flex-direction: row; justify-content: space-between') do
+                concat(task.send(attribute))
+                concat(link_to(task.cost_path, class: 'btn btn-warning btn-sm') do
+                  fa_icon('pencil-alt')
+                end)
+              end)
+            else
+              concat task.send(attribute)
+            end
           end)
         end
       end)

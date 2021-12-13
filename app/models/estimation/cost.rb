@@ -1,0 +1,5 @@
+class Estimation::Cost < ApplicationRecord
+  belongs_to :associated, polymorphic: true
+
+  enumerize :associated_type, in: [ 'Estimation::Task', 'Estimation::Expense' ]
+end

@@ -61,6 +61,7 @@ ru:
         title: Название
         tasks: Задачи
         summary: Общая сумма
+        real_summary: Реальная сумма
         coefficients: Коэфициенты
         summary_with_coefficients: Окончательная сумма
         project_state: Состояние проекта
@@ -70,8 +71,10 @@ ru:
         expenses_table: Расчёт расходов
         coefficients_table: Коэффициенты
         summary_table: Общие суммы
-        team_summary: Затраты на команду
-        expenses_summary: Дополнительные расходы
+        team_summary: Оценка затрат на команду
+        expenses_summary: Оценка дополнительных расходов
+        real_team_summary: Реальные затраты на команду
+        real_expenses_summary: Реальные дополнительные расходы
       estimation/customer:
         title: Название
         logo: Логотип
@@ -87,6 +90,7 @@ ru:
         sum_with_coefficients: Сумма для заказчика
         specialists_count: Количество специалистов
         description: Описание
+        real_sum: Реальные затраты
       estimation/coefficient:
         estimation_project: Проект
         title: Название
@@ -173,6 +177,10 @@ ru:
         price_with_coefficients: Цена с коэффициентами
         sum: Сумма
         sum_with_coefficients: Итоговая сумма
+        real_sum: Реальные затраты
+      estimation/cost:
+        associated: Задача или расход
+        price: Реальная стоимость
   enumerize:
     podcast:
       podcast_type:
