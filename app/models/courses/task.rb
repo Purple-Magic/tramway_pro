@@ -44,6 +44,6 @@ class Courses::Task < ApplicationRecord
       return condition[0] if condition[1].call(comments.active.count, done_comments)
     end
 
-    preparedness_state == 'written' ? :done : preparedness_state.to_sym
+    preparedness_state == 'verified' ? :done : preparedness_state.to_sym
   end
 end
