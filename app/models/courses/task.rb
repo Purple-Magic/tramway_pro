@@ -33,7 +33,7 @@ class Courses::Task < ApplicationRecord
     done_comments = comments.active.where(comment_state: :done).count
     conditions = {
       done: lambda do |all, done|
-        all.positive? && all == done
+        (all.positive? || all == 0) && all == done
       end,
       in_progress: lambda do |_all, _done|
         preparedness_state == 'writing'
