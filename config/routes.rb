@@ -68,6 +68,10 @@ Rails.application.routes.draw do
           end
         end
       end
+
+      namespace :api do
+        resources :user_tokens, only: :create
+      end
     end
 
     mount Tramway::Admin::Engine, at: '/admin', as: :benchkiller_admin

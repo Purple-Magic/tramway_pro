@@ -178,4 +178,25 @@ module Podcast::Episodes::SocialPostsConcern
     text += 'RSS: http://bit.ly/2JuDkYY<br/>'
     raw text
   end
+
+  def patreon_post_text
+    content_tag(:div) do
+      stars_list
+      guest_list if object.with_guests?
+      minor_list if object.with_minor?
+      concat('Слушайте наши выпуски на платформах:')
+      concat(content_tag(:ul) do
+        instances.each do |instance|
+          concat(content_tag(:li) do
+            concat("#{instance.service.capitalize}: ")
+            concat(link_to(instance.shortened_url, instance.shortened_url))
+          end)
+        end
+        content_tag(:li) do
+          concat('RSS: ')
+          concat(link_to('http://bit.ly/2JuDkYY', 'http://bit.ly/2JuDkYY'))
+        end
+      end)
+    end
+  end
 end

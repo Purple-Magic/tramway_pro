@@ -34,4 +34,8 @@ module ProjectsHelper
   def projects_names
     %i[it_way]
   end
+
+  def benchkiller_host
+    'benchkiller.test'
+  end
 end
