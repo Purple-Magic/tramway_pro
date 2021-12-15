@@ -10,7 +10,7 @@ class Courses::Topic < ApplicationRecord
     started_lessons = lessons_with(status: :in_progress).count
     return :done if lessons.active.count == done_lessons.count
 
-    :in_progress if (lessons.active.any? && lessons_with_comments_any) || started_lessons != done_lessons.count
+    return :in_progress if (lessons.active.any? && lessons_with_comments_any) || started_lessons != done_lessons.count
   end
 
   def lessons_with(status:)
@@ -18,10 +18,8 @@ class Courses::Topic < ApplicationRecord
   end
 
   def lessons_with_comments_any
-    lessons.active.map do |lesson|
-      lesson.videos.active.reject do |video|
-        video.progress_status == :not_started
-      end.count
-    end.uniq != [0]
+    lessons.active.select do |lesson|
+      lesson.videos.select { |v| v.comments.any? }.any? && lesson.tasks.select { |t| t.comments.any? }.any?
+    end.any?
   end
 end
