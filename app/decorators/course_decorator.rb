@@ -19,12 +19,7 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def list_attributes
-      %i[
-        id
-        title
-        state
-        created_at
-      ]
+      []
     end
 
     def show_attributes
