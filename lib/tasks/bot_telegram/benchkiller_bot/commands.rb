@@ -50,7 +50,11 @@ module BotTelegram::BenchkillerBot::Commands
     message_text = "Ваш новый пароль #{new_password}. Теперь переходите к нам на freedvs.com и вводите свой пароль."
     benchkiller_user = ::Benchkiller::User.active.find_by bot_telegram_user_id: user.id
     benchkiller_user.password = new_password
-    benchkiller_user.save
+    begin
+      benchkiller_user.save!
+    rescue StandardError => error
+      Rails.env.development? ? puts(error) : Airbrake.notify(error)
+    end
 
     message_to_user bot.api, message_text, chat.telegram_chat_id
   end
