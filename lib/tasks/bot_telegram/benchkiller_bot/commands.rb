@@ -39,7 +39,7 @@ module BotTelegram::BenchkillerBot::Commands
     end
   end
 
-  def get_company_card(_argument: nil)
+  def get_company_card(argument: nil)
     card = ::Benchkiller::CompanyDecorator.decorate(company(user)).bot_card
 
     message_to_user bot.api, card, chat.telegram_chat_id
