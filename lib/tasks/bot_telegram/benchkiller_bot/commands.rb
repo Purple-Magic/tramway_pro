@@ -34,12 +34,12 @@ module BotTelegram::BenchkillerBot::Commands
 
   BotTelegram::BenchkillerBot::ACTIONS_DATA.each do |action|
     define_method(action[0]) do |argument|
-      get_company_card
+      get_company_card nil
       common_set_action action[0], action[1][:state], action[1][:message], argument
     end
   end
 
-  def get_company_card(argument: nil)
+  def get_company_card(argument)
     card = ::Benchkiller::CompanyDecorator.decorate(company(user)).bot_card
 
     message_to_user bot.api, card, chat.telegram_chat_id
