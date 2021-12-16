@@ -4,7 +4,8 @@ table = CSV.read('companies.csv')
 users = CSV.read('persons.csv')
 table.each_with_index do |row, index|
   next if index == 0
-  company = Benchkiller::Company.find(4 + index)
+  next unless row[1].present?
+  company = Benchkiller::Company.active.find_by title: row[1]
   client_id = row[12].to_s
   client = users.select do |user_row|
     user_row[0].to_s == client_id

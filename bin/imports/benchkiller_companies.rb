@@ -2,7 +2,7 @@ require 'csv'
 
 table = CSV.read('companies.csv')
 table.each_with_index do |row, index|
-  company = Benchkiller::Company.find_by title: row[1]
+  company = Benchkiller::Company.active.find_by title: row[1]
   unless company.present?
     Benchkiller::Company.create! title: row[1],
       company_url: row[3],
