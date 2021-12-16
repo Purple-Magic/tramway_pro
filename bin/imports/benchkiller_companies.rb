@@ -11,6 +11,7 @@ table.each_with_index do |row, index|
       phone: row[6],
       place: row[15],
       regions_to_cooperate: row[16],
+      review_state: row[17] == 't' ? :approved : :unviewed,
       project_id: 7
     puts "Created #{row[1]}"
   end
