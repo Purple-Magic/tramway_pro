@@ -6,6 +6,8 @@ class Courses::Lesson < ApplicationRecord
   has_many :videos, -> { order(:position) }, class_name: 'Courses::Video'
   has_many :tasks, -> { order(:position) }, class_name: 'Courses::Task'
 
+  validates :position, presence: true
+
   ::Course::TEAMS.each do |team|
     scope "#{team}_scope".to_sym, lambda { |_user_id|
       joins(topic: :course).where 'courses.team' => team
