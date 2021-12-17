@@ -5,6 +5,8 @@ class Courses::Topic < ApplicationRecord
 
   has_many :lessons, -> { order(:position) }, class_name: 'Courses::Lesson'
 
+  validates :position, presence: true
+
   def progress_status
     done_lessons = lessons_with status: :done
     started_lessons = lessons_with(status: :in_progress).count
