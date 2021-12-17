@@ -3,6 +3,8 @@
 require 'telegram/bot'
 
 class BotTelegram::Custom::Message
+  attr_reader :file
+
   def initialize(text: nil, file: nil, reply_markup: nil, inline_keyboard: nil)
     @text = text
     @file = file
