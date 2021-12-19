@@ -2,8 +2,9 @@
 
 module BotTelegram::Info
   def user_from(sender)
-    user = BotTelegram::User.active.find_or_create_by! telegram_id: sender.id
-    user.update! username: sender.username,
+    user = BotTelegram::User.active.find_by telegram_id: sender.id
+    params = {
+      username: sender.username,
       first_name: sender.first_name,
       last_name: sender.last_name,
       project_id: Project.find_by(title: 'PurpleMagic').id,
@@ -14,7 +15,13 @@ module BotTelegram::Info
         supports_inline_queries: sender.supports_inline_queries,
         is_bot: sender.is_bot
       }
-    user.reload
+    }
+    if user.present?
+      user.update! params
+      user.reload
+    else
+      BotTelegram::User.create! telegram_id: sender.id, **params
+    end
   end
 
   def chat_from(message_chat, bot_record)
