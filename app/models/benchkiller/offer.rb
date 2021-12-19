@@ -21,6 +21,7 @@ class Benchkiller::Offer < ApplicationRecord
 
       after do
         save!
+        parse!
         channel = if available?
                     ::BotTelegram::BenchkillerBot::FREE_DEV_CHANNEL
                   elsif lookfor?
