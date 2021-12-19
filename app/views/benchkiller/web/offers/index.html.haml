@@ -72,7 +72,7 @@
           %td
             = check_box_tag record.uuid, params[record.uuid]
           %td
-            - if record.company.present?
+            - if record.company.present? && record.company.title.present?
               %div{ style: 'display: flex; flex-direction: row; justify-content: space-between' }
                 .media
                   .mr-3
