@@ -9,7 +9,7 @@ class BenchkillerSendPlannedNotifications < ActiveJob::Base
 
   def perform(*_args)
     time = DateTime.now.in_time_zone('Moscow').strftime('%H:%M')
-    ::Benchkiller::Notification.active.find_each do |notification|
+    ::Benchkiller::Notification.find_each do |notification|
       if time == notification.send_at
         send_notification_to_chat(
           ::BotTelegram::BenchkillerBot::MAIN_CHAT_ID,

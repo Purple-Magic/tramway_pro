@@ -6,15 +6,14 @@ exceptions = [
   "Tramway::Event::Place::HABTM_Events",
   "Benchkiller::Offer::HABTM_Tags",
   "Benchkiller::Tag::HABTM_Offers",
-  "Tramway::Core::ApplicationRecord(abstract)",
-  "Tramway::Core::ApplicationRecord",
   "Ckeditor::Asset",
-  "ApplicationRecord",
   "Ckeditor::AttachmentFile",
-  "Ckeditor::Picture"
+  "Ckeditor::Picture",
+  "Shortener::ShortenedUrl"
 ]
 ActiveRecord::Base.descendants.each do |model|
   next if model.to_s.in? exceptions
+  next if model.to_s.include? "ApplicationRecord"
   puts model
   removed = model.where(state: :removed)
   count = removed.count

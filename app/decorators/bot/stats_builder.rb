@@ -13,7 +13,7 @@ module Bot::StatsBuilder
   end
 
   def stats_steps_rows
-    object.steps.active.each do |st|
+    object.steps.each do |st|
       concat(content_tag(:tr) do
         concat(content_tag(:td) do
           concat st.text

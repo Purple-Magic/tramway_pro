@@ -4,9 +4,9 @@ class Benchkiller::Web::OffersController < Benchkiller::Web::ApplicationControll
   def index
     params[:collection] ||= :lookfor
     offers_ids = if params[:collection] == 'all'
-                   ::Benchkiller::Offer.active.map(&:id)
+                   ::Benchkiller::Offer.map(&:id)
                  else
-                   ::Benchkiller::Tag.active.includes(:offers).find_by(title: params[:collection]).offers.map(&:id)
+                   ::Benchkiller::Tag.includes(:offers).find_by(title: params[:collection]).offers.map(&:id)
                  end
     offers = ::Benchkiller::Offer.where(id: offers_ids)
     if params[:search].present?
@@ -21,7 +21,7 @@ class Benchkiller::Web::OffersController < Benchkiller::Web::ApplicationControll
       end
     end
     if params[:regions].present? && params[:regions] != 'Все регионы'
-      companies = ::Benchkiller::Company.active.map do |company|
+      companies = ::Benchkiller::Company.map do |company|
         company if company.regions_to_cooperate&.include? params[:regions]
       end.compact
       users_ids = companies.map(&:users).flatten.map(&:telegram_user).map(&:id)

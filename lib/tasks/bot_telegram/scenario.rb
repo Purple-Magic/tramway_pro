@@ -12,7 +12,7 @@ module BotTelegram::Scenario
     def run(message_from_telegram, bot, bot_record)
       user = user_from message_from_telegram.from
       if message_from_telegram.text == '/start'
-        current_step = bot_record.steps.active.find_by(name: :start)
+        current_step = bot_record.steps.find_by(name: :start)
         send_step_message current_step, bot, message_from_telegram, bot_record
       else
         current_bot_steps = user.progress_records.joins(:step).where(bot_telegram_user_id: user.id)
@@ -60,9 +60,9 @@ module BotTelegram::Scenario
     def find_next_step(current_step, message_from_telegram, bot)
       next_step = nil
       if message_from_telegram.text.present?
-        next_step = bot.steps.active.find_by(name: current_step.options[message_from_telegram.text.downcase])
+        next_step = bot.steps.find_by(name: current_step.options[message_from_telegram.text.downcase])
       end
-      next_step ||= bot.steps.active.find_by name: current_step.options['next']
+      next_step ||= bot.steps.find_by name: current_step.options['next']
       next_step
     end
 

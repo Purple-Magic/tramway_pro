@@ -2,7 +2,7 @@
 
 module BotTelegram::Info
   def user_from(sender)
-    user = BotTelegram::User.active.find_by telegram_id: sender.id
+    user = BotTelegram::User.find_by telegram_id: sender.id
     params = {
       username: sender.username,
       first_name: sender.first_name,
@@ -25,7 +25,7 @@ module BotTelegram::Info
   end
 
   def chat_from(message_chat, bot_record)
-    chat = BotTelegram::Chat.active.find_or_create_by! telegram_chat_id: message_chat.id, bot_id: bot_record.id
+    chat = BotTelegram::Chat.find_or_create_by! telegram_chat_id: message_chat.id, bot_id: bot_record.id
     chat.update! title: message_chat.title,
       bot_id: bot_record.id,
       chat_type: message_chat.type,
@@ -41,7 +41,7 @@ module BotTelegram::Info
   end
 
   def channel_from(channel, bot_record)
-    channel_record = BotTelegram::Channel.active.find_or_create_by! telegram_channel_id: channel.id
+    channel_record = BotTelegram::Channel.find_or_create_by! telegram_channel_id: channel.id
     channel_record.update! title: channel.title,
       bot_id: bot_record.id,
       project_id: Project.find_by(title: 'PurpleMagic').id

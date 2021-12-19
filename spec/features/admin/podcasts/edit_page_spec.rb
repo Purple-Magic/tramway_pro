@@ -13,7 +13,7 @@
 #    fill_in 'Пароль', with: '123456'
 #    click_on 'Войти', class: 'btn-success'
 #
-#    last_podcast = Podcast.active.last
+#    last_podcast = Podcast.last
 #    click_on 'Подкасты'
 #    click_on last_podcast.title
 #    find('.btn.btn-warning', match: :first).click

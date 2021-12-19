@@ -17,17 +17,17 @@ class Course < ApplicationRecord
   end
 
   def video_duration
-    minutes = videos.active.sum do |video|
+    minutes = videos.sum do |video|
       video.duration.present? ? video.duration.gsub('m', '').to_i : 0
     end
     "#{minutes / 60}h #{minutes % 60}m"
   end
 
   def tasks_duration
-    min_minutes = tasks.active.sum do |task|
+    min_minutes = tasks.sum do |task|
       task.min_time.gsub('m', '').to_i
     end
-    max_minutes = tasks.active.sum do |task|
+    max_minutes = tasks.sum do |task|
       task.max_time.gsub('m', '').to_i
     end
     "#{min_minutes / 60}h #{min_minutes % 60}m - #{max_minutes / 60}h #{max_minutes % 60}m"

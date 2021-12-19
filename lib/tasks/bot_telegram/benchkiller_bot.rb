@@ -42,7 +42,7 @@ module BotTelegram::BenchkillerBot
   }.freeze
 
   def benchkiller_user(telegram_user)
-    @benchkiller_user ||= ::Benchkiller::User.active.find_by bot_telegram_user_id: telegram_user.id
+    @benchkiller_user ||= ::Benchkiller::User.find_by bot_telegram_user_id: telegram_user.id
   end
 
   def company(telegram_user)

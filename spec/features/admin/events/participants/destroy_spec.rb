@@ -12,7 +12,7 @@ describe 'Destroy participant' do
     fill_in 'Пароль', with: '123456'
     click_on 'Войти', class: 'btn-success'
 
-    last_participant = Tramway::Event::Participant.active.last
+    last_participant = Tramway::Event::Participant.last
     click_on_dropdown 'Организация мероприятий'
     click_on 'Участники'
     click_on_delete_button last_participant

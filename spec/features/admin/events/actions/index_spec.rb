@@ -60,16 +60,16 @@ describe 'Mandatory actions' do
     click_on 'Сохранить', class: 'btn-success'
     event = Tramway::Event::Event.last
 
-    expect(event.actions.active.where(title: 'Определение места проведения мероприятия')).not_to be_empty
-    expect(event.actions.active.where(title: 'Сделать рассылку по местным пабликам о мероприятии')).not_to be_empty
-    expect(event.actions.active.where(title: 'Развесить постеры о мероприятии')).not_to be_empty
-    expect(event.actions.active.where(title: 'Отправка информационных писем в учебные заведения')).not_to be_empty
-    expect(event.actions.active.where(title: 'Подтверждение участия контент-мейкеров')).not_to be_empty
-    expect(event.actions.active.where(title: 'Найти ведущего мероприятия')).not_to be_empty
-    expect(event.actions.active.where(title: 'Проверка помещение на техническое соответствие')).not_to be_empty
-    expect(event.actions.active.where(title: 'Найти фотографа')).not_to be_empty
-    expect(event.actions.active.where(title: 'Найти видеографа')).not_to be_empty
-    expect(event.actions.active.where(title: 'Публикация фото-отчёта')).not_to be_empty
-    expect(event.actions.active.where(title: 'Публикация видео-отчёта')).not_to be_empty
+    expect(event.actions.where(title: 'Определение места проведения мероприятия')).not_to be_empty
+    expect(event.actions.where(title: 'Сделать рассылку по местным пабликам о мероприятии')).not_to be_empty
+    expect(event.actions.where(title: 'Развесить постеры о мероприятии')).not_to be_empty
+    expect(event.actions.where(title: 'Отправка информационных писем в учебные заведения')).not_to be_empty
+    expect(event.actions.where(title: 'Подтверждение участия контент-мейкеров')).not_to be_empty
+    expect(event.actions.where(title: 'Найти ведущего мероприятия')).not_to be_empty
+    expect(event.actions.where(title: 'Проверка помещение на техническое соответствие')).not_to be_empty
+    expect(event.actions.where(title: 'Найти фотографа')).not_to be_empty
+    expect(event.actions.where(title: 'Найти видеографа')).not_to be_empty
+    expect(event.actions.where(title: 'Публикация фото-отчёта')).not_to be_empty
+    expect(event.actions.where(title: 'Публикация видео-отчёта')).not_to be_empty
   end
 end

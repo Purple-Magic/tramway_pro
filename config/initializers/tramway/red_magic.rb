@@ -122,7 +122,7 @@ Tramway::Api.set_available_models(
       {
         index: lambda do |records, _current_user|
           project = Project.where(url: ENV['PROJECT_URL']).first
-          records.active.where(project_id: project.id)
+          records.where(project_id: project.id)
         end
       }
     ],
