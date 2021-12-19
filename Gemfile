@@ -39,6 +39,8 @@ gem 'tramway-user', '2.1.3.3'
 # gem 'tramway-site', path: '../tramway-dev/tramway-site'
 # gem 'tramway-user', path: '../tramway-dev/tramway-user'
 
+
+gem "paranoia", "~> 2.2"
 gem 'aasm'
 gem 'actionview', '>= 5.1.6.2'
 gem 'active_model_serializers', '0.10.12'
