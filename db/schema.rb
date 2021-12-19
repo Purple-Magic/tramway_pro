@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211215204822) do
+ActiveRecord::Schema.define(version: 20211219222745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "words", array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
   create_table "benchkiller_companies", force: :cascade do |t|
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "updated_at", null: false
     t.text "review_state", default: "unviewed"
     t.uuid "uuid", default: -> { "uuid_generate_v4()" }
+    t.datetime "deleted_at"
   end
 
   create_table "benchkiller_companies_users", force: :cascade do |t|
@@ -87,6 +89,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "sending_state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
   create_table "benchkiller_offers", force: :cascade do |t|
@@ -97,6 +100,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "updated_at", null: false
     t.uuid "uuid", default: -> { "uuid_generate_v4()" }
     t.text "approval_state"
+    t.datetime "deleted_at"
   end
 
   create_table "benchkiller_offers_tags", force: :cascade do |t|
@@ -110,6 +114,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
   create_table "benchkiller_users", force: :cascade do |t|
@@ -120,6 +125,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "updated_at", null: false
     t.text "password_digest"
     t.uuid "uuid", default: -> { "uuid_generate_v4()" }
+    t.datetime "deleted_at"
   end
 
   create_table "bot_telegram_channels", force: :cascade do |t|
@@ -156,6 +162,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "state"
     t.integer "bot_id"
     t.text "message_type", default: "regular"
+    t.datetime "deleted_at"
   end
 
   create_table "bot_telegram_scenario_progress_records", force: :cascade do |t|
@@ -166,6 +173,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "updated_at", null: false
     t.text "state"
     t.integer "project_id"
+    t.datetime "deleted_at"
   end
 
   create_table "bot_telegram_scenario_steps", force: :cascade do |t|
@@ -180,6 +188,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "file"
     t.integer "project_id"
     t.integer "delay"
+    t.datetime "deleted_at"
   end
 
   create_table "bot_telegram_users", force: :cascade do |t|
@@ -192,6 +201,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.integer "project_id"
     t.text "state"
     t.text "telegram_id"
+    t.datetime "deleted_at"
   end
 
   create_table "bot_telegram_users_states", force: :cascade do |t|
@@ -213,6 +223,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "token"
     t.jsonb "options"
     t.text "slug"
+    t.datetime "deleted_at"
   end
 
   create_table "chat_quest_ulsk_chapters", force: :cascade do |t|
@@ -277,6 +288,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "updated_at", null: false
     t.text "begin_time"
     t.text "end_time"
+    t.datetime "deleted_at"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -286,6 +298,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "team"
+    t.datetime "deleted_at"
   end
 
   create_table "courses_comments", force: :cascade do |t|
@@ -302,6 +315,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "phrase"
     t.integer "associated_id"
     t.text "associated_type"
+    t.datetime "deleted_at"
   end
 
   create_table "courses_lessons", force: :cascade do |t|
@@ -312,6 +326,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
+    t.datetime "deleted_at"
   end
 
   create_table "courses_tasks", force: :cascade do |t|
@@ -325,6 +340,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "preparedness_state"
     t.text "max_time"
     t.text "min_time"
+    t.datetime "deleted_at"
   end
 
   create_table "courses_topics", force: :cascade do |t|
@@ -335,6 +351,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
+    t.datetime "deleted_at"
   end
 
   create_table "courses_videos", force: :cascade do |t|
@@ -348,6 +365,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "video_state"
     t.datetime "release_date"
     t.text "duration"
+    t.datetime "deleted_at"
   end
 
   create_table "elections_candidates", force: :cascade do |t|
@@ -370,6 +388,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
+    t.datetime "deleted_at"
   end
 
   create_table "estimation_costs", force: :cascade do |t|
@@ -380,6 +399,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
   create_table "estimation_customers", force: :cascade do |t|
@@ -390,6 +410,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
   create_table "estimation_expenses", force: :cascade do |t|
@@ -402,6 +423,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
   create_table "estimation_projects", force: :cascade do |t|
@@ -413,6 +435,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.integer "customer_id"
     t.text "project_state", default: "estimation_in_progress"
     t.text "description"
+    t.datetime "deleted_at"
   end
 
   create_table "estimation_tasks", force: :cascade do |t|
@@ -426,6 +449,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.float "price"
     t.integer "specialists_count", default: 1
     t.text "description"
+    t.datetime "deleted_at"
   end
 
   create_table "it_way_certificates", force: :cascade do |t|
@@ -436,6 +460,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "updated_at", null: false
     t.text "state"
     t.integer "project_id"
+    t.datetime "deleted_at"
   end
 
   create_table "it_way_word_uses", force: :cascade do |t|
@@ -452,6 +477,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "updated_at", null: false
     t.text "state"
     t.integer "project_id"
+    t.datetime "deleted_at"
   end
 
   create_table "listai_pages", force: :cascade do |t|
@@ -462,6 +488,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "state"
     t.integer "book_id"
     t.integer "project_id"
+    t.datetime "deleted_at"
   end
 
   create_table "magic_wood_actors", force: :cascade do |t|
@@ -471,6 +498,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
   create_table "magic_wood_actors_attendings", force: :cascade do |t|
@@ -480,6 +508,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
   create_table "magic_wood_actors_photos", force: :cascade do |t|
@@ -489,6 +518,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
   create_table "podcast_episodes", force: :cascade do |t|
@@ -519,6 +549,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "record_time"
     t.text "public_title"
     t.text "montage_process", default: "default"
+    t.datetime "deleted_at"
   end
 
   create_table "podcast_episodes_instances", force: :cascade do |t|
@@ -529,6 +560,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
   create_table "podcast_episodes_links", force: :cascade do |t|
@@ -539,6 +571,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
   create_table "podcast_episodes_stars", force: :cascade do |t|
@@ -547,6 +580,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "star_type", default: "main"
     t.text "state"
     t.integer "project_id"
+    t.datetime "deleted_at"
   end
 
   create_table "podcast_episodes_topics", force: :cascade do |t|
@@ -560,6 +594,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "uuid", default: -> { "uuid_generate_v4()" }
+    t.datetime "deleted_at"
   end
 
   create_table "podcast_highlights", force: :cascade do |t|
@@ -577,6 +612,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "file"
     t.text "ready_file"
     t.text "instagram_story"
+    t.datetime "deleted_at"
   end
 
   create_table "podcast_musics", force: :cascade do |t|
@@ -587,6 +623,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "updated_at", null: false
     t.text "state"
     t.integer "project_id"
+    t.datetime "deleted_at"
   end
 
   create_table "podcast_stars", force: :cascade do |t|
@@ -600,6 +637,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.jsonb "profiles"
     t.text "first_name"
     t.text "last_name"
+    t.datetime "deleted_at"
   end
 
   create_table "podcasts", force: :cascade do |t|
@@ -614,6 +652,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "podcast_type"
     t.text "footer"
     t.text "youtube_footer"
+    t.datetime "deleted_at"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -623,6 +662,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "state", default: "active"
+    t.datetime "deleted_at"
   end
 
   create_table "purple_magics", force: :cascade do |t|
@@ -640,6 +680,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "main_image"
     t.text "title"
     t.integer "project_id"
+    t.datetime "deleted_at"
   end
 
   create_table "red_magics", force: :cascade do |t|
@@ -657,6 +698,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "updated_at", null: false
     t.text "title"
     t.text "state"
+    t.datetime "deleted_at"
   end
 
   create_table "shortened_urls", id: :serial, force: :cascade do |t|
@@ -685,6 +727,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "updated_at", null: false
     t.text "state"
     t.integer "user_id"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_conference_unities", force: :cascade do |t|
@@ -707,6 +750,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "favicon"
     t.text "name"
     t.text "public_name"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_devs", force: :cascade do |t|
@@ -723,6 +767,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "main_image"
     t.text "title"
     t.integer "project_id"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_event_actions", force: :cascade do |t|
@@ -734,6 +779,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_event_events", force: :cascade do |t|
@@ -750,6 +796,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "request_collecting_end_date"
     t.text "short_description"
     t.text "reach"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_event_events_places", force: :cascade do |t|
@@ -768,6 +815,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "state"
     t.integer "project_id"
     t.text "part_type", default: "Tramway::Event::Section"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_event_participant_form_fields", force: :cascade do |t|
@@ -781,6 +829,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.integer "project_id"
     t.jsonb "options"
     t.integer "position"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_event_participants", force: :cascade do |t|
@@ -792,6 +841,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.integer "project_id"
     t.text "participation_state", default: "requested"
     t.text "comment"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_event_people", force: :cascade do |t|
@@ -803,6 +853,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "updated_at", null: false
     t.integer "project_id"
     t.text "description"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_event_places", force: :cascade do |t|
@@ -815,6 +866,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_event_sections", force: :cascade do |t|
@@ -828,6 +880,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.integer "project_id"
     t.text "icon"
     t.integer "position"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_landing_blocks", force: :cascade do |t|
@@ -849,6 +902,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "view_name"
     t.jsonb "values"
     t.integer "page_id"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_landing_forms", force: :cascade do |t|
@@ -869,6 +923,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_news_news", force: :cascade do |t|
@@ -881,6 +936,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "updated_at", null: false
     t.integer "project_id"
     t.uuid "uuid", default: -> { "uuid_generate_v4()" }
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_page_pages", force: :cascade do |t|
@@ -894,6 +950,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "view"
     t.text "page_type"
     t.text "view_state", default: "unpublished"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_partner_organizations", force: :cascade do |t|
@@ -904,6 +961,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_partner_partnerships", force: :cascade do |t|
@@ -915,6 +973,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_person_people", force: :cascade do |t|
@@ -938,6 +997,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_site_people", force: :cascade do |t|
@@ -951,6 +1011,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "main_image"
     t.text "favicon"
     t.text "tagline"
+    t.datetime "deleted_at"
   end
 
   create_table "tramway_sport_school_institutions", force: :cascade do |t|
@@ -985,6 +1046,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.datetime "updated_at", null: false
     t.integer "project_id"
     t.text "phone"
+    t.datetime "deleted_at"
   end
 
   create_table "videos", force: :cascade do |t|
@@ -997,6 +1059,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.text "title"
     t.text "preview"
     t.text "description"
+    t.datetime "deleted_at"
   end
 
   create_table "words", force: :cascade do |t|
@@ -1009,6 +1072,7 @@ ActiveRecord::Schema.define(version: 20211215204822) do
     t.integer "project_id"
     t.uuid "uuid", default: -> { "uuid_generate_v4()" }
     t.text "review_state", default: "approved"
+    t.datetime "deleted_at"
   end
 
 end
