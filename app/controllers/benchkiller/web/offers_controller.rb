@@ -32,7 +32,7 @@ class Benchkiller::Web::OffersController < Benchkiller::Web::ApplicationControll
     end
     offers = offers.where 'created_at > ?', params[:begin_date].to_date if params[:begin_date].present?
     offers = offers.where 'created_at < ?', params[:end_date].to_date if params[:end_date].present?
-    @full_offers_collection = offers.approved
+    @full_offers_collection = offers.approved.order(created_at: :desc)
     @offers = ::Benchkiller::OfferDecorator.decorate @full_offers_collection.page params[:page]
   end
 end
