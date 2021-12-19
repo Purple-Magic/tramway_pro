@@ -13,7 +13,7 @@ class Benchkiller::Company < ApplicationRecord
 
   scope :benchkiller_scope, ->(_user) { all }
 
-  validates :title, uniqueness: true, if: -> { state == 'active' }
+  validates :title, uniqueness: true
   validates :company_url, url: true
   validates :email, email: true
   validates :portfolio_url, url: true

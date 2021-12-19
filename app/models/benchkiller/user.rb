@@ -11,7 +11,7 @@ class Benchkiller::User < ApplicationRecord
 
   scope :benchkiller_scope, ->(_user) { all }
 
-  validates :bot_telegram_user_id, uniqueness: true, if: -> { state == 'active' }
+  validates :bot_telegram_user_id, uniqueness: true
 
   delegate :username, to: :telegram_user
 
