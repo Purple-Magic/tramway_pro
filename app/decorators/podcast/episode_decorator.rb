@@ -8,7 +8,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   decorate_association :links, as: :episode
   decorate_association :instances, as: :episode
 
-  delegate_attributes :id, :number, :file_url, :montage_state
+  delegate_attributes :id, :number, :file_url, :montage_state, :public_title
 
   include Podcast::Episodes::DescriptionConcern
   include Podcast::Episodes::YoutubeDescriptionConcern
