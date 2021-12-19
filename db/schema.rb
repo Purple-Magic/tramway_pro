@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211219222745) do
+ActiveRecord::Schema.define(version: 20211219225420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20211219222745) do
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
   create_table "benchkiller_deliveries", force: :cascade do |t|
@@ -79,6 +80,7 @@ ActiveRecord::Schema.define(version: 20211219222745) do
     t.datetime "updated_at", null: false
     t.text "delivery_state"
     t.uuid "uuid", default: -> { "uuid_generate_v4()" }
+    t.datetime "deleted_at"
   end
 
   create_table "benchkiller_notifications", force: :cascade do |t|
@@ -136,6 +138,7 @@ ActiveRecord::Schema.define(version: 20211219222745) do
     t.text "telegram_channel_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
   create_table "bot_telegram_chats", force: :cascade do |t|
@@ -149,6 +152,7 @@ ActiveRecord::Schema.define(version: 20211219222745) do
     t.text "state"
     t.text "telegram_chat_id"
     t.integer "bot_id"
+    t.datetime "deleted_at"
   end
 
   create_table "bot_telegram_messages", force: :cascade do |t|
@@ -211,6 +215,7 @@ ActiveRecord::Schema.define(version: 20211219222745) do
     t.text "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
   create_table "bots", force: :cascade do |t|
@@ -368,17 +373,6 @@ ActiveRecord::Schema.define(version: 20211219222745) do
     t.datetime "deleted_at"
   end
 
-  create_table "elections_candidates", force: :cascade do |t|
-    t.text "full_name"
-    t.text "description"
-    t.integer "area"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "consignment"
-    t.text "state"
-    t.integer "project_id"
-  end
-
   create_table "estimation_coefficients", force: :cascade do |t|
     t.integer "estimation_project_id"
     t.text "state"
@@ -469,6 +463,7 @@ ActiveRecord::Schema.define(version: 20211219222745) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "state"
+    t.datetime "deleted_at"
   end
 
   create_table "listai_books", force: :cascade do |t|
