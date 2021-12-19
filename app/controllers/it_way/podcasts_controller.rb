@@ -5,6 +5,6 @@ class ItWay::PodcastsController < Tramway::Core::ApplicationController
   before_action :application
 
   def show
-    @episodes = ::EpisodeBlockDecorator.decorate Episode.active.order(published_at: :desc)
+    @episodes = ::EpisodeBlockDecorator.decorate Episode.order(published_at: :desc)
   end
 end

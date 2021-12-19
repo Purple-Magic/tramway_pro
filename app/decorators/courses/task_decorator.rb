@@ -19,7 +19,7 @@ class Courses::TaskDecorator < Tramway::Core::ApplicationDecorator
   decorate_association :comments, as: :associated
 
   def title
-    info = "#{object.comments.active.count} comments | #{object.comments.active.where(comment_state: :done).count} comments done"
+    info = "#{object.comments.count} comments | #{object.comments.where(comment_state: :done).count} comments done"
     "📝 Задание #{lesson.topic.position}-#{lesson.position}-#{position} | #{info}"
   end
 

@@ -7,6 +7,6 @@ class AddMoreDeletedAt < ActiveRecord::Migration[5.1]
     add_column :bot_telegram_users_states, :deleted_at, :datetime
     add_column :it_way_word_uses, :deleted_at, :datetime
 
-    #drop_table :elections_candidates
+    drop_table :elections_candidates
   end
 end

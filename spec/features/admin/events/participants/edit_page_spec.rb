@@ -12,7 +12,7 @@ describe 'Edit participant page' do
     fill_in 'Пароль', with: '123456'
     click_on 'Войти', class: 'btn-success'
 
-    participant = Tramway::Event::Participant.active.last
+    participant = Tramway::Event::Participant.last
     click_on_dropdown 'Организация мероприятий'
     click_on 'Участники'
     click_on_table_item "#{participant.values['Фамилия']} #{participant.values['Имя']}"

@@ -36,7 +36,7 @@ class Courses::Video < ApplicationRecord
   end
 
   def progress_status
-    done_comments = comments.active.where(comment_state: :done).count
+    done_comments = comments.where(comment_state: :done).count
     conditions = {
       done: lambda do |all, done|
         all.positive? && all == done
@@ -47,7 +47,7 @@ class Courses::Video < ApplicationRecord
     }
 
     conditions.each do |condition|
-      return condition[0] if condition[1].call(comments.active.count, done_comments)
+      return condition[0] if condition[1].call(comments.count, done_comments)
     end
 
     video_state.to_sym

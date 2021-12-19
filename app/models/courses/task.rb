@@ -34,7 +34,7 @@ class Courses::Task < ApplicationRecord
   def progress_status
     return preparedness_state if preparedness_state.in? [ 'writing' ]
 
-    done_comments = comments.active.where(comment_state: :done).count
+    done_comments = comments.where(comment_state: :done).count
     conditions = {
       done: lambda do |all, done|
         (all.positive? || all == 0) && all == done
@@ -45,7 +45,7 @@ class Courses::Task < ApplicationRecord
     }
 
     conditions.each do |condition|
-      return condition[0] if condition[1].call(comments.active.count, done_comments)
+      return condition[0] if condition[1].call(comments.count, done_comments)
     end
 
     preparedness_state == 'verified' ? :done : preparedness_state.to_sym

@@ -4,7 +4,7 @@ class Benchkiller::Web::SessionsController < ::Tramway::Auth::Web::ApplicationCo
   before_action :redirect_if_signed_in, except: :destroy
 
   def create
-    user = ::Benchkiller::User.active.joins(:telegram_user).where('bot_telegram_users.username = ?',
+    user = ::Benchkiller::User.joins(:telegram_user).where('bot_telegram_users.username = ?',
       params[:bot_telegram_user][:username]).first
     if user.present?
       @session_form = ::Benchkiller::Auth::UserForm.new user

@@ -12,7 +12,7 @@ describe 'Edit event page' do
     fill_in 'Пароль', with: '123456'
     click_on 'Войти', class: 'btn-success'
 
-    last_event = Tramway::Event::Event.active.last
+    last_event = Tramway::Event::Event.last
     click_on_dropdown 'Организация мероприятий'
     click_on 'Мероприятия'
     click_on last_event.title

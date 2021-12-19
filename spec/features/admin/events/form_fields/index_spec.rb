@@ -54,10 +54,10 @@ describe 'Mandatory form fields' do
     click_on 'Сохранить', class: 'btn-success'
     event = Tramway::Event::Event.last
 
-    expect(event.participant_form_fields.active.where(title: 'Фамилия')).not_to be_empty
-    expect(event.participant_form_fields.active.where(title: 'Имя')).not_to be_empty
-    expect(event.participant_form_fields.active.where(title: 'Место учёбы / работы')).not_to be_empty
-    expect(event.participant_form_fields.active.where(title: 'Email')).not_to be_empty
-    expect(event.participant_form_fields.active.where(title: 'Номер телефона')).not_to be_empty
+    expect(event.participant_form_fields.where(title: 'Фамилия')).not_to be_empty
+    expect(event.participant_form_fields.where(title: 'Имя')).not_to be_empty
+    expect(event.participant_form_fields.where(title: 'Место учёбы / работы')).not_to be_empty
+    expect(event.participant_form_fields.where(title: 'Email')).not_to be_empty
+    expect(event.participant_form_fields.where(title: 'Номер телефона')).not_to be_empty
   end
 end

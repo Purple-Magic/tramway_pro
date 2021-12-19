@@ -1,17 +1,17 @@
 module Estimation::RealConcern
   def real_sum
-    if object.costs.active.any?
-      object.costs.active.first.price
+    if object.costs.any?
+      object.costs.first.price
     else
       sum
     end
   end
 
   def cost_path
-    if object.costs.active.any?
+    if object.costs.any?
       Tramway::Admin::Engine.routes.url_helpers.edit_record_path(
         model: Estimation::Cost,
-        id: object.costs.active.first.id,
+        id: object.costs.first.id,
         redirect: "/admin/records/#{object.estimation_project.id}?model=Estimation::Project"
       )
     else

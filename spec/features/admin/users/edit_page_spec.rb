@@ -16,7 +16,7 @@ describe 'Edit admin page' do
       fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
-      last_admin = Tramway::User::User.active.where(project_id: project.id).last
+      last_admin = Tramway::User::User.where(project_id: project.id).last
       click_on 'Пользователи'
       click_on last_admin.id
       find('.btn.btn-warning', match: :first).click

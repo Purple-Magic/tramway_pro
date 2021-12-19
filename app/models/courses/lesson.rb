@@ -21,9 +21,9 @@ class Courses::Lesson < ApplicationRecord
     started_tasks = tasks_without(status: :written).count
 
     conditions.each do |condition|
-      video_condition = condition[1][:videos].call(videos.active.count, started_videos, done_videos,
+      video_condition = condition[1][:videos].call(videos.count, started_videos, done_videos,
         videos_with_comments_any)
-      task_condition = condition[1][:tasks].call(tasks.active.count, started_tasks, done_tasks,
+      task_condition = condition[1][:tasks].call(tasks.count, started_tasks, done_tasks,
         tasks_with_comments_any)
       return condition[0] if video_condition && task_condition
     end
@@ -59,26 +59,26 @@ class Courses::Lesson < ApplicationRecord
   end
 
   def videos_with_comments_any
-    videos.active.map { |video| video.comments.active.count }.uniq != [0]
+    videos.map { |video| video.comments.count }.uniq != [0]
   end
 
   def tasks_with_comments_any
-    tasks.active.map { |task| task.comments.active.count }.uniq != [0]
+    tasks.map { |task| task.comments.count }.uniq != [0]
   end
 
   def videos_with(status:)
-    videos.active.select { |video| video.progress_status == status }
+    videos.select { |video| video.progress_status == status }
   end
 
   def tasks_with(status:)
-    tasks.active.select { |task| task.progress_status == status }
+    tasks.select { |task| task.progress_status == status }
   end
 
   def videos_without(status:)
-    videos.active.reject { |video| video.progress_status == status }
+    videos.reject { |video| video.progress_status == status }
   end
 
   def tasks_without(status:)
-    tasks.active.reject { |task| task.progress_status == status }
+    tasks.reject { |task| task.progress_status == status }
   end
 end

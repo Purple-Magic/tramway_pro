@@ -21,7 +21,7 @@
   = mail_to 'engineervol@yandex.ru'
 
 #flipbook
-  - @book.pages.active.order(number: :asc).each do |page|
+  - @book.pages.order(number: :asc).each do |page|
     %div{ style: "background-image: url(#{page.file.url});background-size: cover;" }
 
 #buttons
@@ -41,7 +41,7 @@
     Если вы используете браузер Chrome на мобильном устройстве, переверните телефон, чтобы было удобно читать книгу. Если ваш браузер Safari на iOS, рекомендуем читать книгу на персональном компьютере, мы ещё работаем над оптимизацией работы для Safari на iOS.
 
 #rotateBackground
-  = image_tag @book.pages.active.order(number: :asc).first.file.url
+  = image_tag @book.pages.order(number: :asc).first.file.url
 
 #safariiOS
   %h1

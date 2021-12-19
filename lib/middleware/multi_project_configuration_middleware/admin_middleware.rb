@@ -57,7 +57,7 @@ module MultiProjectCallbacks
         end
 
         def filter_with_project(collection, project)
-          array = model_class.active.send(collection)
+          array = model_class.send(collection)
           array = array.where(project_id: project.id) unless params[:model] == 'Project'
           array = array.ransack(params[:filter]).result(distinct: true) if params[:filter].present?
           array
