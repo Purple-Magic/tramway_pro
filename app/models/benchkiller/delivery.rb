@@ -17,7 +17,7 @@ class Benchkiller::Delivery < ApplicationRecord
       after do
         save!
         text_with_test_message = "#{text}\n\nЭта рассылка делается в тестовом режиме. Если у вас есть вопросы или предложения по этим рассылкам, напишите @Egurt73, Benchkiller"
-        ::BenchkillerDeliveryWorker.new.perform receivers.map(&:id), text_with_test_message
+        ::Benchkiller::DeliveryWorker.new.perform receivers.map(&:id), text_with_test_message
       end
     end
 
@@ -31,6 +31,6 @@ class Benchkiller::Delivery < ApplicationRecord
   end
 
   def send_to_me
-    ::BenchkillerDeliveryWorker.new.perform [bot_telegram_user_id], text
+    ::Benchkiller::DeliveryWorker.new.perform [bot_telegram_user_id], text
   end
 end

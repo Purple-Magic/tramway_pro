@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BenchkillerSendApprovementMessageWorker < ApplicationWorker
+class Benchkiller::SendApprovementMessageWorker < ApplicationWorker
   sidekiq_options queue: :benchkiller
 
   include ::BotTelegram::BenchkillerBot::Notify
