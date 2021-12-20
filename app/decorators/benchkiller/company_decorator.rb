@@ -84,24 +84,9 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
     end
   end
 
-  private
-
-  def data_view_mode(pair)
-    if pair[0].in? ['email']
-      mail_to pair[1]
-    elsif pair[0].in? ['phone']
-      link_to pair[1], "tel:#{pair[1]}"
-    elsif pair[0].in? %w[company_url portfolio_url]
-      link_to pair[1].truncate(60), pair[1], target: '_blank'
-    else
-      pair[1]
-    end
-  end
-
   class << self
     def collections
-      # [ :all, :scope1, :scope2 ]
-      [:all]
+      [:unviewed, :approved, :declined, :all]
     end
 
     def list_attributes
@@ -127,21 +112,20 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def list_filters
-      # {
-      #   filter_name: {
-      #     type: :select,
-      #     select_collection: filter_collection,
-      #     query: lambda do |list, value|
-      #       list.where some_attribute: value
-      #     end
-      #   },
-      #   date_filter_name: {
-      #     type: :dates,
-      #     query: lambda do |list, begin_date, end_date|
-      #       list.where 'created_at > ? AND created_at < ?', begin_date, end_date
-      #     end
-      #   }
-      # }
+    end
+  end
+
+  private
+
+  def data_view_mode(pair)
+    if pair[0].in? ['email']
+      mail_to pair[1]
+    elsif pair[0].in? ['phone']
+      link_to pair[1], "tel:#{pair[1]}"
+    elsif pair[0].in? %w[company_url portfolio_url]
+      link_to pair[1].truncate(60), pair[1], target: '_blank'
+    else
+      pair[1]
     end
   end
 end
