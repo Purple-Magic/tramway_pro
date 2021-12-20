@@ -35,6 +35,12 @@ class Benchkiller::Company < ApplicationRecord
 
     event :decline do
       transitions from: :unviewed, to: :declined
+
+      after do
+        save!
+        user = users.first
+        Benchkiller::SendRejectionMessageWorker.perform_async user.id
+      end
     end
 
     event :return_to_unviewed do
