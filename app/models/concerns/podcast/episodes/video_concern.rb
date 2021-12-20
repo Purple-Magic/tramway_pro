@@ -38,7 +38,8 @@ module Podcast::Episodes::VideoConcern
       strict: 2
     )
     run_render_on_remote_server [cover.path, ready_file.path]
-    command = "nohup ffmpeg #{options} &"
+    send_request_after_render_command = "curl -X PATCH red-magic.ru/red_magic/api/v1/podcast/episodes/#{id}/video_is_ready"
+    command = "nohup /bin/bash -c 'ffmpeg #{options} && #{send_request_after_render_command}' &"
     Rails.logger.info "#{command}"
     run_command_on_remote_server command
   end
