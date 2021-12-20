@@ -82,6 +82,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
       finish_record_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish_record)
       trailer_get_ready_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :trailer_get_ready)
       finish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish)
+      render_video_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :render_video)
       publish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :publish)
 
       {
@@ -90,6 +91,7 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
           { url: finish_record_url, method: :patch, inner: -> { 'Finish record' }, color: :success },
           { url: trailer_get_ready_url, method: :patch, inner: -> { 'Trailer get ready' }, color: :success },
           { url: finish_url, method: :patch, inner: -> { 'Finish' }, color: :success },
+          { url: render_video_url, method: :patch, inner: -> { 'Render video' }, color: :success },
           { url: publish_url, method: :patch, inner: -> { 'Publish' }, color: :success }
         ]
       }
