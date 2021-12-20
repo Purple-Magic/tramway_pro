@@ -8,7 +8,9 @@ class PodcastsSavingVideoAfterRender < ActiveJob::Base
 
   def perform(*_args)
     Podcast::Episode.find_each do |episode|
-      episode.update_file! "#{episode.prepare_directory}/full_video.mp4", :full_video
+      file_path = "#{episode.prepare_directory}/full_video.mp4", :full_video
+      next unless File.exist? file_path
+      episode.update_file! file_path
     end
   end
 end
