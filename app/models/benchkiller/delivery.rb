@@ -31,6 +31,6 @@ class Benchkiller::Delivery < ApplicationRecord
   end
 
   def send_to_me
-    ::Benchkiller::DeliveryWorker.new.perform [benchkiller_user.bot_telegram_user_id], text
+    ::Benchkiller::DeliveryWorker.new.perform [user.bot_telegram_user_id], text
   end
 end
