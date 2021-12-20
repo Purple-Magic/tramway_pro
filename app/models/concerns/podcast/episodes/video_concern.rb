@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'net/scp'
+
 module Podcast::Episodes::VideoConcern
   include BotTelegram::Leopold::Notify
 
@@ -20,7 +22,7 @@ module Podcast::Episodes::VideoConcern
   end
 
   def render_full_video(output)
-    inputs = [cover.path, ready_file.path]
+    inputs = [cover.filename, ready_file.filename]
     options = options_line(
       inputs: inputs,
       output: output,
@@ -34,9 +36,10 @@ module Podcast::Episodes::VideoConcern
       shortest: true,
       strict: 2
     )
-    command = write_logs "ffmpeg #{options}"
-    Rails.logger.info "nohup #{command}"
-    system "nohup #{command}"
+    run_render_on_remote_server [cover.path, ready_file.path]
+    command = "cd podcast_engine && ffmpeg #{options}"
+    Rails.logger.info "#{command}"
+    run_command_on_remote_server command
     # It's saving async
     #wait_for_file_rendered output, :full_video
     #update_file! output, :full_video
@@ -50,5 +53,24 @@ module Podcast::Episodes::VideoConcern
     chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     send_notification_to_chat chat_id, message
     raise message
+  end
+
+  REMOTE_SERVER = "167.71.46.15"
+  REMOTE_USER = "root"
+
+  def run_command_on_remote_server(remote_command)
+    command = "ssh -t #{REMOTE_USER}@#{REMOTE_SERVER} '#{remote_command}'"
+    Rails.logger.info command
+    system command
+  end
+  
+  def run_render_on_remote_server(inputs, render_command)
+    run_command_on_remote_server "mkdir podcast_engine/#{id}" 
+
+    inputs.each do |input|
+      command = "scp #{input} #{REMOTE_USER}@#{REMOTE_SERVER}:/root/podcast_engine/#{id}/"
+      Rails.logger.info command
+      system command
+    end
   end
 end
