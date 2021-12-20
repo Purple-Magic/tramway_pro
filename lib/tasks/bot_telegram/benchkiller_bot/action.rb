@@ -45,7 +45,7 @@ class BotTelegram::BenchkillerBot::Action
       company = benchkiller_user(user).companies.first
       if company.present?
         old_company_name = company.title
-        if company.update title: company_name
+        if ::Benchkiller::Company.where(title: company_name).empty?
           send_message_to_user "Ваша компания #{old_company_name} переименована в #{company_name} на сервисе Benchkiller"
           user.set_finished_state_for bot: bot_record
         else
@@ -66,7 +66,7 @@ class BotTelegram::BenchkillerBot::Action
 
   def set_portfolio_url(portfolio_url)
     if portfolio_url.present? && portfolio_url.scan(URI::DEFAULT_PARSER.make_regexp).present?
-      if company(user).update portfolio_url: portfolio_url
+      if portfolio_url.match? URI::regexp %w(http https)
         send_message_to_user "Ссылка на портфолио вашей компании успешно обновлена. Теперь это #{portfolio_url}"
       else
         send_message_to_user 'К сожалению, не удалось обновить ссылку на портфолио вашей компании. Обратитесь в поддержку сервиса Benchkiller'
@@ -80,7 +80,7 @@ class BotTelegram::BenchkillerBot::Action
 
   def set_company_url(company_url)
     if company_url.present? && company_url.scan(URI::DEFAULT_PARSER.make_regexp).present?
-      if company(user).update company_url: company_url
+      if company_url.match? URI::regexp %w(http https)
         send_message_to_user "Ссылка на сайт вашей компании успешно обновлена. Теперь это #{company_url}"
       else
         send_message_to_user 'К сожалению, не удалось обновить ссылку на сайт вашей компании. Обратитесь в поддержку сервиса Benchkiller'
@@ -94,7 +94,7 @@ class BotTelegram::BenchkillerBot::Action
 
   def set_email(email)
     if email.present? && email.scan(URI::MailTo::EMAIL_REGEXP).present?
-      if company(user).update email: email
+      if email.match?(/[a-zA-Z0-9._%]@(?:[a-zA-Z0-9]\.)[a-zA-Z]{2,4}/)
         send_message_to_user "Контактная почта вашей компании успешно обновлена. Теперь это #{email}"
       else
         send_message_to_user 'К сожалению, не удалось обновить контактную почту вашей компании. Обратитесь в поддержку сервиса Benchkiller'
