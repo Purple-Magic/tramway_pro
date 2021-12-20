@@ -10,7 +10,7 @@ class BotTelegram::User < ApplicationRecord
   has_many :states, class_name: 'BotTelegram::Users::State'
 
   validates :telegram_id, uniqueness: true
-  validates :username, uniqueness: true
+  validates :username, uniqueness: true, allow_blank: true, allow_nil: true
 
   search_by :first_name, :username, :last_name
 
