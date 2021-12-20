@@ -49,7 +49,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        PodcastsDownloadWorker.perform_async id
+        Podcasts::DownloadWorker.perform_async id
       end
     end
 
@@ -58,7 +58,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        PodcastsMontageWorker.perform_async id
+        Podcasts::MontageWorker.perform_async id
       end
     end
 
@@ -67,7 +67,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        PodcastsTrailerWorker.perform_async id
+        Podcasts::TrailerWorker.perform_async id
       end
     end
 
@@ -76,7 +76,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        PodcastsFinishWorker.perform_async id
+        Podcasts::FinishWorker.perform_async id
       end
     end
 
@@ -94,7 +94,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        PodcastsPublishWorker.perform_async id
+        Podcasts::PublishWorker.perform_async id
       end
     end
   end

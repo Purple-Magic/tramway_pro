@@ -3,7 +3,7 @@
 require 'net/ssh'
 require 'bot_telegram/leopold/chat_decorator'
 
-class PodcastsDownloadWorker < ApplicationWorker
+class Podcasts::DownloadWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
   include BotTelegram::Leopold::Notify
