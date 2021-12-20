@@ -16,7 +16,7 @@ class Benchkiller::Delivery < ApplicationRecord
 
       after do
         save!
-        ::Benchkiller::DeliveryWorker.new.perform receivers.map(&:id), final_text
+        ::Benchkiller::DeliveryWorker.perform_async receivers.map(&:id), final_text
       end
     end
 
