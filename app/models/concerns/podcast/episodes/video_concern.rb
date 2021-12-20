@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'net/scp'
-
 module Podcast::Episodes::VideoConcern
   include BotTelegram::Leopold::Notify
 
@@ -22,10 +20,13 @@ module Podcast::Episodes::VideoConcern
   end
 
   def render_full_video(output)
-    inputs = [cover.filename, ready_file.filename]
+    cover_filename = "#{REMOTE_PATH}#{id}/#{cover.path.split('/').last}"
+    ready_filename = "#{REMOTE_PATH}#{id}/#{ready_file.path.split('/').last}"
+    output_filename = "#{REMOTE_PATH}#{id}/#{output.split('/').last}"
+    inputs = [cover_filename, ready_filename]
     options = options_line(
       inputs: inputs,
-      output: output,
+      output: output_filename,
       yes: true,
       loop_value: 1,
       video_codec: :libx264,
@@ -37,13 +38,17 @@ module Podcast::Episodes::VideoConcern
       strict: 2
     )
     run_render_on_remote_server [cover.path, ready_file.path]
-    command = "cd podcast_engine && ffmpeg #{options}"
+    command = "nohup ffmpeg #{options} &"
     Rails.logger.info "#{command}"
     run_command_on_remote_server command
-    # It's saving async
-    #wait_for_file_rendered output, :full_video
-    #update_file! output, :full_video
-    finish!
+  end
+
+  def download_video_from_remote_host!
+    path = "#{parts_directory_name}/full_video.mp4"
+    command = "scp #{REMOTE_USER}@#{REMOTE_SERVER}:#{REMOTE_PATH}#{id}/full_video.mp4 #{path}"
+    Rails.logger.info command
+    system command
+    update_file! path, :full_video
   end
 
   private
@@ -55,8 +60,9 @@ module Podcast::Episodes::VideoConcern
     raise message
   end
 
-  REMOTE_SERVER = "167.71.46.15"
+  REMOTE_SERVER = "82.148.30.250"
   REMOTE_USER = "root"
+  REMOTE_PATH = "/root/podcast_engine/"
 
   def run_command_on_remote_server(remote_command)
     command = "ssh -t #{REMOTE_USER}@#{REMOTE_SERVER} '#{remote_command}'"
@@ -64,11 +70,11 @@ module Podcast::Episodes::VideoConcern
     system command
   end
   
-  def run_render_on_remote_server(inputs, render_command)
+  def run_render_on_remote_server(inputs)
     run_command_on_remote_server "mkdir podcast_engine/#{id}" 
 
     inputs.each do |input|
-      command = "scp #{input} #{REMOTE_USER}@#{REMOTE_SERVER}:/root/podcast_engine/#{id}/"
+      command = "scp #{input} #{REMOTE_USER}@#{REMOTE_SERVER}:#{REMOTE_PATH}#{id}/"
       Rails.logger.info command
       system command
     end

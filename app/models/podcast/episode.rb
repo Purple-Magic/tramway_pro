@@ -85,7 +85,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        Podcasts::RenderVideoWorker.perform_async id
+        Podcasts::RenderVideoWorker.new.perform id
       end
     end
 
