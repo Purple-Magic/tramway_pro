@@ -18,4 +18,8 @@ class Benchkiller::User < ApplicationRecord
   def self.from_token_payload(payload)
     find_by uuid: payload['sub']
   end
+
+  def company
+    companies.first
+  end
 end
