@@ -49,6 +49,7 @@ Tramway::Admin.set_available_models(
   BotTelegram::User,
   BotTelegram::Scenario::Step,
   BotTelegram::Scenario::ProgressRecord,
+  BotTelegram::Message,
   role: :night,
   project: :purple_magic
 )
