@@ -38,8 +38,8 @@ module Podcast::Episodes::VideoConcern
     Rails.logger.info "nohup #{command}"
     system "nohup #{command}"
     # It's saving async
-    wait_for_file_rendered output, :full_video
-    update_file! output, :full_video
+    #wait_for_file_rendered output, :full_video
+    #update_file! output, :full_video
     finish!
   end
 
