@@ -60,13 +60,13 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
 
   def data_view
     content_tag(:table) do
-      data&.each do |pair|
+      [:email, :phone, :company_url, :portfolio_url, :place, :regions_to_cooperate].each do |attribute|
         concat(content_tag(:tr) do
           concat(content_tag(:td) do
-            object.class.human_attribute_name pair[0]
+            object.class.human_attribute_name attribute
           end)
           concat(content_tag(:td) do
-            data_view_mode pair
+            data_view_mode attribute, data&.dig(attribute.to_s)
           end)
         end)
       end
@@ -117,15 +117,15 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
 
   private
 
-  def data_view_mode(pair)
-    if pair[0].in? ['email']
-      mail_to pair[1]
-    elsif pair[0].in? ['phone']
-      link_to pair[1], "tel:#{pair[1]}"
-    elsif pair[0].in? %w[company_url portfolio_url]
-      link_to pair[1].truncate(60), pair[1], target: '_blank'
+  def data_view_mode(key, value)
+    if key.in? [:email]
+      mail_to value if value.present?
+    elsif key.in? [:phone]
+      link_to value, "tel:#{value}" if value.present?
+    elsif key.in? [:company_url, :portfolio_url]
+      link_to value.truncate(60), value, target: '_blank' if value.present?
     else
-      pair[1]
+      value
     end
   end
 end
