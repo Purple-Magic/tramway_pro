@@ -16,11 +16,6 @@ class Benchkiller::Company < ApplicationRecord
     scope review_state, -> { where review_state: review_state }
   end
 
-  validates :title, uniqueness: true
-  validates :company_url, url: true
-  validates :email, email: true
-  validates :portfolio_url, url: true
-
   search_by :title
 
   aasm :review_state do
