@@ -4,7 +4,6 @@ class PodcastsFinishWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
   include BotTelegram::Leopold::Notify
-  include PodcastsWorkerConcern
 
   def perform(id)
     episode = Podcast::Episode.find id
@@ -28,8 +27,6 @@ class PodcastsFinishWorker < ApplicationWorker
     render_trailer episode
     send_notification_to_chat chat_id, notification(:video_trailer, :finished, file_url: episode.trailer_video.url)
     render_instagram_stories episode
-    render_full_video episode
-    send_notification_to_chat chat_id, notification(:video, :finished, file_url: episode.full_video.url)
   end
 
   def concat_parts(episode)
