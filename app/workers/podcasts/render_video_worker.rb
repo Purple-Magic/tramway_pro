@@ -17,7 +17,7 @@ class Podcasts::RenderVideoWorker < ApplicationWorker
 
   private
 
-  def render_video(episode, podcast)
+  def render_video(episode)
     return if episode.full_video.present?
 
     render_full_video episode

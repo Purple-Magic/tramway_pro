@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PodcastsPublishWorker < ApplicationWorker
+class Podcasts::PublishWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
   include BotTelegram::Leopold::Notify

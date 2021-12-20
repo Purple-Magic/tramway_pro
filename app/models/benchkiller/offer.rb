@@ -27,7 +27,7 @@ class Benchkiller::Offer < ApplicationRecord
                   elsif lookfor?
                     ::BotTelegram::BenchkillerBot::NEED_DEV_CHANNEL
                   end
-        ::BenchkillerSendOfferToPublicChannelWorker.new.perform id, channel
+        ::Benchkiller::SendOfferToPublicChannelWorker.new.perform id, channel
       end
     end
 

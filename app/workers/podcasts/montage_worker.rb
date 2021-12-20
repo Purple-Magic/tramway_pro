@@ -2,7 +2,7 @@
 
 require 'bot_telegram/leopold/chat_decorator'
 
-class PodcastsMontageWorker < ApplicationWorker
+class Podcasts::MontageWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 
   include BotTelegram::Leopold::Notify

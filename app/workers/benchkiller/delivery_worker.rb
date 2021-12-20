@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BenchkillerDeliveryWorker < ApplicationWorker
+class Benchkiller::DeliveryWorker < ApplicationWorker
   sidekiq_options queue: :benchkiller
 
   include ::BotTelegram::BenchkillerBot::Notify
