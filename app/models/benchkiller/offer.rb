@@ -21,19 +21,22 @@ class Benchkiller::Offer < ApplicationRecord
 
       after do
         save!
-        parse!
-        channel = if available?
-                    ::BotTelegram::BenchkillerBot::FREE_DEV_CHANNEL
-                  elsif lookfor?
-                    ::BotTelegram::BenchkillerBot::NEED_DEV_CHANNEL
-                  end
-        ::Benchkiller::SendOfferToPublicChannelWorker.new.perform id, channel
+        send_to_public_channel
       end
     end
 
     event :decline do
       transitions from: :unviewed, to: :declined
     end
+  end
+
+  def send_to_public_channel
+    channel = if available?
+                ::BotTelegram::BenchkillerBot::FREE_DEV_CHANNEL
+              elsif lookfor?
+                ::BotTelegram::BenchkillerBot::NEED_DEV_CHANNEL
+              end
+    ::Benchkiller::SendOfferToPublicChannelWorker.new.perform id, channel
   end
 
   def available?
@@ -64,7 +67,11 @@ class Benchkiller::Offer < ApplicationRecord
   def company
     user = Benchkiller::User.find_by bot_telegram_user_id: message.user.id
     if user.present?
-      user.companies.first
+      user.company
     end
+  end
+
+  def benchkiller_user
+    Benchkiller::User.find_by(telegram_user_id: message.user.id)
   end
 end
