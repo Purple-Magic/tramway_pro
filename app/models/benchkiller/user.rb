@@ -5,7 +5,7 @@ class Benchkiller::User < ApplicationRecord
   has_many :companies_users, class_name: 'Benchkiller::CompaniesUser'
   has_many :companies, through: :companies_users
 
-  scope :active, -> { joins(:telegram_user).where(state: :active) }
+  default_scope -> { joins(:telegram_user) }
 
   has_secure_password
 
