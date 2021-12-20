@@ -82,7 +82,11 @@ Rails.application.routes.draw do
       namespace :api do
         namespace :v1 do
           namespace :podcast do
-            resources :episodes, only: :update
+            resources :episodes, only: :update do
+              member do
+                patch :video_is_ready
+              end
+            end
           end
           namespace :content do
             resources :stories, only: :update
