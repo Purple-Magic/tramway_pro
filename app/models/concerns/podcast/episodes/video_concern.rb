@@ -37,6 +37,7 @@ module Podcast::Episodes::VideoConcern
     command = write_logs "ffmpeg #{options}"
     Rails.logger.info command
     system command
+    # It's saving async
     wait_for_file_rendered output, :full_video
     update_file! output, :full_video
     finish!

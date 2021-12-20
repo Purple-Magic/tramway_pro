@@ -7,3 +7,8 @@ benchkiller_send_planned_notifications:
   cron: "* * * * *"
   class: BenchkillerSendPlannedNotifications 
   queue: benchkiller
+
+podcasts_saving_video_after_render:
+  cron: "50 * * * *"
+  class: PodcastsSavingVideoAfterRender 
+  queue: podcast

@@ -110,7 +110,7 @@ class Podcast::Episode < ApplicationRecord
   include Podcast::Episodes::MontageConcern
 
   def parts_directory_name
-    "#{current_podcast_directory}/#{number}/"
+    "#{current_podcast_directory}/#{id}/"
   end
 
   def prepare_directory
