@@ -4,7 +4,7 @@ class Benchkiller::Web::OffersController < Benchkiller::Web::ApplicationControll
   def index
     params[:collection] ||= :lookfor
     offers_ids = if params[:collection] == 'all'
-                   ::Benchkiller::Offer.map(&:id)
+                   ::Benchkiller::Offer.all.map(&:id)
                  else
                    ::Benchkiller::Tag.includes(:offers).find_by(title: params[:collection]).offers.map(&:id)
                  end
