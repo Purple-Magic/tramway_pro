@@ -7,7 +7,7 @@ class Benchkiller::Offers::AdminChatDecorator < ::Benchkiller::OfferDecorator
     text += '*Message:*'
     text += "\n"
     text += message.text
-    text += '*Hashtags: *'
+    text += "\n\n*Hashtags: *"
     text += object.tags.map(&:title).join(' ')
   end
 end
