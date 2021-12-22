@@ -7,7 +7,7 @@ module BotTelegram::BenchkillerBot::AdminFeatures
 
   def send_approve_message_to_admin_chat(offer)
     if offer.available? || offer.lookfor?
-      if offer.benchkiller_user.company&.approved?
+      if offer.benchkiller_user&.company&.approved?
         offer.send_to_public_channel
       else
         text = ::Benchkiller::Offers::AdminChatDecorator.decorate(offer).admin_message
