@@ -13,7 +13,6 @@ class RedMagic::Api::V1::Podcast::EpisodesController < RedMagic::Api::V1::Podcas
 
   def video_is_ready
     episode = Podcast::Episode.find params[:id]
-    params[:video_type] = :trailer_video
     episode.download_video_from_remote_host! params[:video_type]
 
     return unless params[:video_type].in? [ 'trailer_video', 'full_video' ]
