@@ -17,19 +17,16 @@ module Podcast::Episodes::VideoConcern
     )
     move_command = move_to(video_temp_output, remote_output)
     command = "#{render_command} && #{move_command}"
-    send_request_after_render_command = "curl -X PATCH red-magic.ru/red_magic/api/v1/podcast/episodes/#{id}/video_is_ready"
+    send_request_after_render_command = "curl -X PATCH red-magic.ru/red_magic/api/v1/podcast/episodes/#{id}/video_is_ready?video_type=trailer_video"
     command = "nohup /bin/bash -c '#{command} && #{send_request_after_render_command}' &"
     run_command_on_remote_server command
   end
 
   def render_full_video(output)
-    cover_filename = "#{REMOTE_PATH}#{id}/#{cover.path.split('/').last}"
-    ready_filename = "#{REMOTE_PATH}#{id}/#{ready_file.path.split('/').last}"
-    output_filename = "#{REMOTE_PATH}#{id}/#{output.split('/').last}"
-    inputs = [cover_filename, ready_filename]
+    inputs = [remote_file_name(cover.path), remote_file_name(ready_file.path)]
     options = options_line(
       inputs: inputs,
-      output: output_filename,
+      output: remote_file_name(output),
       yes: true,
       loop_value: 1,
       video_codec: :libx264,
@@ -40,9 +37,10 @@ module Podcast::Episodes::VideoConcern
       shortest: true,
       strict: 2
     )
+    command = "ffmpeg #{options}"
     send_files_to_remote_server [cover.path, ready_file.path]
-    send_request_after_render_command = "curl -X PATCH red-magic.ru/red_magic/api/v1/podcast/episodes/#{id}/video_is_ready"
-    command = "nohup /bin/bash -c 'ffmpeg #{options} && #{send_request_after_render_command}' &"
+    send_request_after_render_command = "curl -X PATCH red-magic.ru/red_magic/api/v1/podcast/episodes/#{id}/video_is_ready?video_type=full_video"
+    command = "nohup /bin/bash -c '#{command} && #{send_request_after_render_command}' &"
     Rails.logger.info "#{command}"
     run_command_on_remote_server command
   end
