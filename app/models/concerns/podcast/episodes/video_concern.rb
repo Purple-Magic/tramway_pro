@@ -3,20 +3,23 @@
 module Podcast::Episodes::VideoConcern
   include BotTelegram::Leopold::Notify
 
-  def render_video_trailer(output)
+  def render_video_trailer_action(output)
     send_cover_error_notification unless cover.present?
 
-    video_temp_output = (output.split('.')[0..-2] + %w[temp mp4]).join('.')
+    remote_output = remote_file_name output
+    video_temp_output = (remote_output.split('.')[0..-2] + %w[temp mp4]).join('.')
 
-    render_command = write_logs render_video_from(cover.path, trailer.path, output: video_temp_output)
-    move_command = move_to(video_temp_output, output)
+    send_files_to_remote_server [cover.path, trailer.path]
+    render_command = render_video_from(
+      remote_file_name(cover.path),
+      remote_file_name(trailer.path),
+      output: video_temp_output
+    )
+    move_command = move_to(video_temp_output, remote_output)
     command = "#{render_command} && #{move_command}"
-    Rails.logger.info command
-    system command
-    wait_for_file_rendered output, :video_trailer
-    update_file! output, :trailer_video
-    ::Shortener::ShortenedUrl.generate(trailer_video.url, owner: self)
-    make_video_trailer_ready!
+    send_request_after_render_command = "curl -X PATCH red-magic.ru/red_magic/api/v1/podcast/episodes/#{id}/video_is_ready"
+    command = "nohup /bin/bash -c '#{command} && #{send_request_after_render_command}' &"
+    run_command_on_remote_server command
   end
 
   def render_full_video(output)
@@ -37,19 +40,19 @@ module Podcast::Episodes::VideoConcern
       shortest: true,
       strict: 2
     )
-    run_render_on_remote_server [cover.path, ready_file.path]
+    send_files_to_remote_server [cover.path, ready_file.path]
     send_request_after_render_command = "curl -X PATCH red-magic.ru/red_magic/api/v1/podcast/episodes/#{id}/video_is_ready"
     command = "nohup /bin/bash -c 'ffmpeg #{options} && #{send_request_after_render_command}' &"
     Rails.logger.info "#{command}"
     run_command_on_remote_server command
   end
 
-  def download_video_from_remote_host!
-    path = "#{parts_directory_name}/full_video.mp4"
-    command = "scp #{REMOTE_USER}@#{REMOTE_SERVER}:#{REMOTE_PATH}#{id}/full_video.mp4 #{path}"
+  def download_video_from_remote_host!(video_type)
+    path = "#{parts_directory_name}/#{video_type}.mp4"
+    command = "scp #{REMOTE_USER}@#{REMOTE_SERVER}:#{REMOTE_PATH}#{id}/#{video_type}.mp4 #{path}"
     Rails.logger.info command
     system command
-    update_file! path, :full_video
+    update_file! path, video_type
   end
 
   private
@@ -66,12 +69,12 @@ module Podcast::Episodes::VideoConcern
   REMOTE_PATH = "/root/podcast_engine/"
 
   def run_command_on_remote_server(remote_command)
-    command = "ssh -t #{REMOTE_USER}@#{REMOTE_SERVER} '#{remote_command}'"
+    command = "ssh #{REMOTE_USER}@#{REMOTE_SERVER} \"#{remote_command}\""
     Rails.logger.info command
     system command
   end
   
-  def run_render_on_remote_server(inputs)
+  def send_files_to_remote_server(inputs)
     run_command_on_remote_server "mkdir podcast_engine/#{id}" 
 
     inputs.each do |input|
@@ -79,5 +82,12 @@ module Podcast::Episodes::VideoConcern
       Rails.logger.info command
       system command
     end
+  end
+
+
+  private
+
+  def remote_file_name(path)
+    "#{REMOTE_PATH}#{id}/#{path.split('/').last}"
   end
 end
