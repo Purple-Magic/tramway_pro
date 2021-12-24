@@ -10,7 +10,7 @@ module Podcast::Episodes::TrailerConcern
     wait_for_file_rendered output, :trailer
     update_file! output, :trailer
 
-    sleep 10
+    sleep 300
 
     normalize_trailer output
     wait_for_file_rendered output, :trailer
