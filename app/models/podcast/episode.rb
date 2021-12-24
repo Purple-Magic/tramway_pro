@@ -84,7 +84,6 @@ class Podcast::Episode < ApplicationRecord
       transitions to: :video_trailer_is_ready
 
       after do
-        binding.pry
         Podcasts::RenderVideoTrailerWorker.perform_async id
       end
     end
