@@ -41,7 +41,7 @@ module Podcast::Episodes::VideoConcern
     send_files_to_remote_server [cover.path, ready_file.path]
     send_request_after_render_command = "curl -X PATCH red-magic.ru/red_magic/api/v1/podcast/episodes/#{id}/video_is_ready?video_type=full_video"
     command = "nohup /bin/bash -c '#{command} && #{send_request_after_render_command}' &"
-    Rails.logger.info "#{command}"
+    Rails.logger.info command.to_s
     run_command_on_remote_server command
   end
 
@@ -62,18 +62,18 @@ module Podcast::Episodes::VideoConcern
     raise message
   end
 
-  REMOTE_SERVER = "82.148.30.250"
-  REMOTE_USER = "root"
-  REMOTE_PATH = "/root/podcast_engine/"
+  REMOTE_SERVER = '82.148.30.250'
+  REMOTE_USER = 'root'
+  REMOTE_PATH = '/root/podcast_engine/'
 
   def run_command_on_remote_server(remote_command)
     command = "ssh #{REMOTE_USER}@#{REMOTE_SERVER} \"#{remote_command}\""
     Rails.logger.info command
     system command
   end
-  
+
   def send_files_to_remote_server(inputs)
-    run_command_on_remote_server "mkdir podcast_engine/#{id}" 
+    run_command_on_remote_server "mkdir podcast_engine/#{id}"
 
     inputs.each do |input|
       command = "scp #{input} #{REMOTE_USER}@#{REMOTE_SERVER}:#{REMOTE_PATH}#{id}/"
@@ -81,8 +81,6 @@ module Podcast::Episodes::VideoConcern
       system command
     end
   end
-
-  private
 
   def remote_file_name(path)
     "#{REMOTE_PATH}#{id}/#{path.split('/').last}"

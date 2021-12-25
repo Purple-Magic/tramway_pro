@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 module Estimation::Project::SummaryTable
-  SUMMARY_TABLE_COLUMNS = [
-    :team_summary,
-    :real_team_summary,
-    :expenses_summary,
-    :real_expenses_summary,
-    :summary,
-    :real_summary,
-    :summary_with_coefficients
-  ]
+  SUMMARY_TABLE_COLUMNS = %i[
+    team_summary
+    real_team_summary
+    expenses_summary
+    real_expenses_summary
+    summary
+    real_summary
+    summary_with_coefficients
+  ].freeze
 
   def team_summary
     tasks.sum(&:sum)

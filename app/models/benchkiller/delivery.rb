@@ -37,7 +37,7 @@ class Benchkiller::Delivery < ApplicationRecord
     text_with_test_message = "Ответ на ваш запрос от @#{user.username} "
     text_with_test_message += "и #{user.company.title}" if user.company&.title.present?
     text_with_test_message += "\n\n"
-    text_with_test_message += "———————"
+    text_with_test_message += '———————'
     text_with_test_message += "\n\n"
     text_with_test_message + "#{text}\n\nЭта рассылка делается в тестовом режиме. Если у вас есть вопросы или предложения по этим рассылкам, напишите @Egurt73, Benchkiller"
   end

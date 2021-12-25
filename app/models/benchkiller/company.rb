@@ -12,7 +12,7 @@ class Benchkiller::Company < ApplicationRecord
   store_accessor :data, :regions_to_cooperate
 
   scope :benchkiller_scope, ->(_user) { all }
-  [:unviewed, :approved, :declined].each do |review_state|
+  %i[unviewed approved declined].each do |review_state|
     scope review_state, -> { where review_state: review_state }
   end
 

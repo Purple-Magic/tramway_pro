@@ -23,7 +23,8 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
 
   def additional_buttons
     tasks_url = ::Tramway::Export::Engine.routes.url_helpers.export_path(id, model: object.class, collection: :tasks)
-    expenses_url = ::Tramway::Export::Engine.routes.url_helpers.export_path(id, model: object.class, collection: :expenses)
+    expenses_url = ::Tramway::Export::Engine.routes.url_helpers.export_path(id, model: object.class,
+collection: :expenses)
     new_task_path = Tramway::Admin::Engine.routes.url_helpers.new_record_path(
       model: Estimation::Task,
       'estimation/task' => { estimation_project: id },
@@ -31,15 +32,15 @@ class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
     )
 
     tasks_button_inner = content_tag(:span) do
-      concat(fa_icon 'tasks')
+      concat(fa_icon('tasks'))
       concat(' ')
-      concat(fa_icon 'file-excel')
+      concat(fa_icon('file-excel'))
     end
 
     expenses_button_inner = content_tag(:span) do
-      concat(fa_icon 'money-check-alt')
+      concat(fa_icon('money-check-alt'))
       concat(' ')
-      concat(fa_icon 'file-excel')
+      concat(fa_icon('file-excel'))
     end
 
     {

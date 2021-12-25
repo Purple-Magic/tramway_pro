@@ -15,10 +15,11 @@ class RedMagic::Api::V1::Podcast::EpisodesController < RedMagic::Api::V1::Podcas
     episode = Podcast::Episode.find params[:id]
     episode.download_video_from_remote_host! params[:video_type]
 
-    return unless params[:video_type].in? [ 'trailer_video', 'full_video' ]
+    return unless params[:video_type].in? %w[trailer_video full_video]
 
     Rails.logger.info 'Render full video completed'
-    send_notification_to_chat episode.podcast.chat_id, notification(:video, :finished, file_url: episode.public_send(params[:video_type]).url)
+    send_notification_to_chat episode.podcast.chat_id,
+      notification(:video, :finished, file_url: episode.public_send(params[:video_type]).url)
     ::Shortener::ShortenedUrl.generate(episode.public_send(params[:video_type]).url, owner: self)
 
     head :ok

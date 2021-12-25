@@ -32,12 +32,12 @@ class Courses::Task < ApplicationRecord
   end
 
   def progress_status
-    return preparedness_state if preparedness_state.in? [ 'writing' ]
+    return preparedness_state if preparedness_state.in? ['writing']
 
     done_comments = comments.where(comment_state: :done).count
     conditions = {
       done: lambda do |all, done|
-        (all.positive? || all == 0) && all == done
+        (all.positive? || all.zero?) && all == done
       end,
       in_progress: lambda do |_all, _done|
         preparedness_state == 'writing'

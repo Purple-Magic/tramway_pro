@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Estimation::Project::ExpensesTable
   def expenses_table
     content_tag(:table) do
@@ -6,7 +8,8 @@ module Estimation::Project::ExpensesTable
     end
   end
 
-  EXPENSES_TABLE_COLUMNS = %i[title price count price_with_coefficients description sum real_sum sum_with_coefficients].freeze
+  EXPENSES_TABLE_COLUMNS = %i[title price count price_with_coefficients description sum real_sum
+                              sum_with_coefficients].freeze
 
   def expenses_table_header
     concat(content_tag(:thead) do

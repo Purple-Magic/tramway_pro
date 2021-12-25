@@ -85,13 +85,14 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
       finish_record_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish_record)
       trailer_get_ready_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :trailer_get_ready)
       finish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish)
-      render_video_trailer_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :render_video_trailer)
+      render_video_trailer_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id,
+        process: :render_video_trailer)
       publish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :publish)
 
       video_trailer_button_inner = content_tag(:span) do
         concat(fa_icon(:video))
         concat(' ')
-        concat(fa_icon :trailer)
+        concat(fa_icon(:trailer))
       end
 
       {

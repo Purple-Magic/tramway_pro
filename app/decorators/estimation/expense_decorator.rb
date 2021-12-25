@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 class Estimation::ExpenseDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
   delegate_attributes(
-        :id,
-        :estimation_project_id,
-        :project_id,
-        :state,
-        :title,
-        :count,
-        :price,
-        :description,
-        :created_at,
-        :updated_at,
-        :sum
+    :id,
+    :estimation_project_id,
+    :project_id,
+    :state,
+    :title,
+    :count,
+    :price,
+    :description,
+    :created_at,
+    :updated_at,
+    :sum
   )
 
   include Estimation::CoefficientsConcern
@@ -23,30 +25,30 @@ class Estimation::ExpenseDecorator < Tramway::Core::ApplicationDecorator
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :estimation_project_id,
-        :project_id,
-        :state,
+      %i[
+        id
+        estimation_project_id
+        project_id
+        state
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :estimation_project_id,
-        :project_id,
-        :state,
-        :title,
-        :count,
-        :price,
-        :description,
-        :created_at,
-        :updated_at,
+      %i[
+        id
+        estimation_project_id
+        project_id
+        state
+        title
+        count
+        price
+        description
+        created_at
+        updated_at
       ]
     end
 

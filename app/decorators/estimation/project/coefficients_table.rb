@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Estimation::Project::CoefficientsTable
   # :reek:DuplicateMethodCall { enabled: false }
   def coefficients_table

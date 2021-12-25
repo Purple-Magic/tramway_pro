@@ -97,7 +97,7 @@ class Podcast::Episode < ApplicationRecord
         @directory = @directory.gsub('//', '/')
         output = "#{@directory}/full_video.mp4"
         render_full_video(output)
-        #Podcasts::RenderVideoWorker.perform_async id
+        # Podcasts::RenderVideoWorker.perform_async id
       end
     end
 

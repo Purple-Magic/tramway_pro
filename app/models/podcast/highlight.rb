@@ -80,7 +80,7 @@ class Podcast::Highlight < ApplicationRecord
   end
 
   def time_format
-    return if time.match(/\d\d\:\d\d\:\d\d/) && minute < 60 && second < 60
+    return if time.match(/\d\d:\d\d:\d\d/) && minute < 60 && second < 60
 
     errors.add(:time, 'invalid')
   end
