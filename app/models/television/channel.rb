@@ -1,4 +1,6 @@
 class Television::Channel < ApplicationRecord
+  include Video::UploadConcern
+
   has_many :schedule_items, class_name: 'Television::ScheduleItem'
 
   enumerize :channel_type, in: [ 'repeated', 'custom' ]
@@ -13,7 +15,9 @@ class Television::Channel < ApplicationRecord
       after do
         save!
         if channel_type.repeated?
-          start_remote_broadcast schedule_items.order(:position).first.command
+          first_schedule_item = schedule_items.order(:position).first
+          upload first_schedule_item.video.file.path, "/mnt/volume_fra1_01/video/#{first_schedule_item.video.id}/file.mp4"
+          start_remote_broadcast first_schedule_item.command
         end
       end
     end

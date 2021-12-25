@@ -2,6 +2,7 @@
 
 module Podcast::Episodes::VideoConcern
   include BotTelegram::Leopold::Notify
+  include Video::UploadConcern
 
   def render_video_trailer_action(output)
     send_cover_error_notification unless cover.present?
@@ -76,9 +77,7 @@ module Podcast::Episodes::VideoConcern
     run_command_on_remote_server "mkdir podcast_engine/#{id}"
 
     inputs.each do |input|
-      command = "scp #{input} #{REMOTE_USER}@#{REMOTE_SERVER}:#{REMOTE_PATH}#{id}/"
-      Rails.logger.info command
-      system command
+      upload input, "#{REMOTE_USER}@#{REMOTE_SERVER}:#{REMOTE_PATH}#{id}/"
     end
   end
 
