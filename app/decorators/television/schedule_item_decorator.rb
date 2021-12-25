@@ -9,6 +9,7 @@ class Television::ScheduleItemDecorator < Tramway::Core::ApplicationDecorator
         :options,
         :created_at,
         :updated_at,
+        :position
   )
 
   def title
