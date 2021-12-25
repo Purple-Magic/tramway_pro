@@ -3,8 +3,8 @@ class Television::Channel < ApplicationRecord
 
   has_many :schedule_items, class_name: 'Television::ScheduleItem'
 
-  store_accessor :rtmp, :rtmp_url
-  store_accessor :rtmp, :rtmp_password
+  store_accessor :rtmp, :url
+  store_accessor :rtmp, :password
 
   enumerize :channel_type, in: [ 'repeated', 'custom' ]
 
