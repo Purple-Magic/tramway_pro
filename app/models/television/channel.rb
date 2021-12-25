@@ -3,6 +3,9 @@ class Television::Channel < ApplicationRecord
 
   has_many :schedule_items, class_name: 'Television::ScheduleItem'
 
+  store_accessor :rtmp, :rtmp_url
+  store_accessor :rtmp, :rtmp_password
+
   enumerize :channel_type, in: [ 'repeated', 'custom' ]
 
   aasm :broadcast_state do
@@ -16,7 +19,6 @@ class Television::Channel < ApplicationRecord
         save!
         if channel_type.repeated?
           first_schedule_item = schedule_items.order(:position).first
-          upload first_schedule_item.video.file.path, "/mnt/volume_fra1_01/video/#{first_schedule_item.video.id}/file.mp4"
           start_remote_broadcast first_schedule_item.command
         end
       end
@@ -33,6 +35,6 @@ class Television::Channel < ApplicationRecord
   def start_remote_broadcast(command)
     command = "ssh -t #{REMOTE_USER}@#{REMOTE_SERVER} \"nohup /bin/bash -c '#{command}' &\""
     Rails.logger.info command
-    system command
+    #system command
   end
 end
