@@ -11,6 +11,13 @@ class Television::ScheduleItemDecorator < Tramway::Core::ApplicationDecorator
         :updated_at,
   )
 
+  def title
+    case schedule_type
+    when 'order'
+      "#{position} | #{object.channel.title} - #{object.video.title}"
+    end
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
