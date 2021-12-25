@@ -3,23 +3,17 @@ class Admin::Television::ChannelForm < Tramway::Core::ApplicationForm
 
   def initialize(object)
     super(object).tap do
-      # Here is the mapping from model attributes to simple_form inputs.
-      # form_properties title: :string,
-      #   logo: :file,
-      #   description: :ckeditor,
-      #   games: :association,
-      #   date: :date_picker,
-      #   text: :text,
-      #   birth_date: {
-      #     type: :default,
-      #     input_options: {
-      #       hint: 'It should be more than 18'
-      #     }
-      #   }
-      form_properties title: :text,
-        channel_type: :text,
-        rtmp: :string,
-        project_id: :integer
+      form_properties title: :string,
+        channel_type: :default,
+        rtmp: :text
     end
+  end
+
+  def rtmp=(value)
+    model.options = YAML.safe_load(value)
+  end
+
+  def rtmp
+    YAML.dump(model.options).sub("---\n", '')
   end
 end

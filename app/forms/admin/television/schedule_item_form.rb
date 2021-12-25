@@ -1,24 +1,23 @@
 class Admin::Television::ScheduleItemForm < Tramway::Core::ApplicationForm
-  properties :video_id, :schedule_type, :options
+  properties :schedule_type, :options, :project_id
+
+  association :video
+  association :channel
 
   def initialize(object)
     super(object).tap do
-      # Here is the mapping from model attributes to simple_form inputs.
-      # form_properties title: :string,
-      #   logo: :file,
-      #   description: :ckeditor,
-      #   games: :association,
-      #   date: :date_picker,
-      #   text: :text,
-      #   birth_date: {
-      #     type: :default,
-      #     input_options: {
-      #       hint: 'It should be more than 18'
-      #     }
-      #   }
-      form_properties video_id: :integer,
-        schedule_type: :text,
-        options: :string
+      form_properties channel: :association,
+        video: :association,
+        schedule_type: :default,
+        options: :text
     end
+  end
+
+  def options=(value)
+    model.options = YAML.safe_load(value)
+  end
+
+  def options
+    YAML.dump(model.options).sub("---\n", '')
   end
 end
