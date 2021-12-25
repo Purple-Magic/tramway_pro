@@ -76,6 +76,9 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
   def additional_buttons
     path_helpers = Rails.application.routes.url_helpers
 
+    render_video_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :render_video)
+    render_video_button = { url: render_video_url, method: :patch, inner: -> { fa_icon :video }, color: :success }
+
     case object.podcast.podcast_type.to_sym
     when :sample
       download_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :download)
@@ -83,7 +86,6 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
       trailer_get_ready_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :trailer_get_ready)
       finish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish)
       render_video_trailer_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :render_video_trailer)
-      render_video_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :render_video)
       publish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :publish)
 
       video_trailer_button_inner = content_tag(:span) do
@@ -99,16 +101,14 @@ class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
           { url: trailer_get_ready_url, method: :patch, inner: -> { fa_icon :trailer }, color: :success },
           { url: finish_url, method: :patch, inner: -> { fa_icon 'volume-up' }, color: :success },
           { url: render_video_trailer_url, method: :patch, inner: -> { video_trailer_button_inner }, color: :success },
-          { url: render_video_url, method: :patch, inner: -> { fa_icon :video }, color: :success },
+          render_video_button,
           { url: publish_url, method: :patch, inner: -> { fa_icon :share }, color: :success }
         ]
       }
     when :handmade
-      render_video_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :render_video)
-
       {
         show: [
-          { url: render_video_url, method: :patch, inner: -> { 'Render video' }, color: :success }
+          render_video_button
         ]
       }
     when :without_music
