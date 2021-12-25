@@ -126,3 +126,12 @@ ru:
     estimation/cost:
       plural: реальные затраты
       genitive: реальную затрату
+    television/channel:
+      plural: каналы
+      genitive: канал
+    television/video:
+      plural: видео
+      genitive: видео
+    telvision/schedule_item:
+      plural: программы
+      genitive: программу
