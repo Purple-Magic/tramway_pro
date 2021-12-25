@@ -82,7 +82,6 @@ module Podcast::Episodes::VideoConcern
     end
   end
 
-
   private
 
   def remote_file_name(path)
