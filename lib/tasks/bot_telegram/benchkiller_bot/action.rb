@@ -47,18 +47,16 @@ class BotTelegram::BenchkillerBot::Action
         old_company_name = company.title
         if ::Benchkiller::Company.where(title: company_name).empty?
           send_message_to_user "Ваша компания #{old_company_name} переименована в #{company_name} на сервисе Benchkiller"
-          user.set_finished_state_for bot: bot_record
         else
           send_message_to_user 'К сожалению, ваша компания не переименована. Обратитесь в поддержку сервиса Benchkiller'
-          user.set_finished_state_for bot: bot_record
         end
       else
         company = ::Benchkiller::Company.create! title: company_name,
           project_id: BotTelegram::BenchkillerBot::PROJECT_ID
         company.companies_users.create! user_id: benchkiller_user(user).id
         send_message_to_user "Ваша компания #{company_name} успешно создана на Benchkiller"
-        user.set_finished_state_for bot: bot_record
       end
+      user.set_finished_state_for bot: bot_record
     else
       send_message_to_user 'Вам следует ввести название компании'
     end
@@ -66,7 +64,7 @@ class BotTelegram::BenchkillerBot::Action
 
   def set_portfolio_url(portfolio_url)
     if portfolio_url.present? && portfolio_url.scan(URI::DEFAULT_PARSER.make_regexp).present?
-      if portfolio_url.match? URI::regexp %w(http https)
+      if portfolio_url.match? URI::DEFAULT_PARSER.make_regexp(%w[http https])
         send_message_to_user "Ссылка на портфолио вашей компании успешно обновлена. Теперь это #{portfolio_url}"
       else
         send_message_to_user 'К сожалению, не удалось обновить ссылку на портфолио вашей компании. Обратитесь в поддержку сервиса Benchkiller'
@@ -80,7 +78,7 @@ class BotTelegram::BenchkillerBot::Action
 
   def set_company_url(company_url)
     if company_url.present? && company_url.scan(URI::DEFAULT_PARSER.make_regexp).present?
-      if company_url.match? URI::regexp %w(http https)
+      if company_url.match? URI::DEFAULT_PARSER.make_regexp(%w[http https])
         send_message_to_user "Ссылка на сайт вашей компании успешно обновлена. Теперь это #{company_url}"
       else
         send_message_to_user 'К сожалению, не удалось обновить ссылку на сайт вашей компании. Обратитесь в поддержку сервиса Benchkiller'

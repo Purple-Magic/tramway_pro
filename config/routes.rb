@@ -54,7 +54,7 @@ Rails.application.routes.draw do
         resources :sessions, only: [:create]
         get 'sign_out', to: 'sessions#destroy'
         resources :offers, only: :index
-        resources :companies, only: [:show, :edit, :update]
+        resources :companies, only: %i[show edit update]
         resources :deliveries, only: %i[new create show edit update] do
           member do
             get :run_process

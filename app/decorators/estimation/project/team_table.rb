@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Estimation::Project::TeamTable
   def team_table
     content_tag(:table) do
@@ -8,7 +10,8 @@ module Estimation::Project::TeamTable
 
   private
 
-  TEAM_TABLE_COLUMNS = %i[title hours price price_with_coefficients specialists_count description sum real_sum sum_with_coefficients].freeze
+  TEAM_TABLE_COLUMNS = %i[title hours price price_with_coefficients specialists_count description sum real_sum
+                          sum_with_coefficients].freeze
 
   def team_table_header
     concat(content_tag(:thead) do

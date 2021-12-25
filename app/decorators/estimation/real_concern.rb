@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Estimation::RealConcern
   def real_sum
     if object.costs.any?

@@ -39,8 +39,6 @@ gem 'tramway-user', '2.1.3.3'
 # gem 'tramway-site', path: '../tramway-dev/tramway-site'
 # gem 'tramway-user', path: '../tramway-dev/tramway-user'
 
-
-gem "paranoia", "~> 2.2"
 gem 'aasm'
 gem 'actionview', '>= 5.1.6.2'
 gem 'active_model_serializers', '0.10.12'
@@ -77,8 +75,11 @@ gem 'more_html_tags', '>= 0.2.0'
 gem 'net-scp'
 gem 'net-ssh'
 gem 'nokogiri', '>= 1.10.8'
+gem 'paranoia', '~> 2.2'
 gem 'pg', '0.21.0'
 gem 'pg_search'
+gem 'pry'
+gem 'pry-nav'
 gem 'rack', '>= 2.0.8'
 gem 'rails-html-sanitizer', '>= 1.0.4'
 gem 'rake', '>= 12.3.3'
@@ -109,8 +110,6 @@ gem 'uuid'
 gem 'validates'
 gem 'webpacker'
 gem 'whenever', require: false
-gem 'pry'
-gem 'pry-nav'
 
 group :development do
   gem 'foreman'

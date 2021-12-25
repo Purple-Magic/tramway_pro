@@ -23,19 +23,19 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
 
   def bot_card
     <<~TXT
-🏬 Название: #{title}
-
-🔗 Сайт: #{company_url}
-
-🎨 Портфолио: #{portfolio_url}
-
-📧 Почта: #{email}
-
-📞 Телефон: #{phone}
-
-🌉 Регион: #{place}
-
-🌎 Регион работы: #{regions_to_cooperate}
+            🏬 Название: #{title}
+      #{'      '}
+            🔗 Сайт: #{company_url}
+      #{'      '}
+            🎨 Портфолио: #{portfolio_url}
+      #{'      '}
+            📧 Почта: #{email}
+      #{'      '}
+            📞 Телефон: #{phone}
+      #{'      '}
+            🌉 Регион: #{place}
+      #{'      '}
+            🌎 Регион работы: #{regions_to_cooperate}
     TXT
   end
 
@@ -60,7 +60,7 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
 
   def data_view
     content_tag(:table) do
-      [:email, :phone, :company_url, :portfolio_url, :place, :regions_to_cooperate].each do |attribute|
+      %i[email phone company_url portfolio_url place regions_to_cooperate].each do |attribute|
         concat(content_tag(:tr) do
           concat(content_tag(:td) do
             object.class.human_attribute_name attribute
@@ -86,7 +86,7 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def collections
-      [:unviewed, :approved, :declined, :all]
+      %i[unviewed approved declined all]
     end
 
     def list_attributes
@@ -111,8 +111,7 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
       []
     end
 
-    def list_filters
-    end
+    def list_filters; end
   end
 
   private
@@ -122,7 +121,7 @@ class Benchkiller::CompanyDecorator < Tramway::Core::ApplicationDecorator
       mail_to value if value.present?
     elsif key.in? [:phone]
       link_to value, "tel:#{value}" if value.present?
-    elsif key.in? [:company_url, :portfolio_url]
+    elsif key.in? %i[company_url portfolio_url]
       link_to value.truncate(60), value, target: '_blank' if value.present?
     else
       value

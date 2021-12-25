@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Estimation::CostForm < Tramway::Core::ApplicationForm
   properties :price, :project_id, :associated_id, :associated_type
 

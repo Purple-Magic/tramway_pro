@@ -84,6 +84,7 @@ class Podcast::Episode < ApplicationRecord
       transitions to: :video_trailer_is_ready
 
       after do
+        save!
         Podcasts::RenderVideoTrailerWorker.perform_async id
       end
     end
@@ -93,11 +94,7 @@ class Podcast::Episode < ApplicationRecord
 
       after do
         save!
-        @directory = prepare_directory
-        @directory = @directory.gsub('//', '/')
-        output = "#{@directory}/full_video.mp4"
-        render_full_video(output)
-        #Podcasts::RenderVideoWorker.perform_async id
+        Podcasts::RenderVideoWorker.perform_async id
       end
     end
 
