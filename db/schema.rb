@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20211220125041) do
+ActiveRecord::Schema.define(version: 20211225005355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -722,6 +722,31 @@ ActiveRecord::Schema.define(version: 20211220125041) do
     t.index ["owner_id", "owner_type"], name: "index_shortened_urls_on_owner_id_and_owner_type"
     t.index ["unique_key"], name: "index_shortened_urls_on_unique_key", unique: true
     t.index ["url"], name: "index_shortened_urls_on_url"
+  end
+
+  create_table "television_channels", force: :cascade do |t|
+    t.text "title"
+    t.text "channel_type"
+    t.jsonb "rtmp"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "television_schedule_items", force: :cascade do |t|
+    t.integer "video_id"
+    t.text "schedule_type"
+    t.jsonb "options"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "television_videos", force: :cascade do |t|
+    t.text "title"
+    t.text "file"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "time_logs", force: :cascade do |t|

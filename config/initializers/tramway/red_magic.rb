@@ -31,6 +31,9 @@ Tramway::Admin.set_available_models(
   MagicWood::Actor,
   MagicWood::Actors::Photo,
   MagicWood::Actors::Attending,
+  Television::Channel,
+  Television::Video,
+  Television::ScheduleItem,
   project: :red_magic
 )
 
@@ -70,6 +73,13 @@ Tramway::Admin.navbar_structure(
     magic_wood: [
       MagicWood::Actor,
       MagicWood::Actors::Photo
+    ]
+  },
+  {
+    television: [
+      Television::Channel,
+      Television::Video,
+      Television::ScheduleItem
     ]
   },
   Tramway::User::User,
