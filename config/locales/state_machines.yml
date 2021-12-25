@@ -79,3 +79,8 @@ ru:
         events:
           approve: Подтвердить
           decline: Отклонить
+    television/channel:
+      broadcast_state:
+        events:
+          start: Старт!
+          stop: Стоп
