@@ -47,4 +47,13 @@ class Television::ChannelDecorator < Tramway::Core::ApplicationDecorator
     def list_filters
     end
   end
+
+  def broadcast_state_button_color(event)
+    case event
+    when :start
+      :success
+    when :stop
+      :danger
+    end
+  end
 end
