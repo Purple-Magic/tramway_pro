@@ -10,10 +10,10 @@ class Admin::Television::ChannelForm < Tramway::Core::ApplicationForm
   end
 
   def rtmp=(value)
-    model.options = YAML.safe_load(value)
+    model.rtmp = YAML.safe_load(value)
   end
 
   def rtmp
-    YAML.dump(model.options).sub("---\n", '')
+    YAML.dump(model.rtmp).sub("---\n", '')
   end
 end

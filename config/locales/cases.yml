@@ -132,6 +132,6 @@ ru:
     television/video:
       plural: видео
       genitive: видео
-    telvision/schedule_item:
+    television/schedule_item:
       plural: программы
       genitive: программу
