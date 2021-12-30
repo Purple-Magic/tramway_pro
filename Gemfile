@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.7.4'
+ruby '2.7.5'
 gem 'rails', '5.1.7'
 
 gem 'tramway-admin', '3.0'
