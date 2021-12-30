@@ -25,10 +25,10 @@ describe 'Delete action' do
     click_on 'Сохранить'
 
     action = ::Tramway::Event::Action.last
+    count = ::Tramway::Event::Action.count
 
     click_on_association_delete_button action
-    action.reload
-    expect(action.removed?).to be_truthy
+    expect(::Tramway::Event::Action.count).to be < count
   end
 
   it 'deletes mandatory action' do
@@ -51,9 +51,9 @@ describe 'Delete action' do
     click_on 'Сохранить', class: 'btn-success'
 
     action = ::Tramway::Event::Action.last
+    count = ::Tramway::Event::Action.count
 
     click_on_association_delete_button action
-    action.reload
-    expect(action.removed?).to be_truthy
+    expect(::Tramway::Event::Action.count).to be < count
   end
 end

@@ -29,9 +29,9 @@ describe 'Delete participant_form_field' do
 
     field = ::Tramway::Event::ParticipantFormField.last
 
+    count = Tramway::Event::ParticipantFormField.count
     click_on_association_delete_button field
-    field.reload
-    expect(field.removed?).to be_truthy
+    expect(::Tramway::Event::ParticipantFormField.count).to be < count
   end
 
   it 'deletes mandatory participant_form_field' do
@@ -59,8 +59,8 @@ describe 'Delete participant_form_field' do
       field.id,
       model: Tramway::Event::ParticipantFormField
     )
+    count = Tramway::Event::ParticipantFormField.count
     find("td[colspan='2'] td a[href='#{delete_path}']").parent_node(level: 2).find('td button[type="submit"]').click
-    field.reload
-    expect(field.removed?).to be_truthy
+    expect(::Tramway::Event::ParticipantFormField.count).to be < count
   end
 end

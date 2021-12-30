@@ -19,6 +19,10 @@ module ProjectsHelper
     Project.where(url: 'it-way.test').first.id
   end
 
+  def kalashnikovisme_id
+    Project.where(url: 'kalashnikovisme.test').first.id
+  end
+
   def it_way_host
     'it-way.test'
   end
@@ -37,5 +41,9 @@ module ProjectsHelper
 
   def benchkiller_host
     'benchkiller.test'
+  end
+
+  def kalashnikovisme_host
+    'kalashnikovisme.test'
   end
 end

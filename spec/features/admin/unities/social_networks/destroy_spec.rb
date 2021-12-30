@@ -23,8 +23,8 @@ describe 'Delete social_network' do
 
     social_network = ::Tramway::Profiles::SocialNetwork.last
 
+    count = ::Tramway::Profiles::SocialNetwork.count
     click_on_association_delete_button social_network
-    social_network.reload
-    expect(social_network.removed?).to be_truthy
+    expect(::Tramway::Profiles::SocialNetwork.count).to be < count
   end
 end
