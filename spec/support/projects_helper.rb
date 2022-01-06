@@ -9,11 +9,6 @@ module ProjectsHelper
     def projects_instead_of(*names)
       Project.where.not(url: (names.map { |name| "#{name}.test" }))
     end
-
-    def move_host_to(host)
-      Capybara.app_host = "http://#{host}"
-      puts "Current host is #{host}".yellow
-    end
   end
 
   def it_way_id
