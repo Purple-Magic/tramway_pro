@@ -9,7 +9,6 @@ describe 'Show estimation task' do
   end
 
   it 'should show estimation task' do
-    puts "PROJECT URL: #{red_magic_host}".yellow
     move_host_to red_magic_host
     visit '/admin'
     fill_in 'Email', with: "admin#{red_magic_id}@email.com"

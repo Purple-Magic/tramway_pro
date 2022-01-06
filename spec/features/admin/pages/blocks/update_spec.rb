@@ -11,7 +11,6 @@ describe 'Update block' do
     end
 
     it 'should update block' do
-      puts "PROJECT URL: #{project.url}".yellow
       move_host_to project.url
       visit '/admin'
       fill_in 'Email', with: "admin#{project.id}@email.com"

@@ -10,7 +10,6 @@ describe 'Create task' do
   end
 
   it 'RED MAGIC: should create task' do
-    puts "PROJECT URL: #{red_magic_host}".yellow
     move_host_to red_magic_host
     count = Estimation::Task.count
     visit '/admin'
