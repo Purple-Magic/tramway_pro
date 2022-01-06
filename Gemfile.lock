@@ -89,6 +89,7 @@ GEM
       activerecord (>= 5.0, < 7.1)
     autoprefixer-rails (10.3.3.0)
       execjs (~> 2)
+    awesome_print (1.9.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -642,6 +643,7 @@ DEPENDENCIES
   active_model_serializers (= 0.10.12)
   airbrake (~> 5.0)
   audited (>= 4.8.0)
+  awesome_print
   bcrypt
   bcrypt_pbkdf (>= 1.0)
   bigdecimal (= 1.3.5)
