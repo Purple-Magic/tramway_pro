@@ -6,9 +6,9 @@ describe 'Edit course page' do
   before { move_host_to kalashnikovisme_host }
 
   ::Course::TEAMS.each do |team|
-    before { create :course, team: team }
+    before { create :course, team: team, project_id: kalashnikovisme_id }
 
-    it 'should show edit course page' do
+    it "#{team.to_s.capitalize} team: should show edit course page" do
       visit '/admin'
       fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
       fill_in 'Пароль', with: '123456'
