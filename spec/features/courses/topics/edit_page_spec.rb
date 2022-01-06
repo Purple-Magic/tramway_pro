@@ -10,7 +10,7 @@ describe 'Edit topic page' do
       create :courses_topic, project_id: kalashnikovisme_id, course: create(:course, project_id: kalashnikovisme_id)
     end
 
-    it "should show edit topic page" do
+    it 'should show edit topic page' do
       visit '/admin'
       fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
       fill_in 'Пароль', with: '123456'
@@ -27,7 +27,7 @@ describe 'Edit topic page' do
       expect(page).to have_field 'record[position]', with: topic.position
     end
 
-    it "should update topic" do
+    it 'should update topic' do
       visit '/admin'
       fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
       fill_in 'Пароль', with: '123456'
@@ -56,7 +56,6 @@ describe 'Edit topic page' do
       end
     end
   end
-
 
   ::Course::TEAMS.each do |team|
     describe "#{team.to_s.capitalize} team" do

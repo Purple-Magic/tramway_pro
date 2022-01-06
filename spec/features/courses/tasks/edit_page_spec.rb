@@ -14,7 +14,7 @@ describe 'Edit task page' do
       create :courses_task, lesson: lesson, project_id: kalashnikovisme_id
     end
 
-    it "should show edit task page" do
+    it 'should show edit task page' do
       visit '/admin'
       fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
       fill_in 'Пароль', with: '123456'
@@ -34,7 +34,7 @@ describe 'Edit task page' do
       expect(page).to have_field 'record[max_time]', with: task.max_time
     end
 
-    it "should update task" do
+    it 'should update task' do
       visit '/admin'
       fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
       fill_in 'Пароль', with: '123456'
@@ -60,15 +60,14 @@ describe 'Edit task page' do
       task.reload
 
       attributes.each_key do |attr|
-        unless attr == :lesson
-          actual = task.send(attr)
-          expecting = attributes[attr]
-          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-        end
+        next if attr == :lesson
+
+        actual = task.send(attr)
+        expecting = attributes[attr]
+        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
       end
     end
   end
-
 
   ::Course::TEAMS.each do |team|
     describe "#{team.to_s.capitalize} team" do
@@ -131,11 +130,11 @@ describe 'Edit task page' do
         task.reload
 
         attributes.each_key do |attr|
-          unless attr == :lesson
-            actual = task.send(attr)
-            expecting = attributes[attr]
-            expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-          end
+          next if attr == :lesson
+
+          actual = task.send(attr)
+          expecting = attributes[attr]
+          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
         end
       end
     end

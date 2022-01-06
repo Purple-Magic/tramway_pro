@@ -16,7 +16,7 @@ describe 'Edit comment page' do
       create :courses_comment, associated: associated, project_id: kalashnikovisme_id
     end
 
-    it "should show edit comment page" do
+    it 'should show edit comment page' do
       visit '/admin'
       fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
       fill_in 'Пароль', with: '123456'
@@ -36,7 +36,7 @@ describe 'Edit comment page' do
       expect(page).to have_field 'record[phrase]', with: comment.phrase
     end
 
-    it "should update comment" do
+    it 'should update comment' do
       visit '/admin'
       fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
       fill_in 'Пароль', with: '123456'
@@ -62,15 +62,14 @@ describe 'Edit comment page' do
       comment.reload
 
       attributes.each_key do |attr|
-        unless attr == :associated
-          actual = comment.send(attr)
-          expecting = attributes[attr]
-          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-        end
+        next if attr == :associated
+
+        actual = comment.send(attr)
+        expecting = attributes[attr]
+        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
       end
     end
   end
-
 
   ::Course::TEAMS.each do |team|
     describe "#{team.to_s.capitalize} team" do
@@ -137,11 +136,11 @@ describe 'Edit comment page' do
         comment.reload
 
         attributes.each_key do |attr|
-          unless attr == :associated
-            actual = comment.send(attr)
-            expecting = attributes[attr]
-            expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-          end
+          next if attr == :associated
+
+          actual = comment.send(attr)
+          expecting = attributes[attr]
+          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
         end
       end
     end

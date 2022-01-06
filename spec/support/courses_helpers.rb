@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CoursesHelpers
   def associated_title(comment)
     associated = comment.associated

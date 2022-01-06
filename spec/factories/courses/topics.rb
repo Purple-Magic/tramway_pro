@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :courses_topic, class: 'Courses::Topic' do
     title { "Topic #{generate(:title)}" }

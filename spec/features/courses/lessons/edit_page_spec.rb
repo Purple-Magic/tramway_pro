@@ -13,7 +13,7 @@ describe 'Edit lesson page' do
       create :courses_lesson, project_id: kalashnikovisme_id, topic: topic
     end
 
-    it "should show edit lesson page" do
+    it 'should show edit lesson page' do
       visit '/admin'
       fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
       fill_in 'Пароль', with: '123456'
@@ -30,7 +30,7 @@ describe 'Edit lesson page' do
       expect(page).to have_field 'record[position]', with: lesson.position
     end
 
-    it "should update lesson" do
+    it 'should update lesson' do
       visit '/admin'
       fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
       fill_in 'Пароль', with: '123456'
@@ -53,15 +53,14 @@ describe 'Edit lesson page' do
       lesson.reload
 
       attributes.each_key do |attr|
-        unless attr == :topic
-          actual = lesson.send(attr)
-          expecting = attributes[attr]
-          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-        end
+        next if attr == :topic
+
+        actual = lesson.send(attr)
+        expecting = attributes[attr]
+        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
       end
     end
   end
-
 
   ::Course::TEAMS.each do |team|
     describe "#{team.to_s.capitalize} team" do
@@ -116,11 +115,11 @@ describe 'Edit lesson page' do
         lesson.reload
 
         attributes.each_key do |attr|
-          unless attr == :topic
-            actual = lesson.send(attr)
-            expecting = attributes[attr]
-            expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-          end
+          next if attr == :topic
+
+          actual = lesson.send(attr)
+          expecting = attributes[attr]
+          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
         end
       end
     end

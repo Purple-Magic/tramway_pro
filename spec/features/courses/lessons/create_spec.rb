@@ -29,11 +29,11 @@ describe 'Create lesson' do
 
     lesson = Courses::Lesson.last
     attributes.each_key do |attr|
-      unless attr == :topic
-        actual = lesson.send(attr)
-        expecting = attributes[attr]
-        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-      end
+      next if attr == :topic
+
+      actual = lesson.send(attr)
+      expecting = attributes[attr]
+      expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
     end
   end
 
@@ -67,11 +67,11 @@ describe 'Create lesson' do
 
       lesson = Courses::Lesson.last
       attributes.each_key do |attr|
-        unless attr == :topic
-          actual = lesson.send(attr)
-          expecting = attributes[attr]
-          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-        end
+        next if attr == :topic
+
+        actual = lesson.send(attr)
+        expecting = attributes[attr]
+        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
       end
     end
   end

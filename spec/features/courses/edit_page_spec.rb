@@ -43,11 +43,11 @@ describe 'Edit course page' do
       last_course.reload
 
       attributes.each_key do |attr|
-        unless attr == :team
-          actual = last_course.send(attr)
-          expecting = attributes[attr]
-          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-        end
+        next if attr == :team
+
+        actual = last_course.send(attr)
+        expecting = attributes[attr]
+        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
       end
     end
   end

@@ -32,11 +32,11 @@ describe 'Create task' do
 
     task = Courses::Task.last
     attributes.each_key do |attr|
-      unless attr == :lesson
-        actual = task.send(attr)
-        expecting = attributes[attr]
-        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-      end
+      next if attr == :lesson
+
+      actual = task.send(attr)
+      expecting = attributes[attr]
+      expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
     end
   end
 
@@ -73,11 +73,11 @@ describe 'Create task' do
 
       task = Courses::Task.last
       attributes.each_key do |attr|
-        unless attr == :lesson
-          actual = task.send(attr)
-          expecting = attributes[attr]
-          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-        end
+        next if attr == :lesson
+
+        actual = task.send(attr)
+        expecting = attributes[attr]
+        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
       end
     end
   end

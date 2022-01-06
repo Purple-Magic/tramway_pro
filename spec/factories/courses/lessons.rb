@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :courses_lesson, class: 'Courses::Lesson' do
     title

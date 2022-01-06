@@ -14,7 +14,7 @@ describe 'Edit video page' do
       create :courses_video, lesson: lesson, project_id: kalashnikovisme_id, release_date: nil
     end
 
-    it "should show edit video page" do
+    it 'should show edit video page' do
       visit '/admin'
       fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
       fill_in 'Пароль', with: '123456'
@@ -33,7 +33,7 @@ describe 'Edit video page' do
       expect(page).to have_field 'record[duration]', with: video.duration
     end
 
-    it "should update video" do
+    it 'should update video' do
       visit '/admin'
       fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
       fill_in 'Пароль', with: '123456'
@@ -59,15 +59,14 @@ describe 'Edit video page' do
       video.reload
 
       attributes.each_key do |attr|
-        unless attr == :lesson
-          actual = video.send(attr)
-          expecting = attributes[attr]
-          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-        end
+        next if attr == :lesson
+
+        actual = video.send(attr)
+        expecting = attributes[attr]
+        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
       end
     end
   end
-
 
   ::Course::TEAMS.each do |team|
     describe "#{team.to_s.capitalize} team" do
@@ -130,11 +129,11 @@ describe 'Edit video page' do
         video.reload
 
         attributes.each_key do |attr|
-          unless attr == :lesson
-            actual = video.send(attr)
-            expecting = attributes[attr]
-            expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-          end
+          next if attr == :lesson
+
+          actual = video.send(attr)
+          expecting = attributes[attr]
+          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
         end
       end
     end

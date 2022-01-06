@@ -34,11 +34,11 @@ describe 'Create comment' do
 
     comment = Courses::Comment.last
     attributes.each_key do |attr|
-      unless attr == :associated
-        actual = comment.send(attr)
-        expecting = attributes[attr]
-        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-      end
+      next if attr == :associated
+
+      actual = comment.send(attr)
+      expecting = attributes[attr]
+      expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
     end
   end
 
@@ -71,11 +71,11 @@ describe 'Create comment' do
 
     comment = Courses::Comment.last
     attributes.each_key do |attr|
-      unless attr == :associated
-        actual = comment.send(attr)
-        expecting = attributes[attr]
-        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-      end
+      next if attr == :associated
+
+      actual = comment.send(attr)
+      expecting = attributes[attr]
+      expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
     end
   end
 
@@ -114,11 +114,11 @@ describe 'Create comment' do
 
       comment = Courses::Comment.last
       attributes.each_key do |attr|
-        unless attr == :associated
-          actual = comment.send(attr)
-          expecting = attributes[attr]
-          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-        end
+        next if attr == :associated
+
+        actual = comment.send(attr)
+        expecting = attributes[attr]
+        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
       end
     end
 
@@ -153,11 +153,11 @@ describe 'Create comment' do
 
       comment = Courses::Comment.last
       attributes.each_key do |attr|
-        unless attr == :associated
-          actual = comment.send(attr)
-          expecting = attributes[attr]
-          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-        end
+        next if attr == :associated
+
+        actual = comment.send(attr)
+        expecting = attributes[attr]
+        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
       end
     end
   end

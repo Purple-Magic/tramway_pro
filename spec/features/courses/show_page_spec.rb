@@ -12,9 +12,11 @@ describe 'Show course page' do
           4.times do |i|
             topic = course.topics.create attributes_for :courses_topic, position: i, project_id: kalashnikovisme_id
             6.times do |lesson_index|
-              lesson = topic.lessons.create attributes_for :courses_lesson, position: lesson_index, project_id: kalashnikovisme_id
+              lesson = topic.lessons.create attributes_for :courses_lesson, position: lesson_index,
+project_id: kalashnikovisme_id
               3.times do |video_index|
-                lesson.videos.create attributes_for :courses_video, position: video_index, project_id: kalashnikovisme_id
+                lesson.videos.create attributes_for :courses_video, position: video_index,
+project_id: kalashnikovisme_id
               end
               3.times do |task_index|
                 lesson.tasks.create attributes_for :courses_task, position: task_index, project_id: kalashnikovisme_id
@@ -64,7 +66,7 @@ describe 'Show course page' do
         end
       end
 
-      it "should show all videos in a course tree" do
+      it 'should show all videos in a course tree' do
         visit '/admin'
         fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
         fill_in 'Пароль', with: '123456'
@@ -89,7 +91,7 @@ describe 'Show course page' do
         end
       end
 
-      it "should show all tasks in a course tree" do
+      it 'should show all tasks in a course tree' do
         visit '/admin'
         fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
         fill_in 'Пароль', with: '123456'

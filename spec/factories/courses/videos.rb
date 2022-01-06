@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :courses_video, class: 'Courses::Video' do
     text { generate :string }

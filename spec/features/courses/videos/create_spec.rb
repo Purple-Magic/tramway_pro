@@ -32,11 +32,11 @@ describe 'Create video' do
 
     video = Courses::Video.last
     attributes.each_key do |attr|
-      unless attr == :lesson
-        actual = video.send(attr)
-        expecting = attributes[attr]
-        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-      end
+      next if attr == :lesson
+
+      actual = video.send(attr)
+      expecting = attributes[attr]
+      expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
     end
   end
 
@@ -73,11 +73,11 @@ describe 'Create video' do
 
       video = Courses::Video.last
       attributes.each_key do |attr|
-        unless attr == :lesson
-          actual = video.send(attr)
-          expecting = attributes[attr]
-          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-        end
+        next if attr == :lesson
+
+        actual = video.send(attr)
+        expecting = attributes[attr]
+        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
       end
     end
   end
