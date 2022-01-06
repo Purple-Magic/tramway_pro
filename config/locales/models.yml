@@ -15,6 +15,10 @@ ru:
       estimation/coefficient: Коэффициент
       video: Видео
       course: Курс
+      courses/topic: Тема
+      courses/lesson: Урок
+      courses/video: Видео
+      courses/task: Задание
       content/story: История
       benchkiller/company: Компания
       benchkiller/user: Пользователи
@@ -96,11 +100,17 @@ ru:
         title: Название
         scale: Значение
         position: Порядок применения
+      course:
+        topics: Темы
+      courses/topic:
+        lessons: Уроки
       courses/lesson:
         title: Название
         topic_link: Ссылка на тему
         videos: Видео
         tasks: Задания
+      courses/video:
+        comments: Комментарии
       courses/task:
         position: Номер
         text: Текст задания

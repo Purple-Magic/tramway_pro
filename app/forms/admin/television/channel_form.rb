@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Television::ChannelForm < Tramway::Core::ApplicationForm
   properties :title, :channel_type, :rtmp, :project_id
 

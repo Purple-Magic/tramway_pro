@@ -1,15 +1,17 @@
-class Television::ScheduleItemDecorator < Tramway::Core::ApplicationDecorator
+# frozen_string_literal: true
+
+class Television::ScheduleItemDecorator < ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
   delegate_attributes(
-        :id,
-        :video_id,
-        :schedule_type,
-        :options,
-        :created_at,
-        :updated_at,
-        :position
+    :id,
+    :video_id,
+    :schedule_type,
+    :options,
+    :created_at,
+    :updated_at,
+    :position
   )
 
   def title
@@ -22,26 +24,26 @@ class Television::ScheduleItemDecorator < Tramway::Core::ApplicationDecorator
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :video_id,
-        :schedule_type,
-        :options,
+      %i[
+        id
+        video_id
+        schedule_type
+        options
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :video_id,
-        :schedule_type,
-        :options,
-        :created_at,
-        :updated_at,
+      %i[
+        id
+        video_id
+        schedule_type
+        options
+        created_at
+        updated_at
       ]
     end
 

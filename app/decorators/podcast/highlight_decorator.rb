@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Podcast::HighlightDecorator < Tramway::Core::ApplicationDecorator
+class Podcast::HighlightDecorator < ApplicationDecorator
   delegate_attributes :time, :cut_begin_time, :cut_end_time, :using_state
 
   decorate_association :episode

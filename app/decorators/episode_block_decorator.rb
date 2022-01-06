@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class EpisodeBlockDecorator < Tramway::Core::ApplicationDecorator
+class EpisodeBlockDecorator < ApplicationDecorator
   delegate_attributes :title
 
   def anchor

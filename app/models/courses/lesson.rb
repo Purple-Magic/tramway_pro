@@ -81,4 +81,8 @@ class Courses::Lesson < ApplicationRecord
   def tasks_without(status:)
     tasks.reject { |task| task.progress_status == status }
   end
+
+  def any_comments?
+    videos_with_comments_any || tasks_with_comments_any
+  end
 end

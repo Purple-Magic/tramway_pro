@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Podcast::EpisodeDecorator < Tramway::Core::ApplicationDecorator
+class Podcast::EpisodeDecorator < ApplicationDecorator
   decorate_association :highlights, as: :episode
   decorate_association :stars, as: :episode
   decorate_association :podcast

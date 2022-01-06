@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BotTelegram::Scenario::ProgressRecordDecorator < Tramway::Core::ApplicationDecorator
+class BotTelegram::Scenario::ProgressRecordDecorator < ApplicationDecorator
   decorate_associations :user
 
   def title

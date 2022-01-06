@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Television::ScheduleItemForm < Tramway::Core::ApplicationForm
   properties :schedule_type, :options, :project_id
 

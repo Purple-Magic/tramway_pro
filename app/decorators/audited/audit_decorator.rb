@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Audited::AuditDecorator < Tramway::Core::ApplicationDecorator
+class Audited::AuditDecorator < ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 

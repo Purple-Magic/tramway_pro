@@ -16,11 +16,13 @@ class Course < ApplicationRecord
     }
   end
 
+  include Concerns::Time
+
   def video_duration
-    minutes = videos.sum do |video|
+    all_minutes = videos.sum do |video|
       video.duration.present? ? video.duration.gsub('m', '').to_i : 0
     end
-    "#{minutes / 60}h #{minutes % 60}m"
+    time_view_by all_minutes
   end
 
   def tasks_duration

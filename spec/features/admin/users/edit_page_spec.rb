@@ -6,10 +6,7 @@ describe 'Edit admin page' do
   ProjectsHelper.projects_instead_of('listai', 'kalashnikovisme', 'tramway', 'freedvs').each do |project|
     before { create :admin, project_id: project.id }
 
-    puts "PROJECT URL: #{project.url}".yellow
-
     it "#{project.url}: should show edit admin page" do
-      puts "PROJECT URL: #{project.url}".yellow
       move_host_to project.url
       visit '/admin'
       fill_in 'Email', with: "admin#{project.id}@email.com"

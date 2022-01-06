@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Benchkiller::DeliveryDecorator < Tramway::Core::ApplicationDecorator
+class Benchkiller::DeliveryDecorator < ApplicationDecorator
   delegate_attributes :uuid
 
   def receivers

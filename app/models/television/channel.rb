@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Television::Channel < ApplicationRecord
   include Video::UploadConcern
 
@@ -6,7 +8,7 @@ class Television::Channel < ApplicationRecord
   store_accessor :rtmp, :url
   store_accessor :rtmp, :password
 
-  enumerize :channel_type, in: [ 'repeated', 'custom' ]
+  enumerize :channel_type, in: %w[repeated custom]
 
   aasm :broadcast_state do
     state :stopped, initial: true
@@ -29,12 +31,12 @@ class Television::Channel < ApplicationRecord
     end
   end
 
-  REMOTE_SERVER = "167.71.46.15"
-  REMOTE_USER = "root"
+  REMOTE_SERVER = '167.71.46.15'
+  REMOTE_USER = 'root'
 
   def start_remote_broadcast(command)
     command = "ssh -t #{REMOTE_USER}@#{REMOTE_SERVER} \"nohup /bin/bash -c '#{command}' &\""
     Rails.logger.info command
-    #system command
+    # system command
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
+class Courses::LessonDecorator < ApplicationDecorator
   # Associations you want to show in admin dashboard
   decorate_association :topic
 
@@ -18,7 +18,7 @@ class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
   )
 
   def title
-    "Урок #{topic.position}-#{object.position}  | #{object.title}"
+    "Урок #{topic.position}-#{object.position} | #{object.title}"
   end
 
   def link

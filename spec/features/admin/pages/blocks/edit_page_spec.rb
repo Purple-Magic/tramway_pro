@@ -10,7 +10,6 @@ describe 'Edit block page' do
     end
 
     it 'should show edit block page' do
-      puts "PROJECT URL: #{project.url}".yellow
       move_host_to project.url
       visit '/admin'
       fill_in 'Email', with: "admin#{project.id}@email.com"

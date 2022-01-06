@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Content::StoryDecorator < Tramway::Core::ApplicationDecorator
+class Content::StoryDecorator < ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
