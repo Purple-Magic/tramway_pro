@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :course do
-    title
+    title { "Course #{generate(:title)}" }
     team { ::Course.team.values.sample }
   end
 end
