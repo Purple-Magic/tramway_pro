@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class WordDecorator < Tramway::Core::ApplicationDecorator
+class WordDecorator < ApplicationDecorator
   class << self
     def collections
       %i[all unviewed approved]

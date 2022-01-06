@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BotTelegram::Scenario::StepDecorator < Tramway::Core::ApplicationDecorator
+class BotTelegram::Scenario::StepDecorator < ApplicationDecorator
   class << self
     def show_attributes
       %i[

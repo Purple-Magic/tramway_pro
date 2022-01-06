@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MagicWood::Actors::AttendingDecorator < Tramway::Core::ApplicationDecorator
+class MagicWood::Actors::AttendingDecorator < ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 

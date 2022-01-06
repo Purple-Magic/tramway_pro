@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class VideoDecorator < Tramway::Core::ApplicationDecorator
+class VideoDecorator < ApplicationDecorator
   delegate_attributes(
     :id,
     :url,

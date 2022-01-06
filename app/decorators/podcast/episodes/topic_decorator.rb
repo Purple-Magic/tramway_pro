@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Podcast::Episodes::TopicDecorator < Tramway::Core::ApplicationDecorator
+class Podcast::Episodes::TopicDecorator < ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 

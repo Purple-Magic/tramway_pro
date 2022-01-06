@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Estimation::CustomerDecorator < Tramway::Core::ApplicationDecorator
+class Estimation::CustomerDecorator < ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 

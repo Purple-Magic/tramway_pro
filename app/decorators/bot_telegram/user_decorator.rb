@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BotTelegram::UserDecorator < Tramway::Core::ApplicationDecorator
+class BotTelegram::UserDecorator < ApplicationDecorator
   delegate_attributes :username, :first_name, :last_name
 
   def title

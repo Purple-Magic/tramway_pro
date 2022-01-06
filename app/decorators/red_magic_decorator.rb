@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RedMagicDecorator < Tramway::Core::ApplicationDecorator
+class RedMagicDecorator < ApplicationDecorator
   def title
     object.public_name
   end

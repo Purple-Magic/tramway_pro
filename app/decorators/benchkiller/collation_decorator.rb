@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Benchkiller::CollationDecorator < Tramway::Core::ApplicationDecorator
+class Benchkiller::CollationDecorator < ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 

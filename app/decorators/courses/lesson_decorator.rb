@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Courses::LessonDecorator < Tramway::Core::ApplicationDecorator
+class Courses::LessonDecorator < ApplicationDecorator
   # Associations you want to show in admin dashboard
   decorate_association :topic
 

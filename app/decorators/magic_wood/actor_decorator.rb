@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MagicWood::ActorDecorator < Tramway::Core::ApplicationDecorator
+class MagicWood::ActorDecorator < ApplicationDecorator
   delegate_attributes(
     :id,
     :first_name,

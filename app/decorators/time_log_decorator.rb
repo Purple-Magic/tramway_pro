@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TimeLogDecorator < Tramway::Core::ApplicationDecorator
+class TimeLogDecorator < ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BotTelegram::MessageDecorator < Tramway::Core::ApplicationDecorator
+class BotTelegram::MessageDecorator < ApplicationDecorator
   delegate_attributes :text
 
   decorate_associations :user

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Estimation::ProjectDecorator < Tramway::Core::ApplicationDecorator
+class Estimation::ProjectDecorator < ApplicationDecorator
   delegate_attributes :title, :state, :id
 
   decorate_associations :tasks, :coefficients, :expenses

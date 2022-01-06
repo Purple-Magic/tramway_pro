@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Television::ChannelDecorator < Tramway::Core::ApplicationDecorator
+class Television::ChannelDecorator < ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
