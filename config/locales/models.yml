@@ -17,6 +17,8 @@ ru:
       course: Курс
       courses/topic: Тема
       courses/lesson: Урок
+      courses/video: Видео
+      courses/task: Видео
       content/story: История
       benchkiller/company: Компания
       benchkiller/user: Пользователи

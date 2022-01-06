@@ -85,4 +85,7 @@ FactoryBot.define do
   sequence :float, aliases: [:fee] do |n|
     "0.#{n}".to_f
   end
+  sequence :duration do |n|
+    "#{n}h #{n + 1}m"
+  end
 end
