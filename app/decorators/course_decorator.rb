@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CourseDecorator < Tramway::Core::ApplicationDecorator
+class CourseDecorator < ApplicationDecorator
   decorate_associations :topics
 
   delegate_attributes :id, :title, :state, :created_at, :updated_at
