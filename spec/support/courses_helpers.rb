@@ -10,10 +10,10 @@ module CoursesHelpers
     end
   end
 
-  def common_part(_object)
-    position = "#{lesson.lesson.topic.position}-#{lesson.lesson.position}-#{lesson.position}"
-    comments = "#{lesson.comments.count} comments | #{lesson.comments.done.count} comments done"
-    "#{lesson.model_name.human} | #{position} | #{comments}"
+  def common_part(object)
+    position = "#{object.lesson.topic.position}-#{object.lesson.position}-#{object.position}"
+    comments = "#{object.comments.count} comments | #{object.comments.done.count} comments done"
+    "#{object.model_name.human} #{position} | #{comments}"
   end
 
   def video_title(video)
@@ -25,6 +25,6 @@ module CoursesHelpers
   end
 
   def lesson_title(lesson)
-    "#{lesson.model_name.human} #{topic.position}-#{lesson.position} | #{lesson.title}"
+    "#{lesson.model_name.human} #{lesson.topic.position}-#{lesson.position} | #{lesson.title}"
   end
 end
