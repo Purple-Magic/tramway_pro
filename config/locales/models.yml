@@ -109,6 +109,8 @@ ru:
         topic_link: Ссылка на тему
         videos: Видео
         tasks: Задания
+      courses/video:
+        comments: Комментарии
       courses/task:
         position: Номер
         text: Текст задания
