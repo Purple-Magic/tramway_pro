@@ -4,5 +4,6 @@ FactoryBot.define do
     position { generate :integer }
     release_date { generate :date }
     duration
+    lesson { create :courses_lesson }
   end
 end
