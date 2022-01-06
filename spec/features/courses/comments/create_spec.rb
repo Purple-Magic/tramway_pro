@@ -18,9 +18,8 @@ describe 'Create comment' do
 
     click_on 'Курсы'
     click_on course.title
-    video_title = "#{video.model_name.human} #{video.lesson.topic.position}-#{video.lesson.position}-#{video.position} | #{video.comments.count} comments | #{video.comments.done.count} comments done | #{video.duration}"
     within 'ul.tree' do
-      click_on video_title
+      click_on video_title video
     end
     click_on 'Добавить комментарии'
 
@@ -55,9 +54,8 @@ describe 'Create comment' do
 
     click_on 'Курсы'
     click_on course.title
-    task_title = "#{task.model_name.human} #{task.lesson.topic.position}-#{task.lesson.position}-#{task.position} | #{task.comments.count} comments | #{task.comments.done.count} comments done"
     within 'ul.tree' do
-      click_on task_title
+      click_on task_title task
     end
     click_on 'Добавить комментарии'
 
@@ -98,9 +96,8 @@ describe 'Create comment' do
 
       click_on 'Курсы'
       click_on course.title
-      video_title = "#{video.model_name.human} #{video.lesson.topic.position}-#{video.lesson.position}-#{video.position} | #{video.comments.count} comments | #{video.comments.done.count} comments done | #{video.duration}"
       within 'ul.tree' do
-        click_on video_title
+        click_on video_title video
       end
       click_on 'Добавить комментарии'
 
@@ -137,9 +134,8 @@ describe 'Create comment' do
 
       click_on 'Курсы'
       click_on course.title
-      task_title = "#{task.model_name.human} #{task.lesson.topic.position}-#{task.lesson.position}-#{task.position} | #{task.comments.count} comments | #{task.comments.done.count} comments done"
       within 'ul.tree' do
-        click_on task_title
+        click_on task_title task
       end
       click_on 'Добавить комментарии'
 

@@ -60,7 +60,7 @@ project_id: kalashnikovisme_id
             url = Tramway::Admin::Engine.routes.url_helpers.record_path(lesson.id, model: lesson.model_name)
             within("ul.tree > li:nth-child(#{index + 1}) > ul") do
               page.should have_selector "li a[href='#{url}']"
-              page.should have_content "#{lesson.model_name.human} #{topic.position}-#{lesson.position} | #{lesson.title}"
+              page.should have_content lesson_title lesson
             end
           end
         end
@@ -78,12 +78,11 @@ project_id: kalashnikovisme_id
         course.topics.each_with_index do |topic, index|
           topic.lessons.each_with_index do |lesson, lesson_index|
             lesson.videos.each do |video|
-              video_title = "#{video.model_name.human} #{topic.position}-#{lesson.position}-#{video.position} | #{video.comments.count} comments | #{video.comments.done.count} comments done | #{video.duration}"
               url = Tramway::Admin::Engine.routes.url_helpers.record_path(video.id, model: video.model_name)
               within("ul.tree > li:nth-child(#{index + 1}) > ul") do
                 within("li:nth-child(#{lesson_index + 1}) > ul") do
                   page.should have_selector "li a[href='#{url}']"
-                  page.should have_content video_title
+                  page.should have_content video_title video
                 end
               end
             end
@@ -103,12 +102,11 @@ project_id: kalashnikovisme_id
         course.topics.each_with_index do |topic, index|
           topic.lessons.each_with_index do |lesson, lesson_index|
             lesson.tasks.each do |task|
-              task_title = "#{task.model_name.human} #{topic.position}-#{lesson.position}-#{task.position} | #{task.comments.count} comments | #{task.comments.done.count} comments done"
               url = Tramway::Admin::Engine.routes.url_helpers.record_path(task.id, model: task.model_name)
               within("ul.tree > li:nth-child(#{index + 1}) > ul") do
                 within("li:nth-child(#{lesson_index + 1}) > ul") do
                   page.should have_selector "li a[href='#{url}']"
-                  page.should have_content task_title
+                  page.should have_content task_title task
                 end
               end
             end

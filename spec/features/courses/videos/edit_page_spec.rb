@@ -22,9 +22,8 @@ describe 'Edit video page' do
 
       click_on 'Курсы'
       click_on video.lesson.topic.course.title
-      video_title = "#{video.model_name.human} #{video.lesson.topic.position}-#{video.lesson.position}-#{video.position} | #{video.comments.count} comments | #{video.comments.done.count} comments done | #{video.duration}"
       within 'ul.tree' do
-        click_on video_title
+        click_on video_title video
       end
       find('.btn.btn-warning', match: :first).click
 
@@ -41,9 +40,8 @@ describe 'Edit video page' do
 
       click_on 'Курсы'
       click_on video.lesson.topic.course.title
-      video_title = "#{video.model_name.human} #{video.lesson.topic.position}-#{video.lesson.position}-#{video.position} | #{video.comments.count} comments | #{video.comments.done.count} comments done | #{video.duration}"
       within 'ul.tree' do
-        click_on video_title
+        click_on video_title video
       end
       find('.btn.btn-warning', match: :first).click
 
@@ -86,9 +84,8 @@ describe 'Edit video page' do
 
         click_on 'Курсы'
         click_on video.lesson.topic.course.title
-        video_title = "#{video.model_name.human} #{video.lesson.topic.position}-#{video.lesson.position}-#{video.position} | #{video.comments.count} comments | #{video.comments.done.count} comments done | #{video.duration}"
         within 'ul.tree' do
-          click_on video_title
+          click_on video_title video
         end
         find('.btn.btn-warning', match: :first).click
 
@@ -111,9 +108,8 @@ describe 'Edit video page' do
 
         click_on 'Курсы'
         click_on video.lesson.topic.course.title
-        video_title = "#{video.model_name.human} #{video.lesson.topic.position}-#{video.lesson.position}-#{video.position} | #{video.comments.count} comments | #{video.comments.done.count} comments done | #{video.duration}"
         within 'ul.tree' do
-          click_on video_title
+          click_on video_title video
         end
         find('.btn.btn-warning', match: :first).click
 

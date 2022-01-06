@@ -2,15 +2,29 @@
 
 module CoursesHelpers
   def associated_title(comment)
-    associated = comment.associated
-    associated_position = "#{associated.lesson.topic.position}-#{associated.lesson.position}-#{associated.position}"
-    associated_comments = "#{associated.comments.count} comments | #{associated.comments.done.count} comments done"
-    common_part = "#{associated.model_name.human} | #{associated_position} | #{associated_comments}"
     case comment.associated_type
     when 'Courses::Video'
-      "#{common_part} | #{associated.duration}"
+      video_title comment.associated
     when 'Courses::Task'
-      common_part
+      task_title comment.associated
     end
+  end
+
+  def common_part(_object)
+    position = "#{lesson.lesson.topic.position}-#{lesson.lesson.position}-#{lesson.position}"
+    comments = "#{lesson.comments.count} comments | #{lesson.comments.done.count} comments done"
+    "#{lesson.model_name.human} | #{position} | #{comments}"
+  end
+
+  def video_title(video)
+    "#{common_part(video)} | #{video.duration}"
+  end
+
+  def task_title(task)
+    common_part task
+  end
+
+  def lesson_title(lesson)
+    "#{lesson.model_name.human} #{topic.position}-#{lesson.position} | #{lesson.title}"
   end
 end
