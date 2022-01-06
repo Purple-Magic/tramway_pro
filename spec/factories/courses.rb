@@ -5,9 +5,4 @@ FactoryBot.define do
     title
     team { ::Course.team.values.sample }
   end
-
-  factory :course_attributes, class: Course do
-    title
-    team { ::Course.team.values.sample }
-  end
 end
