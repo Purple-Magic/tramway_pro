@@ -36,8 +36,8 @@ restart_telegram_bots:
 	make run_telegram_bots
 
 code_check:
-	rubocop -A
-	reek
+	bundle exec rubocop -A
+	bundle exec reek
 
 prepare_test_env:
 	RAILS_ENV=test rails db:create db:migrate db:seed
