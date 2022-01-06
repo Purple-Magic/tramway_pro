@@ -2,65 +2,68 @@
 
 require 'rails_helper'
 
-describe 'Edit video page' do
+describe 'Edit comment page' do
   before { move_host_to kalashnikovisme_host }
 
   describe 'Admin' do
-    let!(:video) do
+    let!(:comment) do
       topic = create :courses_topic,
         project_id: kalashnikovisme_id,
         course: create(:course, project_id: kalashnikovisme_id)
       lesson = create :courses_lesson, project_id: kalashnikovisme_id, topic: topic
-      create :courses_video, lesson: lesson, project_id: kalashnikovisme_id, release_date: nil
+      associated_type = Courses::Comment.associated_type.values.sample
+      associated = create associated_type.underscore.gsub('/', '_'), lesson: lesson
+      create :courses_comment, associated: associated, project_id: kalashnikovisme_id
     end
 
-    it "should show edit video page" do
+    it "should show edit comment page" do
       visit '/admin'
       fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
       fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
       click_on 'Курсы'
-      click_on video.lesson.topic.course.title
-      video_title = "#{video.model_name.human} #{video.lesson.topic.position}-#{video.lesson.position}-#{video.position} | #{video.comments.count} comments | #{video.comments.done.count} comments done | #{video.duration}"
+      click_on comment.associated.lesson.topic.course.title
       within 'ul.tree' do
-        click_on video_title
+        click_on associated_title comment
       end
+      click_on comment.text
       find('.btn.btn-warning', match: :first).click
 
-      expect(page).to have_field 'record[text]', with: video.text
-      expect(page).to have_field 'record[position]', with: video.position
-      expect(page).to have_field 'record[duration]', with: video.duration
+      expect(page).to have_field 'record[text]', with: comment.text
+      expect(page).to have_field 'record[begin_time]', with: comment.begin_time
+      expect(page).to have_field 'record[end_time]', with: comment.end_time
+      expect(page).to have_field 'record[phrase]', with: comment.phrase
     end
 
-    it "should update video" do
+    it "should update comment" do
       visit '/admin'
       fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
       fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
       click_on 'Курсы'
-      click_on video.lesson.topic.course.title
-      video_title = "#{video.model_name.human} #{video.lesson.topic.position}-#{video.lesson.position}-#{video.position} | #{video.comments.count} comments | #{video.comments.done.count} comments done | #{video.duration}"
+      click_on comment.associated.lesson.topic.course.title
       within 'ul.tree' do
-        click_on video_title
+        click_on associated_title comment
       end
+      click_on comment.text
       find('.btn.btn-warning', match: :first).click
 
-      attributes = attributes_for :courses_video
+      attributes = attributes_for :courses_comment
 
+      fill_in 'record[begin_time]', with: attributes[:begin_time]
+      fill_in 'record[end_time]', with: attributes[:end_time]
+      fill_in 'record[phrase]', with: attributes[:phrase]
       fill_in 'record[text]', with: attributes[:text]
-      fill_in 'record[position]', with: attributes[:position]
-      fill_in 'record[release_date]', with: attributes[:release_date]
-      fill_in 'record[duration]', with: attributes[:duration]
 
       click_on 'Сохранить', class: 'btn-success'
 
-      video.reload
+      comment.reload
 
       attributes.each_key do |attr|
-        unless attr == :lesson
-          actual = video.send(attr)
+        unless attr == :associated
+          actual = comment.send(attr)
           expecting = attributes[attr]
           expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
         end
@@ -72,12 +75,14 @@ describe 'Edit video page' do
   ::Course::TEAMS.each do |team|
     describe "#{team.to_s.capitalize} team" do
       let!(:user) { create :admin, password: '123456', project_id: kalashnikovisme_id }
-      let!(:video) { create :courses_video, project_id: kalashnikovisme_id }
+      let!(:comment) { create :courses_comment, project_id: kalashnikovisme_id }
 
-      it 'should show edit video page' do
+      it 'should show edit comment page' do
         course = create :course, team: team, project_id: kalashnikovisme_id
         topic = course.topics.create!(**attributes_for(:courses_topic))
-        video.update! lesson: topic.lessons.create!(attributes_for(:courses_lesson))
+        lesson = topic.lessons.create!(attributes_for(:courses_lesson))
+        associated_type = Courses::Comment.associated_type.values.sample
+        comment.update! associated: create(associated_type.underscore.gsub('/', '_'), lesson: lesson)
         visit '/admin'
         user.update! role: team # NOTE: we need it because of user middleware
         user.reload
@@ -86,23 +91,25 @@ describe 'Edit video page' do
         click_on 'Войти', class: 'btn-success'
 
         click_on 'Курсы'
-        click_on video.lesson.topic.course.title
-        video_title = "#{video.model_name.human} #{video.lesson.topic.position}-#{video.lesson.position}-#{video.position} | #{video.comments.count} comments | #{video.comments.done.count} comments done | #{video.duration}"
+        click_on comment.associated.lesson.topic.course.title
         within 'ul.tree' do
-          click_on video_title
+          click_on associated_title comment
         end
+        click_on comment.text
         find('.btn.btn-warning', match: :first).click
 
-        expect(page).to have_field 'record[text]', with: video.text
-        expect(page).to have_field 'record[position]', with: video.position
-        expect(page).to have_field 'record[release_date]', with: video.release_date
-        expect(page).to have_field 'record[duration]', with: video.duration
+        expect(page).to have_field 'record[text]', with: comment.text
+        expect(page).to have_field 'record[begin_time]', with: comment.begin_time
+        expect(page).to have_field 'record[end_time]', with: comment.end_time
+        expect(page).to have_field 'record[phrase]', with: comment.phrase
       end
 
-      it 'should update video' do
+      it 'should update comment' do
         course = create :course, team: team, project_id: kalashnikovisme_id
         topic = course.topics.create!(**attributes_for(:courses_topic))
-        video.update! lesson: topic.lessons.create!(attributes_for(:courses_lesson))
+        lesson = topic.lessons.create!(attributes_for(:courses_lesson))
+        associated_type = Courses::Comment.associated_type.values.sample
+        comment.update! associated: create(associated_type.underscore.gsub('/', '_'), lesson: lesson)
         visit '/admin'
         user.update! role: team # NOTE: we need it because of user middleware
         user.reload
@@ -111,27 +118,27 @@ describe 'Edit video page' do
         click_on 'Войти', class: 'btn-success'
 
         click_on 'Курсы'
-        click_on video.lesson.topic.course.title
-        video_title = "#{video.model_name.human} #{video.lesson.topic.position}-#{video.lesson.position}-#{video.position} | #{video.comments.count} comments | #{video.comments.done.count} comments done | #{video.duration}"
+        click_on comment.associated.lesson.topic.course.title
         within 'ul.tree' do
-          click_on video_title
+          click_on associated_title(comment)
         end
+        click_on comment.text
         find('.btn.btn-warning', match: :first).click
 
-        attributes = attributes_for :courses_video
+        attributes = attributes_for :courses_comment
 
+        fill_in 'record[begin_time]', with: attributes[:begin_time]
+        fill_in 'record[end_time]', with: attributes[:end_time]
+        fill_in 'record[phrase]', with: attributes[:phrase]
         fill_in 'record[text]', with: attributes[:text]
-        fill_in 'record[position]', with: attributes[:position]
-        fill_in 'record[release_date]', with: attributes[:release_date]
-        fill_in 'record[duration]', with: attributes[:duration]
 
         click_on 'Сохранить', class: 'btn-success'
 
-        video.reload
+        comment.reload
 
         attributes.each_key do |attr|
-          unless attr == :lesson
-            actual = video.send(attr)
+          unless attr == :associated
+            actual = comment.send(attr)
             expecting = attributes[attr]
             expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
           end
