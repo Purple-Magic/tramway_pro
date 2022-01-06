@@ -4,21 +4,21 @@
 
 *Gemfile*
 ```ruby
-ruby '2.7.1'
+ruby '2.7.5'
 ```
 
 2. Update it in ansible variables
 
-*cm/production.yml*
+*deploy/production.yml*
 ```yaml
-ruby_version: "ruby-2.7.1"
+ruby_version: "ruby-2.7.5"
 ```
 
 3. Install new version of ruby on the server
 
 *server*
 ```
-rvm install ruby-2.7.1
+rvm install ruby-2.7.5
 ```
 
 4. And deploy
