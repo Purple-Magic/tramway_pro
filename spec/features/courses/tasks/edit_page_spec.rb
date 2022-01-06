@@ -23,7 +23,7 @@ describe 'Edit task page' do
       click_on 'Курсы'
       click_on task.lesson.topic.course.title
       within 'ul.tree' do
-        click_on task_title task
+        click_on Courses::TaskDecorator.new(task).title
       end
       find('.btn.btn-warning', match: :first).click
 
@@ -42,7 +42,7 @@ describe 'Edit task page' do
       click_on 'Курсы'
       click_on task.lesson.topic.course.title
       within 'ul.tree' do
-        click_on task_title task
+        click_on Courses::TaskDecorator.new(task).title
       end
       find('.btn.btn-warning', match: :first).click
 
@@ -86,7 +86,7 @@ describe 'Edit task page' do
         click_on 'Курсы'
         click_on task.lesson.topic.course.title
         within 'ul.tree' do
-          click_on task_title task
+          click_on Courses::TaskDecorator.new(task).title
         end
         find('.btn.btn-warning', match: :first).click
 
@@ -110,7 +110,7 @@ describe 'Edit task page' do
         click_on 'Курсы'
         click_on task.lesson.topic.course.title
         within 'ul.tree' do
-          click_on task_title task
+          click_on Courses::TaskDecorator.new(task).title
         end
         find('.btn.btn-warning', match: :first).click
 

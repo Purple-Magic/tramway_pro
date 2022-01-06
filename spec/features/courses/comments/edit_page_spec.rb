@@ -25,7 +25,7 @@ describe 'Edit comment page' do
       click_on 'Курсы'
       click_on comment.associated.lesson.topic.course.title
       within 'ul.tree' do
-        click_on associated_title comment
+        click_on Courses::CommentDecorator.new(comment).associated.title
       end
       click_on comment.text
       find('.btn.btn-warning', match: :first).click
@@ -45,7 +45,7 @@ describe 'Edit comment page' do
       click_on 'Курсы'
       click_on comment.associated.lesson.topic.course.title
       within 'ul.tree' do
-        click_on associated_title comment
+        click_on Courses::CommentDecorator.new(comment).associated.title
       end
       click_on comment.text
       find('.btn.btn-warning', match: :first).click
@@ -92,7 +92,7 @@ describe 'Edit comment page' do
         click_on 'Курсы'
         click_on comment.associated.lesson.topic.course.title
         within 'ul.tree' do
-          click_on associated_title comment
+          click_on Courses::CommentDecorator.new(comment).associated.title
         end
         click_on comment.text
         find('.btn.btn-warning', match: :first).click
@@ -119,7 +119,7 @@ describe 'Edit comment page' do
         click_on 'Курсы'
         click_on comment.associated.lesson.topic.course.title
         within 'ul.tree' do
-          click_on associated_title(comment)
+          click_on Courses::CommentDecorator.new(comment).associated.title
         end
         click_on comment.text
         find('.btn.btn-warning', match: :first).click

@@ -8,7 +8,6 @@ require 'support/integration_helpers'
 require 'support/errors_helper'
 require 'support/navbar_helper'
 require 'support/tramway_helpers'
-require 'support/courses_helpers'
 require 'json_api_test_helpers'
 require 'rake'
 require 'webmock/rspec'
@@ -28,7 +27,6 @@ RSpec.configure do |config|
   config.include NavbarHelper
   config.include TramwayHelpers
   config.include CapybaraHelpers
-  config.include CoursesHelpers
 
   ActiveRecord::Base.logger.level = 1
 

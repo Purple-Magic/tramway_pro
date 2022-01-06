@@ -60,7 +60,7 @@ project_id: kalashnikovisme_id
             url = Tramway::Admin::Engine.routes.url_helpers.record_path(lesson.id, model: lesson.model_name)
             within("ul.tree > li:nth-child(#{index + 1}) > ul") do
               page.should have_selector "li a[href='#{url}']"
-              page.should have_content lesson_title lesson
+              page.should have_content Courses::LessonDecorator.new(lesson).title
             end
           end
         end
@@ -82,7 +82,7 @@ project_id: kalashnikovisme_id
               within("ul.tree > li:nth-child(#{index + 1}) > ul") do
                 within("li:nth-child(#{lesson_index + 1}) > ul") do
                   page.should have_selector "li a[href='#{url}']"
-                  page.should have_content video_title video
+                  page.should have_content Courses::VideoDecorator.new(video).title
                 end
               end
             end
@@ -106,7 +106,7 @@ project_id: kalashnikovisme_id
               within("ul.tree > li:nth-child(#{index + 1}) > ul") do
                 within("li:nth-child(#{lesson_index + 1}) > ul") do
                   page.should have_selector "li a[href='#{url}']"
-                  page.should have_content task_title task
+                  page.should have_content Courses::TaskDecorator.new(task).title
                 end
               end
             end

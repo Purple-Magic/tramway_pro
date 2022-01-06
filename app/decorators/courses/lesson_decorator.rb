@@ -18,7 +18,7 @@ class Courses::LessonDecorator < ApplicationDecorator
   )
 
   def title
-    "Урок #{topic.position}-#{object.position}  | #{object.title}"
+    "Урок #{topic.position}-#{object.position} | #{object.title}"
   end
 
   def link

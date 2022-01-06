@@ -23,7 +23,7 @@ describe 'Edit video page' do
       click_on 'Курсы'
       click_on video.lesson.topic.course.title
       within 'ul.tree' do
-        click_on video_title video
+        click_on Courses::VideoDecorator.new(video).title
       end
       find('.btn.btn-warning', match: :first).click
 
@@ -41,7 +41,7 @@ describe 'Edit video page' do
       click_on 'Курсы'
       click_on video.lesson.topic.course.title
       within 'ul.tree' do
-        click_on video_title video
+        click_on Courses::VideoDecorator.new(video).title
       end
       find('.btn.btn-warning', match: :first).click
 
@@ -85,7 +85,7 @@ describe 'Edit video page' do
         click_on 'Курсы'
         click_on video.lesson.topic.course.title
         within 'ul.tree' do
-          click_on video_title video
+          click_on Courses::VideoDecorator.new(video).title
         end
         find('.btn.btn-warning', match: :first).click
 
@@ -109,7 +109,7 @@ describe 'Edit video page' do
         click_on 'Курсы'
         click_on video.lesson.topic.course.title
         within 'ul.tree' do
-          click_on video_title video
+          click_on Courses::VideoDecorator.new(video).title
         end
         find('.btn.btn-warning', match: :first).click
 

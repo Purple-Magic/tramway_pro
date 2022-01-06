@@ -21,7 +21,7 @@ describe 'Create comment' do
       click_on 'Курсы'
       click_on course.title
       within 'ul.tree' do
-        click_on video_title video
+        click_on Courses::VideoDecorator.new(video).title
       end
       click_on 'Добавить комментарии'
 
@@ -57,7 +57,7 @@ describe 'Create comment' do
       click_on 'Курсы'
       click_on course.title
       within 'ul.tree' do
-        click_on task_title task
+        click_on Courses::TaskDecorator.new(task).title
       end
       click_on 'Добавить комментарии'
 
@@ -100,7 +100,7 @@ describe 'Create comment' do
         click_on 'Курсы'
         click_on course.title
         within 'ul.tree' do
-          click_on video_title video
+          click_on Courses::VideoDecorator.new(video).title
         end
         click_on 'Добавить комментарии'
 
@@ -138,7 +138,7 @@ describe 'Create comment' do
         click_on 'Курсы'
         click_on course.title
         within 'ul.tree' do
-          click_on task_title task
+          click_on Courses::TaskDecorator.new(task).title
         end
         click_on 'Добавить комментарии'
 
