@@ -102,6 +102,8 @@ ru:
         position: Порядок применения
       course:
         topics: Темы
+      courses/topic:
+        lessons: Уроки
       courses/lesson:
         title: Название
         topic_link: Ссылка на тему
