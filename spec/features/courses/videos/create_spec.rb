@@ -47,7 +47,7 @@ describe 'Create video' do
     describe "#{team.to_s.capitalize} team" do
       let!(:user) { create :admin, password: '123456', project_id: kalashnikovisme_id }
 
-      it "should create video" do
+      it 'should create video' do
         count = Courses::Video.count
         course = create :course, team: team, project_id: kalashnikovisme_id
         topic = course.topics.create! attributes_for :courses_topic

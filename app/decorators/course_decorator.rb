@@ -15,7 +15,7 @@ class CourseDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[ id title data tree created_at updated_at ]
+      %i[id title data tree created_at updated_at]
     end
 
     def show_associations

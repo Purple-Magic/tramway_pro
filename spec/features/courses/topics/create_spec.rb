@@ -38,7 +38,7 @@ describe 'Create topic' do
     describe "#{team.to_s.capitalize} team" do
       let!(:user) { create :admin, password: '123456', project_id: kalashnikovisme_id }
 
-      it " should create topic" do
+      it ' should create topic' do
         count = Courses::Topic.count
         course = create :course, team: team, project_id: kalashnikovisme_id
         visit '/admin'
