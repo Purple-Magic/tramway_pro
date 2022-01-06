@@ -1,4 +1,6 @@
-# :reek:UtilityFunction { enabled: false } 
+# frozen_string_literal: true
+
+# :reek:UtilityFunction { enabled: false }
 module Concerns::Time
   def time_view_by(all_minutes)
     minutes = all_minutes % 60
@@ -6,4 +8,4 @@ module Concerns::Time
     "#{hours}h #{minutes}m"
   end
 end
-# :reek:UtilityFunction { enabled: true } 
+# :reek:UtilityFunction { enabled: true }

@@ -28,6 +28,6 @@ class Courses::Topic < ApplicationRecord
   end
 
   def lessons_with_comments_any
-    lessons.select { |lesson| lesson.any_comments? }.any?
+    lessons.select(&:any_comments?).any?
   end
 end

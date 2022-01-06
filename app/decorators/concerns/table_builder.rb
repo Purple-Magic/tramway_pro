@@ -1,13 +1,11 @@
+# frozen_string_literal: true
+
 module Concerns::TableBuilder
-  def th(&block)
-    content_tag(:th) do
-      yield
-    end
+  def th
+    content_tag(:th, &block)
   end
 
-  def td(&block)
-    content_tag(:td) do
-      yield
-    end
+  def td
+    content_tag(:td, &block)
   end
 end
