@@ -352,6 +352,8 @@ GEM
     raabro (1.4.0)
     racc (1.6.0)
     rack (2.2.3)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-proxy (0.7.0)
       rack
     rack-test (1.1.0)
@@ -692,6 +694,7 @@ DEPENDENCIES
   pry
   pry-nav
   rack (>= 2.0.8)
+  rack-cors
   rails (= 5.1.7)
   rails-html-sanitizer (>= 1.0.4)
   rake (>= 12.3.3)

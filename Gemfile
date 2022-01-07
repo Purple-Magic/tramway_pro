@@ -39,6 +39,7 @@ gem 'tramway-user', '2.1.3.4'
 # gem 'tramway-site', path: '../tramway-dev/tramway-site'
 # gem 'tramway-user', path: '../tramway-dev/tramway-user'
 
+gem 'rack-cors'
 gem 'aasm'
 gem 'actionview', '>= 5.1.6.2'
 gem 'active_model_serializers', '0.10.12'
