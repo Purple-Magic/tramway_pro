@@ -52,11 +52,11 @@ first_build:
 	docker-compose -f docker/development/docker-compose.yml build
 
 setup:
-	docker-compose exec web bundle exec rails db:create db:migrate db:seed || (echo "Please, wait until it ends" && docker-compose exec web bundle exec rails db:seed)
+	docker-compose -f docker/development/docker-compose.yml exec web bundle exec rails db:create db:migrate db:seed
 
 drop_db:
-	docker-compose exec db psql -U postgres -c "DROP DATABASE tramway_pro_dev WITH (FORCE);"
+	docker-compose -f docker/development/docker-compose.yml exec db psql -U postgres -c "DROP DATABASE tramway_pro_dev WITH (FORCE);"
 
 reset_db:
 	make drop_db
-	docker-compose exec web bundle exec rails db:create db:migrate db:seed || (echo "Please, wait until it ends" && docker-compose exec web bundle exec rails db:seed)
+	docker-compose -f docker/development/docker-compose.yml exec web bundle exec rails db:create db:migrate db:seed
