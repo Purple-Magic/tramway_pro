@@ -41,3 +41,41 @@ code_check:
 
 prepare_test_env:
 	RAILS_ENV=test rails db:create db:migrate db:seed
+
+docker_start:
+	docker-compose -f docker/development/docker-compose.yml up
+
+docker_first_build:
+	cp .env.example .env
+	cp config/database.docker.yml config/database.yml
+	cp config/secrets.sample.yml config/secrets.yml
+	docker-compose -f docker/development/docker-compose.yml build
+
+docker_setup:
+	#gem install colorize
+	#bin/prod get_db tramway
+	docker-compose -f docker/development/docker-compose.yml exec db psql -U postgres -c "DROP DATABASE IF EXISTS tramway_pro_development WITH (FORCE)"
+	docker-compose -f docker/development/docker-compose.yml exec db psql -U postgres -c "CREATE DATABASE tramway_pro_development"
+	docker-compose -f docker/development/docker-compose.yml exec db pg_restore -U postgres -d tramway_pro_development /temp/production.dump
+
+docker_drop_db:
+	docker-compose -f docker/development/docker-compose.yml exec db psql -U postgres -c "DROP DATABASE tramway_pro_development WITH (FORCE);"
+
+docker_reset_db:
+	make drop_db
+	docker-compose -f docker/development/docker-compose.yml exec web bundle exec rails db:create db:migrate
+
+docker_rails_c:
+	docker-compose -f docker/development/docker-compose.yml exec web bundle exec rails c
+
+docker_rails_r:
+	docker-compose -f docker/development/docker-compose.yml exec web bundle exec rails r ${CODE}
+
+docker_rails_g:
+	docker-compose -f docker/development/docker-compose.yml exec web bundle exec rails g ${CODE}
+
+docker_code_check:
+	docker-compose -f docker/development/docker-compose.yml exec web bundle exec rubocop -A
+
+docker_attach:
+	sh ./docker_attach_web_container.sh

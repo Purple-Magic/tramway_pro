@@ -1,0 +1,16 @@
+development: &shared
+  adapter: postgresql
+  encoding: unicode
+  database: tramway_pro_development
+  pool: 5
+  username: postgres
+  password: postgres
+  host: db
+
+test:
+  <<: *shared
+  database: tramway_pro_test
+
+production:
+  <<: *shared
+  database: tramway_pro_prod
