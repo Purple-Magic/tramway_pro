@@ -3,7 +3,7 @@
     - production.yml
   tasks:
     - name: Ping to server
-      shell: echo 'Ready to deploy, main lieben fuhrer!'
+      shell: echo 'Ready to deploy!'
       register: ping
 
     - name: Checking ping
