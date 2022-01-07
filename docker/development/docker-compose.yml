@@ -4,6 +4,7 @@ services:
     image: postgres:13-alpine
     volumes:
       - 'db:/var/lib/postgresql/data'
+      - ./tmp:/temp
     environment:
       - POSTGRES_PASSWORD=postgres
   redis:
@@ -45,3 +46,4 @@ volumes:
   db:
   es_data:
   bundle:
+  tmp:

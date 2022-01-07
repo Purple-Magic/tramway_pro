@@ -1,7 +1,7 @@
 development: &shared
   adapter: postgresql
   encoding: unicode
-  database: tramway_pro_dev
+  database: tramway_pro_development
   pool: 5
   username: postgres
   password: postgres
@@ -14,11 +14,3 @@ test:
 production:
   <<: *shared
   database: tramway_pro_prod
-
-staging:
-  <<: *shared
-  database: tramway_pro_staging
-
-beta:
-  <<: *shared
-  database: tramway_pro_beta
