@@ -11,6 +11,7 @@ require 'support/tramway_helpers'
 require 'json_api_test_helpers'
 require 'rake'
 require 'webmock/rspec'
+require 'telegram/bot'
 WebMock.disable_net_connect! allow_localhost: true
 
 RSpec.configure do |config|
@@ -33,10 +34,11 @@ RSpec.configure do |config|
   Settings[:test].each do |pair|
     next if pair[0].in? %i[engines application_class application]
 
+    title = pair[0].to_s.camelize
     url = pair[1]
-    next if Project.where(url: url).any?
+    next if Project.where(url: url, title: title).any?
 
-    Project.create! url: url
+    Project.create! url: url, title: title
   end
   config.before(:all) do
     ActiveRecord::Base.descendants.each do |model|
