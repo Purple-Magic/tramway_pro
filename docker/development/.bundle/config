@@ -1,0 +1,4 @@
+---
+BUNDLE_RETRY: "3"
+BUNDLE_BIN: "/bundle/bin"
+BUNDLE_JOBS: "15"

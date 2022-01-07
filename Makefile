@@ -41,3 +41,22 @@ code_check:
 
 prepare_test_env:
 	RAILS_ENV=test rails db:create db:migrate db:seed
+
+start:
+	docker-compose -f docker/development/docker-compose.yml up
+
+first_build:
+	cp .env.example .env
+	cp config/database.docker.yml config/database.yml
+	cp config/secrets.sample.yml config/secrets.yml
+	docker-compose -f docker/development/docker-compose.yml build
+
+setup:
+	docker-compose exec web bundle exec rails db:create db:migrate db:seed || (echo "Please, wait until it ends" && docker-compose exec web bundle exec rails db:seed)
+
+drop_db:
+	docker-compose exec db psql -U postgres -c "DROP DATABASE tramway_pro_dev WITH (FORCE);"
+
+reset_db:
+	make drop_db
+	docker-compose exec web bundle exec rails db:create db:migrate db:seed || (echo "Please, wait until it ends" && docker-compose exec web bundle exec rails db:seed)
