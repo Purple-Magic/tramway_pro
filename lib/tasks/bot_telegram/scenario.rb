@@ -40,6 +40,7 @@ module BotTelegram::Scenario
 
     def send_step_message(current_step, bot, message_from_telegram, bot_record)
       message_to_user bot.api, current_step, message_from_telegram.chat.id
+
       BotTelegram::Scenario::ProgressRecord.create!(
         bot_telegram_user_id: user_from(message_from_telegram.from).id,
         bot_telegram_scenario_step_id: current_step.id,
