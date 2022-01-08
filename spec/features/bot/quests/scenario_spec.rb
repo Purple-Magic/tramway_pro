@@ -13,7 +13,7 @@ describe 'BotTelegram::Scenario' do
       it 'sends correct message' do
         stub = send_message_stub_request body: {
           chat_id: start_message.chat.id,
-          text: bot_record.start_step.text,
+          text: bot_record.start_step.text
         }
 
         Telegram::Bot::Client.run(bot_record.token) do |bot|
@@ -30,12 +30,12 @@ describe 'BotTelegram::Scenario' do
       it 'waits until next step message' do
         stub = send_message_stub_request body: {
           chat_id: start_message.chat.id,
-          text: bot_record.start_step.text,
+          text: bot_record.start_step.text
         }
         next_step_stub = send_message_stub_request body: {
           chat_id: start_message.chat.id,
           text: bot_record.start_step.next_step.text,
-          reply_markup: reply_markup(['Подсказка']),
+          reply_markup: reply_markup(['Подсказка'])
         }
 
         Telegram::Bot::Client.run(bot_record.token) do |bot|

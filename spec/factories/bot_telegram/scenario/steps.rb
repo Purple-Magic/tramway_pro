@@ -14,7 +14,7 @@ FactoryBot.define do
         {
           next: bot.steps.create!(
             attributes_for(:type_answer_scenario_step, text: 'This is next step of some another step')
-          ).name,
+          ).name
         }
       end
       delay { generate :integer }
@@ -41,15 +41,15 @@ FactoryBot.define do
         }
       end
 
-      reply_markup do 
+      reply_markup do
         {
-          keyboard: [ 'Подсказка' ]
+          keyboard: ['Подсказка']
         }
       end
     end
 
-    factory :start_scenario_step, traits: [ :start ]
-    factory :start_scenario_step_with_next_step, traits: [ :start, :with_next_step ]
-    factory :type_answer_scenario_step, traits: [ :type_answer ]
+    factory :start_scenario_step, traits: [:start]
+    factory :start_scenario_step_with_next_step, traits: %i[start with_next_step]
+    factory :type_answer_scenario_step, traits: [:type_answer]
   end
 end
