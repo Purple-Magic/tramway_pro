@@ -3,6 +3,11 @@ FactoryBot.define do
     name { generate :string }
     text { generate :string }
     bot { create :bot }
+    project_id { Project.find_by(title: 'RedMagic').id }
+
+    factory :start_scenario_step, traits: [:start]
+    factory :start_scenario_step_with_next_step, traits: %i[start with_next_step]
+    factory :type_answer_scenario_step, traits: [:type_answer]
 
     trait :start do
       name { :start }
@@ -13,11 +18,12 @@ FactoryBot.define do
       options do
         {
           next: bot.steps.create!(
-            attributes_for(:type_answer_scenario_step, text: 'This is next step of some another step')
+            **attributes_for(:type_answer_scenario_step, text: 'This is next step of some another step'),
+            bot: bot
           ).name
         }
       end
-      delay { generate :integer }
+      delay { 3 }
     end
 
     trait :type_answer do
@@ -47,9 +53,5 @@ FactoryBot.define do
         }
       end
     end
-
-    factory :start_scenario_step, traits: [:start]
-    factory :start_scenario_step_with_next_step, traits: %i[start with_next_step]
-    factory :type_answer_scenario_step, traits: [:type_answer]
   end
 end

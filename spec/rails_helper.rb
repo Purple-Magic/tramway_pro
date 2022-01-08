@@ -33,14 +33,14 @@ RSpec.configure do |config|
 
   ActiveRecord::Base.logger.level = 1
 
+  Project.delete_all
   Settings[:test].each do |pair|
     next if pair[0].in? %i[engines application_class application]
 
     title = pair[0].to_s.camelize
     url = pair[1]
-    next if Project.where(url: url, title: title).any?
 
-    Project.create! url: url, title: title
+    Project.find_or_create_by! url: url, title: title
   end
   config.before(:all) do
     ActiveRecord::Base.descendants.each do |model|

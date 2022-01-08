@@ -67,10 +67,8 @@ module BotTelegram::Scenario
       next_step
     end
 
-    CURRENT_PURPLE_MAGIC_PROJECT_ID = 7
-
     def project
-      Project.find CURRENT_PURPLE_MAGIC_PROJECT_ID
+      Project.find_by title: 'PurpleMagic'
     end
   end
 end
