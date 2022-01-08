@@ -30,21 +30,21 @@ FactoryBot.define do
 
     trait :type_answer do
       options do
-        answer_1 = Faker::Creature::Animal.name.downcase
-        answer_2 = Faker::Creature::Animal.name.downcase
+        answer1 = Faker::Creature::Animal.name.downcase
+        answer2 = Faker::Creature::Animal.name.downcase
         step_by_answer = create(:bot_telegram_scenario_step, bot: bot, text: 'This is step by answer').name
         hint = create(
           :bot_telegram_scenario_step,
           bot: bot,
           options: {
-            answer_1 => step_by_answer,
-            answer_2 => step_by_answer
+            answer1 => step_by_answer,
+            answer2 => step_by_answer
           }
         ).name
 
         {
-          answer_1 => step_by_answer,
-          answer_2 => step_by_answer,
+          answer1 => step_by_answer,
+          answer2 => step_by_answer,
           'подсказка' => hint
         }
       end

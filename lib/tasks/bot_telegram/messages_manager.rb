@@ -17,7 +17,7 @@ module BotTelegram::MessagesManager
   def message_to_chat(bot_api, chat_id, message_obj)
     case message_obj.class.to_s
     when 'String'
-      bot_api.send_message chat_id: chat_id, text: message_obj
+      send_string bot_api, chat_id, message_obj
     when 'BotTelegram::Custom::Message'
       bot_api.send_message chat_id: chat_id, **message_obj.options.merge(parse_mode: :markdown)
       send_file bot_api, chat_id, message_obj if message_obj.file.present?
@@ -32,26 +32,9 @@ module BotTelegram::MessagesManager
   def message_to_user(bot_api, message_obj, chat_id)
     case message_obj.class.to_s
     when 'String'
-      sleep 1
-      bot_api.send_message(
-        chat_id: chat_id,
-        text: message_obj,
-        parse_mode: :markdown
-      )
+      send_string bot_api, chat_id, message_obj
     when 'BotTelegram::Scenario::Step'
-      if message_obj.try(:text).present?
-        if message_obj.reply_markup.present?
-          bot_api.send_message(
-            chat_id: chat_id,
-            text: message_obj&.text,
-            reply_markup: Telegram::Bot::Types::ReplyKeyboardMarkup.new(**message_obj.reply_markup),
-            parse_mode: :markdown
-          )
-        else
-          bot_api.send_message chat_id: chat_id, text: message_obj.text, parse_mode: :markdown
-        end
-      end
-      send_file bot_api, chat_id, message_obj if message_obj.file.path.present?
+      send_scenario_step bot_api, chat_id, message_obj
     when 'BotTelegram::Custom::Message'
       bot_api.send_message chat_id: chat_id, **message_obj.options
     end
@@ -78,5 +61,32 @@ module BotTelegram::MessagesManager
     end
 
     bot_api.public_send "send_#{mime_type[0]}", **params
+  end
+
+  private
+
+  def send_string(bot_api, chat_id, message_obj)
+    sleep 1
+    bot_api.send_message(
+      chat_id: chat_id,
+      text: message_obj,
+      parse_mode: :markdown
+    )
+  end
+
+  def send_scenario_step(bot_api, chat_id, message_obj)
+    if message_obj.try(:text).present?
+      if message_obj.reply_markup.present?
+        bot_api.send_message(
+          chat_id: chat_id,
+          text: message_obj&.text,
+          reply_markup: Telegram::Bot::Types::ReplyKeyboardMarkup.new(**message_obj.reply_markup),
+          parse_mode: :markdown
+        )
+      else
+        bot_api.send_message chat_id: chat_id, text: message_obj.text, parse_mode: :markdown
+      end
+    end
+    send_file bot_api, chat_id, message_obj if message_obj.file.path.present?
   end
 end
