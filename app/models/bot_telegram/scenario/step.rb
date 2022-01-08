@@ -37,6 +37,10 @@ class BotTelegram::Scenario::Step < ApplicationRecord
     bot.steps.find_by name: options['next']
   end
 
+  def step_by(answer:)
+    bot.steps.find_by name: options[answer]
+  end
+
   private
 
   def has_many_answers_to_same_step?

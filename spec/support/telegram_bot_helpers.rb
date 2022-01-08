@@ -2,7 +2,7 @@ module TelegramBotHelpers
   def send_message_stub_request(body:)
     stub_request(:post, "https://api.telegram.org/bot#{bot_record.token}/sendMessage").with(
       headers: headers,
-      body: body
+      body: body.merge(parse_mode: 'markdown')
     ).to_return response
   end
 

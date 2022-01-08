@@ -61,7 +61,7 @@ module BotTelegram::Scenario
     def find_next_step(current_step, message_from_telegram, bot)
       next_step = nil
       if message_from_telegram.text.present?
-        next_step = bot.steps.find_by(name: current_step.options[message_from_telegram.text.downcase])
+        next_step = current_step.step_by answer: message_from_telegram.text.downcase
       end
       next_step ||= current_step.next_step
       next_step
