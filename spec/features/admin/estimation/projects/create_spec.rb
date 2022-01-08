@@ -40,7 +40,7 @@ describe 'Create estimation project' do
           end
           expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
         end
-    end
+      end
     end
   end
 end

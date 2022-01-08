@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :bot_telegram_scenario_step, class: 'BotTelegram::Scenario::Step' do
     name { generate :string }

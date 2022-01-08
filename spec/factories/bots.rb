@@ -8,7 +8,7 @@ FactoryBot.define do
     slug { generate :string }
 
     factory :quest_bot, traits: [:quest]
-    factory :bot_with_start_step, traits: [ :with_start_step ]
+    factory :bot_with_start_step, traits: [:with_start_step]
 
     trait :quest do
       steps = YAML.load_file("#{Rails.root}/spec/support/quests/test_quest.yml").with_indifferent_access[:steps]
