@@ -8,9 +8,9 @@ FactoryBot.define do
     slug { generate :string }
 
     trait :quest do
-      after :create do |bot|
-        bot.steps.create attributes_for(:start_scenario_step)
-      end
+#      after :create do |bot|
+#        bot.steps.create attributes_for(:start_scenario_step)
+#      end
     end
 
     factory :quest_bot, traits: [ :quest ]

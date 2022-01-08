@@ -20,6 +20,10 @@ class Bot < ApplicationRecord
   store_accessor :options, :custom
   store_accessor :options, :scenario
 
+  def start_step
+    steps.find_by name: :start
+  end
+
   def finish_step
     return unless team.night?
 
