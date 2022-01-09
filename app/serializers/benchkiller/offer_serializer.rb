@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Benchkiller::OfferSerializer < Tramway::Api::V1::ApplicationSerializer
-  attributes :uuid, :title
+  attributes :uuid, :title, :text
 
   has_many :tags, serializer: ::Benchkiller::TagSerializer
 
