@@ -14,6 +14,7 @@ kalashnikovisme: &kalashnikovisme
   name: kalashnikovisme
   title: Kalashnikovisme
   public_name: "kalashnikovisme"
+  favicon: '/kalashnikovisme.ico'
 
 benchkiller: &benchkiller
   name: benchkiller
