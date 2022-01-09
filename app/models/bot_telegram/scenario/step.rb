@@ -28,4 +28,26 @@ class BotTelegram::Scenario::Step < ApplicationRecord
   def finish?
     name == 'finish'
   end
+
+  def type_answer?
+    has_many_answers_to_same_step? && !keyboard_contain_answers?
+  end
+
+  def next_step
+    bot.steps.find_by name: options['next']
+  end
+
+  def step_by(answer:)
+    bot.steps.find_by name: options[answer]
+  end
+
+  private
+
+  def has_many_answers_to_same_step?
+    options.values.count > options.values.uniq.count
+  end
+
+  def keyboard_contain_answers?
+    reply_markup['keyboard'].keys.map(&:downcase) & options.values != ['подсказка']
+  end
 end

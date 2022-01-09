@@ -40,6 +40,7 @@ module BotTelegram::Scenario
 
     def send_step_message(current_step, bot, message_from_telegram, bot_record)
       message_to_user bot.api, current_step, message_from_telegram.chat.id
+
       BotTelegram::Scenario::ProgressRecord.create!(
         bot_telegram_user_id: user_from(message_from_telegram.from).id,
         bot_telegram_scenario_step_id: current_step.id,
@@ -57,19 +58,17 @@ module BotTelegram::Scenario
       send_step_message next_step, bot, message_from_telegram, bot_record
     end
 
-    def find_next_step(current_step, message_from_telegram, bot)
+    def find_next_step(current_step, message_from_telegram, _bot)
       next_step = nil
       if message_from_telegram.text.present?
-        next_step = bot.steps.find_by(name: current_step.options[message_from_telegram.text.downcase])
+        next_step = current_step.step_by answer: message_from_telegram.text.downcase
       end
-      next_step ||= bot.steps.find_by name: current_step.options['next']
+      next_step ||= current_step.next_step
       next_step
     end
 
-    CURRENT_PURPLE_MAGIC_PROJECT_ID = 7
-
     def project
-      Project.find CURRENT_PURPLE_MAGIC_PROJECT_ID
+      Project.find_by title: 'PurpleMagic'
     end
   end
 end

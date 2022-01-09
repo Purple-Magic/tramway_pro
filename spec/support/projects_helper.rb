@@ -6,6 +6,10 @@ module ProjectsHelper
       Project.all
     end
 
+    def only(*names)
+      Project.where(url: (names.map { |name| "#{name}.test" }))
+    end
+
     def projects_instead_of(*names)
       Project.where.not(url: (names.map { |name| "#{name}.test" }))
     end
@@ -23,6 +27,14 @@ module ProjectsHelper
     'it-way.test'
   end
 
+  def purple_magic_host
+    'purple-magic.test'
+  end
+
+  def purple_magic_id
+    Project.where(url: 'purple-magic.test').first.id
+  end
+
   def red_magic_id
     Project.where(url: 'red-magic.test').first.id
   end
@@ -36,7 +48,7 @@ module ProjectsHelper
   end
 
   def benchkiller_host
-    'benchkiller.test'
+    'freedvs.test'
   end
 
   def kalashnikovisme_host

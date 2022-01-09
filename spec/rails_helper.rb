@@ -8,9 +8,11 @@ require 'support/integration_helpers'
 require 'support/errors_helper'
 require 'support/navbar_helper'
 require 'support/tramway_helpers'
+require 'support/telegram_bot_helpers'
 require 'json_api_test_helpers'
 require 'rake'
 require 'webmock/rspec'
+require 'telegram/bot'
 WebMock.disable_net_connect! allow_localhost: true
 
 RSpec.configure do |config|
@@ -27,16 +29,18 @@ RSpec.configure do |config|
   config.include NavbarHelper
   config.include TramwayHelpers
   config.include CapybaraHelpers
+  config.include TelegramBotHelpers
 
   ActiveRecord::Base.logger.level = 1
 
+  Project.delete_all
   Settings[:test].each do |pair|
     next if pair[0].in? %i[engines application_class application]
 
+    title = pair[0].to_s.camelize
     url = pair[1]
-    next if Project.where(url: url).any?
 
-    Project.create! url: url
+    Project.find_or_create_by! url: url, title: title
   end
   config.before(:all) do
     ActiveRecord::Base.descendants.each do |model|

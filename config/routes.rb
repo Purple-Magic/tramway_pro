@@ -64,6 +64,7 @@ Rails.application.routes.draw do
 
       namespace :api do
         resources :user_tokens, only: :create
+        resources :offers, only: :index
       end
     end
 
