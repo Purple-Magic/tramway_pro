@@ -111,6 +111,7 @@ ru:
         tasks: Задания
       courses/video:
         comments: Комментарии
+        auto_estimated_time: Предварительная оценка длительности видео
       courses/task:
         position: Номер
         text: Текст задания
