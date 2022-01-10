@@ -1,4 +1,6 @@
 import { Terminal } from 'xterm'
+import _ from 'underscore'
+
 let bashPrompt = '~:'
 let term = new Terminal({ cols: 120, rows: 26, fontSize: '30' });
 const typingTimeout = 100
@@ -352,33 +354,27 @@ const parseOutput = (lines, index) => {
   return { ...action, data }
 }
 
-const readSingleFile = (e) => {
-  var file = e.target.files[0];
-  if (!file) {
-    return;
-  }
-  var reader = new FileReader();
-  reader.onload = function(e) {
-    var contents = e.target.result;
-    var lines = contents.split("\n")
-    let actions = []
-    for (var i = 0; i < lines.length; i++) {
-      if (lines[i] == 'input:') {
-        actions.push(parseInput(lines[i + 1]))
-        i++
-      }
+const startScenario = (e) => {
+  let scenario = document.getElementById('scenario').innerHTML
+  var lines = scenario.split("\n")
+  let actions = []
+  for (var i = 0; i < lines.length; i++) {
+    if (lines[i] == 'input:') {
+      actions.push(parseInput(lines[i + 1]))
+      i++
+    }
       if (lines[i] == 'output:') {
         actions.push(parseOutput(lines, i))
       }
-      if (lines[i] == 'audio:') {
-        const audio = document.createElement('audio')
-        audio.autoplay = true
-        const source = document.createElement('source')
-        source.src = `./scenarios/${lines[i + 1]}`
-        audio.appendChild(source)
-        const body = document.getElementById('body')
-        body.appendChild(audio)
-      }
+//      if (lines[i] == 'audio:') {
+//        const audio = document.createElement('audio')
+//        audio.autoplay = true
+//        const source = document.createElement('source')
+//        source.src = `./scenarios/${lines[i + 1]}`
+//        audio.appendChild(source)
+//        const body = document.getElementById('body')
+//        body.appendChild(audio)
+//      }
       if (lines[i] == 'delay:') {
         actions.push({ action: 'delay', data: parseInt(lines[i + 1]) })
       }
@@ -389,21 +385,19 @@ const readSingleFile = (e) => {
         actions.push(parsePaste(lines[i + 1]))
         i++ 
       }
-      if (lines[i] == 'prompt:') {
-        actions.push({ action: 'prompt', data: lines[i + 1] })
-        i++
-      }
-      if (lines[i] == 'scroll_lines:') {
-        actions.push({ action: 'scroll_lines', data: lines[i + 1] })
-        i++
-      }
-    }
-    console.log(actions)
+        if (lines[i] == 'prompt:') {
+          actions.push({ action: 'prompt', data: lines[i + 1] })
+          i++
+        }
+          if (lines[i] == 'scroll_lines:') {
+            actions.push({ action: 'scroll_lines', data: lines[i + 1] })
+            i++
+          }
+  }
+  console.log(actions)
 
-    runScenario(actions) 
-  };
-  reader.readAsText(file);
-}
+  runScenario(actions) 
+};
 
 const pressEnter = () => {
   term.write('\n');
@@ -423,4 +417,7 @@ window.addEventListener('load', () => {
     }
     term.write(key.key);
   });
+  setTimeout(() => {
+    startScenario()
+  }, 2000)
 })
