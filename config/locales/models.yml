@@ -112,6 +112,10 @@ ru:
       courses/video:
         comments: Комментарии
         auto_estimated_time: Предварительная оценка длительности видео
+        course_link: Курс
+        lesson_link: Урок
+        time_logged: Потраченное время
+        duration: Предварительная оценка длительности видео
       courses/task:
         position: Номер
         text: Текст задания
