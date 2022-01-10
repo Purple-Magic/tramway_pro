@@ -27,7 +27,11 @@ class Courses::VideoDecorator < ApplicationDecorator
 
   def auto_estimated_time
     coefficients = Courses::Video.where.not(result_duration: nil).map do |video|
-      video.minutes_of(:result_duration).to_f / video.text.split(' ').count
+      if video.result_duration.present?
+        video.minutes_of(:result_duration).to_f / video.text.split(' ').count
+      else
+        0
+      end
     end
     average_duration_by_words = coefficients.sum / coefficients.count
     "#{(object.text.split(' ').count * average_duration_by_words).round(2)}m"
