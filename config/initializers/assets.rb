@@ -15,6 +15,7 @@ Rails.application.config.assets.precompile += [
   '*.ttf',
   '*.otf',
   'node_modules/*',
+  'node_modules/**/*.css',
   'engineervol/web/welcome.css',
   'purple_magic/web/welcome.css',
   'red_magic/web/welcome.css',
@@ -23,5 +24,6 @@ Rails.application.config.assets.precompile += [
   'red_magic/podcasts/highlights.css',
   'red_magic/admin/photos.css',
   'shared/timeline.css',
-  'kalashnikovisme/courses.css'
+  'kalashnikovisme/courses.css',
+  'kalashnikovisme/xterm.css'
 ]

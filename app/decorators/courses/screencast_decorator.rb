@@ -23,12 +23,16 @@ class Courses::ScreencastDecorator < Tramway::Core::ApplicationDecorator
 
   def preview
     content_tag(:div) do
+      concat(link_to('#', id: :run_scenario, class: 'btn btn-success') do
+        'Run scenario'
+      end)
       concat(content_tag(:span, id: :scenario, style: 'display: none') do
         object.scenario
       end)
       concat(content_tag(:div, id: :terminal) {})
       concat(content_tag(:span, id: :timer) {})
       concat javascript_pack_tag :application
+      concat stylesheet_link_tag '/assets/kalashnikovisme/xterm'
     end
   end
 

@@ -417,7 +417,10 @@ window.addEventListener('load', () => {
     }
     term.write(key.key);
   });
-  setTimeout(() => {
+
+  const button = document.getElementById('run_scenario')
+  button.addEventListener('click', (e) => {
+    e.preventDefault()
     startScenario()
-  }, 2000)
+  })
 })
