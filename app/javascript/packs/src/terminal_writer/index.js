@@ -1,3 +1,4 @@
+import { Terminal } from 'xterm'
 let bashPrompt = '~:'
 let term = new Terminal({ cols: 120, rows: 26, fontSize: '30' });
 const typingTimeout = 100

@@ -18,6 +18,16 @@ class Courses::ScreencastDecorator < Tramway::Core::ApplicationDecorator
   def scenario
     raw object.scenario.gsub("\n", '<br/>')
   end
+  
+  include Webpacker::Helper
+
+  def preview
+    content_tag(:div) do
+      concat(content_tag(:div, id: :terminal))
+      concat(content_tag(:span, id: :timer))
+      concat javascript_pack_tag :application
+    end
+  end
 
   class << self
     def collections
@@ -39,6 +49,7 @@ class Courses::ScreencastDecorator < Tramway::Core::ApplicationDecorator
         :project_id,
         :video_id,
         :scenario,
+        :preview,
         :created_at,
         :updated_at,
       ]

@@ -21,7 +21,8 @@
     "requirejs": "latest",
     "snake-case": "^3.0.4",
     "styled-components": "^5.2.3",
-    "underscore": "^1.12.0"
+    "underscore": "^1.12.0",
+    "xterm": "latest"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.11.2"
