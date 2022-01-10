@@ -52,4 +52,9 @@ class Courses::Video < ApplicationRecord
 
     video_state.to_sym
   end
+
+  def minutes_of(duration_type)
+    dur = public_send duration_type
+    dur.present? ? dur.gsub('m', '').to_i : 0
+  end
 end
