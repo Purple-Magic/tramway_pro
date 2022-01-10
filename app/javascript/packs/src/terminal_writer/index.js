@@ -1,5 +1,6 @@
 import { Terminal } from 'xterm'
 import _ from 'underscore'
+import { vimStart } from './vim'
 
 let bashPrompt = '~:'
 let term = new Terminal({ cols: 120, rows: 26, fontSize: '30' });
@@ -359,40 +360,54 @@ const startScenario = (e) => {
   var lines = scenario.split("\n")
   let actions = []
   for (var i = 0; i < lines.length; i++) {
-    if (lines[i] == 'input:') {
-      actions.push(parseInput(lines[i + 1]))
-      i++
-    }
-      if (lines[i] == 'output:') {
+    switch(lines[i]) {
+      case 'input:': {
+        actions.push(parseInput(lines[i + 1]))
+        i++
+        break
+      }
+      case 'output:': {
         actions.push(parseOutput(lines, i))
+        break
       }
-//      if (lines[i] == 'audio:') {
-//        const audio = document.createElement('audio')
-//        audio.autoplay = true
-//        const source = document.createElement('source')
-//        source.src = `./scenarios/${lines[i + 1]}`
-//        audio.appendChild(source)
-//        const body = document.getElementById('body')
-//        body.appendChild(audio)
-//      }
-      if (lines[i] == 'delay:') {
+      case 'audio:': {
+        const audio = document.createElement('audio')
+        audio.autoplay = true
+        const source = document.createElement('source')
+        source.src = `./scenarios/${lines[i + 1]}`
+        audio.appendChild(source)
+        const body = document.getElementById('body')
+        body.appendChild(audio)
+        break
+      }
+      case 'delay:': {
         actions.push({ action: 'delay', data: parseInt(lines[i + 1]) })
+        break
       }
-      if (lines[i] == 'clear:') {
+      case 'clear:': {
         actions.push({ action: 'clear' })
+        break
       }
-      if (lines[i] == 'paste:') {
+      case 'paste:': {
         actions.push(parsePaste(lines[i + 1]))
         i++ 
+        break
       }
-        if (lines[i] == 'prompt:') {
-          actions.push({ action: 'prompt', data: lines[i + 1] })
-          i++
-        }
-          if (lines[i] == 'scroll_lines:') {
-            actions.push({ action: 'scroll_lines', data: lines[i + 1] })
-            i++
-          }
+      case 'prompt:': {
+        actions.push({ action: 'prompt', data: lines[i + 1] })
+        i++
+        break
+      }
+      case 'scroll_lines:': {
+        actions.push({ action: 'scroll_lines', data: lines[i + 1] })
+        i++
+        break
+      }
+      case 'plugin:': {
+        console.log('hui')
+        break
+      }
+    }
   }
   console.log(actions)
 
