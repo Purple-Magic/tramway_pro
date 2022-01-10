@@ -33,8 +33,10 @@ class Courses::VideoDecorator < ApplicationDecorator
         0
       end
     end
-    average_duration_by_words = coefficients.sum / coefficients.count
-    "#{(object.text.split(' ').count * average_duration_by_words).round(2)}m"
+    if coefficients.count > 1
+      average_duration_by_words = coefficients.sum / coefficients.count
+      "#{(object.text.split(' ').count * average_duration_by_words).round(2)}m"
+    end
   end
 
   class << self
