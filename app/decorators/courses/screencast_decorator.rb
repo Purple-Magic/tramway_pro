@@ -26,6 +26,7 @@ class Courses::ScreencastDecorator < Tramway::Core::ApplicationDecorator
       concat(link_to('#', id: :run_scenario, class: 'btn btn-success') do
         'Run scenario'
       end)
+      concat(content_tag(:br))
       concat(content_tag(:span, id: :scenario, style: 'display: none') do
         object.scenario
       end)
