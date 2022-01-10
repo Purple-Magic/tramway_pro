@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220110040715) do
+ActiveRecord::Schema.define(version: 20220110064427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -264,6 +264,14 @@ ActiveRecord::Schema.define(version: 20220110040715) do
     t.integer "chapter_id"
   end
 
+  create_table "chatquestulsk_games", force: :cascade do |t|
+    t.text "area"
+    t.integer "bot_telegram_user_id"
+    t.text "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
@@ -327,6 +335,16 @@ ActiveRecord::Schema.define(version: 20220110040715) do
     t.datetime "deleted_at"
   end
 
+  create_table "courses_screencasts", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "video_id"
+    t.text "scenario"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.text "state"
+  end
+
   create_table "courses_tasks", force: :cascade do |t|
     t.integer "lesson_id"
     t.integer "position"
@@ -365,6 +383,17 @@ ActiveRecord::Schema.define(version: 20220110040715) do
     t.text "duration"
     t.datetime "deleted_at"
     t.text "result_duration"
+  end
+
+  create_table "elections_candidates", force: :cascade do |t|
+    t.text "full_name"
+    t.text "description"
+    t.integer "area"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "consignment"
+    t.text "state"
+    t.integer "project_id"
   end
 
   create_table "estimation_coefficients", force: :cascade do |t|
