@@ -5,6 +5,7 @@ class Courses::VideoDecorator < ApplicationDecorator
   decorate_association :comments, as: :associated
   decorate_association :lesson
   decorate_association :time_logs, as: :associated
+  decorate_association :screencasts, as: :video
 
   delegate_attributes(
     :id,
@@ -65,7 +66,7 @@ class Courses::VideoDecorator < ApplicationDecorator
     end
 
     def show_associations
-      %i[comments time_logs]
+      %i[comments time_logs screencasts]
     end
 
     def list_filters
