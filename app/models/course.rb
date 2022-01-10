@@ -20,7 +20,7 @@ class Course < ApplicationRecord
 
   def video_duration
     all_minutes = videos.sum do |video|
-      video.duration.present? ? video.duration.gsub('m', '').to_i : 0
+      video.minutes_of :duration
     end
     time_view_by all_minutes
   end

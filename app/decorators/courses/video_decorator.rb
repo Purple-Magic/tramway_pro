@@ -14,8 +14,24 @@ class Courses::VideoDecorator < ApplicationDecorator
     :created_at,
     :updated_at,
     :progress_status,
-    :duration
+    :duration,
+    :result_duration
   )
+
+  def course_link
+    link_to(
+      lesson.topic.course.title,
+      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.lesson.topic.course_id, model: 'Course')
+    )
+  end
+
+  def auto_estimated_time
+    coefficients = Courses::Video.where.not(result_duration: nil).map do |video|
+      video.minutes_of(:result_duration).to_f / video.text.split(' ').count
+    end
+    average_duration_by_words = coefficients.sum / coefficients.count
+    "#{object.text.split(' ').count * average_duration_by_words}m"
+  end
 
   class << self
     def collections
@@ -30,9 +46,11 @@ class Courses::VideoDecorator < ApplicationDecorator
     def show_attributes
       %i[
         id
+        course_link
         lesson_link
         time_logged
         duration
+        auto_estimated_time
         text
         created_at
         updated_at
@@ -134,4 +152,5 @@ data: { toggle: :popover, html: true, content: comment_html }) do
       :success
     end
   end
+
 end
