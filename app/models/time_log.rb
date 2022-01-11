@@ -21,7 +21,7 @@ class TimeLog < ApplicationRecord
       when 'm'
         sum + number
       end
-    end
+    end || 0
   end
   # :reek:FeatureEnvy { enabled: true }
 end
