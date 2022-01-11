@@ -1,6 +1,5 @@
 import { Terminal } from 'xterm'
 import _ from 'underscore'
-import { vimStart } from './vim'
 
 let bashPrompt = '~:'
 let term = new Terminal({ cols: 120, rows: 26, fontSize: '30' });
