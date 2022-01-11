@@ -15,9 +15,10 @@ class TimeLogDecorator < ApplicationDecorator
   )
 
   decorate_association :associated
+  decorate_association :user
 
   def title
-    "#{associated.model.class} ##{associated.id} - #{object.created_at.strftime('%d.%m.%Y')}"
+    "#{user.title} | #{associated.title} - #{object.created_at.strftime('%d.%m.%Y')}"
   end
 
   class << self
