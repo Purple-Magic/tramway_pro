@@ -404,7 +404,6 @@ const startScenario = (e) => {
         break
       }
       case 'plugin:': {
-        console.log('hui')
         break
       }
     }
