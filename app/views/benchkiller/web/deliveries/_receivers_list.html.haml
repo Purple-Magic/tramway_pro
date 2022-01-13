@@ -2,7 +2,8 @@
   - @receivers.each do |receiver|
     - telegram_user = receiver.message.user
     - benchkiller_user = Benchkiller::User.find_by(bot_telegram_user_id: telegram_user.id)
-    %li.list-group-item
-      = "@#{telegram_user.username}"
-      - if benchkiller_user.companies.any?
-        = " | #{benchkiller_user.companies.first.title}"
+    - if benchkiller_user.present?
+      %li.list-group-item
+        = "@#{telegram_user.username}"
+        - if benchkiller_user.companies.any?
+          = " | #{benchkiller_user.companies.first.title}"
