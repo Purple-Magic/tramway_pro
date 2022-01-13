@@ -34,5 +34,11 @@ class Benchkiller::Web::OffersController < Benchkiller::Web::ApplicationControll
     offers = offers.where 'created_at < ?', params[:end_date].to_date if params[:end_date].present?
     @full_offers_collection = offers.approved.order(created_at: :desc)
     @offers = ::Benchkiller::OfferDecorator.decorate @full_offers_collection.page params[:page]
+    @text = case params[:collection]
+            when 'lookfor'
+              'Ниже отображаются посты, в которых участники сообщества ищут разработчиков на свои проекты'
+            when 'available'
+              'Ниже отображаются посты, в которых участники сообщества предлагают своих разработчиков'
+            end
   end
 end

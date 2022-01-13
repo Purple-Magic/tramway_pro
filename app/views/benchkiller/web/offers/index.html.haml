@@ -7,11 +7,11 @@
       Поиск
     = form_tag public_send(current_path_method), method: :get do |f|
       .mb-3
-        = label_tag 'Запрос'
-        = text_field_tag :search, params[:search], class: 'text form-control'
+        = text_field_tag :search, params[:search], class: 'text form-control', placeholder: 'Введите текст для поиска'
       .mb-3
         = label_tag 'Регионы сотрудничества'
         = select_tag :regions, options_for_select([ 'Все регионы', "РФ", "РБ", "Украина"], params[:regions]), class: 'form-select form-control'
+      = label_tag 'Период публикации'
       .mb-3{ style: 'display: flex; flex-direction: row; justify-content: space-between' }
         .mr-2
           = label_tag 'От'
@@ -30,14 +30,14 @@
   .alert.alert-success.fade.show{ role: :alert }
     %span
       Авторизация прошла успешно
-    %button.close{ data: { dismiss: :alert }, aria: { label: 'Close'} }
+    %button.close{ data: { dismiss: :alert }, aria: { label: 'Close' } }
       %span{ aria: { hidden: true } }
         &times;
 - when 'success_started_delivery'
   .alert.alert-success.fade.show{ role: :alert }
     %span
       Рассылка успешно запущена
-    %button.close{ data: { dismiss: :alert }, aria: { label: 'Close'} }
+    %button.close{ data: { dismiss: :alert }, aria: { label: 'Close' } }
       %span{ aria: { hidden: true } }
         &times;
 - when 'no_offer_checked'
@@ -48,18 +48,22 @@
       %span{ aria: { hidden: true } }
         &times;
 = form_tag new_benchkiller_web_delivery_path, method: :get do |f|
-  %h1.mb-4{ style: 'display: flex; flex-direction: row; justify-content: space-between' }
-    Проекты и команды
+  %h1{ style: 'display: flex; flex-direction: row; justify-content: space-between' }
+    Поиск по постам
     = submit_tag 'Сделать рассылку', class: 'btn btn-primary mb-4'
   %ul.nav.nav-tabs
     %li.nav-item
       - on_lookfor_tab = params[:collection].to_s.in?([ 'lookfor' ])
-      - lookfor_tab_name = on_lookfor_tab ? "Проекты (#{@full_offers_collection.count})" : 'Проекты'
+      - lookfor_tab_name = on_lookfor_tab ? "lookfor (#{@full_offers_collection.count})" : 'lookfor'
       = link_to lookfor_tab_name, public_send(current_path_method, { collection: :lookfor }), class: "nav-link #{on_lookfor_tab ? :active : ''}"
     %li.nav-item
       - on_available_tab = params[:collection].in?([ 'available' ])
-      - available_tab_name = on_available_tab ? "Команды (#{@full_offers_collection.count})" : 'Команды'
+      - available_tab_name = on_available_tab ? "available (#{@full_offers_collection.count})" : 'available'
       = link_to available_tab_name, public_send(current_path_method, { collection: :available }), class: "nav-link #{on_available_tab ? :active : ''}"
+  .card{ style: 'padding: 1rem' }
+    %b
+      = fa_icon 'info-circle'
+      = @text
   %table.table.table-striped.table-bordered
     %thead
       %tr
@@ -84,11 +88,12 @@
                       %span
                         На Benchkiller с
                         = " "
-                        = record.created_at.strftime('%d.%m.%Y')
-                = link_to benchkiller_web_company_path(record.company.uuid), class: 'btn btn-primary btn-lg', style: 'height: 40px' do
-                  = fa_icon :share
+                        = record.created_at.in_time_zone('Moscow').strftime('%d.%m.%Y')
+                = link_to 'Карточка компании', benchkiller_web_company_path(record.company.uuid), class: 'btn btn-primary'
               %hr
             = record.text
           %td
             = record.created_at.strftime('%d.%m.%Y %H:%M')
-  = paginate @offers, theme: 'twitter-bootstrap-4'
+  %div{ style: 'display: flex; justify-content: space-between' }
+    = paginate @offers, theme: 'twitter-bootstrap-4'
+    = submit_tag 'Сделать рассылку', class: 'btn btn-primary mb-4'
