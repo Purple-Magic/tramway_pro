@@ -86,7 +86,7 @@ class Benchkiller::CompanyDecorator < ApplicationDecorator
 
   class << self
     def collections
-      %i[unviewed approved declined all]
+      %i[all unviewed approved declined]
     end
 
     def list_attributes
