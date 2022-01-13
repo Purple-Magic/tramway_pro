@@ -58,7 +58,7 @@ jobs:
           type: ${{ job.status }}
           job_name: '*Tramway Pro Smell Check*'
           mention: 'here'
-          channel: '#purplemagic'
+          channel: 'tramway_pro'
           url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
           commit: true
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -91,7 +91,7 @@ jobs:
           type: ${{ job.status }}
           job_name: '*Tramway Pro Linter*'
           mention: 'here'
-          channel: '#purplemagic'
+          channel: 'tramway_pro'
           url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
           commit: true
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -146,7 +146,7 @@ jobs:
           type: ${{ job.status }}
           job_name: '*Tramway Pro Tests*'
           mention: 'here'
-          channel: '#purplemagic'
+          channel: 'tramway_pro'
           url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
           commit: true
           token: ${{ secrets.GITHUB_TOKEN }}
