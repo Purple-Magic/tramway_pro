@@ -40,6 +40,10 @@ class Courses::VideoDecorator < ApplicationDecorator
     end
   end
 
+  def url
+    link_to object.url, object.url  
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
@@ -58,6 +62,7 @@ class Courses::VideoDecorator < ApplicationDecorator
         time_logged
         duration
         auto_estimated_time
+        url
         text
         created_at
         updated_at
