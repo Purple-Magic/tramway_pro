@@ -42,7 +42,7 @@ class Courses::VideoDecorator < ApplicationDecorator
 
   def url
     if object.url.present?
-      link_to object.url, object.url  
+      link_to object.url, object.url, target: '_blank'
     end
   end
 
