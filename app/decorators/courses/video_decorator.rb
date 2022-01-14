@@ -41,7 +41,7 @@ class Courses::VideoDecorator < ApplicationDecorator
   end
 
   def url
-    if url.present?
+    if object.url.present?
       link_to object.url, object.url  
     end
   end
