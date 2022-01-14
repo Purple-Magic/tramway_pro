@@ -7,14 +7,19 @@ module Courses::DecoratorHelpers::Data
         'Количество видео'
       end)
       concat(th do
-        'Продолжительность видео'
+        'Предположительная продолжительность видео'
       end)
       concat(th do
-        'Количество задач'
+        'Отснято'
       end)
-      concat(th do
-        'Продолжительность задач'
-      end)
+      if object.tasks.any?
+        concat(th do
+          'Количество задач'
+        end)
+        concat(th do
+          'Продолжительность задач'
+        end)
+      end
     end)
   end
 
@@ -24,14 +29,19 @@ module Courses::DecoratorHelpers::Data
         object.videos.count.to_s
       end)
       concat(td do
-        object.video_duration
+        object.video_duration_for(duration: :duration)
       end)
       concat(td do
-        object.tasks.count.to_s
+        object.video_duration_for(duration: :result_duration)
       end)
-      concat(td do
-        object.tasks_duration
-      end)
+      if object.tasks.any?
+        concat(td do
+          object.tasks.count.to_s
+        end)
+        concat(td do
+          object.tasks_duration
+        end)
+      end
     end)
   end
 end
