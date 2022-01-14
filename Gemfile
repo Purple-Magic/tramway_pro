@@ -41,6 +41,7 @@ gem 'tramway-user', '2.1.4'
 
 gem 'aasm'
 gem 'actionview', '>= 5.1.6.2'
+gem 'active_median'
 gem 'active_model_serializers', '0.10.12'
 gem 'airbrake', '~> 5.0'
 gem 'audited', '>= 4.8.0'

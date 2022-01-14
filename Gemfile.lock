@@ -59,6 +59,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_median (0.2.8)
+      activesupport (>= 5)
     active_model_serializers (0.10.12)
       actionpack (>= 4.1, < 6.2)
       activemodel (>= 4.1, < 6.2)
@@ -642,6 +644,7 @@ PLATFORMS
 DEPENDENCIES
   aasm
   actionview (>= 5.1.6.2)
+  active_median
   active_model_serializers (= 0.10.12)
   airbrake (~> 5.0)
   audited (>= 4.8.0)
