@@ -32,7 +32,11 @@ module Courses::DecoratorHelpers::Tree
     concat(content_tag(:li, class: :bottom) do
       link_to video.link, class: video.progress_status do
         concat(content_tag(:span) do
-          video.title
+          if video.object.uploaded?
+            "👍 | #{video.title}"
+          else
+            video.title
+          end
         end)
         concat(content_tag(:span) do
           video.release_date

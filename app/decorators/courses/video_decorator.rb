@@ -164,6 +164,8 @@ data: { toggle: :popover, html: true, content: comment_html }) do
       :primary
     when :finish
       :success
+    when :upload
+      :primary
     end
   end
 
