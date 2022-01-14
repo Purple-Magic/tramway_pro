@@ -22,6 +22,7 @@ class Courses::Video < ApplicationRecord
     state :written
     state :filmed
     state :finished
+    state :uploaded
 
     event :write do
       transitions from: :ready, to: :written
@@ -33,6 +34,10 @@ class Courses::Video < ApplicationRecord
 
     event :finish do
       transitions from: :filmed, to: :finished
+    end
+    
+    event :upload do
+      transitions from: :finished, to: :uploaded
     end
   end
 

@@ -33,6 +33,7 @@ ru:
           write: Сценарий написан
           shoot: Отснят
           finish: Закончен
+          upload: Загружён
     courses/task:
       preparedness_state:
         events:
