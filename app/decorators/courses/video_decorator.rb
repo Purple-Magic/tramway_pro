@@ -63,6 +63,7 @@ class Courses::VideoDecorator < ApplicationDecorator
         lesson_link
         time_logged
         duration
+        result_duration
         auto_estimated_time
         url
         text
