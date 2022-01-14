@@ -35,8 +35,7 @@ class Courses::VideoDecorator < ApplicationDecorator
       end
     end
     if coefficients.count > 1
-      average_duration_by_words = coefficients.sum / coefficients.count
-      "#{(object.text.split(' ').count * average_duration_by_words).round(2)}m"
+      "#{(object.text.split(' ').count * coefficients.median).round(2)}m"
     end
   end
 
@@ -169,5 +168,4 @@ data: { toggle: :popover, html: true, content: comment_html }) do
       :primary
     end
   end
-
 end
