@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Courses::VideoForm < Tramway::Core::ApplicationForm
-  properties :text, :project_id, :position, :release_date, :duration, :result_duration
+  properties :text, :project_id, :position, :release_date, :duration, :result_duration, :url
 
   association :lesson
 
@@ -12,7 +12,8 @@ class Admin::Courses::VideoForm < Tramway::Core::ApplicationForm
         position: :numeric,
         release_date: :date_picker,
         duration: :string,
-        result_duration: :string
+        result_duration: :string,
+        url: :string
     end
   end
 end
