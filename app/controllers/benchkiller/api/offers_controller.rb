@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Benchkiller::Api::OffersController < Benchkiller::Api::ApplicationController
-  before_action :authenticate_benchkiller_user
-
   def index
     params[:collection] ||= :lookfor
     offers_ids = if params[:collection] == 'all'

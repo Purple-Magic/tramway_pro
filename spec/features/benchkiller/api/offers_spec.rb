@@ -7,6 +7,7 @@ describe 'Benchkiller Offers' do
 
   let(:benchkiller_user) { create :benchkiller_user, password: '123456789' }
   let(:headers) do
+    post '/benchkiller/api/user_tokens', params: { auth: { login: benchkiller_user.username, password: '123456789' }  }
     token = Knock::AuthToken.new(payload: { sub: benchkiller_user.uuid }).token
     { 'Authorization': "Bearer #{token}" }
   end

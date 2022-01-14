@@ -276,7 +276,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json-schema (2.8.1)
       addressable (>= 2.4)
-    json_api_test_helpers (1.2.1.1)
+    json_api_test_helpers (1.2.1.2)
     jsonapi-renderer (0.2.2)
     jwt (1.5.6)
     kaminari (1.2.2)
@@ -678,7 +678,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 2.5)
   jquery-rails
-  json_api_test_helpers (= 1.2.1.1)
+  json_api_test_helpers (= 1.2.1.2)
   json_matchers!
   kaminari
   knock
