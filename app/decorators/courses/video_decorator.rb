@@ -110,10 +110,10 @@ class Courses::VideoDecorator < ApplicationDecorator
   def additional_buttons
     add_scenario_step_url = Tramway::Admin::Engine.routes.url_helpers.new_record_path(
       model: 'Courses::Comment',
-      'courses/comment' => { video: object.id }, redirect: "/admin/records/#{object.id}?model=Courses::Video"
+      'courses/comment' => { associated_type: object.class.to_s, associated: object.id }, redirect: "/admin/records/#{object.id}?model=Courses::Video"
     )
 
-    { show: [{ url: add_scenario_step_url, inner: -> { fa_icon :plus }, color: :success }] }
+    { show: [{ url: add_scenario_step_url, inner: -> { fa_icon 'comment' }, color: :success }] }
   end
 
   def link
