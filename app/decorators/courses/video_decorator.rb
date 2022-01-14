@@ -97,7 +97,8 @@ class Courses::VideoDecorator < ApplicationDecorator
 
   def title
     info = "#{object.comments.count} comments | #{object.comments.where(comment_state: :done).count} comments done"
-    "🎥 Видео #{lesson.topic.position}-#{lesson.position}-#{position} | #{info} | #{object.duration}"
+    duration = object.result_duration.present? ? object.result_duration : object.duration
+    "🎥 Видео #{lesson.topic.position}-#{lesson.position}-#{position} | #{info} | #{duration}"
   end
 
   def release_date

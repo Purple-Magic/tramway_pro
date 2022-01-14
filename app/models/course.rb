@@ -18,9 +18,9 @@ class Course < ApplicationRecord
 
   include Concerns::Time
 
-  def video_duration
+  def video_duration_for(duration:)
     all_minutes = videos.sum do |video|
-      video.minutes_of :duration
+      video.minutes_of duration
     end
     time_view_by all_minutes
   end
