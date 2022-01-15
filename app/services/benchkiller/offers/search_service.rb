@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Benchkiller::Offers::SearchService
   attr_reader :argument, :current_collection, :search_type
 
@@ -53,6 +55,7 @@ class Benchkiller::Offers::SearchService
   end
 
   def period_search
-    current_collection.where 'created_at > ? AND created_at < ?', argument[:begin_date].to_date, argument[:end_date].to_date
+    current_collection.where 'created_at > ? AND created_at < ?', argument[:begin_date].to_date,
+      argument[:end_date].to_date
   end
 end
