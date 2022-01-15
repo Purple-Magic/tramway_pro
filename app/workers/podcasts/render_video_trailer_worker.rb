@@ -11,8 +11,6 @@ class Podcasts::RenderVideoTrailerWorker < ApplicationWorker
     @directory = episode.prepare_directory
     @directory = @directory.gsub('//', '/')
     render_trailer episode
-    send_notification_to_chat episode.podcast.chat_id,
-      notification(:video_trailer, :finished, file_url: episode.trailer_video.url)
   rescue StandardError => error
     Rails.env.development? ? puts(error) : Airbrake.notify(error)
   end
