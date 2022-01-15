@@ -9,6 +9,13 @@ class Benchkiller::Offer < ApplicationRecord
   scope :declined, -> { where approval_state: :declined }
   scope :unviewed, -> { where approval_state: :unviewed }
 
+  AVAILABLE_SCOPES = %i[lookfor available].freeze
+  AVAILABLE_SCOPES.each do |scope_name|
+    scope scope_name, lambda {
+      ::Benchkiller::Tag.includes(:offers).find_by(title: scope_name).offers
+    }
+  end
+
   search_by message: [:text]
 
   aasm :approval_state do

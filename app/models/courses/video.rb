@@ -35,7 +35,7 @@ class Courses::Video < ApplicationRecord
     event :finish do
       transitions from: :filmed, to: :finished
     end
-    
+
     event :upload do
       transitions from: :finished, to: :uploaded
     end

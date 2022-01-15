@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :benchkiller_offer, class: 'Benchkiller::Offer' do
     message { create :bot_telegram_message }
+    approval_state { :approved }
 
-    factory :benchkiller_lookfor_offer, traits: [ :lookfor ]
+    factory :benchkiller_lookfor_offer, traits: [:lookfor]
 
     trait :lookfor do
       after :create do |offer|

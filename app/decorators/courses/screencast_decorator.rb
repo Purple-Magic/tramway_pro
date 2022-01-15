@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class Courses::ScreencastDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
   delegate_attributes(
-        :id,
-        :project_id,
-        :video_id,
-        :scenario,
-        :created_at,
-        :updated_at,
+    :id,
+    :project_id,
+    :video_id,
+    :scenario,
+    :created_at,
+    :updated_at
   )
 
   def title
@@ -39,27 +41,27 @@ class Courses::ScreencastDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def collections
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :project_id,
-        :video_id,
-        :scenario,
+      %i[
+        id
+        project_id
+        video_id
+        scenario
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :project_id,
-        :video_id,
-        :scenario,
-        :preview,
-        :created_at,
-        :updated_at,
+      %i[
+        id
+        project_id
+        video_id
+        scenario
+        preview
+        created_at
+        updated_at
       ]
     end
 

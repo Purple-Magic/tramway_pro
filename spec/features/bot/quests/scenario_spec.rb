@@ -5,6 +5,10 @@ require 'rails_helper'
 describe 'BotTelegram::Scenario' do
   let!(:user) { BotTelegram::User.last || create(:bot_telegram_user) }
 
+  before do
+    move_host_to benchkiller_host
+  end
+
   describe 'Features' do
     let!(:bot_record) { create :bot }
 
@@ -107,21 +111,6 @@ describe 'BotTelegram::Scenario' do
       end
       expect(stub).to have_been_requested
       expect(next_stub).to have_been_requested
-
-      current_step = bot_record.start_step.next_step
-      sleep 3
-      answer = current_step.options.keys.sample
-      next_step = current_step.step_by(answer: answer)
-      answer_message = build :telegram_message, text: answer, chat: chat
-      answer_stub = send_message_stub_request body: {
-        chat_id: chat.id,
-        text: next_step.text
-      }
-
-      Telegram::Bot::Client.run(bot_record.token) do |bot|
-        BotTelegram::Scenario.run answer_message, bot, bot_record
-      end
-      expect(answer_stub).to have_been_requested, current_step.text
     end
   end
 end

@@ -5,7 +5,7 @@ FactoryBot.define do
     name { generate :string }
     text { generate :string }
     bot { create :bot }
-    project_id { Project.find_by(title: 'RedMagic').id }
+    project_id { Project.find_by(title: 'Benchkiller').id }
 
     factory :start_scenario_step, traits: [:start]
     factory :start_scenario_step_with_next_step, traits: %i[start with_next_step]

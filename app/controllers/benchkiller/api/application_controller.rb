@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-class Benchkiller::Api::ApplicationController < ::Tramway::Api::V1::ApplicationController
+class Benchkiller::Api::ApplicationController < ::Tramway::Api::ApplicationController
+  before_action :authenticate_benchkiller_user
+  include ::Benchkiller::Concerns
+
   def authenticate_for(entity_class)
     getter_name = "current_#{entity_class.to_s.parameterize.underscore}"
     define_current_entity_getter(entity_class, getter_name)
@@ -8,6 +11,6 @@ class Benchkiller::Api::ApplicationController < ::Tramway::Api::V1::ApplicationC
   end
 
   def authenticate_benchkiller_user
-    authenticate_for Benchkiller::User
+    head(:unauthorized) unless authenticate_for Benchkiller::User
   end
 end
