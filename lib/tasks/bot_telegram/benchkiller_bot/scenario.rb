@@ -9,6 +9,7 @@ require_relative 'action'
 class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
   include ::BotTelegram::BenchkillerBot::Commands
   include ::BotTelegram::BenchkillerBot::AdminFeatures
+  include ::BotTelegram::BenchkillerBot::Concern
 
   BOT_ID = 13
 
@@ -38,9 +39,5 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
         end
       end
     end
-  end
-
-  def i18n_scope(*keys)
-    I18n.t(keys.join('.'), scope: 'benchkiller.bot')
   end
 end
