@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'Benchkiller Offers' do
@@ -7,9 +9,9 @@ describe 'Benchkiller Offers' do
 
   let(:benchkiller_user) { create :benchkiller_user, password: '123456789' }
   let(:headers) do
-    post '/benchkiller/api/user_tokens', params: { auth: { login: benchkiller_user.username, password: '123456789' }  }
+    post '/benchkiller/api/user_tokens', params: { auth: { login: benchkiller_user.username, password: '123456789' } }
     token = json_response[:auth_token][:token]
-    { 'Authorization': "Bearer #{token}" }
+    { Authorization: "Bearer #{token}" }
   end
 
   describe 'Index' do
@@ -24,7 +26,7 @@ describe 'Benchkiller Offers' do
         get '/benchkiller/api/offers', headers: headers
 
         expect(response.status).to eq 200
-      end 
+      end
 
       it 'returns offers collection' do
         get '/benchkiller/api/offers', headers: headers

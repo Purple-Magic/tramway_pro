@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Post generate token', type: :feature do
@@ -9,13 +11,15 @@ RSpec.describe 'Post generate token', type: :feature do
     end
 
     it 'returns created status' do
-      post '/benchkiller/api/user_tokens', params: { auth: { login: benchkiller_user.username, password: '123456789' }  }
+      post '/benchkiller/api/user_tokens',
+        params: { auth: { login: benchkiller_user.username, password: '123456789' } }
 
       expect(response.status).to eq 201
     end
-    
+
     it 'returns token' do
-      post '/benchkiller/api/user_tokens', params: { auth: { login: benchkiller_user.username, password: '123456789' }  }
+      post '/benchkiller/api/user_tokens',
+        params: { auth: { login: benchkiller_user.username, password: '123456789' } }
 
       benchkiller_user.reload
       expect(json_response[:auth_token].present?).to be_truthy

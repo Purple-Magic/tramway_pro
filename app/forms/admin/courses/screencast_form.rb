@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Courses::ScreencastForm < Tramway::Core::ApplicationForm
   properties :project_id, :scenario
 

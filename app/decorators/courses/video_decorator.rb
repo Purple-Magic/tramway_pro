@@ -29,20 +29,16 @@ class Courses::VideoDecorator < ApplicationDecorator
   def auto_estimated_time
     coefficients = Courses::Video.where.not(result_duration: nil).map do |video|
       if video.result_duration.present?
-        video.minutes_of(:result_duration).to_f / video.text.split(' ').count
+        video.minutes_of(:result_duration).to_f / video.text.split.count
       else
         0
       end
     end
-    if coefficients.count > 1
-      "#{(object.text.split(' ').count * coefficients.median).round(2)}m"
-    end
+    "#{(object.text.split.count * coefficients.median).round(2)}m" if coefficients.count > 1
   end
 
   def url
-    if object.url.present?
-      link_to object.url, object.url, target: '_blank'
-    end
+    link_to object.url, object.url, target: '_blank' if object.url.present?
   end
 
   class << self
