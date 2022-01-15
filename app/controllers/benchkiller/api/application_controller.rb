@@ -2,6 +2,7 @@
 
 class Benchkiller::Api::ApplicationController < ::Tramway::Api::ApplicationController
   before_action :authenticate_benchkiller_user
+  include ::Benchkiller::Concerns
 
   def authenticate_for(entity_class)
     getter_name = "current_#{entity_class.to_s.parameterize.underscore}"

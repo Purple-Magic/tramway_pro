@@ -3,7 +3,7 @@
 class Benchkiller::Offers::SearchService
   attr_reader :argument, :current_collection, :search_type
 
-  def initialize(argument:, current_collection:, search_type:)
+  def initialize(argument, current_collection, search_type)
     @argument = argument
     @current_collection = current_collection
     @search_type = search_type
