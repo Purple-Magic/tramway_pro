@@ -9,6 +9,7 @@ FactoryBot.define do
 
     factory :quest_bot, traits: [:quest]
     factory :bot_with_start_step, traits: [:with_start_step]
+    factory :benchkiller_bot, traits: [:benchkiller]
 
     trait :quest do
       steps = YAML.load_file("#{Rails.root}/spec/support/quests/test_quest.yml").with_indifferent_access[:steps]
@@ -22,6 +23,15 @@ FactoryBot.define do
     trait :with_start_step do
       after :create do |bot|
         bot.steps.create! attributes_for(:start_scenario_step)
+      end
+    end
+
+    trait :benchkiller do
+      options do
+        {
+          custom: true,
+          scenario: :benchkiller_bot
+        }
       end
     end
   end

@@ -6,7 +6,7 @@ module BotTelegram::BenchkillerBot::Commands
   include BotTelegram::BenchkillerBot
 
   def start(_text: nil)
-    answer = 'Добро пожаловать! Здесь вы можете заполнить данные о своей компании.'
+    answer = i18n_scope :start, :text
     inline_keyboard = [
       ['Изменить название компании', { data: { command: :set_company_name } }],
       ['Изменить адрес сайта', { data: { command: :set_company_url } }],

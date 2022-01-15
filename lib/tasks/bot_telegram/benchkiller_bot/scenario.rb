@@ -39,4 +39,8 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
       end
     end
   end
+
+  def i18n_scope(*keys)
+    I18n.t(keys.join('.'), scope: 'benchkiller.bot')
+  end
 end
