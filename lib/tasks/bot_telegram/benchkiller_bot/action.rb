@@ -37,29 +37,29 @@ class BotTelegram::BenchkillerBot::Action
     end
   end
 
-  def create_company
+  def company
+    benchkiller_user(user).companies.first
+  end
+
+  def create_company(title)
+    unless benchkiller_user(user).present?
+      ::Benchkiller::User.create! bot_telegram_user_id: user.id,
+        project_id: BotTelegram::BenchkillerBot::PROJECT_ID
+    end
+    company = ::Benchkiller::Company.create! title: title,
+      project_id: BotTelegram::BenchkillerBot::PROJECT_ID
+    company.companies_users.create! user_id: benchkiller_user(user).id
+    send_message_to_user i18n_scope(:create_company, title: title)
   end
 
   def set_company_name(company_name)
     if company_name.present?
-      unless benchkiller_user(user).present?
-        ::Benchkiller::User.create! bot_telegram_user_id: user.id,
-          project_id: BotTelegram::BenchkillerBot::PROJECT_ID
-      end
-      company = benchkiller_user(user).companies.first
-      if company.present?
-        old_company_name = company.title
-        if ::Benchkiller::Company.where(title: company_name).empty?
-          company(user).update! title: company_name
-          send_message_to_user i18n_scope(:set_company_name, :success, old_company_name: old_company_name, company_name: company_name)
-        else
-          send_message_to_user 'К сожалению, ваша компания не переименована. Обратитесь в поддержку сервиса Benchkiller'
-        end
+      old_company_name = company.title
+      if ::Benchkiller::Company.where(title: company_name).empty?
+        company.update! title: company_name
+        send_message_to_user i18n_scope(:set_company_name, :success, old_company_name: old_company_name, company_name: company_name)
       else
-        company = ::Benchkiller::Company.create! title: company_name,
-          project_id: BotTelegram::BenchkillerBot::PROJECT_ID
-        company.companies_users.create! user_id: benchkiller_user(user).id
-        send_message_to_user "Ваша компания #{company_name} успешно создана на Benchkiller"
+        send_message_to_user 'К сожалению, ваша компания не переименована. Обратитесь в поддержку сервиса Benchkiller'
       end
       user.set_finished_state_for bot: bot_record
     else
@@ -70,6 +70,7 @@ class BotTelegram::BenchkillerBot::Action
   def set_portfolio_url(portfolio_url)
     if portfolio_url.present? && portfolio_url.scan(URI::DEFAULT_PARSER.make_regexp).present?
       if portfolio_url.match? URI::DEFAULT_PARSER.make_regexp(%w[http https])
+        company.update! portfolio_url: portfolio_url
         send_message_to_user i18n_scope(:set_portfolio_url, :success, portfolio_url: portfolio_url)
       else
         send_message_to_user 'К сожалению, не удалось обновить ссылку на портфолио вашей компании. Обратитесь в поддержку сервиса Benchkiller'
@@ -84,6 +85,7 @@ class BotTelegram::BenchkillerBot::Action
   def set_company_url(company_url)
     if company_url.present? && company_url.scan(URI::DEFAULT_PARSER.make_regexp).present?
       if company_url.match? URI::DEFAULT_PARSER.make_regexp(%w[http https])
+        company.update! company_url: company_url
         send_message_to_user i18n_scope(:set_company_url, :success, company_url: company_url)
       else
         send_message_to_user 'К сожалению, не удалось обновить ссылку на сайт вашей компании. Обратитесь в поддержку сервиса Benchkiller'
@@ -97,6 +99,7 @@ class BotTelegram::BenchkillerBot::Action
 
   def set_email(email)
     if email.present? && email.scan(URI::MailTo::EMAIL_REGEXP).present?
+      company.update! email: email
       send_message_to_user i18n_scope(:set_email, :success, email: email)
       user.set_finished_state_for bot: bot_record
     else
@@ -106,7 +109,7 @@ class BotTelegram::BenchkillerBot::Action
 
   def set_place(place)
     if place.present?
-      if company(user).update place: place
+      if company.update place: place
         send_message_to_user i18n_scope(:set_place, :success, place: place)
       else
         send_message_to_user 'К сожалению, не удалось обновить место расположения вашей команды. Обратитесь в поддержку сервиса Benchkiller'
@@ -120,7 +123,7 @@ class BotTelegram::BenchkillerBot::Action
 
   def set_phone(phone)
     if phone.present?
-      if company(user).update phone: phone
+      if company.update phone: phone
         send_message_to_user i18n_scope(:set_phone, :success, phone: phone)
       else
         send_message_to_user 'К сожалению, не удалось обновить контактный телефон вашей компании. Обратитесь в поддержку сервиса Benchkiller'
@@ -134,7 +137,7 @@ class BotTelegram::BenchkillerBot::Action
 
   def set_regions_to_cooperate(regions_to_cooperate)
     if regions_to_cooperate.present?
-      if company(user).update regions_to_cooperate: regions_to_cooperate
+      if company.update regions_to_cooperate: regions_to_cooperate
         send_message_to_user i18n_scope(:set_regions_to_cooperate, :success, regions_to_cooperate: regions_to_cooperate)
       else
         send_message_to_user 'К сожалению, не удалось обновить Регионы сотрудничества вашей компании. Обратитесь в поддержку сервиса Benchkiller'

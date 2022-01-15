@@ -13,6 +13,8 @@ ru:
       start:
         text: 'Добро пожаловать! Здесь вы можете заполнить данные о своей компании.'
         new_user_text: 'Добро пожаловать! Для начала работы с сервисом Benchkiller вам нужно создать аккаунт вашей компании'
+      create_company:
+        success: "Ваша компания %{title} успешно создана на Benchkiller"
       set_company_name:
         success: "Ваша компания %{old_company_name} переименована в %{company_name} на сервисе Benchkiller"
       set_portfolio_url:
