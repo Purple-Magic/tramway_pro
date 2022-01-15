@@ -36,6 +36,9 @@ class BotTelegram::BenchkillerBot::Action
     end
   end
 
+  def create_company
+  end
+
   def set_company_name(company_name)
     if company_name.present?
       unless benchkiller_user(user).present?
@@ -46,6 +49,7 @@ class BotTelegram::BenchkillerBot::Action
       if company.present?
         old_company_name = company.title
         if ::Benchkiller::Company.where(title: company_name).empty?
+          company(user).update! title: company_name
           send_message_to_user "Ваша компания #{old_company_name} переименована в #{company_name} на сервисе Benchkiller"
         else
           send_message_to_user 'К сожалению, ваша компания не переименована. Обратитесь в поддержку сервиса Benchkiller'
