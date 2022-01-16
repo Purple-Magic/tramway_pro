@@ -13,10 +13,10 @@ describe 'BotTelegram::BenchkillerBot' do
   end
 
   describe 'Callback queries' do
-    ::BotTelegram::BenchkillerBot::Command::COMMANDS.each do |command|
-      unless command.in? [ :start, :create_password, :approve_offer, :decline_offer ]
-        describe command.to_s.capitalize.gsub('_', ' ') do
-          let(:callback_query) { build "#{command}_telegram_callback_query" }
+    ::BotTelegram::BenchkillerBot::Command::COMMANDS.each do |com|
+      unless com.in? [ :start, :create_password, :approve_offer, :decline_offer ]
+        describe com.to_s.capitalize.gsub('_', ' ') do
+          let(:callback_query) { build "#{com}_telegram_callback_query" }
 
           it 'returns message' do
             card = ::Benchkiller::CompanyDecorator.decorate(company).bot_card
@@ -28,14 +28,14 @@ describe 'BotTelegram::BenchkillerBot' do
 
             stubs = [ card_stub ]
 
-            unless command == :get_company_card
-              message = ::BotTelegram::BenchkillerBot::ACTIONS_DATA[command][:message]
+            unless com == :get_company_card
+              message = ::BotTelegram::BenchkillerBot::ACTIONS_DATA[com][:message]
 
-              set_command_stub = send_markdown_message_stub_request body: {
+              set_com_stub = send_markdown_message_stub_request body: {
                 chat_id: chat.telegram_chat_id,
                 text: message
               }
-              stubs << set_command_stub
+              stubs << set_com_stub
             end
 
             Telegram::Bot::Client.run(bot_record.token) do |bot|
@@ -55,13 +55,13 @@ describe 'BotTelegram::BenchkillerBot' do
           end
         end
 
-        unless command == :get_company_card
-          describe "Full #{command.to_s.capitalize.gsub('_', ' ')}" do
-            let(:callback_query) { build "#{command}_telegram_callback_query" }
-            let!(:attribute_name) { command.to_s.gsub('set_', '') }
+        unless com == :get_company_card
+          describe "Full #{com.to_s.capitalize.gsub('_', ' ')}" do
+            let(:callback_query) { build "#{com}_telegram_callback_query" }
+            let!(:attribute_name) { com.to_s.gsub('set_', '') }
             let!(:argument) do
               attributes = attributes_for :benchkiller_company
-              if command == :set_company_name
+              if com == :set_company_name
                 attributes[:title]
               else
                 attributes[:data][attribute_name.to_sym]
@@ -77,7 +77,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
               send_markdown_message_stub_request body: {
                 chat_id: chat.telegram_chat_id,
-                text: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[command][:message]
+                text: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[com][:message]
               }
 
               Telegram::Bot::Client.run(bot_record.token) do |bot|
@@ -89,84 +89,84 @@ describe 'BotTelegram::BenchkillerBot' do
                   message_object,
                   message_object.user
                 ).run
-
-                message = case command
-                          when :set_company_name
-                            benchkiller_i18n_scope(command, :success, old_company_name: company.title, company_name: argument)
-                          else
-                            benchkiller_i18n_scope(command, :success, attribute_name.to_sym => argument)
-                          end
-
-                stub = send_markdown_message_stub_request body: {
-                  chat_id: chat.telegram_chat_id,
-                  text: message
-                }
-
-                Telegram::Bot::Client.run(bot_record.token) do |bot|
-                  BotTelegram::BenchkillerBot::Scenario.new(
-                    telegram_message, 
-                    bot,
-                    bot_record,
-                    chat,
-                    message_object,
-                    message_object.user
-                  ).run
-                end
-
-                expect(stub).to have_been_requested
               end
 
-              it 'sets attribute' do
-                send_markdown_message_stub_request body: {
-                  chat_id: chat.telegram_chat_id,
-                  text: ::Benchkiller::CompanyDecorator.decorate(company).bot_card
-                }
+              message = case com
+                        when :set_company_name
+                          benchkiller_i18n_scope(com, :success, old_company_name: company.title, company_name: argument)
+                        else
+                          benchkiller_i18n_scope(com, :success, attribute_name.to_sym => argument)
+                        end
 
-                send_markdown_message_stub_request body: {
-                  chat_id: chat.telegram_chat_id,
-                  text: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[command][:message]
-                }
+              stub = send_markdown_message_stub_request body: {
+                chat_id: chat.telegram_chat_id,
+                text: message
+              }
 
-                Telegram::Bot::Client.run(bot_record.token) do |bot|
-                  BotTelegram::BenchkillerBot::Scenario.new(
-                    callback_query,
-                    bot,
-                    bot_record,
-                    chat,
-                    message_object,
-                    message_object.user
-                  ).run
+              Telegram::Bot::Client.run(bot_record.token) do |bot|
+                BotTelegram::BenchkillerBot::Scenario.new(
+                  telegram_message, 
+                  bot,
+                  bot_record,
+                  chat,
+                  message_object,
+                  message_object.user
+                ).run
+              end
 
-                  message = case command
-                            when :set_company_name
-                              benchkiller_i18n_scope(command, :success, old_company_name: company.title, company_name: argument)
-                            else
-                              benchkiller_i18n_scope(command, :success, attribute_name.to_sym => argument)
-                            end
+              expect(stub).to have_been_requested
+            end
 
-                  send_markdown_message_stub_request body: {
-                    chat_id: chat.telegram_chat_id,
-                    text: message
-                  }
+            it 'sets attribute' do
+              send_markdown_message_stub_request body: {
+                chat_id: chat.telegram_chat_id,
+                text: ::Benchkiller::CompanyDecorator.decorate(company).bot_card
+              }
 
-                  Telegram::Bot::Client.run(bot_record.token) do |bot|
-                    BotTelegram::BenchkillerBot::Scenario.new(
-                      telegram_message, 
-                      bot,
-                      bot_record,
-                      chat,
-                      message_object,
-                      message_object.user
-                    ).run
-                  end
+              send_markdown_message_stub_request body: {
+                chat_id: chat.telegram_chat_id,
+                text: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[com][:message]
+              }
 
-                  company.reload
-                  if command == :set_company_name
-                    expect(company.title).to eq argument
-                  else
-                    expect(company.public_send(attribute_name)).to eq argument
-                  end
-                end
+              Telegram::Bot::Client.run(bot_record.token) do |bot|
+                BotTelegram::BenchkillerBot::Scenario.new(
+                  callback_query,
+                  bot,
+                  bot_record,
+                  chat,
+                  message_object,
+                  message_object.user
+                ).run
+              end
+
+              message = case com
+                        when :set_company_name
+                          benchkiller_i18n_scope(com, :success, old_company_name: company.title, company_name: argument)
+                        else
+                          benchkiller_i18n_scope(com, :success, attribute_name.to_sym => argument)
+                        end
+
+              send_markdown_message_stub_request body: {
+                chat_id: chat.telegram_chat_id,
+                text: message
+              }
+
+              Telegram::Bot::Client.run(bot_record.token) do |bot|
+                BotTelegram::BenchkillerBot::Scenario.new(
+                  telegram_message, 
+                  bot,
+                  bot_record,
+                  chat,
+                  message_object,
+                  message_object.user
+                ).run
+              end
+
+              company.reload
+              if com == :set_company_name
+                expect(company.title).to eq argument
+              else
+                expect(company.public_send(attribute_name)).to eq argument
               end
             end
           end
