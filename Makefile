@@ -1,8 +1,16 @@
 deploy_production:
 	ansible-playbook -i deploy/inventory deploy/deploy.yml
 	RAILS_ENV=production bundle exec rails assets:clean assets:precompile
-	scp -r public/assets tramway@tramway.pro:/srv/tramway_pro/current/public/
-	scp -r public/packs tramway@tramway.pro:/srv/tramway_pro/current/public/
+	tar zcvf assets.tar.gz public/assets/
+	ssh -t tramway@tramway.pro 'mkdir -p /srv/tramway_pro/current/public/assets/'
+	scp assets.tar.gz tramway@tramway.pro:/srv/tramway_pro/current/assets.tar.gz
+	ssh -t tramway@tramway.pro 'cd /srv/tramway_pro/current/ && tar zxvf assets.tar.gz'
+	ssh -t tramway@tramway.pro 'rm /srv/tramway_pro/current/assets.tar.gz'
+	tar zcvf packs.tar.gz public/packs/
+	ssh -t tramway@tramway.pro 'mkdir -p /srv/tramway_pro/current/public/packs/'
+	scp packs.tar.gz tramway@tramway.pro:/srv/tramway_pro/current/packs.tar.gz
+	ssh -t tramway@tramway.pro 'cd /srv/tramway_pro/current/ && tar zxvf packs.tar.gz'
+	ssh -t tramway@tramway.pro 'rm /srv/tramway_pro/current/packs.tar.gz'
 	ansible-playbook -i deploy/inventory deploy/restart.yml
 restart_production:
 	ansible-playbook -i deploy/inventory deploy/restart.yml
