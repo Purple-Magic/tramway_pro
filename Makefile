@@ -1,5 +1,9 @@
 deploy_production:
 	ansible-playbook -i deploy/inventory deploy/deploy.yml
+	RAILS_ENV=production bundle exec rails assets:clean assets:precompile
+	scp -r public/assets tramway@tramway.pro:/srv/tramway_pro/current/public/
+	scp -r public/packs tramway@tramway.pro:/srv/tramway_pro/current/public/
+	ansible-playbook -i deploy/inventory deploy/restart.yml
 restart_production:
 	ansible-playbook -i deploy/inventory deploy/restart.yml
 install:

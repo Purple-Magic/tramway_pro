@@ -1,20 +1,28 @@
 import React from 'react'
 import _ from 'underscore'
 
+const getIds = () => {
+  if (_.isEmpty(window.localStorage.getItem('selectedOffers'))) {
+    _.compact(window.localStorage.getItem('selectedOffers').split(','))
+  } else {
+    []
+  }
+}
+
 class BenchkillerMakeDeliveryButton extends React.Component {
   constructor(props) {
     super(props)
 
     this.pathWithIds = this.pathWithIds.bind(this)
     this.state = {
-      ids: _.compact(window.localStorage.getItem('selectedOffers').split(','))
+      ids: getIds()
     }
   }
 
   componentDidMount() {
     setInterval(() => {
       this.setState({
-        ids: _.compact(window.localStorage.getItem('selectedOffers').split(','))
+        ids: getIds()
       })
     }, 200)
   }
