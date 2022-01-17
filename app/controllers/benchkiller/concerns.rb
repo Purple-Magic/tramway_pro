@@ -15,4 +15,31 @@ module Benchkiller::Concerns
     ).call
     @full_offers_collection = offers.approved.order(created_at: :desc)
   end
+
+  def regions
+    regions = ::Benchkiller::Company.approved.map do |company|
+      if company.regions_to_cooperate.is_a? Array
+        company.regions_to_cooperate
+      end
+    end.flatten.compact.uniq
+    regions_dictionary = {
+      'Россия' => [ 'РФ', 'Российская федерация', 'Russia' ],
+      'Беларусь' => [ 'Республика Беларусь', 'РБ', 'Беларуссия', 'Belarus', 'Белорусь', 'Belarussia' ],
+      'Украина' => [ 'Ukraine', 'UA' ],
+      'Грузия' => [ 'Georgia' ],
+      'США' => [ 'USA' ],
+      'Все регионы' => [ 'Worldwide', 'Все' ]
+    }
+    regions.map do |region|
+      if regions_dictionary.include? region
+        region
+      else
+        regions_dictionary.map do |pair|
+          if pair[1].include? region
+            pair[0]
+          end
+        end.compact.first || region
+      end
+    end.compact.uniq
+  end
 end
