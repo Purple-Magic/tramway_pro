@@ -74,7 +74,7 @@ FactoryBot.define do
     fixture_file_upload('public/1.xlsx', 'xlsx')
   end
   sequence :username do |n|
-    "username#{n}"
+    "#{Faker::Internet.username}_#{n}"
   end
   sequence :quote do |n|
     (1_000 + n).to_s

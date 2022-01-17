@@ -51,11 +51,28 @@ class Benchkiller::Offers::SearchService
   end
 
   def condition_to_period_search?
-    argument[:begin_date].present? && argument[:end_date].present?
+    argument[:period].present? || (argument[:begin_date].present? && argument[:end_date].present?)
   end
 
   def period_search
-    current_collection.where 'created_at > ? AND created_at < ?', argument[:begin_date].to_date,
-      argument[:end_date].to_date
+    if argument[:period]
+      argument[:end_date] = DateTime.now
+      case argument[:period]
+      when 'day'
+        argument[:begin_date] = 1.day.ago
+      when 'week'
+        argument[:begin_date] = 1.week.ago
+      when 'month'
+        argument[:begin_date] = 1.month.ago
+      when 'quarter'
+        argument[:begin_date] = 3.months.ago
+      end
+    end
+
+    current_collection.where(
+      'created_at > ? AND created_at < ?',
+      argument[:begin_date].to_datetime,
+      argument[:end_date].to_datetime
+    )
   end
 end
