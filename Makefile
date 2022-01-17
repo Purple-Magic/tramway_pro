@@ -6,11 +6,13 @@ deploy_production:
 	scp assets.tar.gz tramway@tramway.pro:/srv/tramway_pro/current/assets.tar.gz
 	ssh -t tramway@tramway.pro 'cd /srv/tramway_pro/current/ && tar zxvf assets.tar.gz'
 	ssh -t tramway@tramway.pro 'rm /srv/tramway_pro/current/assets.tar.gz'
+	rm assets.tar.gz
 	tar zcvf packs.tar.gz public/packs/
 	ssh -t tramway@tramway.pro 'mkdir -p /srv/tramway_pro/current/public/packs/'
 	scp packs.tar.gz tramway@tramway.pro:/srv/tramway_pro/current/packs.tar.gz
 	ssh -t tramway@tramway.pro 'cd /srv/tramway_pro/current/ && tar zxvf packs.tar.gz'
 	ssh -t tramway@tramway.pro 'rm /srv/tramway_pro/current/packs.tar.gz'
+	rm packs.tar.gz
 	ansible-playbook -i deploy/inventory deploy/restart.yml
 restart_production:
 	ansible-playbook -i deploy/inventory deploy/restart.yml

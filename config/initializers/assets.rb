@@ -25,5 +25,6 @@ Rails.application.config.assets.precompile += [
   'red_magic/admin/photos.css',
   'shared/timeline.css',
   'kalashnikovisme/courses.css',
-  'kalashnikovisme/xterm.css'
+  'kalashnikovisme/xterm.css',
+  'benchkiller/react-datepicker.css'
 ]
