@@ -46,7 +46,7 @@ class Benchkiller::Offers::SearchService
     users_ids = companies.map(&:users).flatten.map(&:telegram_user).map(&:id)
     offers_ids = current_collection.map do |offer|
       offer if offer.message.user_id.in? users_ids
-    end
+    end.compact
     ::Benchkiller::Offer.where id: offers_ids
   end
 

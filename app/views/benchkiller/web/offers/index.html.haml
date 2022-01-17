@@ -10,7 +10,7 @@
         = text_field_tag :search, params[:search], class: 'text form-control', placeholder: 'Введите текст для поиска'
       .mb-3
         = label_tag 'Регионы сотрудничества'
-        = select_tag :regions, options_for_select(@regions, params[:regions]), class: 'form-select form-control'
+        = select_tag :regions, options_for_select(@regions, params[:regions] || 'Все регионы'), class: 'form-select form-control'
       = label_tag 'Период публикации'
       .mb-3{ style: 'display: flex; flex-direction: row; justify-content: space-between' }
         .mr-2
