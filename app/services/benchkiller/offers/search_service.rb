@@ -40,7 +40,7 @@ class Benchkiller::Offers::SearchService
   end
 
   def regions_search
-    companies = ::Benchkiller::Company.map do |company|
+    companies = ::Benchkiller::Company.all.map do |company|
       company if company.regions_to_cooperate&.include? argument
     end.compact
     users_ids = companies.map(&:users).flatten.map(&:telegram_user).map(&:id)
