@@ -59,6 +59,11 @@
     %b
       = fa_icon 'info-circle'
       = @text
+  - if params[:regions].present? && params[:regions] != 'Все регионы'
+    .card{ style: 'padding: 1rem' }
+      %b
+        = fa_icon 'exclamation'
+        при использовании поиска по региону выводятся только посты пользователей с зарегистрированными в сервисе компаниями , если вы хотите чтобы отображались посты всех пользователей, то в строке региона сотрудничества выберите  "Все регионы"
   %table.table.table-striped.table-bordered
     %thead
       %tr
