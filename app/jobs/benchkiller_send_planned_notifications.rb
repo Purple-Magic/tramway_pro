@@ -8,14 +8,18 @@ class BenchkillerSendPlannedNotifications < ActiveJob::Base
   include ::BotTelegram::BenchkillerBot::Notify
 
   def perform(*_args)
-    time = DateTime.now.in_time_zone('Moscow').strftime('%H:%M')
-    ::Benchkiller::Notification.find_each do |notification|
-      if time == notification.send_at
-        send_notification_to_chat(
-          ::BotTelegram::BenchkillerBot::MAIN_CHAT_ID,
-          notification.text
-        )
+    begin
+      time = DateTime.now.in_time_zone('Moscow').strftime('%H:%M')
+      ::Benchkiller::Notification.find_each do |notification|
+        if time == notification.send_at
+          send_notification_to_chat(
+            ::BotTelegram::BenchkillerBot::MAIN_CHAT_ID,
+            notification.text
+          )
+        end
       end
+    rescue
+      Rails.env.development? ? puts(error) : Airbrake.notify(error)
     end
   end
 end
