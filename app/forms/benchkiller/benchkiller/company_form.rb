@@ -11,7 +11,12 @@ class Benchkiller::Benchkiller::CompanyForm < Tramway::Core::ApplicationForm
         place: :string,
         company_url: :string,
         portfolio_url: :string,
-        regions_to_cooperate: :string
+        regions_to_cooperate: {
+          type: :string,
+          input_options: {
+            placeholder: 'Введите список стран через запятую без пробелов'
+          }
+        }
     end
   end
 end
