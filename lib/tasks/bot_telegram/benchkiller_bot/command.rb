@@ -3,6 +3,7 @@
 class BotTelegram::BenchkillerBot::Command
   COMMANDS = %i[
     start
+    create_company
     set_company_name
     set_company_url
     set_portfolio_url
@@ -24,6 +25,9 @@ class BotTelegram::BenchkillerBot::Command
       @name = COMMANDS.select do |com|
         data[:command] == com.to_s
       end.first
+
+      raise 'There is not such command' unless @name.present?
+
       @argument = data[:argument]
     else
       @name = COMMANDS.map do |com|

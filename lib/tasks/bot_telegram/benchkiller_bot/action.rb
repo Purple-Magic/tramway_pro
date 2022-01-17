@@ -44,11 +44,13 @@ class BotTelegram::BenchkillerBot::Action
   def create_company(title)
     unless benchkiller_user(user).present?
       ::Benchkiller::User.create! bot_telegram_user_id: user.id,
-        project_id: BotTelegram::BenchkillerBot::PROJECT_ID
+        project_id: BotTelegram::BenchkillerBot::PROJECT_ID,
+        password: SecureRandom.hex(16)
     end
     company = ::Benchkiller::Company.create! title: title,
       project_id: BotTelegram::BenchkillerBot::PROJECT_ID
     company.companies_users.create! user_id: benchkiller_user(user).id
+    user.set_finished_state_for bot: bot_record
     send_message_to_user i18n_scope(:create_company, title: title)
   end
 
