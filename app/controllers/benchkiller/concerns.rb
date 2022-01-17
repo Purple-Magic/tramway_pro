@@ -7,6 +7,7 @@ module Benchkiller::Concerns
     offers = Benchkiller::Offers::SearchService.new(params[:regions], offers, :regions).call
     offers = Benchkiller::Offers::SearchService.new(
       {
+        period: params[:period],
         begin_date: params[:begin_date],
         end_date: params[:end_date]
       },

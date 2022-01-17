@@ -64,6 +64,42 @@ describe 'Benchkiller Offers' do
           end
         end
       end
+
+      describe 'Period' do
+        describe 'Day' do
+          let!(:offers) do
+            (1..5).to_a.map do |index|
+              create(:benchkiller_lookfor_offer).tap do |offer|
+                offer.update_column :created_at, DateTime.now - 1.hour
+              end
+            end
+          end
+
+          let!(:old_offers) do
+            (1..5).to_a.map do |index|
+              offer = create :benchkiller_lookfor_offer
+              offer.update_column :created_at, DateTime.now - 2.days
+              offer
+            end
+          end
+
+          it 'returns 5 needed offers' do
+            get '/benchkiller/api/offers', headers: headers, params: { period: 'День' }
+
+            offers.each do |offer|
+              expect(json_response).to have_content offer.message.text
+            end
+          end
+
+          it 'does not return 5 old offers' do
+            get '/benchkiller/api/offers', headers: headers, params: { period: 'День' }
+
+            old_offers.each do |offer|
+              expect(json_response).not_to have_content offer.message.text
+            end
+          end
+        end
+      end
     end
 
     describe 'Unauthorized' do
