@@ -58,14 +58,14 @@ class Benchkiller::Offers::SearchService
     if argument[:period]
       argument[:end_date] = DateTime.now
       case argument[:period]
-      when 'День'
-        argument[:begin_date] = DateTime.now - 1.day
-      when 'Неделя'
-        argument[:begin_date] = DateTime.now - 1.week
-      when 'Месяц'
-        argument[:begin_date] = DateTime.now - 1.month
-      when 'Квартал'
-        argument[:begin_date] = DateTime.now - 3.months
+      when 'day'
+        argument[:begin_date] = 1.day.ago
+      when 'week'
+        argument[:begin_date] = 1.week.ago
+      when 'month'
+        argument[:begin_date] = 1.month.ago
+      when 'quarter'
+        argument[:begin_date] = 3.months.ago
       end
     end
 

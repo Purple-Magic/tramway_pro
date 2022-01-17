@@ -2,8 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import { registerLocale, setDefaultLocale } from  "react-datepicker";
-import ru from 'date-fns/locale/ru';
+import { registerLocale, setDefaultLocale } from  "react-datepicker"
+import ru from 'date-fns/locale/ru'
+import _ from 'underscore'
+
 registerLocale('ru', ru)
 setDefaultLocale('ru');
 
@@ -12,9 +14,9 @@ class BenchkillerPeriodForm extends React.Component {
     super(props)
 
     this.state = {
-      variousPeriodShowState: 'hidden',
-      beginDate: '',
-      endDate: ''
+      variousPeriodShowState: props.params.period === 'various_period' ? 'show' : 'hidden',
+      beginDate: _.isEmpty(props.params.begin_date) ? '' : Date.parse(props.params.begin_date.split('.').reverse().join('-')),
+      endDate: _.isEmpty(props.params.end_date) ? '' : Date.parse(props.params.end_date.split('.').reverse().join('-')),
     }
 
     this.toggle = this.toggle.bind(this)
@@ -59,15 +61,25 @@ class BenchkillerPeriodForm extends React.Component {
       )
     }
 
+    const periods = {
+      day: 'День',
+      week: 'Неделя',
+      month: 'Месяц',
+      quarter: 'Квартал',
+      various_period: 'Произвольный период'
+    }
+
     return (
         <div className='mb-3'>
           <div className='mt-2'>
-            <select onChange={(e) => { this.change(e.target.value) }} name="period" id="period" className="form-select form-control">
-              <option value="day">День</option>
-              <option value="week">Неделя</option>
-              <option value="month">Месяц</option>
-              <option value="quarter">Квартал</option>
-              <option value="various_period">Произвольный период</option>
+            <select onChange={(e) => { this.change(e.target.value) }} defaultValue={this.props.params.period} name="period" id="period" className="form-select form-control">
+              {
+                _.keys(periods).map((key) => {
+                  return (
+                    <option key={key} value={key}>{periods[key]}</option>
+                  )
+                })
+              }
             </select>
           </div>
           { variousPeriodInputs }

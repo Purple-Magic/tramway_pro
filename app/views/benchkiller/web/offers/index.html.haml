@@ -13,7 +13,7 @@
         = label_tag 'Регионы сотрудничества'
         = select_tag :regions, options_for_select(@regions, params[:regions] || 'Все регионы'), class: 'form-select form-control'
       = label_tag 'Период публикации'
-      = react_component('BenchkillerPeriodForm')
+      = react_component('BenchkillerPeriodForm', params: params)
       = hidden_field_tag :collection, params[:collection]
       .mb-3
         = submit_tag 'Поиск', class: 'btn btn-primary mb-4'
