@@ -73,22 +73,18 @@ describe 'Benchkiller Offers' do
         periods = [
           {
             title: :day,
-            param: 'День',
             unaccepting_value: 2.days.ago
           },
           {
             title: :week,
-            param: 'Неделя',
             unaccepting_value: 2.weeks.ago
           },
           {
             title: :month,
-            param:  'Месяц',
             unaccepting_value: 2.months.ago
           },
           {
             title: :quarter,
-            param: 'Квартал',
             unaccepting_value: 4.months.ago
           }
         ]
@@ -112,7 +108,7 @@ describe 'Benchkiller Offers' do
             end
 
             before do
-              get '/benchkiller/api/offers', headers: headers, params: { period: period[:param] }
+              get '/benchkiller/api/offers', headers: headers, params: { period: period[:title] }
             end
 
             it 'returns 5 needed offers' do

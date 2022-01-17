@@ -58,7 +58,7 @@ describe 'BotTelegram::BenchkillerBot' do
               ['Расположение вашей команды', { data: { command: :set_place } }],
               ['Регионы сотрудничества', { data: { command: :set_regions_to_cooperate } }],
               ['Посмотреть карточку компании', { data: { command: :get_company_card } }],
-              ['Создать пароль', { data: { command: :create_password } }]
+              #['Создать пароль', { data: { command: :create_password } }]
             ]
           )
         }

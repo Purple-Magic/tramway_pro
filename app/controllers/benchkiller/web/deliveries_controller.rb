@@ -55,7 +55,7 @@ class Benchkiller::Web::DeliveriesController < Benchkiller::Web::ApplicationCont
   private
 
   def receivers
-    ids = params.keys.map do |key|
+    ids = params[:keys].split(',').map do |key|
       key if key.match?(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/)
     end.compact
     @receivers = Benchkiller::Offer.where(uuid: ids)
