@@ -14,7 +14,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
   describe 'Callback queries' do
     ::BotTelegram::BenchkillerBot::Command::COMMANDS.each do |com|
-      unless com.in? [ :start, :create_password, :approve_offer, :decline_offer ]
+      unless com.in? [ :start, :create_company, :create_password, :approve_offer, :decline_offer ]
         describe com.to_s.capitalize.gsub('_', ' ') do
           let(:callback_query) { build "#{com}_telegram_callback_query" }
 
