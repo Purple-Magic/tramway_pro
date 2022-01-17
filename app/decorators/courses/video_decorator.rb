@@ -73,28 +73,13 @@ class Courses::VideoDecorator < ApplicationDecorator
     end
 
     def list_filters
-      # {
-      #   filter_name: {
-      #     type: :select,
-      #     select_collection: filter_collection,
-      #     query: lambda do |list, value|
-      #       list.where some_attribute: value
-      #     end
-      #   },
-      #   date_filter_name: {
-      #     type: :dates,
-      #     query: lambda do |list, begin_date, end_date|
-      #       list.where 'created_at > ? AND created_at < ?', begin_date, end_date
-      #     end
-      #   }
-      # }
     end
   end
 
   def title
     info = "#{object.comments.count} comments | #{object.comments.where(comment_state: :done).count} comments done"
-    duration = object.result_duration.present? ? object.result_duration : object.duration
-    "🎥 Видео #{lesson.topic.position}-#{lesson.position}-#{position} | #{info} | #{duration}"
+    duration_to_show = object.result_duration.present? ? object.result_duration : object.duration
+    "🎥 Видео #{lesson.topic.position}-#{lesson.position}-#{position} | #{info} | #{duration_to_show}"
   end
 
   def release_date

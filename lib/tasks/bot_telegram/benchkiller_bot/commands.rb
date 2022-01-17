@@ -6,8 +6,8 @@ module BotTelegram::BenchkillerBot::Commands
   include BotTelegram::BenchkillerBot
 
   def start(_text: nil)
-    answer = 'Добро пожаловать! Здесь вы можете заполнить данные о своей компании.'
-    inline_keyboard = [
+    answer = company(user).present? ? i18n_scope(:start, :text) : i18n_scope(:start, :new_user_text)
+    inline_keyboard = company(user).present? ? [
       ['Изменить название компании', { data: { command: :set_company_name } }],
       ['Изменить адрес сайта', { data: { command: :set_company_url } }],
       ['Изменить ссылку на портфолио', { data: { command: :set_portfolio_url } }],
@@ -17,7 +17,10 @@ module BotTelegram::BenchkillerBot::Commands
       ['Регионы сотрудничества', { data: { command: :set_regions_to_cooperate } }],
       ['Посмотреть карточку компании', { data: { command: :get_company_card } }],
       ['Создать пароль', { data: { command: :create_password } }]
+    ] : [
+      ['Создать компанию', { data: { command: :create_company } }],
     ]
+
     message = ::BotTelegram::Custom::Message.new text: answer, inline_keyboard: inline_keyboard
 
     user.set_finished_state_for bot: bot_record
@@ -39,10 +42,24 @@ module BotTelegram::BenchkillerBot::Commands
     end
   end
 
-  def get_company_card(_argument)
-    card = ::Benchkiller::CompanyDecorator.decorate(company(user)).bot_card
+  def create_company(argument)
+    BotTelegram::Users::State.create! user_id: user.id,
+      bot_id: bot_record.id,
+      current_state: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[:create_company][:state]
+    
+    message_to_user(
+      bot.api,
+      ::BotTelegram::BenchkillerBot::ACTIONS_DATA[:create_company][:message],
+      chat.telegram_chat_id
+    )
+  end
 
-    message_to_user bot.api, card, chat.telegram_chat_id
+  def get_company_card(_argument)
+    if company(user).present?
+      card = ::Benchkiller::CompanyDecorator.decorate(company(user)).bot_card
+
+      message_to_user bot.api, card, chat.telegram_chat_id
+    end
   end
 
   def create_password(_argument)

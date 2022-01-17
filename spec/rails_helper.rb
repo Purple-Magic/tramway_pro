@@ -9,6 +9,7 @@ require 'support/errors_helper'
 require 'support/navbar_helper'
 require 'support/tramway_helpers'
 require 'support/telegram_bot_helpers'
+require 'support/benchkiller_helpers'
 require 'json_api_test_helpers'
 require 'rake'
 require 'webmock/rspec'
@@ -30,6 +31,7 @@ RSpec.configure do |config|
   config.include TramwayHelpers
   config.include CapybaraHelpers
   config.include TelegramBotHelpers
+  config.include BenchkillerHelpers
 
   ActiveRecord::Base.logger.level = 1
 

@@ -9,3 +9,23 @@ ru:
       welcome:
         index:
           title: Авторизация
+    bot:
+      start:
+        text: 'Добро пожаловать! Здесь вы можете заполнить данные о своей компании.'
+        new_user_text: 'Добро пожаловать! Для начала работы с сервисом Benchkiller вам нужно создать аккаунт вашей компании'
+      create_company:
+        success: "Ваша компания %{title} успешно создана на Benchkiller"
+      set_company_name:
+        success: "Ваша компания %{old_company_name} переименована в %{company_name} на сервисе Benchkiller"
+      set_portfolio_url:
+        success: "Ссылка на портфолио вашей компании успешно обновлена. Теперь это %{portfolio_url}"
+      set_company_url:
+        success: "Ссылка на сайт вашей компании успешно обновлена. Теперь это %{company_url}"
+      set_email:
+        success: "Контактная почта вашей компании успешно обновлена. Теперь это %{email}"
+      set_place:
+        success: "Место расположения вашей команды успешно обновлено. Теперь это %{place}"
+      set_phone:
+        success: "Контактный телефон вашей компании успешно обновлен. Теперь это %{phone}"
+      set_regions_to_cooperate:
+        success: "Регионы сотрудничества вашей компании успешно обновлены. Теперь это %{regions_to_cooperate}"

@@ -11,6 +11,10 @@ module BotTelegram::BenchkillerBot
   NEED_DEV_CHANNEL = '-1001376858073'
 
   ACTIONS_DATA = {
+    create_company: {
+      message: 'Введите название компании. Для отмены введите /start',
+      state: :waiting_for_create_company
+    },
     set_company_name: {
       message: 'Введите название компании. Для отмены введите /start',
       state: :waiting_for_set_company_name

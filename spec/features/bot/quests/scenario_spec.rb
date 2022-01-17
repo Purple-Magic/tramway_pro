@@ -18,7 +18,7 @@ describe 'BotTelegram::Scenario' do
       describe 'Without a next step' do
         it 'sends correct message' do
           create :start_scenario_step, bot: bot_record
-          stub = send_message_stub_request body: {
+          stub = send_markdown_message_stub_request body: {
             chat_id: start_message.chat.id,
             text: bot_record.start_step.text
           }
@@ -35,11 +35,11 @@ describe 'BotTelegram::Scenario' do
         let!(:start_step) { create :start_scenario_step_with_next_step, bot: bot_record }
 
         it 'waits until next step message' do
-          stub = send_message_stub_request body: {
+          stub = send_markdown_message_stub_request body: {
             chat_id: start_message.chat.id,
             text: bot_record.start_step.text
           }
-          next_step_stub = send_message_stub_request body: {
+          next_step_stub = send_markdown_message_stub_request body: {
             chat_id: start_message.chat.id,
             text: bot_record.start_step.next_step.text,
             reply_markup: reply_markup(['Подсказка'])
@@ -68,7 +68,7 @@ describe 'BotTelegram::Scenario' do
 
       it 'sends correct answer' do
         step_by_answer = type_answer_step.step_by answer: sample_answer
-        stub = send_message_stub_request body: {
+        stub = send_markdown_message_stub_request body: {
           chat_id: user_message.chat.id,
           text: step_by_answer.text
         }
@@ -89,18 +89,18 @@ describe 'BotTelegram::Scenario' do
       chat = build :telegram_chat
       start_message = build :telegram_message, text: '/start', chat: chat
 
-      stub = send_message_stub_request body: {
+      stub = send_markdown_message_stub_request body: {
         chat_id: start_message.chat.id,
         text: bot_record.start_step.text
       }
 
-      next_stub = send_message_stub_request body: {
+      next_stub = send_markdown_message_stub_request body: {
         chat_id: start_message.chat.id,
         text: bot_record.start_step.next_step.text,
         reply_markup: reply_markup(['Подсказка'])
       }
 
-      send_message_stub_request body: {
+      send_markdown_message_stub_request body: {
         chat_id: start_message.chat.id,
         text: 'К сожалению, я не знаю, что на это ответить',
         reply_markup: reply_markup(['Подсказка'])
