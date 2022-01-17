@@ -419,21 +419,21 @@ const pressEnter = () => {
   }, 50)
 }
 
-window.addEventListener('load', () => {
-  term.open(document.getElementById('terminal'));
-  term.onKey((key, ev) => {
-    if (key.domEvent.key == 'Enter') {
-      pressEnter()
-    }
-    if (key.domEvent.key == 'Backspace') {
-      term.write('\b');
-    }
-    term.write(key.key);
-  });
-
-  const button = document.getElementById('run_scenario')
-  button.addEventListener('click', (e) => {
-    e.preventDefault()
-    startScenario()
-  })
-})
+//window.addEventListener('load', () => {
+//  term.open(document.getElementById('terminal'));
+//  term.onKey((key, ev) => {
+//    if (key.domEvent.key == 'Enter') {
+//      pressEnter()
+//    }
+//    if (key.domEvent.key == 'Backspace') {
+//      term.write('\b');
+//    }
+//    term.write(key.key);
+//  });
+//
+//  const button = document.getElementById('run_scenario')
+//  button.addEventListener('click', (e) => {
+//    e.preventDefault()
+//    startScenario()
+//  })
+//})
