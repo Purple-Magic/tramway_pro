@@ -8,8 +8,14 @@ FactoryBot.define do
         email: generate(:email),
         place: generate(:string),
         phone: generate(:phone),
-        regions_to_cooperate: generate(:string)
+        regions_to_cooperate: (1..5).to_a.map do
+          Faker::Address.country 
+        end
       }
     end 
+
+    after :create do |company|
+      company.users.create! attributes_for(:benchkiller_user, password: '123')
+    end
   end
 end
