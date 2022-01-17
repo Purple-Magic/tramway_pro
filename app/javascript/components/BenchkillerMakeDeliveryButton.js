@@ -3,9 +3,9 @@ import _ from 'underscore'
 
 const getIds = () => {
   if (_.isEmpty(window.localStorage.getItem('selectedOffers'))) {
-    _.compact(window.localStorage.getItem('selectedOffers').split(','))
-  } else {
     []
+  } else {
+    _.compact(window.localStorage.getItem('selectedOffers').split(','))
   }
 }
 
