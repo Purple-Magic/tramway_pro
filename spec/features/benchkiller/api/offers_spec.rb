@@ -66,47 +66,47 @@ describe 'Benchkiller Offers' do
       end
 
       describe 'Period' do
+        before do
+          ::Benchkiller::Offer.delete_all
+        end
+
         periods = [
           {
             title: :day,
             param: 'День',
-            unaccepting_value: 2.days
+            unaccepting_value: 2.days.ago
           },
           {
             title: :week,
             param: 'Неделя',
-            unaccepting_value: 2.weeks
+            unaccepting_value: 2.weeks.ago
           },
           {
             title: :month,
             param:  'Месяц',
-            unaccepting_value: 2.months
+            unaccepting_value: 2.months.ago
           },
           {
             title: :quarter,
             param: 'Квартал',
-            unaccepting_value: 4.months
+            unaccepting_value: 4.months.ago
           }
         ]
 
         periods.each do |period|
           describe period[:title].to_s.capitalize do
-            before do
-              ::Benchkiller::Offer.delete_all
-            end
-
             let!(:offers) do
               (1..5).to_a.map do |index|
                 create(:benchkiller_lookfor_offer).tap do |offer|
-                  offer.update_column :created_at, DateTime.now - 1.hour
+                  offer.update_column :created_at, 1.hour.ago
                 end
               end
             end
 
-            let!(:old_offers) do
+            let!(:too_old_offers) do
               (1..5).to_a.map do |index|
                 create(:benchkiller_lookfor_offer).tap do |offer|
-                  offer.update_column :created_at, DateTime.now - period[:unaccepting_value]
+                  offer.update_column :created_at, period[:unaccepting_value]
                 end
               end
             end
@@ -121,10 +121,66 @@ describe 'Benchkiller Offers' do
               end
             end
 
-            it 'does not return 5 old offers' do
-              old_offers.each do |offer|
+            it 'does not return 5 too old offers' do
+              too_old_offers.each do |offer|
                 expect(json_response).not_to have_content offer.message.text
               end
+            end
+          end
+        end
+
+        describe 'Various period' do
+          let!(:offers) do
+            (1..5).to_a.map do |index|
+              create(:benchkiller_lookfor_offer).tap do |offer|
+                offer.update_column :created_at, 1.week.ago
+              end
+            end
+          end
+
+          let!(:too_old_offers) do
+            (1..5).to_a.map do |index|
+              create(:benchkiller_lookfor_offer).tap do |offer|
+                offer.update_column :created_at, 5.weeks.ago
+              end
+            end
+          end
+
+          let!(:too_new_offers) do
+            (1..5).to_a.map do |index|
+              create(:benchkiller_lookfor_offer).tap do |offer|
+                offer.update_column :created_at, 1.day.ago
+              end
+            end
+          end
+
+
+          before do
+            get(
+              '/benchkiller/api/offers',
+              headers: headers,
+              params: {
+                begin_date: 10.days.ago,
+                end_date: 5.days.ago
+              }
+            )
+          end
+
+          it 'returns 5 needed offers' do
+            offers.each do |offer|
+              expect(json_response).to have_content offer.message.text
+            end
+          end
+
+          it 'does not return 5 old offers' do
+            too_old_offers.each do |offer|
+              expect(json_response).not_to have_content offer.message.text
+            end
+          end
+
+          it 'does not return 5 new offers' do
+            too_new_offers.each do |offer|
+              expect(json_response).not_to have_content offer.message.text
             end
           end
         end
