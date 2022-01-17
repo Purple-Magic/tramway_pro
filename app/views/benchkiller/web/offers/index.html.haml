@@ -74,7 +74,7 @@
       - @offers.each_with_index do |record, index|
         %tr
           %td
-            = check_box_tag record.uuid, params[record.uuid]
+            = react_component 'BenchkillerCheckbox', uuid: record.uuid
           %td
             - if record.company.present? && record.company.title.present?
               %div{ style: 'display: flex; flex-direction: row; justify-content: space-between' }
