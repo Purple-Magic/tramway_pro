@@ -72,8 +72,7 @@ class Courses::VideoDecorator < ApplicationDecorator
       %i[comments time_logs screencasts]
     end
 
-    def list_filters
-    end
+    def list_filters; end
   end
 
   def title

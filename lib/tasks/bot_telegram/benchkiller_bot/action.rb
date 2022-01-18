@@ -59,7 +59,8 @@ class BotTelegram::BenchkillerBot::Action
       old_company_name = company.title
       if ::Benchkiller::Company.where(title: company_name).empty?
         company.update! title: company_name
-        send_message_to_user i18n_scope(:set_company_name, :success, old_company_name: old_company_name, company_name: company_name)
+        send_message_to_user i18n_scope(:set_company_name, :success, old_company_name: old_company_name,
+company_name: company_name)
       else
         send_message_to_user 'К сожалению, ваша компания не переименована. Обратитесь в поддержку сервиса Benchkiller'
       end

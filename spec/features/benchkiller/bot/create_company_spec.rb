@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'BotTelegram::BenchkillerBot' do
@@ -72,7 +74,7 @@ describe 'BotTelegram::BenchkillerBot' do
       end
 
       it 'creates company' do
-        expect(Benchkiller::Company.count).to eq count + 1 
+        expect(Benchkiller::Company.count).to eq count + 1
       end
 
       it 'sets company name' do
