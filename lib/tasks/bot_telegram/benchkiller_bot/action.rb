@@ -18,12 +18,12 @@ class BotTelegram::BenchkillerBot::Action
   end
 
   def run
-    if user.current_state(bot_record).present? && current_action.present?
-      if user_tapped_on_another_command_button?
-        user.set_finished_state_for bot: bot_record
-      else
-        public_send current_action.keys.first, message.text
-      end
+    return unless user.current_state(bot_record).present? && current_action.present?
+
+    if user_tapped_on_another_command_button?
+      user.set_finished_state_for bot: bot_record
+    else
+      public_send current_action.keys.first, message.text
     end
   end
 
@@ -47,6 +47,7 @@ class BotTelegram::BenchkillerBot::Action
         project_id: BotTelegram::BenchkillerBot::PROJECT_ID,
         password: SecureRandom.hex(16)
     end
+
     company = ::Benchkiller::Company.create! title: title,
       project_id: BotTelegram::BenchkillerBot::PROJECT_ID
     company.companies_users.create! user_id: benchkiller_user(user).id
@@ -54,100 +55,62 @@ class BotTelegram::BenchkillerBot::Action
     send_message_to_user i18n_scope(:create_company, title: title)
   end
 
+  # rubocop:disable Naming/AccessorMethodName
   def set_company_name(company_name)
     if company_name.present?
       old_company_name = company.title
       if ::Benchkiller::Company.where(title: company_name).empty?
         company.update! title: company_name
-        send_message_to_user i18n_scope(:set_company_name, :success, old_company_name: old_company_name, company_name: company_name)
+        send_message_to_user i18n_scope(
+          :set_company_name,
+          :success,
+          old_company_name: old_company_name,
+          company_name: company_name
+        )
       else
-        send_message_to_user 'К сожалению, ваша компания не переименована. Обратитесь в поддержку сервиса Benchkiller'
+        send_message_to_user i18n_scope :set_company_name, :failure
       end
       user.set_finished_state_for bot: bot_record
     else
-      send_message_to_user 'Вам следует ввести название компании'
+      send_message_to_user i18n_scope :set_company_name, :error
     end
   end
+  # rubocop:enable Naming/AccessorMethodName
 
-  def set_portfolio_url(portfolio_url)
-    if portfolio_url.present? && portfolio_url.scan(URI::DEFAULT_PARSER.make_regexp).present?
-      if portfolio_url.match? URI::DEFAULT_PARSER.make_regexp(%w[http https])
-        company.update! portfolio_url: portfolio_url
-        send_message_to_user i18n_scope(:set_portfolio_url, :success, portfolio_url: portfolio_url)
-      else
-        send_message_to_user 'К сожалению, не удалось обновить ссылку на портфолио вашей компании. Обратитесь в поддержку сервиса Benchkiller'
+  validations = {
+    url: lambda do |value|
+      value.present? && value.match?(URI::DEFAULT_PARSER.make_regexp(%w[http https]))
+    end,
+    just_text: ->(value) { value.present? }
+  }
+
+  attributes_data = [
+    { name: :portfolio_url, validation: validations[:url] },
+    { name: :company_url, validation: validations[:url] },
+    { name: :place, validation: validations[:just_text] },
+    { name: :phone, validation: validations[:just_text] },
+    { name: :regions_to_cooperate, validation: validations[:just_text] },
+    {
+      name: :email,
+      validation: lambda do |value|
+        value.present? && value.scan(URI::MailTo::EMAIL_REGEXP).present?
+      end
+    }
+  ]
+
+  attributes_data.each do |data|
+    command_name = "set_#{data[:name]}"
+    define_method command_name do |value|
+      if data[:validation].call(value)
+        if company.update data[:name] => value
+          send_message_to_user i18n_scope(command_name, :success, data[:name] => value)
+        else
+          send_message_to_user i18n_scope command_name, :error
+        end
         user.set_finished_state_for bot: bot_record
-      end
-      user.set_finished_state_for bot: bot_record
-    else
-      send_message_to_user 'Вам следует ввести валидную ссылку на портфолио. Ссылка должна содержать http:// или https://'
-    end
-  end
-
-  def set_company_url(company_url)
-    if company_url.present? && company_url.scan(URI::DEFAULT_PARSER.make_regexp).present?
-      if company_url.match? URI::DEFAULT_PARSER.make_regexp(%w[http https])
-        company.update! company_url: company_url
-        send_message_to_user i18n_scope(:set_company_url, :success, company_url: company_url)
       else
-        send_message_to_user 'К сожалению, не удалось обновить ссылку на сайт вашей компании. Обратитесь в поддержку сервиса Benchkiller'
-        user.set_finished_state_for bot: bot_record
+        send_message_to_user i18n_scope command_name, :failure
       end
-      user.set_finished_state_for bot: bot_record
-    else
-      send_message_to_user 'Вам следует ввести валидную ссылку на сайт. Ссылка должна содержать http:// или https://'
-    end
-  end
-
-  def set_email(email)
-    if email.present? && email.scan(URI::MailTo::EMAIL_REGEXP).present?
-      company.update! email: email
-      send_message_to_user i18n_scope(:set_email, :success, email: email)
-      user.set_finished_state_for bot: bot_record
-    else
-      send_message_to_user 'Вам следует ввести валидный адрес электронной почты'
-    end
-  end
-
-  def set_place(place)
-    if place.present?
-      if company.update place: place
-        send_message_to_user i18n_scope(:set_place, :success, place: place)
-      else
-        send_message_to_user 'К сожалению, не удалось обновить место расположения вашей команды. Обратитесь в поддержку сервиса Benchkiller'
-        user.set_finished_state_for bot: bot_record
-      end
-      user.set_finished_state_for bot: bot_record
-    else
-      send_message_to_user 'Вам следует ввести место расположение вашей команды'
-    end
-  end
-
-  def set_phone(phone)
-    if phone.present?
-      if company.update phone: phone
-        send_message_to_user i18n_scope(:set_phone, :success, phone: phone)
-      else
-        send_message_to_user 'К сожалению, не удалось обновить контактный телефон вашей компании. Обратитесь в поддержку сервиса Benchkiller'
-        user.set_finished_state_for bot: bot_record
-      end
-      user.set_finished_state_for bot: bot_record
-    else
-      send_message_to_user 'Вам следует ввести валидный контактный телефон вашей компании'
-    end
-  end
-
-  def set_regions_to_cooperate(regions_to_cooperate)
-    if regions_to_cooperate.present?
-      if company.update regions_to_cooperate: regions_to_cooperate
-        send_message_to_user i18n_scope(:set_regions_to_cooperate, :success, regions_to_cooperate: regions_to_cooperate)
-      else
-        send_message_to_user 'К сожалению, не удалось обновить Регионы сотрудничества вашей компании. Обратитесь в поддержку сервиса Benchkiller'
-        user.set_finished_state_for bot: bot_record
-      end
-      user.set_finished_state_for bot: bot_record
-    else
-      send_message_to_user 'Вам следует ввести регионы сотрудничества вашей компании'
     end
   end
 

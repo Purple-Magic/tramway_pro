@@ -19,26 +19,22 @@ module Benchkiller::Concerns
 
   def regions
     regions = ::Benchkiller::Company.approved.map do |company|
-      if company.regions_to_cooperate.is_a? Array
-        company.regions_to_cooperate
-      end
+      company.regions_to_cooperate if company.regions_to_cooperate.is_a? Array
     end.flatten.compact.uniq
     regions_dictionary = {
-      'Россия' => [ 'РФ', 'Российская федерация', 'Russia' ],
-      'Беларусь' => [ 'Республика Беларусь', 'РБ', 'Беларуссия', 'Belarus', 'Белорусь', 'Belarussia' ],
-      'Украина' => [ 'Ukraine', 'UA' ],
-      'Грузия' => [ 'Georgia' ],
-      'США' => [ 'USA' ],
-      'Все регионы' => [ 'Worldwide', 'Все' ]
+      'Россия' => ['РФ', 'Российская федерация', 'Russia'],
+      'Беларусь' => ['Республика Беларусь', 'РБ', 'Беларуссия', 'Belarus', 'Белорусь', 'Belarussia'],
+      'Украина' => %w[Ukraine UA],
+      'Грузия' => ['Georgia'],
+      'США' => ['USA'],
+      'Все регионы' => %w[Worldwide Все]
     }
     regions.map do |region|
       if regions_dictionary.include? region
         region
       else
         regions_dictionary.map do |pair|
-          if pair[1].include? region
-            pair[0]
-          end
+          pair[0] if pair[1].include? region
         end.compact.first || region
       end
     end.compact.uniq

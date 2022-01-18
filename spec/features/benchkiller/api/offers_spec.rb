@@ -39,7 +39,7 @@ describe 'Benchkiller Offers' do
           let(:country) { Faker::Address.country }
           let!(:offers) do
             companies = (1..5).to_a.map do
-              create :benchkiller_company, regions_to_cooperate: [ country ]
+              create :benchkiller_company, regions_to_cooperate: [country]
             end
             companies.map do |company|
               telegram_message = create :bot_telegram_message, user: company.users.first.telegram_user
@@ -92,7 +92,7 @@ describe 'Benchkiller Offers' do
         periods.each do |period|
           describe period[:title].to_s.capitalize do
             let!(:offers) do
-              (1..5).to_a.map do |index|
+              (1..5).to_a.map do |_index|
                 create(:benchkiller_lookfor_offer).tap do |offer|
                   offer.update_column :created_at, 1.hour.ago
                 end
@@ -100,7 +100,7 @@ describe 'Benchkiller Offers' do
             end
 
             let!(:too_old_offers) do
-              (1..5).to_a.map do |index|
+              (1..5).to_a.map do |_index|
                 create(:benchkiller_lookfor_offer).tap do |offer|
                   offer.update_column :created_at, period[:unaccepting_value]
                 end
@@ -127,7 +127,7 @@ describe 'Benchkiller Offers' do
 
         describe 'Various period' do
           let!(:offers) do
-            (1..5).to_a.map do |index|
+            (1..5).to_a.map do |_index|
               create(:benchkiller_lookfor_offer).tap do |offer|
                 offer.update_column :created_at, 1.week.ago
               end
@@ -135,7 +135,7 @@ describe 'Benchkiller Offers' do
           end
 
           let!(:too_old_offers) do
-            (1..5).to_a.map do |index|
+            (1..5).to_a.map do |_index|
               create(:benchkiller_lookfor_offer).tap do |offer|
                 offer.update_column :created_at, 5.weeks.ago
               end
@@ -143,13 +143,12 @@ describe 'Benchkiller Offers' do
           end
 
           let!(:too_new_offers) do
-            (1..5).to_a.map do |index|
+            (1..5).to_a.map do |_index|
               create(:benchkiller_lookfor_offer).tap do |offer|
                 offer.update_column :created_at, 1.day.ago
               end
             end
           end
-
 
           before do
             get(

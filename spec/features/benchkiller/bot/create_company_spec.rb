@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'BotTelegram::BenchkillerBot' do
@@ -16,12 +18,12 @@ describe 'BotTelegram::BenchkillerBot' do
 
         Telegram::Bot::Client.run(bot_record.token) do |bot|
           BotTelegram::BenchkillerBot::Scenario.new(
-            callback_query,
-            bot,
-            bot_record,
-            chat,
-            message_object,
-            message_object.user
+            message_from_telegram: callback_query,
+            bot: bot,
+            bot_record: bot_record,
+            chat: chat,
+            message_object: message_object,
+            user: message_object.user
           ).run
         end
 
@@ -50,29 +52,29 @@ describe 'BotTelegram::BenchkillerBot' do
 
         Telegram::Bot::Client.run(bot_record.token) do |bot|
           BotTelegram::BenchkillerBot::Scenario.new(
-            callback_query,
-            bot,
-            bot_record,
-            chat,
-            message_object,
-            message_object.user
+            message_from_telegram: callback_query,
+            bot: bot,
+            bot_record: bot_record,
+            chat: chat,
+            message_object: message_object,
+            user: message_object.user
           ).run
         end
 
         Telegram::Bot::Client.run(bot_record.token) do |bot|
           BotTelegram::BenchkillerBot::Scenario.new(
-            telegram_message,
-            bot,
-            bot_record,
-            chat,
-            message_object,
-            message_object.user
+            message_from_telegram: telegram_message,
+            bot: bot,
+            bot_record: bot_record,
+            chat: chat,
+            message_object: message_object,
+            user: message_object.user
           ).run
         end
       end
 
       it 'creates company' do
-        expect(Benchkiller::Company.count).to eq count + 1 
+        expect(Benchkiller::Company.count).to eq count + 1
       end
 
       it 'sets company name' do

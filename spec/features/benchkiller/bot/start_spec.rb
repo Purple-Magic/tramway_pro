@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'BotTelegram::BenchkillerBot' do
@@ -22,12 +24,12 @@ describe 'BotTelegram::BenchkillerBot' do
 
         Telegram::Bot::Client.run(bot_record.token) do |bot|
           BotTelegram::BenchkillerBot::Scenario.new(
-            start_message,
-            bot,
-            bot_record,
-            chat,
-            message_object,
-            message_object.user
+            message_from_telegram: start_message,
+            bot: bot,
+            bot_record: bot_record,
+            chat: chat,
+            message: message_object,
+            user: message_object.user
           ).run
         end
 
@@ -37,8 +39,8 @@ describe 'BotTelegram::BenchkillerBot' do
 
     describe 'Existing company' do
       let!(:user) { create :benchkiller_user, telegram_user: message_object.user, password: '123' }
-      
-      before  do
+
+      before do
         company = create :benchkiller_company
         company.users << user
         company.save!
@@ -57,20 +59,20 @@ describe 'BotTelegram::BenchkillerBot' do
               ['Изменить телефон', { data: { command: :set_phone } }],
               ['Расположение вашей команды', { data: { command: :set_place } }],
               ['Регионы сотрудничества', { data: { command: :set_regions_to_cooperate } }],
-              ['Посмотреть карточку компании', { data: { command: :get_company_card } }],
-              #['Создать пароль', { data: { command: :create_password } }]
+              ['Посмотреть карточку компании', { data: { command: :get_company_card } }]
+              # ['Создать пароль', { data: { command: :create_password } }]
             ]
           )
         }
 
         Telegram::Bot::Client.run(bot_record.token) do |bot|
           BotTelegram::BenchkillerBot::Scenario.new(
-            start_message,
-            bot,
-            bot_record,
-            chat,
-            message_object,
-            message_object.user
+            message_from_telegram: start_message,
+            bot: bot,
+            bot_record: bot_record,
+            chat: chat,
+            message_object: message_object,
+            user: message_object.user
           ).run
         end
 

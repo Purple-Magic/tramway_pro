@@ -31,18 +31,6 @@ collection: :expenses)
       redirect: "/admin/records/#{id}?model=Estimation::Project"
     )
 
-    tasks_button_inner = content_tag(:span) do
-      concat(fa_icon('tasks'))
-      concat(' ')
-      concat(fa_icon('file-excel'))
-    end
-
-    expenses_button_inner = content_tag(:span) do
-      concat(fa_icon('money-check-alt'))
-      concat(' ')
-      concat(fa_icon('file-excel'))
-    end
-
     {
       show: [
         { url: tasks_url, inner: -> { tasks_button_inner }, color: :success },
@@ -77,4 +65,22 @@ collection: :expenses)
     end
   end
   # :reek:ControlParameter { enabled: true }
+
+  private
+
+  def tasks_button_inner
+    content_tag(:span) do
+      concat(fa_icon('tasks'))
+      concat(' ')
+      concat(fa_icon('file-excel'))
+    end
+  end
+
+  def expenses_button_inner
+    content_tag(:span) do
+      concat(fa_icon('money-check-alt'))
+      concat(' ')
+      concat(fa_icon('file-excel'))
+    end
+  end
 end

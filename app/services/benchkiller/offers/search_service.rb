@@ -40,14 +40,18 @@ class Benchkiller::Offers::SearchService
   end
 
   def regions_search
-    companies = ::Benchkiller::Company.all.map do |company|
-      company if company.regions_to_cooperate&.include? argument
-    end.compact
+    companies = companies_by region: argument
     users_ids = companies.map(&:users).flatten.map(&:telegram_user).map(&:id)
     offers_ids = current_collection.map do |offer|
       offer if offer.message.user_id.in? users_ids
     end.compact
     ::Benchkiller::Offer.where id: offers_ids
+  end
+
+  def companies_by(region:)
+    ::Benchkiller::Company.all.map do |company|
+      company if company.regions_to_cooperate&.include? region
+    end.compact
   end
 
   def condition_to_period_search?

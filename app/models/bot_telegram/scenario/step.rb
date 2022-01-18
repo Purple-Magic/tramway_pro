@@ -30,7 +30,7 @@ class BotTelegram::Scenario::Step < ApplicationRecord
   end
 
   def type_answer?
-    has_many_answers_to_same_step? && !keyboard_contain_answers?
+    many_answers_to_same_step? && !keyboard_contain_answers?
   end
 
   def next_step
@@ -43,7 +43,7 @@ class BotTelegram::Scenario::Step < ApplicationRecord
 
   private
 
-  def has_many_answers_to_same_step?
+  def many_answers_to_same_step?
     options.values.count > options.values.uniq.count
   end
 

@@ -3,7 +3,7 @@
 class Benchkiller::Web::CompaniesController < Benchkiller::Web::ApplicationController
   def show
     @company = ::Benchkiller::CompanyDecorator.new ::Benchkiller::Company.find_by uuid: params[:id]
-    @company_has_user = @company.has_user? current_user.model
+    @company_has_user = @company.user_is? current_user.model
   end
 
   def edit

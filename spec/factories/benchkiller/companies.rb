@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :benchkiller_company, class: 'Benchkiller::Company' do
     title
@@ -9,10 +11,10 @@ FactoryBot.define do
         place: generate(:string),
         phone: generate(:phone),
         regions_to_cooperate: (1..5).to_a.map do
-          Faker::Address.country 
+          Faker::Address.country
         end
       }
-    end 
+    end
 
     after :create do |company|
       company.users.create! attributes_for(:benchkiller_user, password: '123')
