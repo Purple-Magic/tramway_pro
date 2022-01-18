@@ -27,9 +27,11 @@ class BotTelegram::User < ApplicationRecord
     states.where(bot_id: bot.id).last&.current_state
   end
 
+  # rubocop:disable Naming/AccessorMethodName
   def set_finished_state_for(bot:)
     states.create! bot_id: bot.id, current_state: :finished
   end
+  # rubocop:enable Naming/AccessorMethodName
 
   def finished_state_for?(bot:)
     states.empty? || states.where(bot_id: bot.id).last&.current_state == 'finished'
