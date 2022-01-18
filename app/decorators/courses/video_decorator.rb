@@ -34,7 +34,6 @@ class Courses::VideoDecorator < ApplicationDecorator
 
   class << self
     def collections
-      # [ :all, :scope1, :scope2 ]
       [:all]
     end
 
@@ -69,10 +68,7 @@ class Courses::VideoDecorator < ApplicationDecorator
   def additional_buttons
     add_scenario_step_url = Tramway::Admin::Engine.routes.url_helpers.new_record_path(
       model: 'Courses::Comment',
-      'courses/comment' => {
-        associated_type: object.class.to_s,
-        associated: object.id
-      },
+      'courses/comment' => { associated_type: object.class.to_s, associated: object.id },
       redirect: "/admin/records/#{object.id}?model=Courses::Video"
     )
 

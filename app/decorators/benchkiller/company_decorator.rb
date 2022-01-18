@@ -74,14 +74,7 @@ class Benchkiller::CompanyDecorator < ApplicationDecorator
   end
 
   def review_state_button_color(event)
-    case event
-    when :approve
-      :success
-    when :decline
-      :danger
-    when :return_to_unviewed
-      :warning
-    end
+    { approve: :success, decline: :danger, return_to_unviewed: :warning }[event]
   end
 
   class << self
