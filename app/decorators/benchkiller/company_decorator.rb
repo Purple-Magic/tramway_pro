@@ -17,7 +17,7 @@ class Benchkiller::CompanyDecorator < ApplicationDecorator
     :place,
     :phone,
     :regions_to_cooperate,
-    :has_user?,
+    :user_is?,
     :uuid
   )
 

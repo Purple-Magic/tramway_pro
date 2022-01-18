@@ -48,7 +48,7 @@ class Benchkiller::Company < ApplicationRecord
     end
   end
 
-  def has_user?(user)
+  def user_is?(user)
     users.include? user
   end
 end
