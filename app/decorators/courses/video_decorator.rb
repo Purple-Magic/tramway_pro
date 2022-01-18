@@ -7,17 +7,8 @@ class Courses::VideoDecorator < ApplicationDecorator
   decorate_association :time_logs, as: :associated
   decorate_association :screencasts, as: :video
 
-  delegate_attributes(
-    :id,
-    :lesson_id,
-    :state,
-    :position,
-    :created_at,
-    :updated_at,
-    :progress_status,
-    :duration,
+  delegate_attributes :id, :lesson_id, :state, :position, :created_at, :updated_at, :progress_status, :duration,
     :result_duration
-  )
 
   def course_link
     link_to(
@@ -52,20 +43,8 @@ class Courses::VideoDecorator < ApplicationDecorator
     end
 
     def show_attributes
-      %i[
-        id
-        course_link
-        lesson_link
-        time_logged
-        duration
-        result_duration
-        auto_estimated_time
-        url
-        text
-        created_at
-        updated_at
-        release_date
-      ]
+      %i[id course_link lesson_link time_logged duration result_duration auto_estimated_time url text created_at
+         updated_at release_date]
     end
 
     def show_associations
@@ -90,7 +69,11 @@ class Courses::VideoDecorator < ApplicationDecorator
   def additional_buttons
     add_scenario_step_url = Tramway::Admin::Engine.routes.url_helpers.new_record_path(
       model: 'Courses::Comment',
-      'courses/comment' => { associated_type: object.class.to_s, associated: object.id }, redirect: "/admin/records/#{object.id}?model=Courses::Video"
+      'courses/comment' => {
+        associated_type: object.class.to_s,
+        associated: object.id
+      },
+      redirect: "/admin/records/#{object.id}?model=Courses::Video"
     )
 
     { show: [{ url: add_scenario_step_url, inner: -> { fa_icon 'comment' }, color: :success }] }
@@ -141,12 +124,10 @@ data: { toggle: :popover, html: true, content: comment_html }) do
   # :reek:ControlParameter { enabled: false }
   def video_state_button_color(event)
     case event
-    when :write, :shoot
+    when :write, :shoot, :upload
       :primary
     when :finish
       :success
-    when :upload
-      :primary
     end
   end
 end
