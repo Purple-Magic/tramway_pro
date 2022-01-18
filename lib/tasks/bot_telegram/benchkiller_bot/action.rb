@@ -113,11 +113,11 @@ class BotTelegram::BenchkillerBot::Action
       validation: lambda do |value|
         value.present?
       end
-    },
+    }
   ]
 
   attributes_data.each do |data|
-    command_name = "set_#{data[:name]}" 
+    command_name = "set_#{data[:name]}"
     define_method command_name do |value|
       if data[:validation].call(value)
         if company.update data[:name] => value
