@@ -87,9 +87,9 @@ class BotTelegram::BenchkillerBot::Action
   attributes_data = [
     { name: :portfolio_url, validation: validations[:url] },
     { name: :company_url, validation: validations[:url] },
-    { name: :place, validation: :just_text },
-    { name: :phone, validation: :just_text },
-    { name: :regions_to_cooperate, validation: :just_text },
+    { name: :place, validation: validations[:just_text] },
+    { name: :phone, validation: validations[:just_text] },
+    { name: :regions_to_cooperate, validation: validations[:just_text] },
     {
       name: :email,
       validation: lambda do |value|
