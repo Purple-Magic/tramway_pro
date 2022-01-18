@@ -6,12 +6,12 @@ class BotTelegram::Custom::Scenario
 
   attr_reader :bot, :bot_record, :chat, :message_from_telegram, :message, :user
 
-  def initialize(message_from_telegram, bot, bot_record, chat, message, user)
-    @bot = bot
-    @message_from_telegram = message_from_telegram
-    @bot_record = bot_record
-    @chat = chat
-    @message = message
-    @user = user
+  def initialize(**options)
+    @bot = options[:bot]
+    @message_from_telegram = options[:message_from_telegram]
+    @bot_record = options[:bot_record]
+    @chat = options[:chat]
+    @message = options[:message]
+    @user = options[:user]
   end
 end

@@ -59,14 +59,7 @@ class BotTelegram::BotListener
 
     def custom_bot_action(**options)
       scenario_class = "BotTelegram::#{options[:bot_record].scenario.camelize}::Scenario".constantize
-      scenario = scenario_class.new(
-        options[:message],
-        options[:bot],
-        options[:bot_record],
-        options[:chat],
-        options[:message_object],
-        options[:user]
-      )
+      scenario = scenario_class.new(**options.slice(:message, :bot, :bot_record, :chat, :message_object, :user))
       scenario.run
     end
 
