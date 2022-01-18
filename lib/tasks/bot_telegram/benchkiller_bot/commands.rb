@@ -59,11 +59,11 @@ module BotTelegram::BenchkillerBot::Commands
   end
 
   def get_company_card(_argument)
-    if company(user).present?
-      card = ::Benchkiller::CompanyDecorator.decorate(company(user)).bot_card
+    return unless company(user).present?
 
-      message_to_user bot.api, card, chat.telegram_chat_id
-    end
+    card = ::Benchkiller::CompanyDecorator.decorate(company(user)).bot_card
+
+    message_to_user bot.api, card, chat.telegram_chat_id
   end
 
   def create_password(_argument)

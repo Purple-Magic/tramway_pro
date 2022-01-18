@@ -14,25 +14,24 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
   BOT_ID = 13
 
   def run
-    if user.is_a? BotTelegram::Channel
+    return if user.is_a? BotTelegram::Channel
 
+    chat_decorator = BotTelegram::BenchkillerBot::ChatDecorator.new chat
+    if chat_decorator.main_chat?
+      offer = ::Benchkiller::Offer.create! message_id: message.id
+      offer.parse!
+      send_approve_message_to_admin_chat offer
+    end
+
+    return unless chat_decorator.to_answer?
+
+    if !message_from_telegram.is_a?(Telegram::Bot::Types::CallbackQuery) && message_from_telegram.text == '/start'
+      start
+    elsif user.finished_state_for?(bot: bot_record)
+      process_new_action
     else
-      chat_decorator = BotTelegram::BenchkillerBot::ChatDecorator.new chat
-      if chat_decorator.main_chat?
-        offer = ::Benchkiller::Offer.create! message_id: message.id
-        offer.parse!
-        send_approve_message_to_admin_chat offer
-      end
-      if chat_decorator.to_answer?
-        if !message_from_telegram.is_a?(Telegram::Bot::Types::CallbackQuery) && message_from_telegram.text == '/start'
-          start
-        elsif user.finished_state_for?(bot: bot_record)
-          process_new_action
-        else
-          action = BotTelegram::BenchkillerBot::Action.new message_from_telegram, user, chat, bot, bot_record
-          action.run
-        end
-      end
+      action = BotTelegram::BenchkillerBot::Action.new message_from_telegram, user, chat, bot, bot_record
+      action.run
     end
   end
 

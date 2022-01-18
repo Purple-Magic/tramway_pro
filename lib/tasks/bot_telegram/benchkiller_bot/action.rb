@@ -59,10 +59,14 @@ class BotTelegram::BenchkillerBot::Action
       old_company_name = company.title
       if ::Benchkiller::Company.where(title: company_name).empty?
         company.update! title: company_name
-        send_message_to_user i18n_scope(:set_company_name, :success, old_company_name: old_company_name,
-company_name: company_name)
+        send_message_to_user i18n_scope(
+          :set_company_name,
+          :success,
+          old_company_name: old_company_name,
+          company_name: company_name
+        )
       else
-        send_message_to_user 'К сожалению, ваша компания не переименована. Обратитесь в поддержку сервиса Benchkiller'
+        send_message_to_user i18n_scope :set_company_name, :failure
       end
       user.set_finished_state_for bot: bot_record
     else
@@ -76,7 +80,7 @@ company_name: company_name)
         company.update! portfolio_url: portfolio_url
         send_message_to_user i18n_scope(:set_portfolio_url, :success, portfolio_url: portfolio_url)
       else
-        send_message_to_user 'К сожалению, не удалось обновить ссылку на портфолио вашей компании. Обратитесь в поддержку сервиса Benchkiller'
+        send_message_to_user i18n_scope :set_portfolio_url, :failure
         user.set_finished_state_for bot: bot_record
       end
       user.set_finished_state_for bot: bot_record
@@ -91,7 +95,7 @@ company_name: company_name)
         company.update! company_url: company_url
         send_message_to_user i18n_scope(:set_company_url, :success, company_url: company_url)
       else
-        send_message_to_user 'К сожалению, не удалось обновить ссылку на сайт вашей компании. Обратитесь в поддержку сервиса Benchkiller'
+        send_message_to_user i18n_scope :set_company_url, :failure
         user.set_finished_state_for bot: bot_record
       end
       user.set_finished_state_for bot: bot_record
@@ -106,7 +110,7 @@ company_name: company_name)
       send_message_to_user i18n_scope(:set_email, :success, email: email)
       user.set_finished_state_for bot: bot_record
     else
-      send_message_to_user 'Вам следует ввести валидный адрес электронной почты'
+      send_message_to_user i18n_scope :set_email, :failure
     end
   end
 
@@ -115,7 +119,7 @@ company_name: company_name)
       if company.update place: place
         send_message_to_user i18n_scope(:set_place, :success, place: place)
       else
-        send_message_to_user 'К сожалению, не удалось обновить место расположения вашей команды. Обратитесь в поддержку сервиса Benchkiller'
+        send_message_to_user i18n_scope :set_place, :failure
         user.set_finished_state_for bot: bot_record
       end
       user.set_finished_state_for bot: bot_record
@@ -129,7 +133,7 @@ company_name: company_name)
       if company.update phone: phone
         send_message_to_user i18n_scope(:set_phone, :success, phone: phone)
       else
-        send_message_to_user 'К сожалению, не удалось обновить контактный телефон вашей компании. Обратитесь в поддержку сервиса Benchkiller'
+        send_message_to_user i18n_scope :set_phone, :failure
         user.set_finished_state_for bot: bot_record
       end
       user.set_finished_state_for bot: bot_record
@@ -148,7 +152,7 @@ company_name: company_name)
       end
       user.set_finished_state_for bot: bot_record
     else
-      send_message_to_user 'Вам следует ввести регионы сотрудничества вашей компании'
+      send_message_to_user i18n_scope :set_regions_to_cooperate, :failure
     end
   end
 
