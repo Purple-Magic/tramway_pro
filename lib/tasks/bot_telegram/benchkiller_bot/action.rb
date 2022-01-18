@@ -70,7 +70,7 @@ class BotTelegram::BenchkillerBot::Action
       end
       user.set_finished_state_for bot: bot_record
     else
-      send_message_to_user 'Вам следует ввести название компании'
+      send_message_to_user i18n_scope :set_company_name, :error
     end
   end
 
@@ -80,12 +80,12 @@ class BotTelegram::BenchkillerBot::Action
         company.update! portfolio_url: portfolio_url
         send_message_to_user i18n_scope(:set_portfolio_url, :success, portfolio_url: portfolio_url)
       else
-        send_message_to_user i18n_scope :set_portfolio_url, :failure
+        send_message_to_user i18n_scope :set_portfolio_url, :error
         user.set_finished_state_for bot: bot_record
       end
       user.set_finished_state_for bot: bot_record
     else
-      send_message_to_user 'Вам следует ввести валидную ссылку на портфолио. Ссылка должна содержать http:// или https://'
+      send_message_to_user i18n_scope :set_portfolio_url, :failure
     end
   end
 
@@ -95,12 +95,12 @@ class BotTelegram::BenchkillerBot::Action
         company.update! company_url: company_url
         send_message_to_user i18n_scope(:set_company_url, :success, company_url: company_url)
       else
-        send_message_to_user i18n_scope :set_company_url, :failure
+        send_message_to_user i18n_scope :set_company_url, :error
         user.set_finished_state_for bot: bot_record
       end
       user.set_finished_state_for bot: bot_record
     else
-      send_message_to_user 'Вам следует ввести валидную ссылку на сайт. Ссылка должна содержать http:// или https://'
+      send_message_to_user i18n_scope :set_company_url, :failure
     end
   end
 
@@ -119,12 +119,12 @@ class BotTelegram::BenchkillerBot::Action
       if company.update place: place
         send_message_to_user i18n_scope(:set_place, :success, place: place)
       else
-        send_message_to_user i18n_scope :set_place, :failure
+        send_message_to_user i18n_scope :set_place, :error
         user.set_finished_state_for bot: bot_record
       end
       user.set_finished_state_for bot: bot_record
     else
-      send_message_to_user 'Вам следует ввести место расположение вашей команды'
+      send_message_to_user i18n_scope :set_place, :failure
     end
   end
 
@@ -133,12 +133,12 @@ class BotTelegram::BenchkillerBot::Action
       if company.update phone: phone
         send_message_to_user i18n_scope(:set_phone, :success, phone: phone)
       else
-        send_message_to_user i18n_scope :set_phone, :failure
+        send_message_to_user i18n_scope :set_phone, :error
         user.set_finished_state_for bot: bot_record
       end
       user.set_finished_state_for bot: bot_record
     else
-      send_message_to_user 'Вам следует ввести валидный контактный телефон вашей компании'
+      send_message_to_user i18n_scope :set_phone, :failure
     end
   end
 
@@ -147,7 +147,7 @@ class BotTelegram::BenchkillerBot::Action
       if company.update regions_to_cooperate: regions_to_cooperate
         send_message_to_user i18n_scope(:set_regions_to_cooperate, :success, regions_to_cooperate: regions_to_cooperate)
       else
-        send_message_to_user 'К сожалению, не удалось обновить Регионы сотрудничества вашей компании. Обратитесь в поддержку сервиса Benchkiller'
+        send_message_to_user i18n_scope :set_regions_to_cooperate, :error
         user.set_finished_state_for bot: bot_record
       end
       user.set_finished_state_for bot: bot_record
