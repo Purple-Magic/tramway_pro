@@ -179,7 +179,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
         describe 'Failure' do
           let!(:telegram_message) do
-            t = com.in?([ :set_regions_to_cooperate, :set_place, :set_phone ]) ? '' : 'fail_argument'
+            t = com.in?(%i[set_regions_to_cooperate set_place set_phone]) ? '' : 'fail_argument'
             build :telegram_message, text: t
           end
 
