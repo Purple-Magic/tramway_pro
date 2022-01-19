@@ -24,11 +24,11 @@ describe 'BotTelegram::BenchkillerBot' do
 
         Telegram::Bot::Client.run(bot_record.token) do |bot|
           BotTelegram::BenchkillerBot::Scenario.new(
-            message_from_telegram: start_message,
+            message: start_message,
             bot: bot,
             bot_record: bot_record,
             chat: chat,
-            message: message_object,
+            message_object: message_object,
             user: message_object.user
           ).run
         end
@@ -67,7 +67,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
         Telegram::Bot::Client.run(bot_record.token) do |bot|
           BotTelegram::BenchkillerBot::Scenario.new(
-            message_from_telegram: start_message,
+            message: start_message,
             bot: bot,
             bot_record: bot_record,
             chat: chat,
