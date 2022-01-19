@@ -30,7 +30,7 @@ module Benchkiller::Concerns
       'Азербайджан' => ['Azerbaijan'],
       'Все регионы' => %w[Worldwide Все]
     }
-    regions.map do |region|
+    filtered_array = regions.map do |region|
       if regions_dictionary.include? region
         region
       else
@@ -38,6 +38,8 @@ module Benchkiller::Concerns
           pair[0] if pair[1].include? region
         end.compact.first || region
       end
-    end.compact.uniq
+    end.compact 
+    regions_at_the_beginning = ['Все регионы', 'СНГ', 'Европа', 'Азия']
+    regions_at_the_beginning + (filtered_array - regions_at_the_beginning).sort
   end
 end
