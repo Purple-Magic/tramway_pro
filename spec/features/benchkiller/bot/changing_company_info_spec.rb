@@ -43,7 +43,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
           Telegram::Bot::Client.run(bot_record.token) do |bot|
             BotTelegram::BenchkillerBot::Scenario.new(
-              message_from_telegram: callback_query,
+              message: callback_query,
               bot: bot,
               bot_record: bot_record,
               chat: chat,
@@ -88,7 +88,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
             Telegram::Bot::Client.run(bot_record.token) do |bot|
               BotTelegram::BenchkillerBot::Scenario.new(
-                message_from_telegram: callback_query,
+                message: callback_query,
                 bot: bot,
                 bot_record: bot_record,
                 chat: chat,
@@ -111,7 +111,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
             Telegram::Bot::Client.run(bot_record.token) do |bot|
               BotTelegram::BenchkillerBot::Scenario.new(
-                message_from_telegram: telegram_message,
+                message: telegram_message,
                 bot: bot,
                 bot_record: bot_record,
                 chat: chat,
@@ -136,7 +136,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
             Telegram::Bot::Client.run(bot_record.token) do |bot|
               BotTelegram::BenchkillerBot::Scenario.new(
-                message_from_telegram: callback_query,
+                message: callback_query,
                 bot: bot,
                 bot_record: bot_record,
                 chat: chat,
@@ -159,7 +159,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
             Telegram::Bot::Client.run(bot_record.token) do |bot|
               BotTelegram::BenchkillerBot::Scenario.new(
-                message_from_telegram: telegram_message,
+                message: telegram_message,
                 bot: bot,
                 bot_record: bot_record,
                 chat: chat,
@@ -200,7 +200,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
             Telegram::Bot::Client.run(bot_record.token) do |bot|
               BotTelegram::BenchkillerBot::Scenario.new(
-                message_from_telegram: callback_query,
+                message: callback_query,
                 bot: bot,
                 bot_record: bot_record,
                 chat: chat,
@@ -223,7 +223,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
             Telegram::Bot::Client.run(bot_record.token) do |bot|
               BotTelegram::BenchkillerBot::Scenario.new(
-                message_from_telegram: telegram_message,
+                message: telegram_message,
                 bot: bot,
                 bot_record: bot_record,
                 chat: chat,
@@ -248,7 +248,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
             Telegram::Bot::Client.run(bot_record.token) do |bot|
               BotTelegram::BenchkillerBot::Scenario.new(
-                message_from_telegram: callback_query,
+                message: callback_query,
                 bot: bot,
                 bot_record: bot_record,
                 chat: chat,
@@ -271,7 +271,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
             Telegram::Bot::Client.run(bot_record.token) do |bot|
               BotTelegram::BenchkillerBot::Scenario.new(
-                message_from_telegram: telegram_message,
+                message: telegram_message,
                 bot: bot,
                 bot_record: bot_record,
                 chat: chat,
