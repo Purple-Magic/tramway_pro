@@ -27,6 +27,7 @@ module Benchkiller::Concerns
       'Украина' => %w[Ukraine UA],
       'Грузия' => ['Georgia'],
       'США' => ['USA'],
+      'Азербайджан' => ['Azerbaijan'],
       'Все регионы' => %w[Worldwide Все]
     }
     regions.map do |region|
