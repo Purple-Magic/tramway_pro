@@ -3,9 +3,9 @@ import _ from 'underscore'
 
 const getIds = () => {
   if (_.isEmpty(window.localStorage.getItem('selectedOffers'))) {
-    []
+    return []
   } else {
-    _.compact(window.localStorage.getItem('selectedOffers').split(','))
+    return _.compact(window.localStorage.getItem('selectedOffers').split(','))
   }
 }
 
@@ -37,7 +37,7 @@ class BenchkillerMakeDeliveryButton extends React.Component {
 
   render() {
     return (
-      <a className="btn btn-primary mb-4" href={this.pathWithIds()}>Сделать рассылку</a>
+      <a className="btn btn-primary mb-4" onClick={() => window.localStorage.removeItem('selectedOffers')} href={this.pathWithIds()}>Сделать рассылку</a>
     )
   }
 }
