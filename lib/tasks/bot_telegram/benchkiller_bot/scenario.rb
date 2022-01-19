@@ -18,7 +18,17 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
 
     chat_decorator = BotTelegram::BenchkillerBot::ChatDecorator.new chat
     if chat_decorator.main_chat?
-      offer = ::Benchkiller::Offer.create! message_id: message.id
+      existing_message = ::BotTelegram::Message.find_by('options ->> message_id = ?', message.options.message_id)
+
+      if existing_message.present?
+        existing_message.update text: message.text
+        message.destroy
+        message = existing_message
+        offer = ::Benchkiller::Offer.find_by message_id: message.id
+      else
+        offer = ::Benchkiller::Offer.create! message_id: message.id
+      end
+
       offer.parse!
       send_approve_message_to_admin_chat offer
     end
