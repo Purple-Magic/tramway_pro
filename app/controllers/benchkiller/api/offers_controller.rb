@@ -3,7 +3,7 @@
 class Benchkiller::Api::OffersController < Benchkiller::Api::ApplicationController
   def index
     params[:collection] ||= :lookfor
-    head 406 unless params[:collection].in?(::Benchkiller::Offer::AVAILABLE_SCOPES)
+    head 406 unless params[:collection].to_sym.in?(::Benchkiller::Offer::AVAILABLE_SCOPES)
 
     search_offers
 
