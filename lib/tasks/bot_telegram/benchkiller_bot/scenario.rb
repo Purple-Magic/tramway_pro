@@ -18,7 +18,7 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
 
     chat_decorator = BotTelegram::BenchkillerBot::ChatDecorator.new chat
     if chat_decorator.main_chat?
-      existing_message = ::BotTelegram::Message.find_by('options ->> message_id = ?', message.options['message_id'])
+      existing_message = ::BotTelegram::Message.find_by("options ->> 'message_id' = ?", message.options['message_id'].to_s)
 
       if existing_message.present?
         existing_message.update text: message.text
