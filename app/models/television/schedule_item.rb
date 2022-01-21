@@ -9,6 +9,7 @@ class Television::ScheduleItem < ApplicationRecord
   store_accessor :options, :position
 
   def command
-    "ffmpeg -re -i #{video.remote_file_path} -c:v libx264 -g 4 -b:v 4500k -preset ultrafast -f flv #{channel.url}/#{channel.password}"
+    # "ffmpeg -re -i #{video.remote_file_path} -c:v
+    # libx264 -g 4 -b:v 4500k -preset ultrafast -f flv #{channel.url}/#{channel.password}"
   end
 end
