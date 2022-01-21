@@ -38,7 +38,7 @@ module Benchkiller::Concerns
           pair[0] if pair[1].include? region
         end.compact.first || region
       end
-    end.compact 
+    end.compact
     regions_at_the_beginning = ['Все регионы', 'СНГ', 'Европа', 'Азия']
     regions_at_the_beginning + (filtered_array - regions_at_the_beginning).sort
   end
