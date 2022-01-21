@@ -17,24 +17,25 @@ module Benchkiller::Concerns
     @full_offers_collection = offers.approved.order(created_at: :desc)
   end
 
+  REGIONS_DICTIONARY = {
+    'Россия' => ['РФ', 'Российская федерация', 'Russia'],
+    'Беларусь' => ['Республика Беларусь', 'РБ', 'Беларуссия', 'Belarus', 'Белорусь', 'Belarussia'],
+    'Украина' => %w[Ukraine UA],
+    'Грузия' => ['Georgia'],
+    'США' => ['USA'],
+    'Азербайджан' => ['Azerbaijan'],
+    'Все регионы' => %w[Worldwide Все]
+  }.freeze
+
   def regions
     regions = ::Benchkiller::Company.approved.map do |company|
       company.regions_to_cooperate if company.regions_to_cooperate.is_a? Array
     end.flatten.compact.uniq
-    regions_dictionary = {
-      'Россия' => ['РФ', 'Российская федерация', 'Russia'],
-      'Беларусь' => ['Республика Беларусь', 'РБ', 'Беларуссия', 'Belarus', 'Белорусь', 'Belarussia'],
-      'Украина' => %w[Ukraine UA],
-      'Грузия' => ['Georgia'],
-      'США' => ['USA'],
-      'Азербайджан' => ['Azerbaijan'],
-      'Все регионы' => %w[Worldwide Все]
-    }
     filtered_array = regions.map do |region|
-      if regions_dictionary.include? region
+      if REGIONS_DICTIONARY.include? region
         region
       else
-        regions_dictionary.map do |pair|
+        REGIONS_DICTIONARY.map do |pair|
           pair[0] if pair[1].include? region
         end.compact.first || region
       end
