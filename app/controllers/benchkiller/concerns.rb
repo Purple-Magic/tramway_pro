@@ -16,7 +16,7 @@ module Benchkiller::Concerns
     ).call
     @full_offers_collection = offers.approved.order(created_at: :desc)
   end
-
+  
   REGIONS_DICTIONARY = {
     'Россия' => ['РФ', 'Российская федерация', 'Russia'],
     'Беларусь' => ['Республика Беларусь', 'РБ', 'Беларуссия', 'Belarus', 'Белорусь', 'Belarussia'],
@@ -26,7 +26,7 @@ module Benchkiller::Concerns
     'Азербайджан' => ['Azerbaijan'],
     'Все регионы' => %w[Worldwide Все]
   }.freeze
-
+  
   def regions
     regions = ::Benchkiller::Company.approved.map do |company|
       company.regions_to_cooperate if company.regions_to_cooperate.is_a? Array
