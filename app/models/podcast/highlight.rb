@@ -70,7 +70,7 @@ class Podcast::Highlight < ApplicationRecord
 
   def shift
     episode.parts.sum do |part|
-      if time_less_than highlight.begin_time
+      #if time_less_than highlight.begin_time
     end
   end
 
