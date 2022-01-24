@@ -5,11 +5,7 @@ class Podcasts::Episodes::Parts::PreviewWorker < ApplicationWorker
 
   def perform(id, output, *commands)
     commands.each do |command|
-      job_id = Podcasts::Episodes::Parts::CommandWorker.perform_async command
-      data = Sidekiq::Statuc::get_all job_id
-      while data[:status] != 'complete'
-        sleep 1
-      end
+      Podcasts::Episodes::Parts::CommandWorker.new.perform command
     end
 
     part = Podcast::Episodes::Part.find id

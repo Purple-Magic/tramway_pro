@@ -10,7 +10,7 @@ class Podcasts::Episodes::Parts::GeneratePreviewService < Podcasts::Episodes::Ba
     after_file_data = cut_part direction: :after
     concat_preview_data = concat_parts before: before_file_data[:output], after: after_file_data[:output]
 
-    Podcasts::Episodes::PreviewWorker.perform_async(
+    Podcasts::Episodes::Parts::PreviewWorker.new.perform(
       part.id,
       concat_preview_data[:output],
       before_file_data[:render_command],
@@ -35,23 +35,22 @@ class Podcasts::Episodes::Parts::GeneratePreviewService < Podcasts::Episodes::Ba
             when :before
               {
                 begin_time: change_time(part.begin_time, :minus, 10.seconds),
-                end_time: change_time(part.begin_time, :plus, 10.seconds)
+                end_time: change_time(part.begin_time)
               }
             when :after
               {
-                begin_time: change_time(part.begin_time, :minus, 10.seconds),
-                end_time: change_time(part.begin_time, :plus, 10.seconds)
+                begin_time: change_time(part.end_time),
+                end_time: change_time(part.end_time, :plus, 10.seconds)
               }
             end
     output = build_output(object: part, attribute: :preview, suffix: direction)
     options = {
-      input: part.episode.convert_file,
+      input: part.episode.converted_file + '.mp3',
       begin_time: times[:begin_time],
       end_time: times[:end_time],
       output: output
     }
     render_command = write_logs cut_content(**options)
-    wait_for_file_rendered output
 
     {
       output: output,

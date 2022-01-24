@@ -11,10 +11,17 @@ class Podcast::Episodes::PartDecorator < Tramway::Core::ApplicationDecorator
         :end_time,
         :created_at,
         :updated_at,
+        :preview
   )
 
   def title
     "#{begin_time}-#{end_time}"
+  end
+
+  def preview_file
+    content_tag(:audio, controls: true) do
+      content_tag(:source, '', src: object.preview.url)
+    end
   end
 
   class << self
@@ -35,6 +42,7 @@ class Podcast::Episodes::PartDecorator < Tramway::Core::ApplicationDecorator
     def show_attributes
       [
         :id,
+        :preview_file,
         :episode_id,
         :project_id,
         :deleted_at,
