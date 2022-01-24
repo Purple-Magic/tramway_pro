@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Podcast::EpisodeDecorator < ApplicationDecorator
+  decorate_association :parts, as: :episode
   decorate_association :highlights, as: :episode
   decorate_association :stars, as: :episode
   decorate_association :podcast
@@ -17,7 +18,7 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
 
   class << self
     def show_associations
-      %i[highlights topics stars links instances]
+      %i[parts highlights topics stars links instances]
     end
 
     def show_attributes

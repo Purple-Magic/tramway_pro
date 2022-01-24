@@ -168,10 +168,14 @@ ru:
         stars: Ведущие
         vk_post_text: Текст поста для ВКонтакте
         telegram_post_text: Текст поста для Telegram
+        parts: Вырезанные части
       podcast/episodes/instance:
         episode: Эпизод
         service: Сервис подкастов
         link: Ссылка на выпуск
+      podcast/episodes/part:
+        begin_time: Время начала
+        end_time: Время конца
       benchkiller/notification:
         text: Текст уведомления
         send_at: Отправлять каждый день в

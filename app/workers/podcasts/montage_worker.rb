@@ -22,8 +22,6 @@ class Podcasts::MontageWorker < ApplicationWorker
     chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     send_notification_to_chat chat_id, notification(:montage, :started)
     cut_highlights episode
-    filename = convert episode
-    send_notification_to_chat chat_id, notification(:convert, :finished)
     run_filters episode, filename
     add_music episode
   end
@@ -37,12 +35,6 @@ class Podcasts::MontageWorker < ApplicationWorker
     send_notification_to_chat chat_id, notification(:highlights, :cut, episode_id: episode.id)
   end
   # :reek:FeatureEnvy { enabled: true }
-
-  def convert(episode)
-    episode.convert_file.tap do
-      Rails.logger.info 'Converting completed!'
-    end
-  end
 
   def run_filters(episode, filename)
     episode.montage(filename)
