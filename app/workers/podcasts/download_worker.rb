@@ -12,12 +12,19 @@ class Podcasts::DownloadWorker < ApplicationWorker
     chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     episode = Podcast::Episode.find id
     download episode, chat_id
+    convert episode
   rescue StandardError => error
     log_error error
     send_notification_to_chat chat_id, notification(:montage, :something_went_wrong)
   end
 
   private
+
+  def convert(episode)
+    episode.convert_file.tap do
+      Rails.logger.info 'Converting completed!'
+    end
+  end
 
   def download(episode, chat_id)
     return if episode.file.present?

@@ -1,0 +1,61 @@
+class Podcasts::Episodes::Parts::GeneratePreviewService < Podcasts::Episodes::BaseService
+  attr_reader :part
+
+  def initialize(part)
+    @part = part
+  end
+
+  def call
+    before_file_data = cut_part direction: :before
+    after_file_data = cut_part direction: :after
+    concat_preview_data = concat_parts before: before_file_data[:output], after: after_file_data[:output]
+
+    Podcasts::Episodes::PreviewWorker.perform_async(
+      part.id,
+      concat_preview_data[:output],
+      before_file_data[:render_command],
+      after_file_data[:render_command],
+      concat_preview_data[:render_command]
+    )
+  end
+
+  private
+
+  def concat_parts(before:, after:)
+    output = build_output(object: part, attribute: :preview, suffix: :concated_parts)
+    render_command = write_logs content_concat inputs: [before, after], output: output
+    {
+      output: output,
+      render_command: render_command
+    }
+  end
+
+  def cut_part(direction:)
+    times = case direction
+            when :before
+              {
+                begin_time: change_time(part.begin_time, :minus, 10.seconds),
+                end_time: change_time(part.begin_time, :plus, 10.seconds)
+              }
+            when :after
+              {
+                begin_time: change_time(part.begin_time, :minus, 10.seconds),
+                end_time: change_time(part.begin_time, :plus, 10.seconds)
+              }
+            end
+    output = build_output(object: part, attribute: :preview, suffix: direction)
+    options = {
+      input: part.episode.convert_file,
+      begin_time: times[:begin_time],
+      end_time: times[:end_time],
+      output: output
+    }
+    render_command = write_logs cut_content(**options)
+    wait_for_file_rendered output
+
+    {
+      output: output,
+      render_command: render_command
+    }
+  end
+end

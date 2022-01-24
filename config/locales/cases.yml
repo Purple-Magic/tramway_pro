@@ -37,6 +37,9 @@ ru:
     podcast/episode:
       plural: эпизоды
       genitive: эпизод
+    podcast/episodes/part:
+      plural: вырезанные части
+      genitive: вырезанную часть
     bot_telegram/scenario/step:
       plural: Сценарий бота
       genitive: пункт сценария
