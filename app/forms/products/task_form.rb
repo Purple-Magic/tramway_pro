@@ -1,5 +1,5 @@
 class Products::TaskForm < Tramway::Core::ApplicationForm
-  properties :title, :project_id, :product, :data, :card_id
+  properties :title, :project_id, :product, :data, :card_id, :deleted_at
 
   def product=(value)
     model.product_id = Product.find_by(title: value).id 
