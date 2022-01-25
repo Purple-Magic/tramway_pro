@@ -81,16 +81,6 @@
       args:
         chdir: "{{ release_path }}"
 
-    - name: Assets clean
-      shell: "/bin/bash -lic '/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec rails assets:clean'"
-      args:
-        chdir: "{{ release_path }}"
-
-        #- name: Assets precompile
-        #shell: "/bin/bash -lic '/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec rails assets:precompile'"
-        #args:
-        #chdir: "{{ release_path }}"
-
     - name: Migrate
       shell: "/bin/bash -lic '/usr/share/rvm/bin/rvm {{ ruby_version }} do {{ release_path }}/bin/rake db:migrate'"
       args:
