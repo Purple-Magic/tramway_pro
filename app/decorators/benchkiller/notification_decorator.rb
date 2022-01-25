@@ -16,7 +16,7 @@ class Benchkiller::NotificationDecorator < ApplicationDecorator
   )
 
   def title
-    "#{object.send_at} - #{object.text}"
+    object.send_at
   end
 
   class << self
@@ -26,12 +26,7 @@ class Benchkiller::NotificationDecorator < ApplicationDecorator
     end
 
     def list_attributes
-      %i[
-        id
-        text
-        send_at
-        state
-      ]
+      %i[text]
     end
 
     def show_attributes
