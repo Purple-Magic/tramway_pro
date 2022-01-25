@@ -34,4 +34,12 @@ class Course < ApplicationRecord
     end
     "#{min_minutes / 60}h #{min_minutes % 60}m - #{max_minutes / 60}h #{max_minutes % 60}m"
   end
+
+  def time_logs
+    video_ids = videos.map(&:id)
+    tasks_ids = tasks.map(&:id)
+    TimeLog.where(associated_type: 'Courses::Video', associated_id: video_ids).or(
+      TimeLog.where(associated_type: 'Courses::Task', associated_id: tasks_ids)
+    )
+  end
 end

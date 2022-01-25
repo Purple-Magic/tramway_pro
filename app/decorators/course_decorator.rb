@@ -15,7 +15,7 @@ class CourseDecorator < ApplicationDecorator
     end
 
     def show_attributes
-      %i[id title data tree created_at updated_at]
+      %i[data time_logs tree]
     end
 
     def show_associations
@@ -42,6 +42,13 @@ class CourseDecorator < ApplicationDecorator
     content_tag :table do
       data_table_header
       data_table_body
+    end
+  end
+
+  def time_logs
+    content_tag :table do
+      time_logs_table_header
+      time_logs_table_body
     end
   end
 end

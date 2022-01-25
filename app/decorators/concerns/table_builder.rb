@@ -12,4 +12,10 @@ module Concerns::TableBuilder
       yield if block
     end
   end
+
+  def tr(&block)
+    content_tag(:tr) do
+      yield if block
+    end
+  end
 end
