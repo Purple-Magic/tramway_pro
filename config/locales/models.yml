@@ -102,6 +102,10 @@ ru:
         position: Порядок применения
       course:
         topics: Темы
+        title: Название
+        data: Данные курса
+        tree: Дерево курса
+        time_logs: Времени затрачено
       courses/topic:
         lessons: Уроки
       courses/lesson:
