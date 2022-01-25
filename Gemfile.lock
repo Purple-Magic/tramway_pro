@@ -536,7 +536,7 @@ GEM
     tilt (2.0.10)
     time_difference (0.7.0)
       activesupport (~> 5.1)
-    tramway-admin (3.0.1)
+    tramway-admin (3.0.1.1)
       aasm
       bootstrap-kaminari-views (= 0.0.5)
       copyright_mafa (~> 0.1.2, >= 0.1.2)
@@ -733,7 +733,7 @@ DEPENDENCIES
   streamio-ffmpeg
   telegram-bot-ruby (= 0.15.0)
   time_difference
-  tramway-admin (= 3.0.1)
+  tramway-admin (= 3.0.1.1)
   tramway-api (= 1.8.7.3)
   tramway-conference (= 1.9.5.5)
   tramway-core (= 3.0.1.1)
