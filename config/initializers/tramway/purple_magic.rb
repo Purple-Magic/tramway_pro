@@ -25,6 +25,7 @@ Tramway::Admin.set_available_models(
   Benchkiller::Tag,
   Benchkiller::Collation,
   Product,
+  Product::Task,
   project: :purple_magic
 )
 

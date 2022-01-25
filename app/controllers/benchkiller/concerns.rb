@@ -24,6 +24,7 @@ module Benchkiller::Concerns
     'Грузия' => ['Georgia'],
     'США' => ['USA'],
     'Азербайджан' => ['Azerbaijan'],
+    'Великобритания' => ['Британия'],
     'Все регионы' => %w[Worldwide Все]
   }.freeze
   
