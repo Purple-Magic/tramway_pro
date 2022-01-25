@@ -8,7 +8,7 @@ class Benchkiller::OfferSerializer < Tramway::Api::V1::ApplicationSerializer
   def title
     user = object.message.user
     user_title = "#{user.username.present? ? user.username : 'No username'}: #{user.first_name} #{user.last_name}"
-    "#{user_title}: #{object.message.text&.first(15)...}"
+    user_title
   end
 
   def text
