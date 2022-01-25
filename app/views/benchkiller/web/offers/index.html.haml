@@ -49,11 +49,11 @@
 %ul.nav.nav-tabs
   %li.nav-item
     - on_lookfor_tab = params[:collection].to_s.in?([ 'lookfor' ])
-    - lookfor_tab_name = on_lookfor_tab ? "lookfor (#{@full_offers_collection.count})" : 'lookfor'
+    - lookfor_tab_name = on_lookfor_tab ? "#{t('.lookfor')} (#{@full_offers_collection.count})" : t('.lookfor')
     = link_to lookfor_tab_name, public_send(current_path_method, { collection: :lookfor }), class: "nav-link #{on_lookfor_tab ? :active : ''}"
   %li.nav-item
     - on_available_tab = params[:collection].in?([ 'available' ])
-    - available_tab_name = on_available_tab ? "available (#{@full_offers_collection.count})" : 'available'
+    - available_tab_name = on_available_tab ? "#{t('.available')} (#{@full_offers_collection.count})" : t('.available')
     = link_to available_tab_name, public_send(current_path_method, { collection: :available }), class: "nav-link #{on_available_tab ? :active : ''}"
 .card{ style: 'padding: 1rem' }
   %b
