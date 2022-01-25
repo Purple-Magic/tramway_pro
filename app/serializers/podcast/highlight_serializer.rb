@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class Podcast::HighlightSerializer < Tramway::Api::V1::ApplicationSerializer
+class Podcast::HighlightSerializer < ApplicationSerializer
   attributes :episode_id, :time
 end

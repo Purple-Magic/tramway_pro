@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class VideoSerializer < Tramway::Api::V1::ApplicationSerializer
+class VideoSerializer < ApplicationSerializer
   attributes :url, :preview, :title, :description
 end

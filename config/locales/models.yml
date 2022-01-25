@@ -28,6 +28,7 @@ ru:
       benchkiller/collation: Сопоставление
       magic_wood/actor: Актёр
       magic_wood/actors/photo: Фото актёра
+      product: Проект
     attributes:
       word:
         main: Определение
@@ -205,6 +206,9 @@ ru:
       estimation/cost:
         associated: Задача или расход
         price: Реальная стоимость
+      product:
+        title: Название
+        tasks: Задачи
   enumerize:
     podcast:
       podcast_type:

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Podcast::EpisodeSerializer < Tramway::Api::V1::ApplicationSerializer
+class Podcast::EpisodeSerializer < ApplicationSerializer
   has_many :highlights, serializer: Podcast::HighlightSerializer
   belongs_to :podcast, serializer: PodcastSerializer
 

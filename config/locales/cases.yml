@@ -138,3 +138,6 @@ ru:
     television/schedule_item:
       plural: программы
       genitive: программу
+    product:
+      plural: проекты
+      genitive: проект
