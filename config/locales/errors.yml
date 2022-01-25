@@ -39,3 +39,7 @@ ru:
               email: имеет неверный формат
             portfolio_url:
               url: должен быть ссылкой в формате URL
+        time_log:
+          attributes:
+            time_spent:
+              wrong_time_format: имеет неверный формат. Поддерживаемый формат 3h 10m

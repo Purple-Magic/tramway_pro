@@ -1,4 +1,11 @@
-module Courses::DecoratorHelpers::TimeLogs
+module Concerns::TimeLogsTable
+  def time_logs
+    content_tag :table do
+      time_logs_table_header
+      time_logs_table_body
+    end
+  end
+
   def time_logs_table_header
     users_logged_time.each do |user|
       concat(th do
