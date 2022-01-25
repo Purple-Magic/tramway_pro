@@ -19,7 +19,7 @@ module Benchkiller::Concerns
   
   REGIONS_DICTIONARY = {
     'Россия' => ['РФ', 'Российская федерация', 'Russia'],
-    'Беларусь' => ['Республика Беларусь', 'РБ', 'Беларуссия', 'Belarus', 'Белорусь', 'Belarussia'],
+    'Беларусь' => ['Республика Беларусь', 'РБ', 'Беларуссия', 'Белоруссия', 'Belarus', 'Белорусь', 'Belarussia'],
     'Украина' => %w[Ukraine UA],
     'Грузия' => ['Georgia'],
     'США' => ['USA'],
@@ -39,7 +39,7 @@ module Benchkiller::Concerns
           pair[0] if pair[1].include? region
         end.compact.first || region
       end
-    end.compact
+    end.compact.uniq
     regions_at_the_beginning = ['Все регионы', 'СНГ', 'Европа', 'Азия']
     regions_at_the_beginning + (filtered_array - regions_at_the_beginning).sort
   end
