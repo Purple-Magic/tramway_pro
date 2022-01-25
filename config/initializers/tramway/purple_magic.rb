@@ -24,6 +24,7 @@ Tramway::Admin.set_available_models(
   Benchkiller::Offer,
   Benchkiller::Tag,
   Benchkiller::Collation,
+  Product,
   project: :purple_magic
 )
 
@@ -99,6 +100,7 @@ Tramway::Admin.navbar_structure(
       Estimation::Project
     ]
   },
+  Product,
   Audited::Audit,
   Tramway::User::User,
   project: :purple_magic

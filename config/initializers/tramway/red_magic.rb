@@ -114,6 +114,7 @@ Tramway::Api.set_available_models(
       }
     ],
     Podcast::Episodes::Topic => [:create],
+    Product::Task => [:create],
     Tramway::News::News => [
       :create,
       {

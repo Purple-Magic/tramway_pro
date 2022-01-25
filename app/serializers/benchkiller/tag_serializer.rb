@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class Benchkiller::TagSerializer < Tramway::Api::V1::ApplicationSerializer
+class Benchkiller::TagSerializer < ApplicationSerializer
   attributes :title
 end

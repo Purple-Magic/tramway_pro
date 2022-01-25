@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class Tramway::Event::EventSerializer < Tramway::Api::V1::ApplicationSerializer
+class Tramway::Event::EventSerializer < ApplicationSerializer
   attributes :title
 end

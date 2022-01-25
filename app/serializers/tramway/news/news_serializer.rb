@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Tramway::News::NewsSerializer < Tramway::Api::V1::ApplicationSerializer
+class Tramway::News::NewsSerializer < ApplicationSerializer
   attributes :title, :body, :published_at, :photo
 
   include ActionView::Helpers::OutputSafetyHelper

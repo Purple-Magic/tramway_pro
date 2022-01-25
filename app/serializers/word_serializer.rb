@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class WordSerializer < Tramway::Api::V1::ApplicationSerializer
+class WordSerializer < ApplicationSerializer
   attributes :main, :synonims, :description
 end
