@@ -12,7 +12,7 @@ class BenchkillerSendPlannedNotifications < ActiveJob::Base
     ::Benchkiller::Notification.find_each do |notification|
       if time == notification.send_at
         send_notification_to_chat(
-          ::BotTelegram::BenchkillerBot::MAIN_CHAT_ID,
+          '-1001797189343',
           notification.text
         )
       end
