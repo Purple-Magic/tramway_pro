@@ -114,7 +114,7 @@ Tramway::Api.set_available_models(
       }
     ],
     Podcast::Episodes::Topic => [:create],
-    Products::Task => [:create],
+    Products::Task => [:create, :update, :destroy],
     Tramway::News::News => [
       :create,
       {
@@ -142,6 +142,8 @@ Tramway::Api.set_available_models(
   },
   project: :red_magic
 )
+
+Tramway::Api.id_methods_of(Products::Task => { default: :card_id })
 
 Tramway::Export.set_exportable_models(
   {

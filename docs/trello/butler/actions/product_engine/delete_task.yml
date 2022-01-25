@@ -1,0 +1,3 @@
+data:
+  attributes:
+    deleted_at: "{isodatetime}"
