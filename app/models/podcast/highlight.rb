@@ -14,6 +14,7 @@ class Podcast::Highlight < ApplicationRecord
   validate :time_format
 
   include Podcast::SoundProcessConcern
+  include Podcasts::Episodes::TimeManagement
   include Ffmpeg::CommandBuilder
 
   def cut(output)
@@ -37,10 +38,6 @@ class Podcast::Highlight < ApplicationRecord
   end
 
   def cut_from_whole_file(filename, index)
-    hour, minutes, seconds = time.split(':')
-    highlight_time = DateTime.new(2020, 0o1, 0o1, hour.to_i, minutes.to_i, seconds.to_i)
-    begin_time = compute_begin_time highlight_time
-    end_time = (highlight_time + 30.seconds).strftime '%H:%M:%S'
     output = "#{directory}/part-#{index + 1}.mp3"
     build_and_run_command(input: filename, begin_time: begin_time, end_time: end_time, output: output)
     wait_for_file_rendered output, "Highlight #{id}"
@@ -63,20 +60,26 @@ class Podcast::Highlight < ApplicationRecord
     time.split(':')[2].to_i
   end
 
+  def begin_time
+    change_time(time, :minus, 60.seconds)
+  end
+
+  def end_time
+    change_time(time, :plus, 30.seconds)
+  end
+
+  def shift
+    episode.parts.sum do |part|
+      #if time_less_than highlight.begin_time
+    end
+  end
+
   private
 
   def build_and_run_command(**options)
     command = write_logs cut_content(**options)
     Rails.logger.info command
     system command
-  end
-
-  def compute_begin_time(highlight_time)
-    if highlight_time > DateTime.new(2020, 1, 1, 0, 1, 0)
-      (highlight_time - 60.seconds).strftime '%H:%M:%S'
-    else
-      ''
-    end
   end
 
   def time_format
