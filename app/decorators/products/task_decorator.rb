@@ -1,13 +1,15 @@
 class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
   delegate_attributes(
-        :id,
         :title,
         :data,
         :created_at,
-        :updated_at,
   )
 
   decorate_association :time_logs, as: :associated
+
+  def created_at
+    object.created_at.strftime('%d.%m.%Y %H:%M')
+  end
 
   class << self
     def collections
@@ -25,14 +27,8 @@ class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
 
     def show_attributes
       [
-        :id,
-        :title,
         :data,
-        :state,
-        :deleted_at,
-        :project_id,
         :created_at,
-        :updated_at,
       ]
     end
 

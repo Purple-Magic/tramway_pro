@@ -1,41 +1,21 @@
-class ProductDecorator < Tramway::Core::ApplicationDecorator
-  delegate_attributes(
-        :id,
-        :title,
-        :state,
-        :deleted_at,
-        :project_id,
-        :created_at,
-        :updated_at,
-  )
+class ProductDecorator < ApplicationDecorator
+  delegate_attributes :title
 
   decorate_association :tasks
 
+  include Concerns::TimeLogsTable
+
   class << self
     def collections
-      # [ :all, :scope1, :scope2 ]
       [ :all ]
     end
 
     def list_attributes
-      [
-        :id,
-        :title,
-        :state,
-        :deleted_at,
-      ]
+      []
     end
 
     def show_attributes
-      [
-        :id,
-        :title,
-        :state,
-        :deleted_at,
-        :project_id,
-        :created_at,
-        :updated_at,
-      ]
+      [ :time_logs ]
     end
 
     def show_associations

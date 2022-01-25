@@ -10,7 +10,12 @@ class Admin::TimeLogForm < Tramway::Core::ApplicationForm
     super(object).tap do
       form_properties user: :association,
         associated: :polymorphic_association,
-        time_spent: :string,
+        time_spent: {
+          type: :string,
+          input_options: {
+            placeholder: 'Формат 3h 10m'
+          }
+        },
         comment: :string
     end
   end

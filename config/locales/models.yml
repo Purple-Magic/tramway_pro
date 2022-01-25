@@ -29,6 +29,7 @@ ru:
       magic_wood/actor: Актёр
       magic_wood/actors/photo: Фото актёра
       product: Проект
+      products/task: Задача
     attributes:
       word:
         main: Определение
@@ -209,6 +210,16 @@ ru:
       product:
         title: Название
         tasks: Задачи
+        time_logs: Времени затрачено
+      products/task:
+        title: Название
+        data: Данные карточки
+        time_logs: Таймлоги
+      time_log:
+        user: Пользователь
+        associated: К чему добавить таймлог
+        time_spent: Затрачено времени
+        comment: Комментарий
   enumerize:
     podcast:
       podcast_type:
