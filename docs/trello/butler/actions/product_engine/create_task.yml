@@ -1,0 +1,6 @@
+data:
+  attributes:
+    title: "{cardname}"
+    product: "Benchkiller"
+    data:
+      link: "{cardLink}"
