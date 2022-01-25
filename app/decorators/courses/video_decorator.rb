@@ -25,10 +25,14 @@ class Courses::VideoDecorator < ApplicationDecorator
         0
       end
     end
-    estimated_duraion = (object.text.split.count * coefficients.median).round 2
-    minutes = estimated_duraion.to_s.split('.').first
-    fraction = (estimated_duraion.to_s.split('.').second.to_i * 60 / 100).round
-    "#{minutes}m #{fraction}s" if coefficients.count > 1
+    if coefficients.any?
+      estimated_duraion = (object.text.split.count * coefficients.median).round 2
+      minutes = estimated_duraion.to_s.split('.').first
+      fraction = (estimated_duraion.to_s.split('.').second.to_i * 60 / 100).round
+      "#{minutes}m #{fraction}s"
+    else
+      "0m"
+    end
   end
 
   def url
