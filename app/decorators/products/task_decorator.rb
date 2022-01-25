@@ -3,6 +3,7 @@ class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
         :title,
         :data,
         :created_at,
+        :card_id
   )
 
   decorate_association :time_logs, as: :associated
@@ -27,6 +28,7 @@ class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
 
     def show_attributes
       [
+        :card_id,
         :data,
         :created_at,
       ]
