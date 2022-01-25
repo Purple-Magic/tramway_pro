@@ -143,6 +143,8 @@ Tramway::Api.set_available_models(
   project: :red_magic
 )
 
+Tramway::Api.id_methods_of(Products::Task => { default: :card_id })
+
 Tramway::Export.set_exportable_models(
   {
     Estimation::Project => %i[tasks expenses]
