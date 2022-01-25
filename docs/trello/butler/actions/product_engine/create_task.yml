@@ -2,5 +2,8 @@ data:
   attributes:
     title: "{cardname}"
     product: "Benchkiller"
+    card_id: "{cardidlong}"
     data:
-      link: "{cardLink}"
+      link: "{cardlink}"
+      status: "{cardlistname}"
+      users: "{cardmemberusernames}"
