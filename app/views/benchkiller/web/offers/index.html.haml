@@ -45,7 +45,7 @@
         &times;
 %h1{ style: 'display: flex; flex-direction: row; justify-content: space-between' }
   Поиск по постам
-  = react_component 'BenchkillerMakeDeliveryButton', path: new_benchkiller_web_delivery_path
+  = react_component 'BenchkillerDeliveryButton', path: new_benchkiller_web_delivery_path
 %ul.nav.nav-tabs
   %li.nav-item
     - on_lookfor_tab = params[:collection].to_s.in?([ 'lookfor' ])
@@ -96,4 +96,4 @@
           = record.created_at.strftime('%d.%m.%Y %H:%M')
 %div{ style: 'display: flex; justify-content: space-between' }
   = paginate @offers, theme: 'twitter-bootstrap-4'
-  = react_component 'BenchkillerMakeDeliveryButton', path: new_benchkiller_web_delivery_path
+  = react_component 'BenchkillerDeliveryButton', path: new_benchkiller_web_delivery_path
