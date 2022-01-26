@@ -9,7 +9,7 @@ const getIds = () => {
   }
 }
 
-class BenchkillerMakeDeliveryButton extends React.Component {
+class BenchkillerDeliveryButton extends React.Component {
   constructor(props) {
     super(props)
 
@@ -37,9 +37,14 @@ class BenchkillerMakeDeliveryButton extends React.Component {
 
   render() {
     return (
-      <a className="btn btn-primary mb-4" onClick={() => window.localStorage.removeItem('selectedOffers')} href={this.pathWithIds()}>Сделать рассылку</a>
+      <>
+        {
+          _.any(getIds()) ? <a className="btn btn-warning mb-4" style={{ 'margin-right': '1rem' }} onClick={() => window.localStorage.removeItem('selectedOffers')} href='#'>Убрать выделение</a> : <></>
+        }
+        <a className="btn btn-primary mb-4" onClick={() => window.localStorage.removeItem('selectedOffers')} href={this.pathWithIds()}>Сделать рассылку</a>
+      </>
     )
   }
 }
 
-export default BenchkillerMakeDeliveryButton
+export default BenchkillerDeliveryButton

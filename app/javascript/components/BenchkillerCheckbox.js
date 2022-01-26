@@ -30,6 +30,17 @@ class BenchkillerCheckbox extends React.Component {
     super(props)
 
     this.change = this.change.bind(this)
+    this.state = {
+      checked: checked(this.props.uuid),
+    }
+  }
+
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        checked: checked(this.props.uuid)
+      })
+    }, 300)
   }
 
   change(e) {
@@ -45,6 +56,7 @@ class BenchkillerCheckbox extends React.Component {
       <input
         onChange={this.change}
         defaultChecked={checked(this.props.uuid)}
+        checked={this.state.checked}
         type="checkbox"
         name={this.props.uuid}
         id={this.props.uuid}
