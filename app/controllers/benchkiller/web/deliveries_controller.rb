@@ -16,7 +16,7 @@ class Benchkiller::Web::DeliveriesController < Benchkiller::Web::ApplicationCont
       @delivery_form.model.reload
       redirect_to benchkiller_web_delivery_path(@delivery_form.model.uuid)
     else
-      @receivers = Benchkiller::Offer.where(uuid: @delivery_form.receivers.split(',')).map(&:benchkiller_user).uniq
+      @receivers = Benchkiller::Offer.where uuid: @delivery_form.receivers.split(',')
       render :new
     end
   end
@@ -27,7 +27,7 @@ class Benchkiller::Web::DeliveriesController < Benchkiller::Web::ApplicationCont
 
   def edit
     @delivery_form = ::Benchkiller::Web::DeliveryForm.new ::Benchkiller::Delivery.find_by uuid: params[:id]
-    @receivers = Benchkiller::Offer.where(id: @delivery_form.model.receivers_ids).map(&:benchkiller_user).uniq
+    @receivers = Benchkiller::Offer.where id: @delivery_form.model.receivers_ids
   end
 
   def update
@@ -36,7 +36,7 @@ class Benchkiller::Web::DeliveriesController < Benchkiller::Web::ApplicationCont
       @delivery_form.model.reload
       redirect_to benchkiller_web_delivery_path(@delivery_form.model.uuid)
     else
-      @receivers = Benchkiller::Offer.where(id: @delivery_form.model.receivers_ids).map(&:benchkiller_user).uniq
+      @receivers = Benchkiller::Offer.where id: @delivery_form.model.receivers_ids
       render :edit
     end
   end
@@ -58,6 +58,6 @@ class Benchkiller::Web::DeliveriesController < Benchkiller::Web::ApplicationCont
     ids = params[:keys]&.split(',')&.map do |key|
       key if key.match?(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/)
     end&.compact
-    @receivers = Benchkiller::Offer.where(uuid: ids).map(&:benchkiller_user).uniq
+    @receivers = Benchkiller::Offer.where(uuid: ids)
   end
 end
