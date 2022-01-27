@@ -21,10 +21,8 @@ class Courses::VideoDecorator < ApplicationDecorator
     coefficients = Courses::Video.where.not(result_duration: nil).map do |video|
       if video.result_duration.present?
         video.minutes_of(:result_duration).to_f / video.text.split.count
-      else
-        0
       end
-    end
+    end.compact
     if coefficients.any?
       estimated_duraion = (object.text.split.count * coefficients.median).round 2
       minutes = estimated_duraion.to_s.split('.').first
