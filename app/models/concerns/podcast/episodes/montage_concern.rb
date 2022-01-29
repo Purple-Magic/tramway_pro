@@ -2,7 +2,7 @@
 
 module Podcast::Episodes::MontageConcern
   def montage(filename)
-    output = file.path
+    output = premontage_file.path
     if montage_process == 'default'
       directory = prepare_directory.gsub('//', '/')
       output = "#{directory}/montage.mp3"
@@ -22,6 +22,7 @@ module Podcast::Episodes::MontageConcern
     render_command = write_logs use_filters(input: filename, output: temp_output)
     move_command = move_to(temp_output, output)
     command = "#{render_command} && #{move_command}"
+    log_command command
     Rails.logger.info command
     system command
   end

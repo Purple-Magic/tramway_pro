@@ -22,7 +22,8 @@ class Podcasts::MontageWorker < ApplicationWorker
     chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     send_notification_to_chat chat_id, notification(:montage, :started)
     cut_highlights episode
-    run_filters episode, filename
+    remove_cut_pieces episode
+    run_filters episode
     add_music episode
   end
 
@@ -36,8 +37,14 @@ class Podcasts::MontageWorker < ApplicationWorker
   end
   # :reek:FeatureEnvy { enabled: true }
 
-  def run_filters(episode, filename)
-    episode.montage(filename)
+  def remove_cut_pieces(episode)
+    if episode.parts.any?
+      Podcasts::Episodes::Montage::RemoveCutPiecesService.new(episode).call
+    end
+  end
+
+  def run_filters(episode)
+    episode.montage(episode.premontage_file.path)
     Rails.logger.info 'Montage completed!'
     chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     send_notification_to_chat chat_id, notification(:filter, :finished)
