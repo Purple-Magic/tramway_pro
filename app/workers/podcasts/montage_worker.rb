@@ -22,7 +22,7 @@ class Podcasts::MontageWorker < ApplicationWorker
     cut_highlights episode
     remove_cut_pieces episode
     run_filters episode
-    add_music episode
+    add_music episode if episode.podcast.podcast_type.sample?
   end
 
   # :reek:FeatureEnvy { enabled: false }

@@ -102,7 +102,7 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
     render_video_button = { url: render_video_url, method: :patch, inner: -> { fa_icon :video }, color: :success }
 
     case object.podcast.podcast_type.to_sym
-    when :sample
+    when :sample, :without_music
       download_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :download)
       finish_record_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish_record)
       trailer_get_ready_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :trailer_get_ready)
@@ -132,16 +132,6 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
       {
         show: [
           render_video_button
-        ]
-      }
-    when :without_music
-      finish_record_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish_record)
-      finish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :finish)
-
-      {
-        show: [
-          { url: finish_record_url, method: :patch, inner: -> { 'Finish record' }, color: :success },
-          { url: finish_url, method: :patch, inner: -> { 'Finish' }, color: :success }
         ]
       }
     end
