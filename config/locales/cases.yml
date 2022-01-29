@@ -87,6 +87,9 @@ ru:
     courses/task:
       plural: задания
       genitive: задание
+    courses/screencast:
+      plural: скринкасты
+      genitive: скринкаст
     content/story:
       plural: истории
       genitive: историю

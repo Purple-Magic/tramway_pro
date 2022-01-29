@@ -10,11 +10,19 @@ class Courses::ScreencastDecorator < Tramway::Core::ApplicationDecorator
     :video_id,
     :scenario,
     :created_at,
-    :updated_at
+    :updated_at,
+    :begin_time,
+    :end_time
   )
 
   def title
-    "Screencast #{object.id} of Video ##{object.video_id}"
+    "#{begin_time}-#{end_time}"
+  end
+
+  def file
+    content_tag(:video, controls: true, width: '400px') do
+      content_tag(:source, '', src: object.file.url)
+    end
   end
 
   def scenario
@@ -54,15 +62,7 @@ class Courses::ScreencastDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[
-        id
-        project_id
-        video_id
-        scenario
-        preview
-        created_at
-        updated_at
-      ]
+      %i[file]
     end
 
     def show_associations
