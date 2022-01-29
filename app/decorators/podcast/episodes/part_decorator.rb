@@ -1,7 +1,4 @@
 class Podcast::Episodes::PartDecorator < Tramway::Core::ApplicationDecorator
-  # Associations you want to show in admin dashboard
-  # decorate_associations :messages, :posts
-
   delegate_attributes(
         :id,
         :episode_id,
@@ -14,6 +11,8 @@ class Podcast::Episodes::PartDecorator < Tramway::Core::ApplicationDecorator
         :preview
   )
 
+  decorate_associations :episode
+
   def title
     "#{begin_time}-#{end_time}"
   end
@@ -24,6 +23,11 @@ class Podcast::Episodes::PartDecorator < Tramway::Core::ApplicationDecorator
     end
   end
 
+  def episode_link
+    link_to episode.title,
+      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.episode_id, model: 'Podcast::Episode')
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
@@ -31,25 +35,14 @@ class Podcast::Episodes::PartDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def list_attributes
-      [
-        :id,
-        :episode_id,
-        :project_id,
-        :deleted_at,
-      ]
     end
 
     def show_attributes
       [
-        :id,
+        :episode_link,
         :preview_file,
-        :episode_id,
-        :project_id,
-        :deleted_at,
         :begin_time,
         :end_time,
-        :created_at,
-        :updated_at,
       ]
     end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220125222110) do
+ActiveRecord::Schema.define(version: 20220129082904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -569,6 +569,7 @@ ActiveRecord::Schema.define(version: 20220125222110) do
     t.text "public_title"
     t.text "montage_process", default: "default"
     t.datetime "deleted_at"
+    t.jsonb "render_data"
   end
 
   create_table "podcast_episodes_instances", force: :cascade do |t|

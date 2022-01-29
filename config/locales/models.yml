@@ -175,6 +175,8 @@ ru:
         vk_post_text: Текст поста для ВКонтакте
         telegram_post_text: Текст поста для Telegram
         parts: Вырезанные части
+        render_commands: Лог рендера
+        public_title: Название
       podcast/episodes/instance:
         episode: Эпизод
         service: Сервис подкастов

@@ -22,9 +22,30 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
     end
 
     def show_attributes
-      %i[podcast_link public_title number file ready_file premontage_file trailer cover trailer_video full_video
+      %i[render_commands podcast_link public_title file ready_file premontage_file trailer cover trailer_video full_video
          description_view youtube_description vk_post_text telegram_post_text instagram_post_text twitter_post_text
          patreon_post_text montage_state]
+    end
+  end
+
+  def render_commands
+    content_tag(:div) do
+      concat(content_tag(:button, type: :button, class: 'btn btn-primary', data: { toggle: :collapse, target: '#commands' }, aria: { controls: :commands }) do
+        concat(content_tag(:span) do
+          'Раскрыть '
+        end)
+        concat fa_icon('caret-down')
+      end)
+      concat(content_tag(:div, class: :collapse, id: :commands) do
+        concat content_tag :hr
+        concat(content_tag(:ul) do
+          object.render_data&.dig('commands')&.each do |command|
+            concat(content_tag(:li) do
+              command
+            end)
+          end
+        end)
+      end)
     end
   end
 

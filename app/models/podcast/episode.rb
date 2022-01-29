@@ -6,7 +6,7 @@ class Podcast::Episode < ApplicationRecord
   EPISODE_ATTRIBUTES = %i[title season number description published_at image explicit file_url duration].freeze
 
   belongs_to :podcast, class_name: 'Podcast'
-  has_many :parts, class_name: 'Podcast::Episodes::Part'
+  has_many :parts, -> { order :id }, class_name: 'Podcast::Episodes::Part'
   has_many :highlights, -> { order(:time) }, class_name: 'Podcast::Highlight'
   has_many :topics, -> { order(:created_at) }, class_name: 'Podcast::Episodes::Topic'
   has_many :links, class_name: 'Podcast::Episodes::Link'
@@ -18,8 +18,8 @@ class Podcast::Episode < ApplicationRecord
 
   scope :podcast_scope, ->(_user_id) { all }
 
-  uploader :ready_file, :file
   uploader :file, :file
+  uploader :ready_file, :file
   uploader :cover, :photo
   uploader :premontage_file, :file
   uploader :trailer, :file
@@ -158,6 +158,12 @@ class Podcast::Episode < ApplicationRecord
 
   def with_minor?
     stars.minor.any?
+  end
+
+  def log_command(command)
+    commands = (render_data&.dig('commands') || []) + [command]
+    self.render_data ? self.render_data['commands'] = commands : self.render_data = { commands: commands }
+    save!
   end
 
   private
