@@ -8,6 +8,7 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
   decorate_association :topics, as: :episode
   decorate_association :links, as: :episode
   decorate_association :instances, as: :episode
+  decorate_association :time_logs, as: :associated
 
   delegate_attributes :id, :number, :file_url, :montage_state, :public_title
 
@@ -18,7 +19,7 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
 
   class << self
     def show_associations
-      %i[parts highlights topics stars links instances]
+      %i[parts highlights topics stars links instances time_logs]
     end
 
     def show_attributes
