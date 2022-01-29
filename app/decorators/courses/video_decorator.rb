@@ -47,7 +47,7 @@ class Courses::VideoDecorator < ApplicationDecorator
     end
 
     def show_attributes
-      %i[id course_link lesson_link time_logged duration result_duration auto_estimated_time url text created_at
+      %i[course_link lesson_link time_logged duration result_duration auto_estimated_time url text created_at
          updated_at release_date]
     end
 
