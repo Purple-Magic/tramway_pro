@@ -151,6 +151,7 @@ ru:
         musics: Сэмплы
         episodes: Эпизоды
         stars: Ведущие
+        time_logs: Времени затрачено
       podcast/episode:
         number: Номер эпизода
         file: Исходный файл
@@ -178,6 +179,7 @@ ru:
         parts: Вырезанные части
         render_commands: Лог рендера
         public_title: Название
+        time_logs: Времени затрачено
       podcast/episodes/instance:
         episode: Эпизод
         service: Сервис подкастов

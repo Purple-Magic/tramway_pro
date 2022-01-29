@@ -4,7 +4,7 @@ class TimeLog < ApplicationRecord
   belongs_to :associated, polymorphic: true
   belongs_to :user, class_name: 'Tramway::User::User'
 
-  enumerize :associated_type, in: [Courses::Video, Products::Task]
+  enumerize :associated_type, in: [Courses::Video, Products::Task, Podcast::Episode]
 
   scope :logged_by, lambda { |user, associated|
     minutes = associated.time_logs.where(user_id: user).sum(&:minutes)
