@@ -11,8 +11,7 @@ class Podcasts::Episodes::Parts::PreviewWorker < ApplicationWorker
     part = Podcast::Episodes::Part.find id
     part.update_file! output, :preview
 
-    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
-    send_notification_to_chat chat_id, notification(:part_preview, :finished)
+    send_notification_to_chat part.episode.podcast.chat_id, notification(:part_preview, :finished)
   rescue StandardError => error
     Rails.env.development? ? puts(error) : Airbrake.notify(error)
   end
