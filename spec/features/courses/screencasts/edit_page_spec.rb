@@ -2,86 +2,75 @@
 
 require 'rails_helper'
 
-describe 'Edit comment page' do
+describe 'Edit screencast page' do
   before { move_host_to kalashnikovisme_host }
 
   describe 'Admin' do
-    let!(:comment) do
+    let!(:screencast) do
       topic = create :courses_topic,
         project_id: kalashnikovisme_id,
         course: create(:course, project_id: kalashnikovisme_id)
       lesson = create :courses_lesson, project_id: kalashnikovisme_id, topic: topic
-      associated_type = Courses::Comment.associated_type.values.sample
-      associated = create associated_type.underscore.gsub('/', '_'), lesson: lesson
-      create :courses_comment, associated: associated, project_id: kalashnikovisme_id
+      video = create :courses_video, lesson: lesson
+      create :courses_screencast, video: video, project_id: kalashnikovisme_id
     end
 
-    it 'should show edit comment page' do
+    it 'should show edit screencast page' do
       visit '/admin'
       fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
       fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
       click_on 'Курсы'
-      click_on comment.associated.lesson.topic.course.title
+      click_on screencast.video.lesson.topic.course.title
       within 'ul.tree' do
-        click_on Courses::CommentDecorator.new(comment).associated.title
+        click_on Courses::VideoDecorator.new(screencast.video).title
       end
-      click_on comment.text
+      click_on "#{screencast.begin_time}-#{screencast.end_time}"
       find('.btn.btn-warning', match: :first).click
 
-      expect(page).to have_field 'record[text]', with: comment.text
-      expect(page).to have_field 'record[begin_time]', with: comment.begin_time
-      expect(page).to have_field 'record[end_time]', with: comment.end_time
-      expect(page).to have_field 'record[phrase]', with: comment.phrase
+      expect(page).to have_field 'record[begin_time]', with: screencast.begin_time
+      expect(page).to have_field 'record[end_time]', with: screencast.end_time
     end
 
-    it 'should update comment' do
+    it 'should update screencast' do
       visit '/admin'
       fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
       fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
       click_on 'Курсы'
-      click_on comment.associated.lesson.topic.course.title
+      click_on screencast.video.lesson.topic.course.title
       within 'ul.tree' do
-        click_on Courses::CommentDecorator.new(comment).associated.title
+        click_on Courses::VideoDecorator.new(screencast.video).title
       end
-      click_on comment.text
+      click_on "#{screencast.begin_time}-#{screencast.end_time}"
       find('.btn.btn-warning', match: :first).click
 
-      attributes = attributes_for :courses_comment
+      attributes = attributes_for :courses_screencast
 
       fill_in 'record[begin_time]', with: attributes[:begin_time]
       fill_in 'record[end_time]', with: attributes[:end_time]
-      fill_in 'record[phrase]', with: attributes[:phrase]
-      fill_in 'record[text]', with: attributes[:text]
 
       click_on 'Сохранить', class: 'btn-success'
 
-      comment.reload
+      screencast.reload
 
-      attributes.each_key do |attr|
-        next if attr == :associated
-
-        actual = comment.send(attr)
-        expecting = attributes[attr]
-        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-      end
+      assert_attributes screencast, attributes, additionals: { video: screencast.video }
     end
   end
 
   ::Course::TEAMS.each do |team|
     describe "#{team.to_s.capitalize} team" do
       let!(:user) { create :admin, password: '123456', project_id: kalashnikovisme_id }
-      let!(:comment) { create :courses_comment, project_id: kalashnikovisme_id }
+      let!(:screencast) { create :courses_screencast, project_id: kalashnikovisme_id }
 
-      it 'should show edit comment page' do
+      it 'should show edit screencast page' do
         course = create :course, team: team, project_id: kalashnikovisme_id
         topic = course.topics.create!(**attributes_for(:courses_topic))
         lesson = topic.lessons.create!(attributes_for(:courses_lesson))
-        associated_type = Courses::Comment.associated_type.values.sample
-        comment.update! associated: create(associated_type.underscore.gsub('/', '_'), lesson: lesson)
+        video = create(:courses_video, lesson: lesson)
+        screencast.update! video: video
         visit '/admin'
         user.update! role: team # NOTE: we need it because of user middleware
         user.reload
@@ -90,25 +79,23 @@ describe 'Edit comment page' do
         click_on 'Войти', class: 'btn-success'
 
         click_on 'Курсы'
-        click_on comment.associated.lesson.topic.course.title
+        click_on screencast.video.lesson.topic.course.title
         within 'ul.tree' do
-          click_on Courses::CommentDecorator.new(comment).associated.title
+          click_on Courses::VideoDecorator.new(video).title
         end
-        click_on comment.text
+        click_on "#{screencast.begin_time}-#{screencast.end_time}"
         find('.btn.btn-warning', match: :first).click
 
-        expect(page).to have_field 'record[text]', with: comment.text
-        expect(page).to have_field 'record[begin_time]', with: comment.begin_time
-        expect(page).to have_field 'record[end_time]', with: comment.end_time
-        expect(page).to have_field 'record[phrase]', with: comment.phrase
+        expect(page).to have_field 'record[begin_time]', with: screencast.begin_time
+        expect(page).to have_field 'record[end_time]', with: screencast.end_time
       end
 
-      it 'should update comment' do
+      it 'should update screencast' do
         course = create :course, team: team, project_id: kalashnikovisme_id
         topic = course.topics.create!(**attributes_for(:courses_topic))
         lesson = topic.lessons.create!(attributes_for(:courses_lesson))
-        associated_type = Courses::Comment.associated_type.values.sample
-        comment.update! associated: create(associated_type.underscore.gsub('/', '_'), lesson: lesson)
+        video = create(:courses_video, lesson: lesson)
+        screencast.update! video: video
         visit '/admin'
         user.update! role: team # NOTE: we need it because of user middleware
         user.reload
@@ -117,31 +104,23 @@ describe 'Edit comment page' do
         click_on 'Войти', class: 'btn-success'
 
         click_on 'Курсы'
-        click_on comment.associated.lesson.topic.course.title
+        click_on screencast.video.lesson.topic.course.title
         within 'ul.tree' do
-          click_on Courses::CommentDecorator.new(comment).associated.title
+          click_on Courses::VideoDecorator.new(video).title
         end
-        click_on comment.text
+        click_on "#{screencast.begin_time}-#{screencast.end_time}"
         find('.btn.btn-warning', match: :first).click
 
-        attributes = attributes_for :courses_comment
+        attributes = attributes_for :courses_screencast
 
         fill_in 'record[begin_time]', with: attributes[:begin_time]
         fill_in 'record[end_time]', with: attributes[:end_time]
-        fill_in 'record[phrase]', with: attributes[:phrase]
-        fill_in 'record[text]', with: attributes[:text]
 
         click_on 'Сохранить', class: 'btn-success'
 
-        comment.reload
+        screencast.reload
 
-        attributes.each_key do |attr|
-          next if attr == :associated
-
-          actual = comment.send(attr)
-          expecting = attributes[attr]
-          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-        end
+        assert_attributes screencast, attributes, additionals: { video: video }
       end
     end
   end

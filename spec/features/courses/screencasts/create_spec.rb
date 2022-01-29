@@ -32,17 +32,7 @@ describe 'Create screencast' do
       expect(Courses::Screencast.count).to eq(count + 1)
 
       screencast = Courses::Screencast.last
-      attributes.each_key do |attr|
-        case attr
-        when :video
-          actual = screencast.video_id
-          expecting = video.id
-        else
-          actual = screencast.send(attr)
-          expecting = attributes[attr]
-        end
-        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-      end
+      assert_attributes screencast, attributes, additionals: { video: video }
     end
   end
 
@@ -77,17 +67,7 @@ describe 'Create screencast' do
         expect(Courses::Screencast.count).to eq(count + 1)
 
         screencast = Courses::Screencast.last
-        attributes.each_key do |attr|
-          case attr
-          when :video
-            actual = screencast.video_id
-            expecting = video.id
-          else
-            actual = screencast.send(attr)
-            expecting = attributes[attr]
-          end
-          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-        end
+        assert_attributes screencast, attributes, additionals: { video: video }
       end
     end
   end
