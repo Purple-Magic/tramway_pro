@@ -23,7 +23,7 @@ class Courses::VideoDecorator < ApplicationDecorator
         video.minutes_of(:result_duration).to_f / video.text.split.count
       end
     end.compact
-    if coefficients.any?
+    if coefficients.any? && object.text.present?
       estimated_duraion = (object.text.split.count * coefficients.median).round 2
       minutes = estimated_duraion.to_s.split('.').first
       fraction = (estimated_duraion.to_s.split('.').second.to_i * 60 / 100).round
