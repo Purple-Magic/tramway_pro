@@ -4,8 +4,8 @@ class Courses::VideoDecorator < ApplicationDecorator
   # Associations you want to show in admin dashboard
   decorate_association :comments, as: :associated
   decorate_association :lesson
-  decorate_association :time_logs, as: :associated
   decorate_association :screencasts, as: :video
+  decorate_association :time_logs, as: :associated
 
   delegate_attributes :id, :lesson_id, :state, :position, :created_at, :updated_at, :progress_status, :duration,
     :result_duration
@@ -52,7 +52,7 @@ class Courses::VideoDecorator < ApplicationDecorator
     end
 
     def show_associations
-      %i[comments time_logs screencasts]
+      %i[comments screencasts time_logs]
     end
 
     def list_filters; end

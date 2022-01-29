@@ -6,8 +6,8 @@ class Courses::Video < ApplicationRecord
   has_many :comments, lambda {
                         order(comment_state: :desc).order(:begin_time)
                       }, class_name: 'Courses::Comment', as: :associated
-  has_many :time_logs, class_name: 'TimeLog', as: :associated
   has_many :screencasts, class_name: 'Courses::Screencast'
+  has_many :time_logs, class_name: 'TimeLog', as: :associated
 
   validates :position, presence: true
 
