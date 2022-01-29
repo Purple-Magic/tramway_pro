@@ -6,10 +6,16 @@ class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
         :card_id
   )
 
+  decorate_association :product
   decorate_association :time_logs, as: :associated
 
   def created_at
     object.created_at.strftime('%d.%m.%Y %H:%M')
+  end
+
+  def product_link
+    link_to product.title,
+      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.product_id, model: 'Product')
   end
 
   class << self
