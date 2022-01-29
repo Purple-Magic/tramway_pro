@@ -4,8 +4,8 @@ class Courses::VideoDecorator < ApplicationDecorator
   # Associations you want to show in admin dashboard
   decorate_association :comments, as: :associated
   decorate_association :lesson
-  decorate_association :time_logs, as: :associated
   decorate_association :screencasts, as: :video
+  decorate_association :time_logs, as: :associated
 
   delegate_attributes :id, :lesson_id, :state, :position, :created_at, :updated_at, :progress_status, :duration,
     :result_duration
@@ -52,7 +52,7 @@ class Courses::VideoDecorator < ApplicationDecorator
     end
 
     def show_associations
-      %i[comments time_logs screencasts]
+      %i[comments screencasts time_logs]
     end
 
     def list_filters; end
@@ -71,13 +71,23 @@ class Courses::VideoDecorator < ApplicationDecorator
   alias name title
 
   def additional_buttons
-    add_scenario_step_url = Tramway::Admin::Engine.routes.url_helpers.new_record_path(
+    add_comment_url = Tramway::Admin::Engine.routes.url_helpers.new_record_path(
       model: 'Courses::Comment',
       'courses/comment' => { associated_type: object.class.to_s, associated: object.id },
       redirect: "/admin/records/#{object.id}?model=Courses::Video"
     )
+    add_time_log_url = Tramway::Admin::Engine.routes.url_helpers.new_record_path(
+      model: 'TimeLog',
+      'time_log' => { associated_type: object.class.to_s, associated: object.id },
+      redirect: "/admin/records/#{object.id}?model=Courses::Video"
+    )
 
-    { show: [{ url: add_scenario_step_url, inner: -> { fa_icon 'comment' }, color: :success }] }
+    {
+      show: [
+        { url: add_comment_url, inner: -> { fa_icon 'comment' }, color: :success },
+        { url: add_time_log_url, inner: -> { fa_icon 'clock' }, color: :success }
+      ]
+    }
   end
 
   def link
