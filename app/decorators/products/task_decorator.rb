@@ -34,6 +34,7 @@ class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
 
     def show_attributes
       [
+        :product_link,
         :card_id,
         :data,
         :created_at,
