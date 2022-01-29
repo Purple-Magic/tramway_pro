@@ -10,7 +10,7 @@ class Podcasts::Episodes::Parts::GeneratePreviewService < Podcasts::Episodes::Ba
     after_file_data = cut_part direction: :after
     concat_preview_data = concat_parts before: before_file_data[:output], after: after_file_data[:output]
 
-    Podcasts::Episodes::Parts::PreviewWorker.perform_later(
+    Podcasts::Episodes::Parts::PreviewWorker.perform_async(
       part.id,
       concat_preview_data[:output],
       before_file_data[:render_command],
