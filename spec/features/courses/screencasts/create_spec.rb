@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'Create screencast' do
   before { move_host_to kalashnikovisme_host }
-  let(:attributes) { attributes_for :courses_screencast }
+  let(:attributes) { attributes_for :courses_screencast, :without_associations }
 
   describe 'Admin' do
     it 'should create screencast for video' do
@@ -25,8 +25,7 @@ describe 'Create screencast' do
       end
       click_on 'Добавить скринкасты'
 
-      fill_in 'record[begin_time]', with: attributes[:begin_time]
-      fill_in 'record[end_time]', with: attributes[:end_time]
+      fill_form :admin_courses_screencast, attributes
 
       click_on 'Сохранить', class: 'btn-success'
       expect(Courses::Screencast.count).to eq(count + 1)
@@ -60,8 +59,7 @@ describe 'Create screencast' do
         end
         click_on 'Добавить скринкасты'
 
-        fill_in 'record[begin_time]', with: attributes[:begin_time]
-        fill_in 'record[end_time]', with: attributes[:end_time]
+        fill_form "#{team}_courses_screencast", attributes
 
         click_on 'Сохранить', class: 'btn-success'
         expect(Courses::Screencast.count).to eq(count + 1)

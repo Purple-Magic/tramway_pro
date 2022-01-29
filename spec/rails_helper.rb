@@ -11,6 +11,7 @@ require 'support/tramway_helpers'
 require 'support/telegram_bot_helpers'
 require 'support/benchkiller_helpers'
 require 'support/asserting_models'
+require 'support/filling_forms'
 require 'json_api_test_helpers'
 require 'rake'
 require 'webmock/rspec'
@@ -34,6 +35,7 @@ RSpec.configure do |config|
   config.include TelegramBotHelpers
   config.include BenchkillerHelpers
   config.include AssertingModels
+  config.include FillingForms
 
   ActiveRecord::Base.logger.level = 1
 

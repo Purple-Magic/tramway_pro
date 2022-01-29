@@ -47,10 +47,9 @@ describe 'Edit screencast page' do
       click_on "#{screencast.begin_time}-#{screencast.end_time}"
       find('.btn.btn-warning', match: :first).click
 
-      attributes = attributes_for :courses_screencast
+      attributes = attributes_for :courses_screencast, :without_associations
 
-      fill_in 'record[begin_time]', with: attributes[:begin_time]
-      fill_in 'record[end_time]', with: attributes[:end_time]
+      fill_form :admin_courses_screencast, attributes
 
       click_on 'Сохранить', class: 'btn-success'
 
@@ -111,10 +110,9 @@ describe 'Edit screencast page' do
         click_on "#{screencast.begin_time}-#{screencast.end_time}"
         find('.btn.btn-warning', match: :first).click
 
-        attributes = attributes_for :courses_screencast
+        attributes = attributes_for :courses_screencast, :without_associations
 
-        fill_in 'record[begin_time]', with: attributes[:begin_time]
-        fill_in 'record[end_time]', with: attributes[:end_time]
+        fill_form "#{team}_courses_screencast", attributes
 
         click_on 'Сохранить', class: 'btn-success'
 

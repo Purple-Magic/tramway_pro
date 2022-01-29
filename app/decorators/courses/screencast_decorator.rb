@@ -12,11 +12,12 @@ class Courses::ScreencastDecorator < Tramway::Core::ApplicationDecorator
     :created_at,
     :updated_at,
     :begin_time,
-    :end_time
+    :end_time,
+    :comment
   )
 
   def title
-    "#{begin_time}-#{end_time}"
+    "#{begin_time}-#{end_time} #{comment}"
   end
 
   def file
@@ -62,30 +63,13 @@ class Courses::ScreencastDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_attributes
-      %i[file]
+      %i[file comment]
     end
 
     def show_associations
-      # Associations you want to show in admin dashboard
-      # [ :messages ]
     end
 
     def list_filters
-      # {
-      #   filter_name: {
-      #     type: :select,
-      #     select_collection: filter_collection,
-      #     query: lambda do |list, value|
-      #       list.where some_attribute: value
-      #     end
-      #   },
-      #   date_filter_name: {
-      #     type: :dates,
-      #     query: lambda do |list, begin_date, end_date|
-      #       list.where 'created_at > ? AND created_at < ?', begin_date, end_date
-      #     end
-      #   }
-      # }
     end
   end
 end

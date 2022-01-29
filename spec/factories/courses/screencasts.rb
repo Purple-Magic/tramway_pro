@@ -5,5 +5,10 @@ FactoryBot.define do
     begin_time { '00:00' }
     end_time { '00:01' }
     video { create :courses_video }
+    comment { generate :string }
+
+    trait :without_associations do
+      video { nil }
+    end
   end
 end
