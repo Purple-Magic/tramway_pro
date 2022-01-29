@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Course < ApplicationRecord
-  has_many :topics, -> { order :position }, class_name: 'Courses::Topic', foreign_key: :course_id
+  has_many :topics, -> { order :position }, class_name: 'Courses::Topic', foreign_key: :course_id, dependent: :destroy
   has_many :lessons, -> { active }, class_name: 'Courses::Lesson', through: :topics
   has_many :videos, -> { active }, class_name: 'Courses::Video', through: :lessons
   has_many :tasks, -> { active }, class_name: 'Courses::Task', through: :lessons
