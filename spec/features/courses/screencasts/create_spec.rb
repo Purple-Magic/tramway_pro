@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'Create screencast' do
   before { move_host_to kalashnikovisme_host }
-  let(:attributes) { attributes_for(:courses_screencast).except(:video) }
+  let(:attributes) { attributes_for :courses_screencast, :without_associations }
 
   describe 'Admin' do
     it 'should create screencast for video' do

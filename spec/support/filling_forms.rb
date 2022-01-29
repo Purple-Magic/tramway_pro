@@ -15,7 +15,7 @@ module FillingForms
     {
       screencast: lambda do |attributes|
         attributes.each do |pair|
-          fill_in "record[#{pair[0]}]", with: pair[1]
+          fill_in "record[#{pair[0]}]", with: pair[1] if pair[1].present?
         end
       end
     }
