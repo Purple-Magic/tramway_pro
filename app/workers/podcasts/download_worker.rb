@@ -9,9 +9,8 @@ class Podcasts::DownloadWorker < ApplicationWorker
   include BotTelegram::Leopold::Notify
 
   def perform(id)
-    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
     episode = Podcast::Episode.find id
-    download episode, chat_id
+    download episode, episode.podcast.chat_id
     convert episode
   rescue StandardError => error
     log_error error
