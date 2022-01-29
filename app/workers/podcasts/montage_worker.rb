@@ -12,15 +12,13 @@ class Podcasts::MontageWorker < ApplicationWorker
     montage episode
   rescue StandardError => error
     log_error error
-    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
-    send_notification_to_chat chat_id, notification(:montage, :something_went_wrong)
+    send_notification_to_chat episode.podcast.chat_id, notification(:montage, :something_went_wrong)
   end
 
   private
 
   def montage(episode)
-    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
-    send_notification_to_chat chat_id, notification(:montage, :started)
+    send_notification_to_chat episode.podcast.chat_id, notification(:montage, :started)
     cut_highlights episode
     remove_cut_pieces episode
     run_filters episode
@@ -32,8 +30,7 @@ class Podcasts::MontageWorker < ApplicationWorker
     episode.cut_highlights
     episode.highlight_it!
     Rails.logger.info 'Cut highlights completed!'
-    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
-    send_notification_to_chat chat_id, notification(:highlights, :cut, episode_id: episode.id)
+    send_notification_to_chat episode.podcast.chat_id, notification(:highlights, :cut, episode_id: episode.id)
   end
   # :reek:FeatureEnvy { enabled: true }
 
@@ -46,8 +43,7 @@ class Podcasts::MontageWorker < ApplicationWorker
   def run_filters(episode)
     episode.montage(episode.premontage_file.path)
     Rails.logger.info 'Montage completed!'
-    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
-    send_notification_to_chat chat_id, notification(:filter, :finished)
+    send_notification_to_chat episode.podcast.chat_id, notification(:filter, :finished)
   end
 
   # :reek:FeatureEnvy { enabled: false }
@@ -57,8 +53,7 @@ class Podcasts::MontageWorker < ApplicationWorker
     episode.add_music(output)
 
     Rails.logger.info 'Adding of music completed!'
-    chat_id = BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID
-    send_notification_to_chat chat_id, notification(:music, :finished, episode_id: episode.id)
+    send_notification_to_chat episode.podcast.chat_id, notification(:music, :finished, episode_id: episode.id)
   end
   # :reek:FeatureEnvy { enabled: true }
 end
