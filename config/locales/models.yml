@@ -81,6 +81,9 @@ ru:
         expenses_summary: Оценка дополнительных расходов
         real_team_summary: Реальные затраты на команду
         real_expenses_summary: Реальные дополнительные расходы
+        customer: Клиент
+        associated: Связанная запись
+        associated_link: Связанная запись
       estimation/customer:
         title: Название
         logo: Логотип
@@ -232,6 +235,10 @@ ru:
         without_music: Монтируется без музыки
         different_music: С несколькими сэмплами
         handmade: Монтируется вовне
+    estimation/task:
+      task_type:
+        single: Одноразовая
+        multiple: Многоразовая
   collections:
     benchkiller/offer:
       all: Всё
@@ -243,4 +250,7 @@ ru:
     benchkiller/company:
       unviewed: Непросмотренные
       approved: Утверждённые
+      declined: Отклонённые
+    estimation/project:
+      confirmed: Запущенные
       declined: Отклонённые

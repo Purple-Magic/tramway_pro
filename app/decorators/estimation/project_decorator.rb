@@ -4,21 +4,24 @@ class Estimation::ProjectDecorator < ApplicationDecorator
   delegate_attributes :title, :state, :id
 
   decorate_associations :tasks, :coefficients, :expenses
+  decorate_association :associated
 
-  def self.collections
-    [:all]
-  end
+  class << self
+    def collections
+      [:all, :confirmed, :declined]
+    end
 
-  def self.list_attributes
-    [:project_state]
-  end
+    def list_attributes
+      [:project_state]
+    end
 
-  def self.show_attributes
-    %i[id title description team_table expenses_table coefficients_table summary_table]
-  end
+    def show_attributes
+      %i[associated_link description team_table expenses_table coefficients_table summary_table]
+    end
 
-  def self.show_associations
-    %i[tasks expenses coefficients]
+    def show_associations
+      %i[tasks expenses coefficients]
+    end
   end
 
   def additional_buttons
@@ -30,14 +33,24 @@ collection: :expenses)
       'estimation/task' => { estimation_project: id },
       redirect: "/admin/records/#{id}?model=Estimation::Project"
     )
+    calc_by_associated_path = Rails.application.routes.url_helpers.red_magic_api_v1_estimation_project_path(id: id, process: :calc)
 
-    {
-      show: [
-        { url: tasks_url, inner: -> { tasks_button_inner }, color: :success },
-        { url: expenses_url, inner: -> { expenses_button_inner }, color: :success },
-        { url: new_task_path, inner: -> { fa_icon :plus }, color: :primary }
-      ]
-    }
+    buttons = [
+      { url: tasks_url, inner: -> { tasks_button_inner }, color: :success },
+      { url: expenses_url, inner: -> { expenses_button_inner }, color: :success },
+      { url: new_task_path, inner: -> { fa_icon :plus }, color: :primary },
+    ]
+
+    buttons << { url: calc_by_associated_path, method: :patch, inner: -> { fa_icon :calculator }, color: :primary } if object.associated.present?
+
+    { show: buttons }
+  end
+
+  def associated_link
+    if object.associated.present?
+      link_to associated.title,
+        ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.associated_id, model: object.associated_type)
+    end
   end
 
   def description
@@ -56,7 +69,7 @@ collection: :expenses)
   # :reek:ControlParameter { enabled: false }
   def project_state_button_color(event)
     case event
-    when :send_to_customer
+    when :send_to_customer, :calc
       :primary
     when :finish_estimation, :confirmed_by_customer
       :success

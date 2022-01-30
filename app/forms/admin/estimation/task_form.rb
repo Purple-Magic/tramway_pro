@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Estimation::TaskForm < Tramway::Core::ApplicationForm
-  properties :title, :hours, :price, :project_id, :specialists_count, :description
+  properties :title, :hours, :price, :project_id, :specialists_count, :description, :task_type
 
   association :estimation_project
 
@@ -12,7 +12,8 @@ class Admin::Estimation::TaskForm < Tramway::Core::ApplicationForm
         hours: :numeric,
         price: :numeric,
         specialists_count: :numeric,
-        description: :text
+        description: :text,
+        task_type: :default
     end
   end
 end

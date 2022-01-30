@@ -92,6 +92,9 @@ Rails.application.routes.draw do
           namespace :content do
             resources :stories, only: :update
           end
+          namespace :estimation do
+            resources :projects, only: :update
+          end
         end
       end
     end

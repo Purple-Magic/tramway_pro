@@ -1,4 +1,4 @@
-class Podcasts::Episodes::BaseService
+class Podcasts::Episodes::BaseService < ApplicationService
   include Podcasts::Episodes::PathManagement
   include Podcasts::Episodes::TimeManagement
   include Podcasts::Episodes::CommandsManagement
