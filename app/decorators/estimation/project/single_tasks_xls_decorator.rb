@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Estimation::Project::TasksXlsDecorator < Tramway::Export::Xls::ApplicationDecorator
+class Estimation::Project::SingleTasksXlsDecorator < Tramway::Export::Xls::ApplicationDecorator
   delegate_attributes :title, :hours, :specialists_count, :description
 
   class << self

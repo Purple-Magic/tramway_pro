@@ -25,7 +25,7 @@ class Estimation::ProjectDecorator < ApplicationDecorator
   end
 
   def additional_buttons
-    tasks_url = ::Tramway::Export::Engine.routes.url_helpers.export_path(id, model: object.class, collection: :tasks)
+    tasks_url = ::Tramway::Export::Engine.routes.url_helpers.export_path(id, model: object.class, collection: :single_tasks)
     expenses_url = ::Tramway::Export::Engine.routes.url_helpers.export_path(id, model: object.class,
 collection: :expenses)
     new_task_path = Tramway::Admin::Engine.routes.url_helpers.new_record_path(
