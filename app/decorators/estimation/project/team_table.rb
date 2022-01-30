@@ -26,7 +26,7 @@ module Estimation::Project::TeamTable
   end
 
   def team_table_body
-    tasks.each do |task|
+    tasks.select { |t| t.task_type.single? }.each do |task|
       concat(content_tag(:tr) do
         TEAM_TABLE_COLUMNS.each do |attribute|
           concat(content_tag(:td) do

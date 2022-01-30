@@ -12,7 +12,8 @@ class Estimation::TaskDecorator < ApplicationDecorator
     :created_at,
     :updated_at,
     :specialists_count,
-    :sum
+    :sum,
+    :task_type
   )
 
   include Estimation::CoefficientsConcern
@@ -53,26 +54,9 @@ class Estimation::TaskDecorator < ApplicationDecorator
     end
 
     def show_associations
-      # Associations you want to show in admin dashboard
-      # [ :messages ]
     end
 
     def list_filters
-      # {
-      #   filter_name: {
-      #     type: :select,
-      #     select_collection: filter_collection,
-      #     query: lambda do |list, value|
-      #       list.where some_attribute: value
-      #     end
-      #   },
-      #   date_filter_name: {
-      #     type: :dates,
-      #     query: lambda do |list, begin_date, end_date|
-      #       list.where 'created_at > ? AND created_at < ?', begin_date, end_date
-      #     end
-      #   }
-      # }
     end
   end
 end

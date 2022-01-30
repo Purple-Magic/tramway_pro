@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220129145420) do
+ActiveRecord::Schema.define(version: 20220130092503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -458,6 +458,8 @@ ActiveRecord::Schema.define(version: 20220129145420) do
     t.text "project_state", default: "estimation_in_progress"
     t.text "description"
     t.datetime "deleted_at"
+    t.integer "associated_id"
+    t.text "associated_type"
   end
 
   create_table "estimation_tasks", force: :cascade do |t|
@@ -472,6 +474,7 @@ ActiveRecord::Schema.define(version: 20220129145420) do
     t.integer "specialists_count", default: 1
     t.text "description"
     t.datetime "deleted_at"
+    t.text "task_type", default: "single"
   end
 
   create_table "it_way_certificates", force: :cascade do |t|
