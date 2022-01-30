@@ -7,6 +7,7 @@ FactoryBot.define do
     hours { generate :float }
     price { generate :float }
     specialists_count { generate :integer }
+    task_type { ::Estimation::Task.task_type.values.sample }
   end
 
   factory :estimation_task_admin_attributes, class: 'Estimation::Task' do
