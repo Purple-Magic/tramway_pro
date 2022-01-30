@@ -4,6 +4,8 @@ class Estimation::Project < ApplicationRecord
   belongs_to :customer, class_name: 'Estimation::Customer'
   belongs_to :associated, polymorphic: true, optional: true
   has_many :tasks, class_name: 'Estimation::Task', foreign_key: :estimation_project_id
+  # NOTE: we need this scope for exporting
+  has_many :single_tasks, -> { single.order(:id) }, class_name: 'Estimation::Task', foreign_key: :estimation_project_id
   has_many :expenses, class_name: 'Estimation::Expense', foreign_key: :estimation_project_id
   has_many :coefficients, class_name: 'Estimation::Coefficient', foreign_key: :estimation_project_id
 
