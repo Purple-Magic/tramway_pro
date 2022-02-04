@@ -6,6 +6,7 @@ class BotTelegram::Custom::Message
   attr_reader :file
 
   def initialize(text: nil, file: nil, reply_markup: nil, inline_keyboard: nil)
+    raise 'You set text: argument for message' unless text.present?
     @text = text
     @file = file
     @reply_markup = reply_markup

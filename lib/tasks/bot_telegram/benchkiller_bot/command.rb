@@ -3,7 +3,9 @@
 class BotTelegram::BenchkillerBot::Command
   COMMANDS = %i[
     start
+    start_menu
     create_company
+    change_company_card
     set_company_name
     set_company_url
     set_portfolio_url

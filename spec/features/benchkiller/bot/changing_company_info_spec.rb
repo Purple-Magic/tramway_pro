@@ -14,12 +14,12 @@ describe 'BotTelegram::BenchkillerBot' do
     company
   end
 
-  describe 'Callback queries' do
+  describe 'Commands' do
     ::BotTelegram::BenchkillerBot::Command::COMMANDS.each do |com|
-      next if com.in? %i[start create_company create_password approve_offer decline_offer]
+      next if com.in? %i[start start_menu change_company_card create_company create_password approve_offer decline_offer]
 
       describe com.to_s.capitalize.gsub('_', ' ') do
-        let(:callback_query) { build "#{com}_telegram_callback_query" }
+        let(:message) { build "#{com}_telegram_message" }
 
         it 'returns message' do
           card = ::Benchkiller::CompanyDecorator.decorate(company).bot_card
@@ -32,18 +32,18 @@ describe 'BotTelegram::BenchkillerBot' do
           stubs = [card_stub]
 
           unless com == :get_company_card
-            message = ::BotTelegram::BenchkillerBot::ACTIONS_DATA[com][:message]
+            answer = ::BotTelegram::BenchkillerBot::ACTIONS_DATA[com][:message]
 
             set_com_stub = send_markdown_message_stub_request body: {
               chat_id: chat.telegram_chat_id,
-              text: message
+              text: answer
             }
             stubs << set_com_stub
           end
 
           Telegram::Bot::Client.run(bot_record.token) do |bot|
             BotTelegram::BenchkillerBot::Scenario.new(
-              message: callback_query,
+              message: message,
               bot: bot,
               bot_record: bot_record,
               chat: chat,
@@ -61,7 +61,7 @@ describe 'BotTelegram::BenchkillerBot' do
       next if com == :get_company_card
 
       describe "Full #{com.to_s.capitalize.gsub('_', ' ')}" do
-        let(:callback_query) { build "#{com}_telegram_callback_query" }
+        let(:message) { build "#{com}_telegram_message" }
         let!(:attribute_name) { com.to_s.gsub('set_', '') }
         let!(:argument) do
           attributes = attributes_for :benchkiller_company
@@ -88,7 +88,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
             Telegram::Bot::Client.run(bot_record.token) do |bot|
               BotTelegram::BenchkillerBot::Scenario.new(
-                message: callback_query,
+                message: message,
                 bot: bot,
                 bot_record: bot_record,
                 chat: chat,
@@ -136,7 +136,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
             Telegram::Bot::Client.run(bot_record.token) do |bot|
               BotTelegram::BenchkillerBot::Scenario.new(
-                message: callback_query,
+                message: message,
                 bot: bot,
                 bot_record: bot_record,
                 chat: chat,
@@ -200,7 +200,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
             Telegram::Bot::Client.run(bot_record.token) do |bot|
               BotTelegram::BenchkillerBot::Scenario.new(
-                message: callback_query,
+                message: message,
                 bot: bot,
                 bot_record: bot_record,
                 chat: chat,
@@ -248,7 +248,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
             Telegram::Bot::Client.run(bot_record.token) do |bot|
               BotTelegram::BenchkillerBot::Scenario.new(
-                message: callback_query,
+                message: message,
                 bot: bot,
                 bot_record: bot_record,
                 chat: chat,

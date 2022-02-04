@@ -15,10 +15,8 @@ describe 'BotTelegram::BenchkillerBot' do
         stub = send_message_stub_request body: {
           chat_id: chat.telegram_chat_id,
           text: benchkiller_i18n_scope(:start, :new_user_text),
-          reply_markup: inline_keyboard(
-            [
-              ['Создать компанию', { data: { command: :create_company } }]
-            ]
+          reply_markup: reply_markup(
+            ['Создать компанию']
           )
         }
 
@@ -50,18 +48,9 @@ describe 'BotTelegram::BenchkillerBot' do
         stub = send_message_stub_request body: {
           chat_id: chat.telegram_chat_id,
           text: benchkiller_i18n_scope(:start, :text),
-          reply_markup: inline_keyboard(
-            [
-              ['Изменить название компании', { data: { command: :set_company_name } }],
-              ['Изменить адрес сайта', { data: { command: :set_company_url } }],
-              ['Изменить ссылку на портфолио', { data: { command: :set_portfolio_url } }],
-              ['Изменить почту', { data: { command: :set_email } }],
-              ['Изменить телефон', { data: { command: :set_phone } }],
-              ['Расположение вашей команды', { data: { command: :set_place } }],
-              ['Регионы сотрудничества', { data: { command: :set_regions_to_cooperate } }],
-              ['Посмотреть карточку компании', { data: { command: :get_company_card } }]
-              # ['Создать пароль', { data: { command: :create_password } }]
-            ]
+          reply_markup: reply_markup(
+            ['Карточка компании', 'Сгенерировать пароль'],
+            ['Изменить карточку', 'Управление подпиской']
           )
         }
 

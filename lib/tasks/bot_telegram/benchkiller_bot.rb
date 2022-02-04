@@ -10,6 +10,38 @@ module BotTelegram::BenchkillerBot
   FREE_DEV_CHANNEL = '-1001424055607'
   NEED_DEV_CHANNEL = '-1001376858073'
 
+  MENUS = {
+    start_menu: [
+      [ :get_company_card, :create_password ],
+      [ :change_company_card, :manage_subscription ]
+    ],
+    change_company_card: [
+      [ :set_company_name, :set_phone ],
+      [ :set_company_url, :set_place ],
+      [ :set_portfolio_url, :set_regions_to_cooperate ],
+      [ :set_email, :start_menu ]
+    ],
+    without_company_menu: [
+      [ :create_company ]
+    ]
+  }
+
+  BUTTONS = {
+    change_company_card: 'Изменить карточку',
+    create_company: 'Создать компанию',
+    create_password: 'Сгенерировать пароль',
+    get_company_card: 'Карточка компании',
+    manage_subscription: 'Управление подпиской',
+    set_company_name: 'Название компании',
+    set_portfolio_url: 'Портфолио',
+    set_company_url: 'Сайт',
+    set_email: 'Почта',
+    set_place: 'Расположение компании',
+    set_phone: 'Телефон',
+    set_regions_to_cooperate: 'Регионы сотрудничества',
+    start_menu: 'Назад'
+  }
+
   ACTIONS_DATA = {
     create_company: {
       message: 'Введите название компании. Для отмены введите /start',
