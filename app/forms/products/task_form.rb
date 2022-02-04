@@ -2,7 +2,7 @@ class Products::TaskForm < Tramway::Core::ApplicationForm
   properties :title, :project_id, :product, :data, :card_id, :deleted_at
 
   def product=(value)
-    model.product_id = Product.find_by(tech_name: value).id 
+    model.product_id = Product.find_by(tech_name: value, project_id: 7).id 
     model.save!
   end
 

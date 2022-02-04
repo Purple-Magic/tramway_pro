@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Products' do
   before do
     host! red_magic_host
-    create :product, title: 'Benchkiller'
+    create :product, tech_name: 'benchkiller'
   end
 
   describe 'API' do
