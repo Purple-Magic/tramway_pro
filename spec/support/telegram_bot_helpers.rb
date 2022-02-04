@@ -28,9 +28,9 @@ module TelegramBotHelpers
     { status: 200, body: '', headers: {} }
   end
 
-  def reply_markup(keyboard)
+  def reply_markup(*keyboard)
     {
-      keyboard: [keyboard],
+      keyboard: keyboard,
       'resize_keyboard' => false,
       'one_time_keyboard' => false,
       'selective' => false

@@ -76,7 +76,7 @@ module BotTelegram::BenchkillerBot::Commands
       end
     end
 
-    message = ::BotTelegram::Custom::Message.new text: answer, reply_markup: { keyboard: keyboard, one_time_keyboard: true }
+    message = ::BotTelegram::Custom::Message.new text: answer, reply_markup: { keyboard: keyboard }
 
     user.set_finished_state_for bot: bot_record
     message_to_user bot.api, message, chat.telegram_chat_id
