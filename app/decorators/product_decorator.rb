@@ -1,5 +1,5 @@
 class ProductDecorator < ApplicationDecorator
-  delegate_attributes :title
+  delegate_attributes :title, :tech_name
 
   decorate_association :tasks
 
@@ -15,7 +15,7 @@ class ProductDecorator < ApplicationDecorator
     end
 
     def show_attributes
-      [ :time_logs ]
+      [ :tech_name, :time_logs ]
     end
 
     def show_associations
