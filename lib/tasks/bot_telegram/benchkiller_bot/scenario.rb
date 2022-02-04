@@ -25,8 +25,10 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
 
     return unless chat_decorator.to_answer?
 
-    if !message_from_telegram.is_a?(Telegram::Bot::Types::CallbackQuery) && message_from_telegram.text == '/start'
+    if message_from_telegram.text == '/start'
       start
+    elsif message_from_telegram.text.in? ::BotTelegram::BenchkillerBot::BUTTONS.values
+      public_send ::BotTelegram::BenchkillerBot::BUTTONS.invert[message_from_telegram.text], nil
     elsif user.finished_state_for?(bot: bot_record)
       process_new_action
     else

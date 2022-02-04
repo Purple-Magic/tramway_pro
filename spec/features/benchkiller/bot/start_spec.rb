@@ -50,8 +50,7 @@ describe 'BotTelegram::BenchkillerBot' do
         stub = send_message_stub_request body: {
           chat_id: chat.telegram_chat_id,
           text: benchkiller_i18n_scope(:start, :text),
-          reply_markup: inline_keyboard(
-            [
+          reply_markup: [
               ['Изменить название компании', { data: { command: :set_company_name } }],
               ['Изменить адрес сайта', { data: { command: :set_company_url } }],
               ['Изменить ссылку на портфолио', { data: { command: :set_portfolio_url } }],
@@ -62,7 +61,6 @@ describe 'BotTelegram::BenchkillerBot' do
               ['Посмотреть карточку компании', { data: { command: :get_company_card } }]
               # ['Создать пароль', { data: { command: :create_password } }]
             ]
-          )
         }
 
         Telegram::Bot::Client.run(bot_record.token) do |bot|

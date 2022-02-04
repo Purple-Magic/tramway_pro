@@ -7,28 +7,8 @@ module BotTelegram::BenchkillerBot::Commands
 
   def start(_text: nil)
     answer = company(user).present? ? i18n_scope(:start, :text) : i18n_scope(:start, :new_user_text)
-    inline_keyboard = if company(user).present?
-                        [
-                          ['Изменить название компании', { data: { command: :set_company_name } }],
-                          ['Изменить адрес сайта', { data: { command: :set_company_url } }],
-                          ['Изменить ссылку на портфолио', { data: { command: :set_portfolio_url } }],
-                          ['Изменить почту', { data: { command: :set_email } }],
-                          ['Изменить телефон', { data: { command: :set_phone } }],
-                          ['Расположение вашей команды', { data: { command: :set_place } }],
-                          ['Регионы сотрудничества', { data: { command: :set_regions_to_cooperate } }],
-                          ['Посмотреть карточку компании', { data: { command: :get_company_card } }]
-                          # ['Создать пароль', { data: { command: :create_password } }]
-                        ]
-                      else
-                        [
-                          ['Создать компанию', { data: { command: :create_company } }]
-                        ]
-                      end
-
-    message = ::BotTelegram::Custom::Message.new text: answer, inline_keyboard: inline_keyboard
-
-    user.set_finished_state_for bot: bot_record
-    message_to_user bot.api, message, chat.telegram_chat_id
+    menu = company(user).present? ? :start_menu : :without_company_menu
+    show menu: menu, answer: answer
   end
 
   def common_set_action(_action, state, message, _argument)
@@ -78,5 +58,27 @@ module BotTelegram::BenchkillerBot::Commands
     end
 
     message_to_user bot.api, message_text, chat.telegram_chat_id
+  end
+
+  ::BotTelegram::BenchkillerBot::MENUS.keys.each do |menu|
+    define_method(menu) do |_argument|
+      answer = i18n_scope(:change_company_card, :text)
+      show menu: menu, answer: answer
+    end
+  end
+
+  private
+
+  def show(menu:, answer:)
+    keyboard = ::BotTelegram::BenchkillerBot::MENUS[menu].map do |button_row|
+      button_row.map do |button|
+        ::BotTelegram::BenchkillerBot::BUTTONS[button]
+      end
+    end
+
+    message = ::BotTelegram::Custom::Message.new text: answer, reply_markup: { keyboard: keyboard, one_time_keyboard: true }
+
+    user.set_finished_state_for bot: bot_record
+    message_to_user bot.api, message, chat.telegram_chat_id
   end
 end
