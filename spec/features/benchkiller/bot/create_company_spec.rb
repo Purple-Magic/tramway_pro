@@ -7,7 +7,7 @@ describe 'BotTelegram::BenchkillerBot' do
     let!(:bot_record) { create :benchkiller_bot }
     let(:chat) { create :bot_telegram_private_chat, bot: bot_record }
     let(:message_object) { create :bot_telegram_message }
-    let!(:callback_query) { build :create_company_telegram_callback_query }
+    let!(:message) { build :create_company_telegram_message }
 
     describe 'CallbackQuery' do
       it 'returns success message' do
@@ -18,7 +18,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
         Telegram::Bot::Client.run(bot_record.token) do |bot|
           BotTelegram::BenchkillerBot::Scenario.new(
-            message: callback_query,
+            message: message,
             bot: bot,
             bot_record: bot_record,
             chat: chat,
@@ -52,7 +52,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
         Telegram::Bot::Client.run(bot_record.token) do |bot|
           BotTelegram::BenchkillerBot::Scenario.new(
-            message: callback_query,
+            message: message,
             bot: bot,
             bot_record: bot_record,
             chat: chat,
