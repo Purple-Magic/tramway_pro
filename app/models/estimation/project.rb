@@ -9,7 +9,7 @@ class Estimation::Project < ApplicationRecord
   has_many :expenses, class_name: 'Estimation::Expense', foreign_key: :estimation_project_id
   has_many :coefficients, class_name: 'Estimation::Coefficient', foreign_key: :estimation_project_id
 
-  enumerize :associated_type, in: [Course]
+  enumerize :associated_type, in: [Course, Product]
 
   validates :title, presence: true
 

@@ -44,6 +44,16 @@ Rails.application.routes.draw do
 
     mount Tramway::Admin::Engine, at: '/admin', as: :purple_magic_admin
     mount Tramway::Auth::Engine, at: '/auth', as: :purple_magic_auth
+
+    namespace :purple_magic do
+      namespace :api do
+        namespace :v1 do
+          namespace :estimation do
+            resources :projects, only: :update
+          end
+        end
+      end
+    end
   end
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:benchkiller]) do

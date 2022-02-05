@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Estimation::ProjectForm < Tramway::Core::ApplicationForm
-  properties :title, :state, :project_id, :description, :associated_id, :associated_type
+  properties :title, :state, :project_id, :description, :associated_id, :associated_type, :default_price
 
   association :customer
   association :associated
@@ -11,7 +11,8 @@ class Admin::Estimation::ProjectForm < Tramway::Core::ApplicationForm
       form_properties customer: :association,
         title: :string,
         associated: :polymorphic_association,
-        description: :ckeditor
+        description: :ckeditor,
+        default_price: :string
     end
   end
 end

@@ -15,17 +15,9 @@ class TimeLog < ApplicationRecord
   validates :time_spent, presence: true
   validates :time_spent, time: true
 
-  # :reek:FeatureEnvy { enabled: false }
+  include TimeManager
+
   def minutes
-    time_spent.split.reduce(0) do |sum, part|
-      number = part.match(/[0-9]*/).to_s.to_i
-      case part[-1]
-      when 'h'
-        sum + number * 60
-      when 'm'
-        sum + number
-      end
-    end || 0
+    minutes_of time_spent
   end
-  # :reek:FeatureEnvy { enabled: true }
 end
