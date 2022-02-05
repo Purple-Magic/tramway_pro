@@ -3,4 +3,9 @@ class Products::Task < ApplicationRecord
 
   has_many :time_logs, class_name: 'TimeLog', as: :associated
 
+  include TimeManager
+
+  def estimated_minutes
+    minutes_of estimation
+  end
 end

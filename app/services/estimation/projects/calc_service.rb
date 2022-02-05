@@ -31,4 +31,19 @@ class Estimation::Projects::CalcService < ApplicationService
       end
     end
   end
+
+  def calc_product
+    project.tasks.single.map &:destroy
+
+    product = project.associated
+    
+    product.tasks.each do |task|
+      project.tasks.create!(
+        title: task.title,
+        hours: task.estimated_minutes.to_f / 60,
+        price: project.default_price,
+        specialists_count: 1
+      )
+    end
+  end
 end

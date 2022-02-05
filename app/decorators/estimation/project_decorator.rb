@@ -33,7 +33,8 @@ collection: :expenses)
       'estimation/task' => { estimation_project: id },
       redirect: "/admin/records/#{id}?model=Estimation::Project"
     )
-    calc_by_associated_path = Rails.application.routes.url_helpers.red_magic_api_v1_estimation_project_path(id: id, process: :calc)
+    current_host = ENV['PROJECT_URL'].split('.').first.gsub('-', '_')
+    calc_by_associated_path = Rails.application.routes.url_helpers.public_send "#{current_host}_api_v1_estimation_project_path", id: id, process: :calc
 
     buttons = [
       { url: tasks_url, inner: -> { tasks_button_inner }, color: :success },
