@@ -3,7 +3,8 @@ class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
         :title,
         :data,
         :created_at,
-        :card_id
+        :card_id,
+        :description
   )
 
   decorate_association :product
@@ -38,6 +39,7 @@ class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
         :card_id,
         :data,
         :created_at,
+        :description
       ]
     end
 

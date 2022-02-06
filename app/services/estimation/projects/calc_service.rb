@@ -42,7 +42,8 @@ class Estimation::Projects::CalcService < ApplicationService
         title: task.title,
         hours: task.estimated_minutes.to_f / 60,
         price: project.default_price,
-        specialists_count: 1
+        specialists_count: 1,
+        description: task.description
       )
     end
   end
