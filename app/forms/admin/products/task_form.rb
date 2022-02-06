@@ -7,7 +7,8 @@ class Admin::Products::TaskForm < Tramway::Core::ApplicationForm
     super(object).tap do
       form_properties product: :association,
         title: :string,
-        estimation: :string
+        estimation: :string,
+        description: :text
     end
   end
 end
