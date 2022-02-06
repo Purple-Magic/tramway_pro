@@ -223,6 +223,7 @@ ru:
         title: Название
         data: Данные карточки
         time_logs: Таймлоги
+        estimation: Оценка затрат
       time_log:
         user: Пользователь
         associated: К чему добавить таймлог
