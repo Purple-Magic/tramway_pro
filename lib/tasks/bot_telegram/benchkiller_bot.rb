@@ -13,7 +13,7 @@ module BotTelegram::BenchkillerBot
   MENUS = {
     start_menu: [
       [ :get_company_card, :create_password ],
-      [ :change_company_card, :manage_subscription ]
+      [ :change_company_card ]
     ],
     change_company_card: [
       [ :set_company_name, :set_phone ],

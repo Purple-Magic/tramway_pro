@@ -224,6 +224,7 @@ ru:
         data: Данные карточки
         time_logs: Таймлоги
         estimation: Оценка затрат
+        description: Описание
       time_log:
         user: Пользователь
         associated: К чему добавить таймлог
