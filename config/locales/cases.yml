@@ -144,3 +144,6 @@ ru:
     product:
       plural: проекты
       genitive: проект
+    products/task:
+      plural: задачи
+      genitive: задачу
