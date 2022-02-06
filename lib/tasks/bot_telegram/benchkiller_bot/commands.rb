@@ -65,7 +65,7 @@ module BotTelegram::BenchkillerBot::Commands
 
   ::BotTelegram::BenchkillerBot::MENUS.keys.each do |menu|
     define_method(menu) do |_argument|
-      answer = i18n_scope(:change_company_card, :text)
+      answer = i18n_scope(menu, :text)
       show menu: menu, answer: answer
     end
   end
