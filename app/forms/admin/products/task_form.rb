@@ -1,5 +1,5 @@
 class Admin::Products::TaskForm < Tramway::Core::ApplicationForm
-  properties :title, :project_id, :estimation
+  properties :title, :project_id, :estimation, :description
 
   association :product
 
