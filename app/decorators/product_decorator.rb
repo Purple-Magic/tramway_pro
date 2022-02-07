@@ -22,4 +22,19 @@ class ProductDecorator < ApplicationDecorator
       [ :tasks ]
     end
   end
+
+  def everyday_report(date)
+    report = object.time_logs.where(created_at: date.all_day).group_by(&:associated).reduce('') do |text, pair|
+      task = pair[0]
+      time_logs = pair[1]
+
+      text += "📌 #{task.title}\n"
+      time_logs.each do |time_log|
+        text += "  • #{time_log.user.first_name} #{time_log.user.last_name}: #{time_log.comment}\n"
+      end
+      text += "\n"
+    end
+    intro = "🪄  *Отчёт за #{date.strftime('%d.%m.%Y')}*\n\n"
+    intro + (report.present? ? report : 'Вчера не было залогированных задач')
+  end
 end
