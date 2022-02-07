@@ -23,26 +23,23 @@
         $('.datepicker').datepicker({ language: 'ru' })
 - case params[:flash]
 - when 'success_sign_in'
-  .alert.alert-success.fade.show{ role: :alert }
+  .alert.alert-success.alert-dismissible.fade.show{ role: :alert }
     %span
       Авторизация прошла успешно
-    %button.close{ data: { dismiss: :alert }, aria: { label: 'Close' } }
+    %button.btn-close{ data: { 'bs-dismiss': :alert }, aria: { label: 'Close' } }
       %span{ aria: { hidden: true } }
-        &times;
 - when 'success_started_delivery'
-  .alert.alert-success.fade.show{ role: :alert }
+  .alert.alert-success.alert-dismissible.fade.show{ role: :alert }
     %span
       Рассылка успешно запущена
-    %button.close{ data: { dismiss: :alert }, aria: { label: 'Close' } }
+    %button.close{ data: { 'bs-dismiss': :alert }, aria: { label: 'Close' } }
       %span{ aria: { hidden: true } }
-        &times;
 - when 'no_offer_checked'
-  .alert.alert-warning.fade.show{ role: :alert }
+  .alert.alert-warning.alert-dismissible.fade.show{ role: :alert }
     %span
       Вам нужно отметить предложения проектов или команд для создания рассылки
-    %button.close{ data: { dismiss: :alert }, aria: { label: 'Close'} }
+    %button.close{ data: { 'bs-dismiss': :alert }, aria: { label: 'Close'} }
       %span{ aria: { hidden: true } }
-        &times;
 %h1{ style: 'display: flex; flex-direction: row; justify-content: space-between' }
   Поиск по постам
   = react_component 'BenchkillerDeliveryButton', path: new_benchkiller_web_delivery_path
