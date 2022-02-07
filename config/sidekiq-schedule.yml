@@ -3,6 +3,11 @@ leopold_send_chat_quest_stats:
   class: LeopoldSendChatQuestsStats
   queue: bot
 
+leopold_send_everyday_report:
+  cron: "0 7 * * *"
+  class: LeopoldSendEverydayReportJob
+  queue: bot
+
 benchkiller_send_planned_notifications:
   cron: "* * * * *"
   class: BenchkillerSendPlannedNotifications 
