@@ -6,8 +6,8 @@ class LeopoldSendEverydayReportJob < ActiveJob::Base
   include ::BotTelegram::Leopold::Tracker
 
   def perform(*_args)
-    Product.where.not(chat_id: nil).find_each do |product|
-      send_everyday_report product
+    Product.find_each do |product|
+      send_everyday_report product if product.chat_id.present?
     end
   end
 end
