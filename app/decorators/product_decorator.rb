@@ -33,7 +33,7 @@ class ProductDecorator < ApplicationDecorator
         text += "  • #{time_log.user.first_name} #{time_log.user.last_name}: #{time_log.comment}\n"
       end
       text += "\n"
-    end
+    end.gsub('*', '')
     intro = "🪄  *Отчёт за #{date.strftime('%d.%m.%Y')}*\n\n"
     intro + (report.present? ? report : 'Вчера не было залогированных задач')
   end
