@@ -121,7 +121,6 @@ end
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'capybara', '3.31'
   gem 'launchy'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'reek'
@@ -139,6 +138,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'redactor-rails', github: 'glyph-fr/redactor-rails'
 
 group :test do
+  gem 'capybara', '3.31'
   gem 'capybara_helpers'
   gem 'dotenv-rails'
   gem 'factory_bot_rails', '5.1.1'
