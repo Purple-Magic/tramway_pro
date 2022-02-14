@@ -36,8 +36,8 @@ module Benchkiller::Concerns
       if REGIONS_DICTIONARY.include? region
         region
       else
-        REGIONS_DICTIONARY.map do |pair|
-          pair[0] if pair[1].include? region
+        REGIONS_DICTIONARY.map do |(key, value)|
+          key if value.include? region
         end.compact.first || region
       end
     end.compact.uniq

@@ -24,10 +24,7 @@ class ProductDecorator < ApplicationDecorator
   end
 
   def everyday_report(date)
-    report = object.time_logs.where(created_at: date.all_day).group_by(&:associated).reduce('') do |text, pair|
-      task = pair[0]
-      time_logs = pair[1]
-
+    report = object.time_logs.where(created_at: date.all_day).group_by(&:associated).reduce('') do |text, (task, time_logs)|
       text += "📌 #{task.title}\n"
       time_logs.each do |time_log|
         text += "  • #{time_log.user.first_name} #{time_log.user.last_name}: #{time_log.comment}\n"
