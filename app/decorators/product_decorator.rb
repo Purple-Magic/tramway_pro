@@ -15,7 +15,7 @@ class ProductDecorator < ApplicationDecorator
     end
 
     def show_attributes
-      [ :tech_name, :time_logs ]
+      [ :time_logs_table ]
     end
 
     def show_associations

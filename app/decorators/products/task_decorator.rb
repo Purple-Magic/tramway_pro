@@ -4,11 +4,14 @@ class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
         :data,
         :created_at,
         :card_id,
-        :description
+        :description,
+        :estimation
   )
 
   decorate_association :product
   decorate_association :time_logs, as: :associated
+
+  include Concerns::TimeLogsTable
 
   def created_at
     object.created_at.strftime('%d.%m.%Y %H:%M')
@@ -39,7 +42,9 @@ class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
         :card_id,
         :data,
         :created_at,
-        :description
+        :description,
+        :estimation,
+        :time_logs_table
       ]
     end
 
