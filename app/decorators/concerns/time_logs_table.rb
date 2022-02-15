@@ -1,6 +1,8 @@
 module Concerns::TimeLogsTable
-  def time_logs
-    content_tag :table do
+  include Concerns::TableBuilder
+
+  def time_logs_table
+    content_tag :table, class: :table do
       time_logs_table_header
       time_logs_table_body
     end

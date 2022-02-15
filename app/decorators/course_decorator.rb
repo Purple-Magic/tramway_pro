@@ -15,7 +15,7 @@ class CourseDecorator < ApplicationDecorator
     end
 
     def show_attributes
-      %i[data time_logs tree]
+      %i[data time_logs_table tree]
     end
 
     def show_associations
