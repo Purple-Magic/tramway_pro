@@ -12,4 +12,8 @@ module TimeManager
       end
     end || 0
   end
+
+  def minutes_to_hours(minutes)
+    "#{minutes / 60}h #{minutes % 60}m"
+  end
 end
