@@ -4,6 +4,7 @@ class ProductDecorator < ApplicationDecorator
   decorate_association :tasks
 
   include Concerns::TimeLogsTable
+  include TimeManager
 
   class << self
     def collections
@@ -15,12 +16,22 @@ class ProductDecorator < ApplicationDecorator
     end
 
     def show_attributes
-      [ :time_logs_table ]
+      [ :time_logs_table, :sum_estimation, :sum_time_logs ]
     end
 
     def show_associations
       [ :tasks ]
     end
+  end
+
+  def sum_estimation
+    minutes = tasks.sum { |t| t.object.minutes_of(t.estimation) }
+    minutes_to_hours minutes
+  end
+
+  def sum_time_logs
+    minutes = object.time_logs.sum { |t| t.minutes_of(t.time_spent) }
+    minutes_to_hours minutes
   end
 
   def everyday_report(date)
