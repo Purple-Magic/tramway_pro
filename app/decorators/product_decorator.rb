@@ -11,7 +11,7 @@ class ProductDecorator < ApplicationDecorator
     end
 
     def list_attributes
-      [ :time_logs ]
+      [ :time_logs_table ]
     end
 
     def show_attributes
