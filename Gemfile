@@ -22,7 +22,7 @@ gem 'tramway-page', '1.5.4.3'
 gem 'tramway-partner', '1.0.4'
 gem 'tramway-profiles', '1.4.1.1'
 gem 'tramway-site', '0.1.0.5'
-gem 'tramway-user', '2.1.4'
+gem 'tramway-user', '2.2'
 
 # gem 'tramway-admin', path: '../tramway-admin'
 # gem 'tramway-api', path: '../tramway-dev/tramway-api'

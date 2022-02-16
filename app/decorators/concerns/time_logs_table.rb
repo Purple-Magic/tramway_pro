@@ -2,7 +2,7 @@ module Concerns::TimeLogsTable
   include Concerns::TableBuilder
 
   def time_logs_table
-    content_tag :table, class: :table do
+    table do
       time_logs_table_header
       time_logs_table_body
     end
@@ -24,6 +24,24 @@ module Concerns::TimeLogsTable
         end)
       end
     end)
+  end
+
+  def time_logs_list
+    table do
+      object.time_logs.order(:id).each do |time_log|
+        concat(tr do
+          concat(td do
+            time_log.user.full_name
+          end)
+          concat(td do
+            time_log.time_spent
+          end)
+          concat(td do
+            time_log.comment
+          end)
+        end)
+      end
+    end
   end
 
   private

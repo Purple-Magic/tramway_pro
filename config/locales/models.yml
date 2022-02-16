@@ -218,12 +218,15 @@ ru:
       product:
         title: Название
         tasks: Задачи
+        time_logs: Времени затрачено
         time_logs_table: Времени затрачено
         sum_estimation: Суммарная оценка
         sum_time_logs: Суммарно потрачено времени
       products/task:
         title: Название
         data: Данные карточки
+        time_logs_table: Суммарные таймлоги
+        time_logs_list: Все таймлоги по задаче
         time_logs: Таймлоги
         estimation: Оценка затрат
         description: Описание

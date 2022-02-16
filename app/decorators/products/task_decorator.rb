@@ -44,7 +44,8 @@ class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
         :created_at,
         :description,
         :estimation,
-        :time_logs_table
+        :time_logs_table,
+        :time_logs_list
       ]
     end
 
