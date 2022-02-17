@@ -15,7 +15,7 @@ class PodcastDecorator < ApplicationDecorator
     end
 
     def show_attributes
-      [:time_logs]
+      [:time_logs_table]
     end
   end
 end
