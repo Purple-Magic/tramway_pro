@@ -1,4 +1,4 @@
-class PurpleMagic::Api::V1::Leopold::MessagesController < PurpleMagic::Api::V1::ApplicationController
+class PurpleMagic::Api::V1::Leopold::MessagesController < PurpleMagic::Api::ApplicationController
   AVAILABLE_ENGINES = [ 'Product' ]
 
   include ::BotTelegram::Leopold::Notify
