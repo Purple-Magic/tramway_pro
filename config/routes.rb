@@ -51,6 +51,9 @@ Rails.application.routes.draw do
           namespace :estimation do
             resources :projects, only: :update
           end
+          namespace :leopold do
+            resources :messages, only: :create
+          end
         end
       end
     end
