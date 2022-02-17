@@ -37,6 +37,8 @@ class Podcasts::MontageWorker < ApplicationWorker
   def remove_cut_pieces(episode)
     if episode.parts.any?
       Podcasts::Episodes::Montage::RemoveCutPiecesService.new(episode).call
+    else
+      episode.update_file! episode.converted_file.path, :premontage_file
     end
   end
 
