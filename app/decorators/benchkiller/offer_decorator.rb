@@ -38,6 +38,23 @@ class Benchkiller::OfferDecorator < ApplicationDecorator
     raw "@#{object.message.user.username}: #{upgraded_text_view}"
   end
 
+  def public_channel_text
+    if object.benchkiller_user.company.approved?
+      benchkiller_user = object.benchkiller_user
+      post = "From: @#{message.user.username}\n\n"
+      post += "Company: #{benchkiller_user.company.title}\n\n"
+      post += "Website: #{benchkiller_user.company.company_url}\n\n"
+      post += "Email: #{benchkiller_user.company.email}\n\n"
+      post += "Phone: #{benchkiller_user.company.phone}\n\n"
+      post += "Region: #{benchkiller_user.company.place}\n\n"
+      post += "Work region: #{benchkiller_user.company.regions_to_cooperate}\n\n"
+      post += "Message:\n"
+      post + object.message.text
+    else
+      object.text
+    end
+  end
+
   def approval_state_button_color(event)
     case event
     when :approve
