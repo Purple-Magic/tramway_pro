@@ -40,6 +40,7 @@ class Benchkiller::Delivery < ApplicationRecord
     text_with_test_message += '———————'
     text_with_test_message += "\n\n"
     text_with_test_message += '———————'
+    text_with_test_message += "\n\n"
     text_with_test_message += "#{text}\n\nЭта рассылка делается в тестовом режиме. "
     "#{text_with_test_message}На всякий случай уточняйте актуальность отклика у его автора.  Если у вас есть вопросы или предложения по этим рассылкам, напишите @Egurt73, Benchkiller"
   end
