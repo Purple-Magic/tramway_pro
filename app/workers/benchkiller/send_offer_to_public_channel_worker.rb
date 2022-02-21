@@ -6,7 +6,7 @@ class Benchkiller::SendOfferToPublicChannelWorker < ApplicationWorker
   include ::BotTelegram::BenchkillerBot::Notify
 
   def perform(offer_id, channel)
-    text = ::Benchkiller::Offer.find(offer_id).message.text
+    text = ::Benchkiller::OfferDecorator.decorate(::Benchkiller::Offer.find(offer_id)).public_channel_text
     send_notification_to_channel channel, text
   end
 end
