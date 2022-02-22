@@ -39,7 +39,7 @@ class Benchkiller::OfferDecorator < ApplicationDecorator
   end
 
   def public_channel_text
-    if object.benchkiller_user.company.approved?
+    if object.benchkiller_user&.company&.approved?
       benchkiller_user = object.benchkiller_user
       post = "From: @#{message.user.username}\n\n"
       post += "Company: #{benchkiller_user.company.title}\n\n"
