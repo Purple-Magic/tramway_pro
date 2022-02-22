@@ -42,7 +42,7 @@ class Benchkiller::OfferDecorator < ApplicationDecorator
     if object.benchkiller_user&.company&.approved?
       benchkiller_user = object.benchkiller_user
       post = "From: @#{message.user.username}\n\n"
-      pots += Benchkiller::CompanyDecorator.decorate(benchkiller_user.company).bot_card
+      post += Benchkiller::CompanyDecorator.decorate(benchkiller_user.company).bot_card
       post += "Message:\n"
       post + object.message.text
     else
