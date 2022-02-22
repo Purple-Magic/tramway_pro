@@ -46,7 +46,7 @@ class Benchkiller::OfferDecorator < ApplicationDecorator
       post += "Message:\n"
       post + object.message.text
     else
-      object.text
+      object.message.text
     end
   end
 
