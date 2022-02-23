@@ -11,10 +11,10 @@ module BotTelegram::Custom::Notify::Text
       message_to_user bot.api, message, chat.telegram_chat_id if chat.present?
     end
 
-    def send_to_chat(bot_id, chat_id, message)
+    def send_to_chat(bot_id, chat_id, message, **options)
       bot_record = Bot.find bot_id
       bot = ::Telegram::Bot::Client.new bot_record.token
-      message_to_chat bot.api, chat_id, message
+      message_to_chat bot.api, chat_id, message, **options
     end
 
     def send_to_channel(bot_id, channel_id, message)
