@@ -7,7 +7,8 @@ class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
     :created_at,
     :card_id,
     :description,
-    :estimation
+    :estimation,
+    :state
   )
 
   decorate_association :product
