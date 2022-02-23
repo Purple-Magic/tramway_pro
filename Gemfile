@@ -10,7 +10,7 @@ end
 ruby '2.7.5'
 gem 'rails', '5.1.7'
 
-gem 'tramway-admin', '4.1.1'
+gem 'tramway-admin', '4.1.1.1'
 gem 'tramway-api', '2.0'
 gem 'tramway-conference', '1.9.5.5'
 gem 'tramway-core', '4.1.1'

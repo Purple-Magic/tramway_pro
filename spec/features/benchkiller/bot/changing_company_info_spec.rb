@@ -17,7 +17,7 @@ describe 'BotTelegram::BenchkillerBot' do
   describe 'Commands' do
     ::BotTelegram::BenchkillerBot::Command::COMMANDS.each do |com|
       next if com.in? %i[start start_menu change_company_card create_company create_password approve_offer
-                         decline_offer]
+      decline_offer]
 
       describe com.to_s.capitalize.gsub('_', ' ') do
         let(:message) { build "#{com}_telegram_message" }
@@ -178,114 +178,111 @@ describe 'BotTelegram::BenchkillerBot' do
           end
         end
 
-        describe 'Failure' do
-          let!(:telegram_message) do
-            t = com.in?(%i[set_regions_to_cooperate set_place set_phone]) ? '' : 'fail_argument'
-            build :telegram_message, text: t
-          end
-
-          before do
-            create :benchkiller_company, title: :fail_argument
-          end
-
-          it 'returns error messages' do
-            send_message_stub_request body: {
-              chat_id: chat.telegram_chat_id,
-              text: ::Benchkiller::CompanyDecorator.decorate(company).bot_card
-            }
-
-            send_message_stub_request body: {
-              chat_id: chat.telegram_chat_id,
-              text: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[com][:message]
-            }
-
-            Telegram::Bot::Client.run(bot_record.token) do |bot|
-              BotTelegram::BenchkillerBot::Scenario.new(
-                message: message,
-                bot: bot,
-                bot_record: bot_record,
-                chat: chat,
-                message_object: message_object,
-                user: message_object.user
-              ).run
+        unless com.in? [ :set_company_name ]
+          describe 'Failure' do
+            let!(:telegram_message) do
+              t = com.in?(%i[set_regions_to_cooperate set_place set_phone]) ? '' : 'fail_argument'
+              build :telegram_message, text: t
             end
 
-            message = case com
-                      when :set_company_name
-                        benchkiller_i18n_scope(com, :failure, old_company_name: company.title, company_name: argument)
-                      else
-                        benchkiller_i18n_scope(com, :failure, attribute_name.to_sym => argument)
-                      end
-
-            stub = send_message_stub_request body: {
-              chat_id: chat.telegram_chat_id,
-              text: message
-            }
-
-            Telegram::Bot::Client.run(bot_record.token) do |bot|
-              BotTelegram::BenchkillerBot::Scenario.new(
-                message: telegram_message,
-                bot: bot,
-                bot_record: bot_record,
-                chat: chat,
-                message_object: message_object,
-                user: message_object.user
-              ).run
+            before do
+              create :benchkiller_company, title: Faker::Company.name
             end
 
-            expect(stub).to have_been_requested
-          end
+            it 'returns error messages' do
+              send_message_stub_request body: {
+                chat_id: chat.telegram_chat_id,
+                text: ::Benchkiller::CompanyDecorator.decorate(company).bot_card
+              }
 
-          it 'does not set attribute' do
-            send_message_stub_request body: {
-              chat_id: chat.telegram_chat_id,
-              text: ::Benchkiller::CompanyDecorator.decorate(company).bot_card
-            }
+              send_message_stub_request body: {
+                chat_id: chat.telegram_chat_id,
+                text: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[com][:message]
+              }
 
-            send_message_stub_request body: {
-              chat_id: chat.telegram_chat_id,
-              text: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[com][:message]
-            }
+              Telegram::Bot::Client.run(bot_record.token) do |bot|
+                BotTelegram::BenchkillerBot::Scenario.new(
+                  message: message,
+                  bot: bot,
+                  bot_record: bot_record,
+                  chat: chat,
+                  message_object: message_object,
+                  user: message_object.user
+                ).run
+              end
 
-            Telegram::Bot::Client.run(bot_record.token) do |bot|
-              BotTelegram::BenchkillerBot::Scenario.new(
-                message: message,
-                bot: bot,
-                bot_record: bot_record,
-                chat: chat,
-                message_object: message_object,
-                user: message_object.user
-              ).run
+              message = benchkiller_i18n_scope(com, :failure, attribute_name.to_sym => argument)
+
+              stub = send_message_stub_request body: {
+                chat_id: chat.telegram_chat_id,
+                text: message
+              }
+
+              Telegram::Bot::Client.run(bot_record.token) do |bot|
+                BotTelegram::BenchkillerBot::Scenario.new(
+                  message: telegram_message,
+                  bot: bot,
+                  bot_record: bot_record,
+                  chat: chat,
+                  message_object: message_object,
+                  user: message_object.user
+                ).run
+              end
+
+              expect(stub).to have_been_requested
             end
 
-            message = case com
-                      when :set_company_name
-                        benchkiller_i18n_scope(com, :failure, old_company_name: company.title, company_name: argument)
-                      else
-                        benchkiller_i18n_scope(com, :failure, attribute_name.to_sym => argument)
-                      end
+            it 'does not set attribute' do
+              send_message_stub_request body: {
+                chat_id: chat.telegram_chat_id,
+                text: ::Benchkiller::CompanyDecorator.decorate(company).bot_card
+              }
 
-            send_message_stub_request body: {
-              chat_id: chat.telegram_chat_id,
-              text: message
-            }
+              send_message_stub_request body: {
+                chat_id: chat.telegram_chat_id,
+                text: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[com][:message]
+              }
 
-            Telegram::Bot::Client.run(bot_record.token) do |bot|
-              BotTelegram::BenchkillerBot::Scenario.new(
-                message: telegram_message,
-                bot: bot,
-                bot_record: bot_record,
-                chat: chat,
-                message_object: message_object,
-                user: message_object.user
-              ).run
-            end
+              Telegram::Bot::Client.run(bot_record.token) do |bot|
+                BotTelegram::BenchkillerBot::Scenario.new(
+                  message: message,
+                  bot: bot,
+                  bot_record: bot_record,
+                  chat: chat,
+                  message_object: message_object,
+                  user: message_object.user
+                ).run
+              end
 
-            company.reload
-            if com == :set_company_name
-              expect(company.title).not_to eq argument
-            else
-              expect(company.public_send(attribute_name)).not_to eq argument
+              message = case com
+                        when :set_company_name
+                          benchkiller_i18n_scope(com, :failure, old_company_name: company.title, company_name: argument)
+                        else
+                          benchkiller_i18n_scope(com, :failure, attribute_name.to_sym => argument)
+                        end
+
+              send_message_stub_request body: {
+                chat_id: chat.telegram_chat_id,
+                text: message
+              }
+
+              Telegram::Bot::Client.run(bot_record.token) do |bot|
+                BotTelegram::BenchkillerBot::Scenario.new(
+                  message: telegram_message,
+                  bot: bot,
+                  bot_record: bot_record,
+                  chat: chat,
+                  message_object: message_object,
+                  user: message_object.user
+                ).run
+              end
+
+              company.reload
+              if com == :set_company_name
+                expect(company.title).not_to eq argument
+              else
+                expect(company.public_send(attribute_name)).not_to eq argument
+              end
             end
           end
         end
