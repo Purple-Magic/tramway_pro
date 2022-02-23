@@ -37,7 +37,7 @@ class Benchkiller::CompanyDecorator < ApplicationDecorator
 
                   🌉 Регион: #{place}
 
-                  🌎 Регион работы: #{regions_to_cooperate}
+                  🌎 Регион работы: #{regions_to_cooperate.join(', ')}
     TXT
   end
 
