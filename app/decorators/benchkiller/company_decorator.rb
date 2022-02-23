@@ -21,20 +21,22 @@ class Benchkiller::CompanyDecorator < ApplicationDecorator
     :uuid
   )
 
+  include Concerns::TableBuilder
+
   def bot_card
     <<~TXT
                   🏬 Название: #{title}
-      #{'      '}
+
                   🔗 Сайт: #{company_url}
-      #{'      '}
+
                   🎨 Портфолио: #{portfolio_url}
-      #{'      '}
+
                   📧 Почта: #{email}
-      #{'      '}
+
                   📞 Телефон: #{phone}
-      #{'      '}
+
                   🌉 Регион: #{place}
-            #{'      '}
+
                   🌎 Регион работы: #{regions_to_cooperate}
     TXT
   end
@@ -44,7 +46,7 @@ class Benchkiller::CompanyDecorator < ApplicationDecorator
   end
 
   def users
-    content_tag(:table) do
+    table do
       object.users.each do |user|
         concat(content_tag(:tr) do
           concat(content_tag(:td) do
@@ -59,7 +61,7 @@ class Benchkiller::CompanyDecorator < ApplicationDecorator
   end
 
   def data_view
-    content_tag(:table) do
+    table do
       %i[email phone company_url portfolio_url place regions_to_cooperate].each do |attribute|
         concat(content_tag(:tr) do
           concat(content_tag(:td) do
