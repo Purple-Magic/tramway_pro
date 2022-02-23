@@ -16,8 +16,7 @@ RSpec.describe 'Post generate token', type: :feature do
 
       stub = send_message_stub_request body: {
         chat_id: product.chat_id,
-        text: 'Test message',
-        parse_mode: 'markdown'
+        text: 'Test message'
       }
 
       post '/purple_magic/api/v1/leopold/messages',
