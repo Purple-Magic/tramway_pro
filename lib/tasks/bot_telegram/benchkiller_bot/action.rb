@@ -48,11 +48,15 @@ class BotTelegram::BenchkillerBot::Action
         password: SecureRandom.hex(16)
     end
 
-    company = ::Benchkiller::Company.create! title: title,
+    company = ::Benchkiller::Company.new title: title,
       project_id: BotTelegram::BenchkillerBot::PROJECT_ID
-    company.companies_users.create! user_id: benchkiller_user(user).id
-    user.set_finished_state_for bot: bot_record
-    show menu: :change_company_card, answer: i18n_scope(:create_company, :success, title: title)
+    if company.save
+      company.companies_users.create! user_id: benchkiller_user(user).id
+      user.set_finished_state_for bot: bot_record
+      show menu: :change_company_card, answer: i18n_scope(:create_company, :success, title: title)
+    else
+      send_message_to_user company.errors.full_messages.first
+    end
   end
 
   # rubocop:disable Naming/AccessorMethodName

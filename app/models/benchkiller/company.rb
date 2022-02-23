@@ -11,6 +11,8 @@ class Benchkiller::Company < ApplicationRecord
   store_accessor :data, :phone
   store_accessor :data, :regions_to_cooperate
 
+  validates :title, uniqueness: true
+
   scope :benchkiller_scope, ->(_user) { all }
   %i[unviewed approved declined].each do |review_state|
     scope review_state, -> { where review_state: review_state }
