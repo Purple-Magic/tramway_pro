@@ -43,7 +43,7 @@ class Benchkiller::OfferDecorator < ApplicationDecorator
       benchkiller_user = object.benchkiller_user
       post = "From: @#{message.user.username}\n\n"
       post += Benchkiller::CompanyDecorator.decorate(benchkiller_user.company).bot_card
-      post += "Message:\n"
+      post += "\nMessage:\n\n"
       post + object.message.text
     else
       object.message.text
