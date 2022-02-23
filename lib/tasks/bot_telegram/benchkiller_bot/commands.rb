@@ -69,19 +69,4 @@ module BotTelegram::BenchkillerBot::Commands
       show menu: menu, answer: answer
     end
   end
-
-  private
-
-  def show(menu:, answer:)
-    keyboard = ::BotTelegram::BenchkillerBot::MENUS[menu].map do |button_row|
-      button_row.map do |button|
-        ::BotTelegram::BenchkillerBot::BUTTONS[button]
-      end
-    end
-
-    message = ::BotTelegram::Custom::Message.new text: answer, reply_markup: { keyboard: keyboard }
-
-    user.set_finished_state_for bot: bot_record
-    message_to_user bot.api, message, chat.telegram_chat_id
-  end
 end

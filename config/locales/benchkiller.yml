@@ -22,7 +22,7 @@ ru:
       change_company_card:
         text: 'Выберите информацию о компании, которую хотите изменить'
       create_company:
-        success: "Ваша компания %{title} успешно создана на Benchkiller. Для продолжения работы введите /start"
+        success: "Ваша компания %{title} успешно создана на Benchkiller. Настройте карточку компании в меню ниже"
       set_company_name:
         success: "Ваша компания %{old_company_name} переименована в %{company_name} на сервисе Benchkiller"
         failure: 'Вам следует ввести название компании'
