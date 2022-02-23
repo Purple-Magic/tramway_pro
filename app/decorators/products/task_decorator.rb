@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
   delegate_attributes(
-        :title,
-        :data,
-        :created_at,
-        :card_id,
-        :description,
-        :estimation
+    :title,
+    :data,
+    :created_at,
+    :card_id,
+    :description,
+    :estimation
   )
 
   decorate_association :product
@@ -24,33 +26,33 @@ class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
 
   class << self
     def collections
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :title,
-        :data,
-        :state,
+      %i[
+        id
+        title
+        data
+        state
       ]
     end
 
     def show_attributes
-      [
-        :product_link,
-        :card_id,
-        :data,
-        :created_at,
-        :description,
-        :estimation,
-        :time_logs_table,
-        :time_logs_list
+      %i[
+        product_link
+        card_id
+        data
+        created_at
+        description
+        estimation
+        time_logs_table
+        time_logs_list
       ]
     end
 
     def show_associations
-      [ :time_logs ]
+      [:time_logs]
     end
   end
 end

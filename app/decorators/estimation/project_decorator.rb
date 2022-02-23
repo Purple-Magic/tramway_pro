@@ -8,7 +8,7 @@ class Estimation::ProjectDecorator < ApplicationDecorator
 
   class << self
     def collections
-      [:all, :confirmed, :declined]
+      %i[all confirmed declined]
     end
 
     def list_attributes
@@ -25,7 +25,8 @@ class Estimation::ProjectDecorator < ApplicationDecorator
   end
 
   def additional_buttons
-    tasks_url = ::Tramway::Export::Engine.routes.url_helpers.export_path(id, model: object.class, collection: :single_tasks)
+    tasks_url = ::Tramway::Export::Engine.routes.url_helpers.export_path(id, model: object.class,
+collection: :single_tasks)
     expenses_url = ::Tramway::Export::Engine.routes.url_helpers.export_path(id, model: object.class,
 collection: :expenses)
     new_task_path = Tramway::Admin::Engine.routes.url_helpers.new_record_path(
@@ -34,15 +35,20 @@ collection: :expenses)
       redirect: "/admin/records/#{id}?model=Estimation::Project"
     )
     current_host = ENV['PROJECT_URL'].split('.').first.gsub('-', '_')
-    calc_by_associated_path = Rails.application.routes.url_helpers.public_send "#{current_host}_api_v1_estimation_project_path", id: id, process: :calc
+    calc_by_associated_path = Rails.application.routes.url_helpers.public_send "#{current_host}_api_v1_estimation_project_path",
+      id: id, process: :calc
 
     buttons = [
       { url: tasks_url, inner: -> { tasks_button_inner }, color: :success },
       { url: expenses_url, inner: -> { expenses_button_inner }, color: :success },
-      { url: new_task_path, inner: -> { fa_icon :plus }, color: :primary },
+      { url: new_task_path, inner: -> { fa_icon :plus }, color: :primary }
     ]
 
-    buttons << { url: calc_by_associated_path, method: :patch, inner: -> { fa_icon :calculator }, color: :primary } if object.associated.present?
+    if object.associated.present?
+      buttons << { url: calc_by_associated_path, method: :patch, inner: lambda {
+                                                                          fa_icon :calculator
+                                                                        }, color: :primary }
+    end
 
     { show: buttons }
   end

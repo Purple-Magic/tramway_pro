@@ -66,10 +66,8 @@ class Courses::ScreencastDecorator < Tramway::Core::ApplicationDecorator
       %i[file comment]
     end
 
-    def show_associations
-    end
+    def show_associations; end
 
-    def list_filters
-    end
+    def list_filters; end
   end
 end

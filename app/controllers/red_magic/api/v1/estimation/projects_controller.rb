@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RedMagic::Api::V1::Estimation::ProjectsController < RedMagic::Api::ApplicationController
   def update
     project = ::Estimation::Project.find params[:id]

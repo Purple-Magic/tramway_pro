@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationService
   def initialize
     raise 'Please, implement initialize method'

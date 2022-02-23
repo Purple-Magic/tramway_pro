@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Podcast::Episodes::PartForm < Tramway::Core::ApplicationForm
   properties :project_id, :begin_time, :end_time
 

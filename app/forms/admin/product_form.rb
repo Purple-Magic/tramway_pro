@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::ProductForm < Tramway::Core::ApplicationForm
   properties :title, :project_id, :tech_name, :chat_id
 

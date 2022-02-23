@@ -54,10 +54,10 @@ describe 'BotTelegram::BenchkillerBot' do
           chat_id: chat.telegram_chat_id,
           text: benchkiller_i18n_scope(:create_company, :success, title: company_name),
           reply_markup: reply_markup(
-            [ 'Название компании', 'Телефон'],
-            [ 'Сайт', 'Расположение компании' ],
-            [ 'Портфолио', 'Регионы сотрудничества' ],
-            [ 'Почта', 'Назад' ]
+            ['Название компании', 'Телефон'],
+            ['Сайт', 'Расположение компании'],
+            ['Портфолио', 'Регионы сотрудничества'],
+            %w[Почта Назад]
           )
         }
 

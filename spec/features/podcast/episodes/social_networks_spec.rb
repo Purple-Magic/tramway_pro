@@ -1,6 +1,7 @@
-#require 'rails_helper'
+# frozen_string_literal: true
+# require 'rails_helper'
 #
-#describe 'Podcast' do
+# describe 'Podcast' do
 #  describe 'Episodes' do
 #    describe 'Social networks' do
 #      let!(:project_id) { red_magic_id }
@@ -21,9 +22,9 @@
 #
 #        click_on 'Подкасты'
 #        click_on "Выпуск ##{episodes.last.number}"
-#        
+#
 #        expect(page).to have_content 'Ведущие'
 #      end
 #    end
 #  end
-#end
+# end

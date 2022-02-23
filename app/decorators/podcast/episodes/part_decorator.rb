@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class Podcast::Episodes::PartDecorator < Tramway::Core::ApplicationDecorator
   delegate_attributes(
-        :id,
-        :episode_id,
-        :project_id,
-        :deleted_at,
-        :begin_time,
-        :end_time,
-        :created_at,
-        :updated_at,
-        :preview
+    :id,
+    :episode_id,
+    :project_id,
+    :deleted_at,
+    :begin_time,
+    :end_time,
+    :created_at,
+    :updated_at,
+    :preview
   )
 
   decorate_associations :episode
@@ -31,18 +33,17 @@ class Podcast::Episodes::PartDecorator < Tramway::Core::ApplicationDecorator
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
-    def list_attributes
-    end
+    def list_attributes; end
 
     def show_attributes
-      [
-        :episode_link,
-        :preview_file,
-        :begin_time,
-        :end_time,
+      %i[
+        episode_link
+        preview_file
+        begin_time
+        end_time
       ]
     end
 

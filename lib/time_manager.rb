@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TimeManager
   def minutes_of(value)
     return 0 unless value.present?

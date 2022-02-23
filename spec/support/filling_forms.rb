@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FillingForms
   def fill_form(form_name, attributes)
     forms[form_name].call attributes

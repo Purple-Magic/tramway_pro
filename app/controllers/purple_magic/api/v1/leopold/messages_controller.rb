@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class PurpleMagic::Api::V1::Leopold::MessagesController < PurpleMagic::Api::ApplicationController
-  AVAILABLE_ENGINES = [ 'Product' ]
+  AVAILABLE_ENGINES = ['Product'].freeze
 
   include ::BotTelegram::Leopold::Notify
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Podcasts::Episodes::TimeManagement
   def change_time(time, direction = nil, difference = nil)
     converted_time = time_convert time
@@ -26,4 +28,4 @@ module Podcasts::Episodes::TimeManagement
     hour, minutes, seconds = times.count == 2 ? [0, *times] : times
     DateTime.new(2020, 0o1, 0o1, hour.to_i, minutes.to_i, seconds.to_i)
   end
-end 
+end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PurpleMagic::Api::V1::Estimation::ProjectsController < PurpleMagic::Api::ApplicationController
   def update
     project = ::Estimation::Project.find params[:id]

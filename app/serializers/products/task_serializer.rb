@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Products::TaskSerializer < ApplicationSerializer
   attributes :title, :internal_id
 

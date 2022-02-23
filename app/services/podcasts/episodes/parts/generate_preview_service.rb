@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Podcasts::Episodes::Parts::GeneratePreviewService < Podcasts::Episodes::BaseService
   attr_reader :part
 
@@ -45,7 +47,7 @@ class Podcasts::Episodes::Parts::GeneratePreviewService < Podcasts::Episodes::Ba
             end
     output = build_output(object: part, attribute: :preview, suffix: direction)
     options = {
-      input: part.episode.converted_file + '.mp3',
+      input: "#{part.episode.converted_file}.mp3",
       begin_time: times[:begin_time],
       end_time: times[:end_time],
       output: output

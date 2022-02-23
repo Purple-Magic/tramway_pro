@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Podcasts::Episodes::Montage::RemoveCutPiecesService < Podcasts::Episodes::BaseService
   attr_reader :episode
 
@@ -17,7 +19,7 @@ class Podcasts::Episodes::Montage::RemoveCutPiecesService < Podcasts::Episodes::
       output = "#{episode.prepare_directory}/slice-#{index + 1}.mp3"
 
       render_command = write_logs(cut_content(
-        input: episode.converted_file + '.mp3',
+        input: "#{episode.converted_file}.mp3",
         output: output,
         begin_time: begin_time,
         end_time: end_time
@@ -46,7 +48,7 @@ class Podcasts::Episodes::Montage::RemoveCutPiecesService < Podcasts::Episodes::
 
   def times
     ['00:00'] + episode.parts.map do |part|
-      [part.begin_time, part.end_time] 
+      [part.begin_time, part.end_time]
     end.flatten
   end
 end

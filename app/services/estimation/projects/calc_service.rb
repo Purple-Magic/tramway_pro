@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Estimation::Projects::CalcService < ApplicationService
   attr_reader :project
 
@@ -16,7 +18,7 @@ class Estimation::Projects::CalcService < ApplicationService
   private
 
   def calc_course
-    project.tasks.single.map &:destroy
+    project.tasks.single.map(&:destroy)
 
     course = project.associated
 
@@ -33,10 +35,10 @@ class Estimation::Projects::CalcService < ApplicationService
   end
 
   def calc_product
-    project.tasks.single.map &:destroy
+    project.tasks.single.map(&:destroy)
 
     product = project.associated
-    
+
     product.tasks.each do |task|
       project.tasks.create!(
         title: task.title,

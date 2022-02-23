@@ -12,19 +12,19 @@ module BotTelegram::BenchkillerBot
 
   MENUS = {
     start_menu: [
-      [ :get_company_card, :create_password ],
-      [ :change_company_card ]
+      %i[get_company_card create_password],
+      [:change_company_card]
     ],
     change_company_card: [
-      [ :set_company_name, :set_phone ],
-      [ :set_company_url, :set_place ],
-      [ :set_portfolio_url, :set_regions_to_cooperate ],
-      [ :set_email, :start_menu ]
+      %i[set_company_name set_phone],
+      %i[set_company_url set_place],
+      %i[set_portfolio_url set_regions_to_cooperate],
+      %i[set_email start_menu]
     ],
     without_company_menu: [
-      [ :create_company ]
+      [:create_company]
     ]
-  }
+  }.freeze
 
   BUTTONS = {
     change_company_card: 'Изменить карточку',
@@ -40,7 +40,7 @@ module BotTelegram::BenchkillerBot
     set_phone: 'Телефон',
     set_regions_to_cooperate: 'Регионы сотрудничества',
     start_menu: 'Назад'
-  }
+  }.freeze
 
   ACTIONS_DATA = {
     create_company: {
