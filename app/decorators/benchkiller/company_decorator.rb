@@ -23,19 +23,19 @@ class Benchkiller::CompanyDecorator < ApplicationDecorator
 
   def bot_card
     <<~TXT
-            🏬 Название: #{title}
-
-            🔗 Сайт: #{company_url}
-
-            🎨 Портфолио: #{portfolio_url}
-
-            📧 Почта: #{email}
-
-            📞 Телефон: #{phone}
-
-            🌉 Регион: #{place}
-            
-            🌎 Регион работы: #{regions_to_cooperate}
+                  🏬 Название: #{title}
+      #{'      '}
+                  🔗 Сайт: #{company_url}
+      #{'      '}
+                  🎨 Портфолио: #{portfolio_url}
+      #{'      '}
+                  📧 Почта: #{email}
+      #{'      '}
+                  📞 Телефон: #{phone}
+      #{'      '}
+                  🌉 Регион: #{place}
+            #{'      '}
+                  🌎 Регион работы: #{regions_to_cooperate}
     TXT
   end
 

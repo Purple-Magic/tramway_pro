@@ -2,7 +2,9 @@
 
 class Courses::Task < ApplicationRecord
   belongs_to :lesson, class_name: 'Courses::Lesson'
-  has_many :comments, -> { order(comment_state: :desc) }, class_name: 'Courses::Comment', as: :associated, dependent: :destroy
+  has_many :comments, lambda {
+                        order(comment_state: :desc)
+                      }, class_name: 'Courses::Comment', as: :associated, dependent: :destroy
 
   validates :position, presence: true
 

@@ -8,9 +8,9 @@ class Benchkiller::SendApprovementMessageWorker < ApplicationWorker
   def perform(user_id)
     text = <<~TEXT
             Поздравляем!
-      #{'      '}
+
             Ваша компания была подтверждена!
-      #{'      '}
+
             Теперь ваши сообщения будут автоматически попадать в наши каналы размещения
     TEXT
     send_notification_to_user Benchkiller::User.find(user_id).telegram_user.username, text

@@ -60,10 +60,9 @@ module BotTelegram::BenchkillerBot::Commands
     message_to_user bot.api, message_text, chat.telegram_chat_id
   end
 
-  def manage_subscription(_argument)
-  end
+  def manage_subscription(_argument); end
 
-  ::BotTelegram::BenchkillerBot::MENUS.keys.each do |menu|
+  ::BotTelegram::BenchkillerBot::MENUS.each_key do |menu|
     define_method(menu) do |_argument|
       answer = i18n_scope(menu, :text)
       show menu: menu, answer: answer

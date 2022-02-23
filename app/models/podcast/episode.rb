@@ -163,7 +163,7 @@ class Podcast::Episode < ApplicationRecord
 
   def log_command(command)
     commands = (render_data&.dig('commands') || []) + [command]
-    self.render_data ? self.render_data['commands'] = commands : self.render_data = { commands: commands }
+    render_data ? render_data['commands'] = commands : self.render_data = { commands: commands }
     save!
   end
 

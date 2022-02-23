@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Podcasts::Episodes::Parts::CommandWorker < ApplicationWorker
   sidekiq_options queue: :podcast
 

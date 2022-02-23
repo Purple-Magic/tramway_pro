@@ -25,11 +25,11 @@ class Estimation::Project < ApplicationRecord
     end
 
     event :calc do
-      transitions from: [ :estimation_in_progress, :estimation_done ], to: :estimation_in_progress
+      transitions from: %i[estimation_in_progress estimation_done], to: :estimation_in_progress
 
       after do
         save!
-        
+
         ::Estimation::Projects::CalcService.new(self).call
       end
     end

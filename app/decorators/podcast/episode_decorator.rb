@@ -31,12 +31,13 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
 
   def render_commands
     content_tag(:div) do
-      concat(content_tag(:button, type: :button, class: 'btn btn-primary', data: { toggle: :collapse, target: '#commands' }, aria: { controls: :commands }) do
-        concat(content_tag(:span) do
-          'Раскрыть '
-        end)
-        concat fa_icon('caret-down')
-      end)
+      concat(content_tag(:button, type: :button, class: 'btn btn-primary',
+data: { toggle: :collapse, target: '#commands' }, aria: { controls: :commands }) do
+               concat(content_tag(:span) do
+                 'Раскрыть '
+               end)
+               concat fa_icon('caret-down')
+             end)
       concat(content_tag(:div, class: :collapse, id: :commands) do
         concat content_tag :hr
         concat(content_tag(:ul) do

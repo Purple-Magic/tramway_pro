@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Podcasts::Episodes::CommandsManagement
   def run(command, output:, name: nil)
     episode.log_command command

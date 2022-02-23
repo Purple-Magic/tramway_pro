@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductDecorator < ApplicationDecorator
   delegate_attributes :title, :tech_name
 
@@ -8,19 +10,19 @@ class ProductDecorator < ApplicationDecorator
 
   class << self
     def collections
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [ :time_logs_table ]
+      [:time_logs_table]
     end
 
     def show_attributes
-      [ :time_logs_table, :sum_estimation, :sum_time_logs ]
+      %i[time_logs_table sum_estimation sum_time_logs]
     end
 
     def show_associations
-      [ :tasks ]
+      [:tasks]
     end
   end
 

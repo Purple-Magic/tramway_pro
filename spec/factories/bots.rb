@@ -10,7 +10,7 @@ FactoryBot.define do
     factory :quest_bot, traits: [:quest]
     factory :bot_with_start_step, traits: [:with_start_step]
     factory :benchkiller_bot, traits: [:benchkiller]
-    factory :leopold_bot, traits: [ :leopold ]
+    factory :leopold_bot, traits: [:leopold]
 
     trait :quest do
       steps = YAML.load_file("#{Rails.root}/spec/support/quests/test_quest.yml").with_indifferent_access[:steps]

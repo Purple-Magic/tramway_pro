@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Products::Task < ApplicationRecord
   belongs_to :product, class_name: 'Product'
 

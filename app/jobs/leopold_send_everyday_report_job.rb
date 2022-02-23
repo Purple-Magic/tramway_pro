@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../lib/tasks/bot_telegram/leopold/tracker'
 
 class LeopoldSendEverydayReportJob < ActiveJob::Base

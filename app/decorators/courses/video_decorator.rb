@@ -19,9 +19,7 @@ class Courses::VideoDecorator < ApplicationDecorator
 
   def auto_estimated_time
     coefficients = Courses::Video.where.not(result_duration: nil).map do |video|
-      if video.result_duration.present?
-        video.minutes_of(:result_duration).to_f / video.text.split.count
-      end
+      video.minutes_of(:result_duration).to_f / video.text.split.count if video.result_duration.present?
     end.compact
     if coefficients.any? && object.text.present?
       estimated_duraion = (object.text.split.count * coefficients.median).round 2
@@ -29,7 +27,7 @@ class Courses::VideoDecorator < ApplicationDecorator
       fraction = (estimated_duraion.to_s.split('.').second.to_i * 60 / 100).round
       "#{minutes}m #{fraction}s"
     else
-      "0m"
+      '0m'
     end
   end
 

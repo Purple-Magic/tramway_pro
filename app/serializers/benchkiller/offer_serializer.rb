@@ -7,8 +7,7 @@ class Benchkiller::OfferSerializer < ApplicationSerializer
 
   def title
     user = object.message.user
-    user_title = "#{user.username.present? ? user.username : 'No username'}: #{user.first_name} #{user.last_name}"
-    user_title
+    "#{user.username.present? ? user.username : 'No username'}: #{user.first_name} #{user.last_name}"
   end
 
   def text

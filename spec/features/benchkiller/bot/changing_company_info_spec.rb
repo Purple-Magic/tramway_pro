@@ -16,7 +16,8 @@ describe 'BotTelegram::BenchkillerBot' do
 
   describe 'Commands' do
     ::BotTelegram::BenchkillerBot::Command::COMMANDS.each do |com|
-      next if com.in? %i[start start_menu change_company_card create_company create_password approve_offer decline_offer]
+      next if com.in? %i[start start_menu change_company_card create_company create_password approve_offer
+                         decline_offer]
 
       describe com.to_s.capitalize.gsub('_', ' ') do
         let(:message) { build "#{com}_telegram_message" }
