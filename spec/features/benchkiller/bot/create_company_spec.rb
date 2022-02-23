@@ -11,7 +11,7 @@ describe 'BotTelegram::BenchkillerBot' do
 
     describe 'CallbackQuery' do
       it 'returns success message' do
-        stub = send_markdown_message_stub_request body: {
+        stub = send_message_stub_request body: {
           chat_id: chat.telegram_chat_id,
           text: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[:create_company][:message]
         }
@@ -45,7 +45,7 @@ describe 'BotTelegram::BenchkillerBot' do
       end
 
       before do
-        send_markdown_message_stub_request body: {
+        send_message_stub_request body: {
           chat_id: chat.telegram_chat_id,
           text: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[:create_company][:message]
         }

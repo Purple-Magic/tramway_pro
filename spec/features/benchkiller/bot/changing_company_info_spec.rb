@@ -25,7 +25,7 @@ describe 'BotTelegram::BenchkillerBot' do
         it 'returns message' do
           card = ::Benchkiller::CompanyDecorator.decorate(company).bot_card
 
-          card_stub = send_markdown_message_stub_request body: {
+          card_stub = send_message_stub_request body: {
             chat_id: chat.telegram_chat_id,
             text: card
           }
@@ -35,7 +35,7 @@ describe 'BotTelegram::BenchkillerBot' do
           unless com == :get_company_card
             answer = ::BotTelegram::BenchkillerBot::ACTIONS_DATA[com][:message]
 
-            set_com_stub = send_markdown_message_stub_request body: {
+            set_com_stub = send_message_stub_request body: {
               chat_id: chat.telegram_chat_id,
               text: answer
             }
@@ -77,12 +77,12 @@ describe 'BotTelegram::BenchkillerBot' do
           let!(:telegram_message) { build :telegram_message, text: argument }
 
           it 'returns success messages' do
-            send_markdown_message_stub_request body: {
+            send_message_stub_request body: {
               chat_id: chat.telegram_chat_id,
               text: ::Benchkiller::CompanyDecorator.decorate(company).bot_card
             }
 
-            send_markdown_message_stub_request body: {
+            send_message_stub_request body: {
               chat_id: chat.telegram_chat_id,
               text: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[com][:message]
             }
@@ -105,7 +105,7 @@ describe 'BotTelegram::BenchkillerBot' do
                         benchkiller_i18n_scope(com, :success, attribute_name.to_sym => argument)
                       end
 
-            stub = send_markdown_message_stub_request body: {
+            stub = send_message_stub_request body: {
               chat_id: chat.telegram_chat_id,
               text: message
             }
@@ -125,12 +125,12 @@ describe 'BotTelegram::BenchkillerBot' do
           end
 
           it 'sets attribute' do
-            send_markdown_message_stub_request body: {
+            send_message_stub_request body: {
               chat_id: chat.telegram_chat_id,
               text: ::Benchkiller::CompanyDecorator.decorate(company).bot_card
             }
 
-            send_markdown_message_stub_request body: {
+            send_message_stub_request body: {
               chat_id: chat.telegram_chat_id,
               text: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[com][:message]
             }
@@ -153,7 +153,7 @@ describe 'BotTelegram::BenchkillerBot' do
                         benchkiller_i18n_scope(com, :success, attribute_name.to_sym => argument)
                       end
 
-            send_markdown_message_stub_request body: {
+            send_message_stub_request body: {
               chat_id: chat.telegram_chat_id,
               text: message
             }
@@ -189,12 +189,12 @@ describe 'BotTelegram::BenchkillerBot' do
           end
 
           it 'returns error messages' do
-            send_markdown_message_stub_request body: {
+            send_message_stub_request body: {
               chat_id: chat.telegram_chat_id,
               text: ::Benchkiller::CompanyDecorator.decorate(company).bot_card
             }
 
-            send_markdown_message_stub_request body: {
+            send_message_stub_request body: {
               chat_id: chat.telegram_chat_id,
               text: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[com][:message]
             }
@@ -217,7 +217,7 @@ describe 'BotTelegram::BenchkillerBot' do
                         benchkiller_i18n_scope(com, :failure, attribute_name.to_sym => argument)
                       end
 
-            stub = send_markdown_message_stub_request body: {
+            stub = send_message_stub_request body: {
               chat_id: chat.telegram_chat_id,
               text: message
             }
@@ -237,12 +237,12 @@ describe 'BotTelegram::BenchkillerBot' do
           end
 
           it 'does not set attribute' do
-            send_markdown_message_stub_request body: {
+            send_message_stub_request body: {
               chat_id: chat.telegram_chat_id,
               text: ::Benchkiller::CompanyDecorator.decorate(company).bot_card
             }
 
-            send_markdown_message_stub_request body: {
+            send_message_stub_request body: {
               chat_id: chat.telegram_chat_id,
               text: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[com][:message]
             }
@@ -265,7 +265,7 @@ describe 'BotTelegram::BenchkillerBot' do
                         benchkiller_i18n_scope(com, :failure, attribute_name.to_sym => argument)
                       end
 
-            send_markdown_message_stub_request body: {
+            send_message_stub_request body: {
               chat_id: chat.telegram_chat_id,
               text: message
             }
