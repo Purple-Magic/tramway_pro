@@ -16,7 +16,7 @@ require 'json_api_test_helpers'
 require 'rake'
 require 'webmock/rspec'
 require 'telegram/bot'
-WebMock.disable_net_connect! allow_localhost: true
+WebMock.disable_net_connect! allow_localhost: true, allow: 'chromedriver.storage.googleapis.com'
 
 RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers

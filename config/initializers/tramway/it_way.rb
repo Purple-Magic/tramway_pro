@@ -5,7 +5,9 @@ Tramway::Admin.set_available_models Word,
   ItWay::Certificate,
   Podcast,
   Podcast::Episode,
-  project: :conference, role: :admin
+  Tramway::Landing::Block,
+  project: :conference,
+  role: :admin
 
 Tramway::Admin.navbar_structure(
   Tramway::Conference::Unity,
