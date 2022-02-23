@@ -1,7 +1,7 @@
 data:
   attributes:
     title: "{cardname}"
-    product: "Benchkiller"
+    product_id: 1
     card_id: "{cardidlong}"
     data:
       link: "{cardlink}"

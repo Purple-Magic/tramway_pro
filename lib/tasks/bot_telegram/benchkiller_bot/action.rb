@@ -52,7 +52,7 @@ class BotTelegram::BenchkillerBot::Action
       project_id: BotTelegram::BenchkillerBot::PROJECT_ID
     company.companies_users.create! user_id: benchkiller_user(user).id
     user.set_finished_state_for bot: bot_record
-    send_message_to_user i18n_scope(:create_company, :success, title: title)
+    show menu: :change_company_card, answer: i18n_scope(:create_company, :success, title: title)
   end
 
   # rubocop:disable Naming/AccessorMethodName

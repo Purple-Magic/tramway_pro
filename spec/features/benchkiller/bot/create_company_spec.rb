@@ -50,6 +50,17 @@ describe 'BotTelegram::BenchkillerBot' do
           text: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[:create_company][:message]
         }
 
+        send_message_stub_request body: {
+          chat_id: chat.telegram_chat_id,
+          text: benchkiller_i18n_scope(:create_company, :success, title: company_name),
+          reply_markup: reply_markup(
+            [ 'Название компании', 'Телефон'],
+            [ 'Сайт', 'Расположение компании' ],
+            [ 'Портфолио', 'Регионы сотрудничества' ],
+            [ 'Почта', 'Назад' ]
+          )
+        }
+
         Telegram::Bot::Client.run(bot_record.token) do |bot|
           BotTelegram::BenchkillerBot::Scenario.new(
             message: message,

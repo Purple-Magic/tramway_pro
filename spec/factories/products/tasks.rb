@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :products_task, class: 'Products::Task' do
     title
     card_id { generate :string }
-    product
+    product_id { Product.last&.id || create(:product).id }
   end
 end
