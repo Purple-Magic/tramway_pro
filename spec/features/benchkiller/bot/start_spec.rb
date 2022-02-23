@@ -50,7 +50,7 @@ describe 'BotTelegram::BenchkillerBot' do
           text: benchkiller_i18n_scope(:start, :text),
           reply_markup: reply_markup(
             ['Карточка компании', 'Сгенерировать пароль'],
-            ['Изменить карточку', 'Управление подпиской']
+            ['Изменить карточку']
           )
         }
 

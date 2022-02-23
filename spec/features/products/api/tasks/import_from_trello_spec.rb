@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 describe 'Products' do
-  before do
-    host! red_magic_host
-    create :product, tech_name: 'benchkiller'
-  end
+  before { host! red_magic_host }
+
+  let(:product) { create :product }
 
   describe 'API' do
     describe 'Tasks' do
@@ -13,6 +12,7 @@ describe 'Products' do
           count = Products::Task.count
 
           json = YAML.load_file("#{Rails.root}/docs/trello/butler/actions/product_engine/create_task.yml")
+          json['data']['attributes']['product_id'] = product.id
           post '/api/v1/records?model=Products::Task', params: json
 
           expect(response).to have_http_status(:success)
