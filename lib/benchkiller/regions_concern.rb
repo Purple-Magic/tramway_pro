@@ -1,4 +1,15 @@
 module Benchkiller::RegionsConcern
+  REGIONS_DICTIONARY = {
+    'Россия' => ['РФ', 'Российская федерация', 'Russia'],
+    'Беларусь' => ['Республика Беларусь', 'РБ', 'Беларуссия', 'Белоруссия', 'Belarus', 'Белорусь', 'Belarussia'],
+    'Украина' => %w[Ukraine UA],
+    'Грузия' => ['Georgia'],
+    'США' => ['USA'],
+    'Азербайджан' => ['Azerbaijan'],
+    'Великобритания' => ['Британия'],
+    'Все регионы' => %w[Worldwide Все]
+  }.freeze
+
   def regions
     regions = ::Benchkiller::Company.approved.map do |company|
       company.regions_to_cooperate if company.regions_to_cooperate.is_a? Array
