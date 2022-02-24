@@ -16,6 +16,7 @@ require 'json_api_test_helpers'
 require 'rake'
 require 'webmock/rspec'
 require 'telegram/bot'
+require "#{Rails.root}/lib/benchkiller/regions_concern.rb"
 WebMock.disable_net_connect! allow_localhost: true, allow: 'chromedriver.storage.googleapis.com'
 
 RSpec.configure do |config|
@@ -36,6 +37,7 @@ RSpec.configure do |config|
   config.include BenchkillerHelpers
   config.include AssertingModels
   config.include FillingForms
+  config.include ::Benchkiller::RegionsConcern
 
   ActiveRecord::Base.logger.level = 1
 
