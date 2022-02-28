@@ -61,7 +61,7 @@ class BotTelegram::BenchkillerBot::Action
 
   # rubocop:disable Naming/AccessorMethodName
   def set_company_name(company_name)
-    if company_name.present?
+    if company_name.present? && company.present?
       old_company_name = company.title
       if ::Benchkiller::Company.where(title: company_name).empty?
         company.update! title: company_name
