@@ -40,7 +40,7 @@ class CourseDecorator < ApplicationDecorator
   end
 
   def data
-    content_tag :table do
+    table do
       data_table_header
       data_table_body
     end

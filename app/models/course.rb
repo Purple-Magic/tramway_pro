@@ -2,9 +2,10 @@
 
 class Course < ApplicationRecord
   has_many :topics, -> { order :position }, class_name: 'Courses::Topic', foreign_key: :course_id, dependent: :destroy
-  has_many :lessons, -> { active }, class_name: 'Courses::Lesson', through: :topics
-  has_many :videos, -> { active }, class_name: 'Courses::Video', through: :lessons
-  has_many :tasks, -> { active }, class_name: 'Courses::Task', through: :lessons
+  has_many :lessons, class_name: 'Courses::Lesson', through: :topics
+  has_many :videos, class_name: 'Courses::Video', through: :lessons
+  has_many :tasks, class_name: 'Courses::Task', through: :lessons
+  has_many :screencasts, class_name: 'Courses::Screencast', through: :videos
 
   TEAMS = %i[slurm skillbox].freeze
 
@@ -40,6 +41,14 @@ class Course < ApplicationRecord
     tasks_ids = tasks.map(&:id)
     TimeLog.where(associated_type: 'Courses::Video', associated_id: video_ids).or(
       TimeLog.where(associated_type: 'Courses::Task', associated_id: tasks_ids)
+    )
+  end
+
+  def comments
+    video_ids = videos.map(&:id)
+    tasks_ids = tasks.map(&:id)
+    Courses::Comment.where(associated_type: 'Courses::Video', associated_id: video_ids).or(
+      Courses::Comment.where(associated_type: 'Courses::Task', associated_id: tasks_ids)
     )
   end
 end
