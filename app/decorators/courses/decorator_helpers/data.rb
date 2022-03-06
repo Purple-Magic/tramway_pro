@@ -7,10 +7,16 @@ module Courses::DecoratorHelpers::Data
         'Количество видео'
       end)
       concat(th do
-        'Предположительная продолжительность видео'
+        'Ожидаемая продолжительность'
       end)
       concat(th do
-        'Отснято'
+        'Итоговая продолжительность'
+      end)
+      concat(th do
+        'Комментариев'
+      end)
+      concat(th do
+        'Скринкастов'
       end)
       if object.tasks.any?
         concat(th do
@@ -33,6 +39,12 @@ module Courses::DecoratorHelpers::Data
       end)
       concat(td do
         object.video_duration_for(duration: :result_duration)
+      end)
+      concat(td do
+        object.comments.count.to_s
+      end)
+      concat(td do
+        object.screencasts.count.to_s
       end)
       if object.tasks.any?
         concat(td do
