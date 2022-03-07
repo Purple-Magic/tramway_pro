@@ -4,9 +4,11 @@ class Estimation::Projects::CalcService < ApplicationService
   attr_reader :project
 
   def initialize(project)
-    raise 'This project should not be calculated. It does not have associated object' unless project.associated.present?
-
-    @project = project
+    if project.associated.present?
+      @project = project
+    else
+      raise 'This project should not be calculated. It does not have associated object'
+    end
   end
 
   def call
