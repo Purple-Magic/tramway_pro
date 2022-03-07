@@ -25,7 +25,6 @@ describe 'Generate part preview' do
 
     click_on 'Подкасты'
     click_on episode.podcast.title
-    sleep 1
     click_on episode.title
     click_on 'Добавить вырезанные части'
 
