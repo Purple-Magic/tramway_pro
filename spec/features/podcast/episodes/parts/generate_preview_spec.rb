@@ -40,7 +40,7 @@ describe 'Generate part preview' do
     concat_preview_data_output = "#{episode.prepare_directory}/#{part.class}_#{part.id}_preview_concated_parts.mp3"
     before_file_path = "#{episode.prepare_directory}/#{part.class}_#{part.id}_preview_before.mp3"
     after_file_path = "#{episode.prepare_directory}/#{part.class}_#{part.id}_preview_after.mp3"
-    log_file_path = '/home/pavel/projects/tramway_pro/log/render-test.log'
+    log_file_path = "#{Rails.root}/log/render-test.log"
     render_command = lambda do |time1, time2, file_path|
       "ffmpeg -y -i .mp3 -b:a 320k -c copy -ss #{time1} -to #{time2} #{file_path} 2> #{log_file_path}"
     end
