@@ -77,6 +77,27 @@ module BotTelegram::BenchkillerBot
     }
   }.freeze
 
+  VALIDATIONS = {
+    url: lambda do |value|
+      value.present? && value.match?(URI::DEFAULT_PARSER.make_regexp(%w[http https]))
+    end,
+    just_text: ->(value) { value.present? }
+  }.freeze
+
+  ATTRIBUTES_DATA = [
+    { name: :portfolio_url, validation: VALIDATIONS[:url] },
+    { name: :company_url, validation: VALIDATIONS[:url] },
+    { name: :place, validation: VALIDATIONS[:just_text] },
+    { name: :phone, validation: VALIDATIONS[:just_text] },
+    { name: :regions_to_cooperate, validation: VALIDATIONS[:just_text] },
+    {
+      name: :email,
+      validation: lambda do |value|
+        value.present? && value.scan(URI::MailTo::EMAIL_REGEXP).present?
+      end
+    }
+  ].freeze
+
   def benchkiller_user(telegram_user)
     @benchkiller_user ||= ::Benchkiller::User.find_by bot_telegram_user_id: telegram_user.id
   end

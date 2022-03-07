@@ -25,9 +25,9 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
 
     return unless chat_decorator.to_answer?
 
-    if message_from_telegram.try(:text) && message_from_telegram.text == '/start'
+    if start_action?
       start
-    elsif message_from_telegram.try(:text) && message_from_telegram.text.in?(::BotTelegram::BenchkillerBot::BUTTONS.values)
+    elsif button_action?
       public_send ::BotTelegram::BenchkillerBot::BUTTONS.invert[message_from_telegram.text], nil
     elsif user.finished_state_for?(bot: bot_record)
       process_new_action
@@ -46,5 +46,13 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
     else
       message_to_chat bot.api, chat.telegram_chat_id, 'Напиши /start'
     end
+  end
+
+  def start_action?
+    message_from_telegram.try(:text) && message_from_telegram.text == '/start'
+  end
+
+  def button_action?
+    message_from_telegram.try(:text) && message_from_telegram.text.in?(::BotTelegram::BenchkillerBot::BUTTONS.values)
   end
 end
