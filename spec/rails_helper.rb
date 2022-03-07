@@ -12,6 +12,7 @@ require 'support/telegram_bot_helpers'
 require 'support/benchkiller_helpers'
 require 'support/asserting_models'
 require 'support/filling_forms'
+require 'support/long_test_staff'
 require 'json_api_test_helpers'
 require 'rake'
 require 'webmock/rspec'
@@ -37,6 +38,7 @@ RSpec.configure do |config|
   config.include BenchkillerHelpers
   config.include AssertingModels
   config.include FillingForms
+  config.include LongTestStuff
   config.include ::Benchkiller::RegionsConcern
 
   ActiveRecord::Base.logger.level = 1

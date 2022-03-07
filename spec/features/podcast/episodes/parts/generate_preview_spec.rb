@@ -46,7 +46,11 @@ describe 'Generate part preview' do
     end
     before_file_render_command = render_command.call begin_time_10_seconds_before, begin_time, before_file_path
     after_file_render_command = render_command.call end_time, end_time_10_seconds_after, after_file_path
-    concat_files_render_command = "ffmpeg -y -i #{before_file_path} -i #{after_file_path} -b:a 192k -filter_complex '[0:0][1:0] concat=n=2:v=0:a=1[out]' -map '[out]' #{concat_preview_data_output} 2> #{log_file_path}"
+    concat_files_render_command = command name: :concat_2_files,
+      before_file_path: before_file_path,
+      after_file_path: after_file_path,
+      concat_preview_data_output: concat_preview_data_output,
+      log_file_path: log_file_path
 
     expect(Podcasts::Episodes::Parts::PreviewWorker).to have_enqueued_sidekiq_job(Podcast::Episodes::Part.last.id,
       concat_preview_data_output, before_file_render_command, after_file_render_command, concat_files_render_command)
