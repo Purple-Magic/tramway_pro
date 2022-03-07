@@ -33,18 +33,7 @@ class Podcasts::Episodes::Parts::GeneratePreviewService < Podcasts::Episodes::Ba
   end
 
   def cut_part(direction:)
-    times = case direction
-            when :before
-              {
-                begin_time: change_time(part.begin_time, :minus, 10.seconds),
-                end_time: change_time(part.begin_time)
-              }
-            when :after
-              {
-                begin_time: change_time(part.end_time),
-                end_time: change_time(part.end_time, :plus, 10.seconds)
-              }
-            end
+    times = calc_times direction: direction
     output = build_output(object: part, attribute: :preview, suffix: direction)
     options = {
       input: "#{part.episode.converted_file}.mp3",
@@ -58,5 +47,20 @@ class Podcasts::Episodes::Parts::GeneratePreviewService < Podcasts::Episodes::Ba
       output: output,
       render_command: render_command
     }
+  end
+
+  def calc_times(direction:)
+    case direction
+    when :before
+      {
+        begin_time: change_time(part.begin_time, :minus, 10.seconds),
+        end_time: change_time(part.begin_time)
+      }
+    when :after
+      {
+        begin_time: change_time(part.end_time),
+        end_time: change_time(part.end_time, :plus, 10.seconds)
+      }
+    end
   end
 end
