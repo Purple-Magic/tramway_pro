@@ -4,6 +4,15 @@ require 'fileutils'
 
 class Podcast::Episode < ApplicationRecord
   EPISODE_ATTRIBUTES = %i[title season number description published_at image explicit file_url duration].freeze
+  WORKER_EVENTS = [
+    { event: :download, to: :downloaded, worker: 'Download' },
+    { event: :finish_record, to: :recorded, worker: 'Montage' },
+    { event: :trailer_get_ready, to: :trailer_is_ready, worker: 'Trailer' },
+    { event: :finish, to: :finishing, worker: 'Finish' },
+    { event: :render_video_trailer, to: :video_trailer_is_ready, worker: 'RenderVideoTrailer' },
+    { event: :render_video, to: :finishing, worker: 'RenderVideo' },
+    { event: :publish, to: :published, worker: 'Publish' }
+  ].freeze
 
   belongs_to :podcast, class_name: 'Podcast'
   has_many :parts, -> { order :id }, class_name: 'Podcast::Episodes::Part'
@@ -45,66 +54,14 @@ class Podcast::Episode < ApplicationRecord
     event(:make_video_trailer_ready) { transitions to: :video_trailer_is_ready }
     event(:done) { transitions to: :finished }
 
-    event :download do
-      transitions to: :downloaded
+    WORKER_EVENTS.each do |worker_event|
+      event worker_event[:event] do
+        transitions to: worker_event[:to]
 
-      after do
-        save!
-        Podcasts::DownloadWorker.perform_async id
-      end
-    end
-
-    event :finish_record do
-      transitions to: :recorded
-
-      after do
-        save!
-        Podcasts::MontageWorker.perform_async id
-      end
-    end
-
-    event :trailer_get_ready do
-      transitions to: :trailer_is_ready
-
-      after do
-        save!
-        Podcasts::TrailerWorker.perform_async id
-      end
-    end
-
-    event :finish do
-      transitions to: :finishing
-
-      after do
-        save!
-        Podcasts::FinishWorker.perform_async id
-      end
-    end
-
-    event :render_video_trailer do
-      transitions to: :video_trailer_is_ready
-
-      after do
-        save!
-        Podcasts::RenderVideoTrailerWorker.perform_async id
-      end
-    end
-
-    event :render_video do
-      transitions to: :finishing
-
-      after do
-        save!
-        Podcasts::RenderVideoWorker.perform_async id
-      end
-    end
-
-    event :publish do
-      transitions to: :published
-
-      after do
-        save!
-        Podcasts::PublishWorker.perform_async id
+        after do
+          save!
+          "Podcasts::#{worker_event[:worker]}Worker".constantize.perform_async id
+        end
       end
     end
   end
@@ -118,40 +75,7 @@ class Podcast::Episode < ApplicationRecord
   include Podcast::Episodes::TrailerConcern
   include Podcast::Episodes::VideoConcern
   include Podcast::Episodes::MontageConcern
-
-  def parts_directory_name
-    "#{current_podcast_directory}/#{id}/"
-  end
-
-  def prepare_directory
-    FileUtils.mkdir_p PODCASTS_DIRECTORY
-
-    FileUtils.mkdir_p current_podcast_directory
-    parts_directory_name.tap do |dir|
-      FileUtils.mkdir_p dir
-    end
-  end
-
-  def converted_file
-    file.present? ? file.path.split('.')[0..].join('.') : ''
-  end
-
-  def convert_file
-    filename = converted_file
-
-    if file.path.split('.').last == 'ogg'
-      filename += '.mp3'
-      command = write_logs(convert_to(:mp3, input: file.path, output: filename))
-      Rails.logger.info command
-      system command
-    end
-
-    filename.tap do
-      wait_for_file_rendered filename, :convert
-
-      convert!
-    end
-  end
+  include Podcast::Episodes::FilesManagement
 
   def with_guests?
     stars.guest.any?
