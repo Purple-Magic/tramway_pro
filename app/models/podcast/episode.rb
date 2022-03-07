@@ -14,7 +14,6 @@ class Podcast::Episode < ApplicationRecord
     { event: :publish, to: :published, worker: 'Publish' }
   ].freeze
 
-
   belongs_to :podcast, class_name: 'Podcast'
   has_many :parts, -> { order :id }, class_name: 'Podcast::Episodes::Part'
   has_many :highlights, -> { order(:time) }, class_name: 'Podcast::Highlight'
@@ -75,40 +74,7 @@ class Podcast::Episode < ApplicationRecord
   include Podcast::Episodes::TrailerConcern
   include Podcast::Episodes::VideoConcern
   include Podcast::Episodes::MontageConcern
-
-  def parts_directory_name
-    "#{current_podcast_directory}/#{id}/"
-  end
-
-  def prepare_directory
-    FileUtils.mkdir_p PODCASTS_DIRECTORY
-
-    FileUtils.mkdir_p current_podcast_directory
-    parts_directory_name.tap do |dir|
-      FileUtils.mkdir_p dir
-    end
-  end
-
-  def converted_file
-    file.present? ? file.path.split('.')[0..].join('.') : ''
-  end
-
-  def convert_file
-    filename = converted_file
-
-    if file.path.split('.').last == 'ogg'
-      filename += '.mp3'
-      command = write_logs(convert_to(:mp3, input: file.path, output: filename))
-      Rails.logger.info command
-      system command
-    end
-
-    filename.tap do
-      wait_for_file_rendered filename, :convert
-
-      convert!
-    end
-  end
+  include Podcast::Episodes::FilesConcern
 
   def with_guests?
     stars.guest.any?
@@ -122,13 +88,5 @@ class Podcast::Episode < ApplicationRecord
     commands = (render_data&.dig('commands') || []) + [command]
     render_data ? render_data['commands'] = commands : self.render_data = { commands: commands }
     save!
-  end
-
-  private
-
-  PODCASTS_DIRECTORY = "/#{Rails.root}/public/podcasts/"
-
-  def current_podcast_directory
-    "#{PODCASTS_DIRECTORY}#{podcast.title.gsub(' ', '_')}/"
   end
 end
