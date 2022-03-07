@@ -4,6 +4,16 @@ require 'fileutils'
 
 class Podcast::Episode < ApplicationRecord
   EPISODE_ATTRIBUTES = %i[title season number description published_at image explicit file_url duration].freeze
+  WORKER_EVENTS = [
+    { event: :download, to: :downloaded, worker: 'Download' },
+    { event: :finish_record, to: :recorded, worker: 'Montage' },
+    { event: :trailer_get_ready, to: :trailer_is_ready, worker: 'Trailer' },
+    { event: :finish, to: :finishing, worker: 'Finish' },
+    { event: :render_video_trailer, to: :video_trailer_is_ready, worker: 'RenderVideoTrailer' },
+    { event: :render_video, to: :finishing, worker: 'RenderVideo' },
+    { event: :publish, to: :published, worker: 'Publish' }
+  ].freeze
+
 
   belongs_to :podcast, class_name: 'Podcast'
   has_many :parts, -> { order :id }, class_name: 'Podcast::Episodes::Part'
@@ -45,66 +55,13 @@ class Podcast::Episode < ApplicationRecord
     event(:make_video_trailer_ready) { transitions to: :video_trailer_is_ready }
     event(:done) { transitions to: :finished }
 
-    event :download do
-      transitions to: :downloaded
-
-      after do
-        save!
-        Podcasts::DownloadWorker.perform_async id
-      end
-    end
-
-    event :finish_record do
-      transitions to: :recorded
-
-      after do
-        save!
-        Podcasts::MontageWorker.perform_async id
-      end
-    end
-
-    event :trailer_get_ready do
-      transitions to: :trailer_is_ready
-
-      after do
-        save!
-        Podcasts::TrailerWorker.perform_async id
-      end
-    end
-
-    event :finish do
-      transitions to: :finishing
-
-      after do
-        save!
-        Podcasts::FinishWorker.perform_async id
-      end
-    end
-
-    event :render_video_trailer do
-      transitions to: :video_trailer_is_ready
-
-      after do
-        save!
-        Podcasts::RenderVideoTrailerWorker.perform_async id
-      end
-    end
-
-    event :render_video do
-      transitions to: :finishing
-
-      after do
-        save!
-        Podcasts::RenderVideoWorker.perform_async id
-      end
-    end
-
-    event :publish do
-      transitions to: :published
-
-      after do
-        save!
-        Podcasts::PublishWorker.perform_async id
+    WORKER_EVENTS.each do |worker_event|
+      event worker_event[:event] do
+        transitions to: worker_event[:to]
+        after do
+          save!
+          "Podcasts::#{worker_event[:worker]}Worker".constantize.perform_async id
+        end
       end
     end
   end
