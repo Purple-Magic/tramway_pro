@@ -19,6 +19,9 @@ Style/ClassAndModuleChildren:
     - config/application.rb
     - lib/middleware/**/*.rb
     - spec/support/capybara_helpers/node/element.rb
+Lint/MissingSuper:
+  Exclude:
+    - app/services/**/*.rb
 Style/FrozenStringLiteralComment:
   Exclude:
     - bin/stage
