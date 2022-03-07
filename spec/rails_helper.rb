@@ -3,6 +3,13 @@
 require 'spec_helper'
 require 'factory_bot'
 require 'capybara_helpers'
+require 'json_api_test_helpers'
+require 'rake'
+require 'webmock/rspec'
+require 'web_driver_helper'
+require 'telegram/bot'
+require "#{Rails.root}/lib/benchkiller/regions_concern.rb"
+
 require 'support/projects_helper'
 require 'support/integration_helpers'
 require 'support/errors_helper'
@@ -13,12 +20,11 @@ require 'support/benchkiller_helpers'
 require 'support/asserting_models'
 require 'support/filling_forms'
 require 'support/long_test_staff'
-require 'json_api_test_helpers'
-require 'rake'
-require 'webmock/rspec'
-require 'telegram/bot'
-require "#{Rails.root}/lib/benchkiller/regions_concern.rb"
-WebMock.disable_net_connect! allow_localhost: true, allow: 'chromedriver.storage.googleapis.com'
+
+WebMock.disable_net_connect!(
+  allow_localhost: true,
+  allow: 'chromedriver.storage.googleapis.com'
+)
 
 RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers
@@ -68,6 +74,7 @@ RSpec.configure do |config|
     create :purple_magic, name: :purple_magic, title: 'Purple Magic'
     create :red_magic, name: :red_magic, title: 'Red Magic'
   end
+
   include ActionDispatch::TestProcess
 end
 

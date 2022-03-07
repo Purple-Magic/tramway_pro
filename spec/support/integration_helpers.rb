@@ -15,8 +15,12 @@ module IntegrationHelpers
     find(:label, text: text).click
   end
 
+  def click_on_check_box_by_id(id)
+    find('input', id: id).click
+  end
+
   def move_host_to(host)
-    Capybara.app_host = "http://#{host}:3000"
+    Capybara.app_host = "http://#{host}"
   end
 
   private
