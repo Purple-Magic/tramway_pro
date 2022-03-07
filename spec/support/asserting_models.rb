@@ -18,4 +18,26 @@ module AssertingModels
       expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
     end
   end
+
+  def assert_tramway_event_event(actual_object, attributes, additionals)
+    attributes.each_key do |attr|
+      actual = actual_object.send(attr)
+      expecting = attributes[attr]
+      if attr.in? %i[begin_date end_date request_collecting_end_date request_collecting_begin_date]
+        actual = actual.to_datetime.strftime('%d.%m.%Y %H:%M:%S')
+        expecting = expecting.strftime('%d.%m.%Y %H:%M:%S')
+      end
+      case actual.class.to_s
+      when 'NilClass'
+        expect(actual).not_to be_empty, "#{attr} is empty"
+      when 'Enumerize::Value'
+        expect(actual).not_to be_empty, "#{attr} is empty"
+        actual = actual.text
+      when 'PhotoUploader'
+        actual = actual.path.split('/').last
+        expecting = expecting.to_s.split('/').last
+      end
+      expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
+    end
+  end
 end
