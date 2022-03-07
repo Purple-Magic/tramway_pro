@@ -133,7 +133,7 @@ class Podcast::Episode < ApplicationRecord
   end
 
   def converted_file
-    file.path.split('.')[0..].join('.')
+    file.present? ? file.path.split('.')[0..].join('.') : ''
   end
 
   def convert_file
