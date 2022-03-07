@@ -70,3 +70,9 @@ RSpec.configure do |config|
   end
   include ActionDispatch::TestProcess
 end
+
+module Kernel
+  def system(cmd)
+    Rails.logger.info cmd
+  end
+end
