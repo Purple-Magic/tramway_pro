@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'Create Benchkiller deliveries', type: :feature do
@@ -24,11 +26,11 @@ describe 'Create Benchkiller deliveries', type: :feature do
 
     click_on 'Войти'
 
-    offers.each &:reload
+    offers.each(&:reload)
     offers.each do |offer|
       click_on_check_box_by_id offer.uuid
     end
-    
+
     sleep 1
     find('a', text: 'Сделать рассылку', match: :first).click
 
