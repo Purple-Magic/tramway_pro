@@ -3,11 +3,11 @@
 require 'rails_helper'
 
 describe 'Render video' do
-  before { move_host_to red_magic_host }
+  before { move_host_to it_way_host }
 
   let!(:episode) do
-    podcast = create :podcast, project_id: red_magic_id, podcast_type: :sample
-    create :podcast_episode, podcast: podcast, project_id: red_magic_id
+    podcast = create :podcast, project_id: it_way_id, podcast_type: :sample
+    create :podcast_episode, podcast: podcast, project_id: it_way_id
   end
 
   it 'sends command to a remote server' do
