@@ -132,6 +132,7 @@ jobs:
           PGHOST: localhost
           PGUSER: postgres
           RAILS_ENV: test
+          CHROME_DRIVER_VERSION: 98.0.4758.102
         run: |
           cp config/database.sample.yml config/database.yml
           cp config/secrets.sample.yml config/secrets.yml

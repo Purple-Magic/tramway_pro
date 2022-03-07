@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Create estimation project' do
+describe 'Create estimation project', type: :feature do
   let!(:attributes) { attributes_for :estimation_project }
 
   ProjectsHelper.only('purple-magic', 'red-magic').each do |project|
