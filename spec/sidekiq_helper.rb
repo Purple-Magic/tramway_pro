@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sidekiq/testing/inline'
 require 'sidekiq-status/testing/inline'
 
