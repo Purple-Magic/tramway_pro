@@ -7,4 +7,12 @@ module LongTestStuff
       result_command.gsub!("%{#{key}}", value)
     end
   end
+
+  def ssh_run(connect_info, command)
+    "ssh #{connect_info} \"#{command}\""
+  end
+
+  def scp_run(file, connect_info, path)
+    "scp #{file} #{connect_info}:#{path}"
+  end
 end
