@@ -40,4 +40,20 @@ module AssertingModels
       expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
     end
   end
+
+  def assert_courses_task(actual_object, attributes, additionals)
+    attributes.each_key do |attr|
+      next if attr == :lesson
+
+      actual = actual_object.send(attr)
+      expecting = attributes[attr]
+
+      case attr
+      when :text
+        actual = actual.strip!
+      else
+        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
+      end
+    end
+  end
 end

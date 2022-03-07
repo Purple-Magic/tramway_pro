@@ -26,4 +26,13 @@ module TramwayHelpers
     form = find("form[action='#{delete_path}']")
     form.find('button[type="submit"]').click
   end
+
+  def fill_in_ckeditor(name, with:)
+    id = name.gsub(']', '').split('[').join('_')
+    content = with.to_json # convert to a safe javascript string
+    page.execute_script <<-SCRIPT
+      CKEDITOR.instances['#{id}'].setData(#{content});
+      $('textarea##{id}').text(#{content});
+    SCRIPT
+  end
 end
