@@ -14,17 +14,13 @@ class BotTelegram::Leopold::Scenario < ::BotTelegram::Custom::Scenario
 
   def run
     chat_decorator = BotTelegram::Leopold::ChatDecorator.new chat
-    text = message_from_telegram.text
-    if chat_decorator.to_answer?
-      command = BotTelegram::Leopold::Command.new text, bot_record.slug, bot
-      if command.valid?
-        command.run
-      else
-        it_way_process text
-      end
-    else
-      #  chat_id = chat.telegram_chat_id.to_s
-      #  message_to_chat bot, chat, bot_record.options['not_my_group'] unless exceptions.values.include? chat_id
+
+    return unless chat_decorator.to_answer?
+
+    chat_id = chat.telegram_chat_id.to_s
+    unless exceptions.values.include? chat_id
+      message_to_chat bot, chat,
+        bot_record.options['i_do_not_have_actions_in_private_chats']
     end
   end
 end
