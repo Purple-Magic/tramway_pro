@@ -56,7 +56,7 @@ describe 'Edit task page' do
 
       task.reload
 
-      assert_attributes task, attributes
+      assert_attributes task, attributes.except(:text)
     end
   end
 

@@ -17,8 +17,8 @@ describe 'Destroy participant' do
     click_on 'Участники'
     click_on_delete_button last_participant
 
-    last_participant = Tramway::Event::Participant.with_deleted.find last_participant.id
+    last_participant = Tramway::Event::Participant.find_by id: last_participant.id
 
-    expect(last_participant.deleted_at).not_to be nil
+    expect(last_participant).to be_falsy
   end
 end
