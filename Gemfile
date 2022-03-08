@@ -148,6 +148,7 @@ group :test do
   gem 'puma'
   gem 'rspec-json_expectations'
   gem 'rspec-sidekiq'
+  gem 'sanitize'
   gem 'shoulda-matchers', '~> 2.8.0'
   gem 'webdrivers', '4.2.0'
   gem 'webmock'

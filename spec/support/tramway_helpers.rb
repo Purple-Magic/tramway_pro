@@ -35,4 +35,13 @@ module TramwayHelpers
       $('textarea##{id}').text(#{content});
     SCRIPT
   end
+
+  def fill_in_datepicker(name, with:)
+    return unless with.present?
+
+    input = find("input[name=#{name.gsub('[', '\[').gsub(']', '\]')}]")
+    input.click
+
+    find('td.day', text: with.day.to_s, match: :first).click
+  end
 end

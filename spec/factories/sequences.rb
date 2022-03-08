@@ -91,4 +91,7 @@ FactoryBot.define do
   sequence :duration do |n|
     "#{n}h #{n + 1}m"
   end
+  sequence :timestamp do |n|
+    "#{n}:00"
+  end
 end

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'sanitize'
+
 module AssertingModels
   def assert_attributes(object, attributes, additionals: nil)
     send "assert_#{object.class.name.underscore.gsub('/', '_')}", object, attributes, additionals
@@ -50,7 +52,7 @@ module AssertingModels
 
       case attr
       when :text
-        actual = actual.strip!
+        actual = Sanitize.clean(actual).strip
       end
 
       expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
@@ -65,7 +67,7 @@ module AssertingModels
       expecting = attributes[attr]
       case attr
       when :text
-        actual = actual.strip!
+        actual = Sanitize.clean(actual).strip
       when :release_date
         actual = actual.to_datetime.strftime('%d.%m.%Y %H:%M:%S')
         expecting = expecting.strftime('%d.%m.%Y %H:%M:%S')

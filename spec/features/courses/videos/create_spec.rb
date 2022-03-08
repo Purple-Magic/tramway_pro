@@ -26,7 +26,7 @@ describe 'Create video' do
 
       fill_in_ckeditor 'record[text]', with: attributes[:text]
       fill_in 'record[position]', with: attributes[:position]
-      fill_in 'record[release_date]', with: attributes[:release_date]
+      fill_in_datepicker 'record[release_date]', with: attributes[:release_date]
       fill_in 'record[duration]', with: attributes[:duration]
 
       click_on 'Сохранить', class: 'btn-success'
@@ -63,7 +63,7 @@ describe 'Create video' do
 
         fill_in_ckeditor 'record[text]', with: attributes[:text]
         fill_in 'record[position]', with: attributes[:position]
-        fill_in 'record[release_date]', with: attributes[:release_date]
+        fill_in_datepicker 'record[release_date]', with: attributes[:release_date]
         fill_in 'record[duration]', with: attributes[:duration]
 
         click_on 'Сохранить', class: 'btn-success'
