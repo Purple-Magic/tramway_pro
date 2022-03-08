@@ -94,4 +94,7 @@ FactoryBot.define do
   sequence :timestamp do |n|
     "#{n}:00"
   end
+  sequence :company_name do |n|
+    Faker::Company.name + n.to_s
+  end
 end
