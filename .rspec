@@ -1,5 +1,0 @@
---format progress
---format ParallelTests::RSpec::RuntimeLogger
---require rspec/instafail
---format RSpec::Instafail
---format progress # to keep dots appear
