@@ -53,7 +53,7 @@ describe 'Generate part preview' do
         log_file_path: log_file_path
 
       expect(Podcasts::Episodes::Parts::PreviewWorker).to have_enqueued_sidekiq_job(Podcast::Episodes::Part.last.id,
-                                                                                    concat_preview_data_output, before_file_render_command, after_file_render_command, concat_files_render_command)
+        concat_preview_data_output, before_file_render_command, after_file_render_command, concat_files_render_command)
     end
   end
 
@@ -94,7 +94,7 @@ describe 'Generate part preview' do
         log_file_path: log_file_path
 
       expect(Podcasts::Episodes::Parts::PreviewWorker).to have_enqueued_sidekiq_job(Podcast::Episodes::Part.last.id,
-                                                                                    concat_preview_data_output, before_file_render_command, after_file_render_command, concat_files_render_command)
+        concat_preview_data_output, before_file_render_command, after_file_render_command, concat_files_render_command)
     end
   end
 end
