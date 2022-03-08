@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Testing environment' do
+describe 'Testing environment', type: :feature do
   describe 'working' do
     it 'should just run test' do
       expect(true).to be_truthy

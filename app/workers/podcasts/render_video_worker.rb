@@ -6,6 +6,7 @@ class Podcasts::RenderVideoWorker < ApplicationWorker
   include BotTelegram::Leopold::Notify
 
   def perform(id)
+    raise [Podcast::Episode.pluck(&:id).join(','), id].join(',')
     episode = Podcast::Episode.find id
 
     @directory = episode.prepare_directory

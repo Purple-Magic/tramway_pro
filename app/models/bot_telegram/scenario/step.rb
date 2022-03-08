@@ -33,11 +33,11 @@ class BotTelegram::Scenario::Step < ApplicationRecord
     many_answers_to_same_step? && !keyboard_contain_answers?
   end
 
-  def next_step
+  def next_scenario_step
     bot.steps.find_by name: options['next']
   end
 
-  def step_by(answer:)
+  def scenario_step_by(answer:)
     bot.steps.find_by name: options[answer]
   end
 

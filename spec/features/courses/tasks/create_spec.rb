@@ -34,7 +34,7 @@ describe 'Create task', type: :feature do
 
       task = Courses::Task.last
 
-      assert_attributes task, attributes
+      assert_attributes task, attributes.except(:text)
     end
   end
 
@@ -71,7 +71,7 @@ describe 'Create task', type: :feature do
 
         task = Courses::Task.last
 
-        assert_attributes task, attributes
+        assert_attributes task, attributes.except(:text)
       end
     end
   end

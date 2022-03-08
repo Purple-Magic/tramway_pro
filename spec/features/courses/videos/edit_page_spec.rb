@@ -55,7 +55,7 @@ describe 'Edit video page' do
 
       video.reload
 
-      assert_attributes video, attributes
+      assert_attributes video, attributes.except(:text)
     end
   end
 
@@ -116,7 +116,7 @@ describe 'Edit video page' do
 
         video.reload
 
-        assert_attributes video, attributes
+        assert_attributes video, attributes.except(:text)
       end
     end
   end

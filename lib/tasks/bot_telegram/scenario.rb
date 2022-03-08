@@ -12,15 +12,15 @@ module BotTelegram::Scenario
     def run(message_from_telegram, bot, bot_record)
       user = user_from message_from_telegram.from
       if message_from_telegram.text == '/start'
-        current_step = bot_record.steps.find_by(name: :start)
+        current_step = bot_record.start_step
         send_step_message current_step, bot, message_from_telegram, bot_record
       else
         current_bot_steps = user.progress_records.joins(:step).where(bot_telegram_user_id: user.id)
         current_step = current_bot_steps.where('bot_telegram_scenario_steps.bot_id = ?', bot_record.id).last&.step
         if current_step.present? && current_step.continue?
-          next_step = find_next_step current_step, message_from_telegram, bot_record
-          if next_step.present?
-            send_step_message next_step, bot, message_from_telegram, bot_record
+          next_scenario_step = find_next_scenario_step current_step, message_from_telegram, bot_record
+          if next_scenario_step.present?
+            send_step_message next_scenario_step, bot, message_from_telegram, bot_record
           else
             error = make_error current_step, bot_record
             message_to_user bot.api, error, message_from_telegram.chat.id
@@ -51,20 +51,20 @@ module BotTelegram::Scenario
       delay = current_step.delay
       return unless delay.present? && delay != 0
 
-      next_step = find_next_step current_step, message_from_telegram, bot_record
-      return unless next_step.present?
+      next_scenario_step = find_next_scenario_step current_step, message_from_telegram, bot_record
+      return unless next_scenario_step.present?
 
       sleep delay
-      send_step_message next_step, bot, message_from_telegram, bot_record
+      send_step_message next_scenario_step, bot, message_from_telegram, bot_record
     end
 
-    def find_next_step(current_step, message_from_telegram, _bot)
-      next_step = nil
+    def find_next_scenario_step(current_step, message_from_telegram, _bot)
+      next_scenario_step = nil
       if message_from_telegram.text.present?
-        next_step = current_step.step_by answer: message_from_telegram.text.downcase
+        next_scenario_step = current_step.scenario_step_by answer: message_from_telegram.text.downcase
       end
-      next_step ||= current_step.next_step
-      next_step
+      next_scenario_step ||= current_step.next_scenario_step
+      next_scenario_step
     end
 
     def project

@@ -26,6 +26,9 @@ describe 'Render video' do
       expect_any_instance_of(Kernel).to receive(:system).with(command)
     end
 
+    sleep 1
+    episode.reload
+
     Podcasts::RenderVideoWorker.new.perform episode.id
   end
 end

@@ -21,7 +21,7 @@ class Bot < ApplicationRecord
   store_accessor :options, :scenario
 
   def start_step
-    steps.find_by name: :start
+    steps.select { |s| s.name == 'start' }.first # steps.find_by name: :start did not work for some reason
   end
 
   def finish_step

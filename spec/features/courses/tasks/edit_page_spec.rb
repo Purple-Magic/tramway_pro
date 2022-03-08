@@ -53,7 +53,6 @@ describe 'Edit task page' do
       fill_in 'record[max_time]', with: attributes[:max_time]
 
       click_on 'Сохранить', class: 'btn-success'
-      save_and_open_page
 
       task.reload
 
@@ -118,7 +117,7 @@ describe 'Edit task page' do
 
         task.reload
 
-        assert_attributes task, attributes
+        assert_attributes task, attributes.except(:text)
       end
     end
   end
