@@ -34,7 +34,7 @@ describe 'Create video' do
 
       video = Courses::Video.last
 
-      assert_attributes video, attributes
+      assert_attributes video, attributes.except(:text)
     end
   end
 
@@ -71,7 +71,7 @@ describe 'Create video' do
 
         video = Courses::Video.last
 
-        assert_attributes video, attributes
+        assert_attributes video, attributes.except(:text)
       end
     end
   end

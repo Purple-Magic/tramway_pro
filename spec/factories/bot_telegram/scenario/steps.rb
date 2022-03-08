@@ -17,8 +17,8 @@ FactoryBot.define do
     end
 
     trait :with_next_scenario_step do
-      options do
-        {
+      after :create do |current_step|
+        current_step.update! options: {
           next: bot.steps.create!(
             **attributes_for(:type_answer_scenario_step, text: 'This is next step of some another step'),
             bot: bot
