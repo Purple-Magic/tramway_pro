@@ -103,3 +103,30 @@ test:
       <<: *kalashnikovisme
     'freedvs.test':
       <<: *benchkiller
+
+ci:
+  it_way: it-way.test
+  kalashnikovisme: kalashnikovisme.test
+  tramway_dev: tramway.test
+  engineervol: engineervol.test
+  listai: listai.test
+  purple_magic: purple-magic.test
+  red_magic: red-magic.test
+  benchkiller: freedvs.test
+  engines:
+    'it-way.test': conference
+  application_class:
+    'tramway.test': tramway_dev
+    'listai.test': listai_app
+    'purple-magic.test': purple_magic
+  application:
+    'engineervol.test':
+      name: engineervol
+    'purple-magic.test':
+      <<: *purple_magic
+    'red-magic.test':
+      <<: *red_magic
+    'kalashnikovisme.test':
+      <<: *kalashnikovisme
+    'freedvs.test':
+      <<: *benchkiller
