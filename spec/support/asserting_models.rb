@@ -19,7 +19,7 @@ module AssertingModels
     end
   end
 
-  def assert_tramway_event_event(actual_object, attributes, additionals)
+  def assert_tramway_event_event(actual_object, attributes, _additionals)
     attributes.each_key do |attr|
       actual = actual_object.send(attr)
       expecting = attributes[attr]
@@ -41,7 +41,7 @@ module AssertingModels
     end
   end
 
-  def assert_courses_task(actual_object, attributes, additionals)
+  def assert_courses_task(actual_object, attributes, _additionals)
     attributes.each_key do |attr|
       next if attr == :lesson
 
@@ -57,7 +57,7 @@ module AssertingModels
     end
   end
 
-  def assert_courses_video(actual_object, attributes, additionals)
+  def assert_courses_video(actual_object, attributes, _additionals)
     attributes.each_key do |attr|
       next if attr == :lesson
 
