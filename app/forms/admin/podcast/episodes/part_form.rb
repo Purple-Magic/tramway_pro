@@ -27,6 +27,7 @@ class Admin::Podcast::Episodes::PartForm < Tramway::Core::ApplicationForm
   private
 
   def time_changed?(params, old_begin_time, old_end_time)
-    (old_begin_time.nil? && old_end_time.nil?) || (old_begin_time != params[:begin_time] || old_end_time != params[:end_time])
+    times_are_nil = old_begin_time.nil? && old_end_time.nil?
+    times_are_nil || (old_begin_time != params[:begin_time] || old_end_time != params[:end_time])
   end
 end
