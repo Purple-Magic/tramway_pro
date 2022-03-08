@@ -413,17 +413,11 @@ GEM
     regexp_parser (1.8.2)
     rexml (3.2.5)
     rmagick (4.2.2)
-    rspec (3.9.0)
-      rspec-core (~> 3.9.0)
-      rspec-expectations (~> 3.9.0)
-      rspec-mocks (~> 3.9.0)
     rspec-core (3.9.3)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.4)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
-    rspec-instafail (1.0.0)
-      rspec
     rspec-json_expectations (2.2.0)
     rspec-mocks (3.9.1)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -726,7 +720,6 @@ DEPENDENCIES
   redcarpet
   reek
   rmagick (= 4.2.2)
-  rspec-instafail
   rspec-json_expectations
   rspec-rails (~> 3.5)
   rspec-retry

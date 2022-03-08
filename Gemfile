@@ -147,7 +147,6 @@ group :test do
   gem 'json_api_test_helpers', '1.2.1.2'
   gem 'json_matchers', github: 'BBonifield/json_matchers', branch: 'bugfix/properly-support-record-errors'
   gem 'puma'
-  gem 'rspec-instafail'
   gem 'rspec-json_expectations'
   gem 'rspec-retry'
   gem 'rspec-sidekiq'
