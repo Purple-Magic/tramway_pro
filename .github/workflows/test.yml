@@ -137,7 +137,7 @@ jobs:
           cp config/database.sample.yml config/database.yml
           cp config/secrets.sample.yml config/secrets.yml
           bin/rails db:create db:migrate db:seed
-          bundle exec rspec
+          bundle exec rspec ./spec/features/podcast/episodes/parts/generate_preview_spec.rb:100
 
       - name: Rocket.Chat Notification
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
