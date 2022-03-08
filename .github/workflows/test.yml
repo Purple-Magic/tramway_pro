@@ -129,10 +129,9 @@ jobs:
 
       - name: Setup application
         env:
-          RAILS_ENV: ci
           PGHOST: localhost
           PGUSER: postgres
-          RAILS_ENV: test
+          RAILS_ENV: ci
           CHROME_DRIVER_VERSION: 98.0.4758.102
         run: |
           cp config/database.sample.yml config/database.yml
