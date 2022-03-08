@@ -70,12 +70,11 @@ describe 'Generate part preview' do
       click_on episode.podcast.title
       click_on episode.title
       click_on "#{part.begin_time}-#{part.end_time}"
+      click_on_edit_button
 
       fill_in 'record[begin_time]', with: begin_time
       fill_in 'record[end_time]', with: end_time
       click_on 'Сохранить'
-
-      click_on "#{begin_time}-#{end_time}"
 
       assert_equal :podcast, Podcasts::Episodes::Parts::PreviewWorker.queue
       part = Podcast::Episodes::Part.last
