@@ -24,7 +24,7 @@ describe 'Create video' do
       end
       click_on 'Добавить видео'
 
-      fill_in 'record[text]', with: attributes[:text]
+      fill_in_ckeditor 'record[text]', with: attributes[:text]
       fill_in 'record[position]', with: attributes[:position]
       fill_in 'record[release_date]', with: attributes[:release_date]
       fill_in 'record[duration]', with: attributes[:duration]
@@ -33,13 +33,8 @@ describe 'Create video' do
       expect(Courses::Video.count).to eq(count + 1)
 
       video = Courses::Video.last
-      attributes.each_key do |attr|
-        next if attr == :lesson
 
-        actual = video.send(attr)
-        expecting = attributes[attr]
-        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-      end
+      assert_attributes video, attributes
     end
   end
 
@@ -66,7 +61,7 @@ describe 'Create video' do
         end
         click_on 'Добавить видео'
 
-        fill_in 'record[text]', with: attributes[:text]
+        fill_in_ckeditor 'record[text]', with: attributes[:text]
         fill_in 'record[position]', with: attributes[:position]
         fill_in 'record[release_date]', with: attributes[:release_date]
         fill_in 'record[duration]', with: attributes[:duration]
@@ -75,13 +70,8 @@ describe 'Create video' do
         expect(Courses::Video.count).to eq(count + 1)
 
         video = Courses::Video.last
-        attributes.each_key do |attr|
-          next if attr == :lesson
 
-          actual = video.send(attr)
-          expecting = attributes[attr]
-          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-        end
+        assert_attributes video, attributes
       end
     end
   end

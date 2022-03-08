@@ -26,4 +26,4 @@ raise 'You should set CHROME_DRIVER_VERSION in .env file' unless ENV['CHROME_DRI
 Webdrivers::Chromedriver.required_version = ENV['CHROME_DRIVER_VERSION']
 
 Capybara.always_include_port = true
-Capybara.server = :webrick
+Capybara.raise_server_errors = false

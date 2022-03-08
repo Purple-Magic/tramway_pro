@@ -26,10 +26,8 @@ module IntegrationHelpers
   private
 
   def compile_attributes(attributes = {})
-    param = '//a'
-    attributes.each_key do |attribute|
-      param += "[@#{attribute}='#{attributes[attribute]}']"
+    attributes.reduce('a') do |param, (key, value)|
+      param += "[#{key}='#{value}']"
     end
-    param
   end
 end

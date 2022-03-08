@@ -56,4 +56,22 @@ module AssertingModels
       end
     end
   end
+
+  def assert_courses_video(actual_object, attributes, additionals)
+    attributes.each_key do |attr|
+      next if attr == :lesson
+
+      actual = actual_object.send(attr)
+      expecting = attributes[attr]
+      case attr
+      when :text
+        actual = actual.strip!
+      when :release_date
+        actual = actual.to_datetime.strftime('%d.%m.%Y %H:%M:%S')
+        expecting = expecting.strftime('%d.%m.%Y %H:%M:%S')
+      else
+        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
+      end
+    end
+  end
 end
