@@ -61,7 +61,7 @@ describe 'Create task', type: :feature do
         end
         click_on 'Добавить задания'
 
-        fill_in 'record[text]', with: attributes[:text]
+        fill_in_ckeditor 'record[text]', with: attributes[:text]
         fill_in 'record[position]', with: attributes[:position]
         fill_in 'record[min_time]', with: attributes[:min_time]
         fill_in 'record[max_time]', with: attributes[:max_time]
@@ -70,13 +70,8 @@ describe 'Create task', type: :feature do
         expect(Courses::Task.count).to eq(count + 1)
 
         task = Courses::Task.last
-        attributes.each_key do |attr|
-          next if attr == :lesson
 
-          actual = task.send(attr)
-          expecting = attributes[attr]
-          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-        end
+        assert_attributes task, attributes
       end
     end
   end
