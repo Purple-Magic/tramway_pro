@@ -334,6 +334,8 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.20.1)
+    parallel_tests (3.7.3)
+      parallel
     paranoia (2.5.0)
       activerecord (>= 5.1, < 7.1)
     parser (3.0.2.0)
@@ -411,11 +413,17 @@ GEM
     regexp_parser (1.8.2)
     rexml (3.2.5)
     rmagick (4.2.2)
+    rspec (3.9.0)
+      rspec-core (~> 3.9.0)
+      rspec-expectations (~> 3.9.0)
+      rspec-mocks (~> 3.9.0)
     rspec-core (3.9.3)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.4)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
+    rspec-instafail (1.0.0)
+      rspec
     rspec-json_expectations (2.2.0)
     rspec-mocks (3.9.1)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -428,6 +436,8 @@ GEM
       rspec-expectations (~> 3.9.0)
       rspec-mocks (~> 3.9.0)
       rspec-support (~> 3.9.0)
+    rspec-retry (0.6.2)
+      rspec-core (> 3.3)
     rspec-sidekiq (3.1.0)
       rspec-core (~> 3.0, >= 3.0.0)
       sidekiq (>= 2.4.0)
@@ -698,6 +708,7 @@ DEPENDENCIES
   net-scp
   net-ssh
   nokogiri (>= 1.10.8)
+  parallel_tests
   paranoia (~> 2.2)
   pg (= 0.21.0)
   pg_search
@@ -715,8 +726,10 @@ DEPENDENCIES
   redcarpet
   reek
   rmagick (= 4.2.2)
+  rspec-instafail
   rspec-json_expectations
   rspec-rails (~> 3.5)
+  rspec-retry
   rspec-sidekiq
   rubocop (= 1.18.3)
   rubocop-rails

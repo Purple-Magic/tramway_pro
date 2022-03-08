@@ -67,6 +67,7 @@ describe 'Create video' do
         fill_in 'record[duration]', with: attributes[:duration]
 
         click_on 'Сохранить', class: 'btn-success'
+        save_and_open_page
         expect(Courses::Video.count).to eq(count + 1)
 
         video = Courses::Video.last

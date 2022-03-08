@@ -10,7 +10,7 @@ describe 'BotTelegram::Scenario' do
   end
 
   describe 'Features' do
-    let!(:bot_record) { create :bot }
+    let!(:bot_record) { create :bot_with_start_step }
 
     describe '/start' do
       let!(:start_message) { build :telegram_message, text: '/start' }

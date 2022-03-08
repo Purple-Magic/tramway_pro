@@ -123,6 +123,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'launchy'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'parallel_tests'
   gem 'reek'
   gem 'rspec-rails', '~> 3.5'
   gem 'rubocop', '1.18.3'
@@ -146,7 +147,9 @@ group :test do
   gem 'json_api_test_helpers', '1.2.1.2'
   gem 'json_matchers', github: 'BBonifield/json_matchers', branch: 'bugfix/properly-support-record-errors'
   gem 'puma'
+  gem 'rspec-instafail'
   gem 'rspec-json_expectations'
+  gem 'rspec-retry'
   gem 'rspec-sidekiq'
   gem 'sanitize'
   gem 'shoulda-matchers', '~> 2.8.0'
