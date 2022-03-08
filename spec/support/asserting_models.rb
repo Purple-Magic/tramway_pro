@@ -51,9 +51,9 @@ module AssertingModels
       case attr
       when :text
         actual = actual.strip!
-      else
-        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
       end
+
+      expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
     end
   end
 
@@ -69,9 +69,9 @@ module AssertingModels
       when :release_date
         actual = actual.to_datetime.strftime('%d.%m.%Y %H:%M:%S')
         expecting = expecting.strftime('%d.%m.%Y %H:%M:%S')
-      else
-        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
       end
+
+      expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
     end
   end
 end
