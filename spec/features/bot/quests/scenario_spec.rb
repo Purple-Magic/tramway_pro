@@ -32,11 +32,16 @@ describe 'BotTelegram::Scenario' do
       end
 
       describe 'With a next step' do
-        let!(:start_step) { create :start_scenario_step_with_next_scenario_step, bot: bot_record }
-
         it 'waits until next step message' do
-          sleep 1
-          start_step.reload
+          bot_record.start_step.update!(
+            delay: 3,
+            options: {
+              next: bot_record.scenario_steps.create!(
+                **attributes_for(:type_answer_scenario_step, text: 'This is next step of some another step'),
+                bot: bot_record
+              ).name
+            }
+          )
 
           stub = send_markdown_message_stub_request body: {
             chat_id: start_message.chat.id,

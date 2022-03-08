@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Bot < ApplicationRecord
-  has_many :steps, -> { order(:name) }, class_name: 'BotTelegram::Scenario::Step'
-  has_many :progress_records, through: :steps, class_name: 'BotTelegram::Scenario::ProgressRecord'
+  has_many :scenario_steps, -> { order(:name) }, class_name: 'BotTelegram::Scenario::Step'
+  has_many :progress_records, through: :scenario_steps, class_name: 'BotTelegram::Scenario::ProgressRecord'
   has_many :attenders, through: :progress_records, class_name: 'BotTelegram::User', source: :user
   has_many :messages, class_name: 'BotTelegram::Message'
   has_many :users, through: :messages, class_name: 'BotTelegram::User'
@@ -21,13 +21,14 @@ class Bot < ApplicationRecord
   store_accessor :options, :scenario
 
   def start_step
-    steps.select { |s| s.name == 'start' }.first # steps.find_by name: :start did not work for some reason
+    # scenario_steps.find_by name: :start did not work for some reason. Think it's about step word in Rails
+    scenario_steps.select { |s| s.name == 'start' }.first 
   end
 
   def finish_step
     return unless team.night?
 
-    steps.finish_step
+    scenario_steps.finish_step
   end
 
   def finished_users

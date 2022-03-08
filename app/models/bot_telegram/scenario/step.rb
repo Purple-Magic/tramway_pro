@@ -34,11 +34,13 @@ class BotTelegram::Scenario::Step < ApplicationRecord
   end
 
   def next_scenario_step
-    bot.steps.find_by name: options['next']
+    # scenario_steps.find_by name: :start did not work for some reason. Think it's about step word in Rails
+    bot.scenario_steps.select { |s| s.name == options['next'] }.first
   end
 
   def scenario_step_by(answer:)
-    bot.steps.find_by name: options[answer]
+    # scenario_steps.find_by name: :start did not work for some reason. Think it's about step word in Rails
+    bot.scenario_steps.select { |s| s.name == options[answer] }.first
   end
 
   private

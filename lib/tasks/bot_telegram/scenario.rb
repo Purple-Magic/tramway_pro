@@ -43,7 +43,7 @@ module BotTelegram::Scenario
 
       BotTelegram::Scenario::ProgressRecord.create!(
         bot_telegram_user_id: user_from(message_from_telegram.from).id,
-        bot_telegram_scenario_step_id: current_step.id,
+        step: current_step,
         project_id: project.id
       )
       notify_about_finishing_scenario message_from_telegram, bot_record if current_step.finish?
