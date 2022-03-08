@@ -6,7 +6,7 @@ require 'capybara_helpers'
 require 'json_api_test_helpers'
 require 'rake'
 require 'webmock/rspec'
-require 'web_driver_helper'
+require 'web_driver_helper' if Rails.env.test?
 require 'telegram/bot'
 require "#{Rails.root}/lib/benchkiller/regions_concern.rb"
 

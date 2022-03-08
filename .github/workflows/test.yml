@@ -129,6 +129,7 @@ jobs:
 
       - name: Setup application
         env:
+          RAILS_ENV: ci
           PGHOST: localhost
           PGUSER: postgres
           RAILS_ENV: test
