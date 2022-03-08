@@ -22,7 +22,7 @@ class Bot < ApplicationRecord
 
   def start_step
     # scenario_steps.find_by name: :start did not work for some reason. Think it's about step word in Rails
-    scenario_steps.select { |s| s.name == 'start' }.first 
+    scenario_steps.select { |s| s.name == 'start' }.first
   end
 
   def finish_step
