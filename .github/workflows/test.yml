@@ -134,6 +134,14 @@ jobs:
           RAILS_ENV: test
           CHROME_DRIVER_VERSION: 98.0.4758.102
         run: |
+          echo "127.0.0.1 it-way.test" | sudo tee -a /etc/hosts
+          echo "127.0.0.1 kalashnikovisme.test" | sudo tee -a /etc/hosts
+          echo "127.0.0.1 tramway.test" | sudo tee -a /etc/hosts
+          echo "127.0.0.1 engineervol.test" | sudo tee -a /etc/hosts
+          echo "127.0.0.1 listai.test" | sudo tee -a /etc/hosts
+          echo "127.0.0.1 purple-magic.test" | sudo tee -a /etc/hosts
+          echo "127.0.0.1 red-magic.test" | sudo tee -a /etc/hosts
+          echo "127.0.0.1 freedvs.test" | sudo tee -a /etc/hosts
           cp config/database.sample.yml config/database.yml
           cp config/secrets.sample.yml config/secrets.yml
           bin/rails db:create db:migrate db:seed
