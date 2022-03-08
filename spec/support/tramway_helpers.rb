@@ -42,6 +42,6 @@ module TramwayHelpers
     input = find("input[name=#{name.gsub('[', '\[').gsub(']', '\]')}]")
     input.click
 
-    find('td.day', text: with.day.to_s, match: :first).click
+    find('td.day', text: /^#{with.day.to_s}$/, match: :first).click
   end
 end
