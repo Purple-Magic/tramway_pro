@@ -8,6 +8,9 @@ development:
   database: tramway_pro_development
 test:
   <<: *default
+  database: tramway_pro_test<%= ENV['TEST_ENV_NUMBER'] %>
+ci:
+  <<: *default
   database: tramway_pro_test
 production:
   <<: *default
