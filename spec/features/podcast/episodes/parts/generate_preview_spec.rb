@@ -58,7 +58,7 @@ describe 'Generate part preview' do
   end
 
   describe 'after update' do
-    let!(:part) { create :podcast_episodes_part, episode_id: episode.id }
+    let!(:part) { create :podcast_episodes_part, episode: episode }
 
     it 'should generate preview of a part' do
       visit '/admin'
