@@ -27,7 +27,6 @@ describe 'Edit video page' do
       end
       find('.btn.btn-warning', match: :first).click
 
-      expect(page).to have_field 'record[text]', with: video.text
       expect(page).to have_field 'record[position]', with: video.position
       expect(page).to have_field 'record[duration]', with: video.duration
     end
@@ -47,22 +46,16 @@ describe 'Edit video page' do
 
       attributes = attributes_for :courses_video
 
-      fill_in 'record[text]', with: attributes[:text]
+      fill_in_ckeditor 'record[text]', with: attributes[:text]
       fill_in 'record[position]', with: attributes[:position]
-      fill_in 'record[release_date]', with: attributes[:release_date]
+      fill_in_datepicker 'record[release_date]', with: attributes[:release_date]
       fill_in 'record[duration]', with: attributes[:duration]
 
       click_on 'Сохранить', class: 'btn-success'
 
       video.reload
 
-      attributes.each_key do |attr|
-        next if attr == :lesson
-
-        actual = video.send(attr)
-        expecting = attributes[attr]
-        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-      end
+      assert_attributes video, attributes.except(:text)
     end
   end
 
@@ -89,7 +82,6 @@ describe 'Edit video page' do
         end
         find('.btn.btn-warning', match: :first).click
 
-        expect(page).to have_field 'record[text]', with: video.text
         expect(page).to have_field 'record[position]', with: video.position
         expect(page).to have_field 'record[release_date]', with: video.release_date
         expect(page).to have_field 'record[duration]', with: video.duration
@@ -115,22 +107,16 @@ describe 'Edit video page' do
 
         attributes = attributes_for :courses_video
 
-        fill_in 'record[text]', with: attributes[:text]
+        fill_in_ckeditor 'record[text]', with: attributes[:text]
         fill_in 'record[position]', with: attributes[:position]
-        fill_in 'record[release_date]', with: attributes[:release_date]
+        fill_in_datepicker 'record[release_date]', with: attributes[:release_date]
         fill_in 'record[duration]', with: attributes[:duration]
 
         click_on 'Сохранить', class: 'btn-success'
 
         video.reload
 
-        attributes.each_key do |attr|
-          next if attr == :lesson
-
-          actual = video.send(attr)
-          expecting = attributes[attr]
-          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-        end
+        assert_attributes video, attributes.except(:text)
       end
     end
   end

@@ -10,7 +10,7 @@ describe 'BotTelegram::Scenario' do
   end
 
   describe 'Features' do
-    let!(:bot_record) { create :bot }
+    let!(:bot_record) { create :bot_with_start_step }
 
     describe '/start' do
       let!(:start_message) { build :telegram_message, text: '/start' }
@@ -32,16 +32,24 @@ describe 'BotTelegram::Scenario' do
       end
 
       describe 'With a next step' do
-        let!(:start_step) { create :start_scenario_step_with_next_step, bot: bot_record }
-
         it 'waits until next step message' do
+          bot_record.start_step.update!(
+            delay: 3,
+            options: {
+              next: bot_record.scenario_steps.create!(
+                **attributes_for(:type_answer_scenario_step, text: 'This is next step of some another step'),
+                bot: bot_record
+              ).name
+            }
+          )
+
           stub = send_markdown_message_stub_request body: {
             chat_id: start_message.chat.id,
             text: bot_record.start_step.text
           }
-          next_step_stub = send_markdown_message_stub_request body: {
+          next_scenario_step_stub = send_markdown_message_stub_request body: {
             chat_id: start_message.chat.id,
-            text: bot_record.start_step.next_step.text,
+            text: bot_record.start_step.next_scenario_step.text,
             reply_markup: reply_markup(['Подсказка'])
           }
 
@@ -50,7 +58,7 @@ describe 'BotTelegram::Scenario' do
           end
 
           expect(stub).to have_been_requested
-          expect(next_step_stub).to have_been_requested
+          expect(next_scenario_step_stub).to have_been_requested
         end
       end
     end
@@ -67,10 +75,10 @@ describe 'BotTelegram::Scenario' do
       end
 
       it 'sends correct answer' do
-        step_by_answer = type_answer_step.step_by answer: sample_answer
+        scenario_step_by_answer = type_answer_step.scenario_step_by answer: sample_answer
         stub = send_markdown_message_stub_request body: {
           chat_id: user_message.chat.id,
-          text: step_by_answer.text
+          text: scenario_step_by_answer.text
         }
 
         Telegram::Bot::Client.run(bot_record.token) do |bot|
@@ -96,7 +104,7 @@ describe 'BotTelegram::Scenario' do
 
       next_stub = send_markdown_message_stub_request body: {
         chat_id: start_message.chat.id,
-        text: bot_record.start_step.next_step.text,
+        text: bot_record.start_step.next_scenario_step.text,
         reply_markup: reply_markup(['Подсказка'])
       }
 

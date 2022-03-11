@@ -70,57 +70,70 @@ describe 'Benchkiller Offers' do
           ::Benchkiller::Offer.delete_all
         end
 
-        periods = [
-          {
-            title: :day,
-            unaccepting_value: 2.days.ago
-          },
-          {
-            title: :week,
-            unaccepting_value: 2.weeks.ago
-          },
-          {
-            title: :month,
-            unaccepting_value: 2.months.ago
-          },
-          {
-            title: :quarter,
-            unaccepting_value: 4.months.ago
-          }
-        ]
+        describe 'Preconfigured periods' do
+          describe 'Success' do
+            periods = [
+              {
+                title: :day,
+                unaccepting_value: 2.days.ago
+              },
+              {
+                title: :week,
+                unaccepting_value: 2.weeks.ago
+              },
+              {
+                title: :month,
+                unaccepting_value: 2.months.ago
+              },
+              {
+                title: :quarter,
+                unaccepting_value: 4.months.ago
+              }
+            ]
 
-        periods.each do |period|
-          describe period[:title].to_s.capitalize do
-            let!(:offers) do
-              (1..5).to_a.map do |_index|
-                create(:benchkiller_lookfor_offer).tap do |offer|
-                  offer.update_column :created_at, 1.hour.ago
+            periods.each do |period|
+              describe period[:title].to_s.capitalize do
+                let!(:offers) do
+                  (1..5).to_a.map do |_index|
+                    create(:benchkiller_lookfor_offer).tap do |offer|
+                      offer.update_column :created_at, 1.hour.ago
+                    end
+                  end
+                end
+
+                let!(:too_old_offers) do
+                  (1..5).to_a.map do |_index|
+                    create(:benchkiller_lookfor_offer).tap do |offer|
+                      offer.update_column :created_at, period[:unaccepting_value]
+                    end
+                  end
+                end
+
+                before do
+                  get '/benchkiller/api/offers', headers: headers, params: { period: period[:title] }
+                end
+
+                it 'returns 5 needed offers' do
+                  offers.each do |offer|
+                    expect(json_response).to have_content offer.message.text
+                  end
+                end
+
+                it 'does not return 5 too old offers' do
+                  too_old_offers.each do |offer|
+                    expect(json_response).not_to have_content offer.message.text
+                  end
                 end
               end
             end
+          end
 
-            let!(:too_old_offers) do
-              (1..5).to_a.map do |_index|
-                create(:benchkiller_lookfor_offer).tap do |offer|
-                  offer.update_column :created_at, period[:unaccepting_value]
-                end
-              end
-            end
+          describe 'Failure' do
+            it 'returns error with not expected period' do
+              get '/benchkiller/api/offers', headers: headers, params: { period: generate(:string) }
 
-            before do
-              get '/benchkiller/api/offers', headers: headers, params: { period: period[:title] }
-            end
-
-            it 'returns 5 needed offers' do
-              offers.each do |offer|
-                expect(json_response).to have_content offer.message.text
-              end
-            end
-
-            it 'does not return 5 too old offers' do
-              too_old_offers.each do |offer|
-                expect(json_response).not_to have_content offer.message.text
-              end
+              expect(response.status).to eq 406
+              expect(response.body).to eq 'Unacceptable period param'
             end
           end
         end
@@ -150,32 +163,34 @@ describe 'Benchkiller Offers' do
             end
           end
 
-          before do
-            get(
-              '/benchkiller/api/offers',
-              headers: headers,
-              params: {
-                begin_date: 10.days.ago,
-                end_date: 5.days.ago
-              }
-            )
-          end
-
-          it 'returns 5 needed offers' do
-            offers.each do |offer|
-              expect(json_response).to have_content offer.message.text
+          describe 'Success' do
+            before do
+              get(
+                '/benchkiller/api/offers',
+                headers: headers,
+                params: {
+                  begin_date: 10.days.ago,
+                  end_date: 5.days.ago
+                }
+              )
             end
-          end
 
-          it 'does not return 5 old offers' do
-            too_old_offers.each do |offer|
-              expect(json_response).not_to have_content offer.message.text
+            it 'returns 5 needed offers' do
+              offers.each do |offer|
+                expect(json_response).to have_content offer.message.text
+              end
             end
-          end
 
-          it 'does not return 5 new offers' do
-            too_new_offers.each do |offer|
-              expect(json_response).not_to have_content offer.message.text
+            it 'does not return 5 old offers' do
+              too_old_offers.each do |offer|
+                expect(json_response).not_to have_content offer.message.text
+              end
+            end
+
+            it 'does not return 5 new offers' do
+              too_new_offers.each do |offer|
+                expect(json_response).not_to have_content offer.message.text
+              end
             end
           end
         end

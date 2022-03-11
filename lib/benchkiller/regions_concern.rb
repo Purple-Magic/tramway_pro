@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Benchkiller::RegionsConcern
   REGIONS_DICTIONARY = {
     'Россия' => ['РФ', 'Российская федерация', 'Russia'],

@@ -37,6 +37,9 @@ FactoryBot.define do
   sequence :image_as_file do |_n|
     fixture_file_upload('public/temp.png', 'image/png')
   end
+  sequence :sound_as_file do |_n|
+    fixture_file_upload('public/sound.mp3', 'mp3')
+  end
   sequence :full_hd_image_as_file do |_n|
     fixture_file_upload('public/big-image.jpg', 'jpg/jpeg')
   end
@@ -87,5 +90,11 @@ FactoryBot.define do
   end
   sequence :duration do |n|
     "#{n}h #{n + 1}m"
+  end
+  sequence :timestamp do |n|
+    "#{n}:00"
+  end
+  sequence :company_name do |n|
+    Faker::Company.name + n.to_s
   end
 end

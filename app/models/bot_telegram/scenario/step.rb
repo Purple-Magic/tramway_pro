@@ -33,12 +33,14 @@ class BotTelegram::Scenario::Step < ApplicationRecord
     many_answers_to_same_step? && !keyboard_contain_answers?
   end
 
-  def next_step
-    bot.steps.find_by name: options['next']
+  def next_scenario_step
+    # scenario_steps.find_by name: :start did not work for some reason. Think it's about step word in Rails
+    bot.scenario_steps.select { |s| s.name == options['next'] }.first
   end
 
-  def step_by(answer:)
-    bot.steps.find_by name: options[answer]
+  def scenario_step_by(answer:)
+    # scenario_steps.find_by name: :start did not work for some reason. Think it's about step word in Rails
+    bot.scenario_steps.select { |s| s.name == options[answer] }.first
   end
 
   private

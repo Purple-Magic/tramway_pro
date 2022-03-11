@@ -7,6 +7,9 @@ const config = {
   production: {
     api: 'http://red-magic.ru',
   },
+  test: {
+    api: 'http://freedvs.test',
+  },
 }
 
 const apiUrl = config[process.env.RAILS_ENV || 'development'].api

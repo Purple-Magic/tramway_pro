@@ -7,7 +7,6 @@ describe 'Destroy participant' do
   before { create :participant, project_id: it_way_id }
 
   it 'should destroy participant' do
-    count = ::Tramway::Event::Participant.count
     visit '/admin'
     fill_in 'Email', with: "admin#{it_way_id}@email.com"
     fill_in 'Пароль', with: '123456'
@@ -18,6 +17,8 @@ describe 'Destroy participant' do
     click_on 'Участники'
     click_on_delete_button last_participant
 
-    expect(::Tramway::Event::Participant.count).to be < count
+    last_participant = Tramway::Event::Participant.find_by id: last_participant.id
+
+    expect(last_participant).to be_falsy
   end
 end

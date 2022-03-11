@@ -81,28 +81,7 @@ class BotTelegram::BenchkillerBot::Action
   end
   # rubocop:enable Naming/AccessorMethodName
 
-  validations = {
-    url: lambda do |value|
-      value.present? && value.match?(URI::DEFAULT_PARSER.make_regexp(%w[http https]))
-    end,
-    just_text: ->(value) { value.present? }
-  }
-
-  attributes_data = [
-    { name: :portfolio_url, validation: validations[:url] },
-    { name: :company_url, validation: validations[:url] },
-    { name: :place, validation: validations[:just_text] },
-    { name: :phone, validation: validations[:just_text] },
-    { name: :regions_to_cooperate, validation: validations[:just_text] },
-    {
-      name: :email,
-      validation: lambda do |value|
-        value.present? && value.scan(URI::MailTo::EMAIL_REGEXP).present?
-      end
-    }
-  ]
-
-  attributes_data.each do |data|
+  BotTelegram::BenchkillerBot::ATTRIBUTES_DATA.each do |data|
     command_name = "set_#{data[:name]}"
     define_method command_name do |value|
       if data[:validation].call(value)

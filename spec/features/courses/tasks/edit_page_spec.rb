@@ -27,7 +27,6 @@ describe 'Edit task page' do
       end
       find('.btn.btn-warning', match: :first).click
 
-      expect(page).to have_field 'record[text]', with: task.text
       expect(page).to have_field 'record[position]', with: task.position
       expect(page).to have_field 'record[min_time]', with: task.min_time
       expect(page).to have_field 'record[max_time]', with: task.max_time
@@ -48,7 +47,7 @@ describe 'Edit task page' do
 
       attributes = attributes_for :courses_task
 
-      fill_in 'record[text]', with: attributes[:text]
+      fill_in_ckeditor 'record[text]', with: attributes[:text]
       fill_in 'record[position]', with: attributes[:position]
       fill_in 'record[min_time]', with: attributes[:min_time]
       fill_in 'record[max_time]', with: attributes[:max_time]
@@ -57,13 +56,7 @@ describe 'Edit task page' do
 
       task.reload
 
-      attributes.each_key do |attr|
-        next if attr == :lesson
-
-        actual = task.send(attr)
-        expecting = attributes[attr]
-        expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-      end
+      assert_attributes task, attributes.except(:text)
     end
   end
 
@@ -90,7 +83,6 @@ describe 'Edit task page' do
         end
         find('.btn.btn-warning', match: :first).click
 
-        expect(page).to have_field 'record[text]', with: task.text
         expect(page).to have_field 'record[position]', with: task.position
         expect(page).to have_field 'record[min_time]', with: task.min_time
         expect(page).to have_field 'record[max_time]', with: task.max_time
@@ -116,7 +108,7 @@ describe 'Edit task page' do
 
         attributes = attributes_for :courses_task
 
-        fill_in 'record[text]', with: attributes[:text]
+        fill_in_ckeditor 'record[text]', with: attributes[:text]
         fill_in 'record[position]', with: attributes[:position]
         fill_in 'record[min_time]', with: attributes[:min_time]
         fill_in 'record[max_time]', with: attributes[:max_time]
@@ -125,13 +117,7 @@ describe 'Edit task page' do
 
         task.reload
 
-        attributes.each_key do |attr|
-          next if attr == :lesson
-
-          actual = task.send(attr)
-          expecting = attributes[attr]
-          expect(actual).to eq(expecting), problem_with(attr: attr, expecting: expecting, actual: actual)
-        end
+        assert_attributes task, attributes.except(:text)
       end
     end
   end

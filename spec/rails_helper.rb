@@ -3,6 +3,13 @@
 require 'spec_helper'
 require 'factory_bot'
 require 'capybara_helpers'
+require 'json_api_test_helpers'
+require 'rake'
+require 'webmock/rspec'
+require 'web_driver_helper'
+require 'telegram/bot'
+require "#{Rails.root}/lib/benchkiller/regions_concern.rb"
+
 require 'support/projects_helper'
 require 'support/integration_helpers'
 require 'support/errors_helper'
@@ -12,12 +19,12 @@ require 'support/telegram_bot_helpers'
 require 'support/benchkiller_helpers'
 require 'support/asserting_models'
 require 'support/filling_forms'
-require 'json_api_test_helpers'
-require 'rake'
-require 'webmock/rspec'
-require 'telegram/bot'
-require "#{Rails.root}/lib/benchkiller/regions_concern.rb"
-WebMock.disable_net_connect! allow_localhost: true, allow: 'chromedriver.storage.googleapis.com'
+require 'support/long_test_staff'
+
+WebMock.disable_net_connect!(
+  allow_localhost: true,
+  allow: 'chromedriver.storage.googleapis.com'
+)
 
 RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers
@@ -37,6 +44,7 @@ RSpec.configure do |config|
   config.include BenchkillerHelpers
   config.include AssertingModels
   config.include FillingForms
+  config.include LongTestStuff
   config.include ::Benchkiller::RegionsConcern
 
   ActiveRecord::Base.logger.level = 1
@@ -66,5 +74,12 @@ RSpec.configure do |config|
     create :purple_magic, name: :purple_magic, title: 'Purple Magic'
     create :red_magic, name: :red_magic, title: 'Red Magic'
   end
+
   include ActionDispatch::TestProcess
+end
+
+module Kernel
+  def system(cmd)
+    Rails.logger.info cmd
+  end
 end

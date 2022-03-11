@@ -37,7 +37,6 @@ describe 'Benchkiller regions' do
       end
     end
 
-
     describe 'Unauthorized' do
       it 'returns errors response' do
         get '/benchkiller/api/regions'

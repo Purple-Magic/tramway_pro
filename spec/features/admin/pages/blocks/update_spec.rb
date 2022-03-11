@@ -5,7 +5,7 @@ require 'rails_helper'
 describe 'Update block' do
   let!(:attributes) { attributes_for :block_admin_attributes }
 
-  ProjectsHelper.projects_instead_of('listai', 'kalashnikovisme', 'engineervol', 'tramway', 'freedvs').each do |project|
+  ProjectsHelper.projects_instead_of('listai', 'engineervol', 'kalashnikovisme', 'tramway', 'freedvs').each do |project|
     before do
       landing_page = create :page, project_id: project.id
       create :block, project_id: project.id, page: landing_page

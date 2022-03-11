@@ -8,7 +8,7 @@ FactoryBot.define do
     project_id { Project.find_by(title: 'Benchkiller').id }
 
     factory :start_scenario_step, traits: [:start]
-    factory :start_scenario_step_with_next_step, traits: %i[start with_next_step]
+    factory :start_scenario_step_with_next_scenario_step, traits: %i[start with_next_scenario_step]
     factory :type_answer_scenario_step, traits: [:type_answer]
 
     trait :start do
@@ -16,12 +16,12 @@ FactoryBot.define do
       text { 'This is start message' }
     end
 
-    trait :with_next_step do
-      options do
-        {
-          next: bot.steps.create!(
+    trait :with_next_scenario_step do
+      after :create do |current_step|
+        current_step.update! options: {
+          next: current_step.bot.scenario_steps.create!(
             **attributes_for(:type_answer_scenario_step, text: 'This is next step of some another step'),
-            bot: bot
+            bot: current_step.bot
           ).name
         }
       end
@@ -32,19 +32,19 @@ FactoryBot.define do
       options do
         answer1 = Faker::Creature::Animal.name.downcase
         answer2 = Faker::Creature::Animal.name.downcase
-        step_by_answer = create(:bot_telegram_scenario_step, bot: bot, text: 'This is step by answer').name
+        scenario_step_by_answer = create(:bot_telegram_scenario_step, bot: bot, text: 'This is step by answer').name
         hint = create(
           :bot_telegram_scenario_step,
           bot: bot,
           options: {
-            answer1 => step_by_answer,
-            answer2 => step_by_answer
+            answer1 => scenario_step_by_answer,
+            answer2 => scenario_step_by_answer
           }
         ).name
 
         {
-          answer1 => step_by_answer,
-          answer2 => step_by_answer,
+          answer1 => scenario_step_by_answer,
+          answer2 => scenario_step_by_answer,
           'подсказка' => hint
         }
       end

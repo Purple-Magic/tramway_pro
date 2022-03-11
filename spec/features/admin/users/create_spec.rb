@@ -6,7 +6,7 @@ describe 'Create admin' do
   let!(:attributes) { attributes_for :admin_admin_attributes }
 
   ProjectsHelper.projects_instead_of(
-    :listai, :kalashnikovisme, :tramway, :engineervol, 'red-magic', 'freedvs'
+    :listai, :kalashnikovisme, :engineervol, :tramway, 'red-magic', 'freedvs'
   ).each do |project|
     it "#{project.url}: should create admin" do
       move_host_to project.url

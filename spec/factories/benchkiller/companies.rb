@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :benchkiller_company, class: 'Benchkiller::Company' do
-    title
+    title { generate :company_name }
     data do
       {
         portfolio_url: generate(:url),

@@ -12,12 +12,14 @@ class Podcasts::RenderVideoWorker < ApplicationWorker
     @directory = @directory.gsub('//', '/')
     render_video episode
   rescue StandardError => error
-    Rails.env.development? ? puts(error) : Airbrake.notify(error)
+    show error
   end
 
   private
 
   def render_video(episode)
+    raise 'You should add episode cover to episode' unless episode.cover.present?
+
     output = "#{@directory}/full_video.mp4"
     episode.render_full_video(output)
   end
