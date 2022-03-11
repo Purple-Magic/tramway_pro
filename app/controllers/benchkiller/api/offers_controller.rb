@@ -3,7 +3,16 @@
 class Benchkiller::Api::OffersController < Benchkiller::Api::ApplicationController
   def index
     params[:collection] ||= :lookfor
-    head 406 unless params[:collection].to_sym.in?(::Benchkiller::Offer::AVAILABLE_SCOPES)
+    unless params[:collection].to_sym.in?(::Benchkiller::Offer::AVAILABLE_SCOPES)
+      render json: 'Unacceptable collection param',
+        status: 406
+      return
+    end
+    if params[:period].present? && !params[:period].in?([ 'day', 'week', 'month', 'quarter' ])
+      render json: 'Unacceptable period param',
+        status: 406
+      return
+    end
 
     search_offers
 
