@@ -1,26 +1,26 @@
 # frozen_string_literal: true
 
 module Concerns::TableBuilder
-  def table(&block)
-    content_tag(:table, class: 'table table-bordered table-striped') do
+  def table(**options, &block)
+    content_tag(:table, class: 'table table-bordered table-striped', **options) do
       yield if block
     end
   end
 
-  def th(&block)
-    content_tag(:th) do
+  def th(**options, &block)
+    content_tag(:th, **options) do
       yield if block
     end
   end
 
-  def td(&block)
-    content_tag(:td) do
+  def td(**options, &block)
+    content_tag(:td, **options) do
       yield if block
     end
   end
 
-  def tr(&block)
-    content_tag(:tr) do
+  def tr(**options, &block)
+    content_tag(:tr, **options) do
       yield if block
     end
   end

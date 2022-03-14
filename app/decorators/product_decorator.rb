@@ -18,7 +18,7 @@ class ProductDecorator < ApplicationDecorator
     end
 
     def show_attributes
-      %i[time_logs_table sum_estimation sum_time_logs]
+      %i[monthes_time_logs time_logs_table sum_estimation sum_time_logs]
     end
 
     def show_associations
@@ -47,5 +47,39 @@ class ProductDecorator < ApplicationDecorator
     end.gsub('*', '')
     intro = "🪄  *Отчёт за #{date.strftime('%d.%m.%Y')}*\n\n"
     intro + (report.present? ? report : 'Вчера не было залогированных задач')
+  end
+
+  def monthes_time_logs
+    beginning_of_month = object.created_at.beginning_of_month
+    end_of_month = object.created_at.end_of_month
+    
+    table do
+      while beginning_of_month < DateTime.now
+        logged_users = users_logged_time(begin_date: beginning_of_month, end_date: end_of_month)
+        concat(tr(rowspan: logged_users.count) do
+          concat(th do
+            beginning_of_month.strftime('%B')
+          end)
+          if logged_users.any?
+            logged_users.each do |user|
+              concat(td do
+                user.full_name
+              end)
+              concat(td do
+                TimeLog.logged_by(user, object, beginning_of_month, end_of_month)
+              end)
+            end
+          else
+            concat(td do
+              concat(content_tag(:span) do
+                'Нет таймлогов'
+              end)
+            end)
+          end
+        end)
+        beginning_of_month = (beginning_of_month + 1.month).beginning_of_month
+        end_of_month = (end_of_month + 1.month).end_of_month
+      end
+    end
   end
 end
