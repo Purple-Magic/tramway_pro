@@ -18,6 +18,12 @@ class Benchkiller::Company < ApplicationRecord
     scope review_state, -> { where review_state: review_state }
   end
 
+  include BotTelegram::BenchkillerBot::AdminFeatures
+
+  after_save do |company|
+    send_companies_changes_to_admin_chat company
+  end
+
   search_by :title
 
   aasm :review_state do
