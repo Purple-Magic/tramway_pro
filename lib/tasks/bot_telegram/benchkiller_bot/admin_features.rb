@@ -41,7 +41,7 @@ module BotTelegram::BenchkillerBot::AdminFeatures
       :company_changes,
       company_name: company.title,
       changes: localize_changes(last_audit).join("\n"),
-      url: Tramway::Admin::Engine.routes.url_helpers.edit_record_url(company, model: company.class, host: Settings[Rails.env][:benchkiller])
+      url: Tramway::Admin::Engine.routes.url_helpers.edit_record_url(company, model: company.class, host: Settings[Rails.env][:purple_magic])
     )
     send_notification_to_chat ::BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID, text
   end
