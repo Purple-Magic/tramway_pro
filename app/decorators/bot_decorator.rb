@@ -3,7 +3,7 @@
 class BotDecorator < ApplicationDecorator
   delegate_attributes :name, :team, :finished_users, :slug, :custom
 
-  decorate_association :steps
+  decorate_association :scenario_steps
 
   class << self
     def list_attributes
