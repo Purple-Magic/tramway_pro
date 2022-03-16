@@ -27,7 +27,14 @@ module BotTelegram::BenchkillerBot::AdminFeatures
 
   def send_companies_changes_to_admin_chat(company)
     last_audit = company.audits.last
-    return if last_audit.audited_changes.keys.include? 'review_state'
+    return unless last_audit.audited_changes.keys.include? 'data'
+
+    data_changes = hash_diff(
+      last_audit.audited_changes['data'].first,
+      last_audit.audited_changes['data'].last,
+    )
+
+    return unless (data_changes.keys & [ 'regions_to_cooperate', 'place' ]).any?
 
     text = i18n_scope(
       :admin,
