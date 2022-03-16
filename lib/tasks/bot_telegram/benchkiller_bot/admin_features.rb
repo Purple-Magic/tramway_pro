@@ -4,6 +4,8 @@ require_relative 'notify'
 
 module BotTelegram::BenchkillerBot::AdminFeatures
   include ::BotTelegram::BenchkillerBot::Notify
+  include AuditsLocales
+  include ::BotTelegram::BenchkillerBot::Concern
 
   def send_approve_message_to_admin_chat(offer)
     return unless offer.available? || offer.lookfor?
@@ -21,6 +23,20 @@ module BotTelegram::BenchkillerBot::AdminFeatures
       message = ::BotTelegram::Custom::Message.new text: text, inline_keyboard: keyboard
       send_notification_to_chat ::BotTelegram::BenchkillerBot::ADMIN_CHAT_ID, message
     end
+  end
+
+  def send_companies_changes_to_admin_chat(company)
+    last_audit = company.audits.last
+    return if last_audit.audited_changes.keys.include? 'review_state'
+
+    text = i18n_scope(
+      :admin,
+      :company_changes,
+      company_name: company.title,
+      changes: localize_changes(last_audit).join("\n"),
+      url: Tramway::Admin::Engine.routes.url_helpers.edit_record_url(company, model: company.class, host: Settings[Rails.env][:benchkiller])
+    )
+    send_notification_to_chat ::BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID, text
   end
 
   def approve_offer(argument)
