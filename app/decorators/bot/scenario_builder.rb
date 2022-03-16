@@ -13,7 +13,7 @@ module Bot::ScenarioBuilder
   end
 
   def scenario_steps_rows
-    steps.each do |st|
+    scenario_steps.each do |st|
       concat(content_tag(:tr) do
         concat(content_tag(:td) do
           concat st.name
