@@ -14,9 +14,12 @@ module Benchkiller::Concerns
       offers,
       :period
     ).call
-    offers_ids = offers.reverse.uniq { |offer| offer.message.user.id }.reverse.map &:id
+    
+    if params[:search].present?
+      offers_ids = offers.reverse.uniq { |offer| offer.message.user.id }.reverse.map &:id
+      offers = Benchkiller::Offer.where id: offers_ids
+    end
 
-    offers = Benchkiller::Offer.where id: offers_ids
     @full_offers_collection = offers.approved.order(created_at: :desc)
   end
 
