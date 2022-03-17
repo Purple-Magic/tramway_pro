@@ -30,8 +30,8 @@ module BotTelegram::BenchkillerBot::AdminFeatures
     return unless last_audit.audited_changes.keys.include? 'data'
 
     data_changes = hash_diff(
-      last_audit.audited_changes['data'].first,
-      last_audit.audited_changes['data'].last,
+      (last_audit.audited_changes['data']&.first || {}),
+      (last_audit.audited_changes['data']&.last || {}),
     )
 
     return unless (data_changes.keys & [ 'regions_to_cooperate', 'place' ]).any?
