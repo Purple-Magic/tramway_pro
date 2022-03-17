@@ -10,11 +10,13 @@ class Benchkiller::Offers::SearchService
   end
 
   def call
-    if send "condition_to_#{search_type}_search?"
+    offers_ids = if send "condition_to_#{search_type}_search?"
       send "#{search_type}_search"
     else
       current_collection
-    end
+    end.reverse.uniq { |offer| offer.message.user.id }.reverse.map &:id
+
+    Benchkiller::Offer.where id: offers_ids
   end
 
   private
