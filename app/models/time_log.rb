@@ -24,4 +24,8 @@ class TimeLog < ApplicationRecord
   def minutes
     minutes_of time_spent
   end
+
+  def logging_actions
+    YAML.load_file Rails.root.join('lib', 'yaml', 'time_logs_actions.yml')
+  end
 end
