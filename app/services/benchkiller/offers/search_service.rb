@@ -62,6 +62,8 @@ class Benchkiller::Offers::SearchService
     if argument[:period]
       argument[:end_date] = DateTime.now
       case argument[:period]
+      when 'all_time'
+        argument[:begin_date] = DateTime.new(2015, 1, 1)
       when 'day'
         argument[:begin_date] = 1.day.ago
       when 'week'

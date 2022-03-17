@@ -61,6 +61,7 @@ class BenchkillerPeriodForm extends React.Component {
     }
 
     const periods = {
+      all_time: 'За всё время',
       day: 'День',
       week: 'Неделя',
       month: 'Месяц',
