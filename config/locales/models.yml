@@ -111,6 +111,7 @@ ru:
         data: Данные курса
         tree: Дерево курса
         time_logs: Времени затрачено
+        logging_actions: Действия для логирования
       courses/topic:
         lessons: Уроки
       courses/lesson:

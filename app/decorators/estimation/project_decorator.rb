@@ -16,7 +16,7 @@ class Estimation::ProjectDecorator < ApplicationDecorator
     end
 
     def show_attributes
-      %i[associated_link description team_table expenses_table coefficients_table summary_table]
+      %i[associated_link pre_estimated_time team_table expenses_table coefficients_table summary_table]
     end
 
     def show_associations
@@ -71,6 +71,32 @@ collection: :expenses)
 
   def project_state
     state_machine_view object, :project_state
+  end
+
+  def pre_estimated_time
+    courses_video_actions = YAML.load_file(Rails.root.join('lib', 'yaml', 'time_logs_actions.yml'))['Courses::Video']
+    averages = courses_video_actions.reduce({}) do |hash, action|
+      logged_times = Courses::Video.where.not(result_duration: nil).map do |video|
+        time_logs = video.time_logs.where(comment: action)
+        time_logs.sum(&:minutes) / video.result_duration.to_f if time_logs.any? && video.result_duration.present?
+      end.compact
+      hash.merge! action => logged_times.median
+    end
+    table do
+      courses_video_actions.each do |action|
+        concat(tr do
+          concat(th do
+            "#{action} на минуту контента"
+          end)
+          concat(td do
+            "#{averages[action].round(2)}m"
+          end)
+          concat(td do
+            "#{(averages[action] / 60).round(2)}h"
+          end)
+        end)
+      end
+    end
   end
 
   # :reek:ControlParameter { enabled: false }
