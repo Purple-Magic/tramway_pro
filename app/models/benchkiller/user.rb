@@ -22,4 +22,8 @@ class Benchkiller::User < ApplicationRecord
   def company
     companies.first
   end
+
+  def offers
+    Benchkiller::Offer.where message_id: telegram_user.messages.select(:id)
+  end
 end
