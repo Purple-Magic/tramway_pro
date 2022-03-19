@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220316223516) do
+ActiveRecord::Schema.define(version: 20220319135939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -169,6 +169,7 @@ ActiveRecord::Schema.define(version: 20220316223516) do
     t.integer "bot_id"
     t.text "message_type", default: "regular"
     t.datetime "deleted_at"
+    t.integer "telegram_message_id"
   end
 
   create_table "bot_telegram_scenario_progress_records", force: :cascade do |t|
