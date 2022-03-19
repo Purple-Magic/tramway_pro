@@ -9,5 +9,7 @@ class BotTelegram::Message < ApplicationRecord
 
   enumerize :message_type, in: %i[regular callback], default: :regular
 
+  validates :telegram_message_id, uniqueness: true
+
   search_by :text, user: %i[username first_name]
 end
