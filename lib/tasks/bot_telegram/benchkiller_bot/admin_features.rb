@@ -46,6 +46,16 @@ module BotTelegram::BenchkillerBot::AdminFeatures
     send_notification_to_chat ::BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID, text
   end
 
+  def send_companies_creating_to_admin_chat(company)
+    text = i18n_scope(
+      :admin,
+      :company_creates,
+      company_name: company.title,
+      username: company.users.first.telegram_user.username
+    )
+    send_notification_to_chat ::BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID, text
+  end
+
   def approve_offer(argument)
     offer = ::Benchkiller::Offer.find argument
     offer.approve
