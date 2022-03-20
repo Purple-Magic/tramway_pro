@@ -5,12 +5,21 @@ module BotTelegram::MessagesManager
     file_path = "#{Rails.root}/lib/tasks/bot_telegram/bot_message_attributes.yml"
     telegram_message_attributes = YAML.load_file(file_path)['telegram_message']['attributes']
 
-    message_object = BotTelegram::Message.find_or_create_by(
+    message_object = BotTelegram::Message.find_by(
       telegram_message_id: message.message_id,
       bot_id: bot.id,
       user_id: user.id,
       chat_id: chat.id
     )
+
+    unless message_object.present?
+      message_object = BotTelegram::Message.create!(
+        telegram_message_id: message.message_id,
+        bot_id: bot.id,
+        user_id: user.id,
+        chat_id: chat.id
+      )
+    end
 
     message_object.update! text: message.try(:text), 
       project_id: Project.find_by(title: 'PurpleMagic').id,
