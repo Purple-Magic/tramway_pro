@@ -5,8 +5,14 @@ module BotTelegram::MessagesManager
     file_path = "#{Rails.root}/lib/tasks/bot_telegram/bot_message_attributes.yml"
     telegram_message_attributes = YAML.load_file(file_path)['telegram_message']['attributes']
 
-    BotTelegram::Message.create! text: message.try(:text), user_id: user.id, chat_id: chat.id,
+    message_object = BotTelegram::Message.find_or_create_by(
+      telegram_message_id: message.message_id,
       bot_id: bot.id,
+      user_id: user.id,
+      chat_id: chat.id
+    )
+
+    message_object.update! text: message.try(:text), 
       project_id: Project.find_by(title: 'PurpleMagic').id,
       options: (telegram_message_attributes.reduce({}) do |hash, attribute|
                   hash.merge! attribute => message.send(attribute)
