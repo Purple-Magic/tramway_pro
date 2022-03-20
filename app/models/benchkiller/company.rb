@@ -20,6 +20,10 @@ class Benchkiller::Company < ApplicationRecord
 
   include BotTelegram::BenchkillerBot::AdminFeatures
 
+  after_create do |company|
+    send_companies_creating_to_admin_chat company
+  end
+
   after_save do |company|
     send_companies_changes_to_admin_chat company
   end
