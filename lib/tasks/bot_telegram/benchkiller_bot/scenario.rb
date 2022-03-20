@@ -18,7 +18,7 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
 
     chat_decorator = BotTelegram::BenchkillerBot::ChatDecorator.new chat
     if chat_decorator.main_chat?
-      offer = ::Benchkiller::Offer.create! message_id: message.id
+      offer = ::Benchkiller::Offer.find_or_create_by! message_id: message.id
       offer.parse!
       send_approve_message_to_admin_chat offer
     end
