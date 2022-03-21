@@ -14,8 +14,9 @@ module Benchkiller::Concerns
       offers,
       :period
     ).call
-    
+
     if params[:search].present?
+      offers = Benchkiller::Offer.includes(message: :user).where id: offers.map(&:id)
       offers_ids = offers.reverse.uniq { |offer| offer.message.user.id }.reverse.map &:id
       offers = Benchkiller::Offer.where id: offers_ids
     end
