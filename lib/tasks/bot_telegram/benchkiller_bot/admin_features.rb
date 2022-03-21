@@ -50,8 +50,7 @@ module BotTelegram::BenchkillerBot::AdminFeatures
     text = i18n_scope(
       :admin,
       :company_creates,
-      company_name: company.title,
-      username: company.users.first.telegram_user.username
+      company_name: company.title
     )
     send_notification_to_chat ::BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID, text
   end
