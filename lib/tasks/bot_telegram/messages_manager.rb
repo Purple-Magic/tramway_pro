@@ -17,6 +17,8 @@ module BotTelegram::MessagesManager
       options: (telegram_message_attributes.reduce({}) do |hash, attribute|
                   hash.merge! attribute => message.send(attribute)
                 end)
+
+    message_object
   end
 
   # :reek:FeatureEnvy { enabled: false }
