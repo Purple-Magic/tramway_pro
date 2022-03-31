@@ -12,7 +12,7 @@ module BotTelegram::BenchkillerBot
   NEED_DEV_CHANNEL = '-1001376858073'
 
   MAIN_COUNTRIES = [ 'РФ', 'Украина', 'Белоруссия' ]
-  CONTINENTS = ['Европа', 'Азия', 'Америка']
+  CONTINENTS = { europa: 'Европа', asia: 'Азия', america: 'Америка' }
 
   EUROPA_COUNTRIES = YAML.load_file(Rails.root.join('lib', 'yaml', 'benchkiller_countries.yml'))['europa']
   ASIA_COUNTRIES = YAML.load_file(Rails.root.join('lib', 'yaml', 'benchkiller_countries.yml'))['asia'] 
@@ -29,17 +29,20 @@ module BotTelegram::BenchkillerBot
       %i[set_portfolio_url set_regions_to_cooperate],
       %i[set_email start_menu]
     ],
-    set_place: CONTINENTS + MAIN_COUNTRIES,
-    set_regions_to_cooperate: CONTINENTS + MAIN_COUNTRIES,
-    europa: EUROPA_COUNTRIES,
-    asia: ASIA_COUNTRIES,
-    america: AMERICA_COUNTRIES,
+    set_place_menu: [ :add_place, :remove_place ],
+    add_place_menu: (CONTINENTS.keys + MAIN_COUNTRIES).each_slice(3).to_a,
+    set_regions_to_cooperate_menu: CONTINENTS.keys + MAIN_COUNTRIES,
+    europa: EUROPA_COUNTRIES.each_slice(3).to_a,
+    asia: ['Вся Азия'] + ASIA_COUNTRIES,
+    america: ['Вся Америка'] + AMERICA_COUNTRIES,
     without_company_menu: [
       [:create_company]
     ]
   }.freeze
 
   BUTTONS = {
+    add_place: 'Добавить место расположение',
+    remove_place: 'Удалить место расположения',
     change_company_card: 'Изменить карточку',
     create_company: 'Создать компанию',
     create_password: 'Сгенерировать пароль',
@@ -53,7 +56,7 @@ module BotTelegram::BenchkillerBot
     set_phone: 'Телефон',
     set_regions_to_cooperate: 'Регионы сотрудничества',
     start_menu: 'Назад'
-  }.merge(CONTINENTS.reduce({}) { |hash, continent| hash.merge! continent => continent })
+  }.merge(CONTINENTS.reduce({}) { |hash, (key, continent)| hash.merge! key => continent })
     .merge(MAIN_COUNTRIES.reduce({}) { |hash, continent| hash.merge! continent => continent })
     .merge(EUROPA_COUNTRIES.reduce({}) { |hash, country| hash.merge! country => country })
     .merge(ASIA_COUNTRIES.reduce({}) { |hash, country| hash.merge! country => country })
@@ -79,10 +82,6 @@ module BotTelegram::BenchkillerBot
     set_email: {
       message: 'Введите контактный email. Для отмены введите /start',
       state: :waiting_for_set_email
-    },
-    set_place: {
-      message: 'Введите расположение вашей команды. Для отмены введите /start',
-      state: :waiting_for_set_place
     },
     set_phone: {
       message: 'Введите контактный телефон. Для отмены введите /start',
