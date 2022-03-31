@@ -3,6 +3,6 @@
 require 'colorize'
 
 Bot.find_each do |bot|
-  BotJob.perform_later bot.id, bot.name
+  BotWorker.perform_async bot.id, bot.name
   puts "#{bot.name} started".green
 end

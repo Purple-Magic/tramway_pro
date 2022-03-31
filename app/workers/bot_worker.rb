@@ -2,7 +2,7 @@
 
 require_relative '../../lib/tasks/bot_telegram/bot_listener'
 
-class BotJob < ActiveJob::Base
+class BotWorker < ApplicationWorker
   queue_as :bot
   sidekiq_options backtrace: 20
 
