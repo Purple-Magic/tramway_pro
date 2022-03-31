@@ -11,6 +11,13 @@ module BotTelegram::BenchkillerBot
   FREE_DEV_CHANNEL = '-1001424055607'
   NEED_DEV_CHANNEL = '-1001376858073'
 
+  MAIN_COUNTRIES = [ 'РФ', 'Украина', 'Белоруссия' ]
+  CONTINENTS = ['Европа', 'Азия', 'Америка']
+
+  EUROPA_COUNTRIES = YAML.load_file(Rails.root.join('lib', 'yaml', 'benchkiller_countries.yml'))['europa']
+  ASIA_COUNTRIES = YAML.load_file(Rails.root.join('lib', 'yaml', 'benchkiller_countries.yml'))['asia'] 
+  AMERICA_COUNTRIES = YAML.load_file(Rails.root.join('lib', 'yaml', 'benchkiller_countries.yml'))['america'] 
+  
   MENUS = {
     start_menu: [
       %i[get_company_card create_password],
@@ -22,6 +29,11 @@ module BotTelegram::BenchkillerBot
       %i[set_portfolio_url set_regions_to_cooperate],
       %i[set_email start_menu]
     ],
+    set_place: CONTINENTS + MAIN_COUNTRIES,
+    set_regions_to_cooperate: CONTINENTS + MAIN_COUNTRIES,
+    europa: EUROPA_COUNTRIES,
+    asia: ASIA_COUNTRIES,
+    america: AMERICA_COUNTRIES,
     without_company_menu: [
       [:create_company]
     ]
@@ -41,7 +53,11 @@ module BotTelegram::BenchkillerBot
     set_phone: 'Телефон',
     set_regions_to_cooperate: 'Регионы сотрудничества',
     start_menu: 'Назад'
-  }.freeze
+  }.merge(CONTINENTS.reduce({}) { |hash, continent| hash.merge! continent => continent })
+    .merge(MAIN_COUNTRIES.reduce({}) { |hash, continent| hash.merge! continent => continent })
+    .merge(EUROPA_COUNTRIES.reduce({}) { |hash, country| hash.merge! country => country })
+    .merge(ASIA_COUNTRIES.reduce({}) { |hash, country| hash.merge! country => country })
+    .merge(AMERICA_COUNTRIES.reduce({}) { |hash, country| hash.merge! country => country })
 
   ACTIONS_DATA = {
     create_company: {
