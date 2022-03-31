@@ -3,8 +3,7 @@
 require_relative '../../lib/tasks/bot_telegram/bot_listener'
 
 class BotWorker < ApplicationWorker
-  queue_as :bot
-  sidekiq_options backtrace: 20
+  sidekiq_options queue: :bot
 
   def perform(id, _bot_name)
     BotTelegram::BotListener.perform id
