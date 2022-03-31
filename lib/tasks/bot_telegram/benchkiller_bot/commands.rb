@@ -26,12 +26,6 @@ module BotTelegram::BenchkillerBot::Commands
     end
   end
 
-  CONTINENTS.each do |(method_name, _)|
-    define_method method_name do |_argument|
-      show menu: method_name
-    end
-  end
-
   def set_place(_argument)
     answer = i18n_scope :set_place, :text
     show menu: :set_place_menu, answer: answer
@@ -40,10 +34,6 @@ module BotTelegram::BenchkillerBot::Commands
   def add_place(_argument)
     answer = i18n_scope :add_place, :text
     show menu: :add_place_menu, answer: answer
-  end
-
-  CONTINENTS.each do |continent|
-
   end
 
   def create_company(_argument)

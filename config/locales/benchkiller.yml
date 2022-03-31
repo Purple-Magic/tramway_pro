@@ -58,3 +58,5 @@ ru:
       admin:
         company_changes: "Изменение в %{company_name}:\n\n%{changes}\n\n%{url}"
         company_creates: "Новая компания %{company_name}. Пользователь пока заполняет данные."
+      europa:
+        text: Добавьте одну из нижеперечисленных стран

@@ -32,7 +32,7 @@ module BotTelegram::BenchkillerBot
     set_place_menu: [ :add_place, :remove_place ],
     add_place_menu: (CONTINENTS.keys + MAIN_COUNTRIES).each_slice(3).to_a,
     set_regions_to_cooperate_menu: CONTINENTS.keys + MAIN_COUNTRIES,
-    europa: EUROPA_COUNTRIES.each_slice(3).to_a,
+    europa: [:whole_europa] + EUROPA_COUNTRIES.each_slice(3).to_a,
     asia: ['Вся Азия'] + ASIA_COUNTRIES,
     america: ['Вся Америка'] + AMERICA_COUNTRIES,
     without_company_menu: [
@@ -55,7 +55,8 @@ module BotTelegram::BenchkillerBot
     set_place: 'Расположение компании',
     set_phone: 'Телефон',
     set_regions_to_cooperate: 'Регионы сотрудничества',
-    start_menu: 'Назад'
+    start_menu: 'Назад',
+    whole_europa: '🇪🇺Вся Европа'
   }.merge(CONTINENTS.reduce({}) { |hash, (key, continent)| hash.merge! key => continent })
     .merge(MAIN_COUNTRIES.reduce({}) { |hash, continent| hash.merge! continent => continent })
     .merge(EUROPA_COUNTRIES.reduce({}) { |hash, country| hash.merge! country => country })
