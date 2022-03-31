@@ -13,6 +13,10 @@ module BotTelegram::BenchkillerBot
 
   MAIN_COUNTRIES = [ 'РФ', 'Украина', 'Белоруссия' ]
   CONTINENTS = ['Европа', 'Азия', 'Америка']
+
+  EUROPA_COUNTRIES = YAML.load_file(Rails.root.join('lib', 'yaml', 'benchkiller_countries.yml'))['europa']
+  ASIA_COUNTRIES = YAML.load_file(Rails.root.join('lib', 'yaml', 'benchkiller_countries.yml'))['asia'] 
+  AMERICA_COUNTRIES = YAML.load_file(Rails.root.join('lib', 'yaml', 'benchkiller_countries.yml'))['america'] 
   
   MENUS = {
     start_menu: [
@@ -27,9 +31,9 @@ module BotTelegram::BenchkillerBot
     ],
     set_place: CONTINENTS + MAIN_COUNTRIES,
     set_regions_to_cooperate: CONTINENTS + MAIN_COUNTRIES,
-    europa: countries[:europa],
-    asia: countries[:asia],
-    america: countries[:america],
+    europa: EUROPA_COUNTRIES,
+    asia: ASIA_COUNTRIES,
+    america: AMERICA_COUNTRIES,
     without_company_menu: [
       [:create_company]
     ]
@@ -51,9 +55,9 @@ module BotTelegram::BenchkillerBot
     start_menu: 'Назад'
   }.merge(CONTINENTS.reduce({}) { |hash, continent| hash.merge! continent => continent })
     .merge(MAIN_COUNTRIES.reduce({}) { |hash, continent| hash.merge! continent => continent })
-    .merge(countries[:europa].reduce({}) { |hash, country| hash.merge! country => country })
-    .merge(countries[:asia].reduce({}) { |hash, country| hash.merge! country => country })
-    .merge(countries[:america].reduce({}) { |hash, country| hash.merge! country => country })
+    .merge(EUROPA_COUNTRIES.reduce({}) { |hash, country| hash.merge! country => country })
+    .merge(ASIA_COUNTRIES.reduce({}) { |hash, country| hash.merge! country => country })
+    .merge(AMERICA_COUNTRIES.reduce({}) { |hash, country| hash.merge! country => country })
 
   ACTIONS_DATA = {
     create_company: {
@@ -117,9 +121,5 @@ module BotTelegram::BenchkillerBot
 
   def company(telegram_user)
     benchkiller_user(telegram_user)&.companies&.first
-  end
-
-  def countries(continent)
-    YAML.load_file(Rails.root.join('lib', 'yaml', 'countries.yml'))[continent.to_s]
   end
 end
