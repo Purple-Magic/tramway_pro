@@ -1,0 +1,2 @@
+module BotTelegram::PurpleMagicBot
+end
