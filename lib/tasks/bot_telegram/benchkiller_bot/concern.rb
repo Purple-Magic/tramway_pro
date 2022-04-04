@@ -8,7 +8,7 @@ module BotTelegram::BenchkillerBot::Concern
     I18n.t(key, scope: scope, **attributes)
   end
 
-  def show(menu:, answer:)
+  def show(menu:, answer:, continue_action: false)
     keyboard = ::BotTelegram::BenchkillerBot::MENUS[menu].map do |button_row|
       if button_row.is_a? Array
         button_row.map do |button|
@@ -21,7 +21,6 @@ module BotTelegram::BenchkillerBot::Concern
 
     message = ::BotTelegram::Custom::Message.new text: answer, reply_markup: { keyboard: keyboard }
 
-    user.set_finished_state_for bot: bot_record
     message_to_user bot.api, message, chat.telegram_chat_id
   end
 end
