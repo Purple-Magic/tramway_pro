@@ -85,7 +85,7 @@ module BotTelegram::BenchkillerBot::Commands
     end
   end
 
-  EUROPA_COUNTRIES.merge(ASIA_COUNTRIES).merge(AMERICA_COUNTRIES).merge(WHOLE_COUNTRIES).each do |(key, country)|
+  MAIN_COUNTRIES.merge(EUROPA_COUNTRIES).merge(ASIA_COUNTRIES).merge(AMERICA_COUNTRIES).merge(WHOLE_COUNTRIES).each do |(key, country)|
     define_method key do |_argument|
       current_company = company(user)
       case user.current_state(bot_record)
