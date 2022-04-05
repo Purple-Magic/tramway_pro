@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Benchkiller::OfferSerializer < ApplicationSerializer
-  attributes :uuid, :title, :text, :created_at
+  attributes :uuid, :title, :text, :created_at, :username
 
   has_many :tags, serializer: ::Benchkiller::TagSerializer
 
@@ -12,5 +12,10 @@ class Benchkiller::OfferSerializer < ApplicationSerializer
 
   def text
     object.message.text
+  end
+
+  def username
+    user = object.message.user
+    "#{user.username.present? ? user.username : 'No username'}: #{user.first_name} #{user.last_name}"
   end
 end
