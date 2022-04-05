@@ -146,6 +146,7 @@ ru:
         company_url: Адрес сайта
         portfolio_url: Ссылка на портфолио
         regions_to_cooperate: Регионы сотрудничества
+        regions_to_except: Регионы-исключения
         review_state: Статус отсмотра
       podcast:
         title: Название подкаста

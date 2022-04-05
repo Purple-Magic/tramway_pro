@@ -62,7 +62,7 @@ class Benchkiller::CompanyDecorator < ApplicationDecorator
 
   def data_view
     table do
-      %i[email phone company_url portfolio_url place regions_to_cooperate].each do |attribute|
+      %i[email phone company_url portfolio_url place regions_to_cooperate regions_to_except].each do |attribute|
         concat(content_tag(:tr) do
           concat(content_tag(:td) do
             object.class.human_attribute_name attribute
