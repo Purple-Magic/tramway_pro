@@ -31,6 +31,11 @@ module BotTelegram::BenchkillerBot::Commands
     show menu: :set_place_menu, answer: answer, continue_action: true
   end
 
+  def set_regions_to_cooperate(_argument)
+    answer = i18n_scope :set_regions_to_cooperate, :text
+    show menu: :set_regions_to_cooperate_menu, answer: answer, continue_action: true
+  end
+
   def add_place(_argument)
     BotTelegram::Users::State.create! user_id: user.id,
       bot_id: bot_record.id,
@@ -140,7 +145,14 @@ module BotTelegram::BenchkillerBot::Commands
     define_method key do |_argument|
       current_company = company(user)
       
-      return unless user.current_state(bot_record).in? [ 'waiting_for_add_place', 'waiting_for_remove_place' ]
+      country_works_states = [
+        'waiting_for_add_place',
+        'waiting_for_remove_place',
+        'waiting_for_add_regions_to_cooperate',
+        'waiting_for_remove_regions_to_cooperate'
+      ]
+
+      return unless user.current_state(bot_record).in? country_works_states
 
       data = case user.current_state(bot_record)
                   when 'waiting_for_add_place'
