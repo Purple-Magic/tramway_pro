@@ -44,11 +44,11 @@ module BotTelegram::BenchkillerBot::Commands
     answer = i18n_scope :remove_place, :text
 
     countries = company(user).place.split(',')
-    options = ALL_COUNTRIES.reduce({}) do |hash, (key, country)|
-      hash.merge! key => country if countries.include? country
-    end
+    options = ALL_COUNTRIES.map do |(key, country)|
+      key if countries.include? country
+    end.compact
 
-    show options: options, answer: answer
+    show options: [options], answer: answer
   end
 
   def create_company(_argument)

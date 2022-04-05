@@ -9,6 +9,8 @@ module BotTelegram::BenchkillerBot::Concern
   end
 
   def show(menu: false, answer:, continue_action: false, options: false)
+    raise "There no menu or options to show with answer #{answer}" if !menu.present? && !options.present?
+
     keyboard = (options || ::BotTelegram::BenchkillerBot::MENUS[menu]).map do |button_row|
       if button_row.is_a? Array
         button_row.map do |button|

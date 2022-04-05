@@ -21,7 +21,8 @@ module BotTelegram::BenchkillerBot
   WHOLE_COUNTRIES = {
     whole_europa: 'Вся Европа',
     whole_asia: 'Вся Азия',
-    whole_america: 'Вся Америка'
+    whole_america: 'Вся Америка',
+    worldwide: 'Worldwide'
   }
 
   ALL_COUNTRIES = MAIN_COUNTRIES.merge(EUROPA_COUNTRIES).merge(ASIA_COUNTRIES).merge(AMERICA_COUNTRIES).merge(WHOLE_COUNTRIES)
