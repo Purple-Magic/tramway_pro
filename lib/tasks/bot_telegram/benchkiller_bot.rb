@@ -17,6 +17,14 @@ module BotTelegram::BenchkillerBot
   EUROPA_COUNTRIES = YAML.load_file(Rails.root.join('lib', 'yaml', 'benchkiller_countries.yml'))['europa']
   ASIA_COUNTRIES = YAML.load_file(Rails.root.join('lib', 'yaml', 'benchkiller_countries.yml'))['asia'] 
   AMERICA_COUNTRIES = YAML.load_file(Rails.root.join('lib', 'yaml', 'benchkiller_countries.yml'))['america'] 
+
+  WHOLE_COUNTRIES = {
+    whole_europa: 'Вся Европа',
+    whole_asia: 'Вся Азия',
+    whole_america: 'Вся Америка'
+  }
+
+  ALL_COUNTRIES = MAIN_COUNTRIES.merge(EUROPA_COUNTRIES).merge(ASIA_COUNTRIES).merge(AMERICA_COUNTRIES).merge(WHOLE_COUNTRIES)
   
   MENUS = {
     start_menu: [
@@ -39,12 +47,6 @@ module BotTelegram::BenchkillerBot
       [:create_company]
     ]
   }.freeze
-
-  WHOLE_COUNTRIES = {
-    whole_europa: 'Вся Европа',
-    whole_asia: 'Вся Азия',
-    whole_america: 'Вся Америка'
-  }
 
   BUTTONS = {
     add_place: 'Добавить место расположение',

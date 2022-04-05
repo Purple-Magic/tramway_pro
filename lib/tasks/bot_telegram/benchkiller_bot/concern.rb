@@ -8,8 +8,8 @@ module BotTelegram::BenchkillerBot::Concern
     I18n.t(key, scope: scope, **attributes)
   end
 
-  def show(menu:, answer:, continue_action: false)
-    keyboard = ::BotTelegram::BenchkillerBot::MENUS[menu].map do |button_row|
+  def show(menu: false, answer:, continue_action: false, options: false)
+    keyboard = (options || ::BotTelegram::BenchkillerBot::MENUS[menu]).map do |button_row|
       if button_row.is_a? Array
         button_row.map do |button|
           ::BotTelegram::BenchkillerBot::BUTTONS[button]

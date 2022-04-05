@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 require_relative '../custom/message'
-require_relative 'countries_helper'
 
 module BotTelegram::BenchkillerBot::Commands
   include BotTelegram::BenchkillerBot
-  include BotTelegram::BenchkillerBot::CountriesHelper
 
   def start(_text: nil)
     answer = company(user).present? ? i18n_scope(:start, :text) : i18n_scope(:start, :new_user_text)
@@ -40,6 +38,17 @@ module BotTelegram::BenchkillerBot::Commands
   def add_place(_argument)
     answer = i18n_scope :add_place, :text
     show menu: :add_place_menu, answer: answer
+  end
+
+  def remove_place(argument)
+    answer = i18n_scope :remove_place, :text
+
+    countries = company(user).place.split(',')
+    options = ALL_COUNTRIES.reduce({}) do |hash, (key, country)|
+      hash.merge! key => country if countries.include? country
+    end
+
+    show options: options, answer: answer
   end
 
   def create_company(_argument)
@@ -85,11 +94,12 @@ module BotTelegram::BenchkillerBot::Commands
     end
   end
 
-  MAIN_COUNTRIES.merge(EUROPA_COUNTRIES).merge(ASIA_COUNTRIES).merge(AMERICA_COUNTRIES).merge(WHOLE_COUNTRIES).each do |(key, country)|
+  ALL_COUNTRIES.each do |(key, country)|
     define_method key do |_argument|
       current_company = company(user)
       case user.current_state(bot_record)
       when 'waiting_for_set_place'
+        binding.pry
         countries = ((current_company.place&.split(',') || []) + [country]).uniq
         if current_company.update! place: countries
           message_to_user bot.api, i18n_scope(:set_place, :success, place: countries.join(', ')), chat.telegram_chat_id
