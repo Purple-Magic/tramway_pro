@@ -112,7 +112,7 @@ module BotTelegram::BenchkillerBot::Commands
     show menu: :add_region_to_except_menu, answer: answer
   end
 
-  def remove_place(argument)
+  def remove_region_to_except(argument)
     BotTelegram::Users::State.create! user_id: user.id,
       bot_id: bot_record.id,
       current_state: :waiting_for_remove_regions_to_except
@@ -122,7 +122,7 @@ module BotTelegram::BenchkillerBot::Commands
     countries = company(user).regions_to_except
     unless countries.present?
       user.set_finished_state_for bot: bot_record
-      answer = i18n_scope :set_regions_to_except_menu, :no_countries_to_delete
+      answer = i18n_scope :set_regions_to_except, :no_countries_to_delete
       show menu: :start_menu, answer: answer
       return
     end
