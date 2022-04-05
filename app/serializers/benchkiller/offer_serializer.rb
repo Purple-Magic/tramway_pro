@@ -15,6 +15,7 @@ class Benchkiller::OfferSerializer < ApplicationSerializer
   end
 
   def username
-    object.message.user.username
+    user = object.message.user
+    "#{user.username.present? ? user.username : 'No username'}: #{user.first_name} #{user.last_name}"
   end
 end
