@@ -40,7 +40,8 @@ module BotTelegram::BenchkillerBot
     ],
     set_place_menu: [ :add_place, :remove_place ],
     add_place_menu: (CONTINENTS.keys + MAIN_COUNTRIES.keys).each_slice(3).to_a,
-    set_regions_to_cooperate_menu: CONTINENTS.keys + MAIN_COUNTRIES.keys,
+    set_regions_to_cooperate_menu: [ :add_region_to_cooperate, :remove_region_to_cooperate ],
+    add_regions_to_cooperate_menu: (CONTINENTS.keys + MAIN_COUNTRIES.keys).each_slice(3).to_a,
     europa: [:whole_europa] + EUROPA_COUNTRIES.keys.each_slice(3).to_a,
     asia: [:whole_asia] + ASIA_COUNTRIES.keys.each_slice(3).to_a,
     america: [:whole_america] + AMERICA_COUNTRIES.keys.each_slice(3).to_a,
@@ -97,10 +98,6 @@ module BotTelegram::BenchkillerBot
       message: 'Введите контактный телефон. Для отмены введите /start',
       state: :waiting_for_set_phone
     },
-    set_regions_to_cooperate: {
-      message: 'Введите регионы сотрудничества. Для отмены введите /start',
-      state: :waiting_for_set_regions_to_cooperate
-    }
   }.freeze
 
   VALIDATIONS = {
