@@ -21,11 +21,13 @@ class BotTelegram::BotListener
             process message, bot_record, bot
           else
             error = "Empty message in bot #{bot_record.name}"
-            Rails.env.development? ? puts(error) : Airbrake.notify(error)
+            Rails.env.development? ? puts(error) : Airbrake.notify(error, message: message)
           end
+        rescue StandardError => error
+          Rails.env.development? ? puts(error) : Airbrake.notify(error, message: message)
         end
       rescue Telegram::Bot::Exceptions::ResponseError => error
-        Rails.env.development? ? puts(error) : Airbrake.notify(error, message: message)
+        Rails.env.development? ? puts(error) : Airbrake.notify(error)
       end
     end
 
