@@ -192,20 +192,29 @@ module BotTelegram::BenchkillerBot::Commands
 
       return unless user.current_state(bot_record).in? country_works_states
 
+      trim_countries = lambda do |value|
+        value.is_a? Array ? value : value&.split(',')
+      end
+
+      place_countries = trim_countries.call(current_company.place)
+      regions_to_cooperate_countries = trim_countries.call(current_company.regions_to_cooperate)
+      regions_to_except_countries = trim_countries.call(current_company.regions_to_except)
+
       data = case user.current_state(bot_record)
                   when 'waiting_for_add_place'
-                    { countries: ((current_company.place || []) + [country]).uniq, action: :set_place }
+                    { countries: (place_countries + [country]).uniq, action: :set_place }
                   when 'waiting_for_remove_place'
-                    { countries: ((current_company.place || []) - [country]).uniq, action: :set_place }
+                    { countries: (place_countries - [country]).uniq, action: :set_regions_to_cooperate }
                   when 'waiting_for_add_regions_to_cooperate'
-                    { countries: ((current_company.regions_to_cooperate || []) + [country]).uniq, action: :set_regions_to_cooperate }
+                    { countries: (regions_to_cooperate_countries + [country]).uniq, action: :set_regions_to_cooperate }
                   when 'waiting_for_remove_regions_to_cooperate'
-                    { countries: ((current_company.regions_to_cooperate || []) - [country]).uniq, action: :set_regions_to_cooperate }
+                    { countries: (regions_to_cooperate_countries - [country]).uniq, action: :set_regions_to_cooperate }
                   when 'waiting_for_add_regions_to_except'
-                    { countries: ((current_company.regions_to_except || []) + [country]).uniq, action: :set_regions_to_except }
+                    { countries: (regions_to_except_countries + [country]).uniq, action: :set_regions_to_except }
                   when 'waiting_for_remove_regions_to_except'
-                    { countries: ((current_company.regions_to_except || []) - [country]).uniq, action: :set_regions_to_except }
+                    { countries: (regions_to_except_countries - [country]).uniq, action: :set_regions_to_except }
                   end
+
       attribute = data[:action].to_s.sub('set_', '').to_sym
       answer = if current_company.update! attribute => data[:countries]
                  if data[:countries].any?
