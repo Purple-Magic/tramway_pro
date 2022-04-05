@@ -26,6 +26,114 @@ module BotTelegram::BenchkillerBot::Commands
     end
   end
 
+  def set_place(_argument)
+    answer = i18n_scope :set_place, :text
+    show menu: :set_place_menu, answer: answer, continue_action: true
+  end
+
+  def set_regions_to_cooperate(_argument)
+    answer = i18n_scope :set_regions_to_cooperate, :text
+    show menu: :set_regions_to_cooperate_menu, answer: answer, continue_action: true
+  end
+
+  def set_regions_to_except(_argument)
+    answer = i18n_scope :set_regions_to_except, :text
+    show menu: :set_regions_to_except_menu, answer: answer, continue_action: true
+  end
+
+  def add_place(_argument)
+    BotTelegram::Users::State.create! user_id: user.id,
+      bot_id: bot_record.id,
+      current_state: :waiting_for_add_place
+
+    answer = i18n_scope :add_place, :text
+    show menu: :add_place_menu, answer: answer
+  end
+
+  def remove_place(argument)
+    BotTelegram::Users::State.create! user_id: user.id,
+      bot_id: bot_record.id,
+      current_state: :waiting_for_remove_place
+
+    answer = i18n_scope :remove_place, :text
+
+    countries = company(user).place
+    unless countries.present?
+      user.set_finished_state_for bot: bot_record
+      answer = i18n_scope :set_place, :no_countries_to_delete
+      show menu: :start_menu, answer: answer
+      return
+    end
+
+    options = ALL_COUNTRIES.map do |(key, country)|
+      key if countries.include? country
+    end.compact
+
+    show options: [options], answer: answer
+  end
+
+  def add_region_to_cooperate(_argument)
+    BotTelegram::Users::State.create! user_id: user.id,
+      bot_id: bot_record.id,
+      current_state: :waiting_for_add_regions_to_cooperate
+
+    answer = i18n_scope :add_region_to_cooperate, :text
+    show menu: :add_region_to_cooperate_menu, answer: answer
+  end
+
+  def remove_place(argument)
+    BotTelegram::Users::State.create! user_id: user.id,
+      bot_id: bot_record.id,
+      current_state: :waiting_for_remove_regions_to_cooperate
+
+    answer = i18n_scope :remove_region_to_cooperate, :text
+
+    countries = company(user).regions_to_cooperate
+    unless countries.present?
+      user.set_finished_state_for bot: bot_record
+      answer = i18n_scope :set_regions_to_cooperate_menu, :no_countries_to_delete
+      show menu: :start_menu, answer: answer
+      return
+    end
+
+    options = ALL_COUNTRIES.map do |(key, country)|
+      key if countries.include? country
+    end.compact
+
+    show options: [options], answer: answer
+  end
+
+  def add_region_to_except(_argument)
+    BotTelegram::Users::State.create! user_id: user.id,
+      bot_id: bot_record.id,
+      current_state: :waiting_for_add_regions_to_except
+
+    answer = i18n_scope :add_region_to_except, :text
+    show menu: :add_region_to_except_menu, answer: answer
+  end
+
+  def remove_place(argument)
+    BotTelegram::Users::State.create! user_id: user.id,
+      bot_id: bot_record.id,
+      current_state: :waiting_for_remove_regions_to_except
+
+    answer = i18n_scope :remove_region_to_except, :text
+
+    countries = company(user).regions_to_except
+    unless countries.present?
+      user.set_finished_state_for bot: bot_record
+      answer = i18n_scope :set_regions_to_except_menu, :no_countries_to_delete
+      show menu: :start_menu, answer: answer
+      return
+    end
+
+    options = ALL_COUNTRIES.map do |(key, country)|
+      key if countries.include? country
+    end.compact
+
+    show options: [options], answer: answer
+  end
+
   def create_company(_argument)
     BotTelegram::Users::State.create! user_id: user.id,
       bot_id: bot_record.id,
@@ -66,6 +174,52 @@ module BotTelegram::BenchkillerBot::Commands
     define_method(menu) do |_argument|
       answer = i18n_scope(menu, :text)
       show menu: menu, answer: answer
+    end
+  end
+
+  ALL_COUNTRIES.each do |(key, country)|
+    define_method key do |_argument|
+      current_company = company(user)
+      
+      country_works_states = [
+        'waiting_for_add_place',
+        'waiting_for_remove_place',
+        'waiting_for_add_regions_to_cooperate',
+        'waiting_for_remove_regions_to_cooperate',
+        'waiting_for_add_regions_to_except',
+        'waiting_for_remove_regions_to_except'
+      ]
+
+      return unless user.current_state(bot_record).in? country_works_states
+
+      data = case user.current_state(bot_record)
+                  when 'waiting_for_add_place'
+                    { countries: ((current_company.place || []) + [country]).uniq, action: :set_place }
+                  when 'waiting_for_remove_place'
+                    { countries: ((current_company.place || []) - [country]).uniq, action: :set_place }
+                  when 'waiting_for_add_regions_to_cooperate'
+                    { countries: ((current_company.regions_to_cooperate || []) + [country]).uniq, action: :set_regions_to_cooperate }
+                  when 'waiting_for_remove_regions_to_cooperate'
+                    { countries: ((current_company.regions_to_cooperate || []) - [country]).uniq, action: :set_regions_to_cooperate }
+                  when 'waiting_for_add_regions_to_except'
+                    { countries: ((current_company.regions_to_except || []) + [country]).uniq, action: :set_regions_to_except }
+                  when 'waiting_for_remove_regions_to_except'
+                    { countries: ((current_company.regions_to_except || []) - [country]).uniq, action: :set_regions_to_except }
+                  end
+      attribute = data[:action].to_s.sub('set_', '').to_sym
+      answer = if current_company.update! attribute => data[:countries]
+                 if data[:countries].any?
+                   i18n_scope(data[:action], :success, attribute => data[:countries].join(', '))
+                 else
+                   i18n_scope(data[:action], :success_without_countries)
+                 end
+               else
+                 i18n_scope(data[:action], :error)
+               end
+
+      user.set_finished_state_for bot: bot_record
+
+      show menu: :start_menu, answer: answer
     end
   end
 end
