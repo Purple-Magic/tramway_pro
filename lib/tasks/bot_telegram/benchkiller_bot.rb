@@ -22,6 +22,7 @@ module BotTelegram::BenchkillerBot
     whole_europa: 'Вся Европа',
     whole_asia: 'Вся Азия',
     whole_america: 'Вся Америка',
+    mena: 'MENA',
     worldwide: 'Worldwide'
   }
 
@@ -45,7 +46,7 @@ module BotTelegram::BenchkillerBot
     set_regions_to_except_menu: [ :add_region_to_except, :remove_region_to_except ],
     add_region_to_except_menu: (CONTINENTS.keys + MAIN_COUNTRIES.keys).each_slice(3).to_a,
     europa: [:whole_europa] + EUROPA_COUNTRIES.keys.each_slice(3).to_a,
-    asia: [:whole_asia] + ASIA_COUNTRIES.keys.each_slice(3).to_a,
+    asia: [:whole_asia, :mena] + ASIA_COUNTRIES.keys.each_slice(3).to_a,
     america: [:whole_america] + AMERICA_COUNTRIES.keys.each_slice(3).to_a,
     without_company_menu: [
       [:create_company]
