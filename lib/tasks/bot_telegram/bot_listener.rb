@@ -25,7 +25,7 @@ class BotTelegram::BotListener
           end
         end
       rescue Telegram::Bot::Exceptions::ResponseError => error
-        Rails.env.development? ? puts(error) : Airbrake.notify(error)
+        Rails.env.development? ? puts(error) : Airbrake.notify(error, message: message)
       end
     end
 
