@@ -193,7 +193,7 @@ module BotTelegram::BenchkillerBot::Commands
       return unless user.current_state(bot_record).in? country_works_states
 
       trim_countries = lambda do |value|
-        value.is_a? Array ? value : value&.split(',')
+        value.is_a?(Array) ? value : value&.split(',')
       end
 
       place_countries = trim_countries.call(current_company.place)
