@@ -10,6 +10,7 @@ class Benchkiller::Company < ApplicationRecord
   store_accessor :data, :place
   store_accessor :data, :phone
   store_accessor :data, :regions_to_cooperate
+  store_accessor :data, :regions_to_except
 
   validates :title, uniqueness: true
 

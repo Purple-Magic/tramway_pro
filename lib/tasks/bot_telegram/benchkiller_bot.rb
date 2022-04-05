@@ -35,13 +35,15 @@ module BotTelegram::BenchkillerBot
     change_company_card: [
       %i[set_company_name set_phone],
       %i[set_company_url set_place],
-      %i[set_portfolio_url set_regions_to_cooperate],
+      %i[set_portfolio_url set_regions_to_cooperate set_regions_to_except],
       %i[set_email start_menu]
     ],
     set_place_menu: [ :add_place, :remove_place ],
     add_place_menu: (CONTINENTS.keys + MAIN_COUNTRIES.keys).each_slice(3).to_a,
     set_regions_to_cooperate_menu: [ :add_region_to_cooperate, :remove_region_to_cooperate ],
     add_region_to_cooperate_menu: (CONTINENTS.keys + MAIN_COUNTRIES.keys).each_slice(3).to_a,
+    set_regions_to_except_menu: [ :add_region_to_except, :remove_region_to_except ],
+    add_region_to_except_menu: (CONTINENTS.keys + MAIN_COUNTRIES.keys).each_slice(3).to_a,
     europa: [:whole_europa] + EUROPA_COUNTRIES.keys.each_slice(3).to_a,
     asia: [:whole_asia] + ASIA_COUNTRIES.keys.each_slice(3).to_a,
     america: [:whole_america] + AMERICA_COUNTRIES.keys.each_slice(3).to_a,
@@ -55,6 +57,8 @@ module BotTelegram::BenchkillerBot
     remove_place: 'Удалить место расположения',
     add_region_to_cooperate: 'Добавить регион сотрудничества',
     remove_region_to_cooperate: 'Удалить регион сотрудничества',
+    add_region_to_except: 'Добавить регион-исключение',
+    remove_region_to_except: 'Удалить регион-исключение',
     change_company_card: 'Изменить карточку',
     create_company: 'Создать компанию',
     create_password: 'Сгенерировать пароль',
@@ -67,6 +71,7 @@ module BotTelegram::BenchkillerBot
     set_place: 'Расположение компании',
     set_phone: 'Телефон',
     set_regions_to_cooperate: 'Регионы сотрудничества',
+    set_regions_to_except: 'Регионы-исключения',
     start_menu: 'Назад',
   }.merge(CONTINENTS.reduce({}) { |hash, (key, continent)| hash.merge! key => continent })
     .merge(MAIN_COUNTRIES.reduce({}) { |hash, (key, country)| hash.merge! key => country })
