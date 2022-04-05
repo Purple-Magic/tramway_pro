@@ -1,0 +1,56 @@
+europa:
+  austria: Австрия
+  belgium: Бельгия
+  bulgaria: Болгария
+  united_kingdom: Великобритания
+  hungary: Венгрия
+  germany: Германия
+  greece: Греция
+  denmark: Дания
+  ireland: Ирландия
+  spain: Испания
+  italy: Италия
+  latvia: Латвия
+  lithuania: Литва
+  luxembourg: Люксембург
+  malta: Мальта
+  netherlands: Нидерланды
+  poland: Польша
+  portugal: Португалия
+  romania: Румыния
+  slovakia: Словакия
+  slovenia: Словения
+  finland: Финляндия
+  france: Франция
+  croatia: Хорватия
+  czechia: Чехия
+  sweden: Швеция
+  estonia: Эстония
+asia:
+  azerbaijan: Азербайджан	
+  armenia: Армения	
+  vietnam: Вьетнам	
+  georgia: Грузия	
+  israel: Израиль	
+  india: Индия	
+  indonesia: Индонезия	
+  kazakhstan: Казахстан	
+  qatar: Катар	
+  cyprus: Кипр
+  kyrgyzstan: Киргизия	
+  china: Китай	
+  south_korea: Южная Корея
+  kuwait: Кувейт
+  iraq: Ирак
+america:
+  usa: США
+  canada: Канада
+  mexico: Мексика
+  argentina: Аргентина
+  brazil: Бразилия
+  colombia: Колумбия
+  paraguay: Парагвай
+  peru: Перу
+  uruguay: Уругвай
+  chile: Чили
+  ecuador: Эквадор
