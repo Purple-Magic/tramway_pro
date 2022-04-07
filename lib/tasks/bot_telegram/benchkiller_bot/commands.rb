@@ -193,6 +193,8 @@ module BotTelegram::BenchkillerBot::Commands
       return unless user.current_state(bot_record).in? country_works_states
 
       trim_countries = lambda do |value|
+        return [] unless value.present?
+
         value.is_a?(Array) ? value : value&.split(',')
       end
 
