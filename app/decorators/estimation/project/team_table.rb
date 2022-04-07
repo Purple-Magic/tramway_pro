@@ -2,7 +2,7 @@
 
 module Estimation::Project::TeamTable
   def team_table
-    content_tag(:table) do
+    table do
       team_table_header
       team_table_body
     end
