@@ -3,7 +3,7 @@
 module Estimation::Project::CoefficientsTable
   # :reek:DuplicateMethodCall { enabled: false }
   def coefficients_table
-    content_tag(:table) do
+    table do
       result = summary
       coefficients.sort_by(&:position).each do |coefficient|
         prev_result = result

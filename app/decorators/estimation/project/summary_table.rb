@@ -40,7 +40,7 @@ module Estimation::Project::SummaryTable
   end
 
   def summary_table
-    content_tag(:table) do
+    table do
       concat(content_tag(:thead) do
         SUMMARY_TABLE_COLUMNS.each do |column|
           concat(content_tag(:th) do

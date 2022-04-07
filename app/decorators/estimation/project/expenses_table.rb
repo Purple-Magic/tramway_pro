@@ -2,6 +2,8 @@
 
 module Estimation::Project::ExpensesTable
   def expenses_table
+    return unless expenses.any?
+
     content_tag(:table) do
       expenses_table_header
       expenses_table_body
