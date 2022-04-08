@@ -68,7 +68,9 @@ class Benchkiller::CompanyDecorator < ApplicationDecorator
             object.class.human_attribute_name attribute
           end)
           concat(content_tag(:td) do
-            data_view_mode attribute, data&.dig(attribute.to_s)
+            content_tag :span do
+              data_view_mode(attribute, data&.dig(attribute.to_s))
+            end
           end)
         end)
       end
@@ -118,6 +120,8 @@ class Benchkiller::CompanyDecorator < ApplicationDecorator
       link_to value, "tel:#{value}" if value.present?
     elsif key.in? %i[company_url portfolio_url]
       link_to value.truncate(60), value, target: '_blank' if value.present?
+    elsif value.is_a? Array
+      value.join ', '
     else
       value
     end
