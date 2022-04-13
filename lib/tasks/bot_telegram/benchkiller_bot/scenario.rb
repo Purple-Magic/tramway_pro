@@ -25,28 +25,24 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
 
     return unless chat_decorator.to_answer?
 
-    if start_action?
-      start
-    elsif button_action?
-      public_send ::BotTelegram::BenchkillerBot::BUTTONS.invert[message_from_telegram.text], nil
-    elsif user.finished_state_for?(bot: bot_record)
-      process_new_action
-    else
-      action = BotTelegram::BenchkillerBot::Action.new message_from_telegram, user, chat, bot, bot_record
-      action.run
-    end
-  end
-
-  private
-
-  def process_new_action
     if message_from_telegram.is_a? Telegram::Bot::Types::CallbackQuery
       command = BotTelegram::BenchkillerBot::Command.new message_from_telegram, bot_record.slug
       public_send command.name, command.argument if command.valid?
     else
-      message_to_chat bot.api, chat.telegram_chat_id, 'Напиши /start'
+      if start_action?
+        start
+      elsif button_action?
+        public_send ::BotTelegram::BenchkillerBot::BUTTONS.invert[message_from_telegram.text], nil
+      elsif user.finished_state_for?(bot: bot_record)
+        message_to_chat bot.api, chat.telegram_chat_id, 'Напиши /start'
+      else
+        action = BotTelegram::BenchkillerBot::Action.new message_from_telegram, user, chat, bot, bot_record
+        action.run
+      end
     end
   end
+
+  private
 
   def start_action?
     message_from_telegram.try(:text) && message_from_telegram.text == '/start'
