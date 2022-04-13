@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220319135939) do
+ActiveRecord::Schema.define(version: 20220413123454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,9 @@ ActiveRecord::Schema.define(version: 20220319135939) do
     t.text "review_state", default: "unviewed"
     t.uuid "uuid", default: -> { "uuid_generate_v4()" }
     t.datetime "deleted_at"
+    t.text "regions_to_cooperate", array: true
+    t.text "regions_to_except", array: true
+    t.text "place", array: true
   end
 
   create_table "benchkiller_companies_users", force: :cascade do |t|
