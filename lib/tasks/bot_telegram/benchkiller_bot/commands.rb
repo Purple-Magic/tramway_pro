@@ -81,7 +81,7 @@ module BotTelegram::BenchkillerBot::Commands
     show menu: :add_region_to_cooperate_menu, answer: answer
   end
 
-  def remove_place(argument)
+  def remove_region_to_cooperate(argument)
     BotTelegram::Users::State.create! user_id: user.id,
       bot_id: bot_record.id,
       current_state: :waiting_for_remove_regions_to_cooperate
