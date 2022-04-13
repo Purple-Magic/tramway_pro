@@ -7,10 +7,7 @@ class Benchkiller::Company < ApplicationRecord
   store_accessor :data, :portfolio_url
   store_accessor :data, :company_url
   store_accessor :data, :email
-  store_accessor :data, :place
   store_accessor :data, :phone
-  store_accessor :data, :regions_to_cooperate
-  store_accessor :data, :regions_to_except
 
   validates :title, uniqueness: true
 
