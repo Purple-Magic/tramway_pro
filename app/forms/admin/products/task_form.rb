@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Products::TaskForm < Tramway::Core::ApplicationForm
-  properties :title, :project_id, :estimation, :description
+  properties :title, :project_id, :description
 
   association :product
 
@@ -9,7 +9,6 @@ class Admin::Products::TaskForm < Tramway::Core::ApplicationForm
     super(object).tap do
       form_properties product: :association,
         title: :string,
-        estimation: :string,
         description: :text
     end
   end
