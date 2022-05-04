@@ -18,6 +18,8 @@ Tramway::Admin.set_available_models(
   Estimation::Task,
   Estimation::Customer,
   Estimation::Coefficient,
+  Estimation::Expense,
+  Estimation::Cost,
   Benchkiller::User,
   Benchkiller::Company,
   Benchkiller::Notification,
