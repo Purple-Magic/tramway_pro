@@ -112,7 +112,10 @@ Tramway::Admin.navbar_structure(
 
 Tramway::Export.set_exportable_models(
   {
-    Estimation::Project => %i[single_tasks expenses]
+    Estimation::Project => %i[single_tasks expenses],
+  },
+  {
+    Product => [ :time_logs ]
   },
   project: :purple_magic
 )
