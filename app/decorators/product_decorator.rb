@@ -4,6 +4,7 @@ class ProductDecorator < ApplicationDecorator
   delegate_attributes :title, :tech_name
 
   decorate_association :tasks
+  decorate_association :time_logs
 
   include Concerns::TimeLogsTable
   include TimeManager
@@ -24,6 +25,16 @@ class ProductDecorator < ApplicationDecorator
     def show_associations
       [:tasks]
     end
+  end
+
+  def additional_buttons
+    time_logs_url = ::Tramway::Export::Engine.routes.url_helpers.export_path(id, model: object.class, collection: :time_logs)
+
+    buttons = [
+      { url: time_logs_url, inner: -> { time_logs_button_inner }, color: :success },
+    ]
+
+    { show: buttons }
   end
 
   def sum_estimation
@@ -80,6 +91,16 @@ class ProductDecorator < ApplicationDecorator
         beginning_of_month = (beginning_of_month + 1.month).beginning_of_month
         end_of_month = (end_of_month + 1.month).end_of_month
       end
+    end
+  end
+
+  private
+
+  def time_logs_button_inner
+    content_tag(:span) do
+      concat(fa_icon('clock'))
+      concat(' ')
+      concat(fa_icon('file-excel'))
     end
   end
 end
