@@ -74,28 +74,32 @@ collection: :expenses)
   end
 
   def pre_estimated_time
-    courses_video_actions = YAML.load_file(Rails.root.join('lib', 'yaml', 'time_logs_actions.yml'))['Courses::Video']
-    averages = courses_video_actions.reduce({}) do |hash, action|
-      logged_times = Courses::Video.where.not(result_duration: nil).map do |video|
-        time_logs = video.time_logs.where(comment: action)
-        time_logs.sum(&:minutes) / video.result_duration.to_f if time_logs.any? && video.result_duration.present?
-      end.compact
-      hash.merge! action => logged_times.median
-    end
-    table do
-      courses_video_actions.each do |action|
-        concat(tr do
-          concat(th do
-            "#{action} на минуту контента"
-          end)
-          concat(td do
-            "#{averages[action].round(2)}m"
-          end)
-          concat(td do
-            "#{(averages[action] / 60).round(2)}h"
-          end)
-        end)
+    if associated.present?
+      courses_video_actions = YAML.load_file(Rails.root.join('lib', 'yaml', 'time_logs_actions.yml'))['Courses::Video']
+      averages = courses_video_actions.reduce({}) do |hash, action|
+        logged_times = Courses::Video.where.not(result_duration: nil).map do |video|
+          time_logs = video.time_logs.where(comment: action)
+          time_logs.sum(&:minutes) / video.result_duration.to_f if time_logs.any? && video.result_duration.present?
+        end.compact
+        hash.merge! action => logged_times.median
       end
+      table do
+        courses_video_actions.each do |action|
+          concat(tr do
+            concat(th do
+              "#{action} на минуту контента"
+            end)
+            concat(td do
+              "#{averages[action].round(2)}m"
+            end)
+            concat(td do
+              "#{(averages[action] / 60).round(2)}h"
+            end)
+          end)
+        end
+      end
+    else
+      "Эта оценка не ассоциирована с другими сущностями, поэтому здесь нет преоценочных сущностей"
     end
   end
 
