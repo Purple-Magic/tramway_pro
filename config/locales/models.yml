@@ -93,6 +93,7 @@ ru:
         project: Проект
         title: Название задачи
         hours: Количество часов
+        hours_with_coefficients: Количество часов с коэффициентами
         price: Цена за час
         price_with_coefficients: Цена за час с коэффициентами
         sum: Сумма
@@ -248,6 +249,10 @@ ru:
       task_type:
         single: Одноразовая
         multiple: Многоразовая
+    estimation/coefficient:
+      coefficient_type:
+        price: на рейт
+        hours: на часы
   collections:
     benchkiller/offer:
       all: Всё

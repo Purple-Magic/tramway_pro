@@ -7,6 +7,12 @@ module Concerns::TableBuilder
     end
   end
 
+  def thead(**options, &block)
+    content_tag(:thead, **options) do
+      yield if block
+    end
+  end
+
   def th(**options, &block)
     content_tag(:th, **options) do
       yield if block

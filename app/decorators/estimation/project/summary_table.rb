@@ -41,16 +41,16 @@ module Estimation::Project::SummaryTable
 
   def summary_table
     table do
-      concat(content_tag(:thead) do
+      concat(thead do
         SUMMARY_TABLE_COLUMNS.each do |column|
-          concat(content_tag(:th) do
+          concat(th do
             Estimation::Project.human_attribute_name(column)
           end)
         end
       end)
-      concat(content_tag(:tr) do
+      concat(tr do
         SUMMARY_TABLE_COLUMNS.each do |column|
-          concat(content_tag(:td) do
+          concat(td do
             concat(public_send(column))
           end)
         end

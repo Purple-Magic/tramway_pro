@@ -11,7 +11,8 @@ class Estimation::CoefficientDecorator < ApplicationDecorator
     :scale,
     :created_at,
     :updated_at,
-    :position
+    :position,
+    :coefficient_type
   )
 
   def title
