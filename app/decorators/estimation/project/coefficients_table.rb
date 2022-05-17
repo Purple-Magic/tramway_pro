@@ -8,17 +8,21 @@ module Estimation::Project::CoefficientsTable
       coefficients.sort_by(&:position).each do |coefficient|
         prev_result = result
         result *= coefficient.scale
-        concat(content_tag(:tr) do
+        concat(tr do
           concat(content_tag(:td) do
             concat coefficient.title
           end)
 
-          concat(content_tag(:td) do
+          concat(td do
             concat "#{(coefficient.scale * 100 - 100).round(0)} %"
           end)
 
-          concat(content_tag(:td) do
+          concat(td do
             concat (result - prev_result).round 2
+          end)
+
+          concat(td do
+            concat coefficient.coefficient_type.text
           end)
         end)
       end

@@ -22,6 +22,10 @@ class Estimation::Project::SingleTasksXlsDecorator < Tramway::Export::Xls::Appli
   include Estimation::CoefficientsConcern
   include Estimation::TaskConcern
 
+  def hours
+    hours_with_coefficients
+  end
+
   def price
     price_with_coefficients
   end
