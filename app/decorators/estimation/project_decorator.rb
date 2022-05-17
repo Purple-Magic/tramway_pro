@@ -74,7 +74,7 @@ collection: :expenses)
   end
 
   def pre_estimated_time
-    if associated.present?
+    if object.associated.present?
       courses_video_actions = YAML.load_file(Rails.root.join('lib', 'yaml', 'time_logs_actions.yml'))['Courses::Video']
       averages = courses_video_actions.reduce({}) do |hash, action|
         logged_times = Courses::Video.where.not(result_duration: nil).map do |video|
