@@ -152,3 +152,5 @@ Tramway::Export.set_exportable_models(
   },
   project: :red_magic
 )
+
+Tramway::Landing.set_navbar true, project: :red_magic
