@@ -12,8 +12,6 @@ class Podcasts::PublishWorker < ApplicationWorker
     community_chat_id = ::BotTelegram::Leopold::ItWayPro::CHAT_ID
     [podcast_chat_id, community_chat_id].each do |chat_id|
       send_notification_to_chat chat_id, ::Podcast::EpisodeDecorator.new(episode).telegram_post_text
-      sleep 1
-      send_notification_to_chat chat_id, ::Podcast::EpisodeDecorator.new(episode).telegram_post_text_with_trailer
     end
   end
 end
