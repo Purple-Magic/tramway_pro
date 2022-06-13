@@ -14,6 +14,6 @@ class Estimation::Task < ApplicationRecord
   validates :price, presence: true
 
   def sum
-    hours * price * specialists_count
+    (hours * price * specialists_count).round 2
   end
 end

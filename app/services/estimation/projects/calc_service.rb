@@ -25,7 +25,7 @@ class Estimation::Projects::CalcService < ApplicationService
       project.tasks.multiple.each do |task|
         project.tasks.create!(
           title: "#{task.title} | #{decorated_video.title.split(' | ').first}",
-          hours: task.hours * video.minutes_of(:duration),
+          hours: (task.hours * video.minutes_of(:duration)).round(2),
           **task.attributes.symbolize_keys.slice(:price, :specialists_count, :description)
         )
       end
