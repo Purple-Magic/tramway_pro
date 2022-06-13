@@ -16,11 +16,17 @@ class Estimation::ProjectDecorator < ApplicationDecorator
     end
 
     def show_attributes
-      %i[associated_link pre_estimated_time team_table expenses_table coefficients_table summary_table]
+      %i[full_price associated_link pre_estimated_time team_table expenses_table coefficients_table summary_table]
     end
 
     def show_associations
       %i[tasks expenses coefficients]
+    end
+  end
+
+  def full_price
+    content_tag :h1 do
+      "#{summary_with_coefficients} ₽"
     end
   end
 

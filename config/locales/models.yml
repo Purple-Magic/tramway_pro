@@ -84,6 +84,7 @@ ru:
         customer: Клиент
         associated: Связанная запись
         associated_link: Связанная запись
+        full_price: Текущая стоимость
       estimation/customer:
         title: Название
         logo: Логотип
