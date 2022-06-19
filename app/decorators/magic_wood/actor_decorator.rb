@@ -20,7 +20,7 @@ class MagicWood::ActorDecorator < ApplicationDecorator
   def portfolio
     content_tag(:div) do
       concat stylesheet_link_tag '/assets/red_magic/admin/photos'
-      photos.each_slice(3).each do |batch|
+      object.photos.each_slice(3).each do |batch|
         concat(content_tag(:div, class: :row) do
           batch.each do |photo|
             concat(content_tag(:div, class: :column) do
@@ -33,7 +33,7 @@ class MagicWood::ActorDecorator < ApplicationDecorator
   end
 
   def avatar
-    image_tag photos.first.file.small.url if photos.any?
+    image_tag(object.photos.first.file.small.url) if photos.any?
   end
 
   class << self
