@@ -113,6 +113,7 @@ gem 'uuid'
 gem 'validates'
 gem 'webpacker'
 gem 'whenever', require: false
+gem 'yt'
 
 group :development do
   gem 'foreman'

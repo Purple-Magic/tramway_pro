@@ -648,6 +648,8 @@ GEM
       spreadsheet
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    yt (0.33.4)
+      activesupport
 
 PLATFORMS
   ruby
@@ -774,6 +776,7 @@ DEPENDENCIES
   webpacker
   whenever
   whenever-test
+  yt
 
 RUBY VERSION
    ruby 2.7.5p203
