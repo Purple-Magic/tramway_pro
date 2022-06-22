@@ -97,6 +97,10 @@ data: { toggle: :collapse, target: '#commands' }, aria: { controls: :commands })
     link_to 'Download', object.montage_file.url
   end
 
+  def listed_state_machines
+    []
+  end
+
   def additional_buttons
     path_helpers = Rails.application.routes.url_helpers
 
