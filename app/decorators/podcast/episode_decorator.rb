@@ -64,6 +64,10 @@ data: { toggle: :collapse, target: '#commands' }, aria: { controls: :commands })
     file_view object.cover
   end
 
+  def story_cover
+    file_view object.story_cover
+  end
+
   def trailer
     content_tag(:audio, controls: true) do
       content_tag(:source, '', src: object.trailer.url)
