@@ -22,6 +22,22 @@ module Podcast::Episodes::VideoConcern
     run_command_on_remote_server command
   end
 
+  def render_story_video_trailer_action(output)
+    remote_output = remote_file_name output
+    video_temp_output = (remote_output.split('.')[0..-2] + %w[temp mp4]).join('.')
+
+    send_files_to_remote_server [story_cover.path, trailer.path]
+    render_command = render_video_from(
+      remote_file_name(story_cover.path),
+      remote_file_name(trailer.path),
+      output: video_temp_output
+    )
+    move_command = move_to(video_temp_output, remote_output)
+    command = "#{render_command} && #{move_command}"
+    command = "nohup /bin/bash -c '#{command} && #{send_request_after_render_command(id, :story_trailer_video)}' &"
+    run_command_on_remote_server command
+  end
+
   def render_full_video(output)
     inputs = [remote_file_name(cover.path), remote_file_name(ready_file.path)]
     options = options_line(

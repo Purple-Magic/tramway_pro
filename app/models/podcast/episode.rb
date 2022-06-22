@@ -31,9 +31,11 @@ class Podcast::Episode < ApplicationRecord
   uploader :file, :file
   uploader :ready_file, :file
   uploader :cover, :photo
+  uploader :story_cover, :photo
   uploader :premontage_file, :file
   uploader :trailer, :file
   uploader :trailer_video, :file
+  uploader :story_trailer_video, :file
   uploader :full_video, :file
 
   aasm :montage, column: :montage_state do
