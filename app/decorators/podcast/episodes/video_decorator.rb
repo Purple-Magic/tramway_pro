@@ -7,6 +7,12 @@ module Podcast::Episodes::VideoDecorator
     end
   end
 
+  def story_trailer_video
+    content_tag(:video, controls: true, width: '400px') do
+      content_tag(:source, '', src: object.story_trailer_video.url)
+    end
+  end
+
   def full_video
     content_tag(:video, controls: true, width: '400px') do
       content_tag(:source, '', src: object.full_video.url)
