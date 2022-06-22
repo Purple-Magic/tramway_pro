@@ -10,7 +10,7 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
   decorate_association :instances, as: :episode
   decorate_association :time_logs, as: :associated
 
-  delegate_attributes :id, :number, :file_url, :montage_state, :public_title
+  delegate_attributes :id, :number, :file_url, :montage_state, :public_title, :story_cover, :story_trailer_video
 
   include Podcast::Episodes::DescriptionConcern
   include Podcast::Episodes::YoutubeDescriptionConcern
