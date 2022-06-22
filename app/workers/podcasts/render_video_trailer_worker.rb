@@ -11,6 +11,7 @@ class Podcasts::RenderVideoTrailerWorker < ApplicationWorker
     @directory = episode.prepare_directory
     @directory = @directory.gsub('//', '/')
     render_trailer episode
+    render_story_trailer episode
   rescue StandardError => error
     Rails.env.development? ? puts(error) : Airbrake.notify(error)
   end
@@ -20,6 +21,13 @@ class Podcasts::RenderVideoTrailerWorker < ApplicationWorker
   def render_trailer(episode)
     output = "#{@directory}/trailer_video.mp4"
     episode.render_video_trailer_action(output)
+
+    Rails.logger.info 'Render trailer video completed'
+  end
+
+  def render_story_trailer(episode)
+    output = "#{@directory}/story_trailer_video.mp4"
+    episode.render_story_video_trailer_action(output)
 
     Rails.logger.info 'Render trailer video completed'
   end
