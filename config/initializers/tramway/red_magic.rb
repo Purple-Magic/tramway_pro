@@ -156,5 +156,6 @@ Tramway::Export.set_exportable_models(
 Tramway::Landing.set_navbar true, project: :red_magic
 
 ::Tramway::Admin.welcome_page_actions = lambda do
-  @content = '<a class="btn btn-primary" href=https://accounts.google.com/o/oauth2/auth?access_type=offline&approval_prompt=auto&client_id=299185363103-rh98bq9g69s6ll1i0e6lrvd8jbkd6k50.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fit-way.pro%2Fyoutube_finish&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube>Предоставить доступ к Youtube каналу</a>'
+  youtube_oauth_link = Yt::Account.new(scopes: [:youtube], redirect_uri: 'https://it-way.pro/youtube-callback', access_type: :offline).authentication_url
+  @content = "<a class='btn btn-primary' href='#{youtube_oauth_link}'>Предоставить доступ к Youtube каналу</a>"
 end
