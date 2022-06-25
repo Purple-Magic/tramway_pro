@@ -19,7 +19,9 @@ class Podcast::StarDecorator < ApplicationDecorator
 
   decorate_associations :podcast
 
-  alias title nickname
+  def name 
+    "#{podcast.title} | #{nickname}"
+  end
 
   def podcast_link
     link_to podcast.title,
