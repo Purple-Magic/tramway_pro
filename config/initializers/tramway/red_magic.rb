@@ -157,5 +157,5 @@ Tramway::Landing.set_navbar true, project: :red_magic
 
 ::Tramway::Admin.welcome_page_actions = lambda do
   youtube_oauth_link = Yt::Account.new(scopes: [:youtube], redirect_uri: 'https://it-way.pro/youtube-callback', access_type: :offline).authentication_url
-  @content = "<a class='btn btn-primary' href='#{youtube_oauth_link}'>Предоставить доступ к Youtube каналу</a>"
+  @content = "<a href='#{youtube_oauth_link}'><img style='width: 200px' src='/sign_in_with_google.png'></a>"
 end
