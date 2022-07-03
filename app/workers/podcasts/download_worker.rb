@@ -14,7 +14,7 @@ class Podcasts::DownloadWorker < ApplicationWorker
     convert episode
   rescue StandardError => error
     log_error error
-    send_notification_to_chat chat_id, notification(:montage, :something_went_wrong)
+    send_notification_to_chat episode.podcast.chat_id, notification(:montage, :something_went_wrong)
   end
 
   private
