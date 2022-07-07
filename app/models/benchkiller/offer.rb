@@ -16,15 +16,15 @@ class Benchkiller::Offer < ApplicationRecord
     }
   end
 
-  after_create do
-    uri = URI('http://benchkiller.com/api/offers')
-    req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
-    req.body = { token: ENV['BENCHKILLER_API_TOKEN'], offer: self.attributes }
-    res = Net::HTTP.start(uri.hostname, uri.port) do |http|
-      http.request req
-    end
-    Rails.logger.info(res.body)
-  end
+  # after_create do
+  #   uri = URI('http://benchkiller.com/api/offers')
+  #   req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
+  #   req.body = { token: ENV['BENCHKILLER_API_TOKEN'], offer: self.attributes }
+  #   res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+  #     http.request req
+  #   end
+  #   Rails.logger.info(res.body)
+  # end
 
   search_by message: [:text]
 
