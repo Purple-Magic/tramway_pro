@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220622002433) do
+ActiveRecord::Schema.define(version: 20220711192440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "uuid-ossp"
   enable_extension "pg_trgm"
+  enable_extension "uuid-ossp"
 
   create_table "audits", force: :cascade do |t|
     t.integer "auditable_id"
@@ -1167,6 +1167,15 @@ ActiveRecord::Schema.define(version: 20220622002433) do
     t.uuid "uuid", default: -> { "uuid_generate_v4()" }
     t.text "review_state", default: "approved"
     t.datetime "deleted_at"
+  end
+
+  create_table "youtube_accounts", force: :cascade do |t|
+    t.text "authorization_code"
+    t.text "state"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "access_token"
   end
 
 end
