@@ -13,7 +13,6 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
   delegate_attributes :id, :number, :file_url, :montage_state, :public_title, :story_cover
 
   include Podcast::Episodes::DescriptionConcern
-  include Podcast::Episodes::YoutubeDescriptionConcern
   include Podcast::Episodes::VideoDecorator
   include Podcast::Episodes::SocialPostsConcern
 
@@ -85,6 +84,11 @@ data: { toggle: :collapse, target: '#commands' }, aria: { controls: :commands })
 
   def description
     raw object.description
+  end
+
+  def youtube_description
+    # FIXME sending self as argument is not a good point
+    raw Podcasts::Youtube::DescriptionBuilder.new(self, format: :html).call
   end
 
   def file

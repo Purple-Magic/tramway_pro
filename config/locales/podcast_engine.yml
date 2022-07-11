@@ -1,5 +1,14 @@
 ru: 
   podcast_engine:
+    youtube:
+      description:
+        you_can_find_us: 'Вы можете прослушать выпуск подкаста на этих площадках:'
+        stars:
+          main: "Ведущие:"
+          guests: "Гости:"
+          minor: "Эпизодическая роль:"
+        topics: 'Темы выпуска'
+        links: 'Ссылки:'
     notifications:
       download:
         finished: 'Загрузил файл с Mumble сервера'
