@@ -157,3 +157,5 @@ group :test do
   gem 'webmock'
   gem 'whenever-test'
 end
+
+gem "httparty", "~> 0.20.0"

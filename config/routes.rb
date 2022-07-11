@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     mount Tramway::Api::Engine, at: '/api', as: :it_way_api
 
     get '/:id' => 'shortener/shortened_urls#show'
+    get '/youtube-callback' => 'youtube_callbacks#create'
 
     scope module: :it_way do
       resources :certificates, only: :show
