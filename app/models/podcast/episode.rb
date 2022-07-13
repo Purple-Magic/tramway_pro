@@ -11,8 +11,8 @@ class Podcast::Episode < ApplicationRecord
     { event: :finish, to: :finishing, worker: 'Finish' },
     { event: :render_video_trailer, to: :video_trailer_is_ready, worker: 'RenderVideoTrailer' },
     { event: :render_video, to: :finishing, worker: 'RenderVideo' },
-    { event: :publish, to: :published, worker: 'Publish' },
-    { event: :youtube_publish, to: :youtube_video_published, worker: 'YoutubePublish' }
+    { event: :youtube_publish, to: :youtube_published, worker: 'YoutubePublish' },
+    { event: :publish, to: :published, worker: 'Publish' }
   ].freeze
 
   belongs_to :podcast, class_name: 'Podcast'
@@ -44,7 +44,7 @@ class Podcast::Episode < ApplicationRecord
 
     %i[recording recorded downloaded converted prepared highlighted montaged normalized music_added
        trailer_is_ready trailer_rendered concatination_in_progress finishing ready_audio
-       video_trailer_is_ready finished published].each { |state_name| state state_name }
+       video_trailer_is_ready finished youtube_published published].each { |state_name| state state_name }
 
     event(:convert) { transitions to: :converted }
     event(:highlight_it) { transitions to: :highlighted }
