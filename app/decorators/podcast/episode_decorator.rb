@@ -16,6 +16,8 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
   include Podcast::Episodes::VideoDecorator
   include Podcast::Episodes::SocialPostsConcern
 
+  include Concerns::SimpleIcon
+
   class << self
     def show_associations
       %i[parts highlights topics stars links instances time_logs]
@@ -115,6 +117,9 @@ data: { toggle: :collapse, target: '#commands' }, aria: { controls: :commands })
     render_video_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :render_video)
     render_video_button = { url: render_video_url, method: :patch, inner: -> { fa_icon :video }, color: :success }
 
+    youtube_publish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :youtube_publish)
+    youtube_publish_button = { url: youtube_publish_url, method: :patch, inner: -> { simple_icon('youtube') }, color: :danger }
+
     case object.podcast.podcast_type.to_sym
     when :sample, :without_music
       download_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :download)
@@ -139,13 +144,15 @@ data: { toggle: :collapse, target: '#commands' }, aria: { controls: :commands })
           { url: finish_url, method: :patch, inner: -> { fa_icon 'volume-up' }, color: :success },
           { url: render_video_trailer_url, method: :patch, inner: -> { video_trailer_button_inner }, color: :success },
           render_video_button,
+          youtube_publish_button,
           { url: publish_url, method: :patch, inner: -> { fa_icon :share }, color: :success }
         ]
       }
     when :handmade
       {
         show: [
-          render_video_button
+          render_video_button,
+          youtube_publish_button
         ]
       }
     end

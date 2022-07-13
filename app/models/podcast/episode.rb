@@ -11,7 +11,8 @@ class Podcast::Episode < ApplicationRecord
     { event: :finish, to: :finishing, worker: 'Finish' },
     { event: :render_video_trailer, to: :video_trailer_is_ready, worker: 'RenderVideoTrailer' },
     { event: :render_video, to: :finishing, worker: 'RenderVideo' },
-    { event: :publish, to: :published, worker: 'Publish' }
+    { event: :publish, to: :published, worker: 'Publish' },
+    { event: :youtube_publish, to: :youtube_video_published, worker: 'YoutubePublish' }
   ].freeze
 
   belongs_to :podcast, class_name: 'Podcast'

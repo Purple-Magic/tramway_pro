@@ -5,7 +5,7 @@ ru:
         you_can_find_us: 'Вы можете прослушать выпуск подкаста на этих площадках:'
         stars:
           main: "Ведущие:"
-          guests: "Гости:"
+          guest: "Гости:"
           minor: "Эпизодическая роль:"
         topics: 'Темы выпуска'
         links: 'Ссылки:'
@@ -43,3 +43,5 @@ ru:
       #FIXME REMOVE NEXT LINES
       story:
         converted: "Смонтировал историю %{name}. Скачать её можно по ссылке http://red-magic.ru/%{file_url}"
+      youtube_publish:
+        success: "Видео подкаста опубликовано на Youtube. Найти его можно по ссылке %{link}"
