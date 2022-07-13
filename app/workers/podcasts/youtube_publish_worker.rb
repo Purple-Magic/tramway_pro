@@ -8,7 +8,7 @@ class Podcasts::YoutubePublishWorker < ApplicationWorker
   def perform(id)
     episode = Podcast::Episode.find id
 
-    account = Yt::Account.new access_token: Youtube::Account.last.access_token
+    account = Yt::Account.new access_token: ::Youtube::Account.last.access_token
 
     video = account.upload_video(
       episode.full_video.path,
