@@ -20,7 +20,7 @@ class Podcasts::YoutubePublishWorker < ApplicationWorker
     ::Shortener::ShortenedUrl.generate(instance.link, owner: instance)
     instance = Podcast::Episodes::InstanceDecorator.new instance
 
-    send_notification_to_chat episode.podcast.chat_id, notification(:footage, :downloaded, instance: instance.link)
+    send_notification_to_chat episode.podcast.chat_id, notification(:youtube_publish, :success, link: instance.link)
   rescue StandardError => error
     Rails.env.development? ? puts(error) : Airbrake.notify(error)
   end
