@@ -18,7 +18,7 @@ class Podcasts::YoutubePublishWorker < ApplicationWorker
 
     instance = Podcast::Episodes::InstanceDecorator.new(episode.instances.create!(service: :youtube, link: "https://www.youtube.com/watch?v=#{video.id}"))
 
-    send_notification_to_chat episode.podcast.chat_id, notification(:footage, :downloaded, instance: instance.shortened_url)
+    send_notification_to_chat episode.podcast.chat_id, notification(:footage, :downloaded, instance: instance.link)
   rescue StandardError => error
     Rails.env.development? ? puts(error) : Airbrake.notify(error)
   end
