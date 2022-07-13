@@ -187,10 +187,12 @@ module Podcast::Episodes::SocialPostsConcern
       concat('Слушайте наши выпуски на платформах:')
       concat(content_tag(:ul) do
         instances.each do |instance|
-          concat(content_tag(:li) do
-            concat("#{instance.service.capitalize}: ")
-            concat(link_to(instance.shortened_url, instance.shortened_url))
-          end)
+          if instance.shortened_url.present?
+            concat(content_tag(:li) do
+              concat("#{instance.service.capitalize}: ")
+              concat(link_to(instance.shortened_url, instance.shortened_url))
+            end)
+          end
         end
         content_tag(:li) do
           concat('RSS: ')
