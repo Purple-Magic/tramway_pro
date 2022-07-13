@@ -16,7 +16,9 @@ class Podcasts::YoutubePublishWorker < ApplicationWorker
       description: Podcast::Youtube::VideoDecorator.new(episode).description
     )
 
-    instance = Podcast::Episodes::InstanceDecorator.new(episode.instances.create!(service: :youtube, link: "https://www.youtube.com/watch?v=#{video.id}"))
+    instance = episode.instances.create! service: :youtube, link: "https://www.youtube.com/watch?v=#{video.id}"
+    ::Shortener::ShortenedUrl.generate(instance.link, owner: instance)
+    instance = Podcast::Episodes::InstanceDecorator.new instance
 
     send_notification_to_chat episode.podcast.chat_id, notification(:footage, :downloaded, instance: instance.link)
   rescue StandardError => error
