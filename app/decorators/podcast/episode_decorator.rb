@@ -33,7 +33,7 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
   def render_commands
     content_tag(:div) do
       concat(content_tag(:button, type: :button, class: 'btn btn-primary',
-data: { toggle: :collapse, target: '#commands' }, aria: { controls: :commands }) do
+data: { 'bs-toggle': :collapse, 'bs-target': '#commands' }, aria: { controls: :commands }) do
                concat(content_tag(:span) do
                  'Раскрыть '
                end)
