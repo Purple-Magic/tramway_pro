@@ -18,8 +18,6 @@ class Podcasts::FinishWorker < ApplicationWorker
   private
 
   def finish(episode)
-    return if episode.full_video.present?
-
     send_notification_to_chat episode.podcast.chat_id, notification(:finish, :started)
     concat_parts episode
     send_notification_to_chat episode.podcast.chat_id, notification(:audio, :finished, file_url: episode.ready_file.url)
