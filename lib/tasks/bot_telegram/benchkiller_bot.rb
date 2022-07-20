@@ -11,7 +11,7 @@ module BotTelegram::BenchkillerBot
   FREE_DEV_CHANNEL = '-1001424055607'
   NEED_DEV_CHANNEL = '-1001376858073'
 
-  MAIN_COUNTRIES = { russia: 'РФ', ukraine: 'Украина', belarus: 'Белоруссия' }
+  MAIN_COUNTRIES = { russia: 'РФ', ukraine: 'Украина', belarus: 'Беларусь' }
   CONTINENTS = { europa: 'Европа', asia: 'Азия', america: 'Америка' }
 
   EUROPA_COUNTRIES = YAML.load_file(Rails.root.join('lib', 'yaml', 'benchkiller_countries.yml'))['europa']
