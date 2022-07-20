@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220711192440) do
+ActiveRecord::Schema.define(version: 20220720143012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -821,6 +821,7 @@ ActiveRecord::Schema.define(version: 20220711192440) do
     t.text "state"
     t.integer "user_id"
     t.datetime "deleted_at"
+    t.datetime "passed_at"
   end
 
   create_table "tramway_conference_unities", force: :cascade do |t|
