@@ -27,6 +27,17 @@ class ProductDecorator < ApplicationDecorator
     end
   end
 
+  def additional_buttons
+    tasks_url = ::Tramway::Export::Engine.routes.url_helpers.export_path(id, model: object.class, collection: :tasks)
+
+    buttons = [
+      { url: tasks_url, inner: -> { time_logs_button_inner }, color: :success },
+    ]
+
+    { show: buttons }
+  end
+
+
   def sum_estimation
     minutes = tasks.sum { |t| t.object.minutes_of(t.estimation) }
     minutes_to_hours minutes
