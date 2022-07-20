@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::TimeLogForm < Tramway::Core::ApplicationForm
-  properties :time_spent, :comment, :associated_type, :project_id
+  properties :time_spent, :comment, :associated_type, :project_id, :passed_at
 
   association :associated
   association :user
@@ -16,6 +16,7 @@ class Admin::TimeLogForm < Tramway::Core::ApplicationForm
             placeholder: 'Формат 3h 10m'
           }
         },
+        passed_at: :date_picker,
         comment: :string
     end
   end
