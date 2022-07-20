@@ -119,9 +119,6 @@ Tramway::Export.set_exportable_models(
   {
     Estimation::Project => %i[single_tasks expenses],
   },
-  {
-    Product => [ :time_logs ]
-  },
   TimeLog,
   project: :purple_magic
 )
