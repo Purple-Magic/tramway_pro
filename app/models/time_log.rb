@@ -6,13 +6,23 @@ class TimeLog < ApplicationRecord
 
   enumerize :associated_type, in: [Courses::Video, Products::Task, Podcast::Episode]
 
-  scope :logged_by, Proc.new { |user, associated, beginning_of_month, end_of_month|
+  class << self
+    include TimeManager
+  end
+
+  scope :logged_by, Proc.new { |user, associated, begin_date, end_date|
     collection = associated.time_logs.where(user_id: user)
-    if beginning_of_month.present? && end_of_month.present?
-      collection = collection.where(created_at: beginning_of_month..end_of_month)
+    if begin_date.present?
+      collection.where(created_at: begin_date..end_date)
+    else
+      collection
     end
+  }
+
+  scope :time_logged_by, Proc.new { |user, associated, begin_date, end_date|
+    collection = logged_by user, associated, begin_date, end_date
     minutes = collection.sum(&:minutes)
-    "#{minutes / 60}h #{minutes % 60}m"
+    minutes_to_hours minutes
   }
 
   validates :comment, presence: true

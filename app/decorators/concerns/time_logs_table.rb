@@ -22,7 +22,7 @@ module Concerns::TimeLogsTable
     concat(tr do
       users_logged_time.each do |user|
         concat(td do
-          TimeLog.logged_by(user, object)
+          TimeLog.time_logged_by(user, object)
         end)
       end
     end)

@@ -22,6 +22,7 @@ ru:
         content: Контент
         podcasts: Подкасты
         benchkiller: Benchkiller
+        product_engine: Product Engine
   tramway:
     admin:
       sessions:
