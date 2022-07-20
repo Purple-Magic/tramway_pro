@@ -13,7 +13,7 @@ class TimeLog < ApplicationRecord
   scope :logged_by, Proc.new { |user, associated, begin_date, end_date|
     collection = associated.time_logs.where(user_id: user)
     if begin_date.present?
-      collection.where(created_at: begin_date..end_date)
+      collection.where(passed_at: begin_date..end_date)
     else
       collection
     end
