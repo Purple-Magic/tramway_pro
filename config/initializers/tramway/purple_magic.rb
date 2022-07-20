@@ -122,6 +122,7 @@ Tramway::Export.set_exportable_models(
   {
     Product => [ :time_logs ]
   },
+  TimeLog,
   project: :purple_magic
 )
 

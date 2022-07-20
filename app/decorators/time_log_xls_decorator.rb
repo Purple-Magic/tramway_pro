@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Product::TimeLogsXlsDecorator < Tramway::Export::Xls::ApplicationDecorator
+class TimeLogXlsDecorator < Tramway::Export::Xls::ApplicationDecorator
   delegate_attributes :time_spent, :comment
 
   class << self
