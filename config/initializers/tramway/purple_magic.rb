@@ -104,7 +104,12 @@ Tramway::Admin.navbar_structure(
       Estimation::Project
     ]
   },
-  Product,
+  {
+    product_engine: [
+      Product,
+      TimeLog,
+    ]
+  },
   Audited::Audit,
   Tramway::User::User,
   project: :purple_magic
@@ -117,6 +122,7 @@ Tramway::Export.set_exportable_models(
   {
     Product => [ :time_logs ]
   },
+  TimeLog,
   project: :purple_magic
 )
 

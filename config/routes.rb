@@ -110,6 +110,7 @@ Rails.application.routes.draw do
           namespace :estimation do
             resources :projects, only: :update
           end
+          resources :time_logs, only: :index
         end
       end
     end

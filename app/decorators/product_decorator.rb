@@ -73,11 +73,20 @@ class ProductDecorator < ApplicationDecorator
           end)
           if logged_users.any?
             logged_users.each do |user|
+              time_logs_ids = TimeLog.logged_by(user, object, beginning_of_month, end_of_month).map(&:id)
+              filter = { id_in: time_logs_ids }
+              url = Tramway::Admin::Engine.routes.url_helpers.records_path(model: ::TimeLog, filter: filter)
+
               concat(td do
                 user.full_name
               end)
               concat(td do
-                TimeLog.logged_by(user, object, beginning_of_month, end_of_month)
+                TimeLog.time_logged_by(user, object, beginning_of_month, end_of_month)
+              end)
+              concat(td do
+                link_to url, class: 'btn btn-success btn-sm' do
+                  fa_icon 'file-excel'
+                end
               end)
             end
           else

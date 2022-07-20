@@ -590,7 +590,7 @@ GEM
       simple_form (>= 5.0.0)
     tramway-event (1.12.6.3)
       configus
-    tramway-export (0.2.0.4)
+    tramway-export (0.2.1)
       xls_exporter (>= 1.2)
     tramway-landing (3.3.0.6)
     tramway-news (1.0.5)
@@ -761,7 +761,7 @@ DEPENDENCIES
   tramway-conference (= 1.9.5.5)
   tramway-core (= 4.1.3)
   tramway-event (= 1.12.6.3)
-  tramway-export (= 0.2.0.4)
+  tramway-export (= 0.2.1)
   tramway-landing (= 3.3.0.6)
   tramway-news (= 1.0.5)
   tramway-page (= 1.6)
