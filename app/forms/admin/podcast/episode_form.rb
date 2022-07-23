@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Podcast::EpisodeForm < Tramway::Core::ApplicationForm
-  properties :project_id, :file, :ready_file, :cover, :number, :public_title, :montage_process, :story_cover
+  properties :project_id, :file, :ready_file, :cover, :number, :public_title, :montage_process, :story_cover, :description
 
   association :podcast
 
@@ -9,6 +9,7 @@ class Admin::Podcast::EpisodeForm < Tramway::Core::ApplicationForm
     super(object).tap do
       form_properties podcast: :association,
         public_title: :string,
+        description: :ckeditor,
         number: :numeric,
         file: :file,
         ready_file: :file,

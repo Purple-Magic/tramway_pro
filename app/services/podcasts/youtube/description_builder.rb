@@ -60,9 +60,14 @@ class Podcasts::Youtube::DescriptionBuilder < ApplicationService
   end
 
   def topics
-    [ I18n.t('podcast_engine.youtube.description.topics') ] + episode.topics.map do |topic|
-      "* #{topic.title} #{topic.link}"
-    end
+    topics_list = if episode.topics.any?
+                    episode.topics.map do |topic|
+                      "* #{topic.title} #{topic.link}"
+                    end
+                  else
+                    [ episode.description ]
+                  end
+    [ I18n.t('podcast_engine.youtube.description.topics') ] + topics_list
   end
 
   def links

@@ -51,13 +51,17 @@ module Podcast::Episodes::DescriptionConcern
     concat(content_tag(:h1) do
       'Темы выпуска'
     end)
-    concat(content_tag(:ul) do
-      topics.each do |topic|
-        concat(content_tag(:li) do
-          concat link_to topic.title, topic.link
-        end)
-      end
-    end)
+    if topics.any?
+      concat(content_tag(:ul) do
+        topics.each do |topic|
+          concat(content_tag(:li) do
+            concat link_to topic.title, topic.link
+          end)
+        end
+      end)
+    else
+      concat raw object.description
+    end
   end
 
   def links_list
