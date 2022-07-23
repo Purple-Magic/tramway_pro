@@ -40,7 +40,7 @@ module Podcast::Episodes::MusicConcern
       inputs: [find_music(:begin)[:path]] + samples + [find_music(:finish)[:path]],
       output: music_output
     )
-    log_command command
+    log_command 'Render whole length music', command
     Rails.logger.info command
     system command.to_s
   end
@@ -50,7 +50,7 @@ module Podcast::Episodes::MusicConcern
     render_command = write_logs merge_content(inputs: [music_output, premontage_file.path], output: ready_output)
     move_command = move_to(ready_output, output)
     command = "#{render_command} && #{move_command}"
-    log_command command
+    log_command 'Merge music with voices', command
     Rails.logger.info command
     system command
     wait_for_file_rendered output, :with_music

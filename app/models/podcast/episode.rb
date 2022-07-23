@@ -87,8 +87,9 @@ class Podcast::Episode < ApplicationRecord
     stars.minor.any?
   end
 
-  def log_command(command)
-    commands = (render_data&.dig('commands') || []) + [command]
+  def log_command(action, command)
+    line = [action, command].join(': ')
+    commands = (render_data&.dig('commands') || []) + [line]
     render_data ? render_data['commands'] = commands : self.render_data = { commands: commands }
     save!
   end
