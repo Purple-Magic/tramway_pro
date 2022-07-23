@@ -25,7 +25,7 @@ class Podcasts::Episodes::Montage::RemoveCutPiecesService < Podcasts::Episodes::
         end_time: end_time
       ))
 
-      run render_command, output: output, name: "Slice #{index}"
+      run render_command, output: output, name: "Slice #{index}", action: 'Remove cut pieces'
     end
   end
 
@@ -40,7 +40,7 @@ class Podcasts::Episodes::Montage::RemoveCutPiecesService < Podcasts::Episodes::
       output: output
     )
 
-    run render_command, output: output, name: 'RemoveCutPieces'
+    run render_command, output: output, name: 'RemoveCutPieces', action: 'Concat cut pieces slices'
     episode.update_file! output, :premontage_file
 
     remove_files(*inputs, output)

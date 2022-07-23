@@ -28,7 +28,7 @@ class Podcast::Highlight < ApplicationRecord
       end_time: cut_end_time,
       output: highlight_output
     )
-    episode.log_command render_command
+    episode.log_command 'Cut highlights', render_command
     command = render_command
     Rails.logger.info command
     system command
