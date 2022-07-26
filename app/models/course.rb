@@ -7,7 +7,7 @@ class Course < ApplicationRecord
   has_many :tasks, class_name: 'Courses::Task', through: :lessons
   has_many :screencasts, class_name: 'Courses::Screencast', through: :videos
 
-  TEAMS = %i[slurm skillbox].freeze
+  TEAMS = %i[slurm skillbox hexlet].freeze
 
   enumerize :team, in: TEAMS
 
