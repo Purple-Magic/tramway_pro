@@ -133,7 +133,7 @@ module MultiProjectCallbacks
         end
 
         scope :partner_scope, ->(_user_id) { all }
-        %i[rsm night podcast slurm skillbox benchkiller].each do |team|
+        %i[rsm night podcast slurm skillbox benchkiller hexlet].each do |team|
           scope "#{team}_scope".to_sym, ->(_user_id) { all }
         end
       end
