@@ -33,6 +33,16 @@ Tramway::Admin.set_available_models Course,
   role: :skillbox,
   project: :kalashnikovisme
 
+Tramway::Admin.set_available_models Course,
+  Courses::Topic,
+  Courses::Lesson,
+  Courses::Video,
+  Courses::Comment,
+  Courses::Task,
+  Courses::Screencast,
+  role: :hexlet,
+  project: :kalashnikovisme
+
 Tramway::Admin.navbar_structure(
   Course,
   TimeLog,
