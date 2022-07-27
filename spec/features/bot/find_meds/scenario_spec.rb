@@ -11,7 +11,10 @@ describe 'BotTelegram::FindMedsBot' do
     it 'returns welcome message' do
       stub = send_message_stub_request body: {
         chat_id: chat.telegram_chat_id,
-        text: 'Введите название лекарства на кириллице'
+        text: 'Привет, я бот по поиску лекарств и дальше тут я рассказываю, как мной пользоваться',
+        reply_markup: reply_markup([
+          'Поиск лекарств'
+        ])
       }
 
       Telegram::Bot::Client.run(bot_record.token) do |bot|
