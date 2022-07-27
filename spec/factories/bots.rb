@@ -11,6 +11,7 @@ FactoryBot.define do
     factory :bot_with_start_step, traits: [:with_start_step]
     factory :benchkiller_bot, traits: [:benchkiller]
     factory :leopold_bot, traits: [:leopold]
+    factory :find_meds_bot, traits: [:find_meds]
 
     trait :quest do
       steps = YAML.load_file("#{Rails.root}/spec/support/quests/test_quest.yml").with_indifferent_access[:steps]
@@ -46,6 +47,15 @@ FactoryBot.define do
 
       after :create do |bot|
         bot.update_column :id, 9
+      end
+    end
+
+    trait :find_meds do
+      options do
+        {
+          custom: true,
+          scenario: :find_meds_bot
+        }
       end
     end
   end
