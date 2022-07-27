@@ -7,7 +7,7 @@ class Bot < ApplicationRecord
   has_many :messages, class_name: 'BotTelegram::Message'
   has_many :users, through: :messages, class_name: 'BotTelegram::User'
 
-  TEAMS = %i[rsm night purple_magic benchkiller].freeze
+  TEAMS = %i[rsm night purple_magic benchkiller find_meds].freeze
 
   enumerize :team, in: TEAMS
 
