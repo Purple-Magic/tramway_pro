@@ -14,15 +14,21 @@ module BotTelegram::FindMedsBot::Concern
     keyboard = (options || ::BotTelegram::FindMedsBot::MENUS[menu]).map do |button_row|
       if button_row.is_a? Array
         button_row.map do |button|
-          ::BotTelegram::FindMedsBot::BUTTONS[button]
+          button_text button
         end
       else
-        ::BotTelegram::FindMedsBot::BUTTONS[button_row]
+        button_text button_row
       end
     end
 
     message = ::BotTelegram::Custom::Message.new text: answer, reply_markup: { keyboard: keyboard }
 
     message_to_user bot.api, message, chat.telegram_chat_id
+  end
+
+  private
+
+  def button_text(button)
+    ::BotTelegram::FindMedsBot::BUTTONS[button] || button
   end
 end

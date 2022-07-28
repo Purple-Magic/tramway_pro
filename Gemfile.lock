@@ -85,6 +85,10 @@ GEM
     airbrake (5.8.1)
       airbrake-ruby (~> 1.8)
     airbrake-ruby (1.8.0)
+    airrecord (1.0.10)
+      faraday (>= 1.0, < 3.0)
+      faraday-net_http_persistent
+      net-http-persistent
     arel (8.0.0)
     ast (2.4.2)
     audited (5.0.2)
@@ -329,6 +333,8 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
+    net-http-persistent (4.0.1)
+      connection_pool (~> 2.2)
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
@@ -664,6 +670,7 @@ DEPENDENCIES
   active_median
   active_model_serializers (= 0.10.12)
   airbrake (~> 5.0)
+  airrecord
   audited (>= 4.8.0)
   awesome_print
   bcrypt
