@@ -83,6 +83,7 @@ class BotTelegram::BenchkillerBot::Action
 
   BotTelegram::BenchkillerBot::ATTRIBUTES_DATA.each do |data|
     command_name = "set_#{data[:name]}"
+
     define_method command_name do |value|
       if data[:validation].call(value)
         if company.update data[:name] => value
