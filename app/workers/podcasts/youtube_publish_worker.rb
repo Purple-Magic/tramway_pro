@@ -14,7 +14,7 @@ class Podcasts::YoutubePublishWorker < ApplicationWorker
       episode.full_video.path,
       title: episode.public_title,
       description: Podcast::Youtube::VideoDecorator.new(episode).description,
-      privacyStatus: :private
+      privacy_status: :private
     )
 
     instance = episode.instances.create! service: :youtube, link: "https://www.youtube.com/watch?v=#{video.id}"
