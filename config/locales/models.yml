@@ -239,6 +239,13 @@ ru:
         associated: К чему добавить таймлог
         time_spent: Затрачено времени
         comment: Комментарий
+      podcast/stat:
+        downloads: Скачивания
+        streams: Прослушивания
+        listeners: Уникальные слушатели
+        hours: Часы прослушивания
+        average_listenning: Среднее прослушиваемость в процентах
+        overhearing_percent: Процент дослушиваемости
   enumerize:
     podcast:
       podcast_type:

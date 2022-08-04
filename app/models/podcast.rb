@@ -5,6 +5,7 @@ class Podcast < ApplicationRecord
   has_many :episodes, -> { order(created_at: :desc) }, class_name: 'Podcast::Episode'
   has_many :stars, class_name: 'Podcast::Star'
   has_many :time_logs, class_name: 'TimeLog', through: :episodes
+  has_many :stats, class_name: 'Podcast::Stat'
 
   uploader :default_image, :photo, extensions: %i[png jpg jpeg]
 
