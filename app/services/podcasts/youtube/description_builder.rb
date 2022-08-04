@@ -1,4 +1,6 @@
 class Podcasts::Youtube::DescriptionBuilder < ApplicationService
+  include ActionView::Helpers::OutputSafetyHelper
+
   attr_reader :episode, :format, :youtube_description
 
   def initialize(episode, format:)
@@ -65,7 +67,7 @@ class Podcasts::Youtube::DescriptionBuilder < ApplicationService
                       "* #{topic.title} #{topic.link}"
                     end
                   else
-                    [ episode.description ]
+                    [ raw(episode.model.description) ]
                   end
     [ I18n.t('podcast_engine.youtube.description.topics') ] + topics_list
   end
