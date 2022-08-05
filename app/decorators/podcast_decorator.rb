@@ -46,6 +46,10 @@ class PodcastDecorator < ApplicationDecorator
                   concat(td do
                     raw numbers[month]
                   end)
+                  concat(td do
+                    services = object.stats.where(month: month.first, year: month.last).pluck :service
+                    services.join(', ')
+                  end)
                 end)
               end
             end
