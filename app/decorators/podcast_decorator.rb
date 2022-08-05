@@ -47,7 +47,7 @@ class PodcastDecorator < ApplicationDecorator
                     raw numbers[month]
                   end)
                   concat(td do
-                    services = object.stats.where(month: month.first, year: month.last).pluck :service
+                    services = object.stats.where(month: month.first, year: month.last).where.not(name => nil).pluck(:service).map &:camelize
                     services.join(', ')
                   end)
                 end)
