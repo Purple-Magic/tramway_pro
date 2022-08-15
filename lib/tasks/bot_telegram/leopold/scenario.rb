@@ -16,10 +16,10 @@ class BotTelegram::Leopold::Scenario < ::BotTelegram::Custom::Scenario
     chat_decorator = BotTelegram::Leopold::ChatDecorator.new chat
 
     if chat.private?
-      message_to_chat bot, chat, bot_record.options['i_do_not_have_actions_in_private_chats']
+      message_to_chat bot.api, chat, bot_record.options['i_do_not_have_actions_in_private_chats']
     elsif chat_decorator.to_answer?
       if message.user.username == 'kalashnikovisme'
-        message_to_chat bot, chat, 'Доброе утро, сэр!', reply_markup: []
+        message_to_chat bot.api, chat, 'Доброе утро, сэр!', reply_markup: []
       end
     end
   end
