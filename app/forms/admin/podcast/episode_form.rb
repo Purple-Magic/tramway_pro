@@ -9,7 +9,7 @@ class Admin::Podcast::EpisodeForm < Tramway::Core::ApplicationForm
     super(object).tap do
       form_properties podcast: :association,
         public_title: :string,
-        description: :ckeditor,
+        description: :text,
         number: :numeric,
         file: :file,
         ready_file: :file,
