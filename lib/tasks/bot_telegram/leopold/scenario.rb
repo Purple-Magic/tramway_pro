@@ -19,7 +19,7 @@ class BotTelegram::Leopold::Scenario < ::BotTelegram::Custom::Scenario
       message_to_chat bot.api, chat.telegram_chat_id, bot_record.options['i_do_not_have_actions_in_private_chats']
     elsif chat_decorator.to_answer?
       if message.user.username == 'kalashnikovisme'
-        message_to_chat bot.api, chat.telegram_chat_id, 'Доброе утро, сэр!', reply_markup: []
+        message_to_chat bot.api, chat.telegram_chat_id, 'Доброе утро, сэр!', Telegram::Bot::Types::ReplyKeyboardMarkup.new({ keyboard: [] }, one_time_keyboard: true)
       end
     end
   end
