@@ -13,8 +13,14 @@ class BotTelegram::Leopold::Scenario < ::BotTelegram::Custom::Scenario
   BOT_ID = 9
 
   def run
-    return unless chat.private?
+    chat_decorator = BotTelegram::BenchkillerBot::ChatDecorator.new chat
 
-    message_to_chat bot, chat, bot_record.options['i_do_not_have_actions_in_private_chats']
+    if chat_decorator.private?
+      message_to_chat bot, chat, bot_record.options['i_do_not_have_actions_in_private_chats']
+    elsif chat_decorator.to_answer?
+      if message.user.username == 'kalashnikovisme'
+        message_to_chat bot, chat, 'Доброе утро, сэр!', reply_markup: []
+      end
+    end
   end
 end

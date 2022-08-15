@@ -13,8 +13,7 @@ class BotTelegram::Leopold::ChatDecorator
   end
 
   def to_answer?
-    chat_id = @chat.telegram_chat_id.to_s
-    (@chat.private? || chat_id == ::BotTelegram::Leopold::ItWayPro::CHAT_ID) && !exceptions.values.include?(chat_id)
+    chat_id == ::BotTelegram::Leopold::ItWayPro::CHAT_ID
   end
 
   def it_way_podcast?
@@ -23,5 +22,11 @@ class BotTelegram::Leopold::ChatDecorator
 
   def story_maker?
     chat_id == STORY_MAKER_ID
+  end
+
+  private
+
+  def chat_id
+    @chat.telegram_chat_id.to_s
   end
 end
