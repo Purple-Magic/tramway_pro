@@ -6,6 +6,6 @@ class Podcast::Youtube::VideoDecorator < ApplicationDecorator
   decorate_association :instances, as: :episode
 
   def description
-    raw Podcasts::Youtube::DescriptionBuilder.new(self, format: :text).call
+    strip_tags Podcasts::Youtube::DescriptionBuilder.new(self, format: :text).call
   end
 end
