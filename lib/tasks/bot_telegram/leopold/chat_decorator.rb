@@ -13,7 +13,7 @@ class BotTelegram::Leopold::ChatDecorator
   end
 
   def to_answer?
-    chat_id == ::BotTelegram::Leopold::ItWayPro::CHAT_ID
+    chat_id == ::BotTelegram::Leopold::ItWayPro::CHAT_ID || chat_id == '-677884132'
   end
 
   def it_way_podcast?
