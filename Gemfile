@@ -123,6 +123,7 @@ end
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'dotenv-rails'
   gem 'launchy'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'parallel_tests'
@@ -143,7 +144,6 @@ gem 'redactor-rails', github: 'glyph-fr/redactor-rails'
 group :test do
   gem 'capybara', '3.31'
   gem 'capybara_helpers'
-  gem 'dotenv-rails'
   gem 'factory_bot_rails', '5.1.1'
   gem 'faker'
   gem 'json_api_test_helpers', '1.2.1.2'

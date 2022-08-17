@@ -20,6 +20,7 @@ require 'support/benchkiller_helpers'
 require 'support/asserting_models'
 require 'support/filling_forms'
 require 'support/long_test_staff'
+require 'support/airtable_helpers'
 
 WebMock.disable_net_connect!(
   allow_localhost: true,
@@ -46,6 +47,7 @@ RSpec.configure do |config|
   config.include FillingForms
   config.include LongTestStuff
   config.include ::Benchkiller::RegionsConcern
+  config.include AirtableHelpers
 
   ActiveRecord::Base.logger.level = 1
 

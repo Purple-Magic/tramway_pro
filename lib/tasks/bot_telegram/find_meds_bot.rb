@@ -19,6 +19,9 @@ module BotTelegram::FindMedsBot
     find_medicine: {
       message: 'Введите название лекарства на кириллице',
       state: :waiting_for_medicine_name
+    },
+    choose_dosage: {
+      state: :waiting_for_choosing_dosage
     }
   }
 

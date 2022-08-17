@@ -4,6 +4,7 @@ require_relative '../custom/message'
 
 module BotTelegram::FindMedsBot::Commands
   include BotTelegram::FindMedsBot
+  include BotTelegram::UsersState
 
   def start(_text: nil)
     answer = i18n_scope(:start, :text)
@@ -11,10 +12,7 @@ module BotTelegram::FindMedsBot::Commands
   end
 
   def common_action(_action, state, message, _argument)
-    BotTelegram::Users::State.create! user_id: user.id,
-      bot_id: bot_record.id,
-      current_state: state
-
+    set_state_for state, user: user, bot: bot_record
     message_to_user bot.api, message, chat.telegram_chat_id
   end
 
