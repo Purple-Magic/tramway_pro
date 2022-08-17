@@ -43,13 +43,19 @@ class BotTelegram::FindMedsBot::Action
   end
 
   def find_medicine(name)
-    medicine_id = ::BotTelegram::FindMedsBot::Tables::Medicine.find_by('Name' => name).id
-    dosages = ::BotTelegram::FindMedsBot::Tables::Main.where('medicine_name' => [medicine_id]).map do |m|
-      m['Название']
+    medicine = ::BotTelegram::FindMedsBot::Tables::Medicine.find_by('Name' => name)
+    if medicine.present?
+      dosages = ::BotTelegram::FindMedsBot::Tables::Main.where('medicine_name' => [medicine.id]).map do |m|
+        m['Название']
+      end
+      answer = i18n_scope(:find_medicine, :found, name: name)
+      show options: [dosages, ['Другая', :start_menu]], answer: answer
+    else
+      answer = i18n_scope(:find_medicine, :not_found, name: name)
+      show menu: :start_menu, answer: answer
     end
+
     set_state_for :waiting_for_choosing_dosage, user: user, bot: bot_record
-    text = i18n_scope(:find_medicine, :found, name: name)
-    show options: [dosages, ['Другая', :start_menu]], answer: text
   end
 
   def choose_dosage(name)
