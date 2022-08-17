@@ -5,53 +5,6 @@ describe 'BotTelegram::FindMedsBot' do
   let(:chat) { create :bot_telegram_private_chat, bot: bot_record }
   let(:message_object) { create :bot_telegram_message }
 
-  describe 'Start' do
-    let(:message) { build :start_telegram_message }
-
-    it 'returns welcome message' do
-      stub = send_message_stub_request body: {
-        chat_id: chat.telegram_chat_id,
-        text: 'Привет, я бот по поиску лекарств и дальше тут я рассказываю, как мной пользоваться',
-        reply_markup: reply_markup([
-          'Поиск лекарств', 'О проекте'
-        ])
-      }
-
-      bot_run :find_meds, bot_record: bot_record, message: message, chat: chat, message_object: message_object
-
-      expect(stub).to have_been_requested
-    end
-  end 
-
-  describe 'About' do
-    let(:message) { build :start_telegram_message }
-    let(:message_2) { build :telegram_message, text: 'О проекте' }
-
-    it 'returns about message' do
-      send_message_stub_request body: {
-        chat_id: chat.telegram_chat_id,
-        text: 'Привет, я бот по поиску лекарств и дальше тут я рассказываю, как мной пользоваться',
-        reply_markup: reply_markup([
-          'Поиск лекарств', 'О проекте'
-        ])
-      }
-
-      bot_run :find_meds, bot_record: bot_record, message: message, chat: chat, message_object: message_object
-
-      stub = send_message_stub_request body: {
-        chat_id: chat.telegram_chat_id,
-        text: 'Здесь будет текст о проекте',
-        reply_markup: reply_markup([
-          'Поиск лекарств', 'О проекте'
-        ])
-      }
-
-      bot_run :find_meds, bot_record: bot_record, message: message_2, chat: chat, message_object: message_object
-
-      expect(stub).to have_been_requested
-    end
-  end
-
   context 'Find medicine button' do
     describe 'Medicine Found' do
       let(:message_1) { build :telegram_message, text: 'Поиск лекарств' }
@@ -68,6 +21,12 @@ describe 'BotTelegram::FindMedsBot' do
           base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
           table: :main
         )
+
+        # airtable_stub3 = airtable_stub_request(
+        #   base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+        #   table: :main,
+        #   id: "rec0Fqy4fYDUibmuQ"
+        # )
 
         stub_1 = send_message_stub_request body: {
           chat_id: chat.telegram_chat_id,
@@ -106,40 +65,7 @@ describe 'BotTelegram::FindMedsBot' do
         expect(stub_3).to have_been_requested
         expect(airtable_stub1).to have_been_requested
         expect(airtable_stub2).to have_been_requested
-      end
-    end
-
-    describe 'Medicine Not Found' do
-      let(:message_1) { build :telegram_message, text: 'Поиск лекарств' }
-      let(:message_2) { build :telegram_message, text: 'Валидол' }
-
-      it 'returns invitation to type a name' do
-        airtable_stub1 = airtable_stub_request(
-          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
-          table: :names
-        )
-
-        stub_1 = send_message_stub_request body: {
-          chat_id: chat.telegram_chat_id,
-          text: 'Введите название лекарства на кириллице'
-        }
-
-        bot_run :find_meds, bot_record: bot_record, message: message_1, chat: chat, message_object: message_object
-
-        expect(stub_1).to have_been_requested
-
-        stub_2 = send_message_stub_request body: {
-          chat_id: chat.telegram_chat_id,
-          text: "#{message_2.text} отсутствует в нашей базе данных. База данных Find Meds постоянно обновляется. Попробуйте сделать такой запрос через пару недель",
-          reply_markup: reply_markup([
-            'Поиск лекарств', 'О проекте'
-          ])
-        }
-
-        bot_run :find_meds, bot_record: bot_record, message: message_2, chat: chat, message_object: message_object
-
-        expect(stub_2).to have_been_requested
-        expect(airtable_stub1).to have_been_requested
+        # expect(airtable_stub3).to have_been_requested
       end
     end
   end

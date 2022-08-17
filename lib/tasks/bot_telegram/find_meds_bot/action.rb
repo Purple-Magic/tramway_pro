@@ -45,12 +45,12 @@ class BotTelegram::FindMedsBot::Action
   def find_medicine(name)
     medicine = ::BotTelegram::FindMedsBot::Tables::Medicine.find_by('Name' => name)
     if medicine.present?
-      dosages = ::BotTelegram::FindMedsBot::Tables::Main.where('medicine_name' => [medicine.id]).map do |m|
-        m['Название']
+      dosages = ::BotTelegram::FindMedsBot::Tables::Main.where('medicine_name' => [medicine.id]).reduce({}) do |hash, m|
+        hash.merge! m['Название'] => m.id
       end
       answer = i18n_scope(:find_medicine, :found, name: name)
-      show options: [dosages, ['Другая', :start_menu]], answer: answer
-      set_state_for :waiting_for_choosing_dosage, user: user, bot: bot_record, data: { medicine: medicine.id }
+      show options: [dosages.keys, ['Другая', :start_menu]], answer: answer
+      set_state_for :waiting_for_choosing_dosage, user: user, bot: bot_record, data: { medicine_id: medicine.id, dosages: dosages }
     else
       answer = i18n_scope(:find_medicine, :not_found, name: name)
       show menu: :start_menu, answer: answer
@@ -59,7 +59,12 @@ class BotTelegram::FindMedsBot::Action
   end
 
   def choose_dosage(name)
-    text = 'Мы знаем об аналоге “Тегретол ЦР – carbamazepine  концентрация 200 мг – таблетки пролонгированного действия  – фирма NOVARTIS FARMA, S.p.A.”. При приёме новых лекарств, в том числе дженериков, необходимо читать их описание, так как побочные эффекты могут немного отличаться. Если вам удастся купить это лекарство или любой другой дженерик, пожалуйста, сообщите нам, эта информация может помочь другим людям. На данный момент мы не знаем, в каких странах можно купить этот препарат.'
+    current_dosage_id = user.states.where(bot: bot_record).last.data['dosages'][name]
+    dosage = ::BotTelegram::FindMedsBot::Tables::Main.find current_dosage_id
+    binding.pry
+    text = if dosage.separable_dosage?
+             'Мы знаем об аналоге “Тегретол ЦР – carbamazepine  концентрация 200 мг – таблетки пролонгированного действия  – фирма NOVARTIS FARMA, S.p.A.”. При приёме новых лекарств, в том числе дженериков, необходимо читать их описание, так как побочные эффекты могут немного отличаться. Если вам удастся купить это лекарство или любой другой дженерик, пожалуйста, сообщите нам, эта информация может помочь другим людям. На данный момент мы не знаем, в каких странах можно купить этот препарат.'
+           end
     show options: [['Назад']], answer: text
   end
 
