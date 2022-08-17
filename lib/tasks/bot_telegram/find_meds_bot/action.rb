@@ -5,6 +5,7 @@ require_relative 'tables'
 require_relative 'tables/application_table'
 require_relative 'tables/medicine'
 require_relative 'tables/main'
+require_relative 'info_message_builder'
 
 class BotTelegram::FindMedsBot::Action
   include ::BotTelegram::MessagesManager
