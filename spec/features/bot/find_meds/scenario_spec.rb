@@ -13,7 +13,7 @@ describe 'BotTelegram::FindMedsBot' do
         chat_id: chat.telegram_chat_id,
         text: 'Привет, я бот по поиску лекарств и дальше тут я рассказываю, как мной пользоваться',
         reply_markup: reply_markup([
-          'Поиск лекарств'
+          'Поиск лекарств', 'О проекте'
         ])
       }
 
@@ -31,6 +31,53 @@ describe 'BotTelegram::FindMedsBot' do
       expect(stub).to have_been_requested
     end
   end 
+
+  describe 'About' do
+    let(:message) { build :start_telegram_message }
+    let(:message_2) { build :telegram_message, text: 'О проекте' }
+
+    it 'returns about message' do
+      send_message_stub_request body: {
+        chat_id: chat.telegram_chat_id,
+        text: 'Привет, я бот по поиску лекарств и дальше тут я рассказываю, как мной пользоваться',
+        reply_markup: reply_markup([
+          'Поиск лекарств', 'О проекте'
+        ])
+      }
+
+      Telegram::Bot::Client.run(bot_record.token) do |bot|
+        BotTelegram::FindMedsBot::Scenario.new(
+          message: message,
+          bot: bot,
+          bot_record: bot_record,
+          chat: chat,
+          message_object: message_object,
+          user: message_object.user
+        ).run
+      end
+
+      stub = send_message_stub_request body: {
+        chat_id: chat.telegram_chat_id,
+        text: 'Здесь будет текст о проекте',
+        reply_markup: reply_markup([
+          'Поиск лекарств', 'О проекте'
+        ])
+      }
+
+      Telegram::Bot::Client.run(bot_record.token) do |bot|
+        BotTelegram::FindMedsBot::Scenario.new(
+          message: message_2,
+          bot: bot,
+          bot_record: bot_record,
+          chat: chat,
+          message_object: message_object,
+          user: message_object.user
+        ).run
+      end
+
+      expect(stub).to have_been_requested
+    end
+  end
 
   context 'Find medicine button' do
     describe 'Medicine Found' do
@@ -148,7 +195,7 @@ describe 'BotTelegram::FindMedsBot' do
           chat_id: chat.telegram_chat_id,
           text: "#{message_2.text} отсутствует в нашей базе данных. База данных Find Meds постоянно обновляется. Попробуйте сделать такой запрос через пару недель",
           reply_markup: reply_markup([
-            'Поиск лекарств'
+            'Поиск лекарств', 'О проекте'
           ])
         }
 
