@@ -147,3 +147,6 @@ ru:
     products/task:
       plural: задачи
       genitive: задачу
+    find_meds/base:
+      plural: базы
+      genitive: базу

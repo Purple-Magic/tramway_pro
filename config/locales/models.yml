@@ -246,6 +246,8 @@ ru:
         hours: Часы прослушивания
         average_listenning: Среднее прослушиваемость в процентах
         overhearing_percent: Процент дослушиваемости
+      find_meds/base:
+        name: Имя
   enumerize:
     podcast:
       podcast_type:

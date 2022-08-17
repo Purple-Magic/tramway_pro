@@ -1,4 +1,4 @@
-class BotTelegram::FindMedsBot::Tables::Medicine < Airrecord::Table
-  self.base_key = "Программисты всех стран, развлекайтесь"
-  self.table_name = "наименование, фирма, вещества, форма"
+class BotTelegram::FindMedsBot::Tables::Medicine < BotTelegram::FindMedsBot::Tables::ApplicationTable
+  self.base_key = ENV['FIND_MEDS_MAIN_BASE']
+  self.table_name = 'names'
 end

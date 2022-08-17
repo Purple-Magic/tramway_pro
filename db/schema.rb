@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220804213922) do
+ActiveRecord::Schema.define(version: 20220816202742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_trgm"
   enable_extension "uuid-ossp"
+  enable_extension "pg_trgm"
 
   create_table "audits", force: :cascade do |t|
     t.integer "auditable_id"
@@ -269,14 +269,6 @@ ActiveRecord::Schema.define(version: 20220804213922) do
     t.integer "chapter_id"
   end
 
-  create_table "chatquestulsk_games", force: :cascade do |t|
-    t.text "area"
-    t.integer "bot_telegram_user_id"
-    t.text "state"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
@@ -396,17 +388,6 @@ ActiveRecord::Schema.define(version: 20220804213922) do
     t.text "url"
   end
 
-  create_table "elections_candidates", force: :cascade do |t|
-    t.text "full_name"
-    t.text "description"
-    t.integer "area"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "consignment"
-    t.text "state"
-    t.integer "project_id"
-  end
-
   create_table "estimation_coefficients", force: :cascade do |t|
     t.integer "estimation_project_id"
     t.text "state"
@@ -483,6 +464,16 @@ ActiveRecord::Schema.define(version: 20220804213922) do
     t.text "description"
     t.datetime "deleted_at"
     t.text "task_type", default: "single"
+  end
+
+  create_table "find_meds_bases", force: :cascade do |t|
+    t.text "name"
+    t.text "key"
+    t.text "state"
+    t.datetime "deleted_at"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "it_way_certificates", force: :cascade do |t|
