@@ -7,6 +7,7 @@ module BotTelegram::FindMedsBot::Commands
   include BotTelegram::UsersState
 
   def start(_text: nil)
+    user.set_finished_state_for bot: bot_record
     answer = i18n_scope(:start, :text)
     show menu: :start_menu, answer: answer
   end

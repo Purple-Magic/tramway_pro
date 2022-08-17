@@ -32,86 +32,140 @@ describe 'BotTelegram::FindMedsBot' do
     end
   end 
 
-  describe 'Find medicine button' do
-    let(:message_1) { build :telegram_message, text: 'Поиск лекарств' }
-    let(:message_2) { build :telegram_message, text: 'Финлепсин Ретард' }
-    let(:message_3) { build :telegram_message, text: "Финлепсин Ретард \"Teva Pharmaceutical Industries, Ltd.\" carbamazepine  концентрация 400 мг" }
+  context 'Find medicine button' do
+    describe 'Medicine Found' do
+      let(:message_1) { build :telegram_message, text: 'Поиск лекарств' }
+      let(:message_2) { build :telegram_message, text: 'Финлепсин Ретард' }
+      let(:message_3) { build :telegram_message, text: "Финлепсин Ретард \"Teva Pharmaceutical Industries, Ltd.\" carbamazepine  концентрация 400 мг" }
 
-    it 'returns invitation to type a name' do
-      airtable_stub1 = airtable_stub_request(
-        base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
-        table: :names
-      )
-
-      airtable_stub2 = airtable_stub_request(
-        base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
-        table: :main
-      )
-
-      stub_1 = send_message_stub_request body: {
-        chat_id: chat.telegram_chat_id,
-        text: 'Введите название лекарства на кириллице'
-      }
-
-      Telegram::Bot::Client.run(bot_record.token) do |bot|
-        BotTelegram::FindMedsBot::Scenario.new(
-          message: message_1,
-          bot: bot,
-          bot_record: bot_record,
-          chat: chat,
-          message_object: message_object,
-          user: message_object.user
-        ).run
-      end
-
-      expect(stub_1).to have_been_requested
-
-      stub_2 = send_message_stub_request body: {
-        chat_id: chat.telegram_chat_id,
-        text: 'Финлепсин Ретард есть в нашей базе данных. Выберите нужную вам концентрацию',
-        reply_markup: reply_markup(
-          [
-            "Финлепсин Ретард \"Teva Pharmaceutical Industries, Ltd.\" carbamazepine  концентрация 400 мг",
-            "Финлепсин Ретард \"Teva Pharmaceutical Industries, Ltd.\" carbamazepine  концентрация 200 мг"
-          ], ['Другая', 'Назад']
+      it 'returns invitation to type a name' do
+        airtable_stub1 = airtable_stub_request(
+          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+          table: :names
         )
-      }
 
-      Telegram::Bot::Client.run(bot_record.token) do |bot|
-        BotTelegram::FindMedsBot::Scenario.new(
-          message: message_2,
-          bot: bot,
-          bot_record: bot_record,
-          chat: chat,
-          message_object: message_object,
-          user: message_object.user
-        ).run
-      end
-
-      expect(stub_2).to have_been_requested
-
-      stub_3 = send_message_stub_request body: {
-        chat_id: chat.telegram_chat_id,
-        text: 'Мы знаем об аналоге “Тегретол ЦР – carbamazepine  концентрация 200 мг – таблетки пролонгированного действия  – фирма NOVARTIS FARMA, S.p.A.”. При приёме новых лекарств, в том числе дженериков, необходимо читать их описание, так как побочные эффекты могут немного отличаться. Если вам удастся купить это лекарство или любой другой дженерик, пожалуйста, сообщите нам, эта информация может помочь другим людям. На данный момент мы не знаем, в каких странах можно купить этот препарат.',
-        reply_markup: reply_markup(
-          ['Назад']
+        airtable_stub2 = airtable_stub_request(
+          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+          table: :main
         )
-      }
 
-      Telegram::Bot::Client.run(bot_record.token) do |bot|
-        BotTelegram::FindMedsBot::Scenario.new(
-          message: message_3,
-          bot: bot,
-          bot_record: bot_record,
-          chat: chat,
-          message_object: message_object,
-          user: message_object.user
-        ).run
+        stub_1 = send_message_stub_request body: {
+          chat_id: chat.telegram_chat_id,
+          text: 'Введите название лекарства на кириллице'
+        }
+
+        Telegram::Bot::Client.run(bot_record.token) do |bot|
+          BotTelegram::FindMedsBot::Scenario.new(
+            message: message_1,
+            bot: bot,
+            bot_record: bot_record,
+            chat: chat,
+            message_object: message_object,
+            user: message_object.user
+          ).run
+        end
+
+        expect(stub_1).to have_been_requested
+
+        stub_2 = send_message_stub_request body: {
+          chat_id: chat.telegram_chat_id,
+          text: 'Финлепсин Ретард есть в нашей базе данных. Выберите нужную вам концентрацию',
+          reply_markup: reply_markup(
+            [
+              "Финлепсин Ретард \"Teva Pharmaceutical Industries, Ltd.\" carbamazepine  концентрация 400 мг",
+              "Финлепсин Ретард \"Teva Pharmaceutical Industries, Ltd.\" carbamazepine  концентрация 200 мг"
+            ], ['Другая', 'Назад']
+          )
+        }
+
+        Telegram::Bot::Client.run(bot_record.token) do |bot|
+          BotTelegram::FindMedsBot::Scenario.new(
+            message: message_2,
+            bot: bot,
+            bot_record: bot_record,
+            chat: chat,
+            message_object: message_object,
+            user: message_object.user
+          ).run
+        end
+
+        expect(stub_2).to have_been_requested
+
+        stub_3 = send_message_stub_request body: {
+          chat_id: chat.telegram_chat_id,
+          text: 'Мы знаем об аналоге “Тегретол ЦР – carbamazepine  концентрация 200 мг – таблетки пролонгированного действия  – фирма NOVARTIS FARMA, S.p.A.”. При приёме новых лекарств, в том числе дженериков, необходимо читать их описание, так как побочные эффекты могут немного отличаться. Если вам удастся купить это лекарство или любой другой дженерик, пожалуйста, сообщите нам, эта информация может помочь другим людям. На данный момент мы не знаем, в каких странах можно купить этот препарат.',
+          reply_markup: reply_markup(
+            ['Назад']
+          )
+        }
+
+        Telegram::Bot::Client.run(bot_record.token) do |bot|
+          BotTelegram::FindMedsBot::Scenario.new(
+            message: message_3,
+            bot: bot,
+            bot_record: bot_record,
+            chat: chat,
+            message_object: message_object,
+            user: message_object.user
+          ).run
+        end
+
+        expect(stub_3).to have_been_requested
+        expect(airtable_stub1).to have_been_requested
+        expect(airtable_stub2).to have_been_requested
       end
+    end
 
-      expect(stub_3).to have_been_requested
-      expect(airtable_stub1).to have_been_requested
-      expect(airtable_stub2).to have_been_requested
+    describe 'Medicine Not Found' do
+      let(:message_1) { build :telegram_message, text: 'Поиск лекарств' }
+      let(:message_2) { build :telegram_message, text: 'Валидол' }
+
+      it 'returns invitation to type a name' do
+        airtable_stub1 = airtable_stub_request(
+          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+          table: :names
+        )
+
+        stub_1 = send_message_stub_request body: {
+          chat_id: chat.telegram_chat_id,
+          text: 'Введите название лекарства на кириллице'
+        }
+
+        Telegram::Bot::Client.run(bot_record.token) do |bot|
+          BotTelegram::FindMedsBot::Scenario.new(
+            message: message_1,
+            bot: bot,
+            bot_record: bot_record,
+            chat: chat,
+            message_object: message_object,
+            user: message_object.user
+          ).run
+        end
+
+        expect(stub_1).to have_been_requested
+
+        stub_2 = send_message_stub_request body: {
+          chat_id: chat.telegram_chat_id,
+          text: "#{message_2.text} отсутствует в нашей базе данных. База данных Find Meds постоянно обновляется. Попробуйте сделать такой запрос через пару недель",
+          reply_markup: reply_markup([
+            'Поиск лекарств'
+          ])
+        }
+
+        Telegram::Bot::Client.run(bot_record.token) do |bot|
+          BotTelegram::FindMedsBot::Scenario.new(
+            message: message_2,
+            bot: bot,
+            bot_record: bot_record,
+            chat: chat,
+            message_object: message_object,
+            user: message_object.user
+          ).run
+        end
+
+        expect(stub_2).to have_been_requested
+        expect(airtable_stub1).to have_been_requested
+      end
     end
   end
 end
