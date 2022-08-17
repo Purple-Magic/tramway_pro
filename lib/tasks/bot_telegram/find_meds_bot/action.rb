@@ -63,7 +63,10 @@ class BotTelegram::FindMedsBot::Action
     dosage = ::BotTelegram::FindMedsBot::Tables::Main.find current_dosage_id
     text = if dosage.separable_dosage?
            else
-             'Мы знаем об аналоге “Тегретол ЦР – carbamazepine  концентрация 200 мг – таблетки пролонгированного действия  – фирма NOVARTIS FARMA, S.p.A.”. При приёме новых лекарств, в том числе дженериков, необходимо читать их описание, так как побочные эффекты могут немного отличаться. Если вам удастся купить это лекарство или любой другой дженерик, пожалуйста, сообщите нам, эта информация может помочь другим людям. На данный момент мы не знаем, в каких странах можно купить этот препарат.'
+             alternative = ::BotTelegram::FindMedsBot::Tables::Main.where('intersection_and_substance' => dosage['intersection_and_substance'], 'form' => dosage['form']).select { |m| m.id != current_dosage_id }.first
+             if alternative.present?
+               BotTelegram::FindMedsBot::InfoMessageBuilder.new(alternative).build
+             end
            end
     show options: [['Назад']], answer: text
   end

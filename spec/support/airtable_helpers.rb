@@ -5,7 +5,6 @@ module AirtableHelpers
         "records": [
           {
             "id": 'finlepcin_id',
-            "createdTime": DateTime.now - 2.days,
             "fields": {
               "Name": "Финлепсин Ретард"
             }
@@ -16,24 +15,50 @@ module AirtableHelpers
         "records": [
           {
             "id": "rec0Fqy4fYDUibmuQ",
-            "createdTime": DateTime.now - 2.days,
             "fields": {
               'Название': "Финлепсин Ретард \"Teva Pharmaceutical Industries, Ltd.\" carbamazepine  концентрация 400 мг",
               "medicine_name": [
                 "finlepcin_id"
               ],
+              intersection_and_substance: [
+                'carbamazepine концентрация 400 мг'
+              ],
+              form: [
+                'Таб.пролонгированного действия',
+              ]
             }
           },
           {
             "id": "rec0Fqy4fYDUibmu1",
-            "createdTime": DateTime.now - 2.days,
             "fields": {
-              'Название':"Финлепсин Ретард \"Teva Pharmaceutical Industries, Ltd.\" carbamazepine  концентрация 200 мг",
+              'Название': "Финлепсин Ретард \"Teva Pharmaceutical Industries, Ltd.\" carbamazepine  концентрация 200 мг",
               "medicine_name": [
                 "finlepcin_id"
               ],
+              intersection_and_substance: [
+                'carbamazepine концентрация 200 мг'
+              ],
+              form: [
+                'Таб.пролонгированного действия',
+              ]
             }
-          }
+          },
+          {
+            "id": SecureRandom.hex(8),
+            "fields": {
+              'Название': "Тегретол",
+              "medicine_name": [
+                "tegretol_id"
+              ],
+              intersection_and_substance: [
+                'carbamazepine концентрация 400 мг'
+              ],
+              form: [
+                'Таб.пролонгированного действия',
+              ],
+              company: 'NOVARTIS FARMA, S.p.A.'
+            }
+          },
         ]
       }
     },
@@ -41,7 +66,16 @@ module AirtableHelpers
       main: {
         "id": "rec0Fqy4fYDUibmuQ",
         fields: {
-          separable_dosage: 'нельзя делить'
+          separable_dosage: 'нельзя делить',
+          "medicine_name": [
+            "finlepcin_id"
+          ],
+          intersection_and_substance: [
+            'carbamazepine концентрация 400 мг'
+          ],
+          form: [
+            'Таб.пролонгированного действия',
+          ]
         }
       }
     }
