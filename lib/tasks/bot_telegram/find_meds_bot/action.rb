@@ -50,12 +50,12 @@ class BotTelegram::FindMedsBot::Action
       end
       answer = i18n_scope(:find_medicine, :found, name: name)
       show options: [dosages, ['Другая', :start_menu]], answer: answer
+      set_state_for :waiting_for_choosing_dosage, user: user, bot: bot_record, data: { medicine: medicine.id }
     else
       answer = i18n_scope(:find_medicine, :not_found, name: name)
       show menu: :start_menu, answer: answer
+      user.set_finished_state_for bot: bot_record
     end
-
-    set_state_for :waiting_for_choosing_dosage, user: user, bot: bot_record
   end
 
   def choose_dosage(name)
