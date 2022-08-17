@@ -10,7 +10,7 @@ describe 'BotTelegram::FindMedsBot' do
     let(:message_2) { build :telegram_message, text: 'Валидол' }
 
     it 'returns invitation to type a name' do
-      airtable_stub1 = airtable_stub_request(
+      airtable_stub1 = airtable_collection_stub_request(
         base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
         table: :names
       )

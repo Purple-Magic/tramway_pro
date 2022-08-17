@@ -48,19 +48,19 @@ module AirtableHelpers
   }
 
   def airtable_collection_stub_request(base:, table:)
-    response = RESPONSES[:collection][table]
+    response = RESPONSES[:collections][table]
     raise "You should add collection response for table #{table} in spec/support/airtable_helpers.rb" unless response.present?
 
-    stub_request(:get, build_url(base: base, table: table)).
-      with(headers).to_return(status: 200, body: response.to_json, headers: {})
+    stub_request(:get, build_airtable_url(base: base, table: table)).
+      with(airtable_headers).to_return(status: 200, body: response.to_json, headers: {})
   end
 
   def airtable_item_stub_request(base:, table:, id:)
     response = RESPONSES[:items][table]
     raise "You should add items  response for table #{table} in spec/support/airtable_helpers.rb" unless response.present?
 
-    stub_request(:get, build_url(base: base, table: table, id: id)).
-      with(headers).to_return(status: 200, body: response.to_json, headers: {})
+    stub_request(:get, build_airtable_url(base: base, table: table, id: id)).
+      with(airtable_headers).to_return(status: 200, body: response.to_json, headers: {})
   end
 
   private

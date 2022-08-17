@@ -61,8 +61,8 @@ class BotTelegram::FindMedsBot::Action
   def choose_dosage(name)
     current_dosage_id = user.states.where(bot: bot_record).last.data['dosages'][name]
     dosage = ::BotTelegram::FindMedsBot::Tables::Main.find current_dosage_id
-    binding.pry
     text = if dosage.separable_dosage?
+           else
              'Мы знаем об аналоге “Тегретол ЦР – carbamazepine  концентрация 200 мг – таблетки пролонгированного действия  – фирма NOVARTIS FARMA, S.p.A.”. При приёме новых лекарств, в том числе дженериков, необходимо читать их описание, так как побочные эффекты могут немного отличаться. Если вам удастся купить это лекарство или любой другой дженерик, пожалуйста, сообщите нам, эта информация может помочь другим людям. На данный момент мы не знаем, в каких странах можно купить этот препарат.'
            end
     show options: [['Назад']], answer: text

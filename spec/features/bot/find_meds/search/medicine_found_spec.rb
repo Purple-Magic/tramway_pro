@@ -12,21 +12,21 @@ describe 'BotTelegram::FindMedsBot' do
       let(:message_3) { build :telegram_message, text: "Финлепсин Ретард \"Teva Pharmaceutical Industries, Ltd.\" carbamazepine  концентрация 400 мг" }
 
       it 'returns invitation to type a name' do
-        airtable_stub1 = airtable_stub_request(
+        airtable_stub1 = airtable_collection_stub_request(
           base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
           table: :names
         )
 
-        airtable_stub2 = airtable_stub_request(
+        airtable_stub2 = airtable_collection_stub_request(
           base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
           table: :main
         )
 
-        # airtable_stub3 = airtable_stub_request(
-        #   base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
-        #   table: :main,
-        #   id: "rec0Fqy4fYDUibmuQ"
-        # )
+        airtable_stub3 = airtable_item_stub_request(
+          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+          table: :main,
+          id: "rec0Fqy4fYDUibmuQ"
+        )
 
         stub_1 = send_message_stub_request body: {
           chat_id: chat.telegram_chat_id,
@@ -65,7 +65,7 @@ describe 'BotTelegram::FindMedsBot' do
         expect(stub_3).to have_been_requested
         expect(airtable_stub1).to have_been_requested
         expect(airtable_stub2).to have_been_requested
-        # expect(airtable_stub3).to have_been_requested
+        expect(airtable_stub3).to have_been_requested
       end
     end
   end
