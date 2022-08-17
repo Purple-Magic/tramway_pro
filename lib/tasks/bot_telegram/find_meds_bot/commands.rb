@@ -12,6 +12,11 @@ module BotTelegram::FindMedsBot::Commands
     show menu: :start_menu, answer: answer
   end
 
+  def about(_text)
+    answer = i18n_scope(:about, :text)
+    show menu: :start_menu, answer: answer
+  end
+
   def common_action(_action, state, message, _argument)
     set_state_for state, user: user, bot: bot_record
     message_to_user bot.api, message, chat.telegram_chat_id

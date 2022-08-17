@@ -3,7 +3,7 @@
 module BotTelegram::FindMedsBot
   MENUS = {
     start_menu: [
-      [:find_medicine]
+      [:find_medicine, :about]
     ],
     find_medicine_menu: [
       [:start_menu]
