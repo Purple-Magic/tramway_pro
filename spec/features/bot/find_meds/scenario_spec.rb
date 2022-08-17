@@ -17,16 +17,7 @@ describe 'BotTelegram::FindMedsBot' do
         ])
       }
 
-      Telegram::Bot::Client.run(bot_record.token) do |bot|
-        BotTelegram::FindMedsBot::Scenario.new(
-          message: message,
-          bot: bot,
-          bot_record: bot_record,
-          chat: chat,
-          message_object: message_object,
-          user: message_object.user
-        ).run
-      end
+      bot_run :find_meds, bot_record: bot_record, message: message, chat: chat, message_object: message_object
 
       expect(stub).to have_been_requested
     end
@@ -45,16 +36,7 @@ describe 'BotTelegram::FindMedsBot' do
         ])
       }
 
-      Telegram::Bot::Client.run(bot_record.token) do |bot|
-        BotTelegram::FindMedsBot::Scenario.new(
-          message: message,
-          bot: bot,
-          bot_record: bot_record,
-          chat: chat,
-          message_object: message_object,
-          user: message_object.user
-        ).run
-      end
+      bot_run :find_meds, bot_record: bot_record, message: message, chat: chat, message_object: message_object
 
       stub = send_message_stub_request body: {
         chat_id: chat.telegram_chat_id,
@@ -64,16 +46,7 @@ describe 'BotTelegram::FindMedsBot' do
         ])
       }
 
-      Telegram::Bot::Client.run(bot_record.token) do |bot|
-        BotTelegram::FindMedsBot::Scenario.new(
-          message: message_2,
-          bot: bot,
-          bot_record: bot_record,
-          chat: chat,
-          message_object: message_object,
-          user: message_object.user
-        ).run
-      end
+      bot_run :find_meds, bot_record: bot_record, message: message_2, chat: chat, message_object: message_object
 
       expect(stub).to have_been_requested
     end
@@ -101,16 +74,7 @@ describe 'BotTelegram::FindMedsBot' do
           text: 'Введите название лекарства на кириллице'
         }
 
-        Telegram::Bot::Client.run(bot_record.token) do |bot|
-          BotTelegram::FindMedsBot::Scenario.new(
-            message: message_1,
-            bot: bot,
-            bot_record: bot_record,
-            chat: chat,
-            message_object: message_object,
-            user: message_object.user
-          ).run
-        end
+        bot_run :find_meds, bot_record: bot_record, message: message_1, chat: chat, message_object: message_object
 
         expect(stub_1).to have_been_requested
 
@@ -125,16 +89,7 @@ describe 'BotTelegram::FindMedsBot' do
           )
         }
 
-        Telegram::Bot::Client.run(bot_record.token) do |bot|
-          BotTelegram::FindMedsBot::Scenario.new(
-            message: message_2,
-            bot: bot,
-            bot_record: bot_record,
-            chat: chat,
-            message_object: message_object,
-            user: message_object.user
-          ).run
-        end
+        bot_run :find_meds, bot_record: bot_record, message: message_2, chat: chat, message_object: message_object
 
         expect(stub_2).to have_been_requested
 
@@ -146,16 +101,7 @@ describe 'BotTelegram::FindMedsBot' do
           )
         }
 
-        Telegram::Bot::Client.run(bot_record.token) do |bot|
-          BotTelegram::FindMedsBot::Scenario.new(
-            message: message_3,
-            bot: bot,
-            bot_record: bot_record,
-            chat: chat,
-            message_object: message_object,
-            user: message_object.user
-          ).run
-        end
+        bot_run :find_meds, bot_record: bot_record, message: message_3, chat: chat, message_object: message_object
 
         expect(stub_3).to have_been_requested
         expect(airtable_stub1).to have_been_requested
@@ -178,16 +124,7 @@ describe 'BotTelegram::FindMedsBot' do
           text: 'Введите название лекарства на кириллице'
         }
 
-        Telegram::Bot::Client.run(bot_record.token) do |bot|
-          BotTelegram::FindMedsBot::Scenario.new(
-            message: message_1,
-            bot: bot,
-            bot_record: bot_record,
-            chat: chat,
-            message_object: message_object,
-            user: message_object.user
-          ).run
-        end
+        bot_run :find_meds, bot_record: bot_record, message: message_1, chat: chat, message_object: message_object
 
         expect(stub_1).to have_been_requested
 
@@ -199,16 +136,7 @@ describe 'BotTelegram::FindMedsBot' do
           ])
         }
 
-        Telegram::Bot::Client.run(bot_record.token) do |bot|
-          BotTelegram::FindMedsBot::Scenario.new(
-            message: message_2,
-            bot: bot,
-            bot_record: bot_record,
-            chat: chat,
-            message_object: message_object,
-            user: message_object.user
-          ).run
-        end
+        bot_run :find_meds, bot_record: bot_record, message: message_2, chat: chat, message_object: message_object
 
         expect(stub_2).to have_been_requested
         expect(airtable_stub1).to have_been_requested
