@@ -5,7 +5,9 @@ require 'sidekiq/testing'
 Sidekiq::Testing.fake!
 
 describe 'Actions' do
-  before { move_host_to red_magic_host }
+  before do
+    move_host_to red_magic_host 
+  end
 
   let!(:episode) do
     podcast = create :podcast, project_id: red_magic_id, podcast_type: :sample
