@@ -571,7 +571,7 @@ GEM
       tramway-core (>= 1.18.6)
       tramway-user (>= 2.1.3.2)
       trap (~> 4.0)
-    tramway-api (2.0)
+    tramway-api (2.0.0.2)
       active_model_serializers (= 0.10.12)
       knock
       tramway-core (>= 1.9.2)
@@ -594,7 +594,7 @@ GEM
       rmagick (>= 2.16.0)
       sass-rails (~> 5.0, >= 5.0.7)
       simple_form (>= 5.0.0)
-    tramway-event (1.12.6.3)
+    tramway-event (1.12.6.4)
       configus
     tramway-export (0.2.1)
       xls_exporter (>= 1.2)
@@ -764,10 +764,10 @@ DEPENDENCIES
   telegram-bot-ruby (= 0.15.0)
   time_difference
   tramway-admin (= 4.1.2)
-  tramway-api (= 2.0)
+  tramway-api (= 2.0.0.2)
   tramway-conference (= 1.9.5.5)
   tramway-core (= 4.1.3)
-  tramway-event (= 1.12.6.3)
+  tramway-event (= 1.12.6.4)
   tramway-export (= 0.2.1)
   tramway-landing (= 3.3.0.6)
   tramway-news (= 1.0.5)
@@ -791,7 +791,7 @@ DEPENDENCIES
   yt
 
 RUBY VERSION
-   ruby 2.7.5p203
+   ruby 2.7.6p219
 
 BUNDLED WITH
    2.1.4

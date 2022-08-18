@@ -15,7 +15,7 @@ class PodcastDecorator < ApplicationDecorator
     end
 
     def show_attributes
-      [:time_logs_table, :stats_table]
+      %i[time_logs_table stats_table]
     end
   end
 
@@ -27,7 +27,7 @@ class PodcastDecorator < ApplicationDecorator
       listeners: object.stats.group(:month, :year).sum(:listeners),
       hours: object.stats.group(:month, :year).sum(:hours),
       average_listenning: object.stats.group(:month, :year).sum(:average_listenning),
-      overhearing_percent: object.stats.group(:month, :year).sum(:overhearing_percent),
+      overhearing_percent: object.stats.group(:month, :year).sum(:overhearing_percent)
     }
 
     table do
@@ -47,7 +47,8 @@ class PodcastDecorator < ApplicationDecorator
                     raw numbers[month]
                   end)
                   concat(td do
-                    services = object.stats.where(month: month.first, year: month.last).where.not(name => nil).pluck(:service).map &:camelize
+                    services = object.stats.where(month: month.first,
+                      year: month.last).where.not(name => nil).pluck(:service).map(&:camelize)
                     services.join(', ')
                   end)
                 end)

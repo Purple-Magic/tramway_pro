@@ -22,7 +22,6 @@ describe 'Create event' do
     fill_in 'record[request_collecting_begin_date]', with: attributes[:request_collecting_begin_date]
     fill_in 'record[request_collecting_end_date]', with: attributes[:request_collecting_end_date]
     select attributes[:reach], from: 'record[reach]'
-    attach_file 'record[photo]', attributes[:photo]
 
     click_on 'Сохранить', class: 'btn-success'
     expect(Tramway::Event::Event.count).to eq(count + 1)

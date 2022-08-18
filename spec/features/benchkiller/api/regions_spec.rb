@@ -13,11 +13,19 @@ describe 'Benchkiller regions' do
     token = json_response[:auth_token][:token]
     { Authorization: "Bearer #{token}" }
   end
+  let!(:bot_record) { create_benchkiller_bot }
 
   describe 'Index' do
     before do
       10.times do
-        create :benchkiller_company
+        company_name = generate :company_name
+
+        send_message_stub_request body: {
+          chat_id: BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID,
+          text: "Новая компания #{company_name}. Пользователь пока заполняет данные."
+        }
+
+        create :benchkiller_company, title: company_name
       end
     end
 

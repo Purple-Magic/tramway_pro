@@ -28,17 +28,15 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
     if message_from_telegram.is_a? Telegram::Bot::Types::CallbackQuery
       command = BotTelegram::BenchkillerBot::Command.new message_from_telegram, bot_record.slug
       public_send command.name, command.argument if command.valid?
+    elsif start_action?
+      start
+    elsif button_action?
+      public_send ::BotTelegram::BenchkillerBot::BUTTONS.invert[message_from_telegram.text], nil
+    elsif user.finished_state_for?(bot: bot_record)
+      message_to_chat bot.api, chat.telegram_chat_id, 'Напиши /start'
     else
-      if start_action?
-        start
-      elsif button_action?
-        public_send ::BotTelegram::BenchkillerBot::BUTTONS.invert[message_from_telegram.text], nil
-      elsif user.finished_state_for?(bot: bot_record)
-        message_to_chat bot.api, chat.telegram_chat_id, 'Напиши /start'
-      else
-        action = BotTelegram::BenchkillerBot::Action.new message_from_telegram, user, chat, bot, bot_record
-        action.run
-      end
+      action = BotTelegram::BenchkillerBot::Action.new message_from_telegram, user, chat, bot, bot_record
+      action.run
     end
   end
 

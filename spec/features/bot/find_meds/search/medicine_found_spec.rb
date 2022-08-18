@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'BotTelegram::FindMedsBot' do
@@ -9,7 +11,10 @@ describe 'BotTelegram::FindMedsBot' do
     describe 'Medicine Found' do
       let(:message_1) { build :telegram_message, text: 'Поиск лекарств' }
       let(:message_2) { build :telegram_message, text: 'Финлепсин Ретард' }
-      let(:message_3) { build :telegram_message, text: "Финлепсин Ретард \"Teva Pharmaceutical Industries, Ltd.\" carbamazepine  концентрация 400 мг" }
+      let(:message_3) do
+        build :telegram_message,
+          text: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг'
+      end
 
       it 'returns invitation to type a name' do
         airtable_collection_stub_request(
@@ -25,7 +30,7 @@ describe 'BotTelegram::FindMedsBot' do
         airtable_item_stub_request(
           base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
           table: :main,
-          id: "rec0Fqy4fYDUibmuQ"
+          id: 'rec0Fqy4fYDUibmuQ'
         )
 
         stub_1 = send_message_stub_request body: {
@@ -42,9 +47,9 @@ describe 'BotTelegram::FindMedsBot' do
           text: 'Финлепсин Ретард есть в нашей базе данных. Выберите нужную вам концентрацию',
           reply_markup: reply_markup(
             [
-              "Финлепсин Ретард \"Teva Pharmaceutical Industries, Ltd.\" carbamazepine  концентрация 400 мг",
-              "Финлепсин Ретард \"Teva Pharmaceutical Industries, Ltd.\" carbamazepine  концентрация 200 мг"
-            ], ['Другая', 'Назад']
+              'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг',
+              'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 200 мг'
+            ], %w[Другая Назад]
           )
         }
 

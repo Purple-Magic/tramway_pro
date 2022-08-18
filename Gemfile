@@ -7,14 +7,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.7.5'
+ruby '2.7.6'
 gem 'rails', '5.1.7'
 
 gem 'tramway-admin', '4.1.2'
-gem 'tramway-api', '2.0'
+gem 'tramway-api', '2.0.0.2'
 gem 'tramway-conference', '1.9.5.5'
 gem 'tramway-core', '4.1.3'
-gem 'tramway-event', '1.12.6.3'
+gem 'tramway-event', '1.12.6.4'
 gem 'tramway-export', '0.2.1'
 gem 'tramway-landing', '3.3.0.6'
 gem 'tramway-news', '1.0.5'
@@ -43,7 +43,6 @@ gem 'aasm'
 gem 'actionview', '>= 5.1.6.2'
 gem 'active_median'
 gem 'active_model_serializers', '0.10.12'
-gem 'airbrake', '~> 5.0'
 gem 'airrecord'
 gem 'audited', '>= 4.8.0'
 gem 'awesome_print'
@@ -159,4 +158,8 @@ group :test do
   gem 'whenever-test'
 end
 
-gem "httparty", "~> 0.20.0"
+group :production do
+  gem 'airbrake', '~> 5.0'
+end
+
+gem 'httparty', '~> 0.20.0'

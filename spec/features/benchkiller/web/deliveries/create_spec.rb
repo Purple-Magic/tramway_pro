@@ -51,8 +51,14 @@ describe 'Create Benchkiller deliveries', type: :feature do
   end
 
   describe 'for user with company' do
+    let!(:bot_record) { create_benchkiller_bot }
     before do
-      create :benchkiller_company, users: [user]
+      company_name = generate :company_name
+      send_message_stub_request body: {
+        chat_id: BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID,
+        text: "Новая компания #{company_name}. Пользователь пока заполняет данные."
+      }
+      create :benchkiller_company, users: [user], title: company_name
     end
 
     it 'checks text' do

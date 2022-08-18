@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'BotTelegram::FindMedsBot' do
@@ -14,8 +16,8 @@ describe 'BotTelegram::FindMedsBot' do
         chat_id: chat.telegram_chat_id,
         text: 'Привет, я бот по поиску лекарств и дальше тут я рассказываю, как мной пользоваться',
         reply_markup: reply_markup([
-          'Поиск лекарств', 'О проекте'
-        ])
+                                     'Поиск лекарств', 'О проекте'
+                                   ])
       }
 
       bot_run :find_meds, bot_record: bot_record, message: message, chat: chat, message_object: message_object
@@ -24,8 +26,8 @@ describe 'BotTelegram::FindMedsBot' do
         chat_id: chat.telegram_chat_id,
         text: 'Здесь будет текст о проекте',
         reply_markup: reply_markup([
-          'Поиск лекарств', 'О проекте'
-        ])
+                                     'Поиск лекарств', 'О проекте'
+                                   ])
       }
 
       bot_run :find_meds, bot_record: bot_record, message: message_2, chat: chat, message_object: message_object

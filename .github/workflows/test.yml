@@ -9,93 +9,92 @@ on:
       - master
       - develop
 jobs:
-   syntax_check:
-     runs-on: ubuntu-latest
+  syntax_check:
+    runs-on: ubuntu-latest
 
-     steps:
-       - uses: actions/checkout@v1
+    steps:
+      - uses: actions/checkout@v1
 
-       - name: Set up Ruby 2.7
-         uses: actions/setup-ruby@v1
-         with:
-           ruby-version: 2.7
-           bundle-cache: true
+      - name: Set up Ruby 2.7
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundle-cache: true
 
-       - name: Run syntax check
-         run: |
-           mkdir /tmp/syntax-check-results
-           find app bin config db lib spec -type f -name "*.rb" -o -name "*.rake" | xargs -l -P 0 -I{} ruby -c {} 1> /dev/null 2> >(tee -a /tmp/syntax-check-results.txt >&2)
+      - name: Run syntax check
+        run: |
+          mkdir /tmp/syntax-check-results
+          find app bin config db lib spec -type f -name "*.rb" -o -name "*.rake" | xargs -l -P 0 -I{} ruby -c {} 1> /dev/null 2> >(tee -a /tmp/syntax-check-results.txt >&2)
 
-   smell_check:
-     runs-on: ubuntu-latest
+  smell_check:
+    runs-on: ubuntu-latest
 
-     steps:
-       - uses: actions/checkout@v1
+    steps:
+      - uses: actions/checkout@v1
 
-       - name: Set up Ruby 2.7
-         uses: actions/setup-ruby@v1
-         with:
-           ruby-version: 2.7
-           bundle-cache: true
+      - name: Set up Ruby 2.7
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundle-cache: true
 
-       - name: Install reek
-         run: |
-           gem install reek -v '6.0.6'
+      - name: Install reek
+        run: |
+          gem install reek -v '6.0.6'
 
-       - name: Show reek version
-         run: |
-           reek -v
+      - name: Show reek version
+        run: |
+          reek -v
 
-       - name: Run smell check
-         run: |
-           reek -c .reek.yml .
+      - name: Run smell check
+        run: |
+          reek -c .reek.yml .
 
-       - name: Rocket.Chat Notification
-         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
-         if: always()
-         with:
-           username: bot_leopold
-           type: ${{ job.status }}
-           job_name: '*Tramway Pro Smell Check*'
-           mention: 'here'
-           channel: 'dNei2bg5ufmQFdFWx'
-           url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
-           commit: true
-           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Rocket.Chat Notification
+        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
+        if: always()
+        with:
+          username: bot_leopold
+          type: ${{ job.status }}
+          job_name: '*Tramway Pro Smell Check*'
+          mention: 'here'
+          channel: 'dNei2bg5ufmQFdFWx'
+          url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
+          commit: true
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-   rubocop:
-     runs-on: ubuntu-latest
+  rubocop:
+    runs-on: ubuntu-latest
 
-     steps:
-       - uses: actions/checkout@v1
+    steps:
+      - uses: actions/checkout@v1
 
-       - name: Set up Ruby 2.7
-         uses: actions/setup-ruby@v1
-         with:
-           ruby-version: 2.7
-           bundle-cache: true
+      - name: Set up Ruby 2.7
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundle-cache: true
 
-       - name: Install rubocop
-         run: |
-           gem install rubocop
+      - name: Install rubocop
+        run: |
+          gem install rubocop
 
-       - name: Running Linter
-         run:
-           rubocop
+      - name: Running Linter
+        run:
+          rubocop
 
-       - name: Rocket.Chat Notification
-         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
-         if: always()
-         with:
-           username: bot_leopold
-           type: ${{ job.status }}
-           job_name: '*Tramway Pro Linter*'
-           mention: 'here'
-           channel: 'dNei2bg5ufmQFdFWx'
-           url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
-           commit: true
-           token: ${{ secrets.GITHUB_TOKEN }}
-
+      - name: Rocket.Chat Notification
+        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
+        if: always()
+        with:
+          username: bot_leopold
+          type: ${{ job.status }}
+          job_name: '*Tramway Pro Linter*'
+          mention: 'here'
+          channel: 'dNei2bg5ufmQFdFWx'
+          url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
+          commit: true
+          token: ${{ secrets.GITHUB_TOKEN }}
   tests: 
     runs-on: ubuntu-latest
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../custom/scenario'
 
 class BotTelegram::PurpleMagicBot::Scenario < ::BotTelegram::Custom::Scenario
@@ -5,10 +7,10 @@ class BotTelegram::PurpleMagicBot::Scenario < ::BotTelegram::Custom::Scenario
 
   MENUS = {
     start_menu: [
-      [ :rosterize, :service_guru, :slurm ],
-      [ :tramway_admin, :chat_quests ]
+      %i[rosterize service_guru slurm],
+      %i[tramway_admin chat_quests]
     ]
-  }
+  }.freeze
 
   BUTTONS = {
     rosterize: '🛫 Rosterize',
@@ -16,7 +18,7 @@ class BotTelegram::PurpleMagicBot::Scenario < ::BotTelegram::Custom::Scenario
     slurm: '🖱 Slurm',
     tramway_admin: '🚟 tramway-admin',
     chat_quests: '🧛 Чат-квесты'
-  }
+  }.freeze
 
   def run
     if start_action?

@@ -17,7 +17,7 @@ class Admin::CourseForm < Tramway::Core::ExtendedApplicationForm
 
   def logging_actions=(actions)
     model.options ||= {}
-    model.options = model.options.merge! logging_actions: actions
+    model.options.merge! logging_actions: actions
     model.save!
   end
 end

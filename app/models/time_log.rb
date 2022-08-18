@@ -10,7 +10,7 @@ class TimeLog < ApplicationRecord
     include TimeManager
   end
 
-  scope :logged_by, Proc.new { |user, associated, begin_date, end_date|
+  scope :logged_by, proc { |user, associated, begin_date, end_date|
     collection = associated.time_logs.where(user_id: user)
     if begin_date.present?
       collection.where(passed_at: begin_date..end_date)
@@ -19,7 +19,7 @@ class TimeLog < ApplicationRecord
     end
   }
 
-  scope :time_logged_by, Proc.new { |user, associated, begin_date, end_date|
+  scope :time_logged_by, proc { |user, associated, begin_date, end_date|
     collection = logged_by user, associated, begin_date, end_date
     minutes = collection.sum(&:minutes)
     minutes_to_hours minutes

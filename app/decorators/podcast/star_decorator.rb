@@ -19,7 +19,7 @@ class Podcast::StarDecorator < ApplicationDecorator
 
   decorate_associations :podcast
 
-  def name 
+  def name
     "#{podcast.title} | #{nickname}"
   end
 

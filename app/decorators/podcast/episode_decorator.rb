@@ -89,7 +89,7 @@ data: { 'bs-toggle': :collapse, 'bs-target': '#commands' }, aria: { controls: :c
   end
 
   def youtube_description
-    # FIXME sending self as argument is not a good point
+    # FIXME: sending self as argument is not a good point
     raw Podcasts::Youtube::DescriptionBuilder.new(self, format: :html).call
   end
 
@@ -118,7 +118,9 @@ data: { 'bs-toggle': :collapse, 'bs-target': '#commands' }, aria: { controls: :c
     render_video_button = { url: render_video_url, method: :patch, inner: -> { fa_icon :video }, color: :success }
 
     youtube_publish_url = path_helpers.red_magic_api_v1_podcast_episode_path(id: id, process: :youtube_publish)
-    youtube_publish_button = { url: youtube_publish_url, method: :patch, inner: -> { simple_icon('youtube') }, color: :danger }
+    youtube_publish_button = { url: youtube_publish_url, method: :patch, inner: lambda {
+                                                                                  simple_icon('youtube')
+                                                                                }, color: :danger }
 
     case object.podcast.podcast_type.to_sym
     when :sample, :without_music

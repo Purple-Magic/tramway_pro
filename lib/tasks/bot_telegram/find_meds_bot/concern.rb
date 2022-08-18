@@ -8,7 +8,7 @@ module BotTelegram::FindMedsBot::Concern
     I18n.t(key, scope: scope, **attributes)
   end
 
-  def show(menu: false, answer:, continue_action: false, options: false)
+  def show(answer:, menu: false, continue_action: false, options: false)
     raise "There is no menu or options to show with answer #{answer}" if !menu.present? && !options.present?
 
     keyboard = (options || ::BotTelegram::FindMedsBot::MENUS[menu]).map do |button_row|

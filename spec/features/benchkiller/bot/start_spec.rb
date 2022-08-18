@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'BotTelegram::BenchkillerBot' do
-  let!(:bot_record) { create :benchkiller_bot }
+  let!(:bot_record) { create_benchkiller_bot }
 
   describe '/start' do
     let!(:start_message) { build :telegram_message, text: '/start' }
@@ -39,7 +39,12 @@ describe 'BotTelegram::BenchkillerBot' do
       let!(:user) { create :benchkiller_user, telegram_user: message_object.user, password: '123' }
 
       before do
-        company = create :benchkiller_company
+        company_name = generate :company_name
+        send_message_stub_request body: {
+          chat_id: BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID,
+          text: "Новая компания #{company_name}. Пользователь пока заполняет данные."
+        }
+        company = create :benchkiller_company, title: company_name
         company.users << user
         company.save!
       end
@@ -49,8 +54,7 @@ describe 'BotTelegram::BenchkillerBot' do
           chat_id: chat.telegram_chat_id,
           text: benchkiller_i18n_scope(:start, :text),
           reply_markup: reply_markup(
-            ['Карточка компании', 'Сгенерировать пароль'],
-            ['Изменить карточку']
+            ['Карточка компании'], ['Изменить карточку']
           )
         }
 

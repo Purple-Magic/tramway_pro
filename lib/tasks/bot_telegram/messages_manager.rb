@@ -12,7 +12,7 @@ module BotTelegram::MessagesManager
       chat_id: chat.id
     )
 
-    message_object.update! text: message.try(:text), 
+    message_object.update! text: message.try(:text),
       project_id: Project.find_by(title: 'PurpleMagic').id,
       options: (telegram_message_attributes.reduce({}) do |hash, attribute|
                   hash.merge! attribute => message.send(attribute)
@@ -33,7 +33,11 @@ module BotTelegram::MessagesManager
       raise message_obj.class.to_s
     end
   rescue StandardError => error
-    Airbrake.notify error
+    if Rails.env.production?
+      Airbrake.notify error
+    else
+      Rails.logger.info error
+    end
   end
   # :reek:FeatureEnvy { enabled: true }
 
@@ -47,7 +51,11 @@ module BotTelegram::MessagesManager
       bot_api.send_message chat_id: chat_id, **message_obj.options
     end
   rescue StandardError => error
-    Airbrake.notify error
+    if Rails.env.production?
+      Airbrake.notify error
+    else
+      Rails.logger.info error
+    end
   end
 
   def send_file(bot_api, chat_id, message_obj)

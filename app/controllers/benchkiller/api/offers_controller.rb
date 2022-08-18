@@ -8,7 +8,8 @@ class Benchkiller::Api::OffersController < Benchkiller::Api::ApplicationControll
         status: 406
       return
     end
-    if params[:period].present? && !params[:period].in?([ 'all_time', 'day', 'week', 'month', 'quarter', 'various_period' ])
+    if params[:period].present? && !params[:period].in?(%w[all_time day week month quarter
+                                                           various_period])
       render json: 'Unacceptable period param',
         status: 406
       return

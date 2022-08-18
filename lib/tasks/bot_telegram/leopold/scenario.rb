@@ -19,7 +19,8 @@ class BotTelegram::Leopold::Scenario < ::BotTelegram::Custom::Scenario
       message_to_chat bot.api, chat.telegram_chat_id, bot_record.options['i_do_not_have_actions_in_private_chats']
     elsif chat_decorator.to_answer?
       if message.user.username == 'kalashnikovisme' && message.text == '/remove_keyboard'
-        message_to_chat bot.api, chat.telegram_chat_id, 'Yes, sir!', reply_markup: Telegram::Bot::Types::ReplyKeyboardRemove.new(remove_keyboard: true)
+        message_to_chat bot.api, chat.telegram_chat_id, 'Yes, sir!',
+          reply_markup: Telegram::Bot::Types::ReplyKeyboardRemove.new(remove_keyboard: true)
       end
     end
   end
