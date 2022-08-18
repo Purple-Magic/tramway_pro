@@ -5,6 +5,8 @@ require_relative 'tables'
 require_relative 'tables/application_table'
 require_relative 'tables/medicine'
 require_relative 'tables/main'
+require_relative 'tables/company'
+require_relative 'tables/component'
 require_relative 'info_message_builder'
 
 class BotTelegram::FindMedsBot::Action
@@ -74,7 +76,10 @@ data: { medicine_id: medicine.id, dosages: dosages }
              components = alternative['intersection_and_substance'].map do |component_id|
                BotTelegram::FindMedsBot::Tables::Component.find(component_id)['Name']
              end
-             BotTelegram::FindMedsBot::InfoMessageBuilder.new(alternative, company_name: company_name, components: components).build if alternative.present?
+             if alternative.present?
+               BotTelegram::FindMedsBot::InfoMessageBuilder.new(alternative, company_name: company_name,
+components: components).build
+             end
            end
     show options: [['Назад']], answer: text
   end

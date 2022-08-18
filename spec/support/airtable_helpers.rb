@@ -23,7 +23,7 @@ module AirtableHelpers
                 'finlepcin_id'
               ],
               intersection_and_substance: [
-                "reccJ82ScIlm1tOxC"
+                'reccJ82ScIlm1tOxC'
               ],
               form: [
                 'Таб.пролонгированного действия'
@@ -38,7 +38,7 @@ module AirtableHelpers
                 'finlepcin_id'
               ],
               intersection_and_substance: [
-                "reccJ82ScIlm1tOx3"
+                'reccJ82ScIlm1tOx3'
               ],
               form: [
                 'Таб.пролонгированного действия'
@@ -53,12 +53,12 @@ module AirtableHelpers
                 'tegretol_id'
               ],
               intersection_and_substance: [
-                "reccJ82ScIlm1tOxC"
+                'reccJ82ScIlm1tOxC'
               ],
               form: [
                 'Таб.пролонгированного действия'
               ],
-              company: ["receQeH2nuPmxUA7P"]
+              company: ['receQeH2nuPmxUA7P']
             }
           }
         ]
@@ -73,7 +73,7 @@ module AirtableHelpers
             'finlepcin_id'
           ],
           intersection_and_substance: [
-            'reccJ82ScIlm1tOxC',
+            'reccJ82ScIlm1tOxC'
           ],
           form: [
             'Таб.пролонгированного действия'
@@ -81,15 +81,15 @@ module AirtableHelpers
         }
       },
       companies: {
-        "id": "receQeH2nuPmxUA7P",
-        "fields": {
-          "Name": "NOVARTIS FARMA, S.p.A.",
+        id: 'receQeH2nuPmxUA7P',
+        fields: {
+          Name: 'NOVARTIS FARMA, S.p.A.'
         }
       },
       active_components: {
-        "id": "reccJ82ScIlm1tOxC",
+        id: 'reccJ82ScIlm1tOxC',
         fields: {
-          'Name': "carbamazepine концентрация 400 мг"
+          Name: 'carbamazepine концентрация 400 мг'
         }
       }
     }

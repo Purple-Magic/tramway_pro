@@ -36,13 +36,13 @@ describe 'BotTelegram::FindMedsBot' do
         airtable_item_stub_request(
           base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
           table: :companies,
-          id: "receQeH2nuPmxUA7P"
+          id: 'receQeH2nuPmxUA7P'
         )
 
         airtable_item_stub_request(
           base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
           table: :active_components,
-          id: "reccJ82ScIlm1tOxC"
+          id: 'reccJ82ScIlm1tOxC'
         )
 
         stub_1 = send_message_stub_request body: {
