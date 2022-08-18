@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe 'BotTelegram::BenchkillerBot' do
   describe 'Create company' do
-    let!(:bot_record) { create :benchkiller_bot }
+    let!(:bot_record) { create_benchkiller_bot }
     let(:chat) { create :bot_telegram_private_chat, bot: bot_record }
     let(:message_object) { create :bot_telegram_message }
     let!(:message) { build :create_company_telegram_message }
@@ -33,7 +33,12 @@ describe 'BotTelegram::BenchkillerBot' do
 
     describe 'Creating company' do
       let(:company_name) do
-        attributes_for(:benchkiller_company)[:title]
+        attributes_for(:benchkiller_company)[:title].tap do |company_name|
+          send_message_stub_request body: {
+            chat_id: BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID,
+            text: "Новая компания #{company_name}. Пользователь пока заполняет данные."
+          }
+        end
       end
 
       let(:telegram_message) do
@@ -56,7 +61,7 @@ describe 'BotTelegram::BenchkillerBot' do
           reply_markup: reply_markup(
             ['Название компании', 'Телефон'],
             ['Сайт', 'Расположение компании'],
-            ['Портфолио', 'Регионы сотрудничества'],
+            ['Портфолио', 'Регионы сотрудничества', 'Регионы-исключения'],
             %w[Почта Назад]
           )
         }
@@ -95,7 +100,12 @@ describe 'BotTelegram::BenchkillerBot' do
 
     describe 'Does not create company with the same name' do
       let!(:company_name) do
-        create(:benchkiller_company).title
+        company_name = generate :company_name
+        send_message_stub_request body: {
+          chat_id: BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID,
+          text: "Новая компания #{company_name}. Пользователь пока заполняет данные."
+        }
+        create(:benchkiller_company, title: company_name).title
       end
 
       let(:telegram_message) do
