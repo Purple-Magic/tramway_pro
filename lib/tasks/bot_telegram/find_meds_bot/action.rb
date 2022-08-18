@@ -70,7 +70,8 @@ data: { medicine_id: medicine.id, dosages: dosages }
              ).reject do |m|
                m.id == current_dosage_id
              end.first
-             BotTelegram::FindMedsBot::InfoMessageBuilder.new(alternative).build if alternative.present?
+             company_name = BotTelegram::FindMedsBot::Tables::Company.find(alternative['company'].first)['Name']
+             BotTelegram::FindMedsBot::InfoMessageBuilder.new(alternative, company_name: company_name).build if alternative.present?
            end
     show options: [['Назад']], answer: text
   end
