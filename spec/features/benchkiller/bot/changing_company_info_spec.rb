@@ -3,12 +3,17 @@
 require 'rails_helper'
 
 describe 'BotTelegram::BenchkillerBot' do
-  let!(:bot_record) { create :benchkiller_bot }
+  let!(:bot_record) { create_benchkiller_bot }
   let(:chat) { create :bot_telegram_private_chat, bot: bot_record }
   let(:message_object) { create :bot_telegram_message }
   let!(:company) do
     user = create :benchkiller_user, telegram_user: message_object.user, password: '123'
-    company = create :benchkiller_company
+    company_name = generate :company_name
+    send_message_stub_request body: {
+      chat_id: BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID,
+      text: "Новая компания #{company_name}. Пользователь пока заполняет данные."
+    }
+    company = create :benchkiller_company, title: company_name
     company.users << user
     company.save!
     company
@@ -17,7 +22,7 @@ describe 'BotTelegram::BenchkillerBot' do
   describe 'Commands' do
     ::BotTelegram::BenchkillerBot::Command::COMMANDS.each do |com|
       next if com.in? %i[start start_menu change_company_card create_company create_password approve_offer
-                         decline_offer]
+                         decline_offer set_place set_regions_to_cooperate]
 
       describe com.to_s.capitalize.gsub('_', ' ') do
         let(:message) { build "#{com}_telegram_message" }
@@ -181,12 +186,17 @@ describe 'BotTelegram::BenchkillerBot' do
         unless com.in? [:set_company_name]
           describe 'Failure' do
             let!(:telegram_message) do
-              t = com.in?(%i[set_regions_to_cooperate set_place set_phone]) ? '' : 'fail_argument'
+              t = com.in?(%i[set_regions_to_cooperate set_phone]) ? '' : 'fail_argument'
               build :telegram_message, text: t
             end
 
             before do
-              create :benchkiller_company, title: Faker::Company.name
+              company_name = generate :company_name
+              send_message_stub_request body: {
+                chat_id: BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID,
+                text: "Новая компания #{company_name}. Пользователь пока заполняет данные."
+              }
+              create :benchkiller_company, title: company_name
             end
 
             it 'returns error messages' do

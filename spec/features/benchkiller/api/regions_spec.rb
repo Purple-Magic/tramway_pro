@@ -13,17 +13,7 @@ describe 'Benchkiller regions' do
     token = json_response[:auth_token][:token]
     { Authorization: "Bearer #{token}" }
   end
-  let!(:bot_record) do
-    bot = Bot.with_deleted.find_by(id: 13)
-    if bot.present?
-      bot.restore
-      bot 
-    else
-      bot = create :benchkiller_bot
-      bot.update_column :id, 13
-      bot
-    end
-  end
+  let!(:bot_record) { create_benchkiller_bot }
 
   describe 'Index' do
     before do

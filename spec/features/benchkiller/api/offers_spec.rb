@@ -37,17 +37,7 @@ describe 'Benchkiller Offers' do
       describe 'Search' do
         describe 'Regions' do
           let(:country) { Faker::Address.country }
-          let!(:bot_record) do
-            bot = Bot.with_deleted.find_by(id: 13)
-            if bot.present?
-              bot.restore
-              bot 
-            else
-              bot = create :benchkiller_bot
-              bot.update_column :id, 13
-              bot
-            end
-          end
+          let!(:bot_record) { create_benchkiller_bot }
 
           let!(:offers) do
             companies = (1..5).to_a.map do
