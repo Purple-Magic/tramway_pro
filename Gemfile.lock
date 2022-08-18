@@ -366,7 +366,7 @@ GEM
     puma (3.12.6)
     raabro (1.4.0)
     racc (1.6.0)
-    rack (2.2.3.1)
+    rack (2.2.4)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
     rack-proxy (0.7.0)
@@ -415,7 +415,7 @@ GEM
       railties (>= 3.2)
       tilt
     redcarpet (3.5.1)
-    redis (4.3.1)
+    redis (4.7.1)
     reek (6.0.6)
       kwalify (~> 0.7.0)
       parser (~> 3.0.0)
@@ -511,10 +511,10 @@ GEM
       voight_kampff (~> 1.1.2)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
-    sidekiq (6.2.1)
+    sidekiq (6.5.4)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
-      redis (>= 4.2.0)
+      redis (>= 4.5.0)
     sidekiq-batch (0.1.6)
       sidekiq (>= 3)
     sidekiq-cron (1.2.0)
@@ -751,7 +751,7 @@ DEPENDENCIES
   selenium-webdriver
   shortener
   shoulda-matchers (~> 2.8.0)
-  sidekiq
+  sidekiq (= 6.5.4)
   sidekiq-batch
   sidekiq-cron (~> 1.1)
   simple_form (>= 5.0.0)
