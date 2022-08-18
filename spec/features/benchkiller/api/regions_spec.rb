@@ -13,11 +13,29 @@ describe 'Benchkiller regions' do
     token = json_response[:auth_token][:token]
     { Authorization: "Bearer #{token}" }
   end
+  let!(:bot_record) do
+    bot = Bot.with_deleted.find_by(id: 13)
+    if bot.present?
+      bot.restore
+      bot 
+    else
+      bot = create :benchkiller_bot
+      bot.update_column :id, 13
+      bot
+    end
+  end
 
   describe 'Index' do
     before do
       10.times do
-        create :benchkiller_company
+        company_name = generate :company_name
+
+        send_message_stub_request body: {
+          chat_id: BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID,
+          text: "Новая компания #{company_name}. Пользователь пока заполняет данные."
+        }
+
+        create :benchkiller_company, title: company_name
       end
     end
 
