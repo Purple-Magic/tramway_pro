@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Admin::Podcast::EpisodeForm < Tramway::Core::ApplicationForm
-  properties :project_id, :file, :ready_file, :cover, :number, :public_title, :montage_process, :story_cover, :description, :full_video
+  properties :project_id, :file, :ready_file, :cover, :number, :public_title, :montage_process, :story_cover,
+    :description, :full_video
 
   association :podcast
 

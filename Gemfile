@@ -162,4 +162,4 @@ group :production do
   gem 'airbrake', '~> 5.0'
 end
 
-gem "httparty", "~> 0.20.0"
+gem 'httparty', '~> 0.20.0'

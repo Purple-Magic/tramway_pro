@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BotTelegram::UsersState
   def set_state_for(state, user:, bot:, data: nil)
     BotTelegram::Users::State.create! user_id: user.id,

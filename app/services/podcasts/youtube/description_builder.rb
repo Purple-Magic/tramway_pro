@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Podcasts::Youtube::DescriptionBuilder < ApplicationService
   include ActionView::Helpers::OutputSafetyHelper
 
@@ -38,7 +40,7 @@ class Podcasts::Youtube::DescriptionBuilder < ApplicationService
   end
 
   def header
-    [ I18n.t('podcast_engine.youtube.description.you_can_find_us') ] + episode.instances.map do |instance|
+    [I18n.t('podcast_engine.youtube.description.you_can_find_us')] + episode.instances.map do |instance|
       "* #{instance.service.capitalize} #{instance.shortened_url}"
     end
   end
@@ -56,7 +58,7 @@ class Podcasts::Youtube::DescriptionBuilder < ApplicationService
   end
 
   def people(role)
-    [ I18n.t("podcast_engine.youtube.description.stars.#{role}") ] + episode.model.stars.send(role).map do |star|
+    [I18n.t("podcast_engine.youtube.description.stars.#{role}")] + episode.model.stars.send(role).map do |star|
       "* @#{star.star.nickname} #{star.link}\n"
     end
   end
@@ -67,20 +69,20 @@ class Podcasts::Youtube::DescriptionBuilder < ApplicationService
                       "* #{topic.title} #{topic.link}"
                     end
                   else
-                    [ raw(episode.model.description) ]
+                    [raw(episode.model.description)]
                   end
-    [ I18n.t('podcast_engine.youtube.description.topics') ] + topics_list
+    [I18n.t('podcast_engine.youtube.description.topics')] + topics_list
   end
 
   def links
-    [ I18n.t('podcast_engine.youtube.description.links') ] + episode.links.map do |link|
+    [I18n.t('podcast_engine.youtube.description.links')] + episode.links.map do |link|
       "* #{link.title} #{link.link}"
     end
   end
 
   def static_content
     footer = episode.podcast.youtube_footer
-    if footer.present? 
+    if footer.present?
       @youtube_description += case format
                               when :html
                                 footer.gsub("\n", '<br/>')

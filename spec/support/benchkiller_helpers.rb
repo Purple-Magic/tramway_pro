@@ -9,11 +9,10 @@ module BenchkillerHelpers
     bot = Bot.with_deleted.find_by(id: 13)
     if bot.present?
       bot.restore
-      bot 
     else
       bot = create :benchkiller_bot
       bot.update_column :id, 13
-      bot
     end
+    bot
   end
 end

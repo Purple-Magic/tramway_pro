@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'BotTelegram::FindMedsBot' do
@@ -28,8 +30,8 @@ describe 'BotTelegram::FindMedsBot' do
         chat_id: chat.telegram_chat_id,
         text: "#{message_2.text} отсутствует в нашей базе данных. База данных Find Meds постоянно обновляется. Попробуйте сделать такой запрос через пару недель",
         reply_markup: reply_markup([
-          'Поиск лекарств', 'О проекте'
-        ])
+                                     'Поиск лекарств', 'О проекте'
+                                   ])
       }
 
       bot_run :find_meds, bot_record: bot_record, message: message_2, chat: chat, message_object: message_object

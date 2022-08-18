@@ -51,7 +51,8 @@ class BotTelegram::FindMedsBot::Action
       end
       answer = i18n_scope(:find_medicine, :found, name: name)
       show options: [dosages.keys, ['Другая', :start_menu]], answer: answer
-      set_state_for :waiting_for_choosing_dosage, user: user, bot: bot_record, data: { medicine_id: medicine.id, dosages: dosages }
+      set_state_for :waiting_for_choosing_dosage, user: user, bot: bot_record,
+data: { medicine_id: medicine.id, dosages: dosages }
     else
       answer = i18n_scope(:find_medicine, :not_found, name: name)
       show menu: :start_menu, answer: answer
@@ -64,10 +65,12 @@ class BotTelegram::FindMedsBot::Action
     dosage = ::BotTelegram::FindMedsBot::Tables::Main.find current_dosage_id
     text = if dosage.separable_dosage?
            else
-             alternative = ::BotTelegram::FindMedsBot::Tables::Main.where('intersection_and_substance' => dosage['intersection_and_substance'], 'form' => dosage['form']).select { |m| m.id != current_dosage_id }.first
-             if alternative.present?
-               BotTelegram::FindMedsBot::InfoMessageBuilder.new(alternative).build
-             end
+             alternative = ::BotTelegram::FindMedsBot::Tables::Main.where(
+               'intersection_and_substance' => dosage['intersection_and_substance'], 'form' => dosage['form']
+             ).reject do |m|
+               m.id == current_dosage_id
+             end.first
+             BotTelegram::FindMedsBot::InfoMessageBuilder.new(alternative).build if alternative.present?
            end
     show options: [['Назад']], answer: text
   end

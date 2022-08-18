@@ -12,7 +12,7 @@ module BotTelegram::MessagesManager
       chat_id: chat.id
     )
 
-    message_object.update! text: message.try(:text), 
+    message_object.update! text: message.try(:text),
       project_id: Project.find_by(title: 'PurpleMagic').id,
       options: (telegram_message_attributes.reduce({}) do |hash, attribute|
                   hash.merge! attribute => message.send(attribute)

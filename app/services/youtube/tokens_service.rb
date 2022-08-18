@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Youtube::TokensService < ApplicationService
   attr_reader :account
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Podcast::Youtube::VideoDecorator < ApplicationDecorator
   decorate_association :stars, as: :episode
   decorate_association :podcast

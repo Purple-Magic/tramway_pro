@@ -6,16 +6,16 @@ Sidekiq::Testing.fake!
 
 describe 'Actions' do
   before do
-    move_host_to red_magic_host 
-    stub_request(:get, "https://cdn.jsdelivr.net/npm/simple-icons@3.13.0/icons/youtube.svg").
-      with(
+    move_host_to red_magic_host
+    stub_request(:get, 'https://cdn.jsdelivr.net/npm/simple-icons@3.13.0/icons/youtube.svg')
+      .with(
         headers: {
-          'Accept'=>'*/*',
-          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-          'User-Agent'=>'Ruby'
-        }).
-        to_return(status: 200, body: "", headers: {})
-
+          'Accept' => '*/*',
+          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'User-Agent' => 'Ruby'
+        }
+      )
+      .to_return(status: 200, body: '', headers: {})
   end
 
   let!(:episode) do

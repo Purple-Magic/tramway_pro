@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BotRunHelper
   def bot_run(scenario, bot_record:, message:, chat:, message_object:)
     scenario_class = "BotTelegram::#{scenario.to_s.camelize}Bot::Scenario".constantize

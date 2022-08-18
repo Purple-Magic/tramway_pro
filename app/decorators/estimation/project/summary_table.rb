@@ -24,7 +24,8 @@ module Estimation::Project::SummaryTable
   end
 
   def summary_with_coefficients
-    number_with_delimiter((tasks.sum(&:sum_with_coefficients) + expenses.sum(&:sum_with_coefficients)).round(2), delimiter: ' ')
+    number_with_delimiter((tasks.sum(&:sum_with_coefficients) + expenses.sum(&:sum_with_coefficients)).round(2),
+      delimiter: ' ')
   end
 
   def real_team_summary

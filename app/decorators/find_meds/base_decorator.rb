@@ -1,41 +1,43 @@
+# frozen_string_literal: true
+
 class FindMeds::BaseDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
   delegate_attributes(
-        :id,
-        :name,
-        :key,
-        :state,
-        :deleted_at,
-        :created_at,
-        :updated_at,
+    :id,
+    :name,
+    :key,
+    :state,
+    :deleted_at,
+    :created_at,
+    :updated_at
   )
 
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :name,
-        :state,
-        :deleted_at,
+      %i[
+        id
+        name
+        state
+        deleted_at
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :name,
-        :key,
-        :state,
-        :deleted_at,
-        :created_at,
-        :updated_at,
+      %i[
+        id
+        name
+        key
+        state
+        deleted_at
+        created_at
+        updated_at
       ]
     end
 

@@ -31,17 +31,18 @@ module BotTelegram::FindMedsBot::AdminFeatures
 
     data_changes = hash_diff(
       (last_audit.audited_changes['data']&.first || {}),
-      (last_audit.audited_changes['data']&.last || {}),
+      (last_audit.audited_changes['data']&.last || {})
     )
 
-    return unless (data_changes.keys & [ 'regions_to_cooperate', 'place' ]).any?
+    return unless (data_changes.keys & %w[regions_to_cooperate place]).any?
 
     text = i18n_scope(
       :admin,
       :company_changes,
       company_name: company.title,
       changes: localize_changes(last_audit).join("\n"),
-      url: Tramway::Admin::Engine.routes.url_helpers.edit_record_url(company, model: company.class, host: Settings[Rails.env][:purple_magic])
+      url: Tramway::Admin::Engine.routes.url_helpers.edit_record_url(company, model: company.class,
+host: Settings[Rails.env][:purple_magic])
     )
     send_notification_to_chat ::BotTelegram::FindMedsBot::ADMIN_COMPANIES_CHAT_ID, text
   end

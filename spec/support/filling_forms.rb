@@ -10,7 +10,7 @@ module FillingForms
       admin_courses_screencast: model_forms[:screencast],
       skillbox_courses_screencast: model_forms[:screencast],
       slurm_courses_screencast: model_forms[:screencast],
-      hexlet_courses_screencast: model_forms[:screencast],
+      hexlet_courses_screencast: model_forms[:screencast]
     }.with_indifferent_access
   end
 

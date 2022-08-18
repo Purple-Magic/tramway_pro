@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::FindMeds::BaseForm < Tramway::Core::ApplicationForm
   properties :name, :key, :project_id
 

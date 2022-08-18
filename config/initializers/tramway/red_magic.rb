@@ -157,6 +157,9 @@ Tramway::Export.set_exportable_models(
 Tramway::Landing.set_navbar true, project: :red_magic
 
 ::Tramway::Admin.welcome_page_actions = lambda do
-  youtube_oauth_link = Yt::Account.new(scopes: [:youtube, 'youtube.readonly', 'youtube.force-ssl', 'youtubepartner', 'youtubepartner-channel-audit', 'youtube.upload', 'youtube.channel-memberships.creator', 'youtube.third-party-link.creator'], redirect_uri: 'https://it-way.pro/youtube-callback', access_type: :offline).authentication_url
+  youtube_oauth_link = Yt::Account.new(
+    scopes: [:youtube, 'youtube.readonly', 'youtube.force-ssl', 'youtubepartner', 'youtubepartner-channel-audit',
+             'youtube.upload', 'youtube.channel-memberships.creator', 'youtube.third-party-link.creator'], redirect_uri: 'https://it-way.pro/youtube-callback', access_type: :offline
+  ).authentication_url
   @content = "<a href='#{youtube_oauth_link}'><img style='width: 200px' src='/sign_in_with_google.png'></a>"
 end

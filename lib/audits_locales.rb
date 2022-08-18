@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AuditsLocales
   def localize_changes(audit)
     audit.audited_changes.map do |(attribute, transition)|
@@ -29,6 +31,6 @@ module AuditsLocales
   end
 
   def hash_diff(old, new)
-    new.reject { |k, v| old[k] == v }.merge(old.reject { |k, v| new.has_key?(k) })
+    new.reject { |k, v| old[k] == v }.merge(old.reject { |k, _v| new.key?(k) })
   end
 end

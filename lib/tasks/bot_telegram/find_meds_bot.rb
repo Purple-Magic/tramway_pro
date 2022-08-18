@@ -3,7 +3,7 @@
 module BotTelegram::FindMedsBot
   MENUS = {
     start_menu: [
-      [:find_medicine, :about]
+      %i[find_medicine about]
     ],
     find_medicine_menu: [
       [:start_menu]
@@ -14,7 +14,7 @@ module BotTelegram::FindMedsBot
     find_medicine: 'Поиск лекарств',
     start_menu: 'Назад',
     about: 'О проекте'
-  }
+  }.freeze
 
   ACTIONS_DATA = {
     find_medicine: {
@@ -24,7 +24,7 @@ module BotTelegram::FindMedsBot
     choose_dosage: {
       state: :waiting_for_choosing_dosage
     }
-  }
+  }.freeze
 
   VALIDATIONS = {
     url: lambda do |value|

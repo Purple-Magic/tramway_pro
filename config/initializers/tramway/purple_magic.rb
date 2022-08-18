@@ -108,7 +108,7 @@ Tramway::Admin.navbar_structure(
   {
     product_engine: [
       Product,
-      TimeLog,
+      TimeLog
     ]
   },
   {
@@ -123,10 +123,10 @@ Tramway::Admin.navbar_structure(
 
 Tramway::Export.set_exportable_models(
   {
-    Estimation::Project => %i[single_tasks expenses],
+    Estimation::Project => %i[single_tasks expenses]
   },
   {
-    Product => [ :tasks ],
+    Product => [:tasks]
   },
   TimeLog,
   project: :purple_magic
