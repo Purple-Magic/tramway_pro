@@ -23,8 +23,7 @@ module AirtableHelpers
                 'finlepcin_id'
               ],
               intersection_and_substance: [
-                'reccJ82ScIlm1tOxC',
-                'carbamazepine концентрация 400 мг'
+                "reccJ82ScIlm1tOxC"
               ],
               form: [
                 'Таб.пролонгированного действия'
@@ -39,8 +38,7 @@ module AirtableHelpers
                 'finlepcin_id'
               ],
               intersection_and_substance: [
-                'reccJ82ScIlm1tOxC',
-                'carbamazepine концентрация 200 мг'
+                "reccJ82ScIlm1tOx3"
               ],
               form: [
                 'Таб.пролонгированного действия'
@@ -55,8 +53,7 @@ module AirtableHelpers
                 'tegretol_id'
               ],
               intersection_and_substance: [
-                'reccJ82ScIlm1tOxC',
-                'carbamazepine концентрация 400 мг'
+                "reccJ82ScIlm1tOxC"
               ],
               form: [
                 'Таб.пролонгированного действия'
@@ -77,7 +74,6 @@ module AirtableHelpers
           ],
           intersection_and_substance: [
             'reccJ82ScIlm1tOxC',
-            'carbamazepine концентрация 400 мг'
           ],
           form: [
             'Таб.пролонгированного действия'
@@ -88,6 +84,12 @@ module AirtableHelpers
         "id": "receQeH2nuPmxUA7P",
         "fields": {
           "Name": "NOVARTIS FARMA, S.p.A.",
+        }
+      },
+      active_components: {
+        "id": "reccJ82ScIlm1tOxC",
+        fields: {
+          'Name': "carbamazepine концентрация 400 мг"
         }
       }
     }

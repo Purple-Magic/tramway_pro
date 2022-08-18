@@ -71,7 +71,10 @@ data: { medicine_id: medicine.id, dosages: dosages }
                m.id == current_dosage_id
              end.first
              company_name = BotTelegram::FindMedsBot::Tables::Company.find(alternative['company'].first)['Name']
-             BotTelegram::FindMedsBot::InfoMessageBuilder.new(alternative, company_name: company_name).build if alternative.present?
+             components = alternative['intersection_and_substance'].map do |component_id|
+               BotTelegram::FindMedsBot::Tables::Component.find(component_id)['Name']
+             end
+             BotTelegram::FindMedsBot::InfoMessageBuilder.new(alternative, company_name: company_name, components: components).build if alternative.present?
            end
     show options: [['Назад']], answer: text
   end
