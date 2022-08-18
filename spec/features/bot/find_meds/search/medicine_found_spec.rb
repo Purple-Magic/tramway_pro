@@ -33,6 +33,18 @@ describe 'BotTelegram::FindMedsBot' do
           id: 'rec0Fqy4fYDUibmuQ'
         )
 
+        airtable_item_stub_request(
+          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+          table: :companies,
+          id: "receQeH2nuPmxUA7P"
+        )
+
+        airtable_item_stub_request(
+          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+          table: :active_components,
+          id: "reccJ82ScIlm1tOxC"
+        )
+
         stub_1 = send_message_stub_request body: {
           chat_id: chat.telegram_chat_id,
           text: 'Введите название лекарства на кириллице'
