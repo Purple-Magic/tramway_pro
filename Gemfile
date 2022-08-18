@@ -43,7 +43,6 @@ gem 'aasm'
 gem 'actionview', '>= 5.1.6.2'
 gem 'active_median'
 gem 'active_model_serializers', '0.10.12'
-gem 'airbrake', '~> 5.0'
 gem 'airrecord'
 gem 'audited', '>= 4.8.0'
 gem 'awesome_print'
@@ -157,6 +156,10 @@ group :test do
   gem 'webdrivers', '4.2.0'
   gem 'webmock'
   gem 'whenever-test'
+end
+
+group :production do
+  gem 'airbrake', '~> 5.0'
 end
 
 gem "httparty", "~> 0.20.0"
