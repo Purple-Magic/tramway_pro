@@ -11,7 +11,7 @@ ruby '2.7.5'
 gem 'rails', '5.1.7'
 
 gem 'tramway-admin', '4.1.2'
-gem 'tramway-api', '2.0'
+gem 'tramway-api', '2.0.0.2'
 gem 'tramway-conference', '1.9.5.5'
 gem 'tramway-core', '4.1.3'
 gem 'tramway-event', '1.12.6.4'
