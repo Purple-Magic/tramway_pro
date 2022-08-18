@@ -30,7 +30,6 @@ describe 'Create block' do
         select attributes[:navbar_link], from: 'record[navbar_link]'
         fill_in 'record[anchor]', with: attributes[:anchor]
         fill_in 'record[view_name]', with: attributes[:view_name]
-        find('input[name="record[background]"]').set attributes[:background].path
 
         click_on 'Сохранить', class: 'btn-success'
         expect(Tramway::Landing::Block.count).to eq(count + 1)

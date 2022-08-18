@@ -6,7 +6,6 @@ FactoryBot.define do
     title
     position { generate :integer }
     block_type { Tramway::Landing::Block.block_type.values.sample }
-    background { generate :image_as_file }
     navbar_link { Tramway::Landing::Block.navbar_link.values.sample }
     anchor { generate :string }
     description { generate :string }
@@ -17,7 +16,6 @@ FactoryBot.define do
     title
     position { generate :integer }
     block_type { Tramway::Landing::Block.block_type.values.sample.text }
-    background { generate :image_as_file }
     navbar_link { Tramway::Landing::Block.navbar_link.values.sample.text }
     anchor { generate :string }
     view_name { generate :string }
