@@ -18,7 +18,7 @@ jobs:
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.7.5
+          ruby-version: 2.7
           bundle-cache: true
 
       - name: Run syntax check
@@ -35,7 +35,7 @@ jobs:
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.7.5
+          ruby-version: 2.7
           bundle-cache: true
 
       - name: Install reek
@@ -72,7 +72,7 @@ jobs:
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.7.5
+          ruby-version: 2.7
           bundle-cache: true
 
       - name: Install rubocop
@@ -110,7 +110,7 @@ jobs:
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.7.5
+          ruby-version: 2.7
           bundle-cache: true
 
       - name: Install PostgreSQL 11 client
