@@ -37,9 +37,28 @@ describe 'Benchkiller Offers' do
       describe 'Search' do
         describe 'Regions' do
           let(:country) { Faker::Address.country }
+          let!(:bot_record) do
+            bot = Bot.with_deleted.find_by(id: 13)
+            if bot.present?
+              bot.restore
+              bot 
+            else
+              bot = create :benchkiller_bot
+              bot.update_column :id, 13
+              bot
+            end
+          end
+
           let!(:offers) do
             companies = (1..5).to_a.map do
-              create :benchkiller_company, regions_to_cooperate: [country]
+              company_name = generate :company_name
+
+              send_message_stub_request body: {
+                chat_id: BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID,
+                text: "Новая компания #{company_name}. Пользователь пока заполняет данные."
+              }
+
+              create :benchkiller_company, title: company_name, regions_to_cooperate: [country]
             end
             companies.map do |company|
               telegram_message = create :bot_telegram_message, user: company.users.first.telegram_user
