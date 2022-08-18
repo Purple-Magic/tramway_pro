@@ -95,7 +95,6 @@ jobs:
            url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
            commit: true
            token: ${{ secrets.GITHUB_TOKEN }}
-
   tests: 
     runs-on: ubuntu-latest
 
