@@ -7,7 +7,8 @@ describe 'Render video' do
 
   let!(:episode) do
     podcast = create :podcast, project_id: it_way_id, podcast_type: :sample
-    create :podcast_episode, podcast: podcast, project_id: it_way_id
+    create :podcast_episode, podcast: podcast, project_id: it_way_id, cover: generate(:image_as_file),
+      ready_file: generate(:sound_as_file)
   end
 
   it 'sends command to a remote server' do
