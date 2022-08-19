@@ -14,17 +14,9 @@ describe 'BotTelegram::FindMedsBot' do
       let(:message_3) { build :telegram_message, text: 'levetiracetam' }
 
       it 'search medicine by component' do
-        find_meds_airtable_stub_request(
-          table: :drugs
-        )
-
-        find_meds_airtable_stub_request(
-          table: :active_components
-        )
-
-        find_meds_airtable_stub_request(
-          table: :medicines
-        )
+        find_meds_airtable_stub_request table: :drugs
+        find_meds_airtable_stub_request table: :active_components
+        find_meds_airtable_stub_request table: :medicines
 
         stub_1 = send_message_stub_request body: {
           chat_id: chat.telegram_chat_id,

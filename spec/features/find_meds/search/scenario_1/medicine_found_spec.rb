@@ -17,28 +17,11 @@ describe 'BotTelegram::FindMedsBot' do
       end
 
       it 'returns invitation to type a name' do
-        find_meds_airtable_stub_request(
-          table: :drugs
-        )
-
-        find_meds_airtable_stub_request(
-          table: :medicines
-        )
-
-        find_meds_airtable_stub_request(
-          table: :medicines,
-          id: 'rec0Fqy4fYDUibmuQ'
-        )
-
-        find_meds_airtable_stub_request(
-          table: :companies,
-          id: 'receQeH2nuPmxUA7P'
-        )
-
-        find_meds_airtable_stub_request(
-          table: :concentrations,
-          id: 'reccJ82ScIlm1tOxC'
-        )
+        find_meds_airtable_stub_request table: :drugs
+        find_meds_airtable_stub_request table: :medicines
+        find_meds_airtable_stub_request table: :medicines, id: 'rec0Fqy4fYDUibmuQ'
+        find_meds_airtable_stub_request table: :companies, id: 'receQeH2nuPmxUA7P'
+        find_meds_airtable_stub_request table: :concentrations, id: 'reccJ82ScIlm1tOxC'
 
         stub_1 = send_message_stub_request body: {
           chat_id: chat.telegram_chat_id,
