@@ -47,15 +47,15 @@ class BotTelegram::FindMedsBot::Action
   end
 
   def find_medicine(name)
-    medicine = ::BotTelegram::FindMedsBot::Tables::Drug.find_by('Name' => name)
-    if medicine.present?
-      dosages = ::BotTelegram::FindMedsBot::Tables::Medicine.where('Drug' => [medicine.id]).reduce({}) do |hash, m|
+    drug = ::BotTelegram::FindMedsBot::Tables::Drug.find_by('Name' => name)
+    if drug.present?
+      dosages = drug.medicines.reduce({}) do |hash, m|
         hash.merge! m['Название'] => m.id
       end
       answer = i18n_scope(:find_medicine, :found, name: name)
       show options: [dosages.keys, ['Другая', :start_menu]], answer: answer
       set_state_for :waiting_for_choosing_dosage, user: user, bot: bot_record,
-        data: { medicine_id: medicine.id, dosages: dosages }
+        data: { medicine_id: drug.id, dosages: dosages }
     else
       component = ::BotTelegram::FindMedsBot::Tables::Component.find_by('Name' => name)
       if component.present?
