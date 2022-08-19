@@ -156,7 +156,7 @@ jobs:
           bin/rails db:create db:migrate db:seed
           bin/rails parallel:setup
           # bundle exec rspec
-          parallel_rspec --verbose
+          bin/rails parallel:spec --verbose
 
       - name: Rocket.Chat Notification
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
