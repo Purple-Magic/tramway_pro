@@ -154,9 +154,9 @@ jobs:
           cp config/database.sample.yml config/database.yml
           cp config/secrets.sample.yml config/secrets.yml
           bin/rails db:create db:migrate db:seed
-          bin/rails parallel:setup
-          # bundle exec rspec
-          bin/rails parallel:spec --verbose
+          # bin/rails parallel:setup
+          bundle exec rspec
+          # bin/rails parallel:spec --verbose
 
       - name: Rocket.Chat Notification
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
