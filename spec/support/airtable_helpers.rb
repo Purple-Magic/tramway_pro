@@ -3,7 +3,7 @@
 module AirtableHelpers
   RESPONSES = {
     collections: {
-      names: {
+      drugs: {
         records: [
           {
             id: 'finlepcin_id',
@@ -13,7 +13,7 @@ module AirtableHelpers
           }
         ]
       },
-      main: {
+      medicines: {
         records: [
           {
             id: 'rec0Fqy4fYDUibmuQ',
@@ -79,7 +79,7 @@ module AirtableHelpers
       }
     },
     items: {
-      main: {
+      medicines: {
         id: 'rec0Fqy4fYDUibmuQ',
         fields: {
           separable_dosage: 'нельзя делить',

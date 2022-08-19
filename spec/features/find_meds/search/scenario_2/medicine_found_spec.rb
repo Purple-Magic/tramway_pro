@@ -15,7 +15,7 @@ describe 'BotTelegram::FindMedsBot' do
       it 'search medicine by component' do
         airtable_collection_stub_request(
           base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
-          table: :names
+          table: :drugs
         )
 
         airtable_collection_stub_request(

@@ -4,7 +4,7 @@ require 'uri'
 require_relative 'tables'
 require_relative 'tables/application_table'
 require_relative 'tables/medicine'
-require_relative 'tables/main'
+require_relative 'tables/drug'
 require_relative 'tables/company'
 require_relative 'tables/component'
 require_relative 'tables/concetration'
@@ -47,9 +47,9 @@ class BotTelegram::FindMedsBot::Action
   end
 
   def find_medicine(name)
-    medicine = ::BotTelegram::FindMedsBot::Tables::Medicine.find_by('Name' => name)
+    medicine = ::BotTelegram::FindMedsBot::Tables::Drug.find_by('Name' => name)
     if medicine.present?
-      dosages = ::BotTelegram::FindMedsBot::Tables::Main.where('medicine_name' => [medicine.id]).reduce({}) do |hash, m|
+      dosages = ::BotTelegram::FindMedsBot::Tables::Medicine.where('medicine_name' => [medicine.id]).reduce({}) do |hash, m|
         hash.merge! m['Название'] => m.id
       end
       answer = i18n_scope(:find_medicine, :found, name: name)
@@ -68,10 +68,10 @@ class BotTelegram::FindMedsBot::Action
 
   def choose_dosage(name)
     current_dosage_id = user.states.where(bot: bot_record).last.data['dosages'][name]
-    dosage = ::BotTelegram::FindMedsBot::Tables::Main.find current_dosage_id
+    dosage = ::BotTelegram::FindMedsBot::Tables::Medicine.find current_dosage_id
     text = if dosage.separable_dosage?
            else
-             alternative = ::BotTelegram::FindMedsBot::Tables::Main.where(
+             alternative = ::BotTelegram::FindMedsBot::Tables::Medicine.where(
                'intersection_and_substance' => dosage['intersection_and_substance'], 'form' => dosage['form']
              ).reject do |m|
                m.id == current_dosage_id
