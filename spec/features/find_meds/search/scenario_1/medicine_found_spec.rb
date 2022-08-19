@@ -17,30 +17,25 @@ describe 'BotTelegram::FindMedsBot' do
       end
 
       it 'returns invitation to type a name' do
-        airtable_collection_stub_request(
-          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+        find_meds_airtable_stub_request(
           table: :drugs
         )
 
-        airtable_collection_stub_request(
-          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+        find_meds_airtable_stub_request(
           table: :medicines
         )
 
-        airtable_item_stub_request(
-          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+        find_meds_airtable_stub_request(
           table: :medicines,
           id: 'rec0Fqy4fYDUibmuQ'
         )
 
-        airtable_item_stub_request(
-          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+        find_meds_airtable_stub_request(
           table: :companies,
           id: 'receQeH2nuPmxUA7P'
         )
 
-        airtable_item_stub_request(
-          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+        find_meds_airtable_stub_request(
           table: :concentrations,
           id: 'reccJ82ScIlm1tOxC'
         )

@@ -13,13 +13,11 @@ describe 'BotTelegram::FindMedsBot' do
       let(:message_2) { build :telegram_message, text: 'Валидол' }
 
       it 'returns invitation to type a name' do
-        airtable_stub1 = airtable_collection_stub_request(
-          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+        find_meds_airtable_stub1 = find_meds_airtable_stub_request(
           table: :drugs
         )
 
-        airtable_stub2 = airtable_collection_stub_request(
-          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+        find_meds_airtable_stub2 = find_meds_airtable_stub_request(
           table: :active_components
         )
 
@@ -40,8 +38,8 @@ describe 'BotTelegram::FindMedsBot' do
         bot_run :find_meds, bot_record: bot_record, message: message_2, chat: chat, message_object: message_object
 
         expect(stub_2).to have_been_requested
-        expect(airtable_stub1).to have_been_requested
-        expect(airtable_stub2).to have_been_requested
+        expect(find_meds_airtable_stub1).to have_been_requested
+        expect(find_meds_airtable_stub2).to have_been_requested
       end
     end
   end

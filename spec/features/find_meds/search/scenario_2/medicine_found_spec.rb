@@ -14,18 +14,15 @@ describe 'BotTelegram::FindMedsBot' do
       let(:message_3) { build :telegram_message, text: 'levetiracetam' }
 
       it 'search medicine by component' do
-        airtable_collection_stub_request(
-          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+        find_meds_airtable_stub_request(
           table: :drugs
         )
 
-        airtable_collection_stub_request(
-          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+        find_meds_airtable_stub_request(
           table: :active_components
         )
 
-        airtable_collection_stub_request(
-          base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+        find_meds_airtable_stub_request(
           table: :medicines
         )
 

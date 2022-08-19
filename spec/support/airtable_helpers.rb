@@ -1,20 +1,18 @@
 # frozen_string_literal: true
 
 module AirtableHelpers
-  def airtable_collection_stub_request(base:, table:)
-    response = response(table: table)
-    unless response.present?
-      raise "You should add collection response for table #{table} in spec/support/airtable_helpers.rb"
-    end
-
-    stub_request(:get, build_airtable_url(base: base, table: table))
-      .with(airtable_headers).to_return(status: 200, body: response.to_json, headers: {})
+  def find_meds_airtable_stub_request(table:, id: nil)
+    airtable_stub_request(
+      base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+      table: table,
+      id: id
+    )
   end
 
-  def airtable_item_stub_request(base:, table:, id:)
+  def airtable_stub_request(base:, table:, id:)
     response = response(table: table, id: id)
     unless response.present?
-      raise "You should add items  response for table #{table} in spec/support/airtable_helpers.rb"
+      raise "You should add collection response for table #{table} in spec/support/airtable_helpers.rb"
     end
 
     stub_request(:get, build_airtable_url(base: base, table: table, id: id))
@@ -23,7 +21,7 @@ module AirtableHelpers
 
   private
 
-  def build_airtable_url(base:, table:, id: nil)
+  def build_airtable_url(base:, table:, id:)
     url = "https://api.airtable.com/v0/#{base}/#{table}"
     url += "/#{id}" if id.present?
     url
