@@ -140,6 +140,7 @@ jobs:
           PGUSER: postgres
           RAILS_ENV: test
           CHROME_DRIVER_VERSION: 104.0.5112.79
+          AIR_TABLE_API_KEY: key123
         run: |
           echo "127.0.0.1 it-way.test" | sudo tee -a /etc/hosts
           echo "127.0.0.1 kalashnikovisme.test" | sudo tee -a /etc/hosts
