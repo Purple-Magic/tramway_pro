@@ -18,7 +18,7 @@ module AirtableHelpers
           {
             id: 'rec0Fqy4fYDUibmuQ',
             fields: {
-              'Название': 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг',
+              'Name': 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг',
               Drug: [
                 'finlepcin_id'
               ],
@@ -27,13 +27,16 @@ module AirtableHelpers
               ],
               form: [
                 'Таб.пролонгированного действия'
-              ]
+              ],
+              "components": [
+                "rec76PKPUZs1amvBg"
+              ],
             }
           },
           {
             id: 'rec0Fqy4fYDUibmu1',
             fields: {
-              'Название': 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 200 мг',
+              'Name': 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 200 мг',
               Drug: [
                 'finlepcin_id'
               ],
@@ -48,7 +51,7 @@ module AirtableHelpers
           {
             id: SecureRandom.hex(8),
             fields: {
-              'Название': 'Тегретол',
+              'Name': 'Тегретол',
               Drug: [
                 'tegretol_id'
               ],
@@ -60,13 +63,28 @@ module AirtableHelpers
               ],
               company: ['receQeH2nuPmxUA7P']
             }
-          }
+          },
+          {
+            "id": "rec2RdTpBfnRIakE9",
+            "fields": {
+              "intersection_and_substance": [
+                "recWTruyz6TJzGgw5"
+              ],
+              "form": [
+                "Раствор для приема внутрь"
+              ],
+              "Name": "Кеппра \"UCB Pharma, S.A.\" levetiracetam 300 мл в таре 100 мг/мл ",
+              "components": [
+                "rec76PKPUZs1amvBg"
+              ],
+            }
+          },
         ]
       },
       active_components: {
         "records": [
           {
-            "id": "rec2LKsKLhYTGh7hw",
+            "id": "rec76PKPUZs1amvBg",
             "createdTime": "2022-06-10T10:13:20.000Z",
             "fields": {
               "Пересечение вещество концентрация": [

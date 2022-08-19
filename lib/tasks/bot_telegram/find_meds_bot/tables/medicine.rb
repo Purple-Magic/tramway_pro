@@ -10,4 +10,8 @@ class BotTelegram::FindMedsBot::Tables::Medicine < BotTelegram::FindMedsBot::Tab
   def separable_dosage?
     ['separable_dosage']&.include? 'можно делить'
   end
+
+  def form
+    fields['form']&.first
+  end
 end

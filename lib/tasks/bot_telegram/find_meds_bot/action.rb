@@ -50,7 +50,7 @@ class BotTelegram::FindMedsBot::Action
     drug = ::BotTelegram::FindMedsBot::Tables::Drug.find_by('Name' => name)
     if drug.present?
       dosages = drug.medicines.reduce({}) do |hash, m|
-        hash.merge! m['Название'] => m.id
+        hash.merge! m['Name'] => m.id
       end
       answer = i18n_scope(:find_medicine, :found, name: name)
       show options: [dosages.keys, ['Другая', :start_menu]], answer: answer
@@ -58,7 +58,9 @@ class BotTelegram::FindMedsBot::Action
         data: { medicine_id: drug.id, dosages: dosages }
     else
       component = ::BotTelegram::FindMedsBot::Tables::Component.find_by('Name' => name)
-      if component.present?
+      if component.present? && component.medicines_with_single_component.any?
+        answer = i18n_scope(:find_medicine, :what_dosage_do_you_need)
+        show options: [component.medicines_with_single_component.map(&:form), [:start_menu]], answer: answer
       else
         answer = i18n_scope(:find_medicine, :not_found)
         send_message_to_user answer
