@@ -49,7 +49,7 @@ class BotTelegram::FindMedsBot::Action
   def find_medicine(name)
     medicine = ::BotTelegram::FindMedsBot::Tables::Drug.find_by('Name' => name)
     if medicine.present?
-      dosages = ::BotTelegram::FindMedsBot::Tables::Medicine.where('medicine_name' => [medicine.id]).reduce({}) do |hash, m|
+      dosages = ::BotTelegram::FindMedsBot::Tables::Medicine.where('Drug' => [medicine.id]).reduce({}) do |hash, m|
         hash.merge! m['Название'] => m.id
       end
       answer = i18n_scope(:find_medicine, :found, name: name)

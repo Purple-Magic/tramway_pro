@@ -19,7 +19,7 @@ module AirtableHelpers
             id: 'rec0Fqy4fYDUibmuQ',
             fields: {
               'Название': 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг',
-              medicine_name: [
+              Drug: [
                 'finlepcin_id'
               ],
               intersection_and_substance: [
@@ -34,7 +34,7 @@ module AirtableHelpers
             id: 'rec0Fqy4fYDUibmu1',
             fields: {
               'Название': 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 200 мг',
-              medicine_name: [
+              Drug: [
                 'finlepcin_id'
               ],
               intersection_and_substance: [
@@ -49,7 +49,7 @@ module AirtableHelpers
             id: SecureRandom.hex(8),
             fields: {
               'Название': 'Тегретол',
-              medicine_name: [
+              Drug: [
                 'tegretol_id'
               ],
               intersection_and_substance: [
@@ -83,7 +83,7 @@ module AirtableHelpers
         id: 'rec0Fqy4fYDUibmuQ',
         fields: {
           separable_dosage: 'нельзя делить',
-          medicine_name: [
+          Drug: [
             'finlepcin_id'
           ],
           intersection_and_substance: [
