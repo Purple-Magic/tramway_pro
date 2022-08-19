@@ -131,7 +131,7 @@ jobs:
           PGHOST: localhost
           PGUSER: postgres
           RAILS_ENV: test
-          CHROME_DRIVER_VERSION: 98.0.4758.102
+          CHROME_DRIVER_VERSION: 104.0.5112.79
         run: |
           echo "127.0.0.1 it-way.test" | sudo tee -a /etc/hosts
           echo "127.0.0.1 kalashnikovisme.test" | sudo tee -a /etc/hosts
