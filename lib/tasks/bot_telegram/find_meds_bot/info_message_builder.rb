@@ -12,7 +12,7 @@ class BotTelegram::FindMedsBot::InfoMessageBuilder
   end
 
   def build
-    alternative = "#{medicine['Название']} #{components.join(', ')} #{medicine['form'].join(', ')} #{company_name}"
+    alternative = "#{medicine['Name']} #{components.join(', ')} #{medicine['form'].join(', ')} #{company_name}"
     i18n_scope(:alternative, :we_know_about,
       alternative: alternative) + i18n_scope(:alternative, :we_dont_know_where_is_medicine)
   end
