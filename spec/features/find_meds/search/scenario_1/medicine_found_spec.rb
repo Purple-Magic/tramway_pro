@@ -7,7 +7,7 @@ describe 'BotTelegram::FindMedsBot' do
   let(:chat) { create :bot_telegram_private_chat, bot: bot_record }
   let(:message_object) { create :bot_telegram_message }
 
-  context 'Find medicine button' do
+  context 'Scenario 1' do
     describe 'Medicine Found' do
       let(:message_1) { build :telegram_message, text: 'Поиск лекарств' }
       let(:message_2) { build :telegram_message, text: 'Финлепсин Ретард' }
@@ -41,7 +41,7 @@ describe 'BotTelegram::FindMedsBot' do
 
         airtable_item_stub_request(
           base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
-          table: :active_components,
+          table: :concentrations,
           id: 'reccJ82ScIlm1tOxC'
         )
 

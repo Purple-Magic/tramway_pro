@@ -62,6 +62,20 @@ module AirtableHelpers
             }
           }
         ]
+      },
+      active_components: {
+        "records": [
+          {
+            "id": "rec2LKsKLhYTGh7hw",
+            "createdTime": "2022-06-10T10:13:20.000Z",
+            "fields": {
+              "Пересечение вещество концентрация": [
+                "recuTRff12FROogid"
+              ],
+              "Name": "levetiracetam"
+            }
+          }
+        ]
       }
     },
     items: {
@@ -86,7 +100,7 @@ module AirtableHelpers
           Name: 'NOVARTIS FARMA, S.p.A.'
         }
       },
-      active_components: {
+      concentrations: {
         id: 'reccJ82ScIlm1tOxC',
         fields: {
           Name: 'carbamazepine концентрация 400 мг'

@@ -7,6 +7,7 @@ require_relative 'tables/medicine'
 require_relative 'tables/main'
 require_relative 'tables/company'
 require_relative 'tables/component'
+require_relative 'tables/concetration'
 require_relative 'info_message_builder'
 
 class BotTelegram::FindMedsBot::Action
@@ -54,11 +55,14 @@ class BotTelegram::FindMedsBot::Action
       answer = i18n_scope(:find_medicine, :found, name: name)
       show options: [dosages.keys, ['Другая', :start_menu]], answer: answer
       set_state_for :waiting_for_choosing_dosage, user: user, bot: bot_record,
-data: { medicine_id: medicine.id, dosages: dosages }
+        data: { medicine_id: medicine.id, dosages: dosages }
     else
-      answer = i18n_scope(:find_medicine, :not_found, name: name)
-      show menu: :start_menu, answer: answer
-      user.set_finished_state_for bot: bot_record
+      component = ::BotTelegram::FindMedsBot::Tables::Component.find_by('Name' => name)
+      if component.present?
+      else
+        answer = i18n_scope(:find_medicine, :not_found)
+        send_message_to_user answer
+      end
     end
   end
 
@@ -74,7 +78,7 @@ data: { medicine_id: medicine.id, dosages: dosages }
              end.first
              company_name = BotTelegram::FindMedsBot::Tables::Company.find(alternative['company'].first)['Name']
              components = alternative['intersection_and_substance'].map do |component_id|
-               BotTelegram::FindMedsBot::Tables::Component.find(component_id)['Name']
+               BotTelegram::FindMedsBot::Tables::Concentration.find(component_id)['Name']
              end
              if alternative.present?
                BotTelegram::FindMedsBot::InfoMessageBuilder.new(alternative, company_name: company_name,
