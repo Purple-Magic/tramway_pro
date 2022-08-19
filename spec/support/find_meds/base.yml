@@ -1,0 +1,51 @@
+drugs:
+  - id: 'finlepcin_id'
+    Name: 'Финлепсин Ретард'
+medicines:
+  - id: 'rec0Fqy4fYDUibmuQ'
+    Name: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг'
+    Drug:
+      - 'finlepcin_id'
+    intersection_and_substance:
+      - 'reccJ82ScIlm1tOxC'
+    form:
+      - 'Таб.пролонгированного действия'
+    components:
+      - "rec76PKPUZs1amvBg"
+  - id: 'rec0Fqy4fYDUibmu1'
+    Name: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 200 мг'
+    Drug:
+      - 'finlepcin_id'
+    intersection_and_substance:
+      - 'reccJ82ScIlm1tOx3'
+    form:
+      - 'Таб.пролонгированного действия'
+  - id: 'rec421b1dac9935f596'
+    Name: 'Тегретол'
+    Drug:
+      - 'tegretol_id'
+    intersection_and_substance:
+      - 'reccJ82ScIlm1tOxC'
+    form:
+      - 'Таб.пролонгированного действия'
+    company:
+      - 'receQeH2nuPmxUA7P'
+  - id: "rec2RdTpBfnRIakE9"
+    intersection_and_substance:
+      - "recWTruyz6TJzGgw5"
+    form:
+      - "Раствор для приема внутрь"
+    Name: 'Кеппра \"UCB Pharma, S.A.\" levetiracetam 300 мл в таре 100 мг/мл'
+    components:
+      - "rec76PKPUZs1amvBg"
+active_components:
+  - id: "rec76PKPUZs1amvBg"
+    "Пересечение вещество концентрация":
+      - "recuTRff12FROogid"
+    Name: "levetiracetam"
+companies:
+  - id: 'receQeH2nuPmxUA7P'
+    Name: 'NOVARTIS FARMA, S.p.A.'
+concentrations:
+  - id: 'reccJ82ScIlm1tOxC'
+    Name: 'carbamazepine концентрация 400 мг'
