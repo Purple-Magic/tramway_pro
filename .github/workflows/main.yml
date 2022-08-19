@@ -164,7 +164,7 @@ jobs:
         with:
           username: bot_leopold
           type: ${{ job.status }}
-          job_name: '*Benchkiller Tests*'
+          job_name: '*Tests*'
           mention: 'here'
           channel: 'dNei2bg5ufmQFdFWx'
           url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
