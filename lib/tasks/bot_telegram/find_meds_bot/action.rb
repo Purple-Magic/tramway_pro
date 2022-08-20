@@ -59,7 +59,7 @@ class BotTelegram::FindMedsBot::Action
       component = ::BotTelegram::FindMedsBot::Tables::Component.find_by('Name' => name)
       if component.present? && component.medicines_with_single_component.any?
         answer = i18n_scope(:find_medicine, :what_form_do_you_need)
-        show options: [component.medicines_with_single_component.map(&:form), [:start_menu]], answer: answer
+        show options: [component.medicines_with_single_component.map(&:form).uniq, [:start_menu]], answer: answer
         set_next_action :choose_form, component_id: component.id, dosages: dosages
       else
         answer = i18n_scope(:find_medicine, :not_found)
@@ -74,12 +74,12 @@ class BotTelegram::FindMedsBot::Action
     text = if dosage.separable_dosage?
            else
              alternative = ::BotTelegram::FindMedsBot::Tables::Medicine.where(
-               'intersection_and_substance' => dosage['intersection_and_substance'], 'form' => dosage['form']
+               'concentrations' => dosage['concentrations'], 'form' => dosage['form']
              ).reject do |m|
                m.id == current_dosage_id
              end.first
              company_name = BotTelegram::FindMedsBot::Tables::Company.find(alternative['company'].first)['Name']
-             components = alternative['intersection_and_substance'].map do |component_id|
+             components = alternative['concentrations'].map do |component_id|
                BotTelegram::FindMedsBot::Tables::Concentration.find(component_id)['Name']
              end
              if alternative.present?
@@ -94,10 +94,10 @@ components: components).build
     current_component_id = user.states.where(bot: bot_record).last.data['component_id']
     component = BotTelegram::FindMedsBot::Tables::Component.find(current_component_id)
     medicines = component.medicines_with_single_component.select do |medicine|
-      medicine.form = form
+      medicine.form == form
     end
     answer = i18n_scope(:find_medicine, :what_concentration_do_you_need)
-    show options: [medicines.map(&:concetrations), ['Другая', :start_menu]], answer: answer
+    show options: [medicines.map(&:concentrations), ['Другая', :start_menu]], answer: answer
     set_next_action :choose_form, component_id: component.id, dosages: dosages
   end
 

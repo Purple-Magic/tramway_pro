@@ -6,7 +6,7 @@ medicines:
     Name: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг'
     Drug:
       - 'finlepcin_id'
-    intersection_and_substance:
+    concentrations:
       - 'reccJ82ScIlm1tOxC'
     form:
       - 'Таб.пролонгированного действия'
@@ -16,7 +16,7 @@ medicines:
     Name: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 200 мг'
     Drug:
       - 'finlepcin_id'
-    intersection_and_substance:
+    concentrations:
       - 'reccJ82ScIlm1tOx3'
     form:
       - 'Таб.пролонгированного действия'
@@ -24,18 +24,26 @@ medicines:
     Name: 'Тегретол'
     Drug:
       - 'tegretol_id'
-    intersection_and_substance:
+    concentrations:
       - 'reccJ82ScIlm1tOxC'
     form:
       - 'Таб.пролонгированного действия'
     company:
       - 'receQeH2nuPmxUA7P'
   - id: "rec2RdTpBfnRIakE9"
-    intersection_and_substance:
+    concentrations:
       - "recWTruyz6TJzGgw5"
     form:
       - "Раствор для приема внутрь"
-    Name: 'Кеппра \"UCB Pharma, S.A.\" levetiracetam 300 мл в таре 100 мг/мл'
+    Name: 'Кеппра \"UCB Pharma, S.A.\" levetiracetam 500 мл'
+    components:
+      - "rec76PKPUZs1amvBg"
+  - id: "rec2RdTpBfnRIakE8"
+    concentrations:
+      - "recWTruyz6TJzGgw5"
+    form:
+      - "Раствор для приема внутрь"
+    Name: 'Кеппра \"UCB Pharma, S.A.\" levetiracetam 400 мл'
     components:
       - "rec76PKPUZs1amvBg"
 active_components:
@@ -47,5 +55,794 @@ companies:
   - id: 'receQeH2nuPmxUA7P'
     Name: 'NOVARTIS FARMA, S.p.A.'
 concentrations:
-  - id: 'reccJ82ScIlm1tOxC'
-    Name: 'carbamazepine концентрация 400 мг'
+  - id: rec1X7LVmdonNU46U
+    :конц. в мг: 400
+    :Фирма, вещества, форма:
+    - recndOEJKT85CQ0BV
+    :Действующее вещество:
+    - recgGDBYjioxjmfE0
+    :Name: gabapentin  концентрация 400 мг
+  - id: rec1dXtGqbarGDPaa
+    :Фирма, вещества, форма:
+    - rechqgJCE4ST0TJEJ
+    :объём флакона: 150
+    :Действующее вещество:
+    - reckrFIgeKM2w9UDf
+    ! ':раств. конц. мг/мл ': 57.64
+    :Name: 'valproic acid 150 мл в таре 57.64 мг/мл '
+  - id: rec1k4fBCXgNOf9au
+    :конц. в мг: 37.5
+    :Фирма, вещества, форма:
+    - recJsrsM7mxAHLvRL
+    - recFlgUA1eyPICG9F
+    :Действующее вещество:
+    - recqyiPWVQPZJahIP
+    :Name: venlafaxine  концентрация 37.5 мг
+  - id: rec1pdHlPKbxrpZNP
+    :Действующее вещество:
+    - recKnsMBDrGOKIvym
+    :Name: 'Aminoacids for parenteral nutrition  ERROR '
+  - id: rec2mnwkD5HRu9wfZ
+    :Фирма, вещества, форма:
+    - recnwWpp1YTMMQfTe
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 100
+    :объём дозы в мл: 10
+    :Name: 'methotrexate  доза: 100 мг/мл 1000 мг, объём 10 мл'
+    :содержание вещества в дозе: 1000
+  - id: rec2v13F82J0X2tnF
+    :конц. в мг: 0.137
+    :Фирма, вещества, форма:
+    - recjOsJSeCYnM6TSJ
+    - recEn3yDWVzAjTjZS
+    :Действующее вещество:
+    - recDl0VyRMFU5hURf
+    :Name: levothyroxine sodium  концентрация 0.137 мг
+  - id: rec3yBfekHIXzPupe
+    :конц. в мг: 600
+    :Фирма, вещества, форма:
+    - recexRVUZuHwKkora
+    :Действующее вещество:
+    - rec4YjjsTO04NDM90
+    :Name: oxcarbazepine  концентрация 600 мг
+  - id: rec4GrIOALm6q7oPz
+    :Фирма, вещества, форма:
+    - recqVs5liTYCfs06l
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 50
+    :объём дозы в мл: 0.6
+    :Name: 'methotrexate  доза: 50 мг/мл 30 мг, объём 0.6 мл'
+    :содержание вещества в дозе: 30
+  - id: rec4QpqgZFTTA78E5
+    :конц. в мг: 0.112
+    :Фирма, вещества, форма:
+    - recKf8fPbGAYFl43D
+    :Действующее вещество:
+    - recDl0VyRMFU5hURf
+    :Name: levothyroxine sodium  концентрация 0.112 мг
+  - id: rec4iRt8nSMPgFIvQ
+    :Фирма, вещества, форма:
+    - recu19lOwBvM1hmbL
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 50
+    :объём дозы в мл: 0.3
+    :Name: 'methotrexate  доза: 50 мг/мл 15 мг, объём 0.3 мл'
+    :содержание вещества в дозе: 15
+  - id: rec4mYlHyG4W8D2zd
+    :конц. в мг: 58
+    :Фирма, вещества, форма:
+    - rec9G2atMKmLe9EE5
+    :Действующее вещество:
+    - reckrFIgeKM2w9UDf
+    :Name: valproic acid  концентрация 58 мг
+  - id: rec52p6uOhyMh6La8
+    :конц. в мг: 87
+    :Фирма, вещества, форма:
+    - rec2GeGEgpyMYybSL
+    :Действующее вещество:
+    - reckrFIgeKM2w9UDf
+    :Name: valproic acid  концентрация 87 мг
+  - id: rec5ECsY9v5KiFMrJ
+    :Фирма, вещества, форма:
+    - rechdd716A14hdIOW
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 100
+    :объём дозы в мл: 50
+    :Name: 'methotrexate  доза: 100 мг/мл 5000 мг, объём 50 мл'
+    :содержание вещества в дозе: 5000
+  - id: rec5VA8LIp3VapIRO
+    :Фирма, вещества, форма:
+    - recoWNb9JPWd6q17W
+    - recD3QUqOF7xyubCs
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 10
+    :объём дозы в мл: 0.75
+    :Name: 'methotrexate  доза: 10 мг/мл 7.5 мг, объём 0.75 мл'
+    :содержание вещества в дозе: 7.5
+  - id: rec6S1ErEF9qHsEHi
+    :конц. в мг: 75
+    :Фирма, вещества, форма:
+    - recf89PgSilgaCbZf
+    - recRZ3Hix0fbY6wPA
+    - recSnpknfV2aCNPTp
+    :Действующее вещество:
+    - recqyiPWVQPZJahIP
+    :Name: venlafaxine  концентрация 75 мг
+  - id: rec8aKUmCT1MziF9T
+    :конц. в мг: 600
+    :Фирма, вещества, форма:
+    - recxbBB7TicbBXz14
+    :объём флакона: 7
+    :Действующее вещество:
+    - recv6kfMcX6shStX6
+    ! ':раств. конц. мг/мл ': 85.7142
+    :Name: 'choline alfoscerate 7 мл в таре 85.7142 мг/мл '
+  - id: rec8qVwoeGD6aMbwX
+    :конц. в мг: 100
+    :Фирма, вещества, форма:
+    - recXsLTJ7VB9H6S73
+    - recqOrxS4no5tKi1x
+    - reculbk0hN2pEfPlu
+    :Действующее вещество:
+    - recqI15GIdGV4B1KA
+    :Name: levodopa  концентрация 100 мг
+  - id: rec8yueZcvBUVAMBp
+    :Фирма, вещества, форма:
+    - recRGkul4tymgo3Nw
+    :Действующее вещество:
+    - recv6kfMcX6shStX6
+    ! ':раств. конц. мг/мл ': 250
+    :объём дозы в мл: 4
+    :Name: 'choline alfoscerate  доза: 250 мг/мл 1000 мг, объём 4 мл'
+    :содержание вещества в дозе: 1000
+  - id: rec98om3mZh35423V
+    :Фирма, вещества, форма:
+    - recJiY4clyJE1s3mV
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 25
+    :объём дозы в мл: 20
+    :Name: 'methotrexate  доза: 25 мг/мл 500 мг, объём 20 мл'
+    :содержание вещества в дозе: 500
+  - id: rec9VpqKmmx1zO7TF
+    :конц. в мг: 100
+    :Фирма, вещества, форма:
+    - recaHDU2VkFGTipKt
+    :Действующее вещество:
+    - recwndOZ7eBYUfFkm
+    :Name: quetiapine  концентрация 100 мг
+  - id: rec9j1fP8jgJ6s25x
+    :конц. в мг: 500
+    :Фирма, вещества, форма:
+    - recYAsHLtT9ztIrpe
+    :Действующее вещество:
+    - reckrFIgeKM2w9UDf
+    :Name: valproic acid  концентрация 500 мг
+  - id: recANKDJA7s1EpXZB
+    :Фирма, вещества, форма:
+    - rec9QPCWz8UpOuB2h
+    :объём флакона: 250
+    :Действующее вещество:
+    - recpRlZUbcSXpMeKB
+    ! ':раств. конц. мг/мл ': 50
+    :Name: 'ursodeoxycholic acid 250 мл в таре 50 мг/мл '
+  - id: recBjstlSoAi1cJOQ
+    :конц. в мг: 25
+    :Фирма, вещества, форма:
+    - recAKiPTwEY9tD1lN
+    :Действующее вещество:
+    - recKnSmpaMtuSjzqv
+    :Name: clomipramine  концентрация 25 мг
+  - id: recD1PTcFKXLBaipG
+    :Фирма, вещества, форма:
+    - recIBVivA62h4UUkD
+    :Действующее вещество:
+    - recJHlFH1MhnvEa4A
+    ! ':раств. конц. мг/мл ': 150
+    :объём дозы в мл: 1
+    :Name: 'alirocumab  доза: 150 мг/мл 150 мг, объём 1 мл'
+    :содержание вещества в дозе: 150
+  - id: recD3m1NMCzK15XZX
+    :конц. в мг: 2.5
+    :Фирма, вещества, форма:
+    - recJbAx207gUV41bb
+    - rec3t6gEo37vEyilT
+    - recK3dCHmBVLPZboM
+    :Действующее вещество:
+    - recoeA01IqdROiRiR
+    :Name: linagliptin  концентрация 2.5 мг
+  - id: recFFrWfDTOv0j55E
+    :конц. в мг: 0.088
+    :Фирма, вещества, форма:
+    - recktSG50N6RnCG08
+    :Действующее вещество:
+    - recDl0VyRMFU5hURf
+    :Name: levothyroxine sodium  концентрация 0.088 мг
+  - id: recFhCiRQngdTiEmP
+    :конц. в мг: 5
+    :Фирма, вещества, форма:
+    - recLD14mEL3gnpHYc
+    :Действующее вещество:
+    - recCstkLtWnZFiIOd
+    :Name: lamotrigine  концентрация 5 мг
+  - id: recFsf7d3aPpoNqIn
+    :конц. в мг: 0.15
+    :Фирма, вещества, форма:
+    - recD8qc59Z7sIoZg3
+    - rec9vs5zzhyLuYQpM
+    :Действующее вещество:
+    - recDl0VyRMFU5hURf
+    :Name: levothyroxine sodium  концентрация 0.15 мг
+  - id: recFsnk568D3cb1Uq
+    :конц. в мг: 200
+    :Фирма, вещества, форма:
+    - recWkfAozXAJDuqVN
+    - recs0aU3pU0ZEbWZq
+    - recYZyPjiAkjcIIES
+    - rec4b4y8zgonsE4Qp
+    - recrNeUSzjuLDdKHB
+    - reco7B9iFnIB3Z2WO
+    - recPMiV15pt2Ahvo6
+    - recZnEbVEBWtq36id
+    - recd14j00u2hqoC4M
+    :Действующее вещество:
+    - recRuYwu1NwTz1mnK
+    :Name: carbamazepine  концентрация 200 мг
+  - id: recGsl0I8000IG7Ma
+    :Фирма, вещества, форма:
+    - recKvCBruZ1eiDmFI
+    :Действующее вещество:
+    - recv6kfMcX6shStX6
+    ! ':раств. конц. мг/мл ': 333.333
+    :объём дозы в мл: 3
+    :Name: 'choline alfoscerate  доза: 333.333 мг/мл 999.999 мг, объём 3 мл'
+    :содержание вещества в дозе: 999.999
+  - id: recIeXmDa90kvDcCg
+    :Фирма, вещества, форма:
+    - recP6FFhP0IbxnHgK
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 25
+    :объём дозы в мл: 4
+    :Name: 'methotrexate  доза: 25 мг/мл 100 мг, объём 4 мл'
+    :содержание вещества в дозе: 100
+  - id: recJBkqsR15GiZHwX
+    :конц. в мг: 500
+    :Фирма, вещества, форма:
+    - rec3t6gEo37vEyilT
+    :Действующее вещество:
+    - recdPbpVBK8bFxDoh
+    :Name: metformin  концентрация 500 мг
+  - id: recJsbHzqj8IaSPGK
+    :конц. в мг: 0.025
+    :Фирма, вещества, форма:
+    - rectBEckWcSLyy7S7
+    :Действующее вещество:
+    - recDl0VyRMFU5hURf
+    :Name: levothyroxine sodium  концентрация 0.025 мг
+  - id: recKPb2dSJDwRYqIF
+    :конц. в мг: 145
+    :Фирма, вещества, форма:
+    - reczfkIWJDSvLoYVu
+    :Действующее вещество:
+    - reckrFIgeKM2w9UDf
+    :Name: valproic acid  концентрация 145 мг
+  - id: recKkYgLbbl8cqo0E
+    :конц. в мг: 200
+    :Фирма, вещества, форма:
+    - rec9dwbRc1VHA46Vk
+    :Действующее вещество:
+    - recCstkLtWnZFiIOd
+    :Name: lamotrigine  концентрация 200 мг
+  - id: recL4BqcfHdpoWcS6
+    :Фирма, вещества, форма:
+    - recgrPhCGPhfnwM5w
+    :объём флакона: 55
+    :Действующее вещество:
+    - rec2cbu7iXDa4aLrh
+    ! ':раств. конц. мг/мл ': 100
+    :Name: 'hydrocortisone 55 мл в таре 100 мг/мл '
+  - id: recMU2es5hw4KqsxJ
+    :Фирма, вещества, форма:
+    - recC1ZTJ3uxuB37Sn
+    :Действующее вещество:
+    - recJHlFH1MhnvEa4A
+    ! ':раств. конц. мг/мл ': 75
+    :объём дозы в мл: 1
+    :Name: 'alirocumab  доза: 75 мг/мл 75 мг, объём 1 мл'
+    :содержание вещества в дозе: 75
+  - id: recMifztsV2vzzzG6
+    :Фирма, вещества, форма:
+    - recjgi89UFeECdT8o
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 100
+    :объём дозы в мл: 5
+    :Name: 'methotrexate  доза: 100 мг/мл 500 мг, объём 5 мл'
+    :содержание вещества в дозе: 500
+  - id: recMr6nq6ATvMZxJK
+    :Фирма, вещества, форма:
+    - recLb7U82GGb8PlOP
+    - recaucdwZaBgG9haw
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 10
+    :объём дозы в мл: 2
+    :Name: 'methotrexate  доза: 10 мг/мл 20 мг, объём 2 мл'
+    :содержание вещества в дозе: 20
+  - id: recNRiPW8M6Z9TWFf
+    :Международная Единица (МЕ/ЕД): 1000
+    :Фирма, вещества, форма:
+    - recd1MFgtdQZILP8A
+    :Действующее вещество:
+    - rec2YLCEWsxOmyEIK
+    :Name: 'chorionic gonadotropin  концентрация 1000 МЕ/ЕД '
+  - id: recO2Xr9pPy8neSl1
+    :Фирма, вещества, форма:
+    - recnnICNBSR1cRu2T
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 50
+    :объём дозы в мл: 0.2
+    :Name: 'methotrexate  доза: 50 мг/мл 10 мг, объём 0.2 мл'
+    :содержание вещества в дозе: 10
+  - id: recOddztYyfBLFeb0
+    :Фирма, вещества, форма:
+    - recgrPhCGPhfnwM5w
+    :объём флакона: 55
+    :Действующее вещество:
+    - recMOHWKttIOgYx3Z
+    ! ':раств. конц. мг/мл ': 300
+    :Name: 'oxytetracycline 55 мл в таре 300 мг/мл '
+  - id: recQKvqKdkjCP6yxG
+    :конц. в мг: 0.1
+    :Фирма, вещества, форма:
+    - recUKZ7X5pyLcSv4K
+    - recR3c7518hjoyyCm
+    - recFHIX6vEjOv3IHK
+    :Действующее вещество:
+    - recDl0VyRMFU5hURf
+    :Name: levothyroxine sodium  концентрация 0.1 мг
+  - id: recQsi2JWgzNovzDd
+    :конц. в мг: 2
+    :Фирма, вещества, форма:
+    - recXsLTJ7VB9H6S73
+    :Действующее вещество:
+    - recHJ4m7pqmvDOWBN
+    :Name: benserazide  концентрация 2 мг
+  - id: recR63df5PzbQ3nBM
+    :конц. в мг: 25
+    :Фирма, вещества, форма:
+    - recYGP2Pmv4HPEwYC
+    :Действующее вещество:
+    - recKKUfsrjGwRZ3pd
+    :Name: imipramine  концентрация 25 мг
+  - id: recS5JWxHRmLtWsAc
+    :конц. в мг: 400
+    :Фирма, вещества, форма:
+    - recdvoJhcmSxkrhaA
+    :Действующее вещество:
+    - recv6kfMcX6shStX6
+    :Name: choline alfoscerate  концентрация 400 мг
+  - id: recTuRA5GQGLVuXii
+    :Фирма, вещества, форма:
+    - rec7S0Ho72Y6c2s69
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 50
+    :объём дозы в мл: 0.45
+    :Name: 'methotrexate  доза: 50 мг/мл 22.5 мг, объём 0.45 мл'
+    :содержание вещества в дозе: 22.5
+  - id: recUnw17OPp7XznXh
+    :конц. в мг: 100
+    :Фирма, вещества, форма:
+    - recVN2x7LpOM7k22d
+    :Действующее вещество:
+    - recgGDBYjioxjmfE0
+    :Name: gabapentin  концентрация 100 мг
+  - id: recUrOQtRNCRqXcy3
+    :Международная Единица (МЕ/ЕД): 20000
+    :Фирма, вещества, форма:
+    - rec7C8sZIj8ye4xmo
+    :Действующее вещество:
+    - recsYHbYyMGhLrtMB
+    ! ':раств. конц. мг/мл ': 0.5
+    :объём дозы в мл: 1
+    :Name: 'colecalciferol  доза: 0.5 мг/мл 0.5 мг, объём 1 мл'
+    :содержание вещества в дозе: 0.5
+  - id: recVKSHBDNAh0MHrC
+    :Фирма, вещества, форма:
+    - rec9LR9f9KboSNd2n
+    - recnwcNvaOltQlWlA
+    :Действующее вещество:
+    - recTl6a5QakmLsBbj
+    ! ':раств. конц. мг/мл ': 0.5
+    :объём дозы в мл: 2
+    :Name: 'budesonide  доза: 0.5 мг/мл 1 мг, объём 2 мл'
+    :содержание вещества в дозе: 1
+  - id: recVP7pVJVpWLUry8
+    :Фирма, вещества, форма:
+    - recZK1uOL306mRujp
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 50
+    :объём дозы в мл: 0.25
+    :Name: 'methotrexate  доза: 50 мг/мл 12.5 мг, объём 0.25 мл'
+    :содержание вещества в дозе: 12.5
+  - id: recWF3vOm85FNNpXF
+    :конц. в мг: 0.5
+    :Фирма, вещества, форма:
+    - recxYX9ickDBtRIOK
+    :Действующее вещество:
+    - recxm9lBcWdO2BO12
+    :Name: varenicline  концентрация 0.5 мг
+  - id: recWTruyz6TJzGgw5
+    :Фирма, вещества, форма:
+    - rec2RdTpBfnRIakE9
+    :объём флакона: 300
+    :Действующее вещество:
+    - rec76PKPUZs1amvBg
+    ! ':раств. конц. мг/мл ': 100
+    :Name: 'levetiracetam 300 мл в таре 100 мг/мл '
+  - id: recWiv1RKbLvqa6Ts
+    :Фирма, вещества, форма:
+    - rechJNSQF7V0vHye7
+    :Действующее вещество:
+    - recU7RYJXLKf7hC06
+    :Name: 'estradiol valerate  ERROR '
+  - id: recXbDSo8EsXLfa4z
+    :Фирма, вещества, форма:
+    - rec1RgkyKj7NclCTh
+    - recKXopBBMo3Mr9Lu
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 10
+    :объём дозы в мл: 1.5
+    :Name: 'methotrexate  доза: 10 мг/мл 15 мг, объём 1.5 мл'
+    :содержание вещества в дозе: 15
+  - id: recXkwBr1T2ckSaj7
+    :Фирма, вещества, форма:
+    - reckYYEOyyoVUL8tB
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 25
+    :объём дозы в мл: 2
+    :Name: 'methotrexate  доза: 25 мг/мл 50 мг, объём 2 мл'
+    :содержание вещества в дозе: 50
+  - id: recZWONIYSUJ4dZVf
+    :конц. в мг: 50
+    :Действующее вещество:
+    - recCstkLtWnZFiIOd
+    :Name: lamotrigine  концентрация 50 мг
+  - id: recZtixn9OKmnVsYC
+    :конц. в мг: 25
+    :Фирма, вещества, форма:
+    - rec0iZTWlmYH3QW0T
+    :Действующее вещество:
+    - reckR3sKvHuOkouCE
+    :Name: milnacipran  концентрация 25 мг
+  - id: recZyIv3jcvGPufAQ
+    :Фирма, вещества, форма:
+    - recCGgpE9GHGJzlWS
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 50
+    :объём дозы в мл: 0.35
+    :Name: 'methotrexate  доза: 50 мг/мл 17.5 мг, объём 0.35 мл'
+    :содержание вещества в дозе: 17.5
+  - id: recc3sBigYzzbEV3y
+    :конц. в мг: 200
+    :Фирма, вещества, форма:
+    - recxqTi18rMX5GlyQ
+    - rec7aDwjG9CQmKYya
+    :Действующее вещество:
+    - recqI15GIdGV4B1KA
+    :Name: levodopa  концентрация 200 мг
+  - id: reccEP4O7ejH0h9RE
+    :конц. в мг: 0.15
+    :Фирма, вещества, форма:
+    - reczX4kvprQ7HRG2o
+    :Действующее вещество:
+    - recTvEXcj33n2PA1G
+    :Name: levonorgestrel  концентрация 0.15 мг
+  - id: reccJ82ScIlm1tOxC
+    :конц. в мг: 400
+    :Фирма, вещества, форма:
+    - recg5MhILcAOgvrHK
+    - recTrtoAlDTb5nWfW
+    - rec2ggM9GpupMEkXS
+    - recGKALi5zl008Lnh
+    - recC0R0XAQATwyq0M
+    :Действующее вещество:
+    - recRuYwu1NwTz1mnK
+    :Name: carbamazepine  концентрация 400 мг
+  - id: reccNOxnUju6WOXSn
+    :конц. в мг: 150
+    :Фирма, вещества, форма:
+    - recAve3rrcFTbnf4R
+    :Действующее вещество:
+    - rec4YjjsTO04NDM90
+    :Name: oxcarbazepine  концентрация 150 мг
+  - id: reccXYfMmhnIgoQGm
+    :Фирма, вещества, форма:
+    - recmQXAttm3GL6fCv
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 2
+    :объём дозы в мл: 2.5
+    :Name: 'methotrexate  доза: 2 мг/мл 5 мг, объём 2.5 мл'
+    :содержание вещества в дозе: 5
+  - id: reccnoNAT9IkeQdcp
+    :Фирма, вещества, форма:
+    - recolew4nAKc5bD1j
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 50
+    :объём дозы в мл: 0.4
+    :Name: 'methotrexate  доза: 50 мг/мл 20 мг, объём 0.4 мл'
+    :содержание вещества в дозе: 20
+  - id: recczjGm556EAF4CZ
+    :конц. в мг: 2
+    :Фирма, вещества, форма:
+    - reczX4kvprQ7HRG2o
+    :Действующее вещество:
+    - recC77gEuBa4qXqg5
+    :Name: estradiol  концентрация 2 мг
+  - id: receBz5bRLjX2waA9
+    :конц. в мг: 100
+    :Действующее вещество:
+    - recCstkLtWnZFiIOd
+    :Name: lamotrigine  концентрация 100 мг
+  - id: receEWK4ShiZBgpMj
+    :конц. в мг: 28.5
+    :Фирма, вещества, форма:
+    - recqOrxS4no5tKi1x
+    - reculbk0hN2pEfPlu
+    :Действующее вещество:
+    - recHJ4m7pqmvDOWBN
+    :Name: benserazide  концентрация 28.5 мг
+  - id: recfPbHSmvHkKvSjM
+    :конц. в мг: 0.125
+    :Фирма, вещества, форма:
+    - recZzHgABY12YYnBn
+    - recNCAJrOr1UdIVs6
+    :Действующее вещество:
+    - recDl0VyRMFU5hURf
+    :Name: levothyroxine sodium  концентрация 0.125 мг
+  - id: recgbFseBKWb8EA27
+    :конц. в мг: 20
+    :Фирма, вещества, форма:
+    - recyhAzivk1GQOY1V
+    - recbSlwepzLrfyjh4
+    :Действующее вещество:
+    - recppoMum2vi5HtoB
+    :Name: tamoxifen  концентрация 20 мг
+  - id: rechYprFipb2khqO6
+    :конц. в мг: 300
+    :Фирма, вещества, форма:
+    - recdx1aoWSiP8BqB5
+    :Действующее вещество:
+    - rec4YjjsTO04NDM90
+    :Name: oxcarbazepine  концентрация 300 мг
+  - id: rechekFkHcG0KnrnV
+    :конц. в мг: 150
+    :Фирма, вещества, форма:
+    - recYpPtlF2A3aEYXX
+    :Действующее вещество:
+    - recqyiPWVQPZJahIP
+    :Name: venlafaxine  концентрация 150 мг
+  - id: reciCWx0H9D9jG38W
+    :Фирма, вещества, форма:
+    - reczDUdEMWMR1CStm
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 50
+    :объём дозы в мл: 0.55
+    :Name: 'methotrexate  доза: 50 мг/мл 27.500000000000004 мг, объём 0.55 мл'
+    :содержание вещества в дозе: 27.500000000000004
+  - id: reciuqLzKfwV9FnTC
+    :конц. в мг: 1000
+    :Фирма, вещества, форма:
+    - recJbAx207gUV41bb
+    :Действующее вещество:
+    - recdPbpVBK8bFxDoh
+    :Name: metformin  концентрация 1000 мг
+  - id: recjNM3ldATkeLZ1V
+    :конц. в мг: 10
+    :Фирма, вещества, форма:
+    - recEJ2Of6Cn6GEPja
+    :Действующее вещество:
+    - recppoMum2vi5HtoB
+    :Name: tamoxifen  концентрация 10 мг
+  - id: recjPPQt7ZF1fy9bz
+    :конц. в мг: 50
+    :Фирма, вещества, форма:
+    - recCJyqMfdLn9tJON
+    :Действующее вещество:
+    - reckR3sKvHuOkouCE
+    :Name: milnacipran  концентрация 50 мг
+  - id: reckq5xfhtyLd7y3A
+    :конц. в мг: 300
+    :Фирма, вещества, форма:
+    - recAorIgAHDcDCIWr
+    :Действующее вещество:
+    - reckrFIgeKM2w9UDf
+    :Name: valproic acid  концентрация 300 мг
+  - id: reclge1t1FdgEQ5ok
+    :конц. в мг: 25
+    :Действующее вещество:
+    - recCstkLtWnZFiIOd
+    :Name: lamotrigine  концентрация 25 мг
+  - id: reclifwJXtoTLU9bD
+    :Фирма, вещества, форма:
+    - rec8fTln9hY0xbPp7
+    - recFRA3YV329b1r8I
+    :Действующее вещество:
+    - recTl6a5QakmLsBbj
+    ! ':раств. конц. мг/мл ': 0.25
+    :объём дозы в мл: 2
+    :Name: 'budesonide  доза: 0.25 мг/мл 0.5 мг, объём 2 мл'
+    :содержание вещества в дозе: 0.5
+  - id: recm0xrJdQlIGlTbK
+    :Международная Единица (МЕ/ЕД): 1500
+    :Фирма, вещества, форма:
+    - reca1WicqBgJp4sVZ
+    :Действующее вещество:
+    - rec2YLCEWsxOmyEIK
+    :Name: 'chorionic gonadotropin  концентрация 1500 МЕ/ЕД '
+  - id: recnUULhBWCoLXOJ6
+    :конц. в мг: 0.05
+    :Фирма, вещества, форма:
+    - rec8OTnI29WHXz034
+    - recBgUUQNh4MPIP2p
+    - recvrJiJ0CzzGEVhF
+    :Действующее вещество:
+    - recDl0VyRMFU5hURf
+    :Name: levothyroxine sodium  концентрация 0.05 мг
+  - id: recnhxG3P1dipBPMr
+    :Фирма, вещества, форма:
+    - recOSJkLZugXmGQpW
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 50
+    :объём дозы в мл: 0.5
+    :Name: 'methotrexate  доза: 50 мг/мл 25 мг, объём 0.5 мл'
+    :содержание вещества в дозе: 25
+  - id: recoe2rryXx26soDN
+    :конц. в мг: 850
+    :Фирма, вещества, форма:
+    - recK3dCHmBVLPZboM
+    :Действующее вещество:
+    - recdPbpVBK8bFxDoh
+    :Name: metformin  концентрация 850 мг
+  - id: recprWY5uDdoeaYVI
+    :конц. в мг: 300
+    :Фирма, вещества, форма:
+    - recZh6VE4fDGdSvTE
+    :Действующее вещество:
+    - recgGDBYjioxjmfE0
+    :Name: gabapentin  концентрация 300 мг
+  - id: recqM3llsrBgv2dBk
+    :Фирма, вещества, форма:
+    - recuvclWPEZ17Yier
+    - recVbxLyWAiNmZ30a
+    - recetpF3kcyQfww7Y
+    - recPWAkPI7tfQkF6D
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 10
+    :объём дозы в мл: 1
+    :Name: 'methotrexate  доза: 10 мг/мл 10 мг, объём 1 мл'
+    :содержание вещества в дозе: 10
+  - id: recsL4khj3Lci3NGG
+    :Фирма, вещества, форма:
+    - recbSSh5Kextw5dmW
+    :Действующее вещество:
+    - recKnsMBDrGOKIvym
+    :объём дозы в мл: 500
+    :Name: 'Aminoacids for parenteral nutrition  доза:  ERROR  мг, объём 500 мл'
+    :содержание вещества в дозе: 0
+  - id: recspbIiMtCAIUAs7
+    :конц. в мг: 1
+    :Фирма, вещества, форма:
+    - rect2pfdxStuFHAth
+    :Действующее вещество:
+    - recxm9lBcWdO2BO12
+    :Name: varenicline  концентрация 1 мг
+  - id: rectDP1rHRN6ugsoW
+    :Фирма, вещества, форма:
+    - recr59bJHfwCKUKTX
+    :объём флакона: 250
+    :Действующее вещество:
+    - rec4YjjsTO04NDM90
+    ! ':раств. конц. мг/мл ': 60
+    :Name: 'oxcarbazepine 250 мл в таре 60 мг/мл '
+  - id: recuI8Gv3hAPVZOQQ
+    :конц. в мг: 0.075
+    :Фирма, вещества, форма:
+    - recOgBiXaKSqduKRO
+    - recWdsC9ZQ0eQiSHl
+    :Действующее вещество:
+    - recDl0VyRMFU5hURf
+    :Name: levothyroxine sodium  концентрация 0.075 мг
+  - id: recuTRff12FROogid
+    :конц. в мг: 600
+    :Фирма, вещества, форма:
+    - recK3H9NyjhvTLdbd
+    :Действующее вещество:
+    - rec2LKsKLhYTGh7hw
+    :Name: diosmin  концентрация 600 мг
+  - id: recvIWtE2SoheGg8M
+    :конц. в мг: 57
+    :Фирма, вещества, форма:
+    - recxqTi18rMX5GlyQ
+    - rec7aDwjG9CQmKYya
+    :Действующее вещество:
+    - recHJ4m7pqmvDOWBN
+    :Name: benserazide  концентрация 57 мг
+  - id: recvmst3rFD3wJvjb
+    :Фирма, вещества, форма:
+    - rechJNSQF7V0vHye7
+    :Действующее вещество:
+    - recv56OcZp0WndgrS
+    :Name: 'norgestrel  ERROR '
+  - id: recw5HSmoPWnThHTB
+    :Фирма, вещества, форма:
+    - rechOZ9Qa6rxMgEWr
+    :Действующее вещество:
+    - recTx1hlUSmPPxXtw
+    ! ':раств. конц. мг/мл ': 10
+    :объём дозы в мл: 2.5
+    :Name: 'methotrexate  доза: 10 мг/мл 25 мг, объём 2.5 мл'
+    :содержание вещества в дозе: 25
+  - id: recxlY0NfdMHsvILU
+    :конц. в мг: 800
+    :Фирма, вещества, форма:
+    - rec0Fqy4fYDUibmuQ
+    :Действующее вещество:
+    - recgGDBYjioxjmfE0
+  - id: recyL2Jqude2im08P
+    :Фирма, вещества, форма:
+    - recfYC67vw4ndEvqX
+    :Действующее вещество:
+    - recC77gEuBa4qXqg5
+    ! ':раств. конц. мг/мл ': 0.6
+    :объём дозы в мл: 2.5
+    :Name: 'estradiol  доза: 0.6 мг/мл 1.5 мг, объём 2.5 мл'
+    :содержание вещества в дозе: 1.5
+  - id: recyYyUY3sKGOOLVz
+    :Фирма, вещества, форма:
+    - reczy00MOrXNzY3aX
+    :объём флакона: 100
+    :Действующее вещество:
+    - rec4YjjsTO04NDM90
+    ! ':раств. конц. мг/мл ': 60
+    :Name: 'oxcarbazepine 100 мл в таре 60 мг/мл '
+  - id: recyZczDAStF2XC0S
+    :конц. в мг: 500
+    :Фирма, вещества, форма:
+    - reczXcH2curaAp65R
+    :Действующее вещество:
+    - rec76PKPUZs1amvBg
+    :Name: levetiracetam  концентрация 500 мг
+  - id: recyx9W2ORLLkgcx0
+    :конц. в мг: 600
+    :Фирма, вещества, форма:
+    - recBlx2BcjmgP7WWM
+    :Действующее вещество:
+    - recgGDBYjioxjmfE0
+    :Name: gabapentin  концентрация 600 мг
+  - id: reczyAagHMxRzvKay
+    :Фирма, вещества, форма:
+    - rec6XwPuOCEnSeQJl
+    :Действующее вещество:
+    - recdJGisGqvTbkvyG
+    ! ':раств. конц. мг/мл ': 250
+    :объём дозы в мл: 1
+    :Name: '"testosterone, mixture of esthers"  доза: 250 мг/мл 250 мг, объём 1 мл'
+    :содержание вещества в дозе: 250

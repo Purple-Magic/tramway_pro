@@ -12,11 +12,13 @@ describe 'BotTelegram::FindMedsBot' do
       let(:message_1) { build :telegram_message, text: 'Поиск лекарств' }
       let(:message_2) { build :telegram_message, text: 'Конвилепт' }
       let(:message_3) { build :telegram_message, text: 'levetiracetam' }
+      let(:message_4) { build :telegram_message, text: "Раствор для приема внутрь" }
 
       it 'search medicine by component' do
         find_meds_airtable_stub_request table: :drugs
         find_meds_airtable_stub_request table: :active_components
         find_meds_airtable_stub_request table: :medicines
+        find_meds_airtable_stub_request table: :active_components, id: 'rec76PKPUZs1amvBg'
 
         stub_1 = send_message_stub_request body: {
           chat_id: chat.telegram_chat_id,
@@ -69,7 +71,7 @@ describe 'BotTelegram::FindMedsBot' do
           )
         }
 
-        bot_run :find_meds, bot_record: bot_record, message: message_3, chat: chat, message_object: message_object
+        bot_run :find_meds, bot_record: bot_record, message: message_4, chat: chat, message_object: message_object
 
         expect(stub_4).to have_been_requested
       end
