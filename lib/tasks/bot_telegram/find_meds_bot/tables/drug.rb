@@ -4,6 +4,10 @@ class BotTelegram::FindMedsBot::Tables::Drug < BotTelegram::FindMedsBot::Tables:
   self.base_key = ENV['FIND_MEDS_MAIN_BASE']
   self.table_name = 'drugs'
 
+  def name
+    fields['Name']
+  end
+
   def medicines
     ::BotTelegram::FindMedsBot::Tables::Medicine.where('Drug' => [id])
   end

@@ -4,8 +4,17 @@ class BotTelegram::FindMedsBot::Tables::Medicine < BotTelegram::FindMedsBot::Tab
   self.base_key = ENV['FIND_MEDS_MAIN_BASE']
   self.table_name = 'medicines'
 
-  belongs_to :drug, class: 'BotTelegram::FindMedsBot::Tables::Drug', column: 'Drug'
   belongs_to :company, class: 'BotTelegram::FindMedsBot::Tables::Company', column: 'Company'
+
+  def drug
+    BotTelegram::FindMedsBot::Tables::Drug.find fields['Drug'].first
+  end
+
+  def concentrations
+    fields['concentrations'].map do |concentration_id|
+      BotTelegram::FindMedsBot::Tables::Concentration.find concentration_id
+    end
+  end
 
   def separable_dosage?
     ['separable_dosage']&.include? 'можно делить'
@@ -13,5 +22,9 @@ class BotTelegram::FindMedsBot::Tables::Medicine < BotTelegram::FindMedsBot::Tab
 
   def form
     fields['form']&.first
+  end
+
+  def name
+    fields['Name']
   end
 end

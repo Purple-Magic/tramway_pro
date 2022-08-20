@@ -97,8 +97,11 @@ components: components).build
       medicine.form == form
     end
     answer = i18n_scope(:find_medicine, :what_concentration_do_you_need)
-    show options: [medicines.map(&:concentrations), ['Другая', :start_menu]], answer: answer
-    set_next_action :choose_form, component_id: component.id, dosages: dosages
+    concentrations = medicines.map do |medicine|
+      "#{medicine.drug.name} #{medicine.concentrations.map(&:to_s).join(', ')}"
+    end
+    show options: [concentrations, ['Другая', :start_menu]], answer: answer
+    set_next_action :choose_dosage, component_id: component.id, dosages: dosages
   end
 
   private

@@ -19,6 +19,8 @@ describe 'BotTelegram::FindMedsBot' do
         find_meds_airtable_stub_request table: :active_components
         find_meds_airtable_stub_request table: :medicines
         find_meds_airtable_stub_request table: :active_components, id: 'rec76PKPUZs1amvBg'
+        find_meds_airtable_stub_request table: :concentrations, id: 'recWTruyz6TJzGgw5'
+        find_meds_airtable_stub_request table: :concentrations, id: 'keppra_id'
 
         stub_1 = send_message_stub_request body: {
           chat_id: chat.telegram_chat_id,

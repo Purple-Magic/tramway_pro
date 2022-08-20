@@ -1,6 +1,8 @@
 drugs:
   - id: 'finlepcin_id'
     Name: 'Финлепсин Ретард'
+  - id: 'keppra_id'
+    Name: 'Кеппра'
 medicines:
   - id: 'rec0Fqy4fYDUibmuQ'
     Name: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг'
@@ -31,6 +33,8 @@ medicines:
     company:
       - 'receQeH2nuPmxUA7P'
   - id: "rec2RdTpBfnRIakE9"
+    Drug:
+      - keppra_id
     concentrations:
       - "recWTruyz6TJzGgw5"
     form:
@@ -39,6 +43,8 @@ medicines:
     components:
       - "rec76PKPUZs1amvBg"
   - id: "rec2RdTpBfnRIakE8"
+    Drug:
+      - keppra_id
     concentrations:
       - "recWTruyz6TJzGgw5"
     form:
