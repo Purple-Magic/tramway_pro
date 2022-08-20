@@ -53,6 +53,25 @@ describe 'BotTelegram::FindMedsBot' do
         bot_run :find_meds, bot_record: bot_record, message: message_3, chat: chat, message_object: message_object
 
         expect(stub_3).to have_been_requested
+
+        stub_4 = send_message_stub_request body: {
+          chat_id: chat.telegram_chat_id,
+          text: 'Какая концентрация вам нужна?',
+          reply_markup: reply_markup(
+            [
+              '500мг',
+              '400мг',
+            ],
+            [
+              'Другая',
+              'Назад'
+            ] 
+          )
+        }
+
+        bot_run :find_meds, bot_record: bot_record, message: message_3, chat: chat, message_object: message_object
+
+        expect(stub_4).to have_been_requested
       end
     end
   end

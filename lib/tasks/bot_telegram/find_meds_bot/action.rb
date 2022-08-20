@@ -54,13 +54,13 @@ class BotTelegram::FindMedsBot::Action
       end
       answer = i18n_scope(:find_medicine, :found, name: name)
       show options: [dosages.keys, ['Другая', :start_menu]], answer: answer
-      set_state_for :waiting_for_choosing_dosage, user: user, bot: bot_record,
-        data: { medicine_id: drug.id, dosages: dosages }
+      set_next_action :choose_dosage, drug_id: drug.id, dosages: dosages
     else
       component = ::BotTelegram::FindMedsBot::Tables::Component.find_by('Name' => name)
       if component.present? && component.medicines_with_single_component.any?
-        answer = i18n_scope(:find_medicine, :what_dosage_do_you_need)
+        answer = i18n_scope(:find_medicine, :what_form_do_you_need)
         show options: [component.medicines_with_single_component.map(&:form), [:start_menu]], answer: answer
+        set_next_action :choose_form, component_id: component.id, dosages: dosages
       else
         answer = i18n_scope(:find_medicine, :not_found)
         send_message_to_user answer
@@ -90,9 +90,24 @@ components: components).build
     show options: [['Назад']], answer: text
   end
 
+  def choose_form(form)
+    current_component_id = user.states.where(bot: bot_record).last.data['component_id']
+    component = BotTelegram::FindMedsBot::Tables::Component.find(current_component_id)
+    medicines = component.medicines_with_single_component.select do |medicine|
+      medicine.form = form
+    end
+    answer = i18n_scope(:find_medicine, :what_concentration_do_you_need)
+    show options: [medicines.map(&:concetrations), ['Другая', :start_menu]], answer: answer
+    set_next_action :choose_form, component_id: component.id, dosages: dosages
+  end
+
   private
 
   def send_message_to_user(text)
     message_to_chat bot.api, chat.telegram_chat_id, text
+  end
+
+  def set_next_action(action, **data)
+    set_state_for "waiting_for_#{action}", user: user, bot: bot_record, data: data
   end
 end
