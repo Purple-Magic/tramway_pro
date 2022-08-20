@@ -8,7 +8,7 @@ class FindMedsBaseSync < ActiveJob::Base
   queue_as :find_meds
 
   def perform(*_args)
-    entities = [ :drug, :company ]
+    entities = [ :drug, :company, :component ]
     entities.each do |entity|
       sync_entity entity.to_s
     end
@@ -49,5 +49,8 @@ class FindMedsBaseSync < ActiveJob::Base
     end
 
     rails_entity.where.not(airtable_id: instances.map(&:id)).each &:destroy
+  end
+
+  def sync_concentration
   end
 end
