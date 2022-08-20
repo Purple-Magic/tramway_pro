@@ -8,24 +8,29 @@ class FindMedsBaseSync < ActiveJob::Base
   queue_as :find_meds
 
   def perform(*_args)
-    sync_drugs
+    entities = [ :drug, :company ]
+    entities.each do |entity|
+      sync_entity entity.to_s
+    end
   rescue StandardError => error
     Rails.env.development? ? puts(error) : Airbrake.notify(error)
   end
 
   private
 
-  def sync_drugs
-    drugs = BotTelegram::FindMedsBot::Tables::Drug.all
-    drugs.each do |drug|
-      saved_drug = FindMeds::Drug.find_by airtable_id: drug.id
-      attributes = drug.fields.reduce({}) do |hash, (key, value)|
-        attribute = FindMeds::Drug::ATTRIBUTES.invert[key]
+  def sync_entity(name)
+    airtable_entity = "BotTelegram::FindMedsBot::Tables::#{name.camelize}".constantize
+    rails_entity = "FindMeds::#{name.camelize}".constantize
+    instances = airtable_entity.all
+    instances.each do |instance|
+      saved_instance = rails_entity.find_by airtable_id: instance.id
+      attributes = instance.fields.reduce({}) do |hash, (key, value)|
+        attribute = "#{rails_entity}::ATTRIBUTES".constantize.invert[key]
 
         if attribute.present?
-          value = case attribute
-                  when :patent
-                    FindMeds::Drug::PATENT_VALUES[value]
+          values_constant_name = "#{rails_entity}::#{attribute.upcase}_VALUES" 
+          value = if Object.const_defined?(values_constant_name)
+                    values_constant_name.constantize[value]
                   else
                     value
                   end
@@ -34,14 +39,15 @@ class FindMedsBaseSync < ActiveJob::Base
         else
           hash
         end
-      end.merge airtable_id: drug.id
-      if saved_drug.present?
-        saved_drug.update! attributes
+      end.merge airtable_id: instance.id
+
+      if saved_instance.present?
+        saved_instance.update! attributes
       else
-        FindMeds::Drug.create! attributes
+        rails_entity.create! attributes
       end
     end
 
-    FindMeds::Drug.where.not(airtable_id: drugs.map(&:id)).each &:destroy
+    rails_entity.where.not(airtable_id: instances.map(&:id)).each &:destroy
   end
 end
