@@ -41,13 +41,9 @@ data: { 'bs-toggle': :collapse, 'bs-target': '#commands' }, aria: { controls: :c
                concat fa_icon('caret-down')
              end)
       concat(content_tag(:div, class: :collapse, id: :commands) do
-        concat content_tag :hr
-        concat(content_tag(:ul) do
-          object.render_data&.dig('commands')&.each do |command|
-            concat(content_tag(:li) do
-              command
-            end)
-          end
+        concat(content_tag(:hr))
+        concat(content_tag(:code, style: 'display: block; white-space: pre-wrap') do
+          object.render_data&.dig('commands')&.join("\n\n")
         end)
       end)
     end
