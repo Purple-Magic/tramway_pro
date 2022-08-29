@@ -39,6 +39,8 @@ class Podcasts::MontageWorker < ApplicationWorker
   def remove_cut_pieces(episode)
     if episode.parts.any?
       Podcasts::Episodes::Montage::RemoveCutPiecesService.new(episode).call
+      send_notification_to_chat episode.podcast.chat_id, notification(:pieces, :cut)
+    end
     else
       episode.update_file! episode.converted_file, :premontage_file
     end
