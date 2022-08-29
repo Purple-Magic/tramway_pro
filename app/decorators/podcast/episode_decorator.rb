@@ -17,6 +17,7 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
   include Podcast::Episodes::SocialPostsConcern
 
   include Concerns::SimpleIcon
+  include Concerns::AudioControls
 
   class << self
     def show_associations
@@ -70,7 +71,7 @@ data: { 'bs-toggle': :collapse, 'bs-target': '#commands' }, aria: { controls: :c
   end
 
   def trailer
-    content_tag(:audio, controls: true) do
+    audio do
       content_tag(:source, '', src: object.trailer.url)
     end
   end
@@ -98,7 +99,7 @@ data: { 'bs-toggle': :collapse, 'bs-target': '#commands' }, aria: { controls: :c
   end
 
   def ready_file
-    content_tag(:audio, controls: true) do
+    audio do
       content_tag(:source, '', src: object.ready_file.url)
     end
   end
@@ -165,7 +166,7 @@ data: { 'bs-toggle': :collapse, 'bs-target': '#commands' }, aria: { controls: :c
   end
 
   def premontage_file
-    content_tag(:audio, controls: true) do
+    audio do
       content_tag(:source, '', src: object.premontage_file.url)
     end
   end
