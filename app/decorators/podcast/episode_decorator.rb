@@ -10,7 +10,7 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
   decorate_association :instances, as: :episode
   decorate_association :time_logs, as: :associated
 
-  delegate_attributes :id, :number, :file_url, :montage_state, :public_title, :story_cover
+  delegate_attributes :id, :number, :montage_state, :public_title, :story_cover
 
   include Podcast::Episodes::DescriptionConcern
   include Podcast::Episodes::VideoDecorator
@@ -95,7 +95,9 @@ data: { 'bs-toggle': :collapse, 'bs-target': '#commands' }, aria: { controls: :c
   end
 
   def file
-    file_view object.file
+    audio do
+      content_tag(:source, '', src: object.file.url)
+    end
   end
 
   def ready_file
