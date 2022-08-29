@@ -88,7 +88,7 @@ class Podcast::Episode < ApplicationRecord
   end
 
   def log_command(action, command)
-    line = [action, command].join(': ')
+    line = [action, DateTime.now.strftime('%d.%m.%Y %H:%M:%S'), command].join(', ')
     commands = (render_data&.dig('commands') || []) + [line]
     render_data ? render_data['commands'] = commands : self.render_data = { commands: commands }
     save!
