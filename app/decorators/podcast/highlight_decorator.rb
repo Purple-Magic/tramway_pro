@@ -5,6 +5,8 @@ class Podcast::HighlightDecorator < ApplicationDecorator
 
   decorate_association :episode
 
+  include Concerns::AudioControls
+
   class << self
     def show_attributes
       %i[episode_link listen time cut_begin_time cut_end_time using_state]
@@ -21,7 +23,7 @@ class Podcast::HighlightDecorator < ApplicationDecorator
   end
 
   def listen
-    content_tag(:audio, controls: true, style: 'width: 100%') do
+    audio do
       content_tag(:source, '', src: object.file.url)
     end
   end

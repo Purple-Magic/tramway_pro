@@ -1,114 +1,18 @@
 # frozen_string_literal: true
 
 module AirtableHelpers
-  RESPONSES = {
-    collections: {
-      names: {
-        records: [
-          {
-            id: 'finlepcin_id',
-            fields: {
-              Name: 'Финлепсин Ретард'
-            }
-          }
-        ]
-      },
-      main: {
-        records: [
-          {
-            id: 'rec0Fqy4fYDUibmuQ',
-            fields: {
-              'Название': 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг',
-              medicine_name: [
-                'finlepcin_id'
-              ],
-              intersection_and_substance: [
-                'reccJ82ScIlm1tOxC'
-              ],
-              form: [
-                'Таб.пролонгированного действия'
-              ]
-            }
-          },
-          {
-            id: 'rec0Fqy4fYDUibmu1',
-            fields: {
-              'Название': 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 200 мг',
-              medicine_name: [
-                'finlepcin_id'
-              ],
-              intersection_and_substance: [
-                'reccJ82ScIlm1tOx3'
-              ],
-              form: [
-                'Таб.пролонгированного действия'
-              ]
-            }
-          },
-          {
-            id: SecureRandom.hex(8),
-            fields: {
-              'Название': 'Тегретол',
-              medicine_name: [
-                'tegretol_id'
-              ],
-              intersection_and_substance: [
-                'reccJ82ScIlm1tOxC'
-              ],
-              form: [
-                'Таб.пролонгированного действия'
-              ],
-              company: ['receQeH2nuPmxUA7P']
-            }
-          }
-        ]
-      }
-    },
-    items: {
-      main: {
-        id: 'rec0Fqy4fYDUibmuQ',
-        fields: {
-          separable_dosage: 'нельзя делить',
-          medicine_name: [
-            'finlepcin_id'
-          ],
-          intersection_and_substance: [
-            'reccJ82ScIlm1tOxC'
-          ],
-          form: [
-            'Таб.пролонгированного действия'
-          ]
-        }
-      },
-      companies: {
-        id: 'receQeH2nuPmxUA7P',
-        fields: {
-          Name: 'NOVARTIS FARMA, S.p.A.'
-        }
-      },
-      active_components: {
-        id: 'reccJ82ScIlm1tOxC',
-        fields: {
-          Name: 'carbamazepine концентрация 400 мг'
-        }
-      }
-    }
-  }.freeze
-
-  def airtable_collection_stub_request(base:, table:)
-    response = RESPONSES[:collections][table]
-    unless response.present?
-      raise "You should add collection response for table #{table} in spec/support/airtable_helpers.rb"
-    end
-
-    stub_request(:get, build_airtable_url(base: base, table: table))
-      .with(airtable_headers).to_return(status: 200, body: response.to_json, headers: {})
+  def find_meds_airtable_stub_request(table:, id: nil)
+    airtable_stub_request(
+      base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+      table: table,
+      id: id
+    )
   end
 
-  def airtable_item_stub_request(base:, table:, id:)
-    response = RESPONSES[:items][table]
+  def airtable_stub_request(base:, table:, id:)
+    response = response(table: table, id: id)
     unless response.present?
-      raise "You should add items  response for table #{table} in spec/support/airtable_helpers.rb"
+      raise "You should add collection response for table #{table} in spec/support/airtable_helpers.rb"
     end
 
     stub_request(:get, build_airtable_url(base: base, table: table, id: id))
@@ -117,7 +21,7 @@ module AirtableHelpers
 
   private
 
-  def build_airtable_url(base:, table:, id: nil)
+  def build_airtable_url(base:, table:, id:)
     url = "https://api.airtable.com/v0/#{base}/#{table}"
     url += "/#{id}" if id.present?
     url
@@ -136,4 +40,40 @@ module AirtableHelpers
       }
     }
   end
+
+  def response(table:, id: nil)
+    if id.present?
+      single_record_response table: table, id: id
+    else
+      collection_response table: table
+    end
+  end
+
+  def single_record_response(table:, id:)
+    record = base[table].select do |item|
+      item[:id] == id
+    end.first
+
+    transform_record record
+  end
+
+  def collection_response(table:)
+    {
+      records: base[table].map do |record|
+        transform_record record
+      end
+    }
+  end
+
+  def base
+    @find_meds_base ||= YAML.load_file(Rails.root.join('spec', 'support', 'find_meds', 'base.yml')).with_indifferent_access
+  end
+
+  def transform_record(record)
+    {
+      id: record[:id],
+      fields: record.except(:id)
+    }
+  end
+
 end

@@ -22,7 +22,10 @@ module BotTelegram::FindMedsBot
       state: :waiting_for_medicine_name
     },
     choose_dosage: {
-      state: :waiting_for_choosing_dosage
+      state: :waiting_for_choose_dosage
+    },
+    choose_form: {
+      state: :waiting_for_choose_form
     }
   }.freeze
 

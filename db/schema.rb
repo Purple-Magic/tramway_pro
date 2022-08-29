@@ -14,8 +14,8 @@ ActiveRecord::Schema.define(version: 20220817154024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "uuid-ossp"
   enable_extension "pg_trgm"
+  enable_extension "uuid-ossp"
 
   create_table "audits", force: :cascade do |t|
     t.integer "auditable_id"
@@ -270,6 +270,14 @@ ActiveRecord::Schema.define(version: 20220817154024) do
     t.integer "chapter_id"
   end
 
+  create_table "chatquestulsk_games", force: :cascade do |t|
+    t.text "area"
+    t.integer "bot_telegram_user_id"
+    t.text "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
@@ -387,6 +395,17 @@ ActiveRecord::Schema.define(version: 20220817154024) do
     t.datetime "deleted_at"
     t.text "result_duration"
     t.text "url"
+  end
+
+  create_table "elections_candidates", force: :cascade do |t|
+    t.text "full_name"
+    t.text "description"
+    t.integer "area"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "consignment"
+    t.text "state"
+    t.integer "project_id"
   end
 
   create_table "estimation_coefficients", force: :cascade do |t|

@@ -3,7 +3,6 @@ on:
     branches:
       - master
       - develop
-      - feature/add_reek
   pull_request:
     branches:
       - master
@@ -95,6 +94,7 @@ jobs:
           url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
           commit: true
           token: ${{ secrets.GITHUB_TOKEN }}
+
   tests: 
     runs-on: ubuntu-latest
 
@@ -117,6 +117,13 @@ jobs:
         run: |
           sudo apt-get -yqq install libpq-dev
 
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
       - name: Install gems
         env:
           PGHOST: localhost
@@ -124,6 +131,7 @@ jobs:
           RAILS_ENV: test
         run: |
           gem install bundler
+          bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
 
       - name: Setup application
@@ -131,7 +139,10 @@ jobs:
           PGHOST: localhost
           PGUSER: postgres
           RAILS_ENV: test
-          CHROME_DRIVER_VERSION: 98.0.4758.102
+          NODE_ENV: test
+          ENV: test
+          CHROME_DRIVER_VERSION: 104.0.5112.79
+          AIR_TABLE_API_KEY: key123
         run: |
           echo "127.0.0.1 it-way.test" | sudo tee -a /etc/hosts
           echo "127.0.0.1 kalashnikovisme.test" | sudo tee -a /etc/hosts
@@ -144,9 +155,9 @@ jobs:
           cp config/database.sample.yml config/database.yml
           cp config/secrets.sample.yml config/secrets.yml
           bin/rails db:create db:migrate db:seed
-          bin/rails parallel:setup
+          # bin/rails parallel:setup
           bundle exec rspec
-          #parallel_rspec --verbose -s spec/features/podcast/episodes/actions/render_video_spec.rb -s spec/features/bot/quests/scenario_spec.rb -i --fail-fast
+          # bin/rails parallel:spec --verbose
 
       - name: Rocket.Chat Notification
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
@@ -154,7 +165,7 @@ jobs:
         with:
           username: bot_leopold
           type: ${{ job.status }}
-          job_name: '*Tramway Pro Tests*'
+          job_name: '*Tests*'
           mention: 'here'
           channel: 'dNei2bg5ufmQFdFWx'
           url: ${{ secrets.ROCKETCHAT_WEBHOOK }}

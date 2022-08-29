@@ -93,3 +93,6 @@ docker_code_check:
 
 docker_attach:
 	sh ./docker_attach_web_container.sh
+
+test:
+	bundle exec rspec

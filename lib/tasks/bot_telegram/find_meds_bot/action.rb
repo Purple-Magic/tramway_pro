@@ -4,9 +4,10 @@ require 'uri'
 require_relative 'tables'
 require_relative 'tables/application_table'
 require_relative 'tables/medicine'
-require_relative 'tables/main'
+require_relative 'tables/drug'
 require_relative 'tables/company'
 require_relative 'tables/component'
+require_relative 'tables/concetration'
 require_relative 'info_message_builder'
 
 class BotTelegram::FindMedsBot::Action
@@ -46,35 +47,40 @@ class BotTelegram::FindMedsBot::Action
   end
 
   def find_medicine(name)
-    medicine = ::BotTelegram::FindMedsBot::Tables::Medicine.find_by('Name' => name)
-    if medicine.present?
-      dosages = ::BotTelegram::FindMedsBot::Tables::Main.where('medicine_name' => [medicine.id]).reduce({}) do |hash, m|
-        hash.merge! m['Название'] => m.id
+    drug = ::BotTelegram::FindMedsBot::Tables::Drug.find_by('Name' => name)
+    if drug.present?
+      dosages = drug.medicines.reduce({}) do |hash, m|
+        hash.merge! m['Name'] => m.id
       end
       answer = i18n_scope(:find_medicine, :found, name: name)
       show options: [dosages.keys, ['Другая', :start_menu]], answer: answer
-      set_state_for :waiting_for_choosing_dosage, user: user, bot: bot_record,
-data: { medicine_id: medicine.id, dosages: dosages }
+      set_next_action :choose_dosage, drug_id: drug.id, dosages: dosages
     else
-      answer = i18n_scope(:find_medicine, :not_found, name: name)
-      show menu: :start_menu, answer: answer
-      user.set_finished_state_for bot: bot_record
+      component = ::BotTelegram::FindMedsBot::Tables::Component.find_by('Name' => name)
+      if component.present? && component.medicines_with_single_component.any?
+        answer = i18n_scope(:find_medicine, :what_form_do_you_need)
+        show options: [component.medicines_with_single_component.map(&:form), [:start_menu]], answer: answer
+        set_next_action :choose_form, component_id: component.id, dosages: dosages
+      else
+        answer = i18n_scope(:find_medicine, :not_found)
+        send_message_to_user answer
+      end
     end
   end
 
   def choose_dosage(name)
     current_dosage_id = user.states.where(bot: bot_record).last.data['dosages'][name]
-    dosage = ::BotTelegram::FindMedsBot::Tables::Main.find current_dosage_id
+    dosage = ::BotTelegram::FindMedsBot::Tables::Medicine.find current_dosage_id
     text = if dosage.separable_dosage?
            else
-             alternative = ::BotTelegram::FindMedsBot::Tables::Main.where(
+             alternative = ::BotTelegram::FindMedsBot::Tables::Medicine.where(
                'intersection_and_substance' => dosage['intersection_and_substance'], 'form' => dosage['form']
              ).reject do |m|
                m.id == current_dosage_id
              end.first
              company_name = BotTelegram::FindMedsBot::Tables::Company.find(alternative['company'].first)['Name']
              components = alternative['intersection_and_substance'].map do |component_id|
-               BotTelegram::FindMedsBot::Tables::Component.find(component_id)['Name']
+               BotTelegram::FindMedsBot::Tables::Concentration.find(component_id)['Name']
              end
              if alternative.present?
                BotTelegram::FindMedsBot::InfoMessageBuilder.new(alternative, company_name: company_name,
@@ -84,9 +90,24 @@ components: components).build
     show options: [['Назад']], answer: text
   end
 
+  def choose_form(form)
+    current_component_id = user.states.where(bot: bot_record).last.data['component_id']
+    component = BotTelegram::FindMedsBot::Tables::Component.find(current_component_id)
+    medicines = component.medicines_with_single_component.select do |medicine|
+      medicine.form = form
+    end
+    answer = i18n_scope(:find_medicine, :what_concentration_do_you_need)
+    show options: [medicines.map(&:concetrations), ['Другая', :start_menu]], answer: answer
+    set_next_action :choose_form, component_id: component.id, dosages: dosages
+  end
+
   private
 
   def send_message_to_user(text)
     message_to_chat bot.api, chat.telegram_chat_id, text
+  end
+
+  def set_next_action(action, **data)
+    set_state_for "waiting_for_#{action}", user: user, bot: bot_record, data: data
   end
 end

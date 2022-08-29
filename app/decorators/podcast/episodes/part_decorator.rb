@@ -15,12 +15,14 @@ class Podcast::Episodes::PartDecorator < Tramway::Core::ApplicationDecorator
 
   decorate_associations :episode
 
+  include Concerns::AudioControls
+
   def title
     "#{begin_time}-#{end_time}"
   end
 
   def preview_file
-    content_tag(:audio, controls: true) do
+    audio do
       content_tag(:source, '', src: object.preview.url)
     end
   end
