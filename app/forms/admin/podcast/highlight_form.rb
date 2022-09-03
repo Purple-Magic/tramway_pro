@@ -11,8 +11,7 @@ class Admin::Podcast::HighlightForm < Tramway::Core::ApplicationForm
         cut_begin_time: :string,
         cut_end_time: :string,
         trailer_position: :numeric,
-        time: :string,
-        episode: :hidden
+        time: :string
     end
   end
 end
