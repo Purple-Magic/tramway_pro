@@ -16,49 +16,41 @@ module Podcast::Episodes::DescriptionConcern
 
   def stars_list
     concat('Ведущие:')
-    concat(content_tag(:ul) do
-      object.stars.main.each do |star|
-        concat(content_tag(:li) do
-          concat link_to "@#{star.nickname}", star.link
-        end)
-      end
-    end)
+    concat content_tag :br
+    object.stars.main.each do |star|
+      concat link_to "🎙️ @#{star.nickname}", star.link
+      concat content_tag :br
+    end
   end
 
   def guest_list
     concat('Гости:')
-    concat(content_tag(:ul) do
-      object.stars.guest.each do |star|
-        concat(content_tag(:li) do
-          concat link_to "@#{star.nickname}", star.link
-        end)
-      end
-    end)
+    concat content_tag :br
+    object.stars.guest.each do |star|
+      concat link_to "🎙️ @#{star.nickname}", star.link
+      concat content_tag :br
+    end
   end
 
   def minor_list
     concat('Эпизодическое участие:')
-    concat(content_tag(:ul) do
-      object.stars.minor.each do |star|
-        concat(content_tag(:li) do
-          concat link_to "@#{star.nickname}", star.link
-        end)
-      end
-    end)
+    concat content_tag :br
+    object.stars.minor.each do |star|
+      concat link_to "🎙️ @#{star.nickname}", star.link
+      concat content_tag :br
+    end
   end
 
   def topics_list
     concat(content_tag(:h1) do
       'Темы выпуска'
     end)
+
     if topics.any?
-      concat(content_tag(:ul) do
-        topics.each do |topic|
-          concat(content_tag(:li) do
-            concat link_to topic.title, topic.link
-          end)
-        end
-      end)
+      topics.each do |topic|
+        concat link_to topic.title, topic.link
+        concat content_tag :br
+      end
     else
       concat raw object.description
     end
@@ -71,9 +63,8 @@ module Podcast::Episodes::DescriptionConcern
       'Ссылки'
     end)
     object.links.each do |link|
-      concat(content_tag(:li) do
-        link_to link.title, link.link
-      end)
+      concat link_to(link.title, link.link)
+      concat content_tag :br
     end
   end
 
