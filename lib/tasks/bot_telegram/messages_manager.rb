@@ -58,12 +58,14 @@ module BotTelegram::MessagesManager
     end
   end
 
-  def send_file(bot_api, chat_id, message_obj)
+  def send_file(bot_api, chat_id, message_obj, **options)
     mime_type = case message_obj.file.file.file[-3..].downcase
                 when 'jpg', 'png'
                   [:photo, 'image/jpeg']
                 when 'mp3'
                   [:voice, 'audio/mpeg']
+                when 'mp4'
+                  [:video, 'video/mp4']
                 end
     params = {
       chat_id: chat_id,
@@ -76,7 +78,7 @@ module BotTelegram::MessagesManager
       )
     end
 
-    bot_api.public_send "send_#{mime_type[0]}", **params
+    bot_api.public_send "send_#{mime_type[0]}", **params.merge(options)
   end
 
   private

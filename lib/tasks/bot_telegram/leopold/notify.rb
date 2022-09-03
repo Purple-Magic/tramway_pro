@@ -16,7 +16,7 @@ module BotTelegram::Leopold::Notify
     ::BotTelegram::Custom::Notify::File.send_to_user BotTelegram::Leopold::Scenario::BOT_ID, username, file
   end
 
-  def send_file_to_chat(chat_id, file)
-    ::BotTelegram::Custom::Notify::File.send_to_chat BotTelegram::Leopold::Scenario::BOT_ID, chat_id, file
+  def send_file_to_chat(chat_id, file, **options)
+    ::BotTelegram::Custom::Notify::File.send_to_chat BotTelegram::Leopold::Scenario::BOT_ID, chat_id, file, **options
   end
 end
