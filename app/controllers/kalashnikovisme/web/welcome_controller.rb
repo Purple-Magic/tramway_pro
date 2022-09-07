@@ -4,6 +4,7 @@ class Kalashnikovisme::Web::WelcomeController < Tramway::Core::ApplicationContro
   before_action :application
 
   def index
-    @links = Blogs::Link.all
+    @podcast = Podcast.unscoped.find(2)
+    @links = (Blogs::Link.all + @podcast.episodes.unscoped.reverse)
   end
 end
