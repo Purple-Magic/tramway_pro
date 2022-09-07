@@ -150,3 +150,6 @@ ru:
     find_meds/base:
       plural: базы
       genitive: базу
+    blogs/link:
+      plural: ссылки
+      genitive: ссылку
