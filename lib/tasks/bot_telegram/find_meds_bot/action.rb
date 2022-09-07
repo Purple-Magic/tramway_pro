@@ -94,7 +94,7 @@ components: components).build
     current_component_id = user.states.where(bot: bot_record).last.data['component_id']
     component = BotTelegram::FindMedsBot::Tables::Component.find(current_component_id)
     medicines = component.medicines_with_single_component.select do |medicine|
-      medicine.form = form
+      medicine.form == form
     end
     answer = i18n_scope(:find_medicine, :what_concentration_do_you_need)
     show options: [medicines.map(&:concetrations), ['Другая', :start_menu]], answer: answer
