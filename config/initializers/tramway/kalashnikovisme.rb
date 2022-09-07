@@ -11,6 +11,7 @@ Tramway::Admin.set_available_models Course,
   Courses::Task,
   Courses::Screencast,
   TimeLog,
+  Blogs::Link,
   project: :kalashnikovisme
 
 Tramway::Admin.set_available_models Course,
@@ -47,5 +48,6 @@ Tramway::Admin.navbar_structure(
   Course,
   TimeLog,
   Tramway::User::User,
+  Blogs::Link,
   project: :kalashnikovisme
 )

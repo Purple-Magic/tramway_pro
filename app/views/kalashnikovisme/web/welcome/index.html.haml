@@ -1,5 +1,23 @@
-.main{ style: 'display: flex; width: 100vw; height: 100vh; padding: 50pt; align-items: center; justify-content: center' }
-  %h1
-    Тут будет сайт Павла Калашникова, на котором будет полная информация о всех проектах, которыми я занимался когда-либо или занимаюсь сейчас.
-    Надо понимать, что я не делаю его, потому что нет востребованности в нём. Если у тебя она есть, напиши мне в твиттер о том, что тебе зачем-то нужен этот сайт. Если таких сообщений будет много, я когда-нибудь инвестирую в это дело время.
-    = link_to 'Твиттер', 'twitter.com/kalashnikovisme'
+%link{ crossorigin: "anonymous", href: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css", integrity: "sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT", rel: "stylesheet"}
+
+%nav.navbar.navbar-expand-lg.bg-light
+  .container-fluid
+    %a.navbar-brand{href: "#"} Павел Калашников
+    %button.navbar-toggler{ aria: { controls: :navbarSupportedContent, expanded: "false", label: "Toggle navigation" }, data: { 'bs-target': "#navbarSupportedContent", 'bs-toggle': "collapse" }, type: "button" }
+      %span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        %li.nav-item
+          %a.nav-link.active{ aria: { current: :page }, href: "#" } Дом
+.container
+  .row
+    - @links.each do |link|
+      .col-md-3
+        .card
+          %img.card-img-top{ src: link.image.url }
+          .card-body
+            %h5.card-title
+              = link.title
+            %p.card-text
+              = link.lead
+            = link_to 'Читать', link.url, class: 'btn btn-primary', target: '_blank'

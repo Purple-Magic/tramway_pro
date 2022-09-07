@@ -3,7 +3,7 @@
 class Kalashnikovisme::Web::WelcomeController < Tramway::Core::ApplicationController
   before_action :application
 
-  layout 'tramway/landing/application'
-
-  def index; end
+  def index
+    @links = Blogs::Link.all
+  end
 end

@@ -30,6 +30,7 @@ ru:
       magic_wood/actors/photo: Фото актёра
       product: Проект
       products/task: Задача
+      blogs/link: Ссылка
     attributes:
       word:
         main: Определение
