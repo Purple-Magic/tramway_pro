@@ -5,6 +5,6 @@ class Kalashnikovisme::Web::WelcomeController < Tramway::Core::ApplicationContro
 
   def index
     @podcast = Podcast.unscoped.find(2)
-    @links = (Blogs::Link.all + @podcast.episodes.unscoped.reverse)
+    @links = (Blogs::Link.all + @podcast.episodes.unscoped.where.not(public_title: nil).reverse)
   end
 end
