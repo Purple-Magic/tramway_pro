@@ -13,27 +13,34 @@
         %li.nav-item
           %a.nav-link.active{ aria: { current: :page }, href: "#" } Дом
 
-.container-fluid
-  .row
-    - @links.each do |link|
-      - if link.is_a? Blogs::Link
-        .col-md-3.mt-4
-          .card
-            %img.card-img-top{ src: link.image.url }
-            .card-body
-              %h5.card-title
-                = link.title
-              %p.card-text
-                = link.lead
-              = link_to 'Читать', link.url, class: 'btn btn-primary', target: '_blank'
-      - if link.is_a? Podcast::Episode
-        .col-md-3.mt-4
-          .card
-            %img.card-img-top{ src: @podcast.default_image.url }
-            .card-body
-              %h5.card-title
-                = link.public_title
-              %p.card-text
-                Слушайте IT Way Podcast в представленных ниже сервисах
-              - link.instances.each do |instance|
-                = link_to instance.service.capitalize, link.instances.first&.link, class: 'btn btn-primary', target: '_blank'
+.container
+  .row.row-cols-2.mt-4
+    .col
+      %h2
+        Статьи
+      .row.rol-cols-3
+        - @links.each do |link|
+          .col.mt-4
+            .card
+              %img.card-img-top{ src: link.image.url }
+              .card-body
+                %h5.card-title
+                  = link.title
+                %p.card-text
+                  = link.lead
+                = link_to 'Читать', link.url, class: 'btn btn-primary', target: '_blank'
+    .col
+      %h2
+        Подкасты
+      .row.row-cols-3
+        - @episodes.each do |episode|
+          .col.mt-4
+            .card
+              %img.card-img-top{ src: @podcast.default_image.url }
+              .card-body
+                %h6.card-title
+                  = episode.public_title
+                %p.card-text
+                  Где послушать?
+                - episode.instances.each do |instance|
+                  = link_to instance.service.capitalize, episode.instances.first&.link, class: 'btn btn-primary', target: '_blank'
