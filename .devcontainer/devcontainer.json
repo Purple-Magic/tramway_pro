@@ -1,7 +1,7 @@
 {
   "name": "tramway_pro",
   "dockerComposeFile": "docker-compose.yml",
-  "onCreateCommand": "docker-compose build",
+  // "onCreateCommand": "docker-compose build",
   "service": "app",
   "workspaceFolder": "/",
   "forwardPorts": [3000]
