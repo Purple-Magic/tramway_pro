@@ -18,9 +18,9 @@
     .col
       %h2
         Статьи
-      .row.rol-cols-2
+      .row
         - @links.each do |link|
-          .col.mt-4
+          .col-md-12.mt-4
             .card
               %img.card-img-top{ src: link.image.url }
               .card-body
