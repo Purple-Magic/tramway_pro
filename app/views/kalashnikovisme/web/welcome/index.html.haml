@@ -32,9 +32,9 @@
     .col
       %h2
         Подкасты
-      .row.row-cols-3
+      .row
         - @episodes.each do |episode|
-          .col.mt-4
+          .col-md-4.col-sm-1.mt-4
             .card
               %img.card-img-top{ src: @podcast.default_image.url }
               .card-body
