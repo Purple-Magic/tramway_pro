@@ -40,7 +40,11 @@
               .card-body
                 %h6.card-title
                   = episode.public_title
-                %p.card-text
-                  Где послушать?
-                - episode.instances.each do |instance|
-                  = link_to instance.service.capitalize, episode.instances.first&.link, class: 'btn btn-primary', target: '_blank'
+                - if episode.instances.any?
+                  %p.card-text
+                    Где послушать?
+                  - episode.instances.each do |instance|
+                    = link_to instance.service.capitalize, episode.instances.first&.link, class: 'btn btn-primary', target: '_blank'
+                - else
+                  %p.card-text
+                    Скоро будет опубликован!
