@@ -54,9 +54,7 @@ data: { 'bs-toggle': :collapse, 'bs-target': '#commands' }, aria: { controls: :c
       ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.podcast_id, model: 'Podcast')
   end
 
-  def title
-    "Выпуск №#{object.number}"
-  end
+  alias title public_title
 
   def cover
     file_view object.cover
