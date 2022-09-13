@@ -28,7 +28,7 @@ class Podcasts::MontageWorker < ApplicationWorker
     else
       send_notification_to_chat(
         episode.podcast.chat_id,
-        notification(:montage, :finished_without_sample, url: episode.premontage_file.url)
+        notification(:montage, :finished_without_sample, url: "http://red-magic.ru/#{episode.premontage_file.url}")
       )
     end
   end
