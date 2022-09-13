@@ -22,7 +22,15 @@ class Podcasts::MontageWorker < ApplicationWorker
     cut_highlights episode
     remove_cut_pieces episode
     run_filters episode
-    add_music episode if episode.podcast.podcast_type.sample?
+    if episode.podcast.podcast_type.sample?
+      add_music episode 
+      send_notification_to_chat episode.podcast.chat_id, notification(:montage, :finished)
+    else
+      send_notification_to_chat(
+        episode.podcast.chat_id,
+        notification(:montage, :finished_without_sample, url: episode.premontage_file.url)
+      )
+    end
   end
 
   # :reek:FeatureEnvy { enabled: false }
@@ -57,7 +65,6 @@ class Podcasts::MontageWorker < ApplicationWorker
     output = "#{directory}/with_music.mp3"
     episode.add_music(output)
 
-    Rails.logger.info 'Adding of music completed!'
     send_notification_to_chat episode.podcast.chat_id, notification(:music, :finished, episode_id: episode.id)
   end
   # :reek:FeatureEnvy { enabled: true }
