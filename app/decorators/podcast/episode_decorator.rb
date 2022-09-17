@@ -21,7 +21,7 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
 
   def title
     full_title = "#{public_title} Episode #{number}"
-    full_title += "от #{publish_date.strftime('%d.%m.%Y')}" if publish_date.present?
+    full_title += " от #{publish_date.strftime('%d.%m.%Y')}" if publish_date.present?
     full_title
   end
 
