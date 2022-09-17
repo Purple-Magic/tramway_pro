@@ -12,3 +12,8 @@ benchkiller_send_planned_notifications:
   cron: "* * * * *"
   class: BenchkillerSendPlannedNotifications 
   queue: benchkiller
+
+benchkiller_send_planned_notifications:
+  cron: "5 17 * * *"
+  class: LeopoldSendItWayHistoryJob
+  queue: bot
