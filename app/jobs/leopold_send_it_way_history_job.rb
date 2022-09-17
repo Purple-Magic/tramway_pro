@@ -10,7 +10,7 @@ class LeopoldSendItWayHistoryJob < ActiveJob::Base
   def perform(*_args)
     Podcast.find(2).episodes.each do |episode|
       send_if_anniversary Podcast::EpisodeDecorator.decorate(episode)
-      sleep 1
+      sleep 20
     end
 
   rescue StandardError => error
