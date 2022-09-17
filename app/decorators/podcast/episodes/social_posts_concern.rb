@@ -2,7 +2,7 @@
 
 module Podcast::Episodes::SocialPostsConcern
   def vk_post_text
-    text = object.public_title || ''
+    text = title
     text += '<br/><br/>Ведущие:<br/>'
     object.stars.main.each do |star|
       text += if star.vk.present?
@@ -46,60 +46,31 @@ module Podcast::Episodes::SocialPostsConcern
   end
 
   def telegram_post_text
-    text = object.public_title || ''
-    text += "\n\nВедущие:\n"
-    object.stars.main.each do |star|
-      text += if star.telegram.present?
-                "🎙 @#{star.telegram}"
-              else
-                "🎙 #{star.first_name} #{star.last_name}"
-              end
-      text += "\n"
-    end
-    if object.with_guests?
-      text += "\nГости:\n"
-      object.stars.guest.each do |star|
-        text += if star.telegram.present?
-                  "@#{star.telegram}"
-                else
-                  "#{star.first_name} #{star.last_name}"
-                end
-        text += "\n"
-      end
-    end
-    if object.with_minor?
-      text += "\nЭпизодическое участие:\n"
-      object.stars.minor.each do |star|
-        text += if star.telegram.present?
-                  "@#{star.telegram}"
-                else
-                  "#{star.first_name} #{star.last_name}"
-                end
-        text += "\n"
-      end
-    end
-    text += "\n"
-    text += strip_tags(object.description || '')
-    text += "\n"
-    instances.each do |instance|
-      text += "#{instance.service.capitalize}: #{instance.shortened_url}\n"
-    end
-    text += "RSS: http://bit.ly/2JuDkYY\n"
-    text += "\n"
-    text += 'Художник: @cathrinenotea'
+    text = title
+    telegram_post_text_body text
   end
 
-  def telegram_post_text_with_trailer
-    text = 'Обязательно послушайте трейлер выпуска! Приложил его сюда :)'
-    text += "\n"
-    text += "http://it-way.pro/#{object.shortened_urls.find_by(url: object.trailer_video.url)&.unique_key}"
+  def telegram_reminder_post_text
+    text = title
+    text += "\n\n"
+    years = TimeDifference.between(DateTime.now, publish_date).in_years.round
+    ago = if years == 1
+            "1 год"
+          elsif years < 4
+            "#{years} года"
+          else
+            "#{years} лет"
+          end
+    text += "В этот день #{ago} назад у нас вышел этот эпизод подкаста."
+
+    telegram_post_text_body text
   end
 
   def instagram_post_text
     content_tag(:pre) do
       id = "instagram_text_for_#{object.id}"
       concat(content_tag(:span, id: id) do
-        text = object.public_title || ''
+        text = title
         text += 'Слушайте на Яндекс.Музыке, Google Podcasts, Youtube и других сервисах подкастов'
         text += "\n\nВедущие:\n"
         object.stars.main.each do |star|
@@ -141,7 +112,7 @@ module Podcast::Episodes::SocialPostsConcern
   end
 
   def twitter_post_text
-    text = object.public_title || ''
+    text = title
     text += '<br/><br/>Ведущие:<br/>'
     object.stars.main.each do |star|
       text += if star.twitter.present?
@@ -202,5 +173,50 @@ module Podcast::Episodes::SocialPostsConcern
         end
       end)
     end
+  end
+
+  private
+
+  def telegram_post_text_body(text)
+    text += "\n\nВедущие:\n"
+    object.stars.main.each do |star|
+      text += if star.telegram.present?
+                "🎙 @#{star.telegram}"
+              else
+                "🎙 #{star.first_name} #{star.last_name}"
+              end
+      text += "\n"
+    end
+    if object.with_guests?
+      text += "\nГости:\n"
+      object.stars.guest.each do |star|
+        text += if star.telegram.present?
+                  "@#{star.telegram}"
+                else
+                  "#{star.first_name} #{star.last_name}"
+                end
+        text += "\n"
+      end
+    end
+    if object.with_minor?
+      text += "\nЭпизодическое участие:\n"
+      object.stars.minor.each do |star|
+        text += if star.telegram.present?
+                  "@#{star.telegram}"
+                else
+                  "#{star.first_name} #{star.last_name}"
+                end
+        text += "\n"
+      end
+    end
+    text += "\n"
+    text += strip_tags(object.description || '')
+    text += "\n"
+    instances.each do |instance|
+      text += "#{instance.service.capitalize}: #{instance.shortened_url}\n"
+    end
+    text += "RSS: http://bit.ly/2JuDkYY\n"
+    text += "\n"
+    text += 'Художник: @cathrinenotea'
   end
 end

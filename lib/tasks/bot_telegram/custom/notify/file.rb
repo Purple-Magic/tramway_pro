@@ -20,5 +20,12 @@ module BotTelegram::Custom::Notify::File
       bot_message = ::BotTelegram::Leopold::Message.new file
       send_file bot.api, chat_id, bot_message.file, **options
     end
+
+    def send_to_channel(bot_id, channel, file, **options)
+      bot_record = Bot.find bot_id
+      bot = ::Telegram::Bot::Client.new bot_record.token
+      bot_message = ::BotTelegram::Leopold::Message.new file
+      send_file bot.api, channel, bot_message.file, **options
+    end
   end
 end
