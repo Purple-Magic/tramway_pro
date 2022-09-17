@@ -11,12 +11,11 @@ class LeopoldSendItWayHistoryJob < ActiveJob::Base
     Podcast.find(2).episodes.reverse.each do |episode|
       next if episode.id.in? [209, 208, 207, 205, 212]
       send_if_anniversary Podcast::EpisodeDecorator.decorate(episode)
-      sleep 20
+      sleep 10
     end
 
   rescue StandardError => error
     Rails.env.development? ? puts(error) : Airbrake.notify(error)
-    send_notification_to_channel ::BotTelegram::Leopold::ItWayPro::HISTORY_CHANNEL, error.messsage
   end
 
   private
