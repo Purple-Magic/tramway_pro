@@ -10,7 +10,7 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
   decorate_association :instances, as: :episode
   decorate_association :time_logs, as: :associated
 
-  delegate_attributes :id, :number, :montage_state, :public_title, :story_cover
+  delegate_attributes :id, :number, :montage_state, :public_title, :story_cover, :publish_date
 
   include Podcast::Episodes::DescriptionConcern
   include Podcast::Episodes::VideoDecorator
@@ -18,6 +18,10 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
 
   include Concerns::SimpleIcon
   include Concerns::AudioControls
+
+  def title
+    "#{public_title} Episode #{number} от #{publish_date.strftime('%d.%m.%Y')}"
+  end
 
   class << self
     def show_associations
@@ -53,8 +57,6 @@ data: { 'bs-toggle': :collapse, 'bs-target': '#commands' }, aria: { controls: :c
     link_to podcast.title,
       ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.podcast_id, model: 'Podcast')
   end
-
-  alias title public_title
 
   def cover
     file_view object.cover
