@@ -211,7 +211,7 @@ module Podcast::Episodes::SocialPostsConcern
     end
     text += "\n"
     text += strip_tags(object.description || '')
-    text += "\n"
+    text += "\n\n"
     instances.each do |instance|
       text += "#{instance.service.capitalize}: #{instance.shortened_url}\n"
     end

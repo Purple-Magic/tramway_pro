@@ -8,10 +8,10 @@ class LeopoldSendItWayHistoryJob < ActiveJob::Base
   include ::BotTelegram::Leopold::Notify
 
   def perform(*_args)
-    Podcast.find(2).episodes.each do |episode|
-      next if episode.id.in? [209, 208, 207, 205]
+    Podcast.find(2).episodes.reverse.each do |episode|
+      next if episode.id.in? [209, 208, 207, 205, 212]
       send_if_anniversary Podcast::EpisodeDecorator.decorate(episode)
-      sleep 20
+      sleep 10
     end
 
   rescue StandardError => error
