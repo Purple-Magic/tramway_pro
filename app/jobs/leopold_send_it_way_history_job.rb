@@ -9,7 +9,7 @@ class LeopoldSendItWayHistoryJob < ActiveJob::Base
 
   def perform(*_args)
     Podcast.find(2).episodes.reverse.each do |episode|
-      next if episode.id.in? [209, 208, 207, 205, 212]
+      next if episode.id.in? [209, 208, 207, 205, 212, 274]
       send_if_anniversary Podcast::EpisodeDecorator.decorate(episode)
       sleep 10
     end
