@@ -2,6 +2,7 @@
 
 module BotTelegram::Leopold::ItWayPro
   CHAT_ID = '-1001141858122'
+  HISTORY_CHANNEL = '@it_way_history'
 
   include ::BotTelegram::Leopold::ItWayPro::WordsCheck
 

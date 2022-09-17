@@ -17,7 +17,7 @@ class BenchkillerSendPlannedNotifications < ActiveJob::Base
         )
       end
     end
-  rescue StandardError
+  rescue StandardError => error
     Rails.env.development? ? puts(error) : Airbrake.notify(error)
   end
 end
