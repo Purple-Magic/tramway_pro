@@ -2,6 +2,7 @@
   "name": "tramway_pro",
   "dockerComposeFile": "docker-compose.yml",
   "onCreateCommand": "docker-compose build",
+  "initializeCommand": "cp .env.example .env",
   "workspaceFolder": "/",
   "forwardPorts": [3000]
 }
