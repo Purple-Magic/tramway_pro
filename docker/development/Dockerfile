@@ -1,18 +1,18 @@
 FROM ruby:2.7.6
 
-# RUN apt-get update \
-#     && apt-get install -y --no-install-recommends \
-#         postgresql-client \
-#         build-essential \
-#         # apt-transport-https \
-#         libpq-dev \
-#         enca \
-#         nodejs \
-#         cmake \
-#         libreoffice-calc libreoffice-core libreoffice-common \
-#         openjdk-11-jre \
-#         python \
-#     && rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        postgresql-client \
+        build-essential \
+        # apt-transport-https \
+        libpq-dev \
+        enca \
+        nodejs \
+        cmake \
+        libreoffice-calc libreoffice-core libreoffice-common \
+        openjdk-11-jre \
+        python \
+    && rm -rf /var/lib/apt/lists/*
 
 # ENV NODE_VERSION 12.22.8
 
