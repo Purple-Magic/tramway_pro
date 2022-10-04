@@ -23,7 +23,10 @@ module BotTelegram::FindMedsBot
     },
     choose_company: {
       state: :waiting_for_choose_company
-    }
+    },
+    choose_form: {
+      state: :waiting_for_choose_form
+    },
   }.freeze
 
   VALIDATIONS = {

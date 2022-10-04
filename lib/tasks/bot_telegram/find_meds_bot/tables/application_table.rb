@@ -18,9 +18,17 @@ class BotTelegram::FindMedsBot::Tables::ApplicationTable < Airrecord::Table
     end
 
     def where(**options)
-      all.select do |medicine|
+      all.select do |object|
         options.map do |(key, value)|
-          medicine[key] == value
+          if key == 'id'
+            if value.is_a? Array
+              value.include? object.id
+            else
+              object.id == value
+            end
+          else
+            object[key] == value
+          end
         end.uniq == [true]
       end
     end

@@ -10,6 +10,10 @@ class BotTelegram::FindMedsBot::Tables::Medicine < BotTelegram::FindMedsBot::Tab
     BotTelegram::FindMedsBot::Tables::Company.find link_to_company.first
   end
 
+  def concentrations
+    BotTelegram::FindMedsBot::Tables::Concentration.where 'id' => concentrations
+  end
+
   def separable_dosage?
     ['separable_dosage']&.include? 'можно делить'
   end

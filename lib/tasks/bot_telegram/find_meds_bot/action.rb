@@ -62,7 +62,6 @@ class BotTelegram::FindMedsBot::Action
 
   def choose_company(name)
     company = ::BotTelegram::FindMedsBot::Tables::Company.find_by('Name' => name)
-    current_state = user.states.where(bot_id: bot_record.id).last
     medicines = current_state.data['medicines'].select do |medicine| 
       medicine['fields']['link_to_company'].include? company.id
     end
@@ -72,7 +71,22 @@ class BotTelegram::FindMedsBot::Action
 
     set_next_action :choose_form, medicines: medicines
     answer = i18n_scope(:find_medicine, :what_form)
-    show options: [forms, ['В начало', 'Нужной фирмы нет']], answer: answer
+    show options: [forms, ['В начало', 'Нужной формы нет']], answer: answer
+  end
+
+  def choose_form(form)
+    medicines = current_state.data['medicines'].select do |medicine| 
+      medicine['fields']['form'].include? form
+    end
+    concentrations_ids = medicines.map do |medicine|
+      medicine['fields']['concentrations']
+    end.flatten.uniq
+
+    concentrations = ::BotTelegram::FindMedsBot::Tables::Concentration.where('id' => concentrations_ids).map &:name
+
+    set_next_action :choose_concentration, medicines: medicines
+    answer = i18n_scope(:find_medicine, :what_concentration)
+    show options: [concentrations, ['В начало', 'Нужной концентрации нет']], answer: answer
   end
 
   private
@@ -83,5 +97,9 @@ class BotTelegram::FindMedsBot::Action
 
   def set_next_action(action, **data)
     set_state_for "waiting_for_#{action}", user: user, bot: bot_record, data: data
+  end
+
+  def current_state
+    user.states.where(bot_id: bot_record.id).last
   end
 end

@@ -14,6 +14,8 @@ medicines:
       - "rec76PKPUZs1amvBg"
     link_to_company:
       - 'receQeH2nuPmxUA7P'
+    concentrations:
+      - 'reccJ82ScIlm1tOxC'
   - id: 'rec0Fqy4fYDUibmu1'
     Name: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 200 мг'
     Drug:
