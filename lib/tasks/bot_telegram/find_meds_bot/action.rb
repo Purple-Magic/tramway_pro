@@ -49,56 +49,62 @@ class BotTelegram::FindMedsBot::Action
   def find_medicine(name)
     drug = ::BotTelegram::FindMedsBot::Tables::Drug.find_by('Name' => name)
     if drug.present?
-      dosages = drug.medicines.reduce({}) do |hash, m|
-        hash.merge! m['Name'] => m.id
+      companies = drug.medicines.map do |medicine|
+        medicine.company.name
       end
-      answer = i18n_scope(:find_medicine, :found, name: name)
-      show options: [dosages.keys, ['Другая', :start_menu]], answer: answer
-      set_next_action :choose_dosage, drug_id: drug.id, dosages: dosages
+
+      set_next_action :choose_company, medicines: drug.medicines
+      answer = i18n_scope(:find_medicine, :found)
+      show options: [companies, ['В начало', 'Нужной фирмы нет']], answer: answer
     else
-      component = ::BotTelegram::FindMedsBot::Tables::Component.find_by('Name' => name)
-      if component.present? && component.medicines_with_single_component.any?
-        answer = i18n_scope(:find_medicine, :what_form_do_you_need)
-        show options: [component.medicines_with_single_component.map(&:form), [:start_menu]], answer: answer
-        set_next_action :choose_form, component_id: component.id, dosages: dosages
-      else
-        answer = i18n_scope(:find_medicine, :not_found)
-        send_message_to_user answer
-      end
     end
   end
 
-  def choose_dosage(name)
-    current_dosage_id = user.states.where(bot: bot_record).last.data['dosages'][name]
-    dosage = ::BotTelegram::FindMedsBot::Tables::Medicine.find current_dosage_id
-    text = if dosage.separable_dosage?
-           else
-             alternative = ::BotTelegram::FindMedsBot::Tables::Medicine.where(
-               'intersection_and_substance' => dosage['intersection_and_substance'], 'form' => dosage['form']
-             ).reject do |m|
-               m.id == current_dosage_id
-             end.first
-             company_name = BotTelegram::FindMedsBot::Tables::Company.find(alternative['company'].first)['Name']
-             components = alternative['intersection_and_substance'].map do |component_id|
-               BotTelegram::FindMedsBot::Tables::Concentration.find(component_id)['Name']
-             end
-             if alternative.present?
-               BotTelegram::FindMedsBot::InfoMessageBuilder.new(alternative, company_name: company_name,
-components: components).build
-             end
-           end
-    show options: [['Назад']], answer: text
+  def choose_company(name)
+    company = ::BotTelegram::FindMedsBot::Tables::Company.find_by('Name' => name)
+    medicines = current_state.data['medicines'].select do |medicine| 
+      medicine['fields']['link_to_company'].include? company.id
+    end
+    forms = medicines.map do |medicine|
+      medicine['fields']['form']
+    end.flatten.uniq
+
+    set_next_action :choose_form, medicines: medicines
+    answer = i18n_scope(:find_medicine, :what_form)
+    show options: [forms, ['В начало', 'Нужной формы нет']], answer: answer
   end
 
   def choose_form(form)
-    current_component_id = user.states.where(bot: bot_record).last.data['component_id']
-    component = BotTelegram::FindMedsBot::Tables::Component.find(current_component_id)
-    medicines = component.medicines_with_single_component.select do |medicine|
-      medicine.form == form
+    medicines = current_state.data['medicines'].select do |medicine| 
+      medicine['fields']['form'].include? form
     end
-    answer = i18n_scope(:find_medicine, :what_concentration_do_you_need)
-    show options: [medicines.map(&:concetrations), ['Другая', :start_menu]], answer: answer
-    set_next_action :choose_form, component_id: component.id, dosages: dosages
+    concentrations_ids = medicines.map do |medicine|
+      medicine['fields']['concentrations']
+    end.flatten.uniq
+
+    concentrations = ::BotTelegram::FindMedsBot::Tables::Concentration.where('id' => concentrations_ids).map &:name
+
+    set_next_action :choose_concentration, medicines: medicines
+    answer = i18n_scope(:find_medicine, :what_concentration)
+    show options: [concentrations, ['В начало', 'Нужной концентрации нет']], answer: answer
+  end
+
+  def choose_concentration(name)
+    concentration = ::BotTelegram::FindMedsBot::Tables::Concentration.find_by('Name' => name)
+    medicines = current_state.data['medicines'].select do |medicine| 
+      medicine['fields']['concentrations'].include? concentration.id
+    end
+    if medicines.count == 1
+      medicine = medicines.first
+      set_next_action :reinforcement, medicine: medicine
+      answer = i18n_scope(:find_medicine, :this_medicine, medicine: medicine['fields']['Name'])
+      show options: [['Да', 'Нет']], answer: answer
+    else
+    end
+  end
+
+  def reinforcement(answer)
+    send_message_to_user 'Дальше пока не умею работать'
   end
 
   private
@@ -109,5 +115,9 @@ components: components).build
 
   def set_next_action(action, **data)
     set_state_for "waiting_for_#{action}", user: user, bot: bot_record, data: data
+  end
+
+  def current_state
+    user.states.where(bot_id: bot_record.id).last
   end
 end

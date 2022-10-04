@@ -18,15 +18,21 @@ module BotTelegram::FindMedsBot
 
   ACTIONS_DATA = {
     find_medicine: {
-      message: 'Введите название лекарства на кириллице',
+      message: 'Убедитесь, что название написано правильно',
       state: :waiting_for_medicine_name
     },
-    choose_dosage: {
-      state: :waiting_for_choose_dosage
+    choose_company: {
+      state: :waiting_for_choose_company
     },
     choose_form: {
       state: :waiting_for_choose_form
-    }
+    },
+    choose_concentration: {
+      state: :waiting_for_choose_concentration
+    },
+    reinforcement: {
+      state: :waiting_for_reinforcement
+    },
   }.freeze
 
   VALIDATIONS = {

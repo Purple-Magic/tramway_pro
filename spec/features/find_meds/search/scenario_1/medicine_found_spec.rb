@@ -11,21 +11,21 @@ describe 'BotTelegram::FindMedsBot' do
     describe 'Medicine Found' do
       let(:message_1) { build :telegram_message, text: 'Поиск лекарств' }
       let(:message_2) { build :telegram_message, text: 'Финлепсин Ретард' }
-      let(:message_3) do
-        build :telegram_message,
-          text: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг'
-      end
+      let(:message_3) { build :telegram_message, text: 'NOVARTIS FARMA, S.p.A.' }
+      let(:message_4) { build :telegram_message, text: 'Таб.пролонгированного действия' }
+      let(:message_5) { build :telegram_message, text: 'carbamazepine концентрация 400 мг' }
 
-      it 'returns invitation to type a name' do
+      it 'search medicine by name' do
         find_meds_airtable_stub_request table: :drugs
         find_meds_airtable_stub_request table: :medicines
-        find_meds_airtable_stub_request table: :medicines, id: 'rec0Fqy4fYDUibmuQ'
+        find_meds_airtable_stub_request table: :companies
         find_meds_airtable_stub_request table: :companies, id: 'receQeH2nuPmxUA7P'
-        find_meds_airtable_stub_request table: :concentrations, id: 'reccJ82ScIlm1tOxC'
+        find_meds_airtable_stub_request table: :companies, id: 'receQeH2nuPmxUA7L'
+        find_meds_airtable_stub_request table: :concentrations
 
         stub_1 = send_message_stub_request body: {
           chat_id: chat.telegram_chat_id,
-          text: 'Введите название лекарства на кириллице'
+          text: 'Убедитесь, что название написано правильно'
         }
 
         bot_run :find_meds, bot_record: bot_record, message: message_1, chat: chat, message_object: message_object
@@ -34,12 +34,16 @@ describe 'BotTelegram::FindMedsBot' do
 
         stub_2 = send_message_stub_request body: {
           chat_id: chat.telegram_chat_id,
-          text: 'Финлепсин Ретард есть в нашей базе данных. Выберите нужную вам концентрацию',
+          text: 'Мы нашли лекараство. Лекарством какой фирмы вы пользуетесь?',
           reply_markup: reply_markup(
             [
-              'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг',
-              'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 200 мг'
-            ], %w[Другая Назад]
+              'NOVARTIS FARMA, S.p.A.',
+              'МОСКОВСКИЙ ЭНДОКРИННЫЙ ЗАВОД, ФГУП'
+            ],
+            [
+              'В начало',
+              'Нужной фирмы нет'
+            ]
           )
         }
 
@@ -49,15 +53,54 @@ describe 'BotTelegram::FindMedsBot' do
 
         stub_3 = send_message_stub_request body: {
           chat_id: chat.telegram_chat_id,
-          text: 'Мы знаем об аналоге Тегретол carbamazepine концентрация 400 мг Таб.пролонгированного действия NOVARTIS FARMA, S.p.A.. При приёме новых лекарств, в том числе дженериков, необходимо читать их описание, так как побочные эффекты могут немного отличаться.Если вам удастся купить это лекарство или любой другой дженерик, пожалуйста, сообщите нам, эта информация может помочь другим людям. На данный момент мы не знаем, в каких странах можно купить этот препарат.',
+          text: 'Какой лекарственной формулой вы пользуетесь?',
           reply_markup: reply_markup(
-            ['Назад']
+            [
+              'Таб.пролонгированного действия'
+            ],
+            [
+              'В начало',
+              'Нужной формы нет'
+            ]
           )
         }
 
         bot_run :find_meds, bot_record: bot_record, message: message_3, chat: chat, message_object: message_object
 
         expect(stub_3).to have_been_requested
+
+        stub_4 = send_message_stub_request body: {
+          chat_id: chat.telegram_chat_id,
+          text: 'Какая концентрация действующего вещества вам нужна?',
+          reply_markup: reply_markup(
+            [
+              'carbamazepine концентрация 400 мг'
+            ],
+            [
+              'В начало',
+              'Нужной концентрации нет'
+            ]
+          )
+        }
+
+        bot_run :find_meds, bot_record: bot_record, message: message_4, chat: chat, message_object: message_object
+
+        expect(stub_4).to have_been_requested
+
+        stub_5 = send_message_stub_request body: {
+          chat_id: chat.telegram_chat_id,
+          text: 'Это то лекарство, которое вы используете? Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг',
+          reply_markup: reply_markup(
+            [
+              'Да',
+              'Нет'
+            ]
+          )
+        }
+
+        bot_run :find_meds, bot_record: bot_record, message: message_5, chat: chat, message_object: message_object
+
+        expect(stub_5).to have_been_requested
       end
     end
   end
