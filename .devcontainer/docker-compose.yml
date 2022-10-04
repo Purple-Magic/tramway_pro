@@ -1,17 +1,27 @@
 version: "3.9"
 services:
   db:
-    image: postgres
-    ports:
-      - "5432:5432"
+    image: postgres:13-alpine
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
-  web:
-    build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+      - 'db:/var/lib/postgresql/data'
+      - ./tmp:/temp
+    environment:
+      - POSTGRES_PASSWORD=postgres
+  redis:
+    image: redis:alpine
+  webpacker:
+    build:
+      context: ../
+      dockerfile: ./docker/development/Dockerfile
+    env_file:
+      - '../.env'
+    command: bash -c "rm -rf ./public/packs; (yarn check || yarn install) && ./bin/webpack-dev-server"
     volumes:
-      - .:/rails
+      - bundle:/bundle
+      - .:/usr/src/app
     ports:
-      - "3000:3000"
-    depends_on:
-      - db
+      - '3035:3035'
+volumes:
+  db:
+  bundle:
+  
