@@ -27,6 +27,9 @@ module BotTelegram::FindMedsBot
     choose_form: {
       state: :waiting_for_choose_form
     },
+    choose_concentration: {
+      state: :waiting_for_choose_concentration
+    }
   }.freeze
 
   VALIDATIONS = {

@@ -89,6 +89,20 @@ class BotTelegram::FindMedsBot::Action
     show options: [concentrations, ['В начало', 'Нужной концентрации нет']], answer: answer
   end
 
+  def choose_concentration(name)
+    concentration = ::BotTelegram::FindMedsBot::Tables::Concentration.find_by('Name' => name)
+    medicines = current_state.data['medicines'].select do |medicine| 
+      medicine['fields']['concentrations'].include? concentration.id
+    end
+    if medicines.count == 1
+      medicine = medicines.first
+      set_next_action :reinforcement, medicine: medicine
+      answer = i18n_scope(:find_medicine, :this_medicine, medicine: medicine['fields']['Name'])
+      show options: [['Да', 'Нет']], answer: answer
+    else
+    end
+  end
+
   private
 
   def send_message_to_user(text)
