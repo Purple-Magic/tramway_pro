@@ -53,43 +53,26 @@ class BotTelegram::FindMedsBot::Action
         medicine.company.name
       end
 
+      set_next_action :choose_company, medicines: drug.medicines
       answer = i18n_scope(:find_medicine, :found)
       show options: [companies, ['В начало', 'Нужной фирмы нет']], answer: answer
     else
     end
   end
 
-  def choose_dosage(name)
-    current_dosage_id = user.states.where(bot: bot_record).last.data['dosages'][name]
-    dosage = ::BotTelegram::FindMedsBot::Tables::Medicine.find current_dosage_id
-    text = if dosage.separable_dosage?
-           else
-             alternative = ::BotTelegram::FindMedsBot::Tables::Medicine.where(
-               'intersection_and_substance' => dosage['intersection_and_substance'], 'form' => dosage['form']
-             ).reject do |m|
-               m.id == current_dosage_id
-             end.first
-             company_name = BotTelegram::FindMedsBot::Tables::Company.find(alternative['company'].first)['Name']
-             components = alternative['intersection_and_substance'].map do |component_id|
-               BotTelegram::FindMedsBot::Tables::Concentration.find(component_id)['Name']
-             end
-             if alternative.present?
-               BotTelegram::FindMedsBot::InfoMessageBuilder.new(alternative, company_name: company_name,
-components: components).build
-             end
-           end
-    show options: [['Назад']], answer: text
-  end
-
-  def choose_form(form)
-    current_component_id = user.states.where(bot: bot_record).last.data['component_id']
-    component = BotTelegram::FindMedsBot::Tables::Component.find(current_component_id)
-    medicines = component.medicines_with_single_component.select do |medicine|
-      medicine.form == form
+  def choose_company(name)
+    company = ::BotTelegram::FindMedsBot::Tables::Company.find_by('Name' => name)
+    current_state = user.states.where(bot_id: bot_record.id).last
+    medicines = current_state.data['medicines'].select do |medicine| 
+      medicine['fields']['link_to_company'].include? company.id
     end
-    answer = i18n_scope(:find_medicine, :what_concentration_do_you_need)
-    show options: [medicines.map(&:concetrations), ['Другая', :start_menu]], answer: answer
-    set_next_action :choose_form, component_id: component.id, dosages: dosages
+    forms = medicines.map do |medicine|
+      medicine['fields']['form']
+    end.flatten.uniq
+
+    set_next_action :choose_form, medicines: medicines
+    answer = i18n_scope(:find_medicine, :what_form)
+    show options: [forms, ['В начало', 'Нужной фирмы нет']], answer: answer
   end
 
   private

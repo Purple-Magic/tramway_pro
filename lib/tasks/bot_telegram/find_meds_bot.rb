@@ -21,11 +21,8 @@ module BotTelegram::FindMedsBot
       message: 'Убедитесь, что название написано правильно',
       state: :waiting_for_medicine_name
     },
-    choose_dosage: {
-      state: :waiting_for_choose_dosage
-    },
-    choose_form: {
-      state: :waiting_for_choose_form
+    choose_company: {
+      state: :waiting_for_choose_company
     }
   }.freeze
 

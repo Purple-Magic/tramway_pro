@@ -11,10 +11,7 @@ describe 'BotTelegram::FindMedsBot' do
     describe 'Medicine Found' do
       let(:message_1) { build :telegram_message, text: 'Поиск лекарств' }
       let(:message_2) { build :telegram_message, text: 'Финлепсин Ретард' }
-      let(:message_3) do
-        build :telegram_message,
-          text: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг'
-      end
+      let(:message_3) { build :telegram_message, text: 'NOVARTIS FARMA, S.p.A.' }
 
       it 'search medicine by name' do
         find_meds_airtable_stub_request table: :drugs
@@ -50,6 +47,24 @@ describe 'BotTelegram::FindMedsBot' do
         bot_run :find_meds, bot_record: bot_record, message: message_2, chat: chat, message_object: message_object
 
         expect(stub_2).to have_been_requested
+
+        stub_3 = send_message_stub_request body: {
+          chat_id: chat.telegram_chat_id,
+          text: 'Какой лекарственной формулой вы пользуетесь?',
+          reply_markup: reply_markup(
+            [
+              'Таб.пролонгированного действия'
+            ],
+            [
+              'В начало',
+              'Нужной фирмы нет'
+            ]
+          )
+        }
+
+        bot_run :find_meds, bot_record: bot_record, message: message_3, chat: chat, message_object: message_object
+
+        expect(stub_3).to have_been_requested
       end
     end
   end
