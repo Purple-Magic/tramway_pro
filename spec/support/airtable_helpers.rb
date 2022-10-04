@@ -28,11 +28,12 @@ module AirtableHelpers
   end
 
   def airtable_headers
+    bearer = ENV['AIR_TABLE_API_KEY'].present? ? "Bearer #{ENV['AIR_TABLE_API_KEY']}" : 'Bearer'
     {
       headers: {
         'Accept' => '*/*',
         'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-        'Authorization' => "Bearer #{ENV['AIR_TABLE_API_KEY']}",
+        'Authorization' => bearer,
         'Connection' => 'keep-alive',
         'Keep-Alive' => '30',
         'User-Agent' => 'Airrecord/1.0.10',

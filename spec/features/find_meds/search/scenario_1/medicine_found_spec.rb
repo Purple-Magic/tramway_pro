@@ -16,7 +16,7 @@ describe 'BotTelegram::FindMedsBot' do
           text: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг'
       end
 
-      it 'returns invitation to type a name' do
+      it 'search medicine by name' do
         find_meds_airtable_stub_request table: :drugs
         find_meds_airtable_stub_request table: :medicines
         find_meds_airtable_stub_request table: :medicines, id: 'rec0Fqy4fYDUibmuQ'
@@ -25,7 +25,7 @@ describe 'BotTelegram::FindMedsBot' do
 
         stub_1 = send_message_stub_request body: {
           chat_id: chat.telegram_chat_id,
-          text: 'Введите название лекарства на кириллице'
+          text: 'Убедитесь, что название написано правильно'
         }
 
         bot_run :find_meds, bot_record: bot_record, message: message_1, chat: chat, message_object: message_object
