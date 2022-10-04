@@ -29,7 +29,10 @@ module BotTelegram::FindMedsBot
     },
     choose_concentration: {
       state: :waiting_for_choose_concentration
-    }
+    },
+    reinforcement: {
+      state: :waiting_for_reinforcement
+    },
   }.freeze
 
   VALIDATIONS = {

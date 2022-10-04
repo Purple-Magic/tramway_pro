@@ -103,6 +103,10 @@ class BotTelegram::FindMedsBot::Action
     end
   end
 
+  def reinforcement(answer)
+    send_message_to_user 'Дальше пока не умею работать'
+  end
+
   private
 
   def send_message_to_user(text)
