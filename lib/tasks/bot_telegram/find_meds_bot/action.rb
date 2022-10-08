@@ -82,11 +82,18 @@ class BotTelegram::FindMedsBot::Action
       medicine['fields']['concentrations']
     end.flatten.uniq
 
-    concentrations = ::BotTelegram::FindMedsBot::Tables::Concentration.where('id' => concentrations_ids).map &:name
+    concentrations = ::BotTelegram::FindMedsBot::Tables::Concentration.where('id' => concentrations_ids)
+    components = ::BotTelegram::FindMedsBot::Tables::Component.where('id' => concentrations.map(&:link_to_active_components).flatten)
 
-    set_next_action :choose_concentration, medicines: medicines
-    answer = i18n_scope(:find_medicine, :what_concentration)
-    show options: [concentrations, ['В начало', 'Нужной концентрации нет']], answer: answer
+    if components.count > 1
+      send_message_to_user 'У этого лекарства больше одного действующего вещества. Я пока не умею с этим работать'
+    elsif components.count == 1
+      set_next_action :choose_concentration, medicines: medicines
+      answer = i18n_scope(:find_medicine, :what_concentration, component: components.first.name)
+      show options: [concentrations.map(&:value), ['В начало', 'Нужной концентрации нет']], answer: answer
+    elsif components.count.zero?
+      send_message_to_user 'Кажется, у нас ошибка в базе данных'
+    end
   end
 
   def choose_concentration(name)
