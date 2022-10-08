@@ -8,8 +8,8 @@ describe 'Create estimation project', type: :feature do
   ProjectsHelper.only('purple-magic', 'red-magic').each do |project|
     describe project.title do
       it 'should create estimation project' do
-        project_id = public_send "#{project}_id"
-        move_host_to public_send "#{project}_host"
+        project_id = project.id
+        move_host_to project.url
 
         count = ::Estimation::Project.count
         visit '/admin'
