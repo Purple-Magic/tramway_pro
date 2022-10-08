@@ -46,9 +46,7 @@ medicines:
       - "rec76PKPUZs1amvBg"
 active_components:
   - id: "rec76PKPUZs1amvBg"
-    "Пересечение вещество концентрация":
-      - "recuTRff12FROogid"
-    Name: "levetiracetam"
+    Name: "carbamazepine"
 companies:
   - id: 'receQeH2nuPmxUA7P'
     Name: 'NOVARTIS FARMA, S.p.A.'
@@ -57,3 +55,6 @@ companies:
 concentrations:
   - id: 'reccJ82ScIlm1tOxC'
     Name: 'carbamazepine концентрация 400 мг'
+    mg_concentration: 400 
+    link_to_active_components:
+      - "rec76PKPUZs1amvBg"
