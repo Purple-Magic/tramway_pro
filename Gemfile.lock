@@ -557,7 +557,7 @@ GEM
     tilt (2.0.10)
     time_difference (0.7.0)
       activesupport (~> 5.1)
-    tramway-admin (4.1.2)
+    tramway-admin (4.1.2.1)
       aasm
       bootstrap-kaminari-views (= 0.0.5)
       copyright_mafa (~> 0.1.2, >= 0.1.2)
@@ -568,7 +568,7 @@ GEM
       smart_buttons (>= 1.0)
       state_machine_buttons (>= 1.0)
       tramway-auth (>= 2.0.1)
-      tramway-core (>= 1.18.6)
+      tramway-core (>= 4.1.3.2)
       tramway-user (>= 2.1.3.2)
       trap (~> 4.0)
     tramway-api (2.0.0.2)
@@ -578,7 +578,8 @@ GEM
       uuid
     tramway-auth (2.0.2)
     tramway-conference (1.9.5.5)
-    tramway-core (4.1.3.1)
+    tramway-core (4.1.3.2)
+      aasm
       audited (>= 4.8.0)
       bootstrap (>= 4.1.2)
       carrierwave
@@ -763,10 +764,10 @@ DEPENDENCIES
   streamio-ffmpeg
   telegram-bot-ruby (= 0.15.0)
   time_difference
-  tramway-admin (= 4.1.2)
+  tramway-admin (= 4.1.2.1)
   tramway-api (= 2.0.0.2)
   tramway-conference (= 1.9.5.5)
-  tramway-core (= 4.1.3.1)
+  tramway-core (= 4.1.3.2)
   tramway-event (= 1.12.6.4)
   tramway-export (= 0.2.1)
   tramway-landing (= 3.3.0.6)

@@ -10,7 +10,7 @@ module AirtableHelpers
   end
 
   def airtable_stub_request(base:, table:, id:)
-    response = response(table: table, id: id)
+    response = airtable_response(table: table, id: id)
     unless response.present?
       raise "You should add collection response for table #{table} in spec/support/airtable_helpers.rb"
     end
@@ -42,7 +42,7 @@ module AirtableHelpers
     }
   end
 
-  def response(table:, id: nil)
+  def airtable_response(table:, id: nil)
     if id.present?
       single_record_response table: table, id: id
     else
@@ -76,5 +76,4 @@ module AirtableHelpers
       fields: record.except(:id)
     }
   end
-
 end
