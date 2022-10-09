@@ -29,7 +29,6 @@ Tramway::Admin.set_available_models(
   Product,
   Products::Task,
   TimeLog,
-  FindMeds::Base,
   project: :purple_magic
 )
 
@@ -109,11 +108,6 @@ Tramway::Admin.navbar_structure(
     product_engine: [
       Product,
       TimeLog
-    ]
-  },
-  {
-    find_meds: [
-      FindMeds::Base
     ]
   },
   Audited::Audit,

@@ -88,7 +88,7 @@ class BotTelegram::FindMedsBot::Action
     if components.count > 1
       send_message_to_user 'У этого лекарства больше одного действующего вещества. Я пока не умею с этим работать'
     elsif components.count == 1
-      set_next_action :choose_concentration, medicines: medicines
+      set_next_action :choose_concentration, medicines: medicines, concentrations: concentrations
       answer = i18n_scope(:find_medicine, :what_concentration, component: components.first.name)
       show options: [concentrations.map(&:value), ['В начало', 'Нужной концентрации нет']], answer: answer
     elsif components.count.zero?
@@ -96,8 +96,12 @@ class BotTelegram::FindMedsBot::Action
     end
   end
 
-  def choose_concentration(name)
-    concentration = ::BotTelegram::FindMedsBot::Tables::Concentration.find_by('Name' => name)
+  def choose_concentration(value)
+    concentrations_ids = current_state.data['concentrations'].map { |c| c['id'] }
+    concentrations = ::BotTelegram::FindMedsBot::Tables::Concentration.where('id' => concentrations_ids)
+    concentration = concentrations.select do |concentration|
+      concentration.value == value
+    end.first
     medicines = current_state.data['medicines'].select do |medicine| 
       medicine['fields']['concentrations'].include? concentration.id
     end
