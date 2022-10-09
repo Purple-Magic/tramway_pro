@@ -33,6 +33,9 @@ module BotTelegram::FindMedsBot
     reinforcement: {
       state: :waiting_for_reinforcement
     },
+    saving_feedback: {
+      state: :waiting_for_saving_feedback
+    }
   }.freeze
 
   VALIDATIONS = {

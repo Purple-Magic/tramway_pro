@@ -57,6 +57,9 @@ class BotTelegram::FindMedsBot::Action
       answer = i18n_scope(:find_medicine, :found)
       show options: [companies, ['В начало', 'Нужной фирмы нет']], answer: answer
     else
+      set_next_action :saving_feedback, medicine_name: name
+      answer = i18n_scope(:find_medicine, :not_found)
+      show options: [['В начало']], answer: answer
     end
   end
 
