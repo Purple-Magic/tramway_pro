@@ -36,4 +36,13 @@ class BotTelegram::User < ApplicationRecord
   def finished_state_for?(bot:)
     states.empty? || states.where(bot_id: bot.id).last&.current_state == 'finished'
   end
+
+  def current_conversation
+    beginning_of_conversation = states.where(current_state: :finished).first&.id
+    if beginning_of_conversation.present?
+      states.where('id > ?', beginning_of_conversation)
+    else
+      states
+    end
+  end
 end
