@@ -52,7 +52,7 @@ module BotTelegram::MessagesManager
     end
   rescue StandardError => error
     if Rails.env.production?
-      Airbrake.notify error
+      Airbrake.notify error, message_obj
     else
       Rails.logger.info error
     end
