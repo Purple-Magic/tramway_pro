@@ -16,14 +16,15 @@ describe 'BotTelegram::FindMedsBot' do
     include_context 'FindMeds Scenario 1 Success'
     include_context 'FindMeds Scenario 1 Failure'
 
-    describe 'Medicine Not Found' do
-
+    describe 'Form Not Found' do
       context 'Saving feedback' do
         let!(:bot_leopold) { create :leopold_bot }
 
-        it 'returns not found message and saves feedback' do
+        it 'returns not found message' do
           push_search_medicine_button
-          type_not_existing_medicine
+          type_existing_medicine
+          type_existing_company
+          type_not_existing_form
           type_feedback
         end
       end
@@ -31,7 +32,9 @@ describe 'BotTelegram::FindMedsBot' do
       context 'Returning to the beginning' do
         it 'returns the start message' do
           push_search_medicine_button
-          type_not_existing_medicine
+          type_existing_medicine
+          type_existing_company
+          type_not_existing_form
           push_to_beginning_button
         end
       end

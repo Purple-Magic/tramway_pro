@@ -64,62 +64,81 @@ class BotTelegram::FindMedsBot::Action
   end
 
   def choose_company(name)
-    company = ::BotTelegram::FindMedsBot::Tables::Company.find_by('Name' => name)
-    medicines = current_state.data['medicines'].select do |medicine| 
-      medicine['fields']['link_to_company'].include? company.id
-    end
-    forms = medicines.map do |medicine|
-      medicine['fields']['form']
-    end.flatten.uniq
+    if name == 'Нужной фирмы нет'
+      set_next_action :saving_feedback
+      answer = i18n_scope(:find_medicine, :company_not_found)
+      show options: [['В начало']], answer: answer
+    else
+      company = ::BotTelegram::FindMedsBot::Tables::Company.find_by('Name' => name)
+      medicines = current_state.data['medicines'].select do |medicine| 
+        medicine['fields']['link_to_company'].include? company.id
+      end
+      forms = medicines.map do |medicine|
+        medicine['fields']['form']
+      end.flatten.uniq
 
-    set_next_action :choose_form, medicines: medicines
-    answer = i18n_scope(:find_medicine, :what_form)
-    show options: [forms, ['В начало', 'Нужной формы нет']], answer: answer
+      set_next_action :choose_form, medicines: medicines
+      answer = i18n_scope(:find_medicine, :what_form)
+      show options: [forms, ['В начало', 'Нужной формы нет']], answer: answer
+    end
   end
 
   def choose_form(form)
-    medicines = current_state.data['medicines'].select do |medicine| 
-      medicine['fields']['form'].include? form
-    end
-    concentrations_ids = medicines.map do |medicine|
-      medicine['fields']['concentrations']
-    end.flatten.uniq
+    if form == 'Нужной формы нет'
+      set_next_action :saving_feedback
+      answer = i18n_scope(:find_medicine, :form_not_found)
+      show options: [['В начало']], answer: answer
+    else
+      medicines = current_state.data['medicines'].select do |medicine| 
+        medicine['fields']['form'].include? form
+      end
+      concentrations_ids = medicines.map do |medicine|
+        medicine['fields']['concentrations']
+      end.flatten.uniq
 
-    concentrations = ::BotTelegram::FindMedsBot::Tables::Concentration.where('id' => concentrations_ids)
-    components = ::BotTelegram::FindMedsBot::Tables::Component.where('id' => concentrations.map(&:link_to_active_components).flatten)
+      concentrations = ::BotTelegram::FindMedsBot::Tables::Concentration.where('id' => concentrations_ids)
+      components = ::BotTelegram::FindMedsBot::Tables::Component.where('id' => concentrations.map(&:link_to_active_components).flatten)
 
-    if components.count > 1
-      send_message_to_user 'У этого лекарства больше одного действующего вещества. Я пока не умею с этим работать'
-    elsif components.count == 1
-      set_next_action :choose_concentration, medicines: medicines, concentrations: concentrations
-      answer = i18n_scope(:find_medicine, :what_concentration, component: components.first.name)
-      show options: [concentrations.map(&:value), ['В начало', 'Нужной концентрации нет']], answer: answer
-    elsif components.count.zero?
-      send_message_to_user 'Кажется, у нас ошибка в базе данных'
+      if components.count > 1
+        send_message_to_user 'У этого лекарства больше одного действующего вещества. Я пока не умею с этим работать'
+      elsif components.count == 1
+        set_next_action :choose_concentration, medicines: medicines, concentrations: concentrations
+        answer = i18n_scope(:find_medicine, :what_concentration, component: components.first.name)
+        show options: [concentrations.map(&:value), ['В начало', 'Нужной концентрации нет']], answer: answer
+      elsif components.count.zero?
+        send_message_to_user 'Кажется, у нас ошибка в базе данных'
+      end
     end
   end
 
   def choose_concentration(value)
-    concentrations_ids = current_state.data['concentrations'].map { |c| c['id'] }
-    concentrations = ::BotTelegram::FindMedsBot::Tables::Concentration.where('id' => concentrations_ids)
-    concentration = concentrations.select do |concentration|
-      concentration.value == value
-    end.first
-    medicines = current_state.data['medicines'].select do |medicine| 
-      medicine['fields']['concentrations'].include? concentration.id
-    end
-    if medicines.count == 1
-      medicine = medicines.first
-      set_next_action :reinforcement, medicine: medicine
-      answer = i18n_scope(:find_medicine, :this_medicine, medicine: medicine['fields']['Name'])
-      show options: [['Да', 'Нет']], answer: answer
+    if value == 'Нужной концентрации нет'
+      set_next_action :saving_feedback
+      answer = i18n_scope(:find_medicine, :concentration_not_found)
+      show options: [['В начало']], answer: answer
     else
+      concentrations_ids = current_state.data['concentrations'].map { |c| c['id'] }
+      concentrations = ::BotTelegram::FindMedsBot::Tables::Concentration.where('id' => concentrations_ids)
+      concentration = concentrations.select do |concentration|
+        concentration.value == value
+      end.first
+      medicines = current_state.data['medicines'].select do |medicine| 
+        medicine['fields']['concentrations'].include? concentration.id
+      end
+      if medicines.count == 1
+        medicine = medicines.first
+        set_next_action :reinforcement, medicine: medicine
+        answer = i18n_scope(:find_medicine, :this_medicine, medicine: medicine['fields']['Name'])
+        show options: [['Да', 'Нет']], answer: answer
+      else
+      end
     end
   end
 
   def saving_feedback(text)
     feedback = FindMeds::FeedbackForm.new FindMeds::Feedback.new
-    if feedback.submit text: text, data: current_state['data']
+    data_of_conversation = user.current_conversation.map { |state| state['data'] }
+    if feedback.submit text: text, data: data_of_conversation 
       answer = i18n_scope(:find_medicine, :we_got_it)
       show options: [['В начало']], answer: answer
     else
