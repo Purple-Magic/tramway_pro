@@ -117,6 +117,16 @@ class BotTelegram::FindMedsBot::Action
     end
   end
 
+  def saving_feedback(text)
+    feedback = FindMeds::FeedbackForm.new FindMeds::Feedback.new
+    if feedback.submit text: text, data: current_state['data']
+      answer = i18n_scope(:find_medicine, :we_got_it)
+      show options: [['В начало']], answer: answer
+    else
+      send_message_to_user 'Что-то пошло не так'
+    end
+  end
+
   def reinforcement(answer)
     send_message_to_user 'Дальше пока не умею работать'
   end

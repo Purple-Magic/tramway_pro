@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module BotTelegram::FindMedsBot
+  DEVELOPER_CHAT = '-818567779'
+
   MENUS = {
     start_menu: [
       %i[find_medicine about]
