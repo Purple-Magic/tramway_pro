@@ -13,7 +13,7 @@ describe 'BotTelegram::FindMedsBot' do
       let(:message_2) { build :telegram_message, text: 'Финлепсин Ретард' }
       let(:message_3) { build :telegram_message, text: 'NOVARTIS FARMA, S.p.A.' }
       let(:message_4) { build :telegram_message, text: 'Таб.пролонгированного действия' }
-      let(:message_5) { build :telegram_message, text: 'carbamazepine концентрация 400 мг' }
+      let(:message_5) { build :telegram_message, text: '400 мг' }
 
       it 'search medicine by name' do
         find_meds_airtable_stub_request table: :drugs
