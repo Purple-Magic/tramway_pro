@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module TelegramBotHelpers
-  def send_message_stub_request(body:)
-    stub_request(:post, "https://api.telegram.org/bot#{bot_record.token}/sendMessage").with(
+  def send_message_stub_request(body:, current_bot: bot_record)
+    stub_request(:post, "https://api.telegram.org/bot#{current_bot.token}/sendMessage").with(
       headers: stub_headers,
       body: body
     ).to_return stub_response

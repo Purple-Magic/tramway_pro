@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module BotTelegram::FindMedsBot
+  DEVELOPER_CHAT = '-818567779'
+
   MENUS = {
     start_menu: [
       %i[find_medicine about]
@@ -33,6 +35,9 @@ module BotTelegram::FindMedsBot
     reinforcement: {
       state: :waiting_for_reinforcement
     },
+    saving_feedback: {
+      state: :waiting_for_saving_feedback
+    }
   }.freeze
 
   VALIDATIONS = {

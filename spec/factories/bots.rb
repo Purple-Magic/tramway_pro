@@ -46,7 +46,7 @@ FactoryBot.define do
       end
 
       after :create do |bot|
-        bot.update_column :id, 9
+        bot.update_column :id, ::BotTelegram::Leopold::Scenario::BOT_ID
       end
     end
 

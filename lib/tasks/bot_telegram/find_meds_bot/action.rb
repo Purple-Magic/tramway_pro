@@ -57,6 +57,9 @@ class BotTelegram::FindMedsBot::Action
       answer = i18n_scope(:find_medicine, :found)
       show options: [companies, ['В начало', 'Нужной фирмы нет']], answer: answer
     else
+      set_next_action :saving_feedback, medicine_name: name
+      answer = i18n_scope(:find_medicine, :not_found)
+      show options: [['В начало']], answer: answer
     end
   end
 
@@ -111,6 +114,16 @@ class BotTelegram::FindMedsBot::Action
       answer = i18n_scope(:find_medicine, :this_medicine, medicine: medicine['fields']['Name'])
       show options: [['Да', 'Нет']], answer: answer
     else
+    end
+  end
+
+  def saving_feedback(text)
+    feedback = FindMeds::FeedbackForm.new FindMeds::Feedback.new
+    if feedback.submit text: text, data: current_state['data']
+      answer = i18n_scope(:find_medicine, :we_got_it)
+      show options: [['В начало']], answer: answer
+    else
+      send_message_to_user 'Что-то пошло не так'
     end
   end
 

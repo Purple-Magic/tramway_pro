@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220917152114) do
+ActiveRecord::Schema.define(version: 20221009005208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -503,6 +503,16 @@ ActiveRecord::Schema.define(version: 20220917152114) do
   create_table "find_meds_bases", force: :cascade do |t|
     t.text "name"
     t.text "key"
+    t.text "state"
+    t.datetime "deleted_at"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "find_meds_feedbacks", force: :cascade do |t|
+    t.text "text"
+    t.jsonb "data"
     t.text "state"
     t.datetime "deleted_at"
     t.integer "project_id"
