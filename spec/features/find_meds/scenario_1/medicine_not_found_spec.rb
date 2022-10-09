@@ -45,10 +45,11 @@ describe 'BotTelegram::FindMedsBot' do
           )
         }
 
+        feedback_id = FindMeds::Feedback.last.id + 1
         stub_4 = send_message_stub_request(
           body: {
             chat_id: ::BotTelegram::FindMedsBot::DEVELOPER_CHAT,
-            text: 'test'
+            text: "Мы получили новую обратную связь от пользователя. Посмотреть её можно здесь http://purple-magic.com/admin/records/#{feedback_id}?model=FindMeds::Feedback"
           },
           current_bot: bot_leopold
         )
