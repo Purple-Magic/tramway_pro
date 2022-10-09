@@ -26,6 +26,7 @@ Tramway::Admin.set_available_models(
   Benchkiller::Offer,
   Benchkiller::Tag,
   Benchkiller::Collation,
+  FindMeds::Feedback,
   Product,
   Products::Task,
   TimeLog,
@@ -37,15 +38,6 @@ Tramway::Admin.set_available_models(
   BotTelegram::Scenario::Step,
   BotTelegram::Scenario::ProgressRecord,
   role: :partner,
-  project: :purple_magic
-)
-
-Tramway::Admin.set_available_models(
-  Bot,
-  BotTelegram::User,
-  BotTelegram::Scenario::Step,
-  BotTelegram::Scenario::ProgressRecord,
-  role: :rsm,
   project: :purple_magic
 )
 
@@ -102,6 +94,11 @@ Tramway::Admin.navbar_structure(
     estimations: [
       Estimation::Customer,
       Estimation::Project
+    ]
+  },
+  {
+    find_meds: [
+      FindMeds::Feedback
     ]
   },
   {
