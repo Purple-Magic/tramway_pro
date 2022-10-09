@@ -63,6 +63,9 @@ medicines:
       - "Суспензия для приема внутрь"
     components:
       - "rec76PKPUZs1amvBg"
+    intersection_and_substance:
+      - "rectDP1rHRN6ugsoW"
+      - "recyYyUY3sKGOOLVz"
 active_components:
   - Name: "carbamazepine"
     id: "rec76PKPUZs1amvBg"
