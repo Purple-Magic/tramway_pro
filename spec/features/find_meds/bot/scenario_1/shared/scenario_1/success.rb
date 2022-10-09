@@ -13,7 +13,11 @@ RSpec.shared_context 'FindMeds Scenario 1 Success' do
     expect(stub).to have_been_requested
   end
   
-  def type_existing_medicine(medicine: build(:telegram_message, text: 'Финлепсин Ретард'))
+  def type_existing_medicine(medicine: nil, companies: nil)
+    medicine ||= 'Финлепсин Ретард'
+    medicine_button_message = build(:telegram_message, text: medicine)
+    companies ||= ['NOVARTIS FARMA, S.p.A.', 'МОСКОВСКИЙ ЭНДОКРИННЫЙ ЗАВОД, ФГУП']
+
     find_meds_airtable_stub_request table: :drugs
     find_meds_airtable_stub_request table: :medicines
     find_meds_airtable_stub_request table: :companies
@@ -24,34 +28,25 @@ RSpec.shared_context 'FindMeds Scenario 1 Success' do
       chat_id: chat.telegram_chat_id,
       text: 'Мы нашли лекараство. Лекарством какой фирмы вы пользуетесь?',
       reply_markup: reply_markup(
-        [
-          'NOVARTIS FARMA, S.p.A.',
-          'МОСКОВСКИЙ ЭНДОКРИННЫЙ ЗАВОД, ФГУП'
-        ],
-        [
-          'В начало',
-          'Нужной фирмы нет'
-        ]
+        companies,
+        [ 'В начало', 'Нужной фирмы нет' ]
       )
     }
 
-    bot_run :find_meds, bot_record: bot_record, message: medicine, chat: chat, message_object: message_object
+    bot_run :find_meds, bot_record: bot_record, message: medicine_button_message, chat: chat, message_object: message_object
 
     expect(stub).to have_been_requested
   end
 
-  def type_existing_company(company: build(:telegram_message, text: 'NOVARTIS FARMA, S.p.A.'))
+  def type_existing_company(company: nil, forms: nil)
+    company ||= build(:telegram_message, text: 'NOVARTIS FARMA, S.p.A.')
+    forms ||=  [ 'Таб.пролонгированного действия' ]
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
       text: 'Какой лекарственной формулой вы пользуетесь?',
       reply_markup: reply_markup(
-        [
-          'Таб.пролонгированного действия'
-        ],
-        [
-          'В начало',
-          'Нужной формы нет'
-        ]
+        forms,
+        [ 'В начало', 'Нужной формы нет' ]
       )
     }
 
@@ -60,13 +55,18 @@ RSpec.shared_context 'FindMeds Scenario 1 Success' do
     expect(stub).to have_been_requested
   end
 
-  def type_existing_form(form: build(:telegram_message, text: 'Таб.пролонгированного действия'))
+  def type_existing_form(form: nil, component: nil)
+    form ||= 'Таб.пролонгированного действия'
+    form_button_message = build(:telegram_message, text: form)
+
+    component ||= 'carbamazepine'
+
     find_meds_airtable_stub_request table: :concentrations
     find_meds_airtable_stub_request table: :active_components
 
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
-      text: 'Какая концентрация действующего вещества carbamazepine вам нужна?',
+      text: "Какая концентрация действующего вещества #{component} вам нужна?",
       reply_markup: reply_markup(
         [
           '400 мг',
@@ -79,7 +79,7 @@ RSpec.shared_context 'FindMeds Scenario 1 Success' do
       )
     }
 
-    bot_run :find_meds, bot_record: bot_record, message: form, chat: chat, message_object: message_object
+    bot_run :find_meds, bot_record: bot_record, message: form_button_message, chat: chat, message_object: message_object
 
     expect(stub).to have_been_requested
   end

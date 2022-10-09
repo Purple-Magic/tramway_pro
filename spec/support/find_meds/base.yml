@@ -1,6 +1,8 @@
 drugs:
   - Name: 'Финлепсин Ретард'
     id: 'finlepcin_id'
+  - Name: 'Трилептал'
+    id: 'trileptal_id'
 medicines:
   - Name: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг'
     id: 'rec0Fqy4fYDUibmuQ'
@@ -58,17 +60,23 @@ medicines:
       - "rec76PKPUZs1amvBg"
   - Name: 'Трилептал "NOVARTIS FARMA, S.p.A." oxcarbazepine  концентрация 150 мг'
     id: "recTrileptal"
+    Drug:
+      - 'trileptal_id'
     form:
       - "Таб., покр. пленочной оболочкой"
       - "Суспензия для приема внутрь"
     components:
       - "rec76PKPUZs1amvBg"
-    intersection_and_substance:
+    concentrations:
       - "rectDP1rHRN6ugsoW"
       - "recyYyUY3sKGOOLVz"
+    link_to_company:
+      - 'receQeH2nuPmxUA7P'
 active_components:
   - Name: "carbamazepine"
     id: "rec76PKPUZs1amvBg"
+  - Name: "oxcarbazepine"
+    id: "rec4YjjsTO04NDM90"
 companies:
   - Name: 'NOVARTIS FARMA, S.p.A.'
     id: 'receQeH2nuPmxUA7P'
