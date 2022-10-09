@@ -63,7 +63,7 @@ RSpec.shared_context 'FindMeds Scenario 1 Success' do
     expect(stub).to have_been_requested
   end
 
-  def type_existing_concentration
+  def type_existing_form
     find_meds_airtable_stub_request table: :concentrations
     find_meds_airtable_stub_request table: :active_components
 
@@ -87,7 +87,7 @@ RSpec.shared_context 'FindMeds Scenario 1 Success' do
     expect(stub).to have_been_requested
   end
 
-  def type_yes_on_reinforcement_question
+  def type_existing_concentration
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
       text: 'Это то лекарство, которое вы используете? Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг',

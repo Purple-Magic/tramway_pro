@@ -16,8 +16,8 @@ describe 'BotTelegram::FindMedsBot' do
         push_search_medicine_button
         type_existing_medicine
         type_existing_company
+        type_existing_form
         type_existing_concentration
-        type_yes_on_reinforcement_question
       end
     end
   end
