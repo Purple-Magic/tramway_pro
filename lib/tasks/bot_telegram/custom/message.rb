@@ -39,4 +39,13 @@ class BotTelegram::Custom::Message
     end
     arguments
   end
+
+  def attributes
+    {
+      text: @text,
+      file: @file,
+      reply_markup: @reply_markup,
+      inline_keyboard: @inline_keyboard
+    }
+  end
 end

@@ -51,8 +51,14 @@ module BotTelegram::MessagesManager
       bot_api.send_message chat_id: chat_id, **message_obj.options
     end
   rescue StandardError => error
+    data = case message_obj.class.to_s
+           when 'String'
+             message_obj
+           when 'BotTelegram::Scenario::Step', 'BotTelegram::Custom::Message'
+             message_obj.attributes
+           end
     if Rails.env.production?
-      Airbrake.notify error, message_obj
+      Airbrake.notify error, data
     else
       Rails.logger.info error
     end
