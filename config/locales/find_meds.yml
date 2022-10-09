@@ -12,6 +12,8 @@ ru:
         what_concentration: 'Какая концентрация действующего вещества %{component} вам нужна?'
         this_medicine: 'Это то лекарство, которое вы используете? %{medicine}'
         we_got_it: 'Мы приняли информацию!'
+      notifications:
+        new_feedback: "Мы получили новую обратную связь от пользователя. Посмотреть её можно здесь http://purple-magic.com/admin/records/%{id}?model=FindMeds::Feedback"
       about:
         text: 'Здесь будет текст о проекте'
       alternative:
