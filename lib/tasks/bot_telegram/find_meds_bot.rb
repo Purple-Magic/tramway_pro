@@ -14,7 +14,7 @@ module BotTelegram::FindMedsBot
 
   BUTTONS = {
     find_medicine: 'Поиск лекарств',
-    start_menu: 'Назад',
+    start_menu: 'В начало',
     about: 'О проекте'
   }.freeze
 
