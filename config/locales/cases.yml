@@ -153,3 +153,6 @@ ru:
     blogs/link:
       plural: ссылки
       genitive: ссылку
+    find_meds/feedback:
+      plural: фидбек
+      genitive: фидбек

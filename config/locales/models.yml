@@ -31,6 +31,7 @@ ru:
       product: Проект
       products/task: Задача
       blogs/link: Ссылка
+      find_meds/feedback: Фидбек
     attributes:
       word:
         main: Определение
