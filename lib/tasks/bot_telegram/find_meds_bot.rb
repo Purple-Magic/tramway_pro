@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module BotTelegram::FindMedsBot
-  DEVELOPER_CHAT = '-818567779'
+  DEVELOPER_CHAT = '-740396896'
 
   MENUS = {
     start_menu: [
