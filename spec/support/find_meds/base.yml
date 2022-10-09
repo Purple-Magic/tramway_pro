@@ -26,6 +26,18 @@ medicines:
       - 'Таб.пролонгированного действия'
     link_to_company:
       - 'receQeH2nuPmxUA7L'
+  - id: 'rec0Fqy4fYDUibmu1'
+    Name: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 100 мг'
+    Drug:
+      - 'finlepcin_id'
+    intersection_and_substance:
+      - 'reccJ82ScIlm1tOxD'
+    form:
+      - 'Таб.пролонгированного действия'
+    link_to_company:
+      - 'receQeH2nuPmxUA7P'
+    concentrations:
+      - 'reccJ82ScIlm1tOxD'
   - id: 'rec421b1dac9935f596'
     Name: 'Тегретол'
     Drug:
@@ -52,9 +64,15 @@ companies:
     Name: 'NOVARTIS FARMA, S.p.A.'
   - id: 'receQeH2nuPmxUA7L'
     Name: 'МОСКОВСКИЙ ЭНДОКРИННЫЙ ЗАВОД, ФГУП'
+  - id: 'receQeH2nuPmxUA7L'
 concentrations:
   - id: 'reccJ82ScIlm1tOxC'
     Name: 'carbamazepine концентрация 400 мг'
     mg_concentration: 400 
+    link_to_active_components:
+      - "rec76PKPUZs1amvBg"
+  - id: 'reccJ82ScIlm1tOxD'
+    Name: 'carbamazepine концентрация 100 мг'
+    mg_concentration: 100 
     link_to_active_components:
       - "rec76PKPUZs1amvBg"

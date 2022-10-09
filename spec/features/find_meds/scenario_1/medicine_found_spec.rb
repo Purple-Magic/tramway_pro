@@ -75,7 +75,8 @@ describe 'BotTelegram::FindMedsBot' do
           text: 'Какая концентрация действующего вещества carbamazepine вам нужна?',
           reply_markup: reply_markup(
             [
-              '400 мг'
+              '400 мг',
+              '100 мг'
             ],
             [
               'В начало',

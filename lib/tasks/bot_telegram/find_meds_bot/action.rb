@@ -51,7 +51,7 @@ class BotTelegram::FindMedsBot::Action
     if drug.present?
       companies = drug.medicines.map do |medicine|
         medicine.company.name
-      end
+      end.uniq
 
       set_next_action :choose_company, medicines: drug.medicines
       answer = i18n_scope(:find_medicine, :found)
