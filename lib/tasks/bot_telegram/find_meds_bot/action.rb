@@ -151,6 +151,9 @@ class BotTelegram::FindMedsBot::Action
       answer = i18n_scope(:find_medicine, :result_message, medicine: medicine['fields']['Name'])
       show options: [['Бот мне помог!'], ['Это не совсем та информация, на которую я надеялся_ась (отправить отзыв)']], answer: answer
     when 'Нет'
+      set_next_action :saving_feedback
+      answer = i18n_scope(:find_medicine, :unfortunately_we_do_not_have_more_info)
+      show options: [['В начало']], answer: answer
     end
   end
 
