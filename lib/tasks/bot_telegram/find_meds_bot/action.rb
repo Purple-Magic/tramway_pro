@@ -83,7 +83,7 @@ class BotTelegram::FindMedsBot::Action
         show options: [forms, ['В начало', 'Нужной формы нет']], answer: answer
       else
         set_next_action :saving_feedback
-        answer = i18n_scope(:find_medicine, :form_not_found)
+        answer = i18n_scope(:find_medicine, :we_dont_have_forms)
         show options: [['В начало']], answer: answer
       end
     end
