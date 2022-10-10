@@ -64,13 +64,13 @@ message_object: message_object
     expect(stub).to have_been_requested
   end
 
-  def type_existing_form(form: nil, component: nil, concentrations: nil)
+  def type_existing_form(form: nil, component: nil, buttons_collection: nil)
     form ||= 'Таб.пролонгированного действия'
     form_button_message = build(:telegram_message, text: form)
 
     component ||= 'carbamazepine'
 
-    concentrations ||= ['400 мг', '100 мг']
+    buttons_collection ||= [['400 мг', '100 мг']]
 
     find_meds_airtable_stub_request table: :concentrations
     find_meds_airtable_stub_request table: :components
@@ -79,7 +79,7 @@ message_object: message_object
       chat_id: chat.telegram_chat_id,
       text: "Какая концентрация действующего вещества #{component} вам нужна?",
       reply_markup: reply_markup(
-        *concentrations,
+        *buttons_collection,
         ['В начало', 'Нужной концентрации нет']
       )
     }

@@ -36,7 +36,7 @@ describe 'BotTelegram::FindMedsBot' do
             type_existing_form(
               form: 'Суспензия для приема внутрь',
               component: 'oxcarbazepine',
-              concentrations: ['60 мг/мл, 250 мл', '60 мг/мл, 100 мл']
+              buttons_collection: [['60 мг/мл, 250 мл', '60 мг/мл, 100 мл']]
             )
             type_existing_concentration(
               concentration: '60 мг/мл, 250 мл',
