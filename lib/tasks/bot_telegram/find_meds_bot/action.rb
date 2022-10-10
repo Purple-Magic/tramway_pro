@@ -143,6 +143,16 @@ class BotTelegram::FindMedsBot::Action
     end
   end
 
+  def reinforcement(answer)
+    case answer
+    when 'Да'
+      medicine = current_state.data['medicine']
+      answer = i18n_scope(:find_medicine, :result_message, medicine: medicine['fields']['Name'])
+      show options: [['Бот мне помог!'], ['Это не совсем та информация, на которую я надеялся_ась (отправить отзыв)']], answer: answer
+    when 'Нет'
+    end
+  end
+
   def saving_feedback(text)
     feedback = FindMeds::FeedbackForm.new FindMeds::Feedback.new
     data_of_conversation = user.current_conversation.map { |state| state['data'] }
@@ -152,10 +162,6 @@ class BotTelegram::FindMedsBot::Action
     else
       send_message_to_user 'Что-то пошло не так'
     end
-  end
-
-  def reinforcement(answer)
-    send_message_to_user 'Дальше пока не умею работать'
   end
 
   private

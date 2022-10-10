@@ -19,6 +19,7 @@ describe 'BotTelegram::FindMedsBot' do
           type_existing_company
           type_existing_form
           type_existing_concentration
+          push_yes_button_on_reinforcement
         end
       end
     end
@@ -39,6 +40,7 @@ describe 'BotTelegram::FindMedsBot' do
               concentration: '60 мг/мл, 250 мл',
               medicine: 'Трилептал "NOVARTIS FARMA, S.p.A." oxcarbazepine  концентрация 150 мг'
             )
+            push_yes_button_on_reinforcement(medicine: 'Трилептал "NOVARTIS FARMA, S.p.A." oxcarbazepine  концентрация 150 мг')
           end
         end
       end

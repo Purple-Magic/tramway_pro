@@ -1,6 +1,6 @@
 RSpec.shared_context 'FindMeds Scenario 1 Success' do
   let(:search_medicine_button_message) { build :telegram_message, text: 'Поиск лекарств' }
-  let(:concentration_button_message) {  }
+  let(:yes_button_message) { build :telegram_message, text: 'Да' }
 
   def push_search_medicine_button
     stub = send_message_stub_request body: {
@@ -96,6 +96,22 @@ RSpec.shared_context 'FindMeds Scenario 1 Success' do
     }
 
     bot_run :find_meds, bot_record: bot_record, message: concentration_button_message, chat: chat, message_object: message_object
+
+    expect(stub).to have_been_requested
+  end
+
+  def push_yes_button_on_reinforcement(medicine: nil)
+    medicine ||= 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг'
+    text = "Мы нашли следующие лекарства, совпадающие с вашим по действующему веществу, форме и концентрации\n🔵 #{medicine}"
+    stub = send_message_stub_request body: {
+      chat_id: chat.telegram_chat_id,
+      text: text, 
+      reply_markup: reply_markup(
+        ['Бот мне помог!'], ['Это не совсем та информация, на которую я надеялся_ась (отправить отзыв)']
+      )
+    }
+
+    bot_run :find_meds, bot_record: bot_record, message: yes_button_message, chat: chat, message_object: message_object
 
     expect(stub).to have_been_requested
   end
