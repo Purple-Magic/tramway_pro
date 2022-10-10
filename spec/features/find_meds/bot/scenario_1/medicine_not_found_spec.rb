@@ -17,7 +17,6 @@ describe 'BotTelegram::FindMedsBot' do
     include_context 'FindMeds Scenario 1 Failure'
 
     describe 'Medicine Not Found' do
-
       context 'Saving feedback' do
         let!(:bot_leopold) { create :leopold_bot }
 
