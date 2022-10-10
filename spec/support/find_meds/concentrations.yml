@@ -33,3 +33,28 @@
   mg_concentration: 0.1
   link_to_active_components:
     - 'recLevothyroxine'
+- Name: 'levothyroxine sodium  концентрация 0.2 мг'
+  id: 'recLevothyroxine02'
+  mg_concentration: 0.2
+  link_to_active_components:
+    - 'recLevothyroxine'
+- Name: 'levothyroxine sodium  концентрация 0.3 мг'
+  id: 'recLevothyroxine03'
+  mg_concentration: 0.3
+  link_to_active_components:
+    - 'recLevothyroxine'
+- Name: 'levothyroxine sodium  концентрация 0.4 мг'
+  id: 'recLevothyroxine04'
+  mg_concentration: 0.4
+  link_to_active_components:
+    - 'recLevothyroxine'
+- Name: 'levothyroxine sodium  концентрация 0.5 мг'
+  id: 'recLevothyroxine05'
+  mg_concentration: 0.5
+  link_to_active_components:
+    - 'recLevothyroxine'
+- Name: 'levothyroxine sodium  концентрация 0.6 мг'
+  id: 'recLevothyroxine06'
+  mg_concentration: 0.6
+  link_to_active_components:
+    - 'recLevothyroxine'
