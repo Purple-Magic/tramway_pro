@@ -1,6 +1,7 @@
 RSpec.shared_context 'FindMeds Scenario 1 Success' do
   let(:search_medicine_button_message) { build :telegram_message, text: 'Поиск лекарств' }
   let(:yes_button_message) { build :telegram_message, text: 'Да' }
+  let(:bot_helped_me_button_message) { build :telegram_message, text: 'Бот мне помог!' }
 
   def push_search_medicine_button
     stub = send_message_stub_request body: {
@@ -112,6 +113,18 @@ RSpec.shared_context 'FindMeds Scenario 1 Success' do
     }
 
     bot_run :find_meds, bot_record: bot_record, message: yes_button_message, chat: chat, message_object: message_object
+
+    expect(stub).to have_been_requested
+  end
+
+  def push_bot_helped_me_on_last_step
+    stub = send_message_stub_request body: {
+      chat_id: chat.telegram_chat_id,
+      text: 'Поздравляем вас!',
+      reply_markup: reply_markup(['В начало'])
+    }
+
+    bot_run :find_meds, bot_record: bot_record, message: bot_helped_me_button_message, chat: chat, message_object: message_object
 
     expect(stub).to have_been_requested
   end

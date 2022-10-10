@@ -147,9 +147,20 @@ class BotTelegram::FindMedsBot::Action
     case answer
     when 'Да'
       medicine = current_state.data['medicine']
+      set_next_action :last_step
       answer = i18n_scope(:find_medicine, :result_message, medicine: medicine['fields']['Name'])
       show options: [['Бот мне помог!'], ['Это не совсем та информация, на которую я надеялся_ась (отправить отзыв)']], answer: answer
     when 'Нет'
+    end
+  end
+
+  def last_step(answer)
+    case answer
+    when 'Бот мне помог!'
+      user.set_finished_state_for bot: bot_record
+      answer = i18n_scope(:find_medicine, :congratulations)
+      show options: [['В начало']], answer: answer
+    when 'Это не совсем та информация, на которую я надеялся_ась (отправить отзыв)'
     end
   end
 
