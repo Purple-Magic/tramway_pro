@@ -1,0 +1,85 @@
+- Name: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг'
+  id: 'rec0Fqy4fYDUibmuQ'
+  Drug:
+    - 'finlepcin_id'
+  intersection_and_substance:
+    - 'reccJ82ScIlm1tOxC'
+  form:
+    - 'Таб.пролонгированного действия'
+  components:
+    - "rec76PKPUZs1amvBg"
+  link_to_company:
+    - 'receQeH2nuPmxUA7P'
+  concentrations:
+    - 'reccJ82ScIlm1tOxC'
+- Name: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 200 мг'
+  id: 'rec0Fqy4fYDUibmu1'
+  Drug:
+    - 'finlepcin_id'
+  intersection_and_substance:
+    - 'reccJ82ScIlm1tOx3'
+  form:
+    - 'Таб.пролонгированного действия'
+  link_to_company:
+    - 'receQeH2nuPmxUA7L'
+- Name: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 100 мг'
+  id: 'rec0Fqy4fYDUibmu1'
+  Drug:
+    - 'finlepcin_id'
+  intersection_and_substance:
+    - 'reccJ82ScIlm1tOxD'
+  form:
+    - 'Таб.пролонгированного действия'
+  link_to_company:
+    - 'receQeH2nuPmxUA7P'
+  concentrations:
+    - 'reccJ82ScIlm1tOxD'
+- Name: 'Тегретол'
+  id: 'rec421b1dac9935f596'
+  Drug:
+    - 'tegretol_id'
+  intersection_and_substance:
+    - 'reccJ82ScIlm1tOxC'
+  form:
+    - 'Таб.пролонгированного действия'
+  link_to_company:
+    - 'receQeH2nuPmxUA7P'
+- Name: 'Кеппра \"UCB Pharma, S.A.\" levetiracetam 300 мл в таре 100 мг/мл'
+  id: "rec2RdTpBfnRIakE9"
+  intersection_and_substance:
+    - "recWTruyz6TJzGgw5"
+  form:
+    - "Раствор для приема внутрь"
+  components:
+    - "rec76PKPUZs1amvBg"
+- Name: 'Трилептал "NOVARTIS FARMA, S.p.A." oxcarbazepine  концентрация 150 мг'
+  id: "recTrileptal"
+  Drug:
+    - 'trileptal_id'
+  form:
+    - "Таб., покр. пленочной оболочкой"
+    - "Суспензия для приема внутрь"
+  components:
+    - "rec76PKPUZs1amvBg"
+  concentrations:
+    - "rectDP1rHRN6ugsoW"
+    - "recyYyUY3sKGOOLVz"
+  link_to_company:
+    - 'receQeH2nuPmxUA7P'
+- Name: 'Цикло-Прогинова "BAYER, AG" estradiol valerate norgestrel'
+  id: "recCikloProginova"
+  Drug:
+    - 'ciklo_proginova_id'
+  link_to_company:
+    - 'recBayerAG'
+- Name: 'Бензиэль "КАНОНФАРМА ПРОДАКШН, ЗАО" benserazide  концентрация 28.5 мг, levodopa  концентрация 100 мг'
+  id: 'recBenziel'
+  Drug:
+    - 'benziel_id'
+  form:
+    - 'Таблетка'
+  link_to_company:
+    - 'recKanonPharma'
+  concentrations:
+    - 'recLevodopa100'
+    - 'recBenserazide28'
