@@ -112,7 +112,10 @@ class BotTelegram::FindMedsBot::Action
       elsif components.count == 1
         set_next_action :choose_concentration, medicines: medicines, concentrations: concentrations
         answer = i18n_scope(:find_medicine, :what_concentration, component: components.first.name)
-        show options: [concentrations.map(&:value), ['В начало', 'Нужной концентрации нет']], answer: answer
+        buttons_collection = concentrations.each_slice(4).map do |concentration|
+          concentration.map(&:value)
+        end
+        show options: [*buttons_collection, ['В начало', 'Нужной концентрации нет']], answer: answer
       elsif components.count.zero?
         send_message_to_user 'Кажется, у нас ошибка в базе данных'
       end

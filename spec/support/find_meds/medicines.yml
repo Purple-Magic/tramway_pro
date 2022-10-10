@@ -105,3 +105,53 @@
     - 'recMerck'
   concentrations:
     - 'recLevothyroxine01'
+- Name: 'Эутирокс "MERCK, KGaA" levothyroxine sodium  концентрация 0.2 мг'
+  id: 'recEutiroks01'
+  Drug:
+    - 'eutiroks_id'
+  form:
+    - 'Таблетка'
+  link_to_company:
+    - 'recMerck'
+  concentrations:
+    - 'recLevothyroxine02'
+- Name: 'Эутирокс "MERCK, KGaA" levothyroxine sodium  концентрация 0.3 мг'
+  id: 'recEutiroks01'
+  Drug:
+    - 'eutiroks_id'
+  form:
+    - 'Таблетка'
+  link_to_company:
+    - 'recMerck'
+  concentrations:
+    - 'recLevothyroxine03'
+- Name: 'Эутирокс "MERCK, KGaA" levothyroxine sodium  концентрация 0.4 мг'
+  id: 'recEutiroks01'
+  Drug:
+    - 'eutiroks_id'
+  form:
+    - 'Таблетка'
+  link_to_company:
+    - 'recMerck'
+  concentrations:
+    - 'recLevothyroxine04'
+- Name: 'Эутирокс "MERCK, KGaA" levothyroxine sodium  концентрация 0.5 мг'
+  id: 'recEutiroks01'
+  Drug:
+    - 'eutiroks_id'
+  form:
+    - 'Таблетка'
+  link_to_company:
+    - 'recMerck'
+  concentrations:
+    - 'recLevothyroxine05'
+- Name: 'Эутирокс "MERCK, KGaA" levothyroxine sodium  концентрация 0.6 мг'
+  id: 'recEutiroks01'
+  Drug:
+    - 'eutiroks_id'
+  form:
+    - 'Таблетка'
+  link_to_company:
+    - 'recMerck'
+  concentrations:
+    - 'recLevothyroxine06'

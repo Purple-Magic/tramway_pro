@@ -79,7 +79,7 @@ message_object: message_object
       chat_id: chat.telegram_chat_id,
       text: "Какая концентрация действующего вещества #{component} вам нужна?",
       reply_markup: reply_markup(
-        concentrations,
+        *concentrations,
         ['В начало', 'Нужной концентрации нет']
       )
     }
