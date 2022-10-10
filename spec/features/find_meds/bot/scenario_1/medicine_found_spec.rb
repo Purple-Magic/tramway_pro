@@ -30,8 +30,15 @@ describe 'BotTelegram::FindMedsBot' do
             push_search_medicine_button
             type_existing_medicine(medicine: 'Трилептал', companies: ["NOVARTIS FARMA, S.p.A."])
             type_existing_company(forms: ["Таб., покр. пленочной оболочкой", "Суспензия для приема внутрь"])
-            type_existing_form(form: "Суспензия для приема внутрь", component: 'oxcarbazepine')
-            type_existing_concentration
+            type_existing_form(
+              form: "Суспензия для приема внутрь",
+              component: 'oxcarbazepine',
+              concentrations: [ '60 мг/мл, 250 мл', '60 мг/мл, 100 мл' ]
+            )
+            type_existing_concentration(
+              concentration: '60 мг/мл, 250 мл',
+              medicine: 'Трилептал "NOVARTIS FARMA, S.p.A." oxcarbazepine  концентрация 150 мг'
+            )
           end
         end
       end

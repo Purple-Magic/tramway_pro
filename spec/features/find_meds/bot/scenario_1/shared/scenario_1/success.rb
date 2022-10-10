@@ -55,11 +55,13 @@ RSpec.shared_context 'FindMeds Scenario 1 Success' do
     expect(stub).to have_been_requested
   end
 
-  def type_existing_form(form: nil, component: nil)
+  def type_existing_form(form: nil, component: nil, concentrations: nil)
     form ||= 'Таб.пролонгированного действия'
     form_button_message = build(:telegram_message, text: form)
 
     component ||= 'carbamazepine'
+
+    concentrations ||= [ '400 мг', '100 мг' ]
 
     find_meds_airtable_stub_request table: :concentrations
     find_meds_airtable_stub_request table: :active_components
@@ -68,14 +70,8 @@ RSpec.shared_context 'FindMeds Scenario 1 Success' do
       chat_id: chat.telegram_chat_id,
       text: "Какая концентрация действующего вещества #{component} вам нужна?",
       reply_markup: reply_markup(
-        [
-          '400 мг',
-          '100 мг'
-        ],
-        [
-          'В начало',
-          'Нужной концентрации нет'
-        ]
+        concentrations,
+        [ 'В начало', 'Нужной концентрации нет' ]
       )
     }
 
@@ -84,19 +80,19 @@ RSpec.shared_context 'FindMeds Scenario 1 Success' do
     expect(stub).to have_been_requested
   end
 
-  def type_existing_concentration(concentration: build(:telegram_message, text: '400 мг'))
+  def type_existing_concentration(concentration: nil, medicine: nil)
+    concentration ||= '400 мг'
+    concentration_button_message = build(:telegram_message, text: concentration)
+
+    medicine ||= 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг'
+
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
-      text: 'Это то лекарство, которое вы используете? Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг',
-      reply_markup: reply_markup(
-        [
-          'Да',
-          'Нет'
-        ]
-      )
+      text: "Это то лекарство, которое вы используете? #{medicine}",
+      reply_markup: reply_markup([ 'Да', 'Нет' ])
     }
 
-    bot_run :find_meds, bot_record: bot_record, message: concentration, chat: chat, message_object: message_object
+    bot_run :find_meds, bot_record: bot_record, message: concentration_button_message, chat: chat, message_object: message_object
 
     expect(stub).to have_been_requested
   end
