@@ -52,7 +52,7 @@ module AirtableHelpers
 
   def single_record_response(table:, id:)
     record = base[table].select do |item|
-      item[:id] == id
+      item[:id] == id.to_s
     end.first
 
     transform_record record
@@ -67,7 +67,18 @@ module AirtableHelpers
   end
 
   def base
-    @find_meds_base ||= YAML.load_file(Rails.root.join('spec', 'support', 'find_meds', 'base.yml')).with_indifferent_access
+    tables = [:companies, :components, :concentrations, :medicines, :drugs]
+
+    @find_meds_base ||= tables.reduce({}) do |hash, table|
+      hash ||= {}
+      hash.merge table => load_table(table)
+    end.with_indifferent_access
+
+    return @find_meds_base
+  end
+
+  def load_table(table)
+    YAML.load_file(Rails.root.join('spec', 'support', 'find_meds', "#{table}.yml"))
   end
 
   def transform_record(record)

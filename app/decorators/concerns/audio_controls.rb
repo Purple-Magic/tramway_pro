@@ -1,7 +1,7 @@
+# frozen_string_literal: true
+
 module Concerns::AudioControls
-  def audio(**options, &block)
-    content_tag :audio, controls: true, style: 'width: 100%' do
-      yield
-    end
+  def audio(**_options)
+    content_tag :audio, controls: true, style: 'width: 100%', &block
   end
 end

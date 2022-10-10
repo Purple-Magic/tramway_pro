@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FindMeds::FeedbackForm < Tramway::Core::ApplicationForm
   include ::BotTelegram::Leopold::Notify
 

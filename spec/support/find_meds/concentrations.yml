@@ -1,0 +1,35 @@
+- Name: 'carbamazepine концентрация 400 мг'
+  id: 'reccJ82ScIlm1tOxC'
+  mg_concentration: 400 
+  link_to_active_components:
+    - "rec76PKPUZs1amvBg"
+- Name: 'carbamazepine концентрация 100 мг'
+  id: 'reccJ82ScIlm1tOxD'
+  mg_concentration: 100 
+  link_to_active_components:
+    - "rec76PKPUZs1amvBg"
+- Name: 'oxcarbazepine 250 мл в таре 60 мг/мл'
+  id: "rectDP1rHRN6ugsoW"
+  link_to_active_components:
+    - "rec4YjjsTO04NDM90"
+  vial_volume: 250
+  concentrated_solution_in_milligrams_per_milliliter: 60
+- Name: 'oxcarbazepine 100 мл в таре 60 мг/мл'
+  id: "recyYyUY3sKGOOLVz"
+  link_to_active_components:
+    - "rec4YjjsTO04NDM90"
+  vial_volume: 100
+  concentrated_solution_in_milligrams_per_milliliter: 60
+- Name: 'benserazide  концентрация 28.5 мг'
+  id: 'recBenserazide28'
+  link_to_active_components:
+    - 'recBenserazide'
+- Name: 'levodopa  концентрация 100 мг'
+  id: 'recLevodopa100'
+  link_to_active_components:
+    - 'recLevopoda'
+- Name: 'levothyroxine sodium  концентрация 0.1 мг'
+  id: 'recLevothyroxine01'
+  mg_concentration: 0.1
+  link_to_active_components:
+    - 'recLevothyroxine'

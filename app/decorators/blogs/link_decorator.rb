@@ -1,45 +1,47 @@
+# frozen_string_literal: true
+
 class Blogs::LinkDecorator < Tramway::Core::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
   delegate_attributes(
-        :id,
-        :url,
-        :deleted_at,
-        :state,
-        :image,
-        :title,
-        :lead,
-        :created_at,
-        :updated_at,
+    :id,
+    :url,
+    :deleted_at,
+    :state,
+    :image,
+    :title,
+    :lead,
+    :created_at,
+    :updated_at
   )
 
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
-      [ :all ]
+      [:all]
     end
 
     def list_attributes
-      [
-        :id,
-        :url,
-        :deleted_at,
-        :state,
+      %i[
+        id
+        url
+        deleted_at
+        state
       ]
     end
 
     def show_attributes
-      [
-        :id,
-        :url,
-        :deleted_at,
-        :state,
-        :image,
-        :title,
-        :lead,
-        :created_at,
-        :updated_at,
+      %i[
+        id
+        url
+        deleted_at
+        state
+        image
+        title
+        lead
+        created_at
+        updated_at
       ]
     end
 

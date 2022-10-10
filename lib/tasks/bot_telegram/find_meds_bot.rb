@@ -40,7 +40,7 @@ module BotTelegram::FindMedsBot
     },
     saving_feedback: {
       state: :waiting_for_saving_feedback
-    },
+    }
   }.freeze
 
   VALIDATIONS = {
