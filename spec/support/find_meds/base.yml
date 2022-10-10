@@ -3,6 +3,8 @@ drugs:
     id: 'finlepcin_id'
   - Name: 'Трилептал'
     id: 'trileptal_id'
+  - Name: 'Цикло-Прогинова'
+    id: 'ciklo_proginova_id'
 medicines:
   - Name: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг'
     id: 'rec0Fqy4fYDUibmuQ'
@@ -72,6 +74,12 @@ medicines:
       - "recyYyUY3sKGOOLVz"
     link_to_company:
       - 'receQeH2nuPmxUA7P'
+  - Name: 'Цикло-Прогинова "BAYER, AG" estradiol valerate norgestrel'
+    id: "recCikloProginova"
+    Drug:
+      - 'ciklo_proginova_id'
+    link_to_company:
+      - 'recBayerAG'
 active_components:
   - Name: "carbamazepine"
     id: "rec76PKPUZs1amvBg"
@@ -82,6 +90,8 @@ companies:
     id: 'receQeH2nuPmxUA7P'
   - Name: 'МОСКОВСКИЙ ЭНДОКРИННЫЙ ЗАВОД, ФГУП'
     id: 'receQeH2nuPmxUA7L'
+  - Name: "BAYER, AG"
+    id: 'recBayerAG'
 concentrations:
   - Name: 'carbamazepine концентрация 400 мг'
     id: 'reccJ82ScIlm1tOxC'
