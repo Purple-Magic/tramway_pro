@@ -106,7 +106,9 @@ class BotTelegram::FindMedsBot::Action
       components = ::BotTelegram::FindMedsBot::Tables::Component.where('id' => concentrations.map(&:link_to_active_components).flatten)
 
       if components.count > 1
-        send_message_to_user 'У этого лекарства больше одного действующего вещества. Я пока не умею с этим работать'
+        set_next_action :saving_feedback
+        answer = 'У этого лекарства более одного действующего вещества, пока что бот не умеет работать с такими лекарствами. Напишите комментарий в свободной форме, что вы хотели найти.'
+        show options: [['В начало']], answer: answer
       elsif components.count == 1
         set_next_action :choose_concentration, medicines: medicines, concentrations: concentrations
         answer = i18n_scope(:find_medicine, :what_concentration, component: components.first.name)

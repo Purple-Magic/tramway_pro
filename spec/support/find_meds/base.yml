@@ -5,6 +5,8 @@ drugs:
     id: 'trileptal_id'
   - Name: 'Цикло-Прогинова'
     id: 'ciklo_proginova_id'
+  - Name: 'Бензиэль'
+    id: 'benziel_id'
 medicines:
   - Name: 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг'
     id: 'rec0Fqy4fYDUibmuQ'
@@ -80,11 +82,26 @@ medicines:
       - 'ciklo_proginova_id'
     link_to_company:
       - 'recBayerAG'
+  - Name: 'Бензиэль "КАНОНФАРМА ПРОДАКШН, ЗАО" benserazide  концентрация 28.5 мг, levodopa  концентрация 100 мг'
+    id: 'recBenziel'
+    Drug:
+      - 'benziel_id'
+    form:
+      - 'Таблетка'
+    link_to_company:
+      - 'recKanonPharma'
+    concentrations:
+      - 'recLevodopa100'
+      - 'recBenserazide28'
 active_components:
   - Name: "carbamazepine"
     id: "rec76PKPUZs1amvBg"
   - Name: "oxcarbazepine"
     id: "rec4YjjsTO04NDM90"
+  - Name: 'benserazide'
+    id: 'recBenserazide'
+  - Name: 'levodopa'
+    id: 'recLevopoda'
 companies:
   - Name: 'NOVARTIS FARMA, S.p.A.'
     id: 'receQeH2nuPmxUA7P'
@@ -92,6 +109,8 @@ companies:
     id: 'receQeH2nuPmxUA7L'
   - Name: "BAYER, AG"
     id: 'recBayerAG'
+  - Name: "КАНОНФАРМА ПРОДАКШН, ЗАО"
+    id: 'recKanonPharma'
 concentrations:
   - Name: 'carbamazepine концентрация 400 мг'
     id: 'reccJ82ScIlm1tOxC'
@@ -115,3 +134,11 @@ concentrations:
       - "rec4YjjsTO04NDM90"
     vial_volume: 100
     concentrated_solution_in_milligrams_per_milliliter: 60
+  - Name: 'benserazide  концентрация 28.5 мг'
+    id: 'recBenserazide28'
+    link_to_active_components:
+      - 'recBenserazide'
+  - Name: 'levodopa  концентрация 100 мг'
+    id: 'recLevodopa100'
+    link_to_active_components:
+      - 'recLevopoda'
