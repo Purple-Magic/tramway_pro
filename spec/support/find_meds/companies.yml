@@ -6,3 +6,7 @@
   id: 'recBayerAG'
 - Name: "КАНОНФАРМА ПРОДАКШН, ЗАО"
   id: 'recKanonPharma'
+- Name: "MERCK, KGaA"
+  id: 'recMerck'
+- Name: 'BERLIN-CHEMIE, AG'
+  id: 'recBerlin'

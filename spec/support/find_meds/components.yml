@@ -6,3 +6,5 @@
   id: 'recBenserazide'
 - Name: 'levodopa'
   id: 'recLevopoda'
+- Name: 'levothyroxine sodium'
+  id: 'recLevothyroxine'

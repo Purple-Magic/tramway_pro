@@ -146,8 +146,15 @@ class BotTelegram::FindMedsBot::Action
     case answer
     when 'Да'
       medicine = current_state.data['medicine']
+      medicines = ::BotTelegram::FindMedsBot::Tables::Medicine.where(
+        'concentrations' => medicine['fields']['concentrations'],
+        'form' => medicine['fields']['form']
+      )
       set_next_action :last_step
-      answer = i18n_scope(:find_medicine, :result_message, medicine: medicine['fields']['Name'])
+      list = medicines.map do |medicine|
+        "🔵 #{medicine.name}"
+      end.join("\n")
+      answer = i18n_scope(:find_medicine, :result_message, list: list)
       show options: [['Бот мне помог!'], ['Это не совсем та информация, на которую я надеялся_ась (отправить отзыв)']],
         answer: answer
     when 'Нет'

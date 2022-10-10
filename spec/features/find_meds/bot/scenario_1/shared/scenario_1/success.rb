@@ -73,7 +73,7 @@ message_object: message_object
     concentrations ||= ['400 мг', '100 мг']
 
     find_meds_airtable_stub_request table: :concentrations
-    find_meds_airtable_stub_request table: :active_components
+    find_meds_airtable_stub_request table: :components
 
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
@@ -107,9 +107,12 @@ message_object: message_object
     expect(stub).to have_been_requested
   end
 
-  def push_yes_button_on_reinforcement(medicine: nil)
-    medicine ||= 'Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг'
-    text = "Мы нашли следующие лекарства, совпадающие с вашим по действующему веществу, форме и концентрации\n🔵 #{medicine}"
+  def push_yes_button_on_reinforcement(medicines: nil)
+    medicines ||= ['Финлепсин Ретард "Teva Pharmaceutical Industries, Ltd." carbamazepine  концентрация 400 мг']
+    list = medicines.map do |medicine|
+      "🔵 #{medicine}"
+    end.join("\n")
+    text = "Мы нашли следующие лекарства, совпадающие с вашим по действующему веществу, форме и концентрации\n#{list}"
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
       text: text,

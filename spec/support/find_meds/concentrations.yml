@@ -28,3 +28,8 @@
   id: 'recLevodopa100'
   link_to_active_components:
     - 'recLevopoda'
+- Name: 'levothyroxine sodium  концентрация 0.1 мг'
+  id: 'recLevothyroxine01'
+  mg_concentration: 0.1
+  link_to_active_components:
+    - 'recLevothyroxine'

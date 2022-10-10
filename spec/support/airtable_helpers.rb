@@ -52,7 +52,7 @@ module AirtableHelpers
 
   def single_record_response(table:, id:)
     record = base[table].select do |item|
-      item[:id] == id
+      item[:id] == id.to_s
     end.first
 
     transform_record record
@@ -67,12 +67,14 @@ module AirtableHelpers
   end
 
   def base
-    @find_meds_base ||= BotTelegram::FindMedsBot::Tables::ApplicationTable.descendants.reduce({}) do |hash, table|
-      next if table.to_s == 'BotTelegram::FindMedsBot::Tables::FindMedsBaseTable'
+    tables = [:companies, :components, :concentrations, :medicines, :drugs]
 
+    @find_meds_base ||= tables.reduce({}) do |hash, table|
       hash ||= {}
-      hash.merge table.table_name => load_table(table.table_name)
+      hash.merge table => load_table(table)
     end.with_indifferent_access
+
+    return @find_meds_base
   end
 
   def load_table(table)
