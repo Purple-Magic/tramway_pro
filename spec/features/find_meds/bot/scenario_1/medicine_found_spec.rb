@@ -9,15 +9,38 @@ describe 'BotTelegram::FindMedsBot' do
   let(:message_object) { create :bot_telegram_message }
 
   context 'Scenario 1' do
-    describe 'Medicine Found' do
-      include_context 'FindMeds Scenario 1 Success'
+    include_context 'FindMeds Scenario 1 Success'
 
-      it 'search medicine by name' do
-        push_search_medicine_button
-        type_existing_medicine
-        type_existing_company
-        type_existing_form
-        type_existing_concentration
+    context 'Main' do
+      describe 'Medicine Found' do
+        it 'search medicine by name' do
+          push_search_medicine_button
+          type_existing_medicine
+          type_existing_company
+          type_existing_form
+          type_existing_concentration
+        end
+      end
+    end
+
+    context 'Various concentrations' do
+      context 'Concentrated solution in milligrams per milliliter:' do
+        describe 'Medicine Found' do
+          it 'search medicine by name' do
+            push_search_medicine_button
+            type_existing_medicine(medicine: 'Трилептал', companies: ["NOVARTIS FARMA, S.p.A."])
+            type_existing_company(forms: ["Таб., покр. пленочной оболочкой", "Суспензия для приема внутрь"])
+            type_existing_form(
+              form: "Суспензия для приема внутрь",
+              component: 'oxcarbazepine',
+              concentrations: [ '60 мг/мл, 250 мл', '60 мг/мл, 100 мл' ]
+            )
+            type_existing_concentration(
+              concentration: '60 мг/мл, 250 мл',
+              medicine: 'Трилептал "NOVARTIS FARMA, S.p.A." oxcarbazepine  концентрация 150 мг'
+            )
+          end
+        end
       end
     end
   end
