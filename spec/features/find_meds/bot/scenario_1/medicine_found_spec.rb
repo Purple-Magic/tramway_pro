@@ -30,12 +30,12 @@ describe 'BotTelegram::FindMedsBot' do
         describe 'Medicine Found' do
           it 'search medicine by name' do
             push_search_medicine_button
-            type_existing_medicine(medicine: 'Трилептал', companies: ["NOVARTIS FARMA, S.p.A."])
-            type_existing_company(forms: ["Таб., покр. пленочной оболочкой", "Суспензия для приема внутрь"])
+            type_existing_medicine(medicine: 'Трилептал', companies: ['NOVARTIS FARMA, S.p.A.'])
+            type_existing_company(forms: ['Таб., покр. пленочной оболочкой', 'Суспензия для приема внутрь'])
             type_existing_form(
-              form: "Суспензия для приема внутрь",
+              form: 'Суспензия для приема внутрь',
               component: 'oxcarbazepine',
-              concentrations: [ '60 мг/мл, 250 мл', '60 мг/мл, 100 мл' ]
+              concentrations: ['60 мг/мл, 250 мл', '60 мг/мл, 100 мл']
             )
             type_existing_concentration(
               concentration: '60 мг/мл, 250 мл',

@@ -13,7 +13,6 @@ class LeopoldSendItWayHistoryJob < ActiveJob::Base
 
       send_if_anniversary Podcast::EpisodeDecorator.decorate(episode)
     end
-
   rescue StandardError => error
     Rails.env.development? ? puts(error) : Airbrake.notify(error)
   end
@@ -28,6 +27,6 @@ class LeopoldSendItWayHistoryJob < ActiveJob::Base
       ::BotTelegram::Leopold::ItWayPro::HISTORY_CHANNEL,
       content.model.trailer_video.path,
       caption: content.telegram_reminder_post_text
-    ) 
+    )
   end
 end

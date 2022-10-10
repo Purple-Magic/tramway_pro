@@ -55,7 +55,7 @@ module Podcast::Episodes::SocialPostsConcern
     text += "\n\n"
     years = TimeDifference.between(DateTime.now, publish_date).in_years.round
     ago = if years == 1
-            "1 год"
+            '1 год'
           elsif years < 4
             "#{years} года"
           else

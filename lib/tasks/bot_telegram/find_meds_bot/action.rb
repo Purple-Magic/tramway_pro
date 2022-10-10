@@ -70,7 +70,7 @@ class BotTelegram::FindMedsBot::Action
       show options: [['В начало']], answer: answer
     else
       company = ::BotTelegram::FindMedsBot::Tables::Company.find_by('Name' => name)
-      medicines = current_state.data['medicines'].select do |medicine| 
+      medicines = current_state.data['medicines'].select do |medicine|
         medicine['fields']['link_to_company'].include? company.id
       end
       forms = medicines.map do |medicine|
@@ -95,7 +95,7 @@ class BotTelegram::FindMedsBot::Action
       answer = i18n_scope(:find_medicine, :form_not_found)
       show options: [['В начало']], answer: answer
     else
-      medicines = current_state.data['medicines'].select do |medicine| 
+      medicines = current_state.data['medicines'].select do |medicine|
         medicine['fields']['form'].include? form
       end
       concentrations_ids = medicines.map do |medicine|
@@ -130,15 +130,14 @@ class BotTelegram::FindMedsBot::Action
       concentration = concentrations.select do |concentration|
         concentration.value == value
       end.first
-      medicines = current_state.data['medicines'].select do |medicine| 
+      medicines = current_state.data['medicines'].select do |medicine|
         medicine['fields']['concentrations'].include? concentration.id
       end
       if medicines.count == 1
         medicine = medicines.first
         set_next_action :reinforcement, medicine: medicine
         answer = i18n_scope(:find_medicine, :this_medicine, medicine: medicine['fields']['Name'])
-        show options: [['Да', 'Нет']], answer: answer
-      else
+        show options: [%w[Да Нет]], answer: answer
       end
     end
   end
@@ -149,7 +148,8 @@ class BotTelegram::FindMedsBot::Action
       medicine = current_state.data['medicine']
       set_next_action :last_step
       answer = i18n_scope(:find_medicine, :result_message, medicine: medicine['fields']['Name'])
-      show options: [['Бот мне помог!'], ['Это не совсем та информация, на которую я надеялся_ась (отправить отзыв)']], answer: answer
+      show options: [['Бот мне помог!'], ['Это не совсем та информация, на которую я надеялся_ась (отправить отзыв)']],
+        answer: answer
     when 'Нет'
       set_next_action :saving_feedback
       answer = i18n_scope(:find_medicine, :unfortunately_we_do_not_have_more_info)
@@ -173,7 +173,7 @@ class BotTelegram::FindMedsBot::Action
   def saving_feedback(text)
     feedback = FindMeds::FeedbackForm.new FindMeds::Feedback.new
     data_of_conversation = user.current_conversation.map { |state| state['data'] }
-    if feedback.submit text: text, data: data_of_conversation 
+    if feedback.submit text: text, data: data_of_conversation
       answer = i18n_scope(:find_medicine, :we_got_it)
       show options: [['В начало']], answer: answer
     else

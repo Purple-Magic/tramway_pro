@@ -67,7 +67,8 @@ module AirtableHelpers
   end
 
   def base
-    @find_meds_base ||= YAML.load_file(Rails.root.join('spec', 'support', 'find_meds', 'base.yml')).with_indifferent_access
+    @find_meds_base ||= YAML.load_file(Rails.root.join('spec', 'support', 'find_meds',
+      'base.yml')).with_indifferent_access
   end
 
   def transform_record(record)

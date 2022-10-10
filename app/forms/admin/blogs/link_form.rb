@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::Blogs::LinkForm < Tramway::Core::ApplicationForm
   properties :url, :image, :title, :lead, :project_id, :link_type
 

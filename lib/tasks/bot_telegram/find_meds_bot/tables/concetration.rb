@@ -4,8 +4,8 @@ class BotTelegram::FindMedsBot::Tables::Concentration < BotTelegram::FindMedsBot
   self.base_key = ENV['FIND_MEDS_MAIN_BASE']
   self.table_name = 'concentrations'
 
-  belongs_to :component, class: 'BotTelegram::FindMedsBot::Tables::Component', column: "Действующее вещество"
-  
+  belongs_to :component, class: 'BotTelegram::FindMedsBot::Tables::Component', column: 'Действующее вещество'
+
   CONCENTRATION_IN_GRAM = 'mg_concentration'
   VIAL_VOLUME = 'vial_volume'
   CONCENTRATED_SOLUTION_IN_MILLIGRAMS_PER_MILLILITER = 'concentrated_solution_in_milligrams_per_milliliter'
@@ -14,7 +14,7 @@ class BotTelegram::FindMedsBot::Tables::Concentration < BotTelegram::FindMedsBot
     CONCENTRATION_IN_GRAM => 'мг',
     VIAL_VOLUME => 'мл',
     CONCENTRATED_SOLUTION_IN_MILLIGRAMS_PER_MILLILITER => 'мг/мл'
-  }
+  }.freeze
 
   def value
     if concentration_in_grams?
