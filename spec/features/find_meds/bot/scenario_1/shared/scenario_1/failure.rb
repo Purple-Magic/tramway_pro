@@ -4,6 +4,9 @@ RSpec.shared_context 'FindMeds Scenario 1 Failure' do
   let(:no_needed_company_button_message) { build :telegram_message, text: 'Нужной фирмы нет' }
   let(:no_needed_form_button_message) { build :telegram_message, text: 'Нужной формы нет' }
   let(:no_needed_concentration_button_message) { build :telegram_message, text: 'Нужной концентрации нет' }
+  let(:its_not_what_i_wanted_message) do
+    build :telegram_message, text: 'Это не совсем та информация, на которую я надеялся_ась (отправить отзыв)'
+  end
 
   def type_not_existing_medicine
     find_meds_airtable_stub_request table: :drugs
@@ -98,6 +101,18 @@ RSpec.shared_context 'FindMeds Scenario 1 Failure' do
     }
 
     bot_run :find_meds, bot_record: bot_record, message: to_beginning_button_message, chat: chat, message_object: message_object
+
+    expect(stub).to have_been_requested
+  end
+
+  def push_bot_didnt_help_me_on_last_step
+    stub = send_message_stub_request body: {
+      chat_id: chat.telegram_chat_id,
+      text: 'Мы будем вам благодарны, если вы введёте информацию о том лекарстве, которое вы искали (по возможности, введите название, компанию, действующее вещество и концентрацию)',
+      reply_markup: reply_markup([ 'В начало' ])
+    }
+
+    bot_run :find_meds, bot_record: bot_record, message: its_not_what_i_wanted_message, chat: chat, message_object: message_object
 
     expect(stub).to have_been_requested
   end
