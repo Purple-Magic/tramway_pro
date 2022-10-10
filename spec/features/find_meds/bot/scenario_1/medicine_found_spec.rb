@@ -33,7 +33,7 @@ describe 'BotTelegram::FindMedsBot' do
           type_existing_company(company: 'MERCK, KGaA', forms: ['Таблетка'])
           type_existing_form(
             form: 'Таблетка',
-            concentrations: [['0.1 мг', '0.2 мг', '0.3 мг', '0.4 мг'], ['0.5 мг', '0.6 мг']],
+            buttons_collection: [['0.1 мг', '0.2 мг', '0.3 мг', '0.4 мг'], ['0.5 мг', '0.6 мг']],
             component: 'levothyroxine sodium',
             
           )
@@ -63,7 +63,7 @@ describe 'BotTelegram::FindMedsBot' do
             type_existing_form(
               form: 'Суспензия для приема внутрь',
               component: 'oxcarbazepine',
-              concentrations: ['60 мг/мл, 250 мл', '60 мг/мл, 100 мл']
+              buttons_collection: [['60 мг/мл, 250 мл', '60 мг/мл, 100 мл']]
             )
             type_existing_concentration(
               concentration: '60 мг/мл, 250 мл',
