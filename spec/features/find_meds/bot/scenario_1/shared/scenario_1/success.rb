@@ -39,8 +39,11 @@ RSpec.shared_context 'FindMeds Scenario 1 Success' do
   end
 
   def type_existing_company(company: nil, forms: nil)
-    company ||= build(:telegram_message, text: 'NOVARTIS FARMA, S.p.A.')
+    company ||= 'NOVARTIS FARMA, S.p.A.'
+    company_button_message = build(:telegram_message, text: company)
+
     forms ||=  [ 'Таб.пролонгированного действия' ]
+
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
       text: 'Какой лекарственной формулой вы пользуетесь?',
@@ -50,7 +53,7 @@ RSpec.shared_context 'FindMeds Scenario 1 Success' do
       )
     }
 
-    bot_run :find_meds, bot_record: bot_record, message: company, chat: chat, message_object: message_object
+    bot_run :find_meds, bot_record: bot_record, message: company_button_message, chat: chat, message_object: message_object
 
     expect(stub).to have_been_requested
   end
