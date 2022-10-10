@@ -77,9 +77,15 @@ class BotTelegram::FindMedsBot::Action
         medicine['fields']['form']
       end.flatten.uniq
 
-      set_next_action :choose_form, medicines: medicines
-      answer = i18n_scope(:find_medicine, :what_form)
-      show options: [forms, ['В начало', 'Нужной формы нет']], answer: answer
+      if forms.any?
+        set_next_action :choose_form, medicines: medicines
+        answer = i18n_scope(:find_medicine, :what_form)
+        show options: [forms, ['В начало', 'Нужной формы нет']], answer: answer
+      else
+        set_next_action :saving_feedback
+        answer = i18n_scope(:find_medicine, :form_not_found)
+        show options: [['В начало']], answer: answer
+      end
     end
   end
 
