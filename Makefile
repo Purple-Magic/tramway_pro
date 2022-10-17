@@ -18,6 +18,8 @@ restart_production:
 	ansible-playbook -i deploy/inventory deploy/restart.yml
 install:
 	sudo apt-get install imagemagick
+	bundle install
+	echo "NOW! Run sudo make configure"
 configure:
 	cp config/database.sample.yml config/database.yml
 	cp config/secrets.sample.yml config/secrets.yml
