@@ -28,16 +28,17 @@ module Podcast::Episodes::MusicConcern
   end
 
   def find_music(music_type)
-    path = podcast.musics.where(music_type: music_type).first.file.path
-    {
-      path: path,
-      duration: FFMPEG::Movie.new(path).duration
-    }
+    path = podcast.musics.where(music_type: music_type).first&.file&.path
+    if path.present?
+      { path: path, duration: FFMPEG::Movie.new(path).duration }
+    else
+      { duration: 0 }
+    end
   end
 
   def render_whole_length_music(music_output)
     command = write_logs content_concat(
-      inputs: [find_music(:begin)[:path]] + samples + [find_music(:finish)[:path]],
+      inputs: [find_music(:begin)[:path]] + samples + [find_music(:finish)[:path]].compact,
       output: music_output
     )
     log_command 'Render whole length music', command
