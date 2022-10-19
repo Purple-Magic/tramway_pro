@@ -1,173 +1,173 @@
-on:
-  push:
-    branches:
-      - master
-      - develop
-  pull_request:
-    branches:
-      - master
-      - develop
-jobs:
-  syntax_check:
-    runs-on: ubuntu-latest
+# on:
+#   push:
+#     branches:
+#       - master
+#       - develop
+#   pull_request:
+#     branches:
+#       - master
+#       - develop
+# jobs:
+#   syntax_check:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v1
+#     steps:
+#       - uses: actions/checkout@v1
 
-      - name: Set up Ruby 2.7
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-          bundle-cache: true
+#       - name: Set up Ruby 2.7
+#         uses: actions/setup-ruby@v1
+#         with:
+#           ruby-version: 2.7
+#           bundle-cache: true
 
-      - name: Run syntax check
-        run: |
-          mkdir /tmp/syntax-check-results
-          find app bin config db lib spec -type f -name "*.rb" -o -name "*.rake" | xargs -l -P 0 -I{} ruby -c {} 1> /dev/null 2> >(tee -a /tmp/syntax-check-results.txt >&2)
+#       - name: Run syntax check
+#         run: |
+#           mkdir /tmp/syntax-check-results
+#           find app bin config db lib spec -type f -name "*.rb" -o -name "*.rake" | xargs -l -P 0 -I{} ruby -c {} 1> /dev/null 2> >(tee -a /tmp/syntax-check-results.txt >&2)
 
-  smell_check:
-    runs-on: ubuntu-latest
+#   smell_check:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v1
+#     steps:
+#       - uses: actions/checkout@v1
 
-      - name: Set up Ruby 2.7
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-          bundle-cache: true
+#       - name: Set up Ruby 2.7
+#         uses: actions/setup-ruby@v1
+#         with:
+#           ruby-version: 2.7
+#           bundle-cache: true
 
-      - name: Install reek
-        run: |
-          gem install reek -v '6.0.6'
+#       - name: Install reek
+#         run: |
+#           gem install reek -v '6.0.6'
 
-      - name: Show reek version
-        run: |
-          reek -v
+#       - name: Show reek version
+#         run: |
+#           reek -v
 
-      - name: Run smell check
-        run: |
-          reek -c .reek.yml .
+#       - name: Run smell check
+#         run: |
+#           reek -c .reek.yml .
 
-      - name: Rocket.Chat Notification
-        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
-        if: always()
-        with:
-          username: bot_leopold
-          type: ${{ job.status }}
-          job_name: '*Tramway Pro Smell Check*'
-          mention: 'here'
-          channel: 'dNei2bg5ufmQFdFWx'
-          url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
-          commit: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Rocket.Chat Notification
+#         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
+#         if: always()
+#         with:
+#           username: bot_leopold
+#           type: ${{ job.status }}
+#           job_name: '*Tramway Pro Smell Check*'
+#           mention: 'here'
+#           channel: 'dNei2bg5ufmQFdFWx'
+#           url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
+#           commit: true
+#           token: ${{ secrets.GITHUB_TOKEN }}
 
-  rubocop:
-    runs-on: ubuntu-latest
+#   rubocop:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v1
+#     steps:
+#       - uses: actions/checkout@v1
 
-      - name: Set up Ruby 2.7
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-          bundle-cache: true
+#       - name: Set up Ruby 2.7
+#         uses: actions/setup-ruby@v1
+#         with:
+#           ruby-version: 2.7
+#           bundle-cache: true
 
-      - name: Install rubocop
-        run: |
-          gem install rubocop
+#       - name: Install rubocop
+#         run: |
+#           gem install rubocop
 
-      - name: Running Linter
-        run:
-          rubocop
+#       - name: Running Linter
+#         run:
+#           rubocop
 
-      - name: Rocket.Chat Notification
-        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
-        if: always()
-        with:
-          username: bot_leopold
-          type: ${{ job.status }}
-          job_name: '*Tramway Pro Linter*'
-          mention: 'here'
-          channel: 'dNei2bg5ufmQFdFWx'
-          url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
-          commit: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Rocket.Chat Notification
+#         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
+#         if: always()
+#         with:
+#           username: bot_leopold
+#           type: ${{ job.status }}
+#           job_name: '*Tramway Pro Linter*'
+#           mention: 'here'
+#           channel: 'dNei2bg5ufmQFdFWx'
+#           url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
+#           commit: true
+#           token: ${{ secrets.GITHUB_TOKEN }}
 
-  tests: 
-    runs-on: ubuntu-latest
+#   tests: 
+#     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:11.5
-        ports: ["5432:5432"]
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+#     services:
+#       postgres:
+#         image: postgres:11.5
+#         ports: ["5432:5432"]
+#         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
-    steps:
-      - uses: actions/checkout@v1
+#     steps:
+#       - uses: actions/checkout@v1
 
-      - name: Set up Ruby 2.7
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-          bundle-cache: true
+#       - name: Set up Ruby 2.7
+#         uses: actions/setup-ruby@v1
+#         with:
+#           ruby-version: 2.7
+#           bundle-cache: true
 
-      - name: Install PostgreSQL 11 client
-        run: |
-          sudo apt-get -yqq install libpq-dev
+#       - name: Install PostgreSQL 11 client
+#         run: |
+#           sudo apt-get -yqq install libpq-dev
 
-      - uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
+#       - uses: actions/cache@v2
+#         with:
+#           path: vendor/bundle
+#           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+#           restore-keys: |
+#             ${{ runner.os }}-gems-
 
-      - name: Install gems
-        env:
-          PGHOST: localhost
-          PGUSER: postgres
-          RAILS_ENV: test
-        run: |
-          gem install bundler
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
+#       - name: Install gems
+#         env:
+#           PGHOST: localhost
+#           PGUSER: postgres
+#           RAILS_ENV: test
+#         run: |
+#           gem install bundler
+#           bundle config path vendor/bundle
+#           bundle install --jobs 4 --retry 3
 
-      - name: Setup application
-        env:
-          PGHOST: localhost
-          PGUSER: postgres
-          RAILS_ENV: test
-          NODE_ENV: test
-          ENV: test
-          CHROME_DRIVER_VERSION: 104.0.5112.79
-          AIR_TABLE_API_KEY: key123
-        run: |
-          echo "127.0.0.1 it-way.test" | sudo tee -a /etc/hosts
-          echo "127.0.0.1 kalashnikovisme.test" | sudo tee -a /etc/hosts
-          echo "127.0.0.1 tramway.test" | sudo tee -a /etc/hosts
-          echo "127.0.0.1 engineervol.test" | sudo tee -a /etc/hosts
-          echo "127.0.0.1 listai.test" | sudo tee -a /etc/hosts
-          echo "127.0.0.1 purple-magic.test" | sudo tee -a /etc/hosts
-          echo "127.0.0.1 red-magic.test" | sudo tee -a /etc/hosts
-          echo "127.0.0.1 freedvs.test" | sudo tee -a /etc/hosts
-          cp config/database.sample.yml config/database.yml
-          cp config/secrets.sample.yml config/secrets.yml
-          bin/rails db:create db:migrate db:seed
-          # bin/rails parallel:setup
-          bundle exec rspec
-          # bin/rails parallel:spec --verbose
+#       - name: Setup application
+#         env:
+#           PGHOST: localhost
+#           PGUSER: postgres
+#           RAILS_ENV: test
+#           NODE_ENV: test
+#           ENV: test
+#           CHROME_DRIVER_VERSION: 104.0.5112.79
+#           AIR_TABLE_API_KEY: key123
+#         run: |
+#           echo "127.0.0.1 it-way.test" | sudo tee -a /etc/hosts
+#           echo "127.0.0.1 kalashnikovisme.test" | sudo tee -a /etc/hosts
+#           echo "127.0.0.1 tramway.test" | sudo tee -a /etc/hosts
+#           echo "127.0.0.1 engineervol.test" | sudo tee -a /etc/hosts
+#           echo "127.0.0.1 listai.test" | sudo tee -a /etc/hosts
+#           echo "127.0.0.1 purple-magic.test" | sudo tee -a /etc/hosts
+#           echo "127.0.0.1 red-magic.test" | sudo tee -a /etc/hosts
+#           echo "127.0.0.1 freedvs.test" | sudo tee -a /etc/hosts
+#           cp config/database.sample.yml config/database.yml
+#           cp config/secrets.sample.yml config/secrets.yml
+#           bin/rails db:create db:migrate db:seed
+#           # bin/rails parallel:setup
+#           bundle exec rspec
+#           # bin/rails parallel:spec --verbose
 
-      - name: Rocket.Chat Notification
-        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
-        if: always()
-        with:
-          username: bot_leopold
-          type: ${{ job.status }}
-          job_name: '*Tests*'
-          mention: 'here'
-          channel: 'dNei2bg5ufmQFdFWx'
-          url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
-          commit: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Rocket.Chat Notification
+#         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
+#         if: always()
+#         with:
+#           username: bot_leopold
+#           type: ${{ job.status }}
+#           job_name: '*Tests*'
+#           mention: 'here'
+#           channel: 'dNei2bg5ufmQFdFWx'
+#           url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
+#           commit: true
+#           token: ${{ secrets.GITHUB_TOKEN }}
