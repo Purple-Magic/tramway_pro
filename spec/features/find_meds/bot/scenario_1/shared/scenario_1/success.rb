@@ -30,10 +30,10 @@ message_object: message_object
 
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
-      text: 'Мы нашли лекараство. Лекарством какой фирмы вы пользуетесь?',
+      text: 'Мы нашли лекарство. Лекарством какого производителя вы пользуетесь?',
       reply_markup: reply_markup(
         companies,
-        ['В начало', 'Нужной фирмы нет']
+        ['В начало', 'Нужного производителя нет']
       )
     }
 
