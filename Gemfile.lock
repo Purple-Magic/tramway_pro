@@ -475,6 +475,8 @@ GEM
     ruby_parser (3.19.1)
       sexp_processor (~> 4.16)
     rubyzip (2.3.2)
+    rufus-scheduler (3.8.2)
+      fugit (~> 1.1, >= 1.1.6)
     russia_regions (0.0.6)
     russian (0.6.0)
       i18n (>= 0.5.0)
@@ -520,6 +522,11 @@ GEM
     sidekiq-cron (1.2.0)
       fugit (~> 1.1)
       sidekiq (>= 4.2.1)
+    sidekiq-scheduler (4.0.3)
+      redis (>= 4.2.0)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 4, < 7)
+      tilt (>= 1.4.0)
     simple_form (5.0.3)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -755,6 +762,7 @@ DEPENDENCIES
   sidekiq (= 6.2.1)
   sidekiq-batch
   sidekiq-cron (~> 1.1)
+  sidekiq-scheduler
   simple_form (>= 5.0.0)
   smart_buttons (= 1.0.0.1)
   spring
