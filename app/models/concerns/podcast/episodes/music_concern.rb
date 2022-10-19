@@ -25,7 +25,7 @@ module Podcast::Episodes::MusicConcern
     @sample_music = find_music(:sample)[:path]
 
     (1..samples_count).to_a.map do
-      @sample_music 
+      @sample_music
     end
   end
 

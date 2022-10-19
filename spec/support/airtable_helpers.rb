@@ -67,14 +67,14 @@ module AirtableHelpers
   end
 
   def base
-    tables = [:companies, :components, :concentrations, :medicines, :drugs]
+    tables = %i[companies components concentrations medicines drugs]
 
     @find_meds_base ||= tables.reduce({}) do |hash, table|
       hash ||= {}
       hash.merge table => load_table(table)
     end.with_indifferent_access
 
-    return @find_meds_base
+    @find_meds_base
   end
 
   def load_table(table)
