@@ -34,8 +34,7 @@ describe 'BotTelegram::FindMedsBot' do
           type_existing_form(
             form: 'Таблетка',
             buttons_collection: [['0.1 мг', '0.2 мг', '0.3 мг', '0.4 мг'], ['0.5 мг', '0.6 мг']],
-            component: 'levothyroxine sodium',
-            
+            component: 'levothyroxine sodium'
           )
           type_existing_concentration(
             concentration: '0.1 мг',
