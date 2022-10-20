@@ -5,7 +5,7 @@ class Kalashnikovisme::Web::WelcomeController < Tramway::Core::ApplicationContro
 
   def index
     @podcast = Podcast.unscoped.find(2)
-    @links = Blogs::Link.all
+    @links = Blogs::Link.all.order(id: :desc)
     @episodes = Podcast::Episode.unscoped.where(podcast_id: @podcast.id).where.not(public_title: nil).order(created_at: :desc).where(deleted_at: nil)
   end
 end
