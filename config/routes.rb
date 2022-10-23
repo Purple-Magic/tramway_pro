@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       namespace :api do
         namespace :v1 do
           namespace :products do
-            resources :time_logs, only: [ :create, :update, :delete ]
+            resources :jira, only: [ :create ]
           end
         end
       end
