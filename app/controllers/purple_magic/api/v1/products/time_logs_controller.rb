@@ -1,4 +1,4 @@
-class PurpleMagic::Api::V1::TimeLogsController < PurpleMagic::Api::ApplicationController
+class PurpleMagic::Api::V1::Products::TimeLogsController < PurpleMagic::Api::ApplicationController
   def create
     begin
       raise 'TimeLogCreate'
