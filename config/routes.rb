@@ -17,6 +17,16 @@ Rails.application.routes.draw do
       resources :certificates, only: :show
       resources :podcasts, only: :show
     end
+
+    namespace :purple_magic do
+      namespace :api do
+        namespace :v1 do
+          namespace :products do
+            resources :time_logs, only: [ :create, :update, :delete ]
+          end
+        end
+      end
+    end
   end
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:kalashnikovisme]) do
