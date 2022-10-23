@@ -3,7 +3,7 @@ class PurpleMagic::Api::V1::Products::TimeLogsController < PurpleMagic::Api::App
     begin
       raise 'TimeLogCreate'
     rescue StandardError => error
-      Airbrake.notify error
+      Airbrake.notify error, params: params
     end
   end
 
@@ -11,7 +11,7 @@ class PurpleMagic::Api::V1::Products::TimeLogsController < PurpleMagic::Api::App
     begin
       raise 'TimeLogUpdate'
     rescue StandardError => error
-      Airbrake.notify error
+      Airbrake.notify error, params: params
     end
   end
 
@@ -19,7 +19,7 @@ class PurpleMagic::Api::V1::Products::TimeLogsController < PurpleMagic::Api::App
     begin
       raise 'TimeLogDelete'
     rescue StandardError => error
-      Airbrake.notify error
+      Airbrake.notify error, params: params
     end
   end
 end
