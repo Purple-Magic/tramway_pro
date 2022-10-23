@@ -52,8 +52,13 @@ Rails.application.routes.draw do
           namespace :estimation do
             resources :projects, only: :update
           end
+
           namespace :leopold do
             resources :messages, only: :create
+          end
+
+          namespace :products do
+            resources :time_logs, only: [ :create, :update, :delete ]
           end
         end
       end
