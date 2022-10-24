@@ -1,5 +1,11 @@
 class PurpleMagic::Api::V1::Products::JiraController < PurpleMagic::Api::ApplicationController
   def create
+    webhook = WebhookForm.new Webhook.new
+    webhook_params = { service: :jira, params: params, headers: request.headers }
+    unless webhook.submit webhook_params
+      Airbrake.notify StandardError.new('Webhook is not saved'), **webhook_params
+    end
+
     case params[:webhook_event] 
     when 'worklog_created'
       if params[:worklog][:author][:display_name] == 'Павел Калашников'
