@@ -11,7 +11,7 @@ class ProductDecorator < ApplicationDecorator
 
   class << self
     def collections
-      [:all]
+      [:in_progress, :finished, :all]
     end
 
     def list_attributes
@@ -123,6 +123,13 @@ class ProductDecorator < ApplicationDecorator
         begin_date = (begin_date + 1.send(period)).send "beginning_of_#{period}"
         end_date = (end_date + 1.send(period)).send "end_of_#{period}"
       end
+    end
+  end
+
+  def product_state_button_color(event)
+    case event
+    when :finish
+      :success
     end
   end
 end
