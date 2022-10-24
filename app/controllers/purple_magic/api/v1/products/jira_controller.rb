@@ -34,7 +34,7 @@ class PurpleMagic::Api::V1::Products::JiraController < PurpleMagic::Api::Applica
         t.data&.dig('jira_worklog_id') == params[:worklog][:id]
       end.first
       if time_log.present?
-        t.update!(
+        time_log.update!(
           time_spent: params[:worklog][:time_spent],
           comment: params[:worklog][:comment],
           passed_at: params[:worklog][:created_at],
