@@ -1,5 +1,7 @@
 class PurpleMagic::Api::V1::Products::JiraController < PurpleMagic::Api::ApplicationController
   def create
+    ENV['PROJECT_URL'] = 'purple-magic.com'
+
     webhook = WebhookForm.new Webhook.new
     unless webhook.submit service: :jira, params: params[:jira]
       Airbrake.notify StandardError.new('Webhook is not saved'), service: :jira, params: params[:jira]
@@ -10,7 +12,7 @@ class PurpleMagic::Api::V1::Products::JiraController < PurpleMagic::Api::Applica
       if params[:worklog][:author][:display_name] == 'Павел Калашников'
         jira_issue_id = params[:worklog][:issue_id]
         task = Products::Task.all.select do |t|
-          t.data.dig('jira_issue_id') == jira_issue_id
+          t.data&.dig('jira_issue_id') == jira_issue_id
         end.first
 
         unless task.present?
