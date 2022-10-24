@@ -10,7 +10,8 @@ class PurpleMagic::Api::V1::Products::JiraController < PurpleMagic::Api::Applica
       end
       task.time_logs.create! user_id: 43,
         time_spent: params[:worklog][:time_spent],
-        comment: params[:worklog][:comment]
+        comment: params[:worklog][:comment],
+        passed_at: params[:worklog][:created_at]
     end
   end
 end
