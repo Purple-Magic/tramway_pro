@@ -86,3 +86,7 @@ ru:
         events:
           start: Старт!
           stop: Стоп
+    product:
+      product_state:
+        events:
+          finish: Завершить

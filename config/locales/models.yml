@@ -280,3 +280,6 @@ ru:
     estimation/project:
       confirmed: Запущенные
       declined: Отклонённые
+    product:
+      active: Активные
+      finished: Завершённые
