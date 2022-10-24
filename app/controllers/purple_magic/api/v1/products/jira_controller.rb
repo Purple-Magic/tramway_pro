@@ -24,6 +24,22 @@ class PurpleMagic::Api::V1::Products::JiraController < PurpleMagic::Api::Applica
           passed_at: params[:worklog][:created_at],
           data: { jira_worklog_id: params[:worklog][:id] }
       end
+    when 'worklog_deleted'
+      time_log = TimeLog.all.select do |t|
+        t.data&.dig('jira_worklog_id') == params[:worklog][:id]
+      end.first
+      time_log.destroy if time_log.present?
+    when 'worklog_updated'
+      time_log = TimeLog.all.select do |t|
+        t.data&.dig('jira_worklog_id') == params[:worklog][:id]
+      end.first
+      if time_log.present?
+        t.update!(
+          time_spent: params[:worklog][:time_spent],
+          comment: params[:worklog][:comment],
+          passed_at: params[:worklog][:created_at],
+        )
+      end
     end
   end
 end
