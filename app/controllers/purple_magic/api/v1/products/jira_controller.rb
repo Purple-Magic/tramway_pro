@@ -3,7 +3,7 @@ class PurpleMagic::Api::V1::Products::JiraController < PurpleMagic::Api::Applica
     ENV['PROJECT_URL'] = 'purple-magic.com'
 
     webhook = WebhookForm.new Webhook.new
-    unless webhook.submit service: :jira, params: params[:jira]
+    unless webhook.submit service: :jira, params: params
       Airbrake.notify StandardError.new('Webhook is not saved'), service: :jira, params: params[:jira]
     end
 
@@ -21,7 +21,8 @@ class PurpleMagic::Api::V1::Products::JiraController < PurpleMagic::Api::Applica
         task.time_logs.create! user_id: 43,
           time_spent: params[:worklog][:time_spent],
           comment: params[:worklog][:comment],
-          passed_at: params[:worklog][:created_at]
+          passed_at: params[:worklog][:created_at],
+          data: { jira_worklog_id: params[:worklog][:id] }
       end
     end
   end
