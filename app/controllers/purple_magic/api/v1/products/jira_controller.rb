@@ -40,6 +40,22 @@ class PurpleMagic::Api::V1::Products::JiraController < PurpleMagic::Api::Applica
           passed_at: params[:worklog][:created_at],
         )
       end
+    when 'jira:issue_created'
+      jira_issue_id = params[:issue][:id]
+      task = Products::Task.all.select do |t|
+        t.data&.dig('jira_issue_id') == jira_issue_id
+      end.first
+
+      unless task.present?
+        task = Products::Task.create!(
+          title: params[:issue][:fields][:summary],
+          data: {
+            jira_issue_key: params[:issue][:key],
+            jira_issue_id: jira_issue_id
+          },
+          product_id: 15
+        )
+      end
     end
   end
 end
