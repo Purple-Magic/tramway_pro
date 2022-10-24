@@ -1,9 +1,8 @@
 class PurpleMagic::Api::V1::Products::JiraController < PurpleMagic::Api::ApplicationController
   def create
     webhook = WebhookForm.new Webhook.new
-    webhook_params = { service: :jira, params: params[:jira], headers: request.headers }
-    unless webhook.submit webhook_params
-      Airbrake.notify StandardError.new('Webhook is not saved'), **webhook_params
+    unless webhook.submit service: :jira, params: params[:jira], headers: request.headers
+      Airbrake.notify StandardError.new('Webhook is not saved'), service: :jira, params: params[:jira], headers: request.headers
     end
 
     case params[:webhook_event] 
