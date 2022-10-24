@@ -4,7 +4,7 @@ class PurpleMagic::Api::V1::Products::JiraController < PurpleMagic::Api::Applica
     when 'worklog_created'
       if params[:worklog][:author][:display_name] == 'Павел Калашников'
         jira_issue_id = params[:worklog][:issue_id]
-        task = Products::Task.find_by 'data -> jira_issue_id -> ?', jira_issue_id
+        task = Products::Task.find_by 'data -> "jira_issue_id" -> ?', jira_issue_id
 
         unless task.present?
           task = Products::Task.create! data: { jira_issue_id: jira_issue_id }, product_id: 15
