@@ -21,7 +21,7 @@ class PurpleMagic::Api::V1::Products::JiraController < PurpleMagic::Api::Applica
         task.time_logs.create! user_id: 43,
           time_spent: params[:worklog][:time_spent],
           comment: params[:worklog][:comment],
-          passed_at: params[:worklog][:created_at],
+          passed_at: params[:worklog][:created],
           data: { jira_worklog_id: params[:worklog][:id] }
       end
     when 'worklog_deleted'
