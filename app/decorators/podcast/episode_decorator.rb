@@ -31,9 +31,13 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
     end
 
     def show_attributes
-      %i[render_commands podcast_link public_title file ready_file premontage_file trailer cover story_cover trailer_video story_trailer_video full_video
+      %i[render_commands podcast_link public_title publish_date file ready_file premontage_file trailer cover story_cover trailer_video story_trailer_video full_video
          description_view youtube_description vk_post_text telegram_post_text instagram_post_text twitter_post_text
          patreon_post_text montage_state]
+    end
+
+    def list_attributes
+      [ :published_at ]
     end
   end
 

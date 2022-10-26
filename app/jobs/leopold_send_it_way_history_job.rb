@@ -20,13 +20,20 @@ class LeopoldSendItWayHistoryJob < ActiveJob::Base
   private
 
   def send_if_anniversary(content)
-    return unless content.publish_date.strftime('%d.%m') == DateTime.now.strftime('%d.%m')
-    return if content.publish_date.year == DateTime.now.year
+    if content.publish_date.present?
+      return unless content.publish_date.strftime('%d.%m') == DateTime.now.strftime('%d.%m')
+      return if content.publish_date.year == DateTime.now.year
 
-    send_file_to_channel(
-      ::BotTelegram::Leopold::ItWayPro::HISTORY_CHANNEL,
-      content.model.trailer_video.path,
-      caption: content.telegram_reminder_post_text
-    )
+      send_file_to_channel(
+        ::BotTelegram::Leopold::ItWayPro::HISTORY_CHANNEL,
+        content.model.trailer_video.path,
+        caption: content.telegram_reminder_post_text
+      )
+    else
+      send_notification_to_chat(
+        ::BotTelegram::Leopold::ItWayPro::CHAT_ID,
+        "Выпуск #{content.title} не имеет даты публикации. Добавьте её здесь http://red-magic.ru/admin/records/#{content.id}?model=Podcast%3A%3AEpisode" 
+      )
+    end
   end
 end
