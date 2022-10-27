@@ -7,7 +7,7 @@ RSpec.shared_context 'FindMeds Scenario 1 Error' do
 
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
-      text: 'Увы, у нас пока нет информации о формах этого препарата. Мы будем вам благодарны, если вы введёте информацию о том лекарстве, которое вы искали (по возможности, введите название, производителя, действующее вещество и концентрацию)',
+      text: I18n.t('find_meds.bot.find_medicine.we_dont_have_forms'),
       reply_markup: reply_markup(['В начало'])
     }
 
@@ -26,7 +26,7 @@ message_object: message_object
 
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
-      text: 'У этого лекарства более одного действующего вещества, пока что бот не умеет работать с такими лекарствами. Напишите комментарий в свободной форме, что вы хотели найти.',
+      text: I18n.t('find_meds.bot.find_medicine.more_than_1_components'),
       reply_markup: reply_markup(['В начало'])
     }
 

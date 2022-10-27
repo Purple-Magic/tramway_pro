@@ -107,6 +107,9 @@ Style/SwapValues:
   Enabled: true
 Naming/RescuedExceptionsVariableName:
   Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - spec/features/**/*
 AllCops:
   Include:
     - app/**/*.rb

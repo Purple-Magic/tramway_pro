@@ -16,7 +16,7 @@ RSpec.shared_context 'FindMeds Scenario 1 Failure' do
 
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
-      text: 'Увы, мы пока не знаем о таком лекарстве, позже мы добавим возможность искать и по действующим веществам, чтобы можно было найти дженерики даже если мы не знаем о том лекарстве, которое используете вы. Мы будем вам благодарны, если вы введёте информацию о том лекарстве, которое вы искали (по возможности, введите название, производителя, действующее вещество и концентрацию)',
+      text: I18n.t('find_meds.bot.find_medicine.not_found'),
       reply_markup: reply_markup(
         ['В начало']
       )
@@ -31,7 +31,7 @@ message_object: message_object
   def type_not_existing_company
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
-      text: 'Увы, у нас пока нет информации о других производителях, выпускающих это лекарство. Мы будем вам благодарны, если вы введёте информацию о том лекарстве, которое вы искали (по возможности, введите название, производителя, действующее вещество и концентрацию)',
+      text: I18n.t('find_meds.bot.find_medicine.company_not_found'),
       reply_markup: reply_markup(
         ['В начало']
       )
@@ -46,7 +46,7 @@ message_object: message_object
   def type_not_existing_form
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
-      text: 'Увы, у нас пока нет информации о других формах этого препарата. Мы будем вам благодарны, если вы введёте информацию о том лекарстве, которое вы искали (по возможности, введите название, производителя, действующее вещество и концентрацию)',
+      text: I18n.t('find_meds.bot.find_medicine.form_not_found'),
       reply_markup: reply_markup(
         ['В начало']
       )
@@ -61,7 +61,7 @@ message_object: message_object
   def type_not_existing_concentration
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
-      text: 'Увы, у нас пока нет информации о других концентрациях этого препарата. Мы будем вам благодарны, если вы введёте информацию о том лекарстве, которое вы искали (по возможности, введите название, производителя, действующее вещество и концентрацию)',
+      text: I18n.t('find_meds.bot.find_medicine.concentration_not_found'),
       reply_markup: reply_markup(
         ['В начало']
       )
@@ -76,7 +76,7 @@ message_object: message_object
   def type_feedback
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
-      text: 'Мы приняли информацию!',
+      text: I18n.t('find_meds.bot.find_medicine.we_got_it'),
       reply_markup: reply_markup(
         ['В начало']
       )
@@ -86,7 +86,7 @@ message_object: message_object
     stub = send_message_stub_request(
       body: {
         chat_id: ::BotTelegram::FindMedsBot::DEVELOPER_CHAT,
-        text: "Мы получили новую обратную связь от пользователя. Посмотреть её можно здесь http://purple-magic.com/admin/records/#{feedback_id}?model=FindMeds::Feedback"
+        text: I18n.t('find_meds.bot.notifications.new_feedback', id: feedback_id)
       },
       current_bot: bot_leopold
     )
@@ -117,7 +117,7 @@ message_object: message_object
   def push_no_button_on_reinforcement
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
-      text: 'Увы, мы пока не знаем о таком лекарстве, позже мы добавим возможность искать и по действующим веществам, чтобы можно было найти дженерики даже если мы не знаем о том лекарстве, которое используете вы',
+      text: I18n.t('find_meds.bot.find_medicine.unfortunately_we_do_not_have_more_info'),
       reply_markup: reply_markup(['В начало'])
     }
 
@@ -129,7 +129,7 @@ message_object: message_object
   def push_bot_didnt_help_me_on_last_step
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
-      text: 'Мы будем вам благодарны, если вы введёте информацию о том лекарстве, которое вы искали (по возможности, введите название, производителя, действующее вещество и концентрацию)',
+      text: I18n.t('find_meds.bot.find_medicine.please_type_info_about_medicine'),
       reply_markup: reply_markup(['В начало'])
     }
 
