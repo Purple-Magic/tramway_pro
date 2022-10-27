@@ -19,7 +19,7 @@ module BotTelegram::FindMedsBot::Actions::ChooseForm
 
       if components.count > 1
         set_next_action :saving_feedback
-        answer = 'У этого лекарства более одного действующего вещества, пока что бот не умеет работать с такими лекарствами. Напишите комментарий в свободной форме, что вы хотели найти.'
+        answer = i18n_scope(:find_medicine, :more_than_1_components)
         show options: [['В начало']], answer: answer
       elsif components.count == 1
         set_next_action :choose_concentration, medicines: medicines, concentrations: concentrations
