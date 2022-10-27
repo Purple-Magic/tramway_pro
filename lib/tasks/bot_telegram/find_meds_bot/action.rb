@@ -43,7 +43,7 @@ class BotTelegram::FindMedsBot::Action
   end
 
   def current_action
-    BotTelegram::FindMedsBot::ACTIONS_DATA.select do |_action_name, data|
+    BotTelegram::FindMedsBot.actions_data.select do |_action_name, data|
       data[:state] == user.current_state(bot_record).to_sym
     end
   end

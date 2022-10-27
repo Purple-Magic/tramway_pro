@@ -1,31 +1,6 @@
 # frozen_string_literal: true
 
 module BotTelegram::FindMedsBot
-  ACTIONS_DATA = {
-    find_medicine: {
-      message: 'Убедитесь, что название написано правильно',
-      state: :waiting_for_medicine_name
-    },
-    choose_company: {
-      state: :waiting_for_choose_company
-    },
-    choose_form: {
-      state: :waiting_for_choose_form
-    },
-    choose_concentration: {
-      state: :waiting_for_choose_concentration
-    },
-    reinforcement: {
-      state: :waiting_for_reinforcement
-    },
-    last_step: {
-      state: :waiting_for_last_step
-    },
-    saving_feedback: {
-      state: :waiting_for_saving_feedback
-    }
-  }.freeze
-
   VALIDATIONS = {
     url: lambda do |value|
       value.present? && value.match?(URI::DEFAULT_PARSER.make_regexp(%w[http https]))
@@ -47,6 +22,10 @@ module BotTelegram::FindMedsBot
 
     def buttons
       config[:buttons]
+    end
+
+    def actions_data
+      config[:actions_data]
     end
 
     def config

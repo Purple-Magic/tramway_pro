@@ -22,7 +22,7 @@ module BotTelegram::FindMedsBot::Commands
     message_to_user bot.api, message, chat.telegram_chat_id
   end
 
-  BotTelegram::FindMedsBot::ACTIONS_DATA.each do |action|
+  BotTelegram::FindMedsBot.actions_data.each do |action|
     define_method(action[0]) do |argument|
       common_action action[0], action[1][:state], action[1][:message], argument
     end
