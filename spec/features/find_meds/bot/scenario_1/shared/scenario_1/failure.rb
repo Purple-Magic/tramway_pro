@@ -74,7 +74,7 @@ message_object: message_object
   end
 
   def type_feedback
-    stub = send_message_stub_request body: {
+    we_got_it_message_stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
       text: I18n.t('find_meds.bot.find_medicine.we_got_it'),
       reply_markup: reply_markup(
@@ -83,7 +83,7 @@ message_object: message_object
     }
 
     feedback_id = FindMeds::Feedback.last.id + 1
-    stub = send_message_stub_request(
+    notification_stub = send_message_stub_request(
       body: {
         chat_id: ::BotTelegram::FindMedsBot::DEVELOPER_CHAT,
         text: I18n.t('find_meds.bot.notifications.new_feedback', id: feedback_id)
@@ -94,8 +94,8 @@ message_object: message_object
     bot_run :find_meds, bot_record: bot_record, message: not_existing_medicine_message, chat: chat,
 message_object: message_object
 
-    expect(stub).to have_been_requested
-    expect(stub).to have_been_requested
+    expect(we_got_it_message_stub).to have_been_requested
+    expect(notification_stub).to have_been_requested
     expect(FindMeds::Feedback.last.text).to eq not_existing_medicine_message.text
   end
 
