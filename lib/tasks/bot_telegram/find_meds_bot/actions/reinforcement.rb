@@ -10,8 +10,8 @@ module BotTelegram::FindMedsBot::Actions::Reinforcement
         'form' => medicine['fields']['form']
       )
       set_next_action :last_step
-      list = medicines.map do |m|
-        "🔵 #{m.name}"
+      list = medicines.map do |med|
+        "🔵 #{med.name}"
       end.join("\n")
       answer = i18n_scope(:find_medicine, :result_message, list: list)
       show options: [['Бот мне помог!'], ['Это не совсем та информация, на которую я надеялся_ась (отправить отзыв)']],

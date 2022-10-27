@@ -24,18 +24,19 @@ module BotTelegram::FindMedsBot::Actions::ChooseForm
   private
 
   def choose_form_send_answer(medicines, concentrations, components)
-    if components.count > 1
+    count = components.count
+    if count > 1
       set_next_action :saving_feedback
       answer = i18n_scope(:find_medicine, :more_than_1_components)
       show options: [['В начало']], answer: answer
-    elsif components.count == 1
+    elsif count == 1
       set_next_action :choose_concentration, medicines: medicines, concentrations: concentrations
       answer = i18n_scope(:find_medicine, :what_concentration, component: components.first.name)
       buttons_collection = concentrations.each_slice(4).map do |concentration|
         concentration.map(&:value)
       end
       show options: [*buttons_collection, ['В начало', 'Нужной концентрации нет']], answer: answer
-    elsif components.count.zero?
+    elsif count.zero?
       send_message_to_user 'Кажется, у нас ошибка в базе данных'
     end
   end
