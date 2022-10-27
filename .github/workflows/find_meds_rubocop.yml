@@ -1,0 +1,44 @@
+name: FindMeds Rubocop
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
+
+jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Set up Ruby 2.7
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundle-cache: true
+
+      - name: Install rubocop
+        run: |
+          gem install rubocop -v '1.18.3'
+ 
+      - name: Running Linter
+        run: |
+          rubocop lib/tasks/bot_telegram/find_meds_bot/ lib/tasks/bot_telegram/find_meds_bot.rb spec/features/find_meds/
+
+      - name: Rocket.Chat Notification
+        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
+        if: always()
+        with:
+          username: bot_leopold
+          type: ${{ job.status }}
+          job_name: '*FindMeds Linter*'
+          mention: 'here'
+          channel: 'dNei2bg5ufmQFdFWx'
+          url: ${{ secrets.ROCKETCHAT_WEBHOOK }}
+          commit: true
+          token: ${{ secrets.GITHUB_TOKEN }}
