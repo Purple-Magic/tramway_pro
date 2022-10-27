@@ -6,31 +6,33 @@ class BotTelegram::FindMedsBot::Tables::Concentration < BotTelegram::FindMedsBot
 
   belongs_to :component, class: 'BotTelegram::FindMedsBot::Tables::Component', column: 'Действующее вещество'
 
-  CONCENTRATION_IN_GRAM = 'mg_concentration'
-  VIAL_VOLUME = 'vial_volume'
-  CONCENTRATED_SOLUTION_IN_MILLIGRAMS_PER_MILLILITER = 'concentrated_solution_in_milligrams_per_milliliter'
+  SHORT_NAMES = {
+    vv: 'vial_volume',
+    cig: 'mg_concentration', # concentration_in_grams
+    csimpm: 'concentrated_solution_in_milligrams_per_milliliter'
+  }.freeze
 
   UNITS = {
-    CONCENTRATION_IN_GRAM => 'мг',
-    VIAL_VOLUME => 'мл',
-    CONCENTRATED_SOLUTION_IN_MILLIGRAMS_PER_MILLILITER => 'мг/мл'
+    cig: 'мг',
+    vv: 'мл',
+    csimpm: 'мг/мл'
   }.freeze
 
   def value
     if concentration_in_grams?
-      "#{fields[CONCENTRATION_IN_GRAM]} #{UNITS[CONCENTRATION_IN_GRAM]}"
+      "#{fields[SHORT_NAMES[:cig]]} #{UNITS[:cig]}"
     elsif concentrated_solution_in_milligrams_per_milliliter?
-      "#{fields[CONCENTRATED_SOLUTION_IN_MILLIGRAMS_PER_MILLILITER]} #{UNITS[CONCENTRATED_SOLUTION_IN_MILLIGRAMS_PER_MILLILITER]}, #{fields[VIAL_VOLUME]} #{UNITS[VIAL_VOLUME]}"
+      "#{fields[SHORT_NAMES[:csimpm]]} #{UNITS[:csimpm]}, #{fields[SHORT_NAMES[:vv]]} #{UNITS[:vv]}"
     end
   end
 
   private
 
   def concentration_in_grams?
-    fields[CONCENTRATION_IN_GRAM].present?
+    fields[SHORT_NAMES[:cig]].present?
   end
 
   def concentrated_solution_in_milligrams_per_milliliter?
-    fields[VIAL_VOLUME].present? && fields[CONCENTRATED_SOLUTION_IN_MILLIGRAMS_PER_MILLILITER].present?
+    fields[SHORT_NAMES[:vv]].present? && fields[SHORT_NAMES[:csimpm]].present?
   end
 end
