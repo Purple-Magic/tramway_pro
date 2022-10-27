@@ -6,3 +6,8 @@ menus:
   find_medicine_menu:
     - start_menu
 developer_chat: '-740396896'
+buttons:
+  find_medicine: 'Поиск лекарств'
+  start_menu: 'В начало'
+  about: 'О проекте'
+

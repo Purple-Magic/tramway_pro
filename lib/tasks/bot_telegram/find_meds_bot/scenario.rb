@@ -25,7 +25,7 @@ class BotTelegram::FindMedsBot::Scenario < ::BotTelegram::Custom::Scenario
     when :start
       start
     when :button
-      public_send ::BotTelegram::FindMedsBot::BUTTONS.invert[message_from_telegram.text], nil
+      public_send ::BotTelegram::FindMedsBot.buttons.invert[message_from_telegram.text], nil
     when :new_run
       message_to_chat bot.api, chat.telegram_chat_id, 'Напиши /start'
     else
@@ -50,6 +50,6 @@ class BotTelegram::FindMedsBot::Scenario < ::BotTelegram::Custom::Scenario
   end
 
   def button_action?
-    message_from_telegram.try(:text) && message_from_telegram.text.in?(::BotTelegram::FindMedsBot::BUTTONS.values)
+    message_from_telegram.try(:text) && message_from_telegram.text.in?(::BotTelegram::FindMedsBot.buttons.values)
   end
 end

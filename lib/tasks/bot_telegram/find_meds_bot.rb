@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
 module BotTelegram::FindMedsBot
-  BUTTONS = {
-    find_medicine: 'Поиск лекарств',
-    start_menu: 'В начало',
-    about: 'О проекте'
-  }.freeze
-
   ACTIONS_DATA = {
     find_medicine: {
       message: 'Убедитесь, что название написано правильно',
@@ -49,6 +43,10 @@ module BotTelegram::FindMedsBot
 
     def developer_chat
       config[:developer_chat]
+    end
+
+    def buttons
+      config[:buttons]
     end
 
     def config

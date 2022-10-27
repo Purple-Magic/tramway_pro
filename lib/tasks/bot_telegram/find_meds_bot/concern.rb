@@ -29,6 +29,6 @@ module BotTelegram::FindMedsBot::Concern
   private
 
   def button_text(button)
-    ::BotTelegram::FindMedsBot::BUTTONS[button] || button
+    ::BotTelegram::FindMedsBot.buttons[button] || button
   end
 end
