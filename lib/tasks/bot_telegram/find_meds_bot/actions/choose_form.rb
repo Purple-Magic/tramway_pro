@@ -17,20 +17,26 @@ module BotTelegram::FindMedsBot::Actions::ChooseForm
       concentrations = ::FindMeds::Tables::Concentration.where('id' => concentrations_ids)
       components = ::FindMeds::Tables::Component.where('id' => concentrations.map(&:link_to_active_components).flatten)
 
-      if components.count > 1
-        set_next_action :saving_feedback
-        answer = i18n_scope(:find_medicine, :more_than_1_components)
-        show options: [['В начало']], answer: answer
-      elsif components.count == 1
-        set_next_action :choose_concentration, medicines: medicines, concentrations: concentrations
-        answer = i18n_scope(:find_medicine, :what_concentration, component: components.first.name)
-        buttons_collection = concentrations.each_slice(4).map do |concentration|
-          concentration.map(&:value)
-        end
-        show options: [*buttons_collection, ['В начало', 'Нужной концентрации нет']], answer: answer
-      elsif components.count.zero?
-        send_message_to_user 'Кажется, у нас ошибка в базе данных'
+      choose_form_send_answer medicines, concentrations, components
+    end
+  end
+
+  private
+
+  def choose_form_send_answer(medicines, concentrations, components)
+    if components.count > 1
+      set_next_action :saving_feedback
+      answer = i18n_scope(:find_medicine, :more_than_1_components)
+      show options: [['В начало']], answer: answer
+    elsif components.count == 1
+      set_next_action :choose_concentration, medicines: medicines, concentrations: concentrations
+      answer = i18n_scope(:find_medicine, :what_concentration, component: components.first.name)
+      buttons_collection = concentrations.each_slice(4).map do |concentration|
+        concentration.map(&:value)
       end
+      show options: [*buttons_collection, ['В начало', 'Нужной концентрации нет']], answer: answer
+    elsif components.count.zero?
+      send_message_to_user 'Кажется, у нас ошибка в базе данных'
     end
   end
 end
