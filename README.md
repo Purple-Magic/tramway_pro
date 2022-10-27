@@ -1,13 +1,14 @@
-# Tramway based applications [![.github/workflows/find_meds.yml](https://github.com/Purple-Magic/tramway_pro/actions/workflows/find_meds.yml/badge.svg)](https://github.com/Purple-Magic/tramway_pro/actions/workflows/find_meds.yml)
+# Tramway based applications 
 
-* [IT Way](https://it-way.pro)
-* [ ULSK Quest Fantasy ]( t.me/questfantasy_bot )
-* [ ULSK Quest Horror ]( t.me/questhorror_bot )
-* [ ULSK Quest Love ]( t.me/questlove_bot )
-* [ ULSK Quest Detective ]( t.me/questhorror_bot )
-* [ ULSK Quest Fantasy ]( t.me/questfantasy_bot )
-* [ ULSK Quest Uncle Mitya ]( t.me/questnewyearbot )
-* [Инженерное волонтёрство](http://engineervol.ru/)
+| Project | URL | CI |
+|---------|-----|----|
+| FindMeds | [t.me/find_meds_bot](t.me/find_meds_bot) | [![.github/workflows/find_meds.yml](https://github.com/Purple-Magic/tramway_pro/actions/workflows/find_meds.yml/badge.svg)](https://github.com/Purple-Magic/tramway_pro/actions/workflows/find_meds.yml) |
+| IT Way | [it-way.pro](it-way.pro) |  |
+| ULSK Quest Fantasy | [t.me/questfantasy_bot](t.me/questfantasy_bot) |  |
+| ULSK Quest Horror | [t.me/questhorror_bot](t.me/questhorror_bot) |  |
+| ULSK Quest Love | [t.me/questlove_bot](t.me/questlove_bot) |  |
+| ULSK Quest Detective | [t.me/questhorror_bot](t.me/questhorror_bot) |  |
+| ULSK Quest Uncle Mitya | [t.me/questnewyearbot](t.me/questnewyearbot) |  |
 
 ### Install && run
 
