@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BotTelegram::FindMedsBot::Actions::ChooseConcentration
   def choose_concentration(value)
     if value == 'Нужной концентрации нет'

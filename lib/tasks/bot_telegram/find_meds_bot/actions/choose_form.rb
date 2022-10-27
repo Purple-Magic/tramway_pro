@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BotTelegram::FindMedsBot::Actions::ChooseForm
   def choose_form(form)
     if form == 'Нужной формы нет'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BotTelegram::FindMedsBot::Actions::ChooseCompany
   def choose_company(name)
     if name == 'Нужного производителя нет'

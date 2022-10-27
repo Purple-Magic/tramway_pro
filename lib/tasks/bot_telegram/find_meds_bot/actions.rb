@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BotTelegram::FindMedsBot::Actions
   include ::BotTelegram::FindMedsBot::Actions::FindMedicine
   include ::BotTelegram::FindMedsBot::Actions::ChooseCompany

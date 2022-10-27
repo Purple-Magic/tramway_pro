@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BotTelegram::FindMedsBot::Actions::LastStep
   def last_step(answer)
     case answer

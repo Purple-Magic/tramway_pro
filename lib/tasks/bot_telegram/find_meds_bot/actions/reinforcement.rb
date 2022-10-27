@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BotTelegram::FindMedsBot::Actions::Reinforcement
   def reinforcement(answer)
     case answer

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BotTelegram::FindMedsBot::Actions::FindMedicine
   def find_medicine(name)
     drug = ::BotTelegram::FindMedsBot::Tables::Drug.find_by('Name' => name)
