@@ -8,9 +8,6 @@ module BotTelegram::FindMedsBot
     just_text: ->(value) { value.present? }
   }.freeze
 
-  PROJECT_ID = 7
-  BOT_ID = 14
-
   class << self
     def menus
       config[:menus]
@@ -26,6 +23,14 @@ module BotTelegram::FindMedsBot
 
     def actions_data
       config[:actions_data]
+    end
+
+    def project_id
+      config[:project_id]
+    end
+
+    def bot_id
+      config[:bot_id]
     end
 
     def config

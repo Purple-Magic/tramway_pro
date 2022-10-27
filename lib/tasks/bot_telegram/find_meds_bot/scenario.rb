@@ -11,8 +11,6 @@ class BotTelegram::FindMedsBot::Scenario < ::BotTelegram::Custom::Scenario
   include ::BotTelegram::FindMedsBot::AdminFeatures
   include ::BotTelegram::FindMedsBot::Concern
 
-  BOT_ID = 14
-
   def run
     chat_decorator = BotTelegram::FindMedsBot::ChatDecorator.new chat
 
