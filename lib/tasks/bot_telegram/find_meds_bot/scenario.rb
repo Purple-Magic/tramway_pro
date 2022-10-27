@@ -18,14 +18,15 @@ class BotTelegram::FindMedsBot::Scenario < ::BotTelegram::Custom::Scenario
 
     return unless chat_decorator.to_answer?
 
-    if message_from_telegram.is_a? Telegram::Bot::Types::CallbackQuery
+    case action
+    when :callback_query
       command = BotTelegram::FindMedsBot::Command.new message_from_telegram, bot_record.slug
       public_send command.name, command.argument if command.valid?
-    elsif start_action?
+    when :start
       start
-    elsif button_action?
+    when :button
       public_send ::BotTelegram::FindMedsBot::BUTTONS.invert[message_from_telegram.text], nil
-    elsif user.finished_state_for?(bot: bot_record)
+    when :new_run
       message_to_chat bot.api, chat.telegram_chat_id, 'Напиши /start'
     else
       action = BotTelegram::FindMedsBot::Action.new message_from_telegram, user, chat, bot, bot_record
@@ -34,6 +35,15 @@ class BotTelegram::FindMedsBot::Scenario < ::BotTelegram::Custom::Scenario
   end
 
   private
+
+  def action
+    return :start if start_action?
+    return :callback_query if message_from_telegram.is_a? Telegram::Bot::Types::CallbackQuery
+    return :button if button_action?
+    return :new_run if user.finished_state_for?(bot: bot_record)
+
+    :bot_action
+  end
 
   def start_action?
     message_from_telegram.try(:text) && message_from_telegram.text == '/start'
