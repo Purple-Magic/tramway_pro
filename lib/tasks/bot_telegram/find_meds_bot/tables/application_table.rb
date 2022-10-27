@@ -4,12 +4,16 @@ class BotTelegram::FindMedsBot::Tables::ApplicationTable < Airrecord::Table
   self.base_key = ENV['FIND_MEDS_MAIN_BASE']
 
   def method_missing(method_name, *args)
-    if fields.keys.include?(method_name.to_s)
+    if key_is_available?(method_name)
       fields[method_name.to_s]
     else
       message = "You called #{method_name} with #{args}. This method doesn't exist."
       raise NoMethodError, message
     end
+  end
+
+  def respond_to_missing?(method_name, include_private = false)
+    key_is_available?(method_name) || super
   end
 
   class << self
@@ -36,5 +40,11 @@ class BotTelegram::FindMedsBot::Tables::ApplicationTable < Airrecord::Table
     def first
       all.first
     end
+  end
+
+  private
+
+  def key_is_available?(method_name)
+    fields.keys.include?(method_name.to_s)
   end
 end
