@@ -16,10 +16,11 @@ class BotTelegram::FindMedsBot::Command
 
       @argument = data[:argument]
     else
+      text = message.text
       @name = COMMANDS.map do |com|
-        com if message.text&.match?(%r{^/#{com}})
+        com if text&.match?(%r{^/#{com}})
       end.compact.first
-      @argument = message.text.present? ? message.text.gsub(%r{^/#{@name} }, '').gsub(/^@#{slug}/, '') : []
+      @argument = text.present? ? text.gsub(%r{^/#{@name} }, '').gsub(/^@#{slug}/, '') : []
     end
   end
 
