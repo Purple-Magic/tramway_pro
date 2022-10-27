@@ -105,3 +105,11 @@ docker_attach:
 
 test:
 	bundle exec rspec
+
+find_meds_linter:
+	rubocop lib/tasks/bot_telegram/find_meds_bot/
+	rubocop lib/tasks/bot_telegram/find_meds_bot.rb
+	rubocop spec/features/find_meds/
+
+find_meds_test:
+	bundle exec rspec spec/features/find_meds/
