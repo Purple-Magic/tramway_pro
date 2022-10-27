@@ -3,15 +3,6 @@
 module BotTelegram::FindMedsBot
   DEVELOPER_CHAT = '-740396896'
 
-  MENUS = {
-    start_menu: [
-      %i[find_medicine about]
-    ],
-    find_medicine_menu: [
-      [:start_menu]
-    ]
-  }.freeze
-
   BUTTONS = {
     find_medicine: 'Поиск лекарств',
     start_menu: 'В начало',
@@ -52,4 +43,18 @@ module BotTelegram::FindMedsBot
 
   PROJECT_ID = 7
   BOT_ID = 14
+
+  class << self
+    def menus
+      config[:menus]
+    end
+
+    def config
+      @config ||= YAML.load_file(config_file_path).with_indifferent_access
+    end
+
+    def config_file_path
+      Rails.root.join('lib', 'tasks', 'bot_telegram', 'find_meds_bot', 'config.yml')
+    end
+  end
 end

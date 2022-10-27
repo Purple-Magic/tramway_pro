@@ -28,7 +28,7 @@ module BotTelegram::FindMedsBot::Commands
     end
   end
 
-  ::BotTelegram::FindMedsBot::MENUS.each_key do |menu|
+  ::BotTelegram::FindMedsBot.menus.each_key do |menu|
     define_method(menu) do |_argument|
       answer = i18n_scope(menu, :text)
       show menu: menu, answer: answer

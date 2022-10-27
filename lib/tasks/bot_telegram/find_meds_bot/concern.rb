@@ -11,7 +11,7 @@ module BotTelegram::FindMedsBot::Concern
   def show(answer:, menu: false, options: false)
     raise "There is no menu or options to show with answer #{answer}" if !menu.present? && !options.present?
 
-    keyboard = (options || ::BotTelegram::FindMedsBot::MENUS[menu]).map do |button_row|
+    keyboard = (options || ::BotTelegram::FindMedsBot.menus[menu]).map do |button_row|
       if button_row.is_a? Array
         button_row.map do |button|
           button_text button
