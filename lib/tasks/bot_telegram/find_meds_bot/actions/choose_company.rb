@@ -22,13 +22,13 @@ module BotTelegram::FindMedsBot::Actions::ChooseCompany
 
   private
 
-  def medicines_and_forms_by(company_name)
+  def medicines_and_forms_by(company_name:)
     company = ::FindMeds::Tables::Company.find_by('Name' => company_name)
 
     medicines = current_state.data['medicines'].select do |medicine|
       medicine['fields']['link_to_company'].include? company.id
     end
-    forms = medicines.map { |_med| medicine['fields']['form'] }.flatten.uniq
+    forms = medicines.map { |med| med['fields']['form'] }.flatten.uniq
 
     [medicines, forms]
   end
