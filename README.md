@@ -1,4 +1,4 @@
-# Tramway based applications ![.github/workflows/test.yml](https://github.com/purple-magic/tramway_pro/workflows/.github/workflows/test.yml/badge.svg?branch=develop)
+# Tramway based applications [![.github/workflows/find_meds.yml](https://github.com/Purple-Magic/tramway_pro/actions/workflows/find_meds.yml/badge.svg)](https://github.com/Purple-Magic/tramway_pro/actions/workflows/find_meds.yml)
 
 * [IT Way](https://it-way.pro)
 * [ ULSK Quest Fantasy ]( t.me/questfantasy_bot )
