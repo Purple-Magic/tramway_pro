@@ -11,9 +11,7 @@ module BotTelegram::FindMedsBot::Actions::ChooseCompany
       medicines = current_state.data['medicines'].select do |medicine|
         medicine['fields']['link_to_company'].include? company.id
       end
-      forms = medicines.map do |medicine|
-        medicine['fields']['form']
-      end.flatten.uniq
+      forms = medicines.map { |medicine| medicine['fields']['form'] }.flatten.uniq
 
       if forms.any?
         set_next_action :choose_form, medicines: medicines

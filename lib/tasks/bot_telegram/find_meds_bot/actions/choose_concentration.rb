@@ -9,8 +9,8 @@ module BotTelegram::FindMedsBot::Actions::ChooseConcentration
     else
       concentrations_ids = current_state.data['concentrations'].map { |c| c['id'] }
       concentrations = ::FindMeds::Tables::Concentration.where('id' => concentrations_ids)
-      concentration = concentrations.select do |concentration|
-        concentration.value == value
+      concentration = concentrations.select do |c|
+        c.value == value
       end.first
       medicines = current_state.data['medicines'].select do |medicine|
         medicine['fields']['concentrations'].include? concentration.id
