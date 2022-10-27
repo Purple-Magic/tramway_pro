@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class BotTelegram::FindMedsBot::Tables::ApplicationTable < Airrecord::Table
+class FindMeds::Tables::ApplicationTable < Airrecord::Table
   self.base_key = ENV['FIND_MEDS_MAIN_BASE']
 
   def method_missing(method_name, *args)

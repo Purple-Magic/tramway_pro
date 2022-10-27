@@ -5,7 +5,7 @@ module BotTelegram::FindMedsBot::Actions::Reinforcement
     case answer
     when 'Да'
       medicine = current_state.data['medicine']
-      medicines = ::BotTelegram::FindMedsBot::Tables::Medicine.where(
+      medicines = ::FindMeds::Tables::Medicine.where(
         'concentrations' => medicine['fields']['concentrations'],
         'form' => medicine['fields']['form']
       )

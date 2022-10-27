@@ -2,14 +2,14 @@
 
 require 'uri'
 require_relative 'actions'
-require_relative 'tables'
-require_relative 'tables/application_table'
-require_relative 'tables/medicine'
-require_relative 'tables/drug'
-require_relative 'tables/company'
-require_relative 'tables/component'
-require_relative 'tables/concetration'
-require_relative 'info_message_builder'
+require 'find_meds/tables'
+require 'find_meds/tables/application_table'
+require 'find_meds/tables/medicine'
+require 'find_meds/tables/drug'
+require 'find_meds/tables/company'
+require 'find_meds/tables/component'
+require 'find_meds/tables/concetration'
+require 'info_message_builder'
 
 class BotTelegram::FindMedsBot::Action
   include ::BotTelegram::MessagesManager

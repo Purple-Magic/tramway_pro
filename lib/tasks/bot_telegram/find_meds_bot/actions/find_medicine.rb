@@ -2,7 +2,7 @@
 
 module BotTelegram::FindMedsBot::Actions::FindMedicine
   def find_medicine(name)
-    drug = ::BotTelegram::FindMedsBot::Tables::Drug.find_by('Name' => name)
+    drug = ::FindMeds::Tables::Drug.find_by('Name' => name)
     if drug.present?
       companies = drug.medicines.map do |medicine|
         medicine.company.name

@@ -14,8 +14,8 @@ module BotTelegram::FindMedsBot::Actions::ChooseForm
         medicine['fields']['concentrations']
       end.flatten.uniq
 
-      concentrations = ::BotTelegram::FindMedsBot::Tables::Concentration.where('id' => concentrations_ids)
-      components = ::BotTelegram::FindMedsBot::Tables::Component.where('id' => concentrations.map(&:link_to_active_components).flatten)
+      concentrations = ::FindMeds::Tables::Concentration.where('id' => concentrations_ids)
+      components = ::FindMeds::Tables::Component.where('id' => concentrations.map(&:link_to_active_components).flatten)
 
       if components.count > 1
         set_next_action :saving_feedback

@@ -7,7 +7,7 @@ module BotTelegram::FindMedsBot::Actions::ChooseCompany
       answer = i18n_scope(:find_medicine, :company_not_found)
       show options: [['В начало']], answer: answer
     else
-      company = ::BotTelegram::FindMedsBot::Tables::Company.find_by('Name' => name)
+      company = ::FindMeds::Tables::Company.find_by('Name' => name)
       medicines = current_state.data['medicines'].select do |medicine|
         medicine['fields']['link_to_company'].include? company.id
       end

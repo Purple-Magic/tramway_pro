@@ -3,7 +3,7 @@
 module AirtableHelpers
   def find_meds_airtable_stub_request(table:, id: nil)
     airtable_stub_request(
-      base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+      base: ::FindMeds::Tables::ApplicationTable.base_key,
       table: table,
       id: id
     )

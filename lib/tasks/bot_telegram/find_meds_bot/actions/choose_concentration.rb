@@ -8,7 +8,7 @@ module BotTelegram::FindMedsBot::Actions::ChooseConcentration
       show options: [['В начало']], answer: answer
     else
       concentrations_ids = current_state.data['concentrations'].map { |c| c['id'] }
-      concentrations = ::BotTelegram::FindMedsBot::Tables::Concentration.where('id' => concentrations_ids)
+      concentrations = ::FindMeds::Tables::Concentration.where('id' => concentrations_ids)
       concentration = concentrations.select do |concentration|
         concentration.value == value
       end.first
