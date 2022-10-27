@@ -81,9 +81,7 @@ jobs:
  
       - name: Running Linter
         run: |
-          rubocop lib/tasks/bot_telegram/find_meds_bot/
-          rubocop lib/tasks/bot_telegram/find_meds_bot.rb
-          rubocop spec/features/find_meds/
+          rubocop lib/tasks/bot_telegram/find_meds_bot/ lib/tasks/bot_telegram/find_meds_bot.rb spec/features/find_meds/
 
       - name: Rocket.Chat Notification
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@master
