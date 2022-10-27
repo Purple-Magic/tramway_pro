@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 module BotTelegram::FindMedsBot
-  DEVELOPER_CHAT = '-740396896'
-
   BUTTONS = {
     find_medicine: 'Поиск лекарств',
     start_menu: 'В начало',
@@ -47,6 +45,10 @@ module BotTelegram::FindMedsBot
   class << self
     def menus
       config[:menus]
+    end
+
+    def developer_chat
+      config[:developer_chat]
     end
 
     def config

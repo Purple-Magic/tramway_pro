@@ -10,7 +10,7 @@ class FindMeds::FeedbackForm < Tramway::Core::ApplicationForm
     model.reload
     model.update! project_id: 7
     send_notification_to_chat(
-      ::BotTelegram::FindMedsBot::DEVELOPER_CHAT,
+      ::BotTelegram::FindMedsBot.developer_chat,
       I18n.t('find_meds.bot.notifications.new_feedback', id: model.id)
     )
   end

@@ -85,7 +85,7 @@ message_object: message_object
     feedback_id = FindMeds::Feedback.last.id + 1
     notification_stub = send_message_stub_request(
       body: {
-        chat_id: ::BotTelegram::FindMedsBot::DEVELOPER_CHAT,
+        chat_id: ::BotTelegram::FindMedsBot.developer_chat,
         text: I18n.t('find_meds.bot.notifications.new_feedback', id: feedback_id)
       },
       current_bot: bot_leopold
