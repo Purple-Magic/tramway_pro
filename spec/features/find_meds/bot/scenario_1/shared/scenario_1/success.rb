@@ -22,11 +22,7 @@ message_object: message_object
     medicine_button_message = build(:telegram_message, text: medicine)
     companies ||= ['NOVARTIS FARMA, S.p.A.', 'МОСКОВСКИЙ ЭНДОКРИННЫЙ ЗАВОД, ФГУП']
 
-    find_meds_airtable_stub_request table: :drugs
-    find_meds_airtable_stub_request table: :medicines
-    find_meds_airtable_stub_request table: :companies
-    find_meds_airtable_stub_request table: :companies, id: 'receQeH2nuPmxUA7P'
-    find_meds_airtable_stub_request table: :companies, id: 'receQeH2nuPmxUA7L'
+    find_meds_airtable_stub_requests :drugs, :medicines, companies: %w[receQeH2nuPmxUA7P receQeH2nuPmxUA7L]
 
     stub = send_message_stub_request body: {
       chat_id: chat.telegram_chat_id,
