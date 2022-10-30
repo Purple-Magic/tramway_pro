@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     scope module: :it_way do
       resources :certificates, only: :show
       resources :podcasts, only: :show
+      resources :people, only: [ :index, :show ]
     end
 
     namespace :purple_magic do

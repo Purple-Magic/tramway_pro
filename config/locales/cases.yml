@@ -156,3 +156,9 @@ ru:
     find_meds/feedback:
       plural: фидбек
       genitive: фидбек
+    it_way/content:
+      plural: контент
+      genitive: контент
+    it_way/person:
+      plural: люди
+      genitive: персону
