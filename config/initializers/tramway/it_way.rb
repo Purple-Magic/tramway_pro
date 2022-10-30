@@ -6,6 +6,9 @@ Tramway::Admin.set_available_models Word,
   Podcast,
   Podcast::Episode,
   Tramway::Landing::Block,
+  ItWay::Content,
+  ItWay::Participation,
+  ItWay::Person,
   project: :conference,
   role: :admin
 
@@ -33,6 +36,8 @@ Tramway::Admin.navbar_structure(
       Tramway::Profiles::SocialNetwork
     ]
   },
+  ItWay::Person,
+  ItWay::Content,
   {
     other_functions: [
       Word,

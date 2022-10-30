@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20221024011734) do
+ActiveRecord::Schema.define(version: 20221030221603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -529,6 +529,43 @@ ActiveRecord::Schema.define(version: 20221024011734) do
     t.text "state"
     t.integer "project_id"
     t.datetime "deleted_at"
+  end
+
+  create_table "it_way_contents", force: :cascade do |t|
+    t.text "content_type"
+    t.integer "associated_id"
+    t.text "associated_type"
+    t.datetime "deleted_at"
+    t.text "state"
+    t.text "title"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "preview"
+    t.text "description"
+    t.text "url"
+  end
+
+  create_table "it_way_participations", force: :cascade do |t|
+    t.integer "person_id"
+    t.integer "content_id"
+    t.text "state"
+    t.datetime "deleted_at"
+    t.integer "project_id"
+    t.text "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "it_way_people", force: :cascade do |t|
+    t.text "first_name"
+    t.text "last_name"
+    t.text "avatar"
+    t.text "state"
+    t.datetime "deleted_at"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "it_way_word_uses", force: :cascade do |t|
