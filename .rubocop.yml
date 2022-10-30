@@ -33,8 +33,6 @@ Metrics/CyclomaticComplexity:
 Style/AsciiComments:
   Exclude:
     - spec/**/*.rb
-Gemspec/DateAssignment:
-  Enabled: true
 Layout/LineEndStringConcatenationIndentation:
   Enabled: true
 Layout/SpaceBeforeBrackets:
@@ -107,6 +105,9 @@ Style/SwapValues:
   Enabled: true
 Naming/RescuedExceptionsVariableName:
   Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - spec/features/**/*
 AllCops:
   Include:
     - app/**/*.rb

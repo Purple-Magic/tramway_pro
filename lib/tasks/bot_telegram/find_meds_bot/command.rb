@@ -1,23 +1,7 @@
 # frozen_string_literal: true
 
 class BotTelegram::FindMedsBot::Command
-  COMMANDS = %i[
-    start
-    start_menu
-    create_company
-    change_company_card
-    set_company_name
-    set_company_url
-    set_portfolio_url
-    set_email
-    set_phone
-    set_place
-    set_regions_to_cooperate
-    get_company_card
-    create_password
-    approve_offer
-    decline_offer
-  ].freeze
+  COMMANDS = %i[start start_menu].freeze
 
   attr_reader :name, :argument
 
@@ -32,10 +16,11 @@ class BotTelegram::FindMedsBot::Command
 
       @argument = data[:argument]
     else
+      text = message.text
       @name = COMMANDS.map do |com|
-        com if message.text&.match?(%r{^/#{com}})
+        com if text&.match?(%r{^/#{com}})
       end.compact.first
-      @argument = message.text.present? ? message.text.gsub(%r{^/#{@name} }, '').gsub(/^@#{slug}/, '') : []
+      @argument = text.present? ? text.gsub(%r{^/#{@name} }, '').gsub(/^@#{slug}/, '') : []
     end
   end
 

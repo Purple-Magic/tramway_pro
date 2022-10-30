@@ -1,8 +1,0 @@
-# frozen_string_literal: true
-
-class BotTelegram::FindMedsBot::Tables::Component < BotTelegram::FindMedsBot::Tables::FindMedsBaseTable
-  self.base_key = ENV['FIND_MEDS_MAIN_BASE']
-  self.table_name = 'components'
-
-  has_many :concentrations, class: 'BotTelegram::FindMedsBot::Tables::Concentration', column: 'Действующее вещество'
-end

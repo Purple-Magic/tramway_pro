@@ -9,7 +9,7 @@ describe 'BotTelegram::FindMedsBot' do
 
   describe 'About' do
     let(:message) { build :start_telegram_message }
-    let(:message_2) { build :telegram_message, text: 'О проекте' }
+    let(:message2) { build :telegram_message, text: 'О проекте' }
 
     it 'returns about message' do
       send_message_stub_request body: {
@@ -30,7 +30,7 @@ describe 'BotTelegram::FindMedsBot' do
                                    ])
       }
 
-      bot_run :find_meds, bot_record: bot_record, message: message_2, chat: chat, message_object: message_object
+      bot_run :find_meds, bot_record: bot_record, message: message2, chat: chat, message_object: message_object
 
       expect(stub).to have_been_requested
     end

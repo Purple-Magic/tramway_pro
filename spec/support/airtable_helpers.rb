@@ -1,9 +1,27 @@
 # frozen_string_literal: true
 
 module AirtableHelpers
+  def find_meds_airtable_stub_requests(*tables, **objects)
+    tables.each do |table|
+      find_meds_airtable_stub_request table: table
+    end
+
+    objects.each do |(table, ids)|
+      find_meds_airtable_stub_request table: table
+
+      if ids.is_a? Array
+        ids.each do |id|
+          find_meds_airtable_stub_request table: table, id: id
+        end
+      else
+        find_meds_airtable_stub_request table: table, id: ids
+      end
+    end
+  end
+
   def find_meds_airtable_stub_request(table:, id: nil)
     airtable_stub_request(
-      base: ::BotTelegram::FindMedsBot::Tables::ApplicationTable.base_key,
+      base: ::FindMeds::Tables::ApplicationTable.base_key,
       table: table,
       id: id
     )
