@@ -10,14 +10,24 @@
         %ul.navbar-nav.me-auto.mb-2.mb-lg-0
           %li.nav-item
             %a.nav-link.active{"aria-current" => "page", href: "/"} Home
-          %li.nav-item
-            %a.nav-link{href: "/people"} List
-        %form.d-flex{role: "search"}
-          %input.form-control.me-2{"aria-label" => "Search", placeholder: "Search", type: "search"}/
-          %button.btn.btn-outline-success{type: "submit"} Search
+          -# %li.nav-item
+          -#   %a.nav-link{href: "/people"} List
+        -# %form.d-flex{role: "search"}
+        -#   %input.form-control.me-2{"aria-label" => "Search", placeholder: "Search", type: "search"}/
+        -#   %button.btn.btn-outline-success{type: "submit"} Search
 
   .person-container
-    .info
+    .info{ style: 'margin-right: 3rem' }
       = image_tag @person.avatar.medium.url
       %h3.mt-2
         = @person.title
+    .stat
+      - @person.participations.each do |participation|
+        .card{style: "width: 18rem;"}
+          %img.card-img-top{ src: participation.content.preview }
+          .card-body
+            %h5.card-title
+              = participation.content.title
+            %p.card-text
+              = participation.role
+            %a.btn.btn-primary{ href: participation.content.url } Look at

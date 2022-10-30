@@ -9,6 +9,9 @@ class ItWay::ContentDecorator < Tramway::Core::ApplicationDecorator
         :title,
         :created_at,
         :updated_at,
+        :preview,
+        :description,
+        :url
   )
 
   decorate_associations :participations
