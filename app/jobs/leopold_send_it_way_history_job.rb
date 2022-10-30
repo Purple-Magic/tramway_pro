@@ -31,7 +31,7 @@ class LeopoldSendItWayHistoryJob < ActiveJob::Base
       )
     else
       send_notification_to_chat(
-        ::BotTelegram::Leopold::ItWayPro::CHAT_ID,
+        ::BotTelegram::Leopold::ChatDecorator::IT_WAY_PODCAST_ID,
         "Выпуск #{content.title} не имеет даты публикации. Добавьте её здесь http://red-magic.ru/admin/records/#{content.id}?model=Podcast%3A%3AEpisode" 
       )
     end
