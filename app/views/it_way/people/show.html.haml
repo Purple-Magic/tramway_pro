@@ -2,7 +2,23 @@
   = @person.title
 
 %link{ crossorigin: "anonymous", href: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css", integrity: "sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT", rel: "stylesheet"}
-= stylesheet_link_tag 'it_way/person'
+:sass
+  body
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: center
+
+  .it-way-container
+    width: 70vw
+
+    .person-container
+      display: flex
+      flex-direction: row
+
+      .info, .stat
+        display: flex
+        flex-direction: column
 
 .it-way-container
   %nav.navbar.navbar-expand-lg.bg-light.mb-4
