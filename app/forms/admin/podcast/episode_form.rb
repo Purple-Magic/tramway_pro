@@ -2,7 +2,7 @@
 
 class Admin::Podcast::EpisodeForm < Tramway::Core::ApplicationForm
   properties :project_id, :file, :ready_file, :cover, :number, :public_title, :montage_process, :story_cover,
-    :description, :full_video, :trailer_video, :trailer
+    :description, :full_video, :trailer_video, :trailer, :publish_date
 
   association :podcast
 
@@ -12,6 +12,7 @@ class Admin::Podcast::EpisodeForm < Tramway::Core::ApplicationForm
         public_title: :string,
         description: :text,
         number: :numeric,
+        publish_date: :date_picker,
         file: :file,
         ready_file: :file,
         cover: :file,
