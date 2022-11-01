@@ -28,6 +28,16 @@ class Podcast::StarDecorator < ApplicationDecorator
       ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.podcast_id, model: 'Podcast')
   end
 
+  def episodes
+    content_tag(:ul) do
+      object.episodes.each do |episode|
+        concat(content_tag(:li) do
+          link_to episode.public_title, Tramway::Admin::Engine.routes.url_helpers.record_path(episode.id, model: Podcast::Episode)
+        end)
+      end
+    end
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
@@ -55,6 +65,7 @@ class Podcast::StarDecorator < ApplicationDecorator
         podcast_id
         created_at
         updated_at
+        episodes
       ]
     end
 
