@@ -13,7 +13,7 @@ class ItWay::PeopleController < Tramway::Core::ApplicationController
         image_url: podcast.default_image.url,
         public_title: episode.public_title,
         role: starring.star_type,
-        links: instances.map do |link|
+        links: instances.map do |instance|
           {
             service: instance.service.capitalize,
             link: instance.link
