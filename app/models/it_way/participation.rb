@@ -1,6 +1,7 @@
 class ItWay::Participation < ApplicationRecord
   belongs_to :person, class_name: 'ItWay::Person'
-  belongs_to :content, class_name: 'ItWay::Content'
+  belongs_to :content, polymorphic: true
 
   enumerize :role, in: [ :speaker ]
+  enumerize :content_type, in: ['ItWay::Content', 'Tramway::Event::Section'], default:  'ItWay::Content'
 end

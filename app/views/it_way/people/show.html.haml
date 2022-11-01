@@ -50,19 +50,25 @@
     .stat
       - if @person.participations.any?
         %h2.mb-4
-          Видео
+          Доклады
         .cards
           - @person.participations.each do |participation|
             .card
-              %img.card-img-top{ src: participation.content.preview }
+              - if participation.content.is_a? ItWay::Content
+                %img.card-img-top{ src: participation.content.preview }
+              - else
+                %img.card-img-top{ src: participation.content.model.photo.url }
               .card-body
                 %h5.card-title
                   = participation.content.title
                 %p.card-text
                   = participation.role
-                %a.btn.btn-primary{ href: participation.content.url } Look at
+                - if participation.content.is_a? ItWay::Content
+                  %a.btn.btn-primary{ href: participation.content.url } Look at
+                - else
+                  %a.btn.btn-primary{ href: Tramway::Event::Engine.routes.url_helpers.event_path(participation.content.event.id) } Look at
       - if @episodes.any?
-        %h2.mb-4
+        %h2.mt-4
           Выпуски подкаста
         .cards
           - @episodes.each do |episode|
