@@ -9,6 +9,7 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
         :project_id,
         :created_at,
         :updated_at,
+        :star_id
   )
 
   decorate_associations :participations

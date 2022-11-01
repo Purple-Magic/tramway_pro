@@ -44,7 +44,7 @@
                   %p.card-text
                     Где послушать?
                   - episode.instances.each do |instance|
-                    = link_to instance.service.capitalize, episode.instances.first&.link, class: 'btn btn-primary', target: '_blank'
+                    = link_to instance.service.capitalize, instance.link, class: 'btn btn-primary', target: '_blank'
                 - else
                   %p.card-text
                     Скоро будет опубликован!

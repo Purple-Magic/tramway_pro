@@ -16,9 +16,21 @@
       display: flex
       flex-direction: row
 
-      .info, .stat
+      .info
         display: flex
         flex-direction: column
+
+      .stat
+        display: flex
+        flex-direction: column
+
+        .cards
+          display: flex
+          flex-direction: row
+        
+          .card
+            width: 18rem
+            margin-right: 1rem
 
 .it-way-container
   %nav.navbar.navbar-expand-lg.bg-light.mb-4
@@ -36,12 +48,31 @@
       %h3.mt-2
         = @person.title
     .stat
-      - @person.participations.each do |participation|
-        .card{style: "width: 18rem;"}
-          %img.card-img-top{ src: participation.content.preview }
-          .card-body
-            %h5.card-title
-              = participation.content.title
-            %p.card-text
-              = participation.role
-            %a.btn.btn-primary{ href: participation.content.url } Look at
+      - if @person.participations.any?
+        %h2.mb-4
+          Видео
+        .cards
+          - @person.participations.each do |participation|
+            .card
+              %img.card-img-top{ src: participation.content.preview }
+              .card-body
+                %h5.card-title
+                  = participation.content.title
+                %p.card-text
+                  = participation.role
+                %a.btn.btn-primary{ href: participation.content.url } Look at
+      - if @episodes.any?
+        %h2.mb-4
+          Выпуски подкаста
+        .cards
+          - @episodes.each do |episode|
+            .card
+              %img.card-img-top{ src: episode[:image_url] }
+              .card-body
+                %h5.card-title
+                  = episode[:public_title]
+                %p.card-text
+                  = episode[:role]
+                - episode[:links]&.each do |link|
+                  %a.btn.btn-primary{ href: link[:link] }
+                    = link[:service]
