@@ -47,6 +47,8 @@
       = image_tag @person.avatar.medium.url
       %h3.mt-2
         = @person.title
+      %h1
+        = @person.stat_table
     .stat
       - if @person.participations.any?
         %h2.mb-4
@@ -67,11 +69,11 @@
                   %a.btn.btn-primary{ href: participation.content.url } Look at
                 - else
                   %a.btn.btn-primary{ href: Tramway::Event::Engine.routes.url_helpers.event_path(participation.content.event.id) } Look at
-      - if @episodes.any?
+      - if @person.episodes.any?
         %h2.mt-4
           Выпуски подкаста
         .cards
-          - @episodes.each do |episode|
+          - @person.episodes.each do |episode|
             .card
               %img.card-img-top{ src: episode[:image_url] }
               .card-body
