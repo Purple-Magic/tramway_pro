@@ -56,7 +56,7 @@ class ProductDecorator < ApplicationDecorator
       end
       text += "\n"
     end.gsub('*', '')
-    intro = "🪄  *Отчёт за #{date.strftime('%d.%m.%Y')}*\n\n"
+    intro = "🪄 Проект #{title}. Отчёт за #{date.strftime('%d.%m.%Y')}\n\n"
     intro + (report.present? ? report : 'Вчера не было залогированных задач')
   end
 
