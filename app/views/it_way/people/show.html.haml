@@ -18,34 +18,45 @@
     justify-content: flex-start
     align-items: center
 
-  .it-way-container
-    width: 70vw
+  .person-container
+    display: flex
+    flex-direction: row
 
-    .person-container
+    .avatar
+      width: 100%
+
+    .info
       display: flex
-      flex-direction: row
+      flex-direction: column
 
-      .avatar
-        width: 100%
+    .stat
+      display: flex
+      flex-direction: column
 
-      .info
-        display: flex
-        flex-direction: column
+  #karma
+    .karmaTable
+      font-size: 0.8rem
 
-      .stat
-        display: flex
-        flex-direction: column
+    $podcast_color: #6B5B95 
+    $offline_conf_color: #009B77 
+    $forum_color: #34568B 
 
-    #karma
-      .karmaTable
-        font-size: 0.8rem
+    .badge
+      color: white  !important
 
-      $podcast_color: #6B5B95 
-      $offline_conf_color: #009B77 
-      $forum_color: #34568B 
+      &.podcast
+        background-color: $podcast_color !important
 
-      .badge
-        color: white  !important
+      &.offline_conf
+        background-color: $offline_conf_color !important
+
+      &.forum
+        background-color: $forum_color !important
+
+    .table
+      tr
+        &.podcast, &.offline_conf, &.forum
+          color: white
 
         &.podcast
           background-color: $podcast_color !important
@@ -56,39 +67,22 @@
         &.forum
           background-color: $forum_color !important
 
-      .table
-        tr
-          &.podcast, &.offline_conf, &.forum
-            color: white
+  .accordion
+    .accordion-header
+      button
+        font-weight: bold
 
-          &.podcast
-            background-color: $podcast_color !important
+        &.gold
+          background-color: hsla(45, 100%, 47%, 1)
+          color: white
 
-          &.offline_conf
-            background-color: $offline_conf_color !important
+          &::after
+            filter: brightness(0) invert(1)
 
-          &.forum
-            background-color: $forum_color !important
-
-    .accordion
-      .accordion-header
-        button
-          font-weight: bold
-
-          &.gold
-            background-color: hsla(45, 100%, 47%, 1)
-            color: white
-
-            &::after
-              filter: brightness(0) invert(1)
-    
-    .card
-      margin-right: 1rem
-      margin-left: 12px
-      padding-left: 0
-      padding-right: 0
-
-.it-way-container
+  .card
+    padding-left: 0
+  
+.container
   %nav.navbar.navbar-expand-lg.bg-light.mb-4
     .container-fluid
       %a.navbar-brand{href: "#"} IT Way
@@ -153,41 +147,47 @@
                         = row[:points]
       .col-lg-8.col-md-6.col-sm-12.col-xs-12
         - if @person.participations.any?
-          %h2.mb-4
-            Доклады
+          .row
+            .col-xs-12
+              %h2.mb-4
+                Доклады
           .row
             - @person.participations.each do |participation|
-              .card.col-lg-4.col-md-12.mb-2
-                - if participation.content.is_a? ItWay::Content
-                  %img.card-img-top{ src: participation.content.preview }
-                - else
-                  %img.card-img-top{ src: participation.content.model.photo.url }
-                .card-body
-                  %h5.card-title
-                    = participation.content.title
-                  %p.card-text
-                    = participation.role.text
-                .card-footer
+              .col-lg-4.col-md-12.col-sm-12.col-xs-12.mb-2
+                .card
                   - if participation.content.is_a? ItWay::Content
-                    %a.btn.btn-primary{ href: participation.content.url } Look at
+                    %img.card-img-top{ src: participation.content.preview }
                   - else
-                    %a.btn.btn-primary{ href: Tramway::Event::Engine.routes.url_helpers.event_path(participation.content.event.id) } Look at
+                    %img.card-img-top{ src: participation.content.model.photo.url }
+                  .card-body
+                    %h5.card-title
+                      = participation.content.title
+                    %p.card-text
+                      = participation.role.text
+                  .card-footer
+                    - if participation.content.is_a? ItWay::Content
+                      %a.btn.btn-primary{ href: participation.content.url } Look at
+                    - else
+                      %a.btn.btn-primary{ href: Tramway::Event::Engine.routes.url_helpers.event_path(participation.content.event.id) } Look at
         - if @person.episodes.any?
-          %h2.mt-4
-            Выпуски подкаста
+          .row
+            .col
+              %h2.mt-4
+                Выпуски подкаста
           .row
             - @person.episodes.each do |episode|
-              .card.col-md-12.col-lg-4.mb-2
-                %img.card-img-top{ src: episode[:image_url] }
-                .card-body
-                  %h5.card-title
-                    = episode[:public_title]
-                .card-footer
-                  .dropdown
-                    %button.btn.btn-primary.dropdown-toggle{ type: :button, data: { 'bs-toggle' => :dropdown }, aria: { expanded: false } }
-                      Где послушать?
-                    %ul.dropdown-menu
-                      - episode[:links]&.each do |link|
-                        %li
-                          %a.dropdown-item{ href: link[:link], target: '_blank' }
-                            = link[:service]
+              .col-md-12.col-lg-4.mb-2
+                .card
+                  %img.card-img-top{ src: episode[:image_url] }
+                  .card-body
+                    %h5.card-title
+                      = episode[:public_title]
+                  .card-footer
+                    .dropdown
+                      %button.btn.btn-primary.dropdown-toggle{ type: :button, data: { 'bs-toggle' => :dropdown }, aria: { expanded: false } }
+                        Где послушать?
+                      %ul.dropdown-menu
+                        - episode[:links]&.each do |link|
+                          %li
+                            %a.dropdown-item{ href: link[:link], target: '_blank' }
+                              = link[:service]
