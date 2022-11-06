@@ -12,7 +12,7 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
         :star_id
   )
 
-  decorate_associations :participations
+  decorate_associations :participations, :points
 
   def title
     "#{first_name} #{last_name}"
@@ -48,25 +48,167 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
     end
 
     def show_associations
-      [ :participations ]
+      [ :participations, :points ]
     end
 
     def list_filters
-      # {
-      #   filter_name: {
-      #     type: :select,
-      #     select_collection: filter_collection,
-      #     query: lambda do |list, value|
-      #       list.where some_attribute: value
-      #     end
-      #   },
-      #   date_filter_name: {
-      #     type: :dates,
-      #     query: lambda do |list, begin_date, end_date|
-      #       list.where 'created_at > ? AND created_at < ?', begin_date, end_date
-      #     end
-      #   }
-      # }
     end
+  end
+
+  FORUMS_IDS = [14, 15, 16, 3, 26]
+
+  WEIGHTS = {
+    telegram_message: 1,
+    offline_conf: {
+      org: 100,
+      speaker: 50,
+      participant: 10
+    },
+    podcast: {
+      main: 10,
+      guest: 20,
+      minor: 5
+    },
+    forum: {
+      participant: 50,
+      speaker: 100,
+      trainer: 1000,
+      org: 1000,
+      main_org: 2000
+    }
+  }
+
+  def episodes
+    @episodes ||= Podcast::Star.unscoped.find(43).starrings.map do |starring|
+      episode = Podcast::Episode.unscoped.find(starring.episode_id)
+      podcast = Podcast.unscoped.find(episode.podcast_id)
+      instances = Podcast::Episodes::Instance.unscoped.where(episode_id: episode.id)
+
+      {
+        image_url: podcast.default_image.url,
+        public_title: episode.public_title,
+        role: starring.star_type,
+        links: instances.map do |instance|
+          {
+            service: instance.service.capitalize,
+            link: instance.link
+          }
+        end
+      }
+    end
+  end
+
+  def stat_table
+    table do
+      tr do
+        concat(td do
+          content_tag(:span) do
+            concat(content_tag(:h3) do
+              karma.to_s
+            end)
+          end
+        end)
+        concat(td do
+          gold = gold_medals.reduce(0) do |count, (_name, condition)|
+            if condition.call(self)
+              count += 1 
+            else
+              count
+            end
+          end
+          concat(content_tag(:span, style: 'color: rgb(240, 180, 0)') do
+            "⬤ #{gold}"
+          end)
+        end)
+        concat(td do
+          silver = silver_medals.reduce(0) do |count, (_name, condition)|
+            if condition.call(self)
+              count += 1 
+            else
+              count
+            end
+          end
+          concat(content_tag(:span, style: 'color: rgb(153, 156, 159)') do
+            "⬤ #{silver}"
+          end)
+        end)
+        concat(td do
+          bronze = bronze_medals.reduce(0) do |count, (_name, condition)|
+            if condition.call(self)
+              count += 1 
+            else
+              count
+            end
+          end
+          concat(content_tag(:span, style: 'color: rgb(171, 130, 95)') do
+            "⬤ #{bronze}"
+          end)
+        end)
+      end
+    end
+  end
+
+  def karma
+    karma = 0
+    data = []
+    episodes&.each do |episode|
+      role = episode[:role]
+      points = WEIGHTS[:podcast][role.to_sym]
+      data << { title: episode[:public_title], role: role, points: points }
+      karma += points
+    end
+    karma += telegram_user.messages.where(chat_id: 1694).count if telegram_user.present?
+    participations.each do |participation|
+      case participation.content.model.class.to_s
+      when 'ItWay::Content'
+      when 'Tramway::Event::Section'
+        key = participation.content.event.id.in?(FORUMS_IDS) ? :forum : :offline_conf
+        role = participation.role.to_sym
+        points = WEIGHTS[key][role]
+        data << { title: participation.content.event.title, role: role, points: points }
+        karma += points
+      end
+    end
+
+    if points.any?
+      sum = points.sum(&:count)
+      data << { title: 'Дополнительные очки', points: sum  }
+      karma += sum
+    end
+
+    {
+      points: karma,
+      data: data
+    }
+  end
+
+  private
+
+  def gold_medals
+    {
+      more_than_3_episodes: lambda { |person| person.episodes.count > 3 },
+      telegram_messages_is_1000: lambda { |person| person.send(:telegram_user).messages.count >= 1000 },
+      five_events: lambda { |person| person.participations.count >= 5 }
+    }
+  end
+
+  def silver_medals
+    {
+      back_to_podcast: lambda { |person| person.episodes.count > 1 },
+      telegram_messages_is_100: lambda { |person| person.send(:telegram_user).messages.count >= 100 },
+      three_events: lambda { |person| person.participations.count >= 3 }
+    }
+  end
+
+  def bronze_medals
+    {
+      one_episode: lambda { |person| person.episodes.any? },
+      telegram_messages_is_10: lambda { |person| person.send(:telegram_user).messages.count >= 10 },
+      one_event: lambda { |person| person.participations.any? }
+    }
+  end
+
+  def telegram_user
+    ::BotTelegram::User.unscoped.find_by(id: object.telegram_user_id)
   end
 end

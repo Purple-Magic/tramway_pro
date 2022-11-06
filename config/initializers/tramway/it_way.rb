@@ -9,6 +9,7 @@ Tramway::Admin.set_available_models Word,
   ItWay::Content,
   ItWay::Participation,
   ItWay::Person,
+  ItWay::People::Point,
   project: :conference,
   role: :admin
 
