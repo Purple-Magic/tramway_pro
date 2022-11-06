@@ -6,6 +6,21 @@ import styled from 'styled-components'
 const StatTable = styled.div`
   display: flex;
   flex-direction: column;
+
+  @keyframes slideInFromLeft {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .karmaTable {
+    animation: 0.5s ease-out 0s 1 slideInFromLeft;
+  }
 `
 
 class ItWayPersonStatTable extends React.Component {
@@ -31,14 +46,14 @@ class ItWayPersonStatTable extends React.Component {
   karmaTable() {
     if (this.state.karmaTableShowState == 'visible') {
       return(
-        <div>
+        <div className="karmaTable">
           <Table>
             <tbody>
               {
                 this.props.karma.data.map((row, index) => {
                   return (
                     <tr key={index}>
-                      <td style={{ width: '100px' }}>
+                      <td colspan="2" style={{ width: '100px' }}>
                         { row.title }
                       </td>
                       <td>
