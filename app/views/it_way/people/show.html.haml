@@ -118,6 +118,7 @@
                     = participation.content.title
                   %p.card-text
                     = participation.role.text
+                .card-footer
                   - if participation.content.is_a? ItWay::Content
                     %a.btn.btn-primary{ href: participation.content.url } Look at
                   - else
