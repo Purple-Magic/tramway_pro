@@ -4,7 +4,13 @@
 = javascript_pack_tag 'application'
 
 %link{ crossorigin: "anonymous", href: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css", integrity: "sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT", rel: "stylesheet"}
+%script{ src: "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js", integrity: "sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3", crossorigin: "anonymous" }
+%script{ src: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js", integrity: "sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk", crossorigin: "anonymous" }
+
 :sass
+  $accordion-padding-y: 0.5rem
+  $accordion-padding-x: 0.5rem
+
   body
     display: flex
     flex-direction: column
@@ -18,6 +24,9 @@
       display: flex
       flex-direction: row
 
+      .avatar
+        width: 100%
+
       .info
         display: flex
         flex-direction: column
@@ -26,13 +35,29 @@
         display: flex
         flex-direction: column
 
-        .cards
-          display: flex
-          flex-direction: row
-        
-          .card
-            width: 18rem
-            margin-right: 1rem
+    #karma
+      .karmaTable
+        font-size: 0.8rem
+
+      .badge
+        color: black !important
+        &.text-bg-primary
+          background-color: #cfe2ff !important
+
+        &.text-bg-secondary
+          background-color: #e2e3e5 !important
+
+        &.text-bg-success
+          background-color: #d1e7dd !important
+
+        &.text-bg-info
+          background-color: #cff4fc !important
+    
+    .card
+      margin-right: 1rem
+      margin-left: 12px
+      padding-left: 0
+      padding-right: 0
 
 .it-way-container
   %nav.navbar.navbar-expand-lg.bg-light.mb-4
@@ -46,18 +71,44 @@
             %a.nav-link.active{"aria-current" => "page", href: "/"} Home
   .person-container
     .row
-      .col-md-4{ style: 'margin-right: 3rem' }
-        = image_tag @person.avatar.medium.url
+      .col-md-4
+        = image_tag @person.avatar.medium.url, class: :avatar
         %h3.mt-2
           = @person.title
-        = react_component 'ItWayPersonStatTable', karma: @person.karma
-      .col
+        #karma.accordion.mt-4{ style: 'width: 25rem' }
+          .accordion-item
+            %h2#pointsTable.accordion-header
+              %button.accordion-button{"aria-controls" => "pointsTableView", "aria-expanded" => "true", "data-bs-target" => "#pointsTableView", "data-bs-toggle" => "collapse", type: "button"}
+                = t('.karma_points', points: @person.karma[:points] )
+            #pointsTableView.accordion-collapse.collapse.show{"aria-labelledby" => "pointsTable", "data-bs-parent" => "#karma"}
+              .accordion-body
+                - badges = { podcast: :primary, forum: :info, offline_conf: :success, chat: :secondary }
+                - badges.each do |(type, color)|
+                  .badge{ class: "text-bg-#{color}"}
+                    = t("it_way.people.show.badges.#{type}")
+                %table.karmaTable.table.mt-2
+                  %thead
+                    %th
+                      Событие
+                    %th
+                      Роль
+                    %th
+                      Очки
+                  - @person.karma[:data].each do |row|
+                    %tr{ class: "table-#{badges[row[:type]]}"}
+                      %td
+                        = row[:title]
+                      %td
+                        = row[:role]
+                      %td
+                        = row[:points]
+      .col-md-8
         - if @person.participations.any?
           %h2.mb-4
             Доклады
-          .cards
+          .row
             - @person.participations.each do |participation|
-              .card
+              .col-md-4.card
                 - if participation.content.is_a? ItWay::Content
                   %img.card-img-top{ src: participation.content.preview }
                 - else
@@ -66,7 +117,7 @@
                   %h5.card-title
                     = participation.content.title
                   %p.card-text
-                    = participation.role
+                    = participation.role.text
                   - if participation.content.is_a? ItWay::Content
                     %a.btn.btn-primary{ href: participation.content.url } Look at
                   - else
@@ -74,15 +125,19 @@
         - if @person.episodes.any?
           %h2.mt-4
             Выпуски подкаста
-          .cards
+          .row
             - @person.episodes.each do |episode|
-              .card
+              .col-md-4.card
                 %img.card-img-top{ src: episode[:image_url] }
                 .card-body
                   %h5.card-title
                     = episode[:public_title]
-                  %p.card-text
-                    = episode[:role]
-                  - episode[:links]&.each do |link|
-                    %a.btn.btn-primary{ href: link[:link] }
-                      = link[:service]
+                .card-footer
+                  .dropdown
+                    %button.btn.btn-primary.dropdown-toggle{ type: :button, data: { 'bs-toggle' => :dropdown }, aria: { expanded: false } }
+                      Где послушать?
+                    %ul.dropdown-menu
+                      - episode[:links]&.each do |link|
+                        %li
+                          %a.dropdown-item{ href: link[:link], target: '_blank' }
+                            = link[:service]

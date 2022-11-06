@@ -98,76 +98,36 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
     end
   end
 
-  def stat_table
-    table do
-      tr do
-        concat(td do
-          content_tag(:span) do
-            concat(content_tag(:h3) do
-              karma.to_s
-            end)
-          end
-        end)
-        concat(td do
-          gold = gold_medals.reduce(0) do |count, (_name, condition)|
-            if condition.call(self)
-              count += 1 
-            else
-              count
-            end
-          end
-          concat(content_tag(:span, style: 'color: rgb(240, 180, 0)') do
-            "⬤ #{gold}"
-          end)
-        end)
-        concat(td do
-          silver = silver_medals.reduce(0) do |count, (_name, condition)|
-            if condition.call(self)
-              count += 1 
-            else
-              count
-            end
-          end
-          concat(content_tag(:span, style: 'color: rgb(153, 156, 159)') do
-            "⬤ #{silver}"
-          end)
-        end)
-        concat(td do
-          bronze = bronze_medals.reduce(0) do |count, (_name, condition)|
-            if condition.call(self)
-              count += 1 
-            else
-              count
-            end
-          end
-          concat(content_tag(:span, style: 'color: rgb(171, 130, 95)') do
-            "⬤ #{bronze}"
-          end)
-        end)
-      end
-    end
-  end
-
   def karma
     karma = 0
     data = []
     episodes&.each do |episode|
       role = episode[:role]
       points = WEIGHTS[:podcast][role.to_sym]
-      data << { title: episode[:public_title], role: role, points: points }
+      data << { title: episode[:public_title], role: role.text, points: points, type: :podcast }
       karma += points
     end
-    karma += telegram_user.messages.where(chat_id: 1694).count if telegram_user.present?
+
     participations.each do |participation|
       case participation.content.model.class.to_s
       when 'ItWay::Content'
       when 'Tramway::Event::Section'
         key = participation.content.event.id.in?(FORUMS_IDS) ? :forum : :offline_conf
-        role = participation.role.to_sym
-        points = WEIGHTS[key][role]
-        data << { title: participation.content.event.title, role: role, points: points }
+        role = participation.role
+        points = WEIGHTS[key][role.to_sym]
+        data << { title: participation.content.event.title, role: role.text, points: points, type: key }
         karma += points
       end
+    end
+
+    if telegram_user.present?
+      telegram_messages_count = telegram_user.messages.where(chat_id: 1694).count 
+      data << {
+        title: object.class.human_attribute_name(:messages_at_it_way_chat),
+        points: telegram_messages_count,
+        type: :chat
+      }
+      karma += telegram_messages_count
     end
 
     if points.any?

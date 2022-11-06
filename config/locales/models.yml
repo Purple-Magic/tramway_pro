@@ -250,6 +250,8 @@ ru:
         overhearing_percent: Процент дослушиваемости
       find_meds/base:
         name: Имя
+      it_way/person:
+        messages_at_it_way_chat: Активность в чате IT Way
   enumerize:
     podcast:
       podcast_type:
@@ -265,6 +267,12 @@ ru:
       coefficient_type:
         price: на рейт
         hours: на часы
+    podcast/episodes/star:
+      star_type:
+        guest: Гость
+    it_way/participation:
+      role:
+        speaker: Докладчик
   collections:
     benchkiller/offer:
       all: Всё
