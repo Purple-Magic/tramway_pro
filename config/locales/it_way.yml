@@ -3,3 +3,8 @@ ru:
     people:
       show:
         karma_points: "Всего очков: %{points}"
+        badges:
+          podcast: Подкаст
+          forum: Форум
+          offline_conf: Конфа
+          chat: Чат

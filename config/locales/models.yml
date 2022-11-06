@@ -250,6 +250,8 @@ ru:
         overhearing_percent: Процент дослушиваемости
       find_meds/base:
         name: Имя
+      it_way/person:
+        messages_at_it_way_chat: Активность в чате IT Way
   enumerize:
     podcast:
       podcast_type:

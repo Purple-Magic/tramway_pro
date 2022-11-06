@@ -46,6 +46,21 @@
       .karmaTable
         font-size: 0.8rem
 
+      .badge
+        color: black !important
+        &.text-bg-primary
+          background-color: #cfe2ff !important
+
+        &.text-bg-secondary
+          background-color: #e2e3e5 !important
+
+        &.text-bg-success
+          background-color: #d1e7dd !important
+
+        &.text-bg-info
+          background-color: #cff4fc !important
+
+
 .it-way-container
   %nav.navbar.navbar-expand-lg.bg-light.mb-4
     .container-fluid
@@ -69,7 +84,11 @@
                 = t('.karma_points', points: @person.karma[:points] )
             #pointsTableView.accordion-collapse.collapse.show{"aria-labelledby" => "pointsTable", "data-bs-parent" => "#karma"}
               .accordion-body
-                %table.karmaTable.table.table-striped
+                - badges = { podcast: :primary, forum: :info, offline_conf: :success, chat: :secondary }
+                - badges.each do |(type, color)|
+                  .badge{ class: "text-bg-#{color}"}
+                    = t("it_way.people.show.badges.#{type}")
+                %table.karmaTable.table.mt-2
                   %thead
                     %th
                       Событие
@@ -78,7 +97,7 @@
                     %th
                       Очки
                   - @person.karma[:data].each do |row|
-                    %tr
+                    %tr{ class: "table-#{badges[row[:type]]}"}
                       %td
                         = row[:title]
                       %td

@@ -104,10 +104,10 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
     episodes&.each do |episode|
       role = episode[:role]
       points = WEIGHTS[:podcast][role.to_sym]
-      data << { title: episode[:public_title], role: role.text, points: points }
+      data << { title: episode[:public_title], role: role.text, points: points, type: :podcast }
       karma += points
     end
-    karma += telegram_user.messages.where(chat_id: 1694).count if telegram_user.present?
+
     participations.each do |participation|
       case participation.content.model.class.to_s
       when 'ItWay::Content'
@@ -115,9 +115,19 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
         key = participation.content.event.id.in?(FORUMS_IDS) ? :forum : :offline_conf
         role = participation.role
         points = WEIGHTS[key][role.to_sym]
-        data << { title: participation.content.event.title, role: role.text, points: points }
+        data << { title: participation.content.event.title, role: role.text, points: points, type: key }
         karma += points
       end
+    end
+
+    if telegram_user.present?
+      telegram_messages_count = telegram_user.messages.where(chat_id: 1694).count 
+      data << {
+        title: object.class.human_attribute_name(:messages_at_it_way_chat),
+        points: telegram_messages_count,
+        type: :chat
+      }
+      karma += telegram_messages_count
     end
 
     if points.any?
