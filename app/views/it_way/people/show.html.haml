@@ -35,13 +35,6 @@
         display: flex
         flex-direction: column
 
-        .cards
-          display: flex
-          flex-direction: row
-        
-          .card
-            width: 18rem
-            margin-right: 1rem
     #karma
       .karmaTable
         font-size: 0.8rem
@@ -59,7 +52,12 @@
 
         &.text-bg-info
           background-color: #cff4fc !important
-
+    
+    .card
+      margin-right: 1rem
+      margin-left: 12px
+      padding-left: 0
+      padding-right: 0
 
 .it-way-container
   %nav.navbar.navbar-expand-lg.bg-light.mb-4
@@ -108,9 +106,9 @@
         - if @person.participations.any?
           %h2.mb-4
             Доклады
-          .cards
+          .row
             - @person.participations.each do |participation|
-              .card
+              .col-md-4.card
                 - if participation.content.is_a? ItWay::Content
                   %img.card-img-top{ src: participation.content.preview }
                 - else
@@ -119,7 +117,7 @@
                   %h5.card-title
                     = participation.content.title
                   %p.card-text
-                    = participation.role
+                    = participation.role.text
                   - if participation.content.is_a? ItWay::Content
                     %a.btn.btn-primary{ href: participation.content.url } Look at
                   - else
@@ -127,15 +125,15 @@
         - if @person.episodes.any?
           %h2.mt-4
             Выпуски подкаста
-          .cards
+          .row
             - @person.episodes.each do |episode|
-              .card
+              .col-md-4.card
                 %img.card-img-top{ src: episode[:image_url] }
                 .card-body
                   %h5.card-title
                     = episode[:public_title]
                   %p.card-text
-                    = episode[:role]
+                    = episode[:role].text
                   - episode[:links]&.each do |link|
                     %a.btn.btn-primary{ href: link[:link] }
                       = link[:service]
