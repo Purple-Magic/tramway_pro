@@ -6,6 +6,7 @@
 %link{ crossorigin: "anonymous", href: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css", integrity: "sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT", rel: "stylesheet"}
 %script{ src: "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js", integrity: "sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3", crossorigin: "anonymous" }
 %script{ src: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js", integrity: "sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk", crossorigin: "anonymous" }
+%meta{ name: "viewport", content: "width=device-width", 'initial-scale' => "1" }
 
 :sass
   $accordion-padding-y: 0.5rem
@@ -99,11 +100,11 @@
             %a.nav-link.active{"aria-current" => "page", href: "/"} Home
   .person-container
     .row
-      .col-lg-4.col-md-6.col-sm-12
+      .col-lg-4.col-md-6.col-sm-12.col-xs-12
         = image_tag @person.avatar.medium.url, class: :avatar
         %h3.mt-2
           = @person.title
-        #karma.accordion.mt-4
+        #karma.accordion.mt-4.mb-4
           .accordion-item
             %h2#elite_karmaTable.accordion-header
               %button.accordion-button.gold{"aria-controls" => "elite_karmaTableView", "aria-expanded" => "false", "data-bs-target" => "#elite_karmaTableView", "data-bs-toggle" => "collapse", type: "button"}
@@ -150,13 +151,13 @@
                         = row[:title]
                       %td
                         = row[:points]
-      .col-lg-8.col-md-6
+      .col-lg-8.col-md-6.col-sm-12.col-xs-12
         - if @person.participations.any?
           %h2.mb-4
             Доклады
           .row
             - @person.participations.each do |participation|
-              .card.col-lg-4.col-md-12
+              .card.col-lg-4.col-md-12.mb-2
                 - if participation.content.is_a? ItWay::Content
                   %img.card-img-top{ src: participation.content.preview }
                 - else
@@ -176,7 +177,7 @@
             Выпуски подкаста
           .row
             - @person.episodes.each do |episode|
-              .card.col-md-12.col-lg-4
+              .card.col-md-12.col-lg-4.mb-2
                 %img.card-img-top{ src: episode[:image_url] }
                 .card-body
                   %h5.card-title
