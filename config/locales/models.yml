@@ -265,6 +265,12 @@ ru:
       coefficient_type:
         price: на рейт
         hours: на часы
+    podcast/episodes/star:
+      star_type:
+        guest: Гость
+    it_way/participation:
+      role:
+        speaker: Докладчик
   collections:
     benchkiller/offer:
       all: Всё

@@ -1,0 +1,5 @@
+ru:
+  it_way:
+    people:
+      show:
+        karma_points: "Всего очков: %{points}"
