@@ -46,7 +46,7 @@
             %a.nav-link.active{"aria-current" => "page", href: "/"} Home
   .person-container
     .row
-      .col-md-4{ style: 'margin-right: 3rem' }
+      .col-md-4
         = image_tag @person.avatar.medium.url
         %h3.mt-2
           = @person.title

@@ -11,7 +11,6 @@ const StatTable = styled.div`
 class ItWayPersonStatTable extends React.Component {
   constructor(props) {
     super(props)
-    console.log(props.karma)
 
     this.state = {
       karmaTableShowState: 'hidden',
@@ -33,27 +32,27 @@ class ItWayPersonStatTable extends React.Component {
     if (this.state.karmaTableShowState == 'visible') {
       return(
         <div>
-        <Table>
-          <tbody>
-            {
-              this.props.karma.data.map((row, index) => {
-                return (
-                  <tr key={index}>
-                    <td>
-                      { row.title }
-                    </td>
-                    <td>
-                      { row.role }
-                    </td>
-                    <td>
-                      { row.points }
-                    </td>
-                  </tr>
-                )
-              })
-            }
-          </tbody>
-        </Table>
+          <Table>
+            <tbody>
+              {
+                this.props.karma.data.map((row, index) => {
+                  return (
+                    <tr key={index}>
+                      <td style={{ width: '100px' }}>
+                        { row.title }
+                      </td>
+                      <td>
+                        { row.role }
+                      </td>
+                      <td>
+                        { row.points }
+                      </td>
+                    </tr>
+                  )
+                })
+              }
+            </tbody>
+          </Table>
         </div>
       )
     }
