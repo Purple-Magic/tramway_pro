@@ -39,19 +39,47 @@
       .karmaTable
         font-size: 0.8rem
 
+      $podcast_color: #6B5B95 
+      $offline_conf_color: #009B77 
+      $forum_color: #34568B 
+
       .badge
-        color: black !important
-        &.text-bg-primary
-          background-color: #cfe2ff !important
+        color: white  !important
 
-        &.text-bg-secondary
-          background-color: #e2e3e5 !important
+        &.podcast
+          background-color: $podcast_color !important
 
-        &.text-bg-success
-          background-color: #d1e7dd !important
+        &.offline_conf
+          background-color: $offline_conf_color !important
 
-        &.text-bg-info
-          background-color: #cff4fc !important
+        &.forum
+          background-color: $forum_color !important
+
+      .table
+        tr
+          &.podcast, &.offline_conf, &.forum
+            color: white
+
+          &.podcast
+            background-color: $podcast_color !important
+
+          &.offline_conf
+            background-color: $offline_conf_color !important
+
+          &.forum
+            background-color: $forum_color !important
+
+    .accordion
+      .accordion-header
+        button
+          font-weight: bold
+
+          &.gold
+            background-color: hsla(45, 100%, 47%, 1)
+            color: white
+
+            &::after
+              filter: brightness(0) invert(1)
     
     .card
       margin-right: 1rem
@@ -77,14 +105,14 @@
           = @person.title
         #karma.accordion.mt-4{ style: 'width: 25rem' }
           .accordion-item
-            %h2#pointsTable.accordion-header
-              %button.accordion-button{"aria-controls" => "pointsTableView", "aria-expanded" => "true", "data-bs-target" => "#pointsTableView", "data-bs-toggle" => "collapse", type: "button"}
-                = t('.karma_points', points: @person.karma[:points] )
-            #pointsTableView.accordion-collapse.collapse.show{"aria-labelledby" => "pointsTable", "data-bs-parent" => "#karma"}
+            %h2#elite_karmaTable.accordion-header
+              %button.accordion-button.gold{"aria-controls" => "elite_karmaTableView", "aria-expanded" => "false", "data-bs-target" => "#elite_karmaTableView", "data-bs-toggle" => "collapse", type: "button"}
+                = t('.elite_karma', points: @person.elite_karma[:points] )
+            #elite_karmaTableView.accordion-collapse.collapse.show{"aria-labelledby" => "elite_karmaTable", "data-bs-parent" => "#karma"}
               .accordion-body
-                - badges = { podcast: :primary, forum: :info, offline_conf: :success, chat: :secondary }
-                - badges.each do |(type, color)|
-                  .badge{ class: "text-bg-#{color}"}
+                - badges = [ :podcast, :forum, :offline_conf ]
+                - badges.each do |type|
+                  .badge{ class: type }
                     = t("it_way.people.show.badges.#{type}")
                 %table.karmaTable.table.mt-2
                   %thead
@@ -94,12 +122,32 @@
                       Роль
                     %th
                       Очки
-                  - @person.karma[:data].each do |row|
-                    %tr{ class: "table-#{badges[row[:type]]}"}
+                  - @person.elite_karma[:data].each do |row|
+                    %tr{ class: row[:type] }
                       %td
                         = row[:title]
                       %td
                         = row[:role]
+                      %td
+                        = row[:points]
+          .accordion-item
+            %h2#pointsTable.accordion-header
+              %button.accordion-button{"aria-controls" => "pointsTableView", "aria-expanded" => "false", "data-bs-target" => "#pointsTableView", "data-bs-toggle" => "collapse", type: "button"}
+                = t('.karma', points: @person.karma[:points] )
+            #pointsTableView.accordion-collapse.collapse.show{"aria-labelledby" => "pointsTable", "data-bs-parent" => "#karma"}
+              .accordion-body
+                %table.karmaTable.table.mt-2
+                  %thead
+                    %th
+                      Событие
+                    %th
+                      Роль
+                    %th
+                      Очки
+                  - @person.karma[:data].each do |row|
+                    %tr
+                      %td
+                        = row[:title]
                       %td
                         = row[:points]
       .col-md-8

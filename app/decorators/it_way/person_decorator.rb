@@ -98,9 +98,10 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
     end
   end
 
-  def karma
+  def elite_karma
     karma = 0
     data = []
+
     episodes&.each do |episode|
       role = episode[:role]
       points = WEIGHTS[:podcast][role.to_sym]
@@ -119,6 +120,16 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
         karma += points
       end
     end
+
+    {
+      points: karma,
+      data: data
+    }
+  end
+
+  def karma
+    karma = 0
+    data = []
 
     if telegram_user.present?
       telegram_messages_count = telegram_user.messages.where(chat_id: 1694).count 

@@ -2,7 +2,8 @@ ru:
   it_way:
     people:
       show:
-        karma_points: "Всего очков: %{points}"
+        karma: "Карма: %{points}"
+        elite_karma: "Карма развития: %{points}"
         badges:
           podcast: Подкаст
           forum: Форум
