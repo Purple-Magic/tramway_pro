@@ -1,6 +1,8 @@
 %title
   = @person.title
 
+= javascript_pack_tag 'application'
+
 %link{ crossorigin: "anonymous", href: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css", integrity: "sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT", rel: "stylesheet"}
 :sass
   body
@@ -43,44 +45,44 @@
           %li.nav-item
             %a.nav-link.active{"aria-current" => "page", href: "/"} Home
   .person-container
-    .info{ style: 'margin-right: 3rem' }
-      = image_tag @person.avatar.medium.url
-      %h3.mt-2
-        = @person.title
-      %h1
-        = @person.stat_table
-    .stat
-      - if @person.participations.any?
-        %h2.mb-4
-          Доклады
-        .cards
-          - @person.participations.each do |participation|
-            .card
-              - if participation.content.is_a? ItWay::Content
-                %img.card-img-top{ src: participation.content.preview }
-              - else
-                %img.card-img-top{ src: participation.content.model.photo.url }
-              .card-body
-                %h5.card-title
-                  = participation.content.title
-                %p.card-text
-                  = participation.role
+    .row
+      .col-md-4{ style: 'margin-right: 3rem' }
+        = image_tag @person.avatar.medium.url
+        %h3.mt-2
+          = @person.title
+        = react_component 'ItWayPersonStatTable', karma: @person.karma
+      .col
+        - if @person.participations.any?
+          %h2.mb-4
+            Доклады
+          .cards
+            - @person.participations.each do |participation|
+              .card
                 - if participation.content.is_a? ItWay::Content
-                  %a.btn.btn-primary{ href: participation.content.url } Look at
+                  %img.card-img-top{ src: participation.content.preview }
                 - else
-                  %a.btn.btn-primary{ href: Tramway::Event::Engine.routes.url_helpers.event_path(participation.content.event.id) } Look at
-      - if @person.episodes.any?
-        %h2.mt-4
-          Выпуски подкаста
-        .cards
-          - @person.episodes.each do |episode|
-            .card
-              %img.card-img-top{ src: episode[:image_url] }
-              .card-body
-                %h5.card-title
-                  = episode[:public_title]
-                %p.card-text
-                  = episode[:role]
-                - episode[:links]&.each do |link|
-                  %a.btn.btn-primary{ href: link[:link] }
-                    = link[:service]
+                  %img.card-img-top{ src: participation.content.model.photo.url }
+                .card-body
+                  %h5.card-title
+                    = participation.content.title
+                  %p.card-text
+                    = participation.role
+                  - if participation.content.is_a? ItWay::Content
+                    %a.btn.btn-primary{ href: participation.content.url } Look at
+                  - else
+                    %a.btn.btn-primary{ href: Tramway::Event::Engine.routes.url_helpers.event_path(participation.content.event.id) } Look at
+        - if @person.episodes.any?
+          %h2.mt-4
+            Выпуски подкаста
+          .cards
+            - @person.episodes.each do |episode|
+              .card
+                %img.card-img-top{ src: episode[:image_url] }
+                .card-body
+                  %h5.card-title
+                    = episode[:public_title]
+                  %p.card-text
+                    = episode[:role]
+                  - episode[:links]&.each do |link|
+                    %a.btn.btn-primary{ href: link[:link] }
+                      = link[:service]
