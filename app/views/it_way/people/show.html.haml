@@ -70,6 +70,8 @@
             background-color: $forum_color !important
 
     .accordion
+      width: 25rem
+
       .accordion-header
         button
           font-weight: bold
@@ -99,11 +101,11 @@
             %a.nav-link.active{"aria-current" => "page", href: "/"} Home
   .person-container
     .row
-      .col-md-4
+      .col-lg-4.col-md-6.col-sm-12
         = image_tag @person.avatar.medium.url, class: :avatar
         %h3.mt-2
           = @person.title
-        #karma.accordion.mt-4{ style: 'width: 25rem' }
+        #karma.accordion.mt-4
           .accordion-item
             %h2#elite_karmaTable.accordion-header
               %button.accordion-button.gold{"aria-controls" => "elite_karmaTableView", "aria-expanded" => "false", "data-bs-target" => "#elite_karmaTableView", "data-bs-toggle" => "collapse", type: "button"}
@@ -150,13 +152,13 @@
                         = row[:title]
                       %td
                         = row[:points]
-      .col-md-8
+      .col-lg-8.col-md-6
         - if @person.participations.any?
           %h2.mb-4
             Доклады
           .row
             - @person.participations.each do |participation|
-              .col-md-4.card
+              .card.col-lg-4.col-md-12
                 - if participation.content.is_a? ItWay::Content
                   %img.card-img-top{ src: participation.content.preview }
                 - else
@@ -176,7 +178,7 @@
             Выпуски подкаста
           .row
             - @person.episodes.each do |episode|
-              .col-md-4.card
+              .card.col-md-12.col-lg-4
                 %img.card-img-top{ src: episode[:image_url] }
                 .card-body
                   %h5.card-title
