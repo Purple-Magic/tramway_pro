@@ -132,8 +132,12 @@
                 .card-body
                   %h5.card-title
                     = episode[:public_title]
-                  %p.card-text
-                    = episode[:role].text
-                  - episode[:links]&.each do |link|
-                    %a.btn.btn-primary{ href: link[:link] }
-                      = link[:service]
+                .card-footer
+                  .dropdown
+                    %button.btn.btn-primary.dropdown-toggle{ type: :button, data: { 'bs-toggle' => :dropdown }, aria: { expanded: false } }
+                      Где послушать?
+                    %ul.dropdown-menu
+                      - episode[:links]&.each do |link|
+                        %li
+                          %a.dropdown-item{ href: link[:link], target: '_blank' }
+                            = link[:service]
