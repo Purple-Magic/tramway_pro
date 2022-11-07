@@ -144,7 +144,7 @@
                 Доклады
           .row
             - @person.participations.each do |participation|
-              - photo_url = participation.content.is_a?(ItWay::Content) ? participation.content.preview : participation.content.model.photo.url 
+              - photo_url = participation.content.is_a?(ItWay::Content) ? participation.content.preview : participation.content.model.background.url 
               - url = participation.content.is_a?(ItWay::Content) ? participation.content.url : Tramway::Event::Engine.routes.url_helpers.event_path(participation.content.event.id) 
               = render 'it_way/people/speach', participation: participation, photo_url: url, url: url, title: participation.content.title, role: participation.role.text
             - if @person.event_person.present?
