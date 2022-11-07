@@ -1,7 +1,8 @@
 %link{ crossorigin: "anonymous", href: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css", integrity: "sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT", rel: "stylesheet"}
 
 :sass
-  $default_margin: 200px
+  $default_vertical_margin: 150px
+  $default_horizontal_margin: 200px
 
   *
     position: absolute
@@ -11,31 +12,64 @@
     height: 1080px
 
     .name
-      top: $default_margin
-      left: $default_margin
+      top: $default_vertical_margin
+      left: $default_horizontal_margin
       
       h1
         position: relative
-        font-size: 170px
+        font-size: 150px
 
     .avatar
-      top: $default_margin
-      left: 1200px
+      top: $default_vertical_margin
+      left: 1300px
       img
         border-radius: 50px
 
     .features
-      top: calc(200px * 3.5)
-      left: $default_margin
+      top: calc(200px * 3.2)
+      left: $default_horizontal_margin
 
-      span
-        font-size: 40px
+      font-size: 40px
 
-        &.since
-          width: 220px
-        &.episodes
-          width: 250px
-          left: calc(200px + 320px)
+      .icon
+        font-size: 60px
+
+      .text
+        top: 90px
+        line-height: 3rem
+
+      .since, .episodes, .events, .elite_karma, .karma
+        text-align: center
+
+      .elite_karma
+        .icon, .text
+          width: 191px
+
+      .since
+        left: 1280px
+
+        span.icon
+          width: 215px
+
+        .text
+          width: 215px
+
+      .karma
+        left: calc(100px + 240px)
+
+        .icon
+          width: 230px
+
+        .text
+          width: 230px
+
+      .episodes
+        width: 250px
+        left: calc(100px + 150px + 300px)
+
+      .events
+        width: 250px
+        left: 870px
 
 .preview
   .name
@@ -48,10 +82,34 @@
     = image_tag @person.avatar.medium.url
 
   .features
-    %span.since
-      ⏰
-      = t('.at_it_way')
-      = t('.since', year: @person.joined_at)
-    %span.episodes
-      🎙️
-      = @person.episodes_count
+    %p.elite_karma
+      %span.icon
+        ⭐
+        = @person.elite_karma[:points]
+      %span.text
+        = t('.elite_karma')
+    %p.karma
+      %span.icon
+        ⬆️
+        = @person.karma[:points]
+      %span.text
+        = t('.karma')
+    %p.episodes
+      %span.icon
+        🎙️
+        = @person.episodes.count
+      %span.text
+        = @person.entities_count(:episodes)
+    %p.events
+      %span.icon
+        🗓️
+        = @person.participations.count
+      %span.text
+        = @person.entities_count(:participations)
+    %p.since
+      %span.icon
+        ⌛
+      %span.text
+        = t('.at_it_way')
+        %br
+        = t('.since', year: @person.joined_at)

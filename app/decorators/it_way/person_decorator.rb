@@ -99,14 +99,14 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
     end
   end
 
-  def episodes_count
-    count = episodes.count
+  def entities_count(entity)
+    count = public_send(entity).count
     if count == 1
-      I18n.t('it_way.people.previews.show.one_podcast_episode', count: count)
+      I18n.t("it_way.people.previews.show.#{entity}.one")
     elsif count > 1 && count < 5
-      I18n.t('it_way.people.previews.show.few_podcast_episodes', count: count)
+      I18n.t("it_way.people.previews.show.#{entity}.few")
     elsif count > 5
-      I18n.t('it_way.people.previews.show.lot_podcast_episodes', count: count)
+      I18n.t("it_way.people.previews.show.#{entity}.lot")
     end
   end
 
