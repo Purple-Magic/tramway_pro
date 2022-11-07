@@ -18,6 +18,10 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
     "#{first_name} #{last_name}"
   end
 
+  def twitter_preview
+    image_view object.twitter_preview
+  end
+
   class << self
     def collections
       # [ :all, :scope1, :scope2 ]
@@ -44,6 +48,7 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
         :project_id,
         :created_at,
         :updated_at,
+        :twitter_preview,
       ]
     end
 
@@ -80,6 +85,7 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
 
   ROLES_ASSOC = {
     'Тренер' => :trainer,
+    'Тренер направления "Программирование"' => :trainer,
     'Докладчик' => :speaker,
     'Организатор' => :org,
     'Программный комитет' => :org
