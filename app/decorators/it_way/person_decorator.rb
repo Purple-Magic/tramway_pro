@@ -79,7 +79,7 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
   }
 
   def episodes
-    @episodes ||= Podcast::Star.unscoped.find(43).starrings.map do |starring|
+    @episodes ||= Podcast::Star.unscoped.find(object.star_id).starrings.map do |starring|
       episode = Podcast::Episode.unscoped.find(starring.episode_id)
       podcast = Podcast.unscoped.find(episode.podcast_id)
       instances = Podcast::Episodes::Instance.unscoped.where(episode_id: episode.id)
