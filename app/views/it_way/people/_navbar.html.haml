@@ -1,0 +1,11 @@
+%nav.navbar.navbar-expand-lg.bg-light.mb-4
+  .container-fluid
+    %a.navbar-brand{href: "/"} IT Way
+    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", type: "button"}
+      %span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        - links.each do |(key, url)|
+          %li.nav-item
+            %a.nav-link.active{"aria-current" => "page", href: url, target: '_blank' }
+              = t("it_way.links.#{key}")
