@@ -8,31 +8,31 @@ require 'colorize'
 require 'yaml'
 
 if ARGV[0] == 'get_db'
-  # puts 'You should add username on server'.red if ARGV[1].nil?
-  # restore_to = ARGV[2] || :tramway_pro_development
-  # at = Time.now.strftime('%Y-%m-%d--%H-%M')
-  # dump = "tramway_pro--#{at}.dump"
-  # puts 'Dumping production database'.green
-  # system "scp #{ARGV[1]}@tramway.pro:/srv/tramway_pro/shared/config/database.yml ./"
-  # db_config = YAML.load_file('database.yml')
-  # db_name = db_config['production']['database']
-  # system 'rm -rf database.yml'
-  # system "ssh -t #{ARGV[1]}@tramway.pro 'pg_dump -Fc --no-acl --no-owner -v #{db_name} > #{dump}'"
-  # puts 'Downloading...'.green
-  # system "scp #{ARGV[1]}@tramway.pro:#{dump} /tmp/"
-  # system "ssh -t #{ARGV[1]}@tramway.pro 'rm #{dump}'"
-  # puts "Restoring #{restore_to} database".green
-  # system "ssh -t #{ARGV[1]}@tramway.pro 'rm -f #{dump}'"
-  # system 'dropdb tramway_pro_development --if-exists'
-  # system 'createdb tramway_pro_development'
-  # system "pg_restore -d #{restore_to} /tmp/#{dump}"
-  # puts 'Copy prod db for tests...'.yellow
-  # system "cp -rf /tmp/#{dump} tmp/test.dump"
-  # puts 'Copy prod db to backup folder...'.yellow
-  # system 'mkdir ~/backup.tramway.dbs'
-  # system "cp -r /tmp/#{dump} ~/backup.tramway.dbs/#{dump}"
-  # system 'rails db:migrate'
-  # system 'rails db:seed'
+  puts 'You should add username on server'.red if ARGV[1].nil?
+  restore_to = ARGV[2] || :tramway_pro_development
+  at = Time.now.strftime('%Y-%m-%d--%H-%M')
+  dump = "tramway_pro--#{at}.dump"
+  puts 'Dumping production database'.green
+  system "scp #{ARGV[1]}@tramway.pro:/srv/tramway_pro/shared/config/database.yml ./"
+  db_config = YAML.load_file('database.yml')
+  db_name = db_config['production']['database']
+  system 'rm -rf database.yml'
+  system "ssh -t #{ARGV[1]}@tramway.pro 'pg_dump -Fc --no-acl --no-owner -v #{db_name} > #{dump}'"
+  puts 'Downloading...'.green
+  system "scp #{ARGV[1]}@tramway.pro:#{dump} /tmp/"
+  system "ssh -t #{ARGV[1]}@tramway.pro 'rm #{dump}'"
+  puts "Restoring #{restore_to} database".green
+  system "ssh -t #{ARGV[1]}@tramway.pro 'rm -f #{dump}'"
+  system 'dropdb tramway_pro_development --if-exists'
+  system 'createdb tramway_pro_development'
+  system "pg_restore -d #{restore_to} /tmp/#{dump}"
+  puts 'Copy prod db for tests...'.yellow
+  system "cp -rf /tmp/#{dump} tmp/test.dump"
+  puts 'Copy prod db to backup folder...'.yellow
+  system 'mkdir ~/backup.tramway.dbs'
+  system "cp -r /tmp/#{dump} ~/backup.tramway.dbs/#{dump}"
+  system 'rails db:migrate'
+  system 'rails db:seed'
   system 'rails r bin/generate/twitter-previews.rb'
   system "scp tmp/twitter-preview-person* #{ARGV[1]}@tramway.pro:/srv/tramway_pro/current/tmp/"
   command = "bash -lic \"bundle exec rails r bin/generate/push-twitter-previews.rb\""
