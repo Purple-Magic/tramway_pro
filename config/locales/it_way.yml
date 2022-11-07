@@ -1,5 +1,8 @@
 ru:
   it_way:
+    links:
+      home: Главная
+      it_way_history: IT Way.История
     people:
       show:
         karma: "Карма: %{points}"

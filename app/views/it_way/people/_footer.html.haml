@@ -1,0 +1,11 @@
+%footer.d-flex.flex-wrap.justify-content-between.align-items-center.py-3.my-4.border-top
+  %p.col-md-2.mb-0.text-muted
+    = copyright '2015', 'IT Way'
+  %a.col-md-4.d-flex.align-items-center.justify-content-center.mb-3.mb-md-0.me-md-auto.link-dark.text-decoration-none{href: "/"}
+    %svg.bi.me-2{height: "32", width: "40"}
+      %use{"xlinkhref": "#bootstrap"}
+  %ul.nav.col-md-6.justify-content-end
+    - links.each do |(key, url)|
+      %li.nav-item
+        %a.nav-link.px-2.text-muted{ href: url, target: '_blank' }
+          = t("it_way.links.#{key}")

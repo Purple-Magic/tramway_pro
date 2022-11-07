@@ -83,15 +83,8 @@
     padding-left: 0
   
 .container
-  %nav.navbar.navbar-expand-lg.bg-light.mb-4
-    .container-fluid
-      %a.navbar-brand{href: "#"} IT Way
-      %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", type: "button"}
-        %span.navbar-toggler-icon
-      #navbarSupportedContent.collapse.navbar-collapse
-        %ul.navbar-nav.me-auto.mb-2.mb-lg-0
-          %li.nav-item
-            %a.nav-link.active{"aria-current" => "page", href: "/"} Home
+  - links = { home: '/', it_way_history: 'https://t.me/it_way_history', twitter: 'https://twitter.com/it_way_pro', telegram: 'https://t.me/it_way_chat', youtube: 'https://youtube.com/c/itway', instagram: 'https://www.instagram.com/it_way.pro/', facebook: 'https://www.facebook.com/itwayproject' }
+  = render 'it_way/people/navbar', links: links
   .person-container
     .row
       .col-lg-4.col-md-6.col-sm-12.col-xs-12
@@ -191,3 +184,5 @@
                           %li
                             %a.dropdown-item{ href: link[:link], target: '_blank' }
                               = link[:service]
+
+  = render 'it_way/people/footer', links: links
