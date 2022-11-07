@@ -93,8 +93,20 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
             service: instance.service.capitalize,
             link: instance.link
           }
-        end
+        end,
+        published_at: episode.publish_date
       }
+    end
+  end
+
+  def entities_count(entity)
+    count = public_send(entity).count
+    if count == 1
+      I18n.t("it_way.people.previews.show.#{entity}.one")
+    elsif count > 1 && count < 5
+      I18n.t("it_way.people.previews.show.#{entity}.few")
+    elsif count > 5
+      I18n.t("it_way.people.previews.show.#{entity}.lot")
     end
   end
 
@@ -151,6 +163,17 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
       points: karma,
       data: data
     }
+  end
+
+  def joined_at
+    first_telegram_message = telegram_user.messages.order(:created_at).first.created_at.year if telegram_user.present?
+    first_event = participations.map do |participation|
+      participation.content.created_at
+    end.sort.first.year
+    first_podcast_episode = episodes.sort_by do |episode|
+      episode[:published_at]
+    end.first[:published_at].year
+    [first_podcast_episode, first_event, first_telegram_message].min
   end
 
   private
