@@ -17,3 +17,8 @@ benchkiller_send_planned_notifications:
   cron: "5 17 * * *"
   class: LeopoldSendItWayHistoryJob
   queue: bot
+
+it_way_generate_twitter_previews:
+  cron: "0 0 * * 1"
+  class: ItWayGenerateTwitterPreviews
+  queue: it_way
