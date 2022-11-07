@@ -8,9 +8,9 @@
 %script{ src: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js", integrity: "sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk", crossorigin: "anonymous" }
 %meta{ name: "viewport", content: "width=device-width", 'initial-scale' => "1" }
 %meta{ content: "#{@person.title} в IT Way", property: "og:description" }
-%meta{ content: @person.twitter_preview&.url, property: "og:image" }
+%meta{ content: @person.model.twitter_preview&.url, property: "og:image" }
 %meta{ content: "summary_large_image", name: "twitter:card" }
-%meta{ content: @person.twitter_preview&.url, property: "twitter:image" }
+%meta{ content: @person.model.twitter_preview&.url, property: "twitter:image" }
 
 :sass
   $accordion-padding-y: 0.5rem
