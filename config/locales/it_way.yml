@@ -16,4 +16,6 @@ ru:
         show:
           at_it_way: в IT Way
           since: с %{year} года
-
+          one_podcast_episode: "%{count} эпизод подкаста"
+          few_podcast_episodes: "%{count} эпизода подкаста"
+          lot_podcast_episodes: "%{count} эпизодов подкаста"

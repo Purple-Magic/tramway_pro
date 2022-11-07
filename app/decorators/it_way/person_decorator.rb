@@ -99,6 +99,17 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
     end
   end
 
+  def episodes_count
+    count = episodes.count
+    if count == 1
+      I18n.t('it_way.people.previews.show.one_podcast_episode', count: count)
+    elsif count > 1 && count < 5
+      I18n.t('it_way.people.previews.show.few_podcast_episodes', count: count)
+    elsif count > 5
+      I18n.t('it_way.people.previews.show.lot_podcast_episodes', count: count)
+    end
+  end
+
   def elite_karma
     karma = 0
     data = []

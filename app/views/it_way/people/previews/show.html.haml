@@ -27,10 +27,15 @@
     .features
       top: calc(200px * 3.5)
       left: $default_margin
-      width: 220px
 
       span
         font-size: 40px
+
+        &.since
+          width: 220px
+        &.episodes
+          width: 250px
+          left: calc(200px + 320px)
 
 .preview
   .name
@@ -43,7 +48,10 @@
     = image_tag @person.avatar.medium.url
 
   .features
-    %span
+    %span.since
       ⏰
       = t('.at_it_way')
       = t('.since', year: @person.joined_at)
+    %span.episodes
+      🎙️
+      = @person.episodes_count
