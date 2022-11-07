@@ -3,13 +3,13 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
         :id,
         :first_name,
         :last_name,
-        :avatar,
         :state,
         :deleted_at,
         :project_id,
         :created_at,
         :updated_at,
-        :star_id
+        :star_id,
+        :avatar
   )
 
   decorate_associations :participations, :points, :event_person
@@ -20,6 +20,10 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
 
   def twitter_preview
     image_view object.twitter_preview
+  end
+
+  def avatar_view
+    image_view object.avatar
   end
 
   class << self
@@ -49,6 +53,7 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
         :created_at,
         :updated_at,
         :twitter_preview,
+        :avatar_view
       ]
     end
 
