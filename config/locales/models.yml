@@ -270,6 +270,7 @@ ru:
     podcast/episodes/star:
       star_type:
         guest: Гость
+        main: Ведущий
     it_way/participation:
       role:
         speaker: Докладчик

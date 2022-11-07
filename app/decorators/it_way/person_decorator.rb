@@ -12,7 +12,7 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
         :star_id
   )
 
-  decorate_associations :participations, :points
+  decorate_associations :participations, :points, :event_person
 
   def title
     "#{first_name} #{last_name}"
@@ -78,6 +78,13 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
     }
   }
 
+  ROLES_ASSOC = {
+    'Тренер' => :trainer,
+    'Докладчик' => :speaker,
+    'Организатор' => :org,
+    'Программный комитет' => :org
+  }
+
   def episodes
     @episodes ||= Podcast::Star.unscoped.find(object.star_id).starrings.map do |starring|
       episode = Podcast::Episode.unscoped.find(starring.episode_id)
@@ -100,13 +107,30 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
   end
 
   def entities_count(entity)
-    count = public_send(entity).count
+    count = case entity
+            when :episodes 
+              public_send(entity).count
+            when :participations
+              if event_person.present?
+                participations.count + event_person.partakings.count
+              else
+                participations.count
+              end
+            end
     if count == 1
       I18n.t("it_way.people.previews.show.#{entity}.one")
     elsif count > 1 && count < 5
       I18n.t("it_way.people.previews.show.#{entity}.few")
     elsif count > 5
       I18n.t("it_way.people.previews.show.#{entity}.lot")
+    end
+  end
+
+  def participations_count
+    if event_person.present?
+      participations.count + event_person.partakings.count
+    else
+      participations.count
     end
   end
 
@@ -129,6 +153,17 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
         role = participation.role
         points = WEIGHTS[key][role.to_sym]
         data << { title: participation.content.event.title, role: role.text, points: points, type: key }
+        karma += points
+      end
+    end
+
+    if event_person.present?
+      event_person.partakings.each do |partaking|
+        event = partaking.part.object.is_a?(Tramway::Event::Event) ? partaking.part : partaking.part.event
+        key = event.id.in?(FORUMS_IDS) ? :forum : :offline_conf
+        role = partaking.position
+        points = WEIGHTS[key][ROLES_ASSOC[role]]
+        data << { title: event.title, role: role, points: points, type: key }
         karma += points
       end
     end
@@ -167,13 +202,24 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
 
   def joined_at
     first_telegram_message = telegram_user.messages.order(:created_at).first.created_at.year if telegram_user.present?
-    first_event = participations.map do |participation|
-      participation.content.created_at
-    end.sort.first.year
+    first_event = if participations.any?
+                    participations.map do |participation|
+                      participation.content.created_at
+                    end.sort.first.year
+                  end
     first_podcast_episode = episodes.sort_by do |episode|
       episode[:published_at]
     end.first[:published_at].year
-    [first_podcast_episode, first_event, first_telegram_message].min
+    first_partaking = if event_person.present?
+                        event_person.partakings.map do |partaking|
+                          if partaking.part.object.is_a? Tramway::Event::Event
+                            partaking.part.begin_date
+                          else
+                            partaking.part.event.begin_date
+                          end
+                        end.sort.first.year
+                      end
+    [first_podcast_episode, first_event, first_telegram_message, first_partaking].compact.min
   end
 
   private

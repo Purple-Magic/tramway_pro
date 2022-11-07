@@ -59,7 +59,7 @@
 
       .elite_karma
         .icon, .text
-          width: 191px
+          width: 230px
 
       .since
         left: 1280px
@@ -86,6 +86,9 @@
       .events
         width: 250px
         left: 870px
+
+        .icon
+          width: 160px
 
 = image_tag '/person-twitter-preview-background.png', class: 'background-image'
 .preview
@@ -120,7 +123,7 @@
     %p.events
       %span.icon
         🗓️
-        = @person.participations.count
+        = @person.participations_count
       %span.text
         = @person.entities_count(:participations)
     %p.since
