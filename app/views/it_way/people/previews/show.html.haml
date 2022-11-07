@@ -1,0 +1,49 @@
+%link{ crossorigin: "anonymous", href: "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css", integrity: "sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT", rel: "stylesheet"}
+
+:sass
+  $default_margin: 200px
+
+  *
+    position: absolute
+
+  .preview
+    width: 1920px
+    height: 1080px
+
+    .name
+      top: $default_margin
+      left: $default_margin
+      
+      h1
+        position: relative
+        font-size: 170px
+
+    .avatar
+      top: $default_margin
+      left: 1200px
+      img
+        border-radius: 50px
+
+    .features
+      top: calc(200px * 3.5)
+      left: $default_margin
+      width: 220px
+
+      span
+        font-size: 40px
+
+.preview
+  .name
+    %h1
+      = @person.first_name
+    %h1
+      = @person.last_name
+
+  .avatar
+    = image_tag @person.avatar.medium.url
+
+  .features
+    %span
+      ⏰
+      = t('.at_it_way')
+      = t('.since', year: @person.joined_at)

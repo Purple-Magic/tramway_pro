@@ -12,3 +12,8 @@ ru:
           forum: Форум
           offline_conf: Конфа
           chat: Чат
+      previews:
+        show:
+          at_it_way: в IT Way
+          since: с %{year} года
+

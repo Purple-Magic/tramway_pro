@@ -17,6 +17,10 @@ Rails.application.routes.draw do
       resources :certificates, only: :show
       resources :podcasts, only: :show
       resources :people, only: [ :index, :show ]
+
+      namespace :people do
+        resources :previews, only: :show
+      end
     end
 
     namespace :purple_magic do
