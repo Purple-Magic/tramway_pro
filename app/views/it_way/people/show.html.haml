@@ -150,7 +150,7 @@
             - @person.participations.each do |participation|
               - photo_url = participation.content.is_a?(ItWay::Content) ? participation.content.preview : participation.content.photo.url 
               - url = participation.content.is_a?(ItWay::Content) ? participation.content.url : Tramway::Event::Engine.routes.url_helpers.event_path(participation.content.event.id) 
-              = render 'it_way/people/speach', participation: participation, photo_url: url, url: url, title: participation.content.title, role: participation.role.text
+              = render 'it_way/people/speach', participation: participation, photo_url: photo_url, url: url, title: participation.content.title, role: participation.role.text
             - if @person.event_person.present?
               - @person.event_person.partakings.each do |partaking|
                 = render 'it_way/people/speach', participation: partaking, photo_url: partaking.part.background.url, url: Tramway::Event::Engine.routes.url_helpers.event_path(partaking.part.id), title: partaking.part.title, role: partaking.position
