@@ -129,8 +129,6 @@
                     %th
                       Событие
                     %th
-                      Роль
-                    %th
                       Очки
                   - @person.karma[:data].each do |row|
                     %tr
@@ -139,29 +137,19 @@
                       %td
                         = row[:points]
       .col-lg-8.col-md-6.col-sm-12.col-xs-12
-        - if @person.participations.any?
+        - if @person.participations.any? || @person.event_person&.partakings&.any?
           .row
             .col-xs-12
               %h2.mb-4
                 Доклады
           .row
             - @person.participations.each do |participation|
-              .col-lg-4.col-md-12.col-sm-12.col-xs-12.mb-2
-                .card
-                  - if participation.content.is_a? ItWay::Content
-                    %img.card-img-top{ src: participation.content.preview }
-                  - else
-                    %img.card-img-top{ src: participation.content.model.photo.url }
-                  .card-body
-                    %h5.card-title
-                      = participation.content.title
-                    %p.card-text
-                      = participation.role.text
-                  .card-footer
-                    - if participation.content.is_a? ItWay::Content
-                      %a.btn.btn-primary{ href: participation.content.url } Look at
-                    - else
-                      %a.btn.btn-primary{ href: Tramway::Event::Engine.routes.url_helpers.event_path(participation.content.event.id) } Look at
+              - photo_url = participation.content.is_a?(ItWay::Content) ? participation.content.preview : participation.content.model.photo.url 
+              - url = participation.content.is_a?(ItWay::Content) ? participation.content.url : Tramway::Event::Engine.routes.url_helpers.event_path(participation.content.event.id) 
+              = render 'it_way/people/speach', participation: participation, photo_url: url, url: url, title: participation.content.title, role: participation.role.text
+            - if @person.event_person.present?
+              - @person.event_person.partakings.each do |partaking|
+                = render 'it_way/people/speach', participation: partaking, photo_url: partaking.part.background.url, url: Tramway::Event::Engine.routes.url_helpers.event_path(partaking.part.id), title: partaking.part.title, role: partaking.position
         - if @person.episodes.any?
           .row
             .col
