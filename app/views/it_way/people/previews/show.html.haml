@@ -4,12 +4,28 @@
   $default_vertical_margin: 150px
   $default_horizontal_margin: 200px
 
+  @font-face
+    font-family: exo
+    src: url(/Exo-Bold.otf)
+
   *
     position: absolute
+
+  img.background-image
+    position: fixed  
+    z-index: -1
+    width: 1920px
+    height: 1080px
 
   .preview
     width: 1920px
     height: 1080px
+
+    span, h1
+      color: white
+
+    h1
+      font-family: exo
 
     .name
       top: $default_vertical_margin
@@ -26,7 +42,7 @@
         border-radius: 50px
 
     .features
-      top: calc(200px * 3.2)
+      top: calc(200px * 3.5)
       left: $default_horizontal_margin
 
       font-size: 40px
@@ -71,6 +87,7 @@
         width: 250px
         left: 870px
 
+= image_tag '/person-twitter-preview-background.png', class: 'background-image'
 .preview
   .name
     %h1
@@ -90,7 +107,7 @@
         = t('.elite_karma')
     %p.karma
       %span.icon
-        ⬆️
+        🌴
         = @person.karma[:points]
       %span.text
         = t('.karma')
