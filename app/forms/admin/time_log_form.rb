@@ -8,12 +8,14 @@ class Admin::TimeLogForm < Tramway::Core::ApplicationForm
 
   def initialize(object)
     super(object).tap do
+      object.passed_at = DateTime.now.strftime('%d.%m.%Y')
+
       form_properties user: :association,
         associated: :polymorphic_association,
         time_spent: {
           type: :string,
           input_options: {
-            placeholder: 'Формат 3h 10m'
+            placeholder: 'Формат 3h 10m',
           }
         },
         passed_at: :date_picker,
