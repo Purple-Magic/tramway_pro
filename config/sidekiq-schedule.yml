@@ -13,7 +13,7 @@ benchkiller_send_planned_notifications:
   class: BenchkillerSendPlannedNotifications 
   queue: benchkiller
 
-benchkiller_send_planned_notifications:
+leopold_send_it_way_history:
   cron: "5 17 * * *"
   class: LeopoldSendItWayHistoryJob
   queue: bot
