@@ -31,7 +31,7 @@ development:
   purple_magic: purple-magic.test
   dobry_sosed: dobry-sosed.test
   red_magic: red-magic.test
-  benchkiller: freedvs.test
+  benchkiller: benchkiller.test
   engines:
     'it-way.test': conference
   application_class:
@@ -47,7 +47,7 @@ development:
       <<: *red_magic
     'kalashnikovisme.test':
       <<: *kalashnikovisme
-    'freedvs.test':
+    'benchkiller.test':
       <<: *benchkiller
 
 production:
@@ -58,7 +58,7 @@ production:
   listai: listai.io
   purple_magic: purple-magic.com
   red_magic: red-magic.ru
-  benchkiller: freedvs.com
+  benchkiller: benchkiller.com
   engines:
     'it-way.pro': conference
   application_class:
@@ -74,7 +74,7 @@ production:
       <<: *red_magic
     'kalashnikovisme.ru':
       <<: *kalashnikovisme
-    'freedvs.com':
+    'benchkiller.com':
       <<: *benchkiller
 
 test:
@@ -85,7 +85,7 @@ test:
   listai: listai.test
   purple_magic: purple-magic.test
   red_magic: red-magic.test
-  benchkiller: freedvs.test
+  benchkiller: benchkiller.test
   engines:
     'it-way.test': conference
   application_class:
@@ -101,5 +101,5 @@ test:
       <<: *red_magic
     'kalashnikovisme.test':
       <<: *kalashnikovisme
-    'freedvs.test':
+    'benchkiller.test':
       <<: *benchkiller
