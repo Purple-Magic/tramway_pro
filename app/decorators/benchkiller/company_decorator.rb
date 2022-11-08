@@ -68,8 +68,13 @@ class Benchkiller::CompanyDecorator < ApplicationDecorator
             object.class.human_attribute_name attribute
           end)
           concat(content_tag(:td) do
+            value = if attribute.in? [ :regions_to_cooperate, :regions_to_except ]
+                      object.public_send(attribute)
+                    else
+                      data&.dig(attribute.to_s)
+                    end
             content_tag :span do
-              data_view_mode(attribute, data&.dig(attribute.to_s))
+              data_view_mode(attribute, value)
             end
           end)
         end)
