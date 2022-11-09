@@ -48,7 +48,7 @@ module ProjectsHelper
   end
 
   def benchkiller_host
-    'freedvs.test'
+    'benchkiller.test'
   end
 
   def kalashnikovisme_host
