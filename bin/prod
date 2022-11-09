@@ -41,7 +41,10 @@ end
 
 if ARGV[0] == 'get_files'
   puts 'You should add username on server'.red if ARGV[1].nil?
-  copy_files_command = "rsync -avh #{ARGV[1]}@tramway.pro:/srv/tramway_pro/shared/public/ ./public"
+  copy_files_command = "rsync -avh --include='*.png' --include='*/' --exclude='*' #{ARGV[1]}@tramway.pro:/srv/tramway_pro/shared/public/ ./public"
+  puts copy_files_command.blue
+  system copy_files_command
+  copy_files_command = "rsync -avh --include='*.jpg' --include='*/' --exclude='*' #{ARGV[1]}@tramway.pro:/srv/tramway_pro/shared/public/ ./public"
   puts copy_files_command.blue
   system copy_files_command
 end
