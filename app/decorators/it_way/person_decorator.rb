@@ -222,7 +222,9 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
                       participation.content.created_at
                     end.sort.first.year
                   end
-    first_podcast_episode = episodes.sort_by do |episode|
+    first_podcast_episode = episodes.select do |episode|
+      episode[:published_at].present?
+    end.sort_by do |episode|
       episode[:published_at]
     end.first[:published_at].year
     first_partaking = if event_person.present?
