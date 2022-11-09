@@ -101,7 +101,8 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
     "Организатор массовых мероприятий" => :org,
     'Художник-оформитель' => :org,
     'Скрайбер' => :org,
-    'Помощник директора' => :org
+    'Помощник директора' => :org,
+    'SMM-специалист' => :org
   }
 
   def episodes
