@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'Edit admin page' do
-  ProjectsHelper.projects_instead_of('listai', 'kalashnikovisme', 'tramway', 'freedvs').each do |project|
+  ProjectsHelper.projects_instead_of('listai', 'kalashnikovisme', 'tramway', 'benchkiller').each do |project|
     before { create :admin, project_id: project.id }
 
     it "#{project.url}: should show edit admin page" do

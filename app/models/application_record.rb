@@ -2,6 +2,4 @@
 
 class ApplicationRecord < Tramway::Core::ApplicationRecord
   self.abstract_class = true
-
-  acts_as_paranoid
 end
