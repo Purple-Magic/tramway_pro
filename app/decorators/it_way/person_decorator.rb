@@ -97,6 +97,8 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
   }
 
   def episodes
+    return [] unless object.star_id.present?
+
     @episodes ||= Podcast::Star.unscoped.find(object.star_id).starrings.map do |starring|
       episode = Podcast::Episode.unscoped.find(starring.episode_id)
       podcast = Podcast.unscoped.find(episode.podcast_id)
