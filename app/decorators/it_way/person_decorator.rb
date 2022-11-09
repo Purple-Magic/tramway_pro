@@ -70,6 +70,7 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
   WEIGHTS = {
     telegram_message: 1,
     offline_conf: {
+      main_org: 200,
       org: 100,
       speaker: 50,
       trainer: 50,
@@ -95,7 +96,8 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
     'Докладчик' => :speaker,
     'Организатор' => :org,
     'Программный комитет' => :org,
-    'Самая главная по SMM' => :main_org
+    'Самая главная по SMM' => :main_org,
+    'Координатор' => :main_org
   }
 
   def episodes
