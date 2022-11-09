@@ -143,7 +143,7 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
       I18n.t("it_way.people.previews.show.#{entity}.one")
     elsif count > 1 && count < 5
       I18n.t("it_way.people.previews.show.#{entity}.few")
-    elsif count >= 5
+    elsif count >= 5 || count == 0
       I18n.t("it_way.people.previews.show.#{entity}.lot")
     end
   end
@@ -228,11 +228,13 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
                       participation.content.created_at
                     end.sort.first.year
                   end
-    first_podcast_episode = episodes.select do |episode|
-      episode[:published_at].present?
-    end.sort_by do |episode|
-      episode[:published_at]
-    end.first[:published_at].year
+    first_podcast_episode = if episodes.any?
+                              episodes.select do |episode|
+                                episode[:published_at].present?
+                              end.sort_by do |episode|
+                                episode[:published_at]
+                              end.first[:published_at].year
+                            end
     first_partaking = if event_person.present?
                         event_person.partakings.map do |partaking|
                           if partaking.part.object.is_a? Tramway::Event::Event
@@ -246,30 +248,6 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
   end
 
   private
-
-  def gold_medals
-    {
-      more_than_3_episodes: lambda { |person| person.episodes.count > 3 },
-      telegram_messages_is_1000: lambda { |person| person.send(:telegram_user).messages.count >= 1000 },
-      five_events: lambda { |person| person.participations.count >= 5 }
-    }
-  end
-
-  def silver_medals
-    {
-      back_to_podcast: lambda { |person| person.episodes.count > 1 },
-      telegram_messages_is_100: lambda { |person| person.send(:telegram_user).messages.count >= 100 },
-      three_events: lambda { |person| person.participations.count >= 3 }
-    }
-  end
-
-  def bronze_medals
-    {
-      one_episode: lambda { |person| person.episodes.any? },
-      telegram_messages_is_10: lambda { |person| person.send(:telegram_user).messages.count >= 10 },
-      one_event: lambda { |person| person.participations.any? }
-    }
-  end
 
   def telegram_user
     ::BotTelegram::User.unscoped.find_by(id: object.telegram_user_id)
