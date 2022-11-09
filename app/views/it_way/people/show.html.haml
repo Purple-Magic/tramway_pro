@@ -145,7 +145,7 @@
           .row
             .col-xs-12
               %h2.mb-4
-                Доклады
+                События
           .row
             - @person.participations.each do |participation|
               - photo_url = participation.content.is_a?(ItWay::Content) ? participation.content.preview : participation.content.photo.url 

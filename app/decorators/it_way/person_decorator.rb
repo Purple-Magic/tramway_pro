@@ -72,6 +72,7 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
     offline_conf: {
       org: 100,
       speaker: 50,
+      trainer: 50,
       participant: 10
     },
     podcast: {
@@ -93,7 +94,8 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
     'Тренер направления "Программирование"' => :trainer,
     'Докладчик' => :speaker,
     'Организатор' => :org,
-    'Программный комитет' => :org
+    'Программный комитет' => :org,
+    'Самая главная по SMM' => :main_org
   }
 
   def episodes
