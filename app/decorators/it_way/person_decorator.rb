@@ -188,6 +188,11 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
       end
     end
 
+    points.each do |point|
+      data << { title: point.comment, points: point.count }
+      karma += point.count
+    end
+
     {
       points: karma,
       data: data
@@ -206,12 +211,6 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
         type: :chat
       }
       karma += telegram_messages_count
-    end
-
-    if points.any?
-      sum = points.sum(&:count)
-      data << { title: 'Дополнительные очки', points: sum  }
-      karma += sum
     end
 
     {
