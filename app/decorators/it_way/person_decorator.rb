@@ -97,7 +97,8 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
     'Организатор' => :org,
     'Программный комитет' => :org,
     'Самая главная по SMM' => :main_org,
-    'Координатор' => :main_org
+    'Координатор' => :main_org,
+    "Организатор массовых мероприятий" => :org
   }
 
   def episodes
