@@ -141,7 +141,7 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
       I18n.t("it_way.people.previews.show.#{entity}.one")
     elsif count > 1 && count < 5
       I18n.t("it_way.people.previews.show.#{entity}.few")
-    elsif count > 5
+    elsif count >= 5
       I18n.t("it_way.people.previews.show.#{entity}.lot")
     end
   end
