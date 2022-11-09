@@ -6,7 +6,7 @@ ru:
     people:
       show:
         karma: "Карма: %{points}"
-        elite_karma: "Карма развития: %{points}"
+        elite_karma: "Карма развития IT Way: %{points}"
         badges:
           podcast: Подкаст
           forum: Форум
@@ -17,7 +17,7 @@ ru:
           at_it_way: в IT Way
           since: с %{year} года
           karma: карма
-          elite_karma: карма развития
+          elite_karma: карма развития IT Way
           episodes:
             one: "эпизод подкаста"
             few: "эпизода подкаста"
