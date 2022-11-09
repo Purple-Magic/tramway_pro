@@ -274,6 +274,7 @@ ru:
     it_way/participation:
       role:
         speaker: Докладчик
+        attender: Посетитель
   collections:
     benchkiller/offer:
       all: Всё

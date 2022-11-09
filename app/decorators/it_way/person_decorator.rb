@@ -74,7 +74,7 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
       org: 100,
       speaker: 50,
       trainer: 50,
-      participant: 10
+      attender: 10
     },
     podcast: {
       main: 10,
@@ -82,7 +82,7 @@ class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
       minor: 5
     },
     forum: {
-      participant: 50,
+      attender: 50,
       speaker: 100,
       trainer: 1000,
       org: 1000,
