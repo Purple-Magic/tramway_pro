@@ -31,7 +31,11 @@ class Benchkiller::Offers::SearchService
       end.flatten.uniq.map(&:id)
       ::Benchkiller::Offer.where id: offers_ids
     else
-      current_collection.full_text_search argument
+      if argument.match('\W').present?
+        current_collection.joins(:message).where 'bot_telegram_messages.text ILIKE ?', "%#{argument}%"
+      else
+        current_collection.full_text_search argument
+      end
     end
   end
 
@@ -76,7 +80,7 @@ class Benchkiller::Offers::SearchService
     end
 
     current_collection.where(
-      'created_at > ? AND created_at < ?',
+      'benchkiller_offers.created_at > ? AND benchkiller_offers.created_at < ?',
       argument[:begin_date].to_datetime,
       argument[:end_date].to_datetime
     )
