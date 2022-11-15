@@ -2,7 +2,6 @@
 
 | Project | URL | Tests | Smell Check | Linter | Syntax Check |
 |---------|-----|----|----|----|----|
-| FindMeds | [t.me/find_meds_bot](t.me/find_meds_bot) | [![FindMeds Tests](https://github.com/Purple-Magic/tramway_pro/actions/workflows/find_meds_tests.yml/badge.svg)](https://github.com/Purple-Magic/tramway_pro/actions/workflows/find_meds_tests.yml) | [![FindMeds Smell Check](https://github.com/Purple-Magic/tramway_pro/actions/workflows/find_meds_smell_check.yml/badge.svg)](https://github.com/Purple-Magic/tramway_pro/actions/workflows/find_meds_smell_check.yml) | [![FindMeds Rubocop](https://github.com/Purple-Magic/tramway_pro/actions/workflows/find_meds_rubocop.yml/badge.svg)](https://github.com/Purple-Magic/tramway_pro/actions/workflows/find_meds_rubocop.yml) | [![FindMeds Syntax Check](https://github.com/Purple-Magic/tramway_pro/actions/workflows/find_meds_syntax_check.yml/badge.svg)](https://github.com/Purple-Magic/tramway_pro/actions/workflows/find_meds_syntax_check.yml) |
 | IT Way | [it-way.pro](it-way.pro) |  |
 | ULSK Quest Fantasy | [t.me/questfantasy_bot](t.me/questfantasy_bot) |  |
 | ULSK Quest Horror | [t.me/questhorror_bot](t.me/questhorror_bot) |  |
