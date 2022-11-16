@@ -60,6 +60,7 @@ host: Settings[Rails.env][:purple_magic])
   def approve_offer(argument)
     offer = ::Benchkiller::Offer.find argument
     offer.approve
+    offer.save!
   end
 
   def decline_offer(argument)
