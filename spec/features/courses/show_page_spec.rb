@@ -38,7 +38,7 @@ project_id: kalashnikovisme_id
         expect(page).to have_content course.title
 
         course.topics.each do |topic|
-          url = Tramway::Admin::Engine.routes.url_helpers.record_path(topic.id, model: topic.model_name)
+          url = Tramway::Engine.routes.url_helpers.record_path(topic.id, model: topic.model_name)
           within('ul.tree') do
             page.should have_selector "li a[href='#{url}']"
             page.should have_content "#{topic.model_name.human} #{topic.position} | #{topic.title}"
@@ -57,7 +57,7 @@ project_id: kalashnikovisme_id
 
         course.topics.each_with_index do |topic, index|
           topic.lessons.each do |lesson|
-            url = Tramway::Admin::Engine.routes.url_helpers.record_path(lesson.id, model: lesson.model_name)
+            url = Tramway::Engine.routes.url_helpers.record_path(lesson.id, model: lesson.model_name)
             within("ul.tree > li:nth-child(#{index + 1}) > ul") do
               page.should have_selector "li a[href='#{url}']"
               page.should have_content Courses::LessonDecorator.new(lesson).title
@@ -78,7 +78,7 @@ project_id: kalashnikovisme_id
         course.topics.each_with_index do |topic, index|
           topic.lessons.each_with_index do |lesson, lesson_index|
             lesson.videos.each do |video|
-              url = Tramway::Admin::Engine.routes.url_helpers.record_path(video.id, model: video.model_name)
+              url = Tramway::Engine.routes.url_helpers.record_path(video.id, model: video.model_name)
               within("ul.tree > li:nth-child(#{index + 1}) > ul") do
                 within("li:nth-child(#{lesson_index + 1}) > ul") do
                   page.should have_selector "li a[href='#{url}']"
@@ -102,7 +102,7 @@ project_id: kalashnikovisme_id
         course.topics.each_with_index do |topic, index|
           topic.lessons.each_with_index do |lesson, lesson_index|
             lesson.tasks.each do |task|
-              url = Tramway::Admin::Engine.routes.url_helpers.record_path(task.id, model: task.model_name)
+              url = Tramway::Engine.routes.url_helpers.record_path(task.id, model: task.model_name)
               within("ul.tree > li:nth-child(#{index + 1}) > ul") do
                 within("li:nth-child(#{lesson_index + 1}) > ul") do
                   page.should have_selector "li a[href='#{url}']"

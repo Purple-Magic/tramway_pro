@@ -67,6 +67,6 @@ class Courses::CommentDecorator < ApplicationDecorator
 
   def associated_link
     link_to associated.title,
-      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.associated_id, model: object.associated_type)
+      ::Tramway::Engine.routes.url_helpers.record_path(object.associated_id, model: object.associated_type)
   end
 end

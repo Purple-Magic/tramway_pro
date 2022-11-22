@@ -29,7 +29,7 @@ describe 'Create participant_form_field' do
 
     request_uri = URI.parse(current_url).request_uri
     expect(request_uri).to eq(
-      ::Tramway::Admin::Engine.routes.url_helpers.record_path(last_event.id, model: 'Tramway::Event::Event')
+      ::Tramway::Engine.routes.url_helpers.record_path(last_event.id, model: 'Tramway::Event::Event')
     )
 
     last_participant_form_field = ::Tramway::Event::ParticipantFormField.last

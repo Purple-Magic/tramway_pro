@@ -24,7 +24,7 @@ gem 'rails', '5.1.7'
 # gem 'tramway-site', '0.1.0.5'
 # gem 'tramway-user', '2.2.1.2'
 
-gem 'tramway-admin', path: '../tramway-admin'
+# gem 'tramway-admin', path: '../tramway-admin'
 gem 'tramway-api', path: '../tramway-dev/tramway-api'
 gem 'tramway-auth', path: '../tramway-dev/tramway-auth'
 gem 'tramway-conference', path: '../tramway-dev/tramway-conference'

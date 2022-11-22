@@ -5,6 +5,6 @@ class PurpleMagic::Api::V1::Estimation::ProjectsController < PurpleMagic::Api::A
     project = ::Estimation::Project.find params[:id]
     project.send params[:process]
 
-    redirect_to ::Tramway::Admin::Engine.routes.url_helpers.record_path(params[:id], model: ::Estimation::Project)
+    redirect_to ::Tramway::Engine.routes.url_helpers.record_path(params[:id], model: ::Estimation::Project)
   end
 end

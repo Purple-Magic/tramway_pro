@@ -25,7 +25,7 @@ class Courses::TaskDecorator < ApplicationDecorator
 
   def lesson_link
     link_to lesson.title,
-      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.lesson_id, model: 'Courses::Lesson')
+      ::Tramway::Engine.routes.url_helpers.record_path(object.lesson_id, model: 'Courses::Lesson')
   end
 
   class << self
@@ -80,7 +80,7 @@ class Courses::TaskDecorator < ApplicationDecorator
   end
 
   def link
-    ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.id, model: object.class)
+    ::Tramway::Engine.routes.url_helpers.record_path(object.id, model: object.class)
   end
 
   # :reek:ControlParameter { enabled: false }

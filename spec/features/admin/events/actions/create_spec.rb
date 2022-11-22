@@ -26,7 +26,7 @@ describe 'Create action' do
 
     request_uri = URI.parse(current_url).request_uri
     expect(request_uri).to eq(
-      ::Tramway::Admin::Engine.routes.url_helpers.record_path(last_event.id, model: 'Tramway::Event::Event')
+      ::Tramway::Engine.routes.url_helpers.record_path(last_event.id, model: 'Tramway::Event::Event')
     )
 
     last_action = ::Tramway::Event::Action.last

@@ -2,9 +2,9 @@
 
 Tramway.initialize_application model_class: PurpleMagic
 
-Tramway::Admin.set_singleton_models PurpleMagic, project: :purple_magic
+Tramway.set_singleton_models PurpleMagic, project: :purple_magic
 
-Tramway::Admin.set_available_models(
+Tramway.set_available_models(
   Tramway::Landing::Block,
   Tramway::Page::Page,
   Tramway::User::User,
@@ -33,7 +33,7 @@ Tramway::Admin.set_available_models(
   project: :purple_magic
 )
 
-Tramway::Admin.set_available_models(
+Tramway.set_available_models(
   BotTelegram::User,
   BotTelegram::Scenario::Step,
   BotTelegram::Scenario::ProgressRecord,
@@ -41,7 +41,7 @@ Tramway::Admin.set_available_models(
   project: :purple_magic
 )
 
-Tramway::Admin.set_available_models(
+Tramway.set_available_models(
   Bot,
   BotTelegram::User,
   BotTelegram::Scenario::Step,
@@ -51,7 +51,7 @@ Tramway::Admin.set_available_models(
   project: :purple_magic
 )
 
-Tramway::Admin.set_available_models(
+Tramway.set_available_models(
   Bot,
   Benchkiller::User,
   Benchkiller::Company,
@@ -63,7 +63,7 @@ Tramway::Admin.set_available_models(
   project: :purple_magic
 )
 
-Tramway::Admin.navbar_structure(
+Tramway.navbar_structure(
   PurpleMagic,
   {
     landing: [

@@ -26,7 +26,7 @@
 #
 #    request_uri = URI.parse(current_url).request_uri
 #    expect(request_uri).to eq(
-#      ::Tramway::Admin::Engine.routes.url_helpers.record_path(last_podcast.id, model: 'Podcast')
+#      ::Tramway::Engine.routes.url_helpers.record_path(last_podcast.id, model: 'Podcast')
 #    )
 #
 #    last_episode = ::Tramway::Event::ParticipantFormField.last

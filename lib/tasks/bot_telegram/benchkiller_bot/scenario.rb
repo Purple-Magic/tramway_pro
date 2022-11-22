@@ -8,7 +8,7 @@ require_relative 'action'
 
 class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
   include ::BotTelegram::BenchkillerBot::Commands
-  include ::BotTelegram::BenchkillerBot::AdminFeatures
+  include ::BotTelegram::BenchkillerBotFeatures
   include ::BotTelegram::BenchkillerBot::Concern
 
   BOT_ID = 13

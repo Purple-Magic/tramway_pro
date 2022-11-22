@@ -32,7 +32,7 @@ describe 'Edit comment page' do
       end
 
       expect(page).to have_current_path(
-        ::Tramway::Admin::Engine.routes.url_helpers.record_path(comment.associated_id, model: comment.associated_type)
+        ::Tramway::Engine.routes.url_helpers.record_path(comment.associated_id, model: comment.associated_type)
       )
 
       comment.reload
@@ -68,7 +68,7 @@ describe 'Edit comment page' do
         end
 
         expect(page).to have_current_path(
-          ::Tramway::Admin::Engine.routes.url_helpers.record_path(comment.associated_id, model: comment.associated_type)
+          ::Tramway::Engine.routes.url_helpers.record_path(comment.associated_id, model: comment.associated_type)
         )
 
         comment.reload

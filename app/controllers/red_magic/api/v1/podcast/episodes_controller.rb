@@ -8,7 +8,7 @@ class RedMagic::Api::V1::Podcast::EpisodesController < RedMagic::Api::V1::Podcas
     episode = Podcast::Episode.find params[:id]
     episode.send params[:process]
 
-    redirect_to ::Tramway::Admin::Engine.routes.url_helpers.record_path(params[:id], model: Podcast::Episode)
+    redirect_to ::Tramway::Engine.routes.url_helpers.record_path(params[:id], model: Podcast::Episode)
   end
 
   def video_is_ready

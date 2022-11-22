@@ -61,7 +61,7 @@ data: { 'bs-toggle': :collapse, 'bs-target': '#commands' }, aria: { controls: :c
 
   def podcast_link
     link_to podcast.title,
-      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.podcast_id, model: 'Podcast')
+      ::Tramway::Engine.routes.url_helpers.record_path(object.podcast_id, model: 'Podcast')
   end
 
   def cover

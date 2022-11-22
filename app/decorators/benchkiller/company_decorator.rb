@@ -53,7 +53,7 @@ class Benchkiller::CompanyDecorator < ApplicationDecorator
             concat(user.id)
           end)
           concat(content_tag(:td) do
-            link_to user.username, Tramway::Admin::Engine.routes.url_helpers.record_path(user.id, model: user.class)
+            link_to user.username, Tramway::Engine.routes.url_helpers.record_path(user.id, model: user.class)
           end)
         end)
       end

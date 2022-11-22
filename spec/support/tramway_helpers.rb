@@ -2,7 +2,7 @@
 
 module TramwayHelpers
   def click_on_association_delete_button(object)
-    delete_path = ::Tramway::Admin::Engine.routes.url_helpers.record_path(
+    delete_path = ::Tramway::Engine.routes.url_helpers.record_path(
       object.id,
       model: object.class
     )
@@ -19,7 +19,7 @@ module TramwayHelpers
   end
 
   def click_on_delete_button(object)
-    delete_path = ::Tramway::Admin::Engine.routes.url_helpers.record_path(
+    delete_path = ::Tramway::Engine.routes.url_helpers.record_path(
       object.id,
       model: object.class
     )

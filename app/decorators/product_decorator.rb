@@ -98,7 +98,7 @@ class ProductDecorator < ApplicationDecorator
             logged_users.each do |user|
               time_logs_ids = TimeLog.logged_by(user, object, begin_date, end_date).map(&:id)
               filter = { id_in: time_logs_ids }
-              url = Tramway::Admin::Engine.routes.url_helpers.records_path(model: ::TimeLog, filter: filter)
+              url = Tramway::Engine.routes.url_helpers.records_path(model: ::TimeLog, filter: filter)
 
               concat(td do
                 user.full_name

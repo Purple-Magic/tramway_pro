@@ -55,7 +55,7 @@
 #
 #    field = ::Tramway::Event::ParticipantFormField.last
 #
-#    delete_path = ::Tramway::Admin::Engine.routes.url_helpers.record_path(
+#    delete_path = ::Tramway::Engine.routes.url_helpers.record_path(
 #      field.id,
 #      model: Tramway::Event::ParticipantFormField
 #    )

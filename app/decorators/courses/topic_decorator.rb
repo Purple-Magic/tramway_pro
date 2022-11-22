@@ -21,7 +21,7 @@ class Courses::TopicDecorator < ApplicationDecorator
   end
 
   def link
-    ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.id, model: object.class)
+    ::Tramway::Engine.routes.url_helpers.record_path(object.id, model: object.class)
   end
 
   alias name title
@@ -77,6 +77,6 @@ class Courses::TopicDecorator < ApplicationDecorator
 
   def course_link
     link_to(course.title,
-      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.course_id, model: 'Course'))
+      ::Tramway::Engine.routes.url_helpers.record_path(object.course_id, model: 'Course'))
   end
 end

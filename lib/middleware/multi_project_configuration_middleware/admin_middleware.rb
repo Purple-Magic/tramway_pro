@@ -7,9 +7,9 @@ module MultiProjectConfigurationMiddleware
     end
 
     def call(env)
-      ::Tramway::Admin::ApplicationController.include MultiProjectCallbacks::AdminMiddleware::Application
-      ::Tramway::Admin::RecordsController.include MultiProjectCallbacks::AdminMiddleware::Records
-      ::Tramway::Admin::SingletonsController.include MultiProjectCallbacks::AdminMiddleware::Records
+      ::Tramway::ApplicationController.include MultiProjectCallbacks::AdminMiddleware::Application
+      ::Tramway::RecordsController.include MultiProjectCallbacks::AdminMiddleware::Records
+      ::Tramway::SingletonsController.include MultiProjectCallbacks::AdminMiddleware::Records
 
       @app.call(env)
     end
