@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::BotTelegram::Scenario::ProgressRecordForm < Tramway::Core::ApplicationForm
+class Admin::BotTelegram::Scenario::ProgressRecordForm < Tramway::ApplicationForm
   properties :answer
 
   association :step

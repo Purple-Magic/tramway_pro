@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Benchkiller::Benchkiller::OfferForm < Tramway::Core::ApplicationForm
+class Benchkiller::Benchkiller::OfferForm < Tramway::ApplicationForm
   properties :message_id, :state, :project_id
 
   def initialize(object)

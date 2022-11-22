@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Skillbox::Courses::TopicForm < Tramway::Core::ApplicationForm
+class Skillbox::Courses::TopicForm < Tramway::ApplicationForm
   properties :title, :state, :project_id, :position
 
   association :course

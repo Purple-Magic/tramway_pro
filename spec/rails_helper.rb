@@ -35,7 +35,7 @@ RSpec.configure do |config|
   config.include RSpec::Rails::RequestExampleGroup, type: :feature
   config.include JsonApiTestHelpers
   config.include WebMock::API
-  config.include ::Tramway::Core::Concerns::AttributesDecoratorHelper
+  config.include ::Tramway::Concerns::AttributesDecoratorHelper
   config.include ProjectsHelper
   config.include IntegrationHelpers
   config.include ErrorsHelper

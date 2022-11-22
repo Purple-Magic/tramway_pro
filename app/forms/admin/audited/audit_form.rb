@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Audited::AuditForm < Tramway::Core::ApplicationForm
+class Admin::Audited::AuditForm < Tramway::ApplicationForm
   properties :username, :action, :audited_changes, :version, :comment, :remote_address, :request_uuid
 
   def initialize(object)

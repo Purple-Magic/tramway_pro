@@ -1,4 +1,4 @@
-class Admin::ItWay::ParticipationForm < Tramway::Core::ApplicationForm
+class Admin::ItWay::ParticipationForm < Tramway::ApplicationForm
   properties :person_id, :content_id, :state, :deleted_at, :project_id, :role, :content_type
 
   association :person

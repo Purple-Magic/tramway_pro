@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::MagicWood::Actors::PhotoForm < Tramway::Core::ApplicationForm
+class Admin::MagicWood::Actors::PhotoForm < Tramway::ApplicationForm
   properties :project_id, :state, :file
 
   association :actor

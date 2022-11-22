@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Word < Tramway::Core::ApplicationRecord
+class Word < Tramway::ApplicationRecord
   search_by :main, :synonims
 
   aasm :review_state do

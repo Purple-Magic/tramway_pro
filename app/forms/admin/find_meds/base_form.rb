@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::FindMeds::BaseForm < Tramway::Core::ApplicationForm
+class Admin::FindMeds::BaseForm < Tramway::ApplicationForm
   properties :name, :key, :project_id
 
   def initialize(object)

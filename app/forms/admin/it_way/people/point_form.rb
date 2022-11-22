@@ -1,4 +1,4 @@
-class Admin::ItWay::People::PointForm < Tramway::Core::ApplicationForm
+class Admin::ItWay::People::PointForm < Tramway::ApplicationForm
   properties :count, :comment, :project_id
 
   association :person

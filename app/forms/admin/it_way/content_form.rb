@@ -1,4 +1,4 @@
-class Admin::ItWay::ContentForm < Tramway::Core::ApplicationForm
+class Admin::ItWay::ContentForm < Tramway::ApplicationForm
   properties :content_type, :title, :associated_id, :associated_type, :preview, :project_id
 
   association :associated

@@ -1,4 +1,4 @@
-class ItWay::ContentDecorator < Tramway::Core::ApplicationDecorator
+class ItWay::ContentDecorator < Tramway::ApplicationDecorator
   delegate_attributes(
         :id,
         :content_type,

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
+class Products::TaskDecorator < Tramway::ApplicationDecorator
   delegate_attributes(
     :title,
     :data,

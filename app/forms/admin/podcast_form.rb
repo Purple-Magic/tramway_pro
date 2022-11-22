@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::PodcastForm < Tramway::Core::ApplicationForm
+class Admin::PodcastForm < Tramway::ApplicationForm
   properties :title, :feed_url, :default_image, :podcast_type, :footer, :youtube_footer, :chat_id
 
   def initialize(object)

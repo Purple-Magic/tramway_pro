@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Tramway::Core::ApplicationController < ActionController::Base
+class Tramway::ApplicationController < ActionController::Base
   before_action :application
 
   class << self
@@ -25,6 +25,6 @@ class Tramway::Core::ApplicationController < ActionController::Base
   # FIXME: it's repeat of tramway-core/application_controller method
 
   def application
-    @application = ::Tramway::Core.application_object
+    @application = ::Tramway.application_object
   end
 end

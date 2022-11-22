@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Kalashnikovisme::Web::WelcomeController < Tramway::Core::ApplicationController
+class Kalashnikovisme::Web::WelcomeController < Tramway::ApplicationController
   before_action :application
 
   def index

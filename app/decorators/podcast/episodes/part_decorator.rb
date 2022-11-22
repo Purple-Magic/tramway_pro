@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Podcast::Episodes::PartDecorator < Tramway::Core::ApplicationDecorator
+class Podcast::Episodes::PartDecorator < Tramway::ApplicationDecorator
   delegate_attributes(
     :id,
     :episode_id,

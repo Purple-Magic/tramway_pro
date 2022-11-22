@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Television::ScheduleItemForm < Tramway::Core::ApplicationForm
+class Admin::Television::ScheduleItemForm < Tramway::ApplicationForm
   properties :schedule_type, :options, :project_id
 
   association :video

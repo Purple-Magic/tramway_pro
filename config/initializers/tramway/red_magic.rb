@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Tramway::Core.initialize_application model_class: RedMagic
+Tramway.initialize_application model_class: RedMagic
 
 Tramway::Admin.set_singleton_models RedMagic, project: :red_magic
 

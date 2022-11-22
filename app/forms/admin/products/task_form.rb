@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Products::TaskForm < Tramway::Core::ApplicationForm
+class Admin::Products::TaskForm < Tramway::ApplicationForm
   properties :title, :project_id, :description
 
   association :product
