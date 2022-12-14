@@ -2,7 +2,7 @@
 
 class TimeLog < ApplicationRecord
   belongs_to :associated, polymorphic: true
-  belongs_to :user, class_name: 'Tramway::User::User'
+  belongs_to :user, class_name: 'Tramway::User'
 
   enumerize :associated_type, in: [Courses::Video, Products::Task, Podcast::Episode]
 
