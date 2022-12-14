@@ -7,7 +7,7 @@ Tramway.set_singleton_models PurpleMagic, project: :purple_magic
 Tramway.set_available_models(
   Tramway::Landing::Block,
   Tramway::Page::Page,
-  Tramway::User::User,
+  Tramway::User,
   BotTelegram::User,
   BotTelegram::Message,
   BotTelegram::Scenario::Step,
@@ -108,7 +108,7 @@ Tramway.navbar_structure(
     ]
   },
   Audited::Audit,
-  Tramway::User::User,
+  Tramway::User,
   project: :purple_magic
 )
 

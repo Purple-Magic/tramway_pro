@@ -10,7 +10,7 @@ Tramway.set_available_models(
   Tramway::Landing::Block,
   Tramway::Landing::Tool,
   Tramway::Page::Page,
-  Tramway::User::User,
+  Tramway::User,
   Tramway::News::News,
   Estimation::Project,
   Estimation::Task,
@@ -84,7 +84,7 @@ Tramway.navbar_structure(
       Television::ScheduleItem
     ]
   },
-  Tramway::User::User,
+  Tramway::User,
   Tramway::News::News,
   project: :red_magic
 )

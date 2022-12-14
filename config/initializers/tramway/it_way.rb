@@ -14,7 +14,7 @@ Tramway.set_available_models Word,
   role: :admin
 
 Tramway.navbar_structure(
-  Tramway::Conference::Unity,
+  # Tramway::Conference::Unity,
   {
     events_organization: [
       Tramway::Event::Event,
@@ -45,7 +45,7 @@ Tramway.navbar_structure(
       ItWay::Certificate
     ]
   },
-  Tramway::User::User,
+  Tramway::User,
   project: :conference
 )
 

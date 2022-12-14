@@ -3,7 +3,7 @@
 Tramway.initialize_application model_class: RedMagic
 
 Tramway.set_available_models Course,
-  Tramway::User::User,
+  Tramway::User,
   Courses::Topic,
   Courses::Lesson,
   Courses::Video,
@@ -47,7 +47,7 @@ Tramway.set_available_models Course,
 Tramway.navbar_structure(
   Course,
   TimeLog,
-  Tramway::User::User,
+  Tramway::User,
   Blogs::Link,
   project: :kalashnikovisme
 )

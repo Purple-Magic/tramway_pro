@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Tramway.set_available_models(
-  Tramway::User::User,
+  Tramway::User,
   Project,
   Tramway::Page::Page,
   Tramway::Profiles::SocialNetwork,
@@ -12,7 +12,7 @@ Tramway.set_available_models(
 )
 
 Tramway.navbar_structure(
-  Tramway::User::User,
+  Tramway::User,
   TramwayDev,
   Project,
   {
