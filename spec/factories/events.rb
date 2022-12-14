@@ -18,14 +18,14 @@ FactoryBot.define do
     trait :created_by_admin do
       after :create do |event|
         creation_event = event.audits.where(action: :create).first
-        creation_event.update! user_id: create(:admin).id, user_type: Tramway::User::User
+        creation_event.update! user_id: create(:admin).id, user_type: Tramway::User
       end
     end
 
     trait :created_by_full_filled_admin do
       after :create do |event|
         creation_event = event.audits.where(action: :create).first
-        creation_event.update! user_id: create(:admin, :with_social_networks).id, user_type: Tramway::User::User
+        creation_event.update! user_id: create(:admin, :with_social_networks).id, user_type: Tramway::User
       end
     end
   end

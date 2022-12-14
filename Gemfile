@@ -142,7 +142,7 @@ group :test do
   gem 'faker'
   gem 'json_api_test_helpers', '1.2.1.2'
   gem 'json_matchers', github: 'BBonifield/json_matchers', branch: 'bugfix/properly-support-record-errors'
-  gem 'puma'
+  gem 'puma', '3.12.6'
   gem 'rspec-json_expectations'
   gem 'rspec-retry'
   gem 'rspec-sidekiq'
