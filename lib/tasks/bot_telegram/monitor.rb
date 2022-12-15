@@ -9,7 +9,7 @@ end
 message = if active_bots.count == Bot.count
             "Все боты работают!"
           else
-            "#{Bot.pluck(:name) - active_bots.join(' ')} лежат. Надо их срочно поднять!"
+            "Боты лежат!\n#{(Bot.pluck(:name) - active_bots).join("\n")}"
           end
 
 send_notification_to_user :kalashnikovisme, message
