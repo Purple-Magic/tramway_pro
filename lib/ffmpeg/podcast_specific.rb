@@ -25,7 +25,7 @@ module Ffmpeg::PodcastSpecific
       output: output,
       video_codec: :libx264,
       add_filters: "\"#{silenceremove},#{acompressor},#{volume},#{NORMALIZATION_FILTER}\"",
-      audio_bitrate: '320k'
+      audio_bitrate: '192k'
     )
 
     "ffmpeg #{options}"

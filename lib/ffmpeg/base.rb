@@ -7,7 +7,7 @@ module Ffmpeg::Base
 
   # :reek:UtilityFunction { enabled: false }
   def convert_to(format, input:, output:)
-    "ffmpeg -y -i #{input} -b:a 320k -c:a #{CODECS[format]} #{output}"
+    "ffmpeg -y -i #{input} -b:a 192k -c:a #{CODECS[format]} #{output}"
   end
   # :reek:UtilityFunction { enabled: true }
 
@@ -39,7 +39,7 @@ module Ffmpeg::Base
       output: output,
       ss: begin_time,
       to: end_time,
-      audio_bitrate: '320k',
+      audio_bitrate: '192k',
       copy: :copy
     )
 
