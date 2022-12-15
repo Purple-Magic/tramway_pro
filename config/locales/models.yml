@@ -37,8 +37,9 @@ ru:
         main: Определение
         synonims: Синонимы
         description: Описание
-      tramway/user/user:
+      tramway/user:
         password: Пароль
+        social_networks: социальные сети
       listai/book:
         title: Название
         pages: Страницы

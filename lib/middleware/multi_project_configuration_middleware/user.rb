@@ -18,9 +18,10 @@ end
 module MultiProjectCallbacks
   module UserForm
     extend ActiveSupport::Concern
-    # included do
-    #   properties :project_id
-    # end
+
+    included do
+      properties :project_id
+    end
   end
 
   module UserCallbacks

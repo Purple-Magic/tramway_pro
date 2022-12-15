@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:it_way]) do
-    # mount Tramway::Conference::Engine => '/'
+    mount Tramway::Conference::Engine => '/'
     mount Tramway::Engine, at: '/admin', as: :it_way_admin
     mount Tramway::Api::Engine, at: '/api', as: :it_way_api
 
