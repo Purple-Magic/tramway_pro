@@ -17,7 +17,7 @@ class RedMagic::Api::V1::Podcast::EpisodesController < RedMagic::Api::V1::Podcas
     episode = Podcast::Episode.find params[:id]
     episode.download_video_from_remote_host! params[:video_type]
 
-    Rails.logger.info 'Render full video completed'
+    Rails.logger.info "Render #{params[:video_type]} completed"
     ::Shortener::ShortenedUrl.generate(episode.public_send(params[:video_type]).url, owner: self)
     send_notification_to_chat(
       episode.podcast.chat_id,
