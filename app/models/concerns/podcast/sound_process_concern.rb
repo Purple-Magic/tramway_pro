@@ -25,6 +25,6 @@ module Podcast::SoundProcessConcern
   # :reek:UtilityFunction { enabled: true }
 
   def move_to(temp_output, output)
-    "mv #{temp_output} #{output} && rm #{temp_output}"
+    "mv #{temp_output} #{output} && rm -f #{temp_output}"
   end
 end
