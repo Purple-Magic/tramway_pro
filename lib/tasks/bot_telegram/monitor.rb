@@ -6,7 +6,7 @@ active_bots = Sidekiq::Workers.new.map do |worker|
   worker.third['payload']['args'].last
 end
 
-message = if active_bots.count < Bot.count
+message = if active_bots.count >= Bot.count
             "Все боты работают!"
           else
             "Боты лежат!\n#{(Bot.pluck(:name) - active_bots).join("\n")}"
