@@ -29,6 +29,6 @@ class Podcasts::RenderVideoTrailerWorker < ApplicationWorker
     output = "#{@directory}/story_trailer_video.mp4"
     episode.render_story_video_trailer_action(output)
 
-    Rails.logger.info 'Render trailer video completed'
+    Rails.logger.info 'Render story trailer video completed'
   end
 end

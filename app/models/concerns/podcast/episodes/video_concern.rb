@@ -18,7 +18,7 @@ module Podcast::Episodes::VideoConcern
     )
     move_command = move_to(video_temp_output, remote_output)
     command = "#{render_command} && #{move_command}"
-    command = "nohup /bin/bash -c '#{command} && #{send_request_after_render_command(id, :trailer_video)}' &"
+    command = "nohup /bin/bash -lic '#{command} && #{send_request_after_render_command(id, :trailer_video)}' &"
     run_command_on_remote_server command
   end
 
@@ -34,7 +34,7 @@ module Podcast::Episodes::VideoConcern
     )
     move_command = move_to(video_temp_output, remote_output)
     command = "#{render_command} && #{move_command}"
-    command = "nohup /bin/bash -c '#{command} && #{send_request_after_render_command(id, :story_trailer_video)}' &"
+    command = "nohup /bin/bash -lic '#{command} && #{send_request_after_render_command(id, :story_trailer_video)}' &"
     run_command_on_remote_server command
   end
 
@@ -83,6 +83,7 @@ module Podcast::Episodes::VideoConcern
 
   def run_command_on_remote_server(remote_command)
     command = "ssh #{REMOTE_USER}@#{REMOTE_SERVER} \"#{remote_command}\""
+    log_command 'Render video on remote server', command
     Rails.logger.info command
     system command
   end
