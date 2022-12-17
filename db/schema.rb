@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20221217170145) do
+ActiveRecord::Schema.define(version: 20221217172446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -822,6 +822,7 @@ ActiveRecord::Schema.define(version: 20221217170145) do
     t.text "youtube_footer"
     t.datetime "deleted_at"
     t.text "chat_id"
+    t.text "url"
   end
 
   create_table "products", force: :cascade do |t|
@@ -1282,22 +1283,6 @@ ActiveRecord::Schema.define(version: 20221217170145) do
     t.integer "project_id"
     t.text "phone"
     t.datetime "deleted_at"
-  end
-
-  create_table "tramway_users", force: :cascade do |t|
-    t.text "email"
-    t.text "password_digest"
-    t.text "first_name"
-    t.text "last_name"
-    t.text "patronymic"
-    t.text "avatar"
-    t.text "state"
-    t.text "role"
-    t.integer "project_id"
-    t.text "phone"
-    t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "videos", force: :cascade do |t|
