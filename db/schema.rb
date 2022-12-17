@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20221107195846) do
+ActiveRecord::Schema.define(version: 20221217170145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -643,6 +643,18 @@ ActiveRecord::Schema.define(version: 20221107195846) do
     t.datetime "deleted_at"
   end
 
+  create_table "podcast_channels", force: :cascade do |t|
+    t.integer "podcast_id"
+    t.text "service"
+    t.text "title"
+    t.text "state"
+    t.datetime "deleted_at"
+    t.integer "project_id"
+    t.text "channel_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "podcast_episodes", force: :cascade do |t|
     t.integer "podcast_id"
     t.text "title"
@@ -1270,6 +1282,22 @@ ActiveRecord::Schema.define(version: 20221107195846) do
     t.integer "project_id"
     t.text "phone"
     t.datetime "deleted_at"
+  end
+
+  create_table "tramway_users", force: :cascade do |t|
+    t.text "email"
+    t.text "password_digest"
+    t.text "first_name"
+    t.text "last_name"
+    t.text "patronymic"
+    t.text "avatar"
+    t.text "state"
+    t.text "role"
+    t.integer "project_id"
+    t.text "phone"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "videos", force: :cascade do |t|
