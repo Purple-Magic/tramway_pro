@@ -1,5 +1,5 @@
 class Admin::Podcast::ChannelForm < Tramway::Core::ApplicationForm
-  properties :service, :title, :project_id, :channel_id, :options
+  properties :service, :title, :project_id, :channel_id, :options, :footer
 
   association :podcast
 
@@ -9,7 +9,8 @@ class Admin::Podcast::ChannelForm < Tramway::Core::ApplicationForm
         service: :default,
         title: :string,
         channel_id: :string,
-        options: :text
+        options: :text,
+        footer: :text
     end
   end
 
