@@ -1,12 +1,11 @@
 class Podcasts::PublishService < ApplicationService
   include BotTelegram::Leopold::Notify
 
-  attr_reader :episode, :service, :channel_id
+  attr_reader :episode, :channel
 
-  def initialize(service, episode, channel_id)
+  def initialize(channel, episode)
     @episode = episode
-    @service = service
-    @channel_id = channel_id
+    @channel = channel
   end
 
   def run
@@ -14,7 +13,7 @@ class Podcasts::PublishService < ApplicationService
   end
 
   def telegram
-    send_file_to_chat channel_id, episode.trailer_video.path,
+    public_send "send_file_to_#{channel.options.chat_type}", channel_id, episode.trailer_video.path,
       caption: Podcast::EpisodeDecorator.new(episode).telegram_post_text
   end
 end
