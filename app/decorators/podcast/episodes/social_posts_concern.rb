@@ -47,7 +47,24 @@ module Podcast::Episodes::SocialPostsConcern
 
   def telegram_post_text
     text = title
-    telegram_post_text_body text
+    text = telegram_post_text_body text
+
+    table do
+      object.podcast.channels.in_telegram.each do |channel|
+        concat(thead do
+          concat(th do
+            channel.title
+          end)
+        end)
+        concat(content_tag(:tbody) do
+          concat(tr do
+            concat(td do
+              raw (channel.footer.present? ? text + channel.footer : text).gsub "\n", '<br/>'
+            end)
+          end) 
+        end)
+      end
+    end
   end
 
   def telegram_reminder_post_text
@@ -63,7 +80,11 @@ module Podcast::Episodes::SocialPostsConcern
           end
     text += "В этот день #{ago} назад у нас вышел этот эпизод подкаста."
 
-    telegram_post_text_body text
+    text = telegram_post_text_body text
+    text += "RSS: http://bit.ly/2JuDkYY\n"
+    text += "\n"
+    text += 'Художник: @cathrinenotea'
+    text
   end
 
   def instagram_post_text
@@ -215,8 +236,6 @@ module Podcast::Episodes::SocialPostsConcern
     instances.each do |instance|
       text += "#{instance.service.capitalize}: #{instance.shortened_url}\n"
     end
-    text += "RSS: http://bit.ly/2JuDkYY\n"
-    text += "\n"
-    text += 'Художник: @cathrinenotea'
+    text
   end
 end
