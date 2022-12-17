@@ -25,6 +25,7 @@ module BotTelegram::Custom::Notify::File
       bot_record = Bot.find bot_id
       bot = ::Telegram::Bot::Client.new bot_record.token
       bot_message = ::BotTelegram::Leopold::Message.new file
+      channel = "@#{channel}" if channel.first != '@'
       send_file bot.api, channel, bot_message.file, **options
     end
   end
