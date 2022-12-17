@@ -109,6 +109,8 @@ Rails.application.routes.draw do
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:red_magic]) do
     root to: 'red_magic/web/welcome#index'
 
+    get '/:id' => 'shortener/shortened_urls#show'
+
     mount Tramway::Admin::Engine, at: '/admin', as: :red_magic_admin
     mount Tramway::Auth::Engine, at: '/auth', as: :red_magic_auth
     mount Tramway::Page::Engine, at: '/page', as: :red_magic
