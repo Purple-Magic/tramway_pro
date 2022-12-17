@@ -45,10 +45,7 @@ module Podcast::Episodes::SocialPostsConcern
     raw text
   end
 
-  def telegram_post_text
-    text = title
-    text = telegram_post_text_body text
-
+  def telegram_posts
     table do
       object.podcast.channels.in_telegram.each do |channel|
         concat(thead do
@@ -59,12 +56,18 @@ module Podcast::Episodes::SocialPostsConcern
         concat(content_tag(:tbody) do
           concat(tr do
             concat(td do
-              raw (channel.footer.present? ? text + channel.footer : text).gsub "\n", '<br/>'
+              raw telegram_post_text(channel).gsub "\n", '<br/>'
             end)
           end) 
         end)
       end
     end
+  end
+
+  def telegram_post_text(channel)
+    text = title
+    text = telegram_post_text_body text
+    channel.footer.present? ? text + channel.footer : text
   end
 
   def telegram_reminder_post_text
