@@ -3,7 +3,7 @@ class Podcasts::PublishService < ApplicationService
 
   attr_reader :episode, :service, :channel_id
 
-  def initialize(episode, service, channel_id)
+  def initialize(service, episode, channel_id)
     @episode = episode
     @service = service
     @channel_id = channel_id
