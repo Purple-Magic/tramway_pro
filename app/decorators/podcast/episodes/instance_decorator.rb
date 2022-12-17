@@ -19,7 +19,7 @@ class Podcast::Episodes::InstanceDecorator < ApplicationDecorator
   end
 
   def shortened_url
-    "http://it-way.pro/#{object.shortened_urls.last.unique_key}" if object.shortened_urls.any?
+    "http://#{object.episode.podcast.url}/#{object.shortened_urls.last.unique_key}" if object.shortened_urls.any?
   end
 
   def episode_link
