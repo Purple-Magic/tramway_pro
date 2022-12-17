@@ -7,7 +7,7 @@ class Podcasts::PublishWorker < ApplicationWorker
     episode = Podcast::Episode.find id
 
     episode.podcast.channels.each do |channel|
-      Podcasts::PublishService.new(channel.service, episode, channel.channel_id).run
+      Podcasts::PublishService.new(channel, episode).run
     end
   end
 end
