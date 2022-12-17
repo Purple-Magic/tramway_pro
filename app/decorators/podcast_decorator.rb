@@ -3,7 +3,7 @@
 class PodcastDecorator < ApplicationDecorator
   delegate_attributes :title, :footer, :youtube_footer
 
-  decorate_associations :stars, :musics, :episodes, :stats
+  decorate_associations :stars, :musics, :episodes, :stats, :channels
 
   alias name title
 
@@ -11,7 +11,7 @@ class PodcastDecorator < ApplicationDecorator
 
   class << self
     def show_associations
-      %i[stars musics episodes stats]
+      %i[stars musics episodes stats channels]
     end
 
     def show_attributes

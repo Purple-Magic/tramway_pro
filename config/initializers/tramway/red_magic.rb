@@ -29,6 +29,7 @@ Tramway::Admin.set_available_models(
   Podcast::Music,
   Podcast::Star,
   Podcast::Stat,
+  Podcast::Channel,
   Content::Story,
   MagicWood::Actor,
   MagicWood::Actors::Photo,
