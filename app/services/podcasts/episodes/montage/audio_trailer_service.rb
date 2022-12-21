@@ -17,11 +17,9 @@ class Podcasts::Episodes::Montage::AudioTrailerService < Podcasts::Episodes::Bas
     cut_using_highlights output
 
     render_trailer output
-    wait_for_file_rendered output, :trailer
     episode.update_file! output, :trailer
 
     normalize_trailer output
-    wait_for_file_rendered output, :trailer
     episode.update_file! output, :trailer
 
     episode.trailer_finish!
@@ -35,8 +33,7 @@ class Podcasts::Episodes::Montage::AudioTrailerService < Podcasts::Episodes::Bas
       move_command = move_to(temp_output, output)
       command = "#{render_command} && #{move_command}"
       Rails.logger.info command
-      system command
-      wait_for_file_rendered output, :trailer
+      _log, _err, _status = Open3.capture3({}, command, {})
       episode.update_file! output, :ready_file
     else
       update_file! premontage_file.path, :ready_file
@@ -50,7 +47,7 @@ class Podcasts::Episodes::Montage::AudioTrailerService < Podcasts::Episodes::Bas
     move_command = move_to(temp_output, output)
     command = "#{render_command} && #{move_command}"
     Rails.logger.info command
-    system command
+    _log, _err, _status = Open3.capture3({}, command, {})
   end
 
   def render_trailer(output)
@@ -59,7 +56,7 @@ class Podcasts::Episodes::Montage::AudioTrailerService < Podcasts::Episodes::Bas
     move_command = move_to(temp_output, output)
     command = "#{render_command} && #{move_command}"
     Rails.logger.info command
-    system command
+    _log, _err, _status = Open3.capture3({}, command, {})
   end
 
   def using_highlights
@@ -89,7 +86,7 @@ class Podcasts::Episodes::Montage::AudioTrailerService < Podcasts::Episodes::Bas
     move_command = move_to(temp_output, output)
     command = "#{render_command} && #{move_command}"
     Rails.logger.info command
-    system command
+    _log, _err, _status = Open3.capture3({}, command, {})
   end
 
   def content
