@@ -13,7 +13,7 @@ class Podcasts::Episodes::Montage::FilterService < Podcasts::Episodes::BaseServi
 
   def filter
     output = episode.premontage_file.path
-    if montage_process == 'default'
+    if episode.montage_process == 'default'
       directory = episode.prepare_directory.gsub('//', '/')
       output = "#{directory}/montage.mp3"
       temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
