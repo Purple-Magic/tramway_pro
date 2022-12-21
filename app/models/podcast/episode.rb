@@ -74,7 +74,6 @@ class Podcast::Episode < ApplicationRecord
   include Podcast::Episodes::DescriptionConcern
   include Podcast::Episodes::HighlightsConcern
   include Podcast::Episodes::MusicConcern
-  include Podcast::Episodes::TrailerConcern
   include Podcast::Episodes::VideoConcern
   include Podcast::Episodes::FilesConcern
 
