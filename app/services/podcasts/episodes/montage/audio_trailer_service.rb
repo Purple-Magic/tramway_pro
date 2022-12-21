@@ -1,22 +1,30 @@
-# frozen_string_literal: true
+class Podcasts::Episodes::Montage::AudioTrailerService < Podcasts::Episodes::BaseService
+  attr_reader :episode
 
-module Podcast::Episodes::TrailerConcern
+  def initialize(episode)
+    @episode = episode
+  end
+  
+  def call
+    build_trailer
+  end
+
+  private
+
   def build_trailer
-    output = "#{prepare_directory.gsub('//', '/')}/trailer.mp3"
+    output = "#{episode.prepare_directory.gsub('//', '/')}/trailer.mp3"
 
     cut_using_highlights output
 
     render_trailer output
     wait_for_file_rendered output, :trailer
-    update_file! output, :trailer
-
-    sleep 300
+    episode.update_file! output, :trailer
 
     normalize_trailer output
     wait_for_file_rendered output, :trailer
-    update_file! output, :trailer
+    episode.update_file! output, :trailer
 
-    trailer_finish!
+    episode.trailer_finish!
   end
 
   def concat_trailer_and_episode(output)
@@ -29,7 +37,7 @@ module Podcast::Episodes::TrailerConcern
       Rails.logger.info command
       system command
       wait_for_file_rendered output, :trailer
-      update_file! output, :ready_file
+      episode.update_file! output, :ready_file
     else
       update_file! premontage_file.path, :ready_file
     end
@@ -38,7 +46,7 @@ module Podcast::Episodes::TrailerConcern
 
   def normalize_trailer(output)
     temp_output = update_output :normalize, output
-    render_command = write_logs normalize(input: trailer.path, output: temp_output)
+    render_command = write_logs normalize(input: episode.trailer.path, output: temp_output)
     move_command = move_to(temp_output, output)
     command = "#{render_command} && #{move_command}"
     Rails.logger.info command
@@ -55,7 +63,7 @@ module Podcast::Episodes::TrailerConcern
   end
 
   def using_highlights
-    @collection ||= highlights.where(using_state: :using).order(:trailer_position)
+    @collection ||= episode.highlights.where(using_state: :using).order(:trailer_position)
     @collection.tap do
       raise 'You should pick some highlights as using' unless @collection.any?
     end
@@ -86,7 +94,7 @@ module Podcast::Episodes::TrailerConcern
 
   def content
     using_highlights.sort_by(&:trailer_position).map do |content_file|
-      [content_file.ready_file.path, podcast.trailer_separator.file.path]
+      [content_file.ready_file.path, episode.podcast.trailer_separator.file.path]
     end.flatten
   end
 end

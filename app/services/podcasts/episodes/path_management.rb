@@ -10,4 +10,8 @@ module Podcasts::Episodes::PathManagement
     filename = [object.class, object.id, attribute, suffix].compact.join('_')
     "#{directory}/#{filename}.mp3"
   end
+
+  def update_output(suffix, output)
+    (output.split('.')[0..-2] + [suffix, :mp3]).join('.')
+  end
 end

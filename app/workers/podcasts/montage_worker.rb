@@ -54,7 +54,7 @@ class Podcasts::MontageWorker < ApplicationWorker
   end
 
   def run_filters(episode)
-    episode.montage(episode.premontage_file.path)
+    Podcasts::Episodes::Montage::FilterService.new(episode).call
     Rails.logger.info 'Montage completed!'
     send_notification_to_chat episode.podcast.chat_id, notification(:filter, :finished)
   end
