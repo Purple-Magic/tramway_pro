@@ -1,7 +1,17 @@
-# frozen_string_literal: true
+class Podcasts::Episodes::Montage::FilterService < Podcasts::Episodes::BaseService
+  attr_reader :episode
 
-module Podcast::Episodes::MontageConcern
-  def montage(filename)
+  def initialize(episode)
+    @episode = episode
+  end
+
+  def call
+    filter
+  end
+
+  private
+
+  def filter
     output = premontage_file.path
     if montage_process == 'default'
       directory = prepare_directory.gsub('//', '/')
@@ -16,9 +26,7 @@ module Podcast::Episodes::MontageConcern
     prepare!
   end
 
-  private
-
-  def build_and_run_command(filename, output, temp_output)
+  def build_and_run_command
     render_command = write_logs use_filters(input: filename, output: temp_output)
     move_command = move_to(temp_output, output)
     command = "#{render_command} && #{move_command}"
