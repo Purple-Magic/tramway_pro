@@ -8,7 +8,7 @@ module Podcast::Episodes::FinishConcern
       command = "#{render_command} && #{move_command}"
       Rails.logger.info command
       _log, _err, _status = Open3.capture3({}, command, {})
-      episode.update_file! output, :ready_file
+      update_file! output, :ready_file
     else
       update_file! premontage_file.path, :ready_file
     end
