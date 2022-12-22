@@ -76,6 +76,7 @@ class Podcast::Episode < ApplicationRecord
   include Podcast::Episodes::MusicConcern
   include Podcast::Episodes::VideoConcern
   include Podcast::Episodes::FilesConcern
+  include Podcast::Episodes::FinishConcern
 
   def with_guests?
     stars.guest.any?
