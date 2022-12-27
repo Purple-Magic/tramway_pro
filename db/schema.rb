@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20221214184854) do
+ActiveRecord::Schema.define(version: 20221217191007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "uuid-ossp"
   enable_extension "pg_trgm"
+  enable_extension "uuid-ossp"
 
   create_table "audits", force: :cascade do |t|
     t.integer "auditable_id"
@@ -624,6 +624,20 @@ ActiveRecord::Schema.define(version: 20221214184854) do
     t.datetime "deleted_at"
   end
 
+  create_table "podcast_channels", force: :cascade do |t|
+    t.integer "podcast_id"
+    t.text "service"
+    t.text "title"
+    t.text "state"
+    t.datetime "deleted_at"
+    t.integer "project_id"
+    t.text "channel_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.jsonb "options"
+    t.text "footer"
+  end
+
   create_table "podcast_episodes", force: :cascade do |t|
     t.integer "podcast_id"
     t.text "title"
@@ -791,6 +805,7 @@ ActiveRecord::Schema.define(version: 20221214184854) do
     t.text "youtube_footer"
     t.datetime "deleted_at"
     t.text "chat_id"
+    t.text "url"
   end
 
   create_table "products", force: :cascade do |t|
