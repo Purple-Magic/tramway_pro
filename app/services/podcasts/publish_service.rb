@@ -13,7 +13,9 @@ class Podcasts::PublishService < ApplicationService
   end
 
   def telegram
-    public_send "send_file_to_#{channel.options['chat_type']}", channel.channel_id, episode.trailer_video.path,
+    raise "You should set chat_type for Channel with id: #{channel.id}" unless channel.chat_type.present?
+
+    public_send "send_file_to_#{channel.chat_type}", channel.channel_id, episode.trailer_video.path,
       caption: Podcast::EpisodeDecorator.new(episode).telegram_post_text(channel)
   end
 end
