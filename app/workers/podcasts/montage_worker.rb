@@ -36,7 +36,7 @@ class Podcasts::MontageWorker < ApplicationWorker
   # :reek:FeatureEnvy { enabled: false }
   def cut_highlights(episode)
     if episode.highlights.any?
-      episode.cut_highlights
+      Podcasts::Episodes::Montage::CutHighlightsService.new(episode).call
       episode.highlight_it!
       Rails.logger.info 'Cut highlights completed!'
       send_notification_to_chat episode.podcast.chat_id, notification(:highlights, :cut, episode_id: episode.id)

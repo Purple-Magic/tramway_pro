@@ -29,8 +29,6 @@ class Podcasts::Episodes::Montage::FilterService < Podcasts::Episodes::BaseServi
     render_command = write_logs use_filters(input: filename, output: temp_output)
     move_command = move_to(temp_output, output)
     command = "#{render_command} && #{move_command}"
-    log_command episode, 'Use filters', command
-    Rails.logger.info command
-    _log, _err, _status = Open3.capture3({}, command, {})
+    run command, output: output, action: :filter
   end
 end

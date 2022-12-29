@@ -4,8 +4,7 @@ module Podcasts::Episodes::CommandsManagement
   def run(command, output:, action:, name: nil)
     episode.log_command action, command
     Rails.logger.info command
-    system command
 
-    wait_for_file_rendered output, name
+    _log, _err, _status = Open3.capture3({}, command, {})
   end
 end
