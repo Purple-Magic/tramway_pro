@@ -20,3 +20,6 @@
   shell: "cd /srv/tramway_pro/current && /bin/bash -lic 'exec bundle exec rails runner lib/tasks/bot_telegram/start_bots.rb'"
   args:
     chdir: "{{ app_path }}/current"
+
+- name: Restart errbit
+  shell: "cd /home/tramway/errbit && /bin/bash -lic 'exec docker-compose restart'"
