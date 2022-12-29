@@ -45,12 +45,6 @@ class Podcast::Highlight < ApplicationRecord
 
   private
 
-  def build_and_run_command(**options)
-    command = write_logs cut_content(**options)
-    Rails.logger.info command
-    system command
-  end
-
   def time_format
     return if time.match(/\d\d:\d\d:\d\d/) && minute < 60 && second < 60
 

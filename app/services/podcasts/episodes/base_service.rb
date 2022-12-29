@@ -14,11 +14,11 @@ class Podcasts::Episodes::BaseService < ApplicationService
     episode.save!
   end
 
-  def update_file!(episode, output, file_type)
+  def update_file!(model, output, file_type)
     File.open(output) do |std_file|
-      episode.public_send "#{file_type}=", std_file
+      model.public_send "#{file_type}=", std_file
     end
-    episode.save!
+    model.save!
   end
 
   def wait_for_file_rendered(output, file_type)

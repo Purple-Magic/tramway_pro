@@ -24,6 +24,7 @@ class Podcasts::MontageWorker < ApplicationWorker
     cut_highlights episode
     remove_cut_pieces episode
     run_filters episode
+
     if episode.podcast.podcast_type.sample?
       add_music episode
       send_notification_to_chat episode.podcast.chat_id, notification(:montage, :finished)

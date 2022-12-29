@@ -1,10 +1,11 @@
 class Podcasts::Episodes::Highlights::CutService < Podcasts::Episodes::BaseService
-  attr_reader :highlight, :filename, :index
+  attr_reader :highlight, :filename, :index, :episode
 
   def initialize(highlight, filename, index)
     @highlight = highlight
     @filename = filename
     @index = index
+    @episode = highlight.episode
   end
 
   def call
@@ -27,13 +28,16 @@ class Podcasts::Episodes::Highlights::CutService < Podcasts::Episodes::BaseServi
     episode.log_command 'Cut highlights', render_command
     run render_command
 
-    update_file! highlight_output, :ready_file
+    update_file! highlight, highlight_output, :ready_file
   end
 
-  def cut_from_whole_file(filename, index)
-    output = "#{directory}/part-#{index + 1}.mp3"
-    build_and_run_command(input: filename, begin_time: highlight.begin_time, end_time: highlight.end_time, output: output)
-    wait_for_file_rendered output, "Highlight #{id}"
-    update_file! output, :file
+  def cut_from_whole_file
+    output = "#{episode.directory}/part-#{index + 1}.mp3"
+    command = write_logs cut_content input: filename,
+      begin_time: highlight.begin_time,
+      end_time: highlight.end_time,
+      output: output
+    run command, action: :cut_highlights
+    update_file! highlight, output, :file
   end
 end
