@@ -19,13 +19,13 @@ class Podcasts::Episodes::Montage::RemoveCutPiecesService < Podcasts::Episodes::
       output = "#{episode.prepare_directory}/slice-#{index + 1}.mp3"
 
       render_command = write_logs(cut_content(
-        input: "#{episode.converted_file}.mp3",
+        input: episode.converted_file,
         output: output,
         begin_time: begin_time,
         end_time: end_time
       ))
 
-      run render_command, output: output, name: "Slice #{index}", action: 'Remove cut pieces'
+      run render_command, name: "Slice #{index}", action: 'Remove cut pieces'
     end
   end
 
@@ -40,8 +40,8 @@ class Podcasts::Episodes::Montage::RemoveCutPiecesService < Podcasts::Episodes::
       output: output
     )
 
-    run render_command, output: output, name: 'RemoveCutPieces', action: 'Concat cut pieces slices'
-    episode.update_file! output, :premontage_file
+    run render_command, name: 'RemoveCutPieces', action: 'Concat cut pieces slices'
+    update_file! episode, output, :premontage_file
 
     remove_files(*inputs, output)
   end

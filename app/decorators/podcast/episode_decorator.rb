@@ -179,7 +179,7 @@ data: { 'bs-toggle': :collapse, 'bs-target': "##{key}" }, aria: { controls: key 
       concat(content_tag(:div, class: :collapse, id: key) do
         concat(content_tag(:hr))
         concat(content_tag(:code, style: 'display: block; white-space: pre-wrap') do
-          object.render_data&.dig(key)&.join("\n\n")
+          object.render_data&.dig(key)&.reverse&.join("\n\n")
         end)
       end)
     end

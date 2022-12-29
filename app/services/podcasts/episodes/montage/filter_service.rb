@@ -18,10 +18,10 @@ class Podcasts::Episodes::Montage::FilterService < Podcasts::Episodes::BaseServi
       output = "#{directory}/montage.mp3"
       temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
 
-      build_and_run_command episode.premontage_file.filename, output, temp_output
+      build_and_run_command episode.premontage_file.path, output, temp_output
     end
 
-    episode.update_file! output, :premontage_file
+    update_file! episode, output, :premontage_file
     episode.prepare!
   end
 
@@ -29,6 +29,6 @@ class Podcasts::Episodes::Montage::FilterService < Podcasts::Episodes::BaseServi
     render_command = write_logs use_filters(input: filename, output: temp_output)
     move_command = move_to(temp_output, output)
     command = "#{render_command} && #{move_command}"
-    run command, output: output, action: :filter
+    run command, action: :filter
   end
 end

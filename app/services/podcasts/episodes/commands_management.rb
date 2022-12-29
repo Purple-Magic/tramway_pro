@@ -7,6 +7,8 @@ module Podcasts::Episodes::CommandsManagement
 
     _log, err, status = Open3.capture3({}, command, {})
 
-    episode.log_error(err) unless status.success?
+    if !status.success? && err.present?
+      episode.log_error(err) 
+    end
   end
 end
