@@ -1,4 +1,4 @@
-class Podcasts::Episodes::CutHighlightsService < Podcasts::Episodes::BaseService
+class Podcasts::Episodes::Montage::CutHighlightsService < Podcasts::Episodes::BaseService
   attr_reader :episode
 
   def initialize(episode)
@@ -12,9 +12,8 @@ class Podcasts::Episodes::CutHighlightsService < Podcasts::Episodes::BaseService
   private
 
   def cut_highlights
-    filename = Podcasts::Episodes::ConvertService.new(episode).call
     highlights.each_with_index do |highlight, index|
-      Podcasts::Episodes::Highlights::CutService.new(highlight, filename, index).call
+      Podcasts::Episodes::Highlights::CutService.new(highlight, episode.converted_file, index).call
     end
   end
 end

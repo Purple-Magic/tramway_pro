@@ -12,6 +12,7 @@ class Podcasts::MontageWorker < ApplicationWorker
     montage episode
   rescue StandardError => error
     log_error error
+    episode.log_error error
     send_notification_to_chat episode.podcast.chat_id, notification(:montage, :something_went_wrong)
   end
 
@@ -19,6 +20,7 @@ class Podcasts::MontageWorker < ApplicationWorker
 
   def montage(episode)
     send_notification_to_chat episode.podcast.chat_id, notification(:montage, :started)
+    convert episode
     cut_highlights episode
     remove_cut_pieces episode
     run_filters episode
@@ -31,6 +33,10 @@ class Podcasts::MontageWorker < ApplicationWorker
         notification(:montage, :finished_without_sample, url: "http://red-magic.ru/#{episode.premontage_file.url}")
       )
     end
+  end
+
+  def convert(episode)
+    Podcasts::Episodes::Montage::ConvertService.new(episode).call
   end
 
   # :reek:FeatureEnvy { enabled: false }

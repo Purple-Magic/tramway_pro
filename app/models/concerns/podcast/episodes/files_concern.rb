@@ -14,6 +14,10 @@ module Podcast::Episodes::FilesConcern
     end
   end
 
+  def converted_file
+    (file.present? ? file.path.split('.')[0..].join('.') : '') + '.mp3'
+  end
+
   private
 
   PODCASTS_DIRECTORY = "/#{Rails.root}/public/podcasts/"

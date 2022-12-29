@@ -31,9 +31,9 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
     end
 
     def show_attributes
-      %i[render_commands podcast_link public_title publish_date file ready_file premontage_file trailer cover story_cover trailer_video story_trailer_video full_video
+      %i[render_commands render_errors montage_state podcast_link public_title publish_date file ready_file premontage_file trailer cover story_cover trailer_video story_trailer_video full_video
          description_view youtube_description vk_post_text telegram_posts instagram_post_text twitter_post_text
-         patreon_post_text montage_state]
+         patreon_post_text]
     end
 
     def list_attributes
@@ -42,21 +42,11 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
   end
 
   def render_commands
-    content_tag(:div) do
-      concat(content_tag(:button, type: :button, class: 'btn btn-primary',
-data: { 'bs-toggle': :collapse, 'bs-target': '#commands' }, aria: { controls: :commands }) do
-               concat(content_tag(:span) do
-                 'Раскрыть '
-               end)
-               concat fa_icon('caret-down')
-             end)
-      concat(content_tag(:div, class: :collapse, id: :commands) do
-        concat(content_tag(:hr))
-        concat(content_tag(:code, style: 'display: block; white-space: pre-wrap') do
-          object.render_data&.dig('commands')&.join("\n\n")
-        end)
-      end)
-    end
+    render_info 'commands'
+  end
+
+  def render_errors
+    render_info 'errors'
   end
 
   def podcast_link
@@ -172,6 +162,26 @@ data: { 'bs-toggle': :collapse, 'bs-target': '#commands' }, aria: { controls: :c
   def premontage_file
     audio do
       content_tag(:source, '', src: object.premontage_file.url)
+    end
+  end
+
+  private
+
+  def render_info(key)
+    content_tag(:div) do
+      concat(content_tag(:button, type: :button, class: 'btn btn-primary',
+data: { 'bs-toggle': :collapse, 'bs-target': "##{key}" }, aria: { controls: key }) do
+               concat(content_tag(:span) do
+                 'Раскрыть '
+               end)
+               concat fa_icon('caret-down')
+             end)
+      concat(content_tag(:div, class: :collapse, id: key) do
+        concat(content_tag(:hr))
+        concat(content_tag(:code, style: 'display: block; white-space: pre-wrap') do
+          object.render_data&.dig(key)&.join("\n\n")
+        end)
+      end)
     end
   end
 end
