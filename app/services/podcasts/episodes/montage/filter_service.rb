@@ -21,7 +21,6 @@ class Podcasts::Episodes::Montage::FilterService < Podcasts::Episodes::BaseServi
       build_and_run_command episode.premontage_file.filename, output, temp_output
     end
 
-    wait_for_file_rendered output, :montage
     episode.update_file! output, :premontage_file
     episode.prepare!
   end
@@ -32,6 +31,6 @@ class Podcasts::Episodes::Montage::FilterService < Podcasts::Episodes::BaseServi
     command = "#{render_command} && #{move_command}"
     log_command episode, 'Use filters', command
     Rails.logger.info command
-    system command
+    _log, _err, _status = Open3.capture3({}, command, {})
   end
 end
