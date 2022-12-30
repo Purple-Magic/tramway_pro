@@ -52,7 +52,7 @@ class Podcasts::Episodes::Montage::AudioTrailerService < Podcasts::Episodes::Bas
 
   def cut_using_highlights(output)
     using_highlights.each do |highlight|
-      highlight.cut output
+      Podcasts::Episodes::Highlights::CutService.new(highlight, output).call
     end
   end
 

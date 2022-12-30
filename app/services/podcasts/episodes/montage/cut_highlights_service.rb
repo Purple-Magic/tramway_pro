@@ -13,7 +13,7 @@ class Podcasts::Episodes::Montage::CutHighlightsService < Podcasts::Episodes::Ba
 
   def cut_highlights
     episode.highlights.each_with_index do |highlight, index|
-      Podcasts::Episodes::Highlights::CutService.new(highlight, episode.converted_file, index).call
+      Podcasts::Episodes::Highlights::CutFromWholeFileService.new(highlight, episode.converted_file, index).call
     end
   end
 end
