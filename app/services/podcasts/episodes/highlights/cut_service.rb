@@ -14,7 +14,9 @@ class Podcasts::Episodes::Highlights::CutService < Podcasts::Episodes::BaseServi
   private
 
   def cut
-    raise "You should pick begin and end time for Highlight #{highlight.id}" if !highlight.cut_begin_time.present? && !highlight.cut_end_time.present?
+    if !highlight.cut_begin_time.present? && !highlight.cut_end_time.present?
+      raise "You should pick begin and end time for Highlight #{highlight.id}" 
+    end
 
     directory = output.split('/')[0..-2].join('/')
     highlight_output = "#{directory}/#{highlight.id}.mp3"
@@ -25,7 +27,7 @@ class Podcasts::Episodes::Highlights::CutService < Podcasts::Episodes::BaseServi
       output: highlight_output
     )
     episode.log_command 'Cut highlights', render_command
-    run render_command
+    run render_command, action: :cutting_highlights
 
     update_file! highlight, highlight_output, :ready_file
   end
