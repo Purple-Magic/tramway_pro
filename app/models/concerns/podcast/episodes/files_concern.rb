@@ -14,25 +14,10 @@ module Podcast::Episodes::FilesConcern
     end
   end
 
+  alias directory prepare_directory
+
   def converted_file
-    file.present? ? file.path.split('.')[0..].join('.') : ''
-  end
-
-  def convert_file
-    filename = converted_file
-
-    if file.path.split('.').last == 'ogg'
-      filename += '.mp3'
-      command = write_logs(convert_to(:mp3, input: file.path, output: filename))
-      Rails.logger.info command
-      system command
-    end
-
-    filename.tap do
-      wait_for_file_rendered filename, :convert
-
-      convert!
-    end
+    (file.present? ? file.path.split('.')[0..].join('.') : '') + '.mp3'
   end
 
   private

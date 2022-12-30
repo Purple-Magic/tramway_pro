@@ -62,7 +62,8 @@ class Podcast::Episode < ApplicationRecord
         transitions to: worker_event[:to]
         after do
           save!
-          "Podcasts::#{worker_event[:worker]}Worker".constantize.perform_async id
+          # "Podcasts::#{worker_event[:worker]}Worker".constantize.perform_async id
+          "Podcasts::#{worker_event[:worker]}Worker".constantize.new.perform id
         end
       end
     end
@@ -72,7 +73,6 @@ class Podcast::Episode < ApplicationRecord
   include Podcast::SoundProcessConcern
   include Podcast::PathManagementConcern
   include Podcast::Episodes::DescriptionConcern
-  include Podcast::Episodes::HighlightsConcern
   include Podcast::Episodes::MusicConcern
   include Podcast::Episodes::VideoConcern
   include Podcast::Episodes::FilesConcern
@@ -90,6 +90,16 @@ class Podcast::Episode < ApplicationRecord
     line = [action, DateTime.now.strftime('%d.%m.%Y %H:%M:%S'), command].join(', ')
     commands = (render_data&.dig('commands') || []) + [line]
     render_data ? render_data['commands'] = commands : self.render_data = { commands: commands }
+    save!
+  end
+
+  def log_error(error)
+    render_data ||= {}
+    render_data['errors'] ||= []
+    render_data['errors'] << "-----------------------------------------------"
+    render_data['errors'] << "Error #{DateTime.now.strftime('%d.%m.%Y %H:%M')}"
+    render_data['errors'] << error
+    render_data['errors'] << error.backtrace
     save!
   end
 end

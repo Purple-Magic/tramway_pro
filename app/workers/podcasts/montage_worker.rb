@@ -12,6 +12,7 @@ class Podcasts::MontageWorker < ApplicationWorker
     montage episode
   rescue StandardError => error
     log_error error
+    episode.log_error error
     send_notification_to_chat episode.podcast.chat_id, notification(:montage, :something_went_wrong)
   end
 
@@ -19,9 +20,11 @@ class Podcasts::MontageWorker < ApplicationWorker
 
   def montage(episode)
     send_notification_to_chat episode.podcast.chat_id, notification(:montage, :started)
+    convert episode
     cut_highlights episode
     remove_cut_pieces episode
     run_filters episode
+
     if episode.podcast.podcast_type.sample?
       add_music episode
       send_notification_to_chat episode.podcast.chat_id, notification(:montage, :finished)
@@ -33,10 +36,14 @@ class Podcasts::MontageWorker < ApplicationWorker
     end
   end
 
+  def convert(episode)
+    Podcasts::Episodes::Montage::ConvertService.new(episode).call
+  end
+
   # :reek:FeatureEnvy { enabled: false }
   def cut_highlights(episode)
     if episode.highlights.any?
-      episode.cut_highlights
+      Podcasts::Episodes::Montage::CutHighlightsService.new(episode).call
       episode.highlight_it!
       Rails.logger.info 'Cut highlights completed!'
       send_notification_to_chat episode.podcast.chat_id, notification(:highlights, :cut, episode_id: episode.id)
