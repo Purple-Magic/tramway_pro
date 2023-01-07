@@ -20,9 +20,8 @@ class Podcasts::DownloadWorker < ApplicationWorker
   private
 
   def convert(episode)
-    episode.convert_file.tap do
-      Rails.logger.info 'Converting completed!'
-    end
+    Podcasts::Episodes::Montage::ConvertService.new(episode).call
+    Rails.logger.info 'Converting completed!'
   end
 
   def download(episode, chat_id)
