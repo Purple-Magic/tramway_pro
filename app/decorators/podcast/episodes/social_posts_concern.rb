@@ -1,7 +1,31 @@
 # frozen_string_literal: true
 
 module Podcast::Episodes::SocialPostsConcern
-  def vk_post_text
+  def posts_to_channels
+    table do
+      podcast.channels.each do |channel|
+        concat(thead do
+          concat(th do
+            channel.name
+          end)
+        end)
+        concat(content_tag(:tbody) do
+          concat(tr do
+            concat(td do
+              raw public_send("#{channel.service}_post_text", channel).gsub "\n", '<br/>'
+            end)
+          end) 
+        end)
+      end
+    end
+  end
+
+  def vk_post_text(channel)
+    text = vk_post_text_body
+    channel.footer.present? ? text + channel.footer : text
+  end
+
+  def vk_post_text_body
     text = title
     text += '<br/><br/>Ведущие:<br/>'
     object.stars.main.each do |star|
@@ -38,30 +62,7 @@ module Podcast::Episodes::SocialPostsConcern
     instances.each do |instance|
       text += "#{instance.service.capitalize}: #{instance.shortened_url}<br/>"
     end
-    text += 'RSS: http://bit.ly/2JuDkYY<br/>'
-    text += '<br/>'
-    text += 'Музыка @alpharecords73 (ALPHA RECORDS)<br/>'
-    text += 'Художник: @kiborgvviborge (noTea)'
-    raw text
-  end
-
-  def telegram_posts
-    table do
-      object.podcast.channels.in_telegram.each do |channel|
-        concat(thead do
-          concat(th do
-            channel.title
-          end)
-        end)
-        concat(content_tag(:tbody) do
-          concat(tr do
-            concat(td do
-              raw telegram_post_text(channel).gsub "\n", '<br/>'
-            end)
-          end) 
-        end)
-      end
-    end
+    text
   end
 
   def telegram_post_text(channel)
