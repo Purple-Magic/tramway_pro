@@ -189,6 +189,7 @@ ru:
         render_commands: Лог рендера
         public_title: Название
         time_logs: Времени затрачено
+        posts_to_channels: Посты в каналы
       podcast/episodes/instance:
         episode: Эпизод
         service: Сервис подкастов
@@ -259,6 +260,10 @@ ru:
         without_music: Монтируется без музыки
         different_music: С несколькими сэмплами
         handmade: Монтируется вовне
+    podcast/channel:
+      service:
+        telegram: Telegram
+        vk: VK
     estimation/task:
       task_type:
         single: Одноразовая

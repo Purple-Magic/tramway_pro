@@ -6,14 +6,14 @@ class Podcast::ChannelDecorator < Tramway::Core::ApplicationDecorator
         :id,
         :podcast_id,
         :service,
-        :title,
         :state,
-        :deleted_at,
-        :project_id,
-        :channel_id,
-        :created_at,
-        :updated_at,
+        :title,
+        :footer,
   )
+
+  def name
+    "#{title} | #{service.text}"
+  end
 
   class << self
     def collections

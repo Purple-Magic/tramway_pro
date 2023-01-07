@@ -3,7 +3,7 @@ class Podcast::Channel < ApplicationRecord
 
   scope :in_telegram, -> { where service: :telegram }
 
-  enumerize :service, in: [ :telegram ]
+  enumerize :service, in: [ :telegram, :vk ]
 
   store_accessor :options, :chat_type
 end
