@@ -9,7 +9,9 @@ class Podcasts::PublishService < ApplicationService
   end
 
   def run
-    public_send channel.service
+    if channel.service.in? ['telegram']
+      public_send channel.service
+    end
   end
 
   def telegram
