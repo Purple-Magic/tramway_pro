@@ -1,6 +1,4 @@
 class Podcasts::Youtube::PublishService < ApplicationService
-  include BotTelegram::Leopold::Notify
-
   attr_reader :episode
 
   def initialize(episode)
