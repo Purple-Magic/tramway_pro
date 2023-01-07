@@ -49,3 +49,4 @@ ru:
         converted: "Смонтировал историю %{name}. Скачать её можно по ссылке http://red-magic.ru/%{file_url}"
       youtube_publish:
         success: "Видео подкаста опубликовано на Youtube. Найти его можно по ссылке %{link}"
+        video_empty: "Нельзя опубликовать видео, которого нет, на Youtube. Сперва зарендерьте видео"
