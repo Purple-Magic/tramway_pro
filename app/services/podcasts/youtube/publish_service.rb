@@ -1,4 +1,6 @@
 class Podcasts::Youtube::PublishService < ApplicationService
+  include Podcasts
+
   attr_reader :episode
 
   def initialize(episode)
