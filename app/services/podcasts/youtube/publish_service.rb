@@ -14,9 +14,7 @@ class Podcasts::Youtube::PublishService < ApplicationService
   private
 
   def publish 
-    if video_is_empty?
-      send_notification_to_chat episode.podcast.chat_id, notification(:youtube_publish, :video_empty)
-    else
+    if episode.full_video.path.present?
       account = Yt::Account.new access_token: ::Youtube::Account.last.access_token
 
       video = account.upload_video(
@@ -30,10 +28,8 @@ class Podcasts::Youtube::PublishService < ApplicationService
       instance = Podcast::Episodes::InstanceDecorator.new instance
 
       send_notification_to_chat episode.podcast.chat_id, notification(:youtube_publish, :success, link: instance.link)
+    else
+      send_notification_to_chat episode.podcast.chat_id, notification(:youtube_publish, :video_empty)
     end
-  end
-
-  def video_is_empty?
-    episode.full_video.path.present?
   end
 end
