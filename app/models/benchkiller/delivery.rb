@@ -6,7 +6,7 @@ class Benchkiller::Delivery < ApplicationRecord
 
   scope :benchkiller_scope, ->(_user) { all }
 
-  aasm :delivery_state do
+  aasm column: :delivery_state do
     state :ready, initial: true
     state :in_progress
     state :done

@@ -14,7 +14,7 @@ class Courses::Task < ApplicationRecord
     }
   end
 
-  aasm :preparedness_state do
+  aasm column: :preparedness_state do
     state :writing, initial: true
     state :written
     state :uploaded

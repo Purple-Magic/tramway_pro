@@ -32,7 +32,7 @@ gem 'tramway-page', path: '../tramway-dev/tramway-page'
 gem 'tramway-partner', path: '../tramway-dev/tramway-partner'
 gem 'tramway-profiles', path: '../tramway-dev/tramway-profiles'
 
-gem 'aasm'
+gem 'aasm', '5.2.0'
 gem 'actionview', '>= 5.1.6.2'
 gem 'active_median'
 gem 'active_model_serializers', '0.10.12'

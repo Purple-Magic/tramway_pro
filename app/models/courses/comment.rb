@@ -15,7 +15,7 @@ class Courses::Comment < ApplicationRecord
     }
   end
 
-  aasm :comment_state do
+  aasm column: :comment_state do
     state :unviewed, initial: true
     state :done
 

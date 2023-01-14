@@ -5,7 +5,7 @@ class Podcast::Episodes::Topic < ApplicationRecord
 
   scope :podcast_scope, ->(_user_id) { all }
 
-  aasm :discus_state, column: :discus_state do
+  aasm column: :discus_state do
     state :current_episode, initial: true
     state :discussed
 

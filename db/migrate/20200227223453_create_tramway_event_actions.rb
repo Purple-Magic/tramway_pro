@@ -6,7 +6,7 @@ class CreateTramwayEventActions < ActiveRecord::Migration[5.1]
       t.integer :event_id
       t.text :title
       t.datetime :deadline
-      t.text :action_state, default: :must_be_done
+      t.string :action_state, default: :must_be_done
       t.text :state, default: :active
 
       t.timestamps

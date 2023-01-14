@@ -35,7 +35,7 @@ RSpec.configure do |config|
   config.include RSpec::Rails::RequestExampleGroup, type: :feature
   config.include JsonApiTestHelpers
   config.include WebMock::API
-  config.include ::Tramway::Concerns::AttributesDecoratorHelper
+  config.include Tramway::Concerns::AttributesDecoratorHelper
   config.include ProjectsHelper
   config.include IntegrationHelpers
   config.include ErrorsHelper
@@ -47,7 +47,7 @@ RSpec.configure do |config|
   config.include AssertingModels
   config.include FillingForms
   config.include LongTestStuff
-  config.include ::Benchkiller::RegionsConcern
+  config.include Benchkiller::RegionsConcern
   config.include AirtableHelpers
   config.include BotRunHelper
 

@@ -28,7 +28,7 @@ class Benchkiller::Company < ApplicationRecord
 
   search_by :title
 
-  aasm :review_state do
+  aasm column: :review_state do
     state :unviewed, initial: true
     state :approved
     state :declined

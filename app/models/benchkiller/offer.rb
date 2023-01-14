@@ -18,7 +18,7 @@ class Benchkiller::Offer < ApplicationRecord
 
   search_by message: [:text]
 
-  aasm :approval_state do
+  aasm column: :approval_state do
     state :unviewed, initial: true
     state :approved
     state :declined

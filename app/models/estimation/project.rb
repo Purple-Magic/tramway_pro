@@ -13,7 +13,7 @@ class Estimation::Project < ApplicationRecord
 
   validates :title, presence: true
 
-  aasm :project_state, column: :project_state do
+  aasm column: :project_state do
     state :estimation_in_progress, initial: true
     state :estimation_done
     state :estimation_sent

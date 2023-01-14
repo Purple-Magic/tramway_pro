@@ -17,7 +17,7 @@ class Courses::Video < ApplicationRecord
     }
   end
 
-  aasm :video_state do
+  aasm column: :video_state do
     state :ready, initial: true
     state :written
     state :filmed

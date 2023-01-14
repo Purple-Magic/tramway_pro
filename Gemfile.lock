@@ -115,7 +115,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    aasm (5.4.0)
+    aasm (5.2.0)
       concurrent-ruby (~> 1.0)
     actioncable (5.1.7)
       actionpack (= 5.1.7)
@@ -706,7 +706,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aasm
+  aasm (= 5.2.0)
   actionview (>= 5.1.6.2)
   active_median
   active_model_serializers (= 0.10.12)
