@@ -14,8 +14,8 @@ ActiveRecord::Schema.define(version: 20230114001644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "uuid-ossp"
   enable_extension "pg_trgm"
+  enable_extension "uuid-ossp"
 
   create_table "audits", force: :cascade do |t|
     t.integer "auditable_id"
@@ -264,6 +264,14 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.integer "chapter_id"
   end
 
+  create_table "chatquestulsk_games", force: :cascade do |t|
+    t.text "area"
+    t.integer "bot_telegram_user_id"
+    t.text "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
@@ -373,6 +381,17 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.datetime "deleted_at"
     t.text "result_duration"
     t.text "url"
+  end
+
+  create_table "elections_candidates", force: :cascade do |t|
+    t.text "full_name"
+    t.text "description"
+    t.integer "area"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "consignment"
+    t.text "state"
+    t.integer "project_id"
   end
 
   create_table "estimation_coefficients", force: :cascade do |t|
@@ -578,6 +597,20 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.datetime "deleted_at"
   end
 
+  create_table "podcast_channels", force: :cascade do |t|
+    t.integer "podcast_id"
+    t.text "service"
+    t.text "title"
+    t.text "state"
+    t.datetime "deleted_at"
+    t.integer "project_id"
+    t.text "channel_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.jsonb "options"
+    t.text "footer"
+  end
+
   create_table "podcast_episodes", force: :cascade do |t|
     t.integer "podcast_id"
     t.text "title"
@@ -734,6 +767,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.text "youtube_footer"
     t.datetime "deleted_at"
     t.text "chat_id"
+    t.text "url"
   end
 
   create_table "products", force: :cascade do |t|
@@ -909,7 +943,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.integer "event_id"
     t.text "title"
     t.datetime "deadline"
-    t.string "action_state", default: "must_be_done"
+    t.text "action_state", default: "must_be_done"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
