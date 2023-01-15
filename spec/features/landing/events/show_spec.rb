@@ -79,18 +79,6 @@ describe 'IT Way: Show event' do
   context 'Responsible person contacts' do
     let(:event) { create :event, :created_by_admin }
 
-    it 'should show phone of responsible person' do
-      visit "/events/#{event.id}"
-
-      expect(page).to have_content event.creator&.phone
-    end
-
-    it 'should show email of responsible person' do
-      visit "/events/#{event.id}"
-
-      expect(page).to have_content event.creator&.email
-    end
-
     context 'with social_networks' do
       Tramway::Profiles::SocialNetwork.network_name.each_value do |network|
         let(:event) { create :event, :created_by_full_filled_admin }

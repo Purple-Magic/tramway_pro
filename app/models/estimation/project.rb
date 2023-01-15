@@ -13,7 +13,7 @@ class Estimation::Project < ApplicationRecord
 
   validates :title, presence: true
 
-  aasm column: :project_state do
+  aasm :project_state, column: :project_state do
     state :estimation_in_progress, initial: true
     state :estimation_done
     state :estimation_sent
@@ -45,5 +45,9 @@ class Estimation::Project < ApplicationRecord
     event :decline do
       transitions from: :estimation_sent, to: :declined
     end
+  end
+
+  aasm do
+    state :hack
   end
 end

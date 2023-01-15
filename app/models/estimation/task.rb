@@ -16,4 +16,8 @@ class Estimation::Task < ApplicationRecord
   def sum
     (hours * price * specialists_count).round 2
   end
+
+  aasm do
+    state :hack
+  end
 end
