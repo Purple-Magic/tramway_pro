@@ -650,6 +650,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.text "preview"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "aasm_state"
   end
 
   create_table "podcast_episodes_stars", force: :cascade do |t|

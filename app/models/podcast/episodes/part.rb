@@ -6,4 +6,8 @@ class Podcast::Episodes::Part < ApplicationRecord
   uploader :preview, :file
 
   include Podcast::SoundProcessConcern
+
+  aasm do
+    state :hack
+  end
 end
