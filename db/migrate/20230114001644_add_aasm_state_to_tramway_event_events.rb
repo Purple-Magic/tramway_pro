@@ -13,5 +13,6 @@ class AddAasmStateToTramwayEventEvents < ActiveRecord::Migration[5.1]
     add_column :courses_videos, :aasm_state, :string
     add_column :estimation_projects, :aasm_state, :string
     add_column :estimation_tasks, :aasm_state, :string
+    add_column :podcasts, :aasm_state, :string
   end
 end

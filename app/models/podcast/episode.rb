@@ -62,6 +62,7 @@ class Podcast::Episode < ApplicationRecord
         transitions to: worker_event[:to]
         after do
           save!
+
           "Podcasts::#{worker_event[:worker]}Worker".constantize.perform_async id
         end
       end

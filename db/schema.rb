@@ -743,6 +743,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.text "youtube_footer"
     t.datetime "deleted_at"
     t.text "chat_id"
+    t.string "aasm_state"
   end
 
   create_table "products", force: :cascade do |t|

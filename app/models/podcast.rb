@@ -16,4 +16,8 @@ class Podcast < ApplicationRecord
   def trailer_separator
     musics.where(music_type: :trailer_separator).first
   end
+
+  aasm do
+    state :hack
+  end
 end
