@@ -59,7 +59,7 @@ describe 'Edit screencast page' do
     end
   end
 
-  ::Course::TEAMS.each do |team|
+  Courses::Teams::List.each do |team|
     describe "#{team.to_s.capitalize} team" do
       let!(:user) { create :admin, password: '123456', project_id: kalashnikovisme_id }
       let!(:screencast) { create :courses_screencast, project_id: kalashnikovisme_id }

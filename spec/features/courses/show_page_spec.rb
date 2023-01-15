@@ -5,7 +5,7 @@ require 'rails_helper'
 describe 'Show course page' do
   before { move_host_to kalashnikovisme_host }
 
-  ::Course::TEAMS.each do |team|
+  Courses::Teams::List.each do |team|
     describe "#{team.to_s.capitalize} team" do
       let!(:course) do
         create(:course, team: team, project_id: kalashnikovisme_id) do |course|

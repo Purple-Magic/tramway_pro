@@ -10,7 +10,6 @@ class Courses::LessonDecorator < ApplicationDecorator
   delegate_attributes(
     :id,
     :topic_id,
-    :state,
     :position,
     :created_at,
     :updated_at,
@@ -45,7 +44,6 @@ class Courses::LessonDecorator < ApplicationDecorator
         id
         title
         topic
-        state
       ]
     end
 
@@ -53,7 +51,6 @@ class Courses::LessonDecorator < ApplicationDecorator
       %i[
         id
         title
-        state
         course_link
         topic_link
         created_at

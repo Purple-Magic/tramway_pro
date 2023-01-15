@@ -5,12 +5,16 @@ class Courses::Topic < ApplicationRecord
 
   has_many :lessons, -> { order(:position) }, class_name: 'Courses::Lesson', dependent: :destroy
 
-  ::Course::TEAMS.each do |team|
+  Courses::Teams::List.each do |team|
     scope "#{team}_scope".to_sym, lambda { |_user_id|
       where(id: select do |topic|
         topic.course.team == team.to_s
       end.map(&:id))
     }
+  end
+
+  aasm do
+    state :hack
   end
 
   validates :position, presence: true

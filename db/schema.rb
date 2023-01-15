@@ -14,8 +14,8 @@ ActiveRecord::Schema.define(version: 20230114001644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_trgm"
   enable_extension "uuid-ossp"
+  enable_extension "pg_trgm"
 
   create_table "audits", force: :cascade do |t|
     t.integer "auditable_id"
@@ -264,14 +264,6 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.integer "chapter_id"
   end
 
-  create_table "chatquestulsk_games", force: :cascade do |t|
-    t.text "area"
-    t.integer "bot_telegram_user_id"
-    t.text "state"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
     t.string "data_content_type"
@@ -304,6 +296,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.text "team"
     t.datetime "deleted_at"
     t.jsonb "options"
+    t.string "aasm_state"
   end
 
   create_table "courses_comments", force: :cascade do |t|
@@ -320,6 +313,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.integer "associated_id"
     t.text "associated_type"
     t.datetime "deleted_at"
+    t.string "aasm_state"
   end
 
   create_table "courses_lessons", force: :cascade do |t|
@@ -330,6 +324,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.datetime "updated_at", null: false
     t.integer "position"
     t.datetime "deleted_at"
+    t.string "aasm_state"
   end
 
   create_table "courses_screencasts", force: :cascade do |t|
@@ -343,6 +338,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.text "end_time"
     t.text "file"
     t.text "comment"
+    t.string "aasm_state"
   end
 
   create_table "courses_tasks", force: :cascade do |t|
@@ -356,6 +352,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.text "max_time"
     t.text "min_time"
     t.datetime "deleted_at"
+    t.string "aasm_state"
   end
 
   create_table "courses_topics", force: :cascade do |t|
@@ -366,6 +363,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.datetime "updated_at", null: false
     t.integer "position"
     t.datetime "deleted_at"
+    t.string "aasm_state"
   end
 
   create_table "courses_videos", force: :cascade do |t|
@@ -381,17 +379,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.datetime "deleted_at"
     t.text "result_duration"
     t.text "url"
-  end
-
-  create_table "elections_candidates", force: :cascade do |t|
-    t.text "full_name"
-    t.text "description"
-    t.integer "area"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "consignment"
-    t.text "state"
-    t.integer "project_id"
+    t.string "aasm_state"
   end
 
   create_table "estimation_coefficients", force: :cascade do |t|
@@ -597,20 +585,6 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.datetime "deleted_at"
   end
 
-  create_table "podcast_channels", force: :cascade do |t|
-    t.integer "podcast_id"
-    t.text "service"
-    t.text "title"
-    t.text "state"
-    t.datetime "deleted_at"
-    t.integer "project_id"
-    t.text "channel_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.jsonb "options"
-    t.text "footer"
-  end
-
   create_table "podcast_episodes", force: :cascade do |t|
     t.integer "podcast_id"
     t.text "title"
@@ -767,7 +741,6 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.text "youtube_footer"
     t.datetime "deleted_at"
     t.text "chat_id"
-    t.text "url"
   end
 
   create_table "products", force: :cascade do |t|
@@ -943,7 +916,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.integer "event_id"
     t.text "title"
     t.datetime "deadline"
-    t.text "action_state", default: "must_be_done"
+    t.string "action_state", default: "must_be_done"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
@@ -1007,6 +980,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.text "participation_state", default: "requested"
     t.text "comment"
     t.datetime "deleted_at"
+    t.string "aasm_state"
   end
 
   create_table "tramway_event_people", force: :cascade do |t|
@@ -1109,6 +1083,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.text "page_type"
     t.text "view_state", default: "unpublished"
     t.datetime "deleted_at"
+    t.string "aasm_state"
   end
 
   create_table "tramway_partner_organizations", force: :cascade do |t|
@@ -1213,6 +1188,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "aasm_state"
   end
 
   create_table "videos", force: :cascade do |t|

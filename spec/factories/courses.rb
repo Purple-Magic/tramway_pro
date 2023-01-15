@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :course do
     title { "Course #{generate(:title)}" }
-    team { ::Course.team.values.sample }
+    team { Courses::Teams::List.sample }
   end
 end

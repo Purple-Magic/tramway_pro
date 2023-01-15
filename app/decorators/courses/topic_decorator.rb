@@ -9,7 +9,6 @@ class Courses::TopicDecorator < ApplicationDecorator
   delegate_attributes(
     :id,
     :course_id,
-    :state,
     :position,
     :created_at,
     :updated_at,
@@ -37,7 +36,6 @@ class Courses::TopicDecorator < ApplicationDecorator
         id
         title
         course_id
-        state
       ]
     end
 
@@ -46,7 +44,6 @@ class Courses::TopicDecorator < ApplicationDecorator
         id
         title
         course_link
-        state
         created_at
         updated_at
       ]

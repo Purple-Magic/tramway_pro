@@ -5,7 +5,7 @@ require 'rails_helper'
 describe 'Create course' do
   before { move_host_to kalashnikovisme_host }
 
-  ::Course::TEAMS.each do |team|
+  Courses::Teams::List.each do |team|
     let(:attributes) { attributes_for :course, team: team }
 
     it 'should create course' do
