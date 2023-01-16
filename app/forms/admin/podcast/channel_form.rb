@@ -1,4 +1,4 @@
-class Admin::Podcast::ChannelForm < Tramway::Core::ApplicationForm
+class Admin::Podcast::ChannelForm < Tramway::ApplicationForm
   properties :service, :title, :project_id, :channel_id, :options, :footer
 
   association :podcast
