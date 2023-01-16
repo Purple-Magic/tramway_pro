@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::CourseForm < Tramway::Core::ExtendedApplicationForm
+class Admin::CourseForm < Tramway::ExtendedApplicationForm
   properties :title, :state, :project_id, :team, :logging_actions
 
   def initialize(object)

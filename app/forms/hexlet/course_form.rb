@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Hexlet::CourseForm < Tramway::Core::ApplicationForm
+class Hexlet::CourseForm < Tramway::ApplicationForm
   properties :title, :project_id, :team
 
   def initialize(object)

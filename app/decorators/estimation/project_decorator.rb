@@ -35,7 +35,7 @@ class Estimation::ProjectDecorator < ApplicationDecorator
 collection: :single_tasks)
     expenses_url = ::Tramway::Export::Engine.routes.url_helpers.export_path(id, model: object.class,
 collection: :expenses)
-    new_task_path = Tramway::Admin::Engine.routes.url_helpers.new_record_path(
+    new_task_path = Tramway::Engine.routes.url_helpers.new_record_path(
       model: Estimation::Task,
       'estimation/task' => { estimation_project: id },
       redirect: "/admin/records/#{id}?model=Estimation::Project"
@@ -62,7 +62,7 @@ collection: :expenses)
   def associated_link
     if object.associated.present?
       link_to associated.title,
-        ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.associated_id, model: object.associated_type)
+        ::Tramway::Engine.routes.url_helpers.record_path(object.associated_id, model: object.associated_type)
     end
   end
 

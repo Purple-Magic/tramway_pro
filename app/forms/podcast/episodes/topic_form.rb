@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Podcast::Episodes::TopicForm < Tramway::Core::ApplicationForm
+class Podcast::Episodes::TopicForm < Tramway::ApplicationForm
   properties :title, :link, :project_id
 
   def submit(params)

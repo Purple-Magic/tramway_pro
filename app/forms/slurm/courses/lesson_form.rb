@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Slurm::Courses::LessonForm < Tramway::Core::ApplicationForm
+class Slurm::Courses::LessonForm < Tramway::ApplicationForm
   properties :title, :project_id, :position
 
   association :topic

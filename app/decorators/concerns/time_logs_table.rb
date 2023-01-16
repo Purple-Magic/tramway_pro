@@ -51,6 +51,6 @@ module Concerns::TimeLogsTable
   def users_logged_time(begin_date: nil, end_date: nil)
     collection = object.time_logs
     collection = collection.where(created_at: begin_date..end_date) if begin_date.present? && end_date.present?
-    Tramway::User::User.where(id: collection.map(&:user_id).uniq)
+    Tramway::User.where(id: collection.map(&:user_id).uniq)
   end
 end

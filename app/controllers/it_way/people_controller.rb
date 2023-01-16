@@ -1,4 +1,4 @@
-class ItWay::PeopleController < Tramway::Core::ApplicationController
+class ItWay::PeopleController < Tramway::ApplicationController
   def index
   end
 

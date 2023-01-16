@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::TimeLogForm < Tramway::Core::ApplicationForm
+class Admin::TimeLogForm < Tramway::ApplicationForm
   properties :time_spent, :comment, :associated_type, :project_id, :passed_at
 
   association :associated

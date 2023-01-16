@@ -13,6 +13,7 @@ describe 'Create comment' do
       topic = course.topics.create! attributes_for :courses_topic
       lesson = topic.lessons.create!(**attributes_for(:courses_lesson))
       video = lesson.videos.create!(**attributes_for(:courses_video))
+
       visit '/admin'
       fill_in 'Email', with: "admin#{kalashnikovisme_id}@email.com"
       fill_in 'Пароль', with: '123456'
@@ -80,7 +81,7 @@ describe 'Create comment' do
     end
   end
 
-  ::Course::TEAMS.each do |team|
+  Courses::Teams::List.each do |team|
     describe "#{team.to_s.capitalize} team" do
       let!(:user) { create :admin, password: '123456', project_id: kalashnikovisme_id }
 

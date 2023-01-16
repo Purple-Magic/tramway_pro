@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
+class Products::TaskDecorator < Tramway::ApplicationDecorator
   delegate_attributes(
     :title,
     :data,
@@ -22,7 +22,7 @@ class Products::TaskDecorator < Tramway::Core::ApplicationDecorator
 
   def product_link
     link_to product.title,
-      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.product_id, model: 'Product')
+      ::Tramway::Engine.routes.url_helpers.record_path(object.product_id, model: 'Product')
   end
 
   class << self

@@ -4,7 +4,7 @@ class Content::Story < ApplicationRecord
   uploader :original_file, :file
   uploader :story, :file
 
-  aasm :converting_state do
+  aasm column: :converting_state do
     state :ready, initial: true
     state :converting
     state :done

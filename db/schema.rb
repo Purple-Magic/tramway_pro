@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20221217191007) do
+ActiveRecord::Schema.define(version: 20230114001644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_trgm"
   enable_extension "uuid-ossp"
+  enable_extension "pg_trgm"
 
   create_table "audits", force: :cascade do |t|
     t.integer "auditable_id"
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
 
   create_table "benchkiller_collations", force: :cascade do |t|
     t.integer "project_id"
-    t.text "state"
     t.text "main"
     t.text "words", array: true
     t.datetime "created_at", null: false
@@ -52,7 +51,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
   create_table "benchkiller_companies", force: :cascade do |t|
     t.text "title"
     t.jsonb "data"
-    t.text "state"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -67,7 +65,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
   create_table "benchkiller_companies_users", force: :cascade do |t|
     t.integer "company_id"
     t.integer "user_id"
-    t.text "state"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -76,7 +73,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
 
   create_table "benchkiller_deliveries", force: :cascade do |t|
     t.integer "benchkiller_user_id"
-    t.text "state"
     t.integer "project_id"
     t.text "text"
     t.string "receivers_ids", array: true
@@ -90,7 +86,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
   create_table "benchkiller_notifications", force: :cascade do |t|
     t.text "text"
     t.text "send_at"
-    t.text "state"
     t.integer "project_id"
     t.text "sending_state"
     t.datetime "created_at", null: false
@@ -100,7 +95,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
 
   create_table "benchkiller_offers", force: :cascade do |t|
     t.integer "message_id"
-    t.text "state"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -117,7 +111,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
   create_table "benchkiller_tags", force: :cascade do |t|
     t.text "title"
     t.integer "project_id"
-    t.text "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
@@ -126,7 +119,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
 
   create_table "benchkiller_users", force: :cascade do |t|
     t.integer "bot_telegram_user_id"
-    t.text "state"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -138,7 +130,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
   create_table "blogs_links", force: :cascade do |t|
     t.text "url"
     t.datetime "deleted_at"
-    t.text "state"
     t.text "image"
     t.text "title"
     t.text "lead"
@@ -152,7 +143,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
   create_table "bot_telegram_channels", force: :cascade do |t|
     t.integer "bot_id"
     t.text "title"
-    t.text "state"
     t.integer "project_id"
     t.text "telegram_channel_id"
     t.datetime "created_at", null: false
@@ -168,7 +158,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
-    t.text "state"
     t.text "telegram_chat_id"
     t.integer "bot_id"
     t.datetime "deleted_at"
@@ -182,7 +171,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
-    t.text "state"
     t.integer "bot_id"
     t.text "message_type", default: "regular"
     t.datetime "deleted_at"
@@ -195,7 +183,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "state"
     t.integer "project_id"
     t.datetime "deleted_at"
   end
@@ -207,7 +194,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.jsonb "options"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "state"
     t.integer "bot_id"
     t.text "file"
     t.integer "project_id"
@@ -223,7 +209,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
-    t.text "state"
     t.text "telegram_id"
     t.datetime "deleted_at"
   end
@@ -232,7 +217,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.integer "user_id"
     t.integer "bot_id"
     t.text "current_state"
-    t.text "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
@@ -243,7 +227,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "state"
     t.text "team"
     t.integer "project_id"
     t.text "token"
@@ -255,14 +238,12 @@ ActiveRecord::Schema.define(version: 20221217191007) do
   create_table "chat_quest_ulsk_chapters", force: :cascade do |t|
     t.integer "position"
     t.string "quest"
-    t.text "state"
     t.integer "project_id"
     t.text "answers"
   end
 
   create_table "chat_quest_ulsk_games", force: :cascade do |t|
     t.integer "bot_telegram_user_id"
-    t.text "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "game_state", default: "started"
@@ -274,7 +255,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
   create_table "chat_quest_ulsk_messages", force: :cascade do |t|
     t.text "text"
     t.integer "position"
-    t.text "state"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -282,14 +262,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "file"
     t.text "quest"
     t.integer "chapter_id"
-  end
-
-  create_table "chatquestulsk_games", force: :cascade do |t|
-    t.text "area"
-    t.integer "bot_telegram_user_id"
-    t.text "state"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "ckeditor_assets", force: :cascade do |t|
@@ -308,7 +280,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "original_file"
     t.text "story"
     t.text "converting_state"
-    t.text "state"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -319,20 +290,19 @@ ActiveRecord::Schema.define(version: 20221217191007) do
 
   create_table "courses", force: :cascade do |t|
     t.text "title"
-    t.text "state"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "team"
     t.datetime "deleted_at"
     t.jsonb "options"
+    t.string "aasm_state"
   end
 
   create_table "courses_comments", force: :cascade do |t|
     t.integer "video_id"
     t.text "begin_time"
     t.text "end_time"
-    t.text "state"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -343,17 +313,18 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.integer "associated_id"
     t.text "associated_type"
     t.datetime "deleted_at"
+    t.string "aasm_state"
   end
 
   create_table "courses_lessons", force: :cascade do |t|
     t.text "title"
     t.integer "topic_id"
-    t.text "state"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
     t.datetime "deleted_at"
+    t.string "aasm_state"
   end
 
   create_table "courses_screencasts", force: :cascade do |t|
@@ -363,11 +334,11 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
-    t.text "state"
     t.text "begin_time"
     t.text "end_time"
     t.text "file"
     t.text "comment"
+    t.string "aasm_state"
   end
 
   create_table "courses_tasks", force: :cascade do |t|
@@ -376,29 +347,28 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "state"
     t.integer "project_id"
     t.text "preparedness_state"
     t.text "max_time"
     t.text "min_time"
     t.datetime "deleted_at"
+    t.string "aasm_state"
   end
 
   create_table "courses_topics", force: :cascade do |t|
     t.text "title"
     t.integer "course_id"
-    t.text "state"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
     t.datetime "deleted_at"
+    t.string "aasm_state"
   end
 
   create_table "courses_videos", force: :cascade do |t|
     t.integer "lesson_id"
     t.text "text"
-    t.text "state"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -409,22 +379,11 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.datetime "deleted_at"
     t.text "result_duration"
     t.text "url"
-  end
-
-  create_table "elections_candidates", force: :cascade do |t|
-    t.text "full_name"
-    t.text "description"
-    t.integer "area"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "consignment"
-    t.text "state"
-    t.integer "project_id"
+    t.string "aasm_state"
   end
 
   create_table "estimation_coefficients", force: :cascade do |t|
     t.integer "estimation_project_id"
-    t.text "state"
     t.float "scale"
     t.integer "project_id"
     t.text "title"
@@ -439,7 +398,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.integer "associated_id"
     t.text "associated_type"
     t.float "price"
-    t.text "state"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -451,7 +409,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "logo"
     t.text "url"
     t.integer "project_id"
-    t.text "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
@@ -460,7 +417,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
   create_table "estimation_expenses", force: :cascade do |t|
     t.integer "estimation_project_id"
     t.integer "project_id"
-    t.text "state"
     t.text "title"
     t.float "count"
     t.float "price"
@@ -472,7 +428,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
 
   create_table "estimation_projects", force: :cascade do |t|
     t.text "title"
-    t.text "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
@@ -483,6 +438,7 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.integer "associated_id"
     t.text "associated_type"
     t.integer "default_price"
+    t.string "aasm_state"
   end
 
   create_table "estimation_tasks", force: :cascade do |t|
@@ -491,19 +447,18 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
-    t.text "state"
     t.float "hours"
     t.float "price"
     t.integer "specialists_count", default: 1
     t.text "description"
     t.datetime "deleted_at"
     t.text "task_type", default: "single"
+    t.string "aasm_state"
   end
 
   create_table "find_meds_bases", force: :cascade do |t|
     t.text "name"
     t.text "key"
-    t.text "state"
     t.datetime "deleted_at"
     t.integer "project_id"
     t.datetime "created_at", null: false
@@ -513,7 +468,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
   create_table "find_meds_feedbacks", force: :cascade do |t|
     t.text "text"
     t.jsonb "data"
-    t.text "state"
     t.datetime "deleted_at"
     t.integer "project_id"
     t.datetime "created_at", null: false
@@ -526,7 +480,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "certificate_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "state"
     t.integer "project_id"
     t.datetime "deleted_at"
   end
@@ -536,7 +489,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.integer "associated_id"
     t.text "associated_type"
     t.datetime "deleted_at"
-    t.text "state"
     t.text "title"
     t.integer "project_id"
     t.datetime "created_at", null: false
@@ -549,7 +501,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
   create_table "it_way_participations", force: :cascade do |t|
     t.integer "person_id"
     t.integer "content_id"
-    t.text "state"
     t.datetime "deleted_at"
     t.integer "project_id"
     t.text "role"
@@ -562,7 +513,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "first_name"
     t.text "last_name"
     t.text "avatar"
-    t.text "state"
     t.datetime "deleted_at"
     t.integer "project_id"
     t.datetime "created_at", null: false
@@ -578,7 +528,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.integer "count"
     t.text "comment"
     t.datetime "deleted_at"
-    t.text "state"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -589,7 +538,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.integer "chat_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "state"
     t.datetime "deleted_at"
   end
 
@@ -597,7 +545,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "state"
     t.integer "project_id"
     t.datetime "deleted_at"
   end
@@ -607,7 +554,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "state"
     t.integer "book_id"
     t.integer "project_id"
     t.datetime "deleted_at"
@@ -616,7 +562,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
   create_table "magic_wood_actors", force: :cascade do |t|
     t.text "first_name"
     t.text "last_name"
-    t.text "state"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -636,7 +581,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
   create_table "magic_wood_actors_photos", force: :cascade do |t|
     t.integer "actor_id"
     t.integer "project_id"
-    t.text "state"
     t.text "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -668,7 +612,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "explicit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "state"
     t.integer "project_id"
     t.uuid "guid"
     t.uuid "uuid", default: -> { "uuid_generate_v4()" }
@@ -694,7 +637,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
 
   create_table "podcast_episodes_instances", force: :cascade do |t|
     t.integer "episode_id"
-    t.text "state"
     t.integer "project_id"
     t.text "service"
     t.text "link"
@@ -708,7 +650,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "title"
     t.text "link"
     t.integer "project_id"
-    t.text "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
@@ -720,17 +661,16 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.datetime "deleted_at"
     t.text "begin_time"
     t.text "end_time"
-    t.text "state"
     t.text "preview"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "aasm_state"
   end
 
   create_table "podcast_episodes_stars", force: :cascade do |t|
     t.integer "episode_id"
     t.integer "star_id"
     t.text "star_type", default: "main"
-    t.text "state"
     t.integer "project_id"
     t.datetime "deleted_at"
   end
@@ -739,7 +679,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.integer "episode_id"
     t.text "title"
     t.text "link"
-    t.text "state"
     t.integer "project_id"
     t.text "discus_state"
     t.text "timestamp"
@@ -751,7 +690,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
 
   create_table "podcast_highlights", force: :cascade do |t|
     t.integer "episode_id"
-    t.text "state"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -773,7 +711,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.integer "podcast_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "state"
     t.integer "project_id"
     t.datetime "deleted_at"
   end
@@ -785,7 +722,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
-    t.text "state"
     t.jsonb "profiles"
     t.text "first_name"
     t.text "last_name"
@@ -805,7 +741,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.float "overhearing_percent"
     t.datetime "deleted_at"
     t.integer "project_id"
-    t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -815,7 +750,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "feed_url"
-    t.text "state"
     t.integer "project_id"
     t.uuid "uuid", default: -> { "uuid_generate_v4()" }
     t.text "default_image"
@@ -825,11 +759,11 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.datetime "deleted_at"
     t.text "chat_id"
     t.text "url"
+    t.string "aasm_state"
   end
 
   create_table "products", force: :cascade do |t|
     t.text "title"
-    t.text "state"
     t.datetime "deleted_at"
     t.integer "project_id"
     t.datetime "created_at", null: false
@@ -843,7 +777,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
   create_table "products_tasks", force: :cascade do |t|
     t.text "title"
     t.jsonb "data"
-    t.text "state"
     t.datetime "deleted_at"
     t.integer "project_id"
     t.integer "product_id"
@@ -861,7 +794,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "state", default: "active"
     t.datetime "deleted_at"
   end
 
@@ -872,7 +804,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "address"
     t.text "phone"
     t.point "coordinates"
-    t.string "state"
     t.string "text"
     t.text "favicon"
     t.datetime "created_at", null: false
@@ -897,7 +828,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "title"
-    t.text "state"
     t.datetime "deleted_at"
   end
 
@@ -926,7 +856,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.text "broadcast_state"
-    t.text "state"
   end
 
   create_table "television_schedule_items", force: :cascade do |t|
@@ -938,7 +867,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.datetime "deleted_at"
     t.integer "project_id"
     t.integer "channel_id"
-    t.text "state"
   end
 
   create_table "television_videos", force: :cascade do |t|
@@ -949,7 +877,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.text "remote_file_path"
-    t.text "state"
   end
 
   create_table "time_logs", force: :cascade do |t|
@@ -960,7 +887,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "state"
     t.integer "user_id"
     t.datetime "deleted_at"
     t.datetime "passed_at"
@@ -975,7 +901,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "phone"
     t.text "latitude"
     t.text "longtitude"
-    t.text "state", default: "active"
     t.text "view_state", default: "hidden"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -997,7 +922,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "address"
     t.text "phone"
     t.point "coordinates"
-    t.text "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "favicon"
@@ -1011,8 +935,7 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.integer "event_id"
     t.text "title"
     t.datetime "deadline"
-    t.text "action_state", default: "must_be_done"
-    t.text "state", default: "active"
+    t.string "action_state", default: "must_be_done"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
@@ -1024,7 +947,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "description"
     t.datetime "begin_date"
     t.datetime "end_date"
-    t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
@@ -1034,6 +956,7 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "short_description"
     t.text "reach"
     t.datetime "deleted_at"
+    t.string "aasm_state"
   end
 
   create_table "tramway_event_events_places", force: :cascade do |t|
@@ -1049,7 +972,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "position"
-    t.text "state"
     t.integer "project_id"
     t.text "part_type", default: "Tramway::Event::Section"
     t.datetime "deleted_at"
@@ -1060,7 +982,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "description"
     t.text "field_type", default: "text"
     t.integer "event_id"
-    t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
@@ -1072,20 +993,19 @@ ActiveRecord::Schema.define(version: 20221217191007) do
   create_table "tramway_event_participants", force: :cascade do |t|
     t.integer "event_id"
     t.jsonb "values"
-    t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
     t.text "participation_state", default: "requested"
     t.text "comment"
     t.datetime "deleted_at"
+    t.string "aasm_state"
   end
 
   create_table "tramway_event_people", force: :cascade do |t|
     t.text "first_name"
     t.text "last_name"
     t.text "photo"
-    t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
@@ -1099,7 +1019,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.point "coordinates"
     t.text "photo"
     t.text "city"
-    t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
@@ -1111,7 +1030,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "title"
     t.text "description"
     t.text "photo"
-    t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
@@ -1125,7 +1043,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "background"
     t.text "block_type"
     t.integer "position"
-    t.text "state", default: "active"
     t.text "view_state", default: "hidden"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -1140,6 +1057,7 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.jsonb "values"
     t.integer "page_id"
     t.datetime "deleted_at"
+    t.string "aasm_state"
   end
 
   create_table "tramway_landing_forms", force: :cascade do |t|
@@ -1147,7 +1065,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "form_name"
     t.integer "block_id"
     t.integer "position"
-    t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
@@ -1157,7 +1074,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "title"
     t.text "account_id"
     t.jsonb "options"
-    t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
@@ -1169,7 +1085,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "body"
     t.datetime "published_at"
     t.text "photo"
-    t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
@@ -1181,7 +1096,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "title"
     t.text "body"
     t.text "slug"
-    t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
@@ -1189,13 +1103,13 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "page_type"
     t.text "view_state", default: "unpublished"
     t.datetime "deleted_at"
+    t.string "aasm_state"
   end
 
   create_table "tramway_partner_organizations", force: :cascade do |t|
     t.text "title"
     t.text "logo"
     t.text "url"
-    t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
@@ -1207,7 +1121,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.integer "partner_id"
     t.text "partner_type"
     t.text "partnership_type"
-    t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
@@ -1219,7 +1132,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "short_bio"
     t.text "bio"
     t.text "photo"
-    t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -1231,7 +1143,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "record_id"
     t.text "record_type"
     t.text "network_name"
-    t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
@@ -1243,7 +1154,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "short_bio"
     t.text "bio"
     t.text "photo"
-    t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "main_image"
@@ -1256,7 +1166,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "title"
     t.text "tagline"
     t.text "logo"
-    t.text "state", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "address"
@@ -1278,7 +1187,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "last_name"
     t.text "patronymic"
     t.text "avatar"
-    t.text "state"
     t.text "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -1287,11 +1195,26 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.datetime "deleted_at"
   end
 
+  create_table "tramway_users", force: :cascade do |t|
+    t.text "email"
+    t.text "password_digest"
+    t.text "first_name"
+    t.text "last_name"
+    t.text "patronymic"
+    t.text "avatar"
+    t.text "role"
+    t.integer "project_id"
+    t.text "phone"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "aasm_state"
+  end
+
   create_table "videos", force: :cascade do |t|
     t.text "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "state"
     t.integer "project_id"
     t.uuid "uuid", default: -> { "uuid_generate_v4()" }
     t.text "title"
@@ -1301,7 +1224,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
   end
 
   create_table "webhooks", force: :cascade do |t|
-    t.text "state"
     t.datetime "deleted_at"
     t.text "service"
     t.jsonb "params"
@@ -1314,7 +1236,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
     t.text "main"
     t.text "synonims", array: true
     t.text "description"
-    t.text "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
@@ -1325,7 +1246,6 @@ ActiveRecord::Schema.define(version: 20221217191007) do
 
   create_table "youtube_accounts", force: :cascade do |t|
     t.text "authorization_code"
-    t.text "state"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

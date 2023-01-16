@@ -32,11 +32,11 @@ describe 'Create participant' do
 
     expect(Tramway::Event::Participant.count).to eq(count + 1)
     participant = Tramway::Event::Participant.last
-    attributes.each do |pair|
-      actual = participant.values[pair[0].to_s]
-      expecting = pair[1]
+    attributes.each do |(key, value)|
+      actual = participant.values[key.to_s]
+      expecting = value
       expecting = expecting.strftime('%d.%m.%Y') if expecting.is_a? DateTime
-      expect(actual).to eq(expecting), problem_with(attr: pair[0], expecting: expecting, actual: actual)
+      expect(actual).to eq(expecting), problem_with(attr: key, expecting: expecting, actual: actual)
     end
   end
 

@@ -1,4 +1,4 @@
-class ItWay::ParticipationDecorator < Tramway::Core::ApplicationDecorator
+class ItWay::ParticipationDecorator < Tramway::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 

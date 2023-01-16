@@ -13,7 +13,7 @@ class Courses::VideoDecorator < ApplicationDecorator
   def course_link
     link_to(
       lesson.topic.course.title,
-      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.lesson.topic.course_id, model: 'Course')
+      ::Tramway::Engine.routes.url_helpers.record_path(object.lesson.topic.course_id, model: 'Course')
     )
   end
 
@@ -69,12 +69,12 @@ class Courses::VideoDecorator < ApplicationDecorator
   alias name title
 
   def additional_buttons
-    add_comment_url = Tramway::Admin::Engine.routes.url_helpers.new_record_path(
+    add_comment_url = Tramway::Engine.routes.url_helpers.new_record_path(
       model: 'Courses::Comment',
       'courses/comment' => { associated_type: object.class.to_s, associated: object.id },
       redirect: "/admin/records/#{object.id}?model=Courses::Video"
     )
-    add_time_log_url = Tramway::Admin::Engine.routes.url_helpers.new_record_path(
+    add_time_log_url = Tramway::Engine.routes.url_helpers.new_record_path(
       model: 'TimeLog',
       'time_log' => { associated_type: object.class.to_s, associated: object.id },
       redirect: "/admin/records/#{object.id}?model=Courses::Video"
@@ -89,7 +89,7 @@ class Courses::VideoDecorator < ApplicationDecorator
   end
 
   def link
-    ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.id, model: object.class)
+    ::Tramway::Engine.routes.url_helpers.record_path(object.id, model: object.class)
   end
 
   def text
@@ -117,7 +117,7 @@ data: { toggle: :popover, html: true, content: comment_html }) do
 
   def lesson_link
     link_to lesson.title,
-      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.lesson_id, model: 'Courses::Lesson')
+      ::Tramway::Engine.routes.url_helpers.record_path(object.lesson_id, model: 'Courses::Lesson')
   end
 
   def time_logged

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Podcast::Episodes::InstanceForm < Tramway::Core::ApplicationForm
+class Admin::Podcast::Episodes::InstanceForm < Tramway::ApplicationForm
   properties :state, :project_id, :service, :link
 
   association :episode

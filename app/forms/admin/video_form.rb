@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::VideoForm < Tramway::Core::ApplicationForm
+class Admin::VideoForm < Tramway::ApplicationForm
   properties :url, :project_id
 
   def initialize(object)

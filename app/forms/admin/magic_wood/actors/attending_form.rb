@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::MagicWood::Actors::AttendingForm < Tramway::Core::ApplicationForm
+class Admin::MagicWood::Actors::AttendingForm < Tramway::ApplicationForm
   properties :state, :project_id
 
   association :actor

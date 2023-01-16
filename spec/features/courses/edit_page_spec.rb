@@ -5,7 +5,7 @@ require 'rails_helper'
 describe 'Edit course page' do
   before { move_host_to kalashnikovisme_host }
 
-  ::Course::TEAMS.each do |team|
+  Courses::Teams::List.each do |team|
     before { create :course, team: team, project_id: kalashnikovisme_id }
 
     it "#{team.to_s.capitalize} team: should show edit course page" do

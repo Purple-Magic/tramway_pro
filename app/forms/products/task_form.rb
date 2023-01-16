@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Products::TaskForm < Tramway::Core::ApplicationForm
+class Products::TaskForm < Tramway::ApplicationForm
   properties :title, :project_id, :product_id, :data, :card_id, :deleted_at
 
   def project_id=(_value)

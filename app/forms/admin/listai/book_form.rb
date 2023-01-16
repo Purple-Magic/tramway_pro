@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Listai::BookForm < Tramway::Core::ApplicationForm
+class Admin::Listai::BookForm < Tramway::ApplicationForm
   properties :title
 
   def initialize(object)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Hexlet::Courses::LessonForm < Tramway::Core::ApplicationForm
+class Hexlet::Courses::LessonForm < Tramway::ApplicationForm
   properties :title, :project_id, :position
 
   association :topic

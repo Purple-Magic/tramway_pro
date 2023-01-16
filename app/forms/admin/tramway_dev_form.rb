@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::TramwayDevForm < Tramway::Core::ApplicationForm
+class Admin::TramwayDevForm < Tramway::ApplicationForm
   properties :name, :public_name, :tagline, :title, :project_id
 
   def initialize(obj)

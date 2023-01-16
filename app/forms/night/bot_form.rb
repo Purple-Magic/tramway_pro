@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Night::BotForm < Tramway::Core::ApplicationForm
+class Night::BotForm < Tramway::ApplicationForm
   properties :name, :project_id, :options
 
   def initialize(object)

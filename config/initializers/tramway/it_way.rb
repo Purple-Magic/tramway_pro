@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Tramway::Export.set_exportable_models Tramway::Event::Participant, project: :conference
-Tramway::Admin.set_available_models Word,
+Tramway.set_available_models Word,
   ItWay::Certificate,
   Podcast,
   Podcast::Episode,
@@ -13,8 +13,8 @@ Tramway::Admin.set_available_models Word,
   project: :conference,
   role: :admin
 
-Tramway::Admin.navbar_structure(
-  Tramway::Conference::Unity,
+Tramway.navbar_structure(
+  # Tramway::Conference::Unity,
   {
     events_organization: [
       Tramway::Event::Event,
@@ -45,7 +45,7 @@ Tramway::Admin.navbar_structure(
       ItWay::Certificate
     ]
   },
-  Tramway::User::User,
+  Tramway::User,
   project: :conference
 )
 

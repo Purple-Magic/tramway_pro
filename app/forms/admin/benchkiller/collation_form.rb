@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Benchkiller::CollationForm < Tramway::Core::ApplicationForm
+class Admin::Benchkiller::CollationForm < Tramway::ApplicationForm
   properties :project_id, :state, :main, :words
 
   def initialize(object)

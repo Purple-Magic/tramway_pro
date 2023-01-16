@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Benchkiller::Api::ApplicationController < ::Tramway::Api::ApplicationController
+  skip_before_action :check_available!
   before_action :authenticate_benchkiller_user
   include ::Benchkiller::Concerns
   include ::Benchkiller::RegionsConcern

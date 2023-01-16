@@ -10,7 +10,6 @@ class Courses::LessonDecorator < ApplicationDecorator
   delegate_attributes(
     :id,
     :topic_id,
-    :state,
     :position,
     :created_at,
     :updated_at,
@@ -22,13 +21,13 @@ class Courses::LessonDecorator < ApplicationDecorator
   end
 
   def link
-    ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.id, model: object.class)
+    ::Tramway::Engine.routes.url_helpers.record_path(object.id, model: object.class)
   end
 
   def course_link
     link_to(
       topic.course.title,
-      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.topic.course_id, model: 'Course')
+      ::Tramway::Engine.routes.url_helpers.record_path(object.topic.course_id, model: 'Course')
     )
   end
 
@@ -45,7 +44,6 @@ class Courses::LessonDecorator < ApplicationDecorator
         id
         title
         topic
-        state
       ]
     end
 
@@ -53,7 +51,6 @@ class Courses::LessonDecorator < ApplicationDecorator
       %i[
         id
         title
-        state
         course_link
         topic_link
         created_at
@@ -89,6 +86,6 @@ class Courses::LessonDecorator < ApplicationDecorator
 
   def topic_link
     link_to(topic.title,
-      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.topic_id, model: 'Courses::Topic'))
+      ::Tramway::Engine.routes.url_helpers.record_path(object.topic_id, model: 'Courses::Topic'))
   end
 end

@@ -14,7 +14,7 @@ describe 'Update admin' do
       fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
-      admin = Tramway::User::User.where(project_id: project.id).last
+      admin = Tramway::User.where(project_id: project.id).last
       click_on 'Пользователи'
       click_on admin.id
       find('.btn.btn-warning', match: :first).click

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Night::BotTelegram::Scenario::StepForm < Tramway::Core::ApplicationForm
+class Night::BotTelegram::Scenario::StepForm < Tramway::ApplicationForm
   properties :name, :text, :file, :delay, :project_id, :options
 
   association :bot

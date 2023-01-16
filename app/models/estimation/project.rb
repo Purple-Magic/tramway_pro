@@ -46,4 +46,8 @@ class Estimation::Project < ApplicationRecord
       transitions from: :estimation_sent, to: :declined
     end
   end
+
+  aasm do
+    state :hack
+  end
 end

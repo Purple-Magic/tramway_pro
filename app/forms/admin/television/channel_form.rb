@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Television::ChannelForm < Tramway::Core::ApplicationForm
+class Admin::Television::ChannelForm < Tramway::ApplicationForm
   properties :title, :channel_type, :rtmp, :project_id
 
   def initialize(object)

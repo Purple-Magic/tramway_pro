@@ -15,7 +15,7 @@ describe 'Create admin' do
       fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
-      count = Tramway::User::User.where(project_id: project.id).count
+      count = Tramway::User.where(project_id: project.id).count
       click_on 'Пользователи'
       find('.btn.btn-primary', match: :first).click
       fill_in 'record[email]', with: attributes[:email]
@@ -25,8 +25,8 @@ describe 'Create admin' do
       select attributes[:role], from: 'record[role]'
 
       click_on 'Сохранить', class: 'btn-success'
-      expect(Tramway::User::User.where(project_id: project.id).count).to eq(count + 1)
-      admin = Tramway::User::User.where(project_id: project.id).last
+      expect(Tramway::User.where(project_id: project.id).count).to eq(count + 1)
+      admin = Tramway::User.where(project_id: project.id).last
       attributes.each_key do |attr|
         next if attr == :password
 
@@ -53,7 +53,7 @@ describe 'Create admin' do
       fill_in 'Пароль', with: '123456'
       click_on 'Войти', class: 'btn-success'
 
-      count = Tramway::User::User.where(project_id: project.id).count
+      count = Tramway::User.where(project_id: project.id).count
       click_on 'Пользователи'
       find('.btn.btn-primary', match: :first).click
       fill_in 'record[email]', with: existed_email
@@ -63,8 +63,8 @@ describe 'Create admin' do
       select attributes[:role], from: 'record[role]'
 
       click_on 'Сохранить', class: 'btn-success'
-      expect(Tramway::User::User.where(project_id: project.id).count).to eq(count + 1)
-      admin = Tramway::User::User.where(project_id: project.id).last
+      expect(Tramway::User.where(project_id: project.id).count).to eq(count + 1)
+      admin = Tramway::User.where(project_id: project.id).last
       attributes.each_key do |attr|
         next if attr == :password
 

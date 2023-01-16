@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Listai::PageForm < Tramway::Core::ApplicationForm
+class Admin::Listai::PageForm < Tramway::ApplicationForm
   properties :number, :file
 
   association :book

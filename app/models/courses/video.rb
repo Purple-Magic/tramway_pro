@@ -11,13 +11,13 @@ class Courses::Video < ApplicationRecord
 
   validates :position, presence: true
 
-  ::Course::TEAMS.each do |team|
+  Courses::Teams::List.each do |team|
     scope "#{team}_scope".to_sym, lambda { |_user_id|
       joins(lesson: { topic: :course }).where 'courses.team' => team
     }
   end
 
-  aasm :video_state do
+  aasm :video_state, column: :video_state do
     state :ready, initial: true
     state :written
     state :filmed
@@ -39,6 +39,10 @@ class Courses::Video < ApplicationRecord
     event :upload do
       transitions from: :finished, to: :uploaded
     end
+  end
+
+  aasm do
+    state :hack
   end
 
   def progress_status
