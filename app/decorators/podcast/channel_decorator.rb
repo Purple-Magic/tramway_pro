@@ -1,4 +1,4 @@
-class Podcast::ChannelDecorator < Tramway::Core::ApplicationDecorator
+class Podcast::ChannelDecorator < Tramway::ApplicationDecorator
   # Associations you want to show in admin dashboard
   # decorate_associations :messages, :posts
 
