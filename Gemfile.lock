@@ -416,10 +416,7 @@ GEM
       railties (>= 3.2)
       tilt
     redcarpet (3.5.1)
-    redis (5.0.5)
-      redis-client (>= 0.9.0)
-    redis-client (0.11.2)
-      connection_pool
+    redis (4.8.0)
     reek (6.1.2)
       kwalify (~> 0.7.0)
       parser (~> 3.1.0)
@@ -514,10 +511,10 @@ GEM
       voight_kampff (~> 1.1.2)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
-    sidekiq (6.2.1)
-      connection_pool (>= 2.2.2)
+    sidekiq (6.5.8)
+      connection_pool (>= 2.2.5, < 3)
       rack (~> 2.0)
-      redis (>= 4.2.0)
+      redis (>= 4.5.0, < 5)
     sidekiq-batch (0.1.9)
       sidekiq (>= 3)
     sidekiq-cron (1.9.0)
@@ -753,7 +750,7 @@ DEPENDENCIES
   selenium-webdriver
   shortener
   shoulda-matchers (~> 2.8.0)
-  sidekiq (= 6.2.1)
+  sidekiq (= 6.5.8)
   sidekiq-batch
   sidekiq-cron (~> 1.1)
   sidekiq-scheduler
