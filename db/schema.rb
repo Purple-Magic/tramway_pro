@@ -1042,6 +1042,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.jsonb "values"
     t.integer "page_id"
     t.datetime "deleted_at"
+    t.string "aasm_state"
   end
 
   create_table "tramway_landing_forms", force: :cascade do |t|
