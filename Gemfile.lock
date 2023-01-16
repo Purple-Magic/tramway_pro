@@ -592,7 +592,7 @@ GEM
       simple_form (>= 5.0.0)
       smart_buttons (>= 1.0)
       trap (~> 4.0)
-    tramway-api (2.0.0.3)
+    tramway-api (2.0.0.4)
       active_model_serializers (= 0.10.12)
       knock
       tramway (>= 0.1.0)
@@ -767,7 +767,7 @@ DEPENDENCIES
   telegram-bot-ruby (= 0.15.0)
   time_difference
   tramway (= 0.1.1.1)
-  tramway-api (= 2.0.0.3)
+  tramway-api (= 2.0.0.4)
   tramway-conference (= 1.9.5.6)
   tramway-event (= 2.0)
   tramway-export (= 0.2.1.1)
