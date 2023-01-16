@@ -14,8 +14,8 @@ ActiveRecord::Schema.define(version: 20230114001644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "uuid-ossp"
   enable_extension "pg_trgm"
+  enable_extension "uuid-ossp"
 
   create_table "audits", force: :cascade do |t|
     t.integer "auditable_id"
@@ -935,7 +935,7 @@ ActiveRecord::Schema.define(version: 20230114001644) do
     t.integer "event_id"
     t.text "title"
     t.datetime "deadline"
-    t.string "action_state", default: "must_be_done"
+    t.text "action_state", default: "must_be_done"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_id"
