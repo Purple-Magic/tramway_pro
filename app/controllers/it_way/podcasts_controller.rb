@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ItWay::PodcastsController < Tramway::Core::ApplicationController
+class ItWay::PodcastsController < Tramway::ApplicationController
   layout 'tramway/landing/application'
   before_action :application
 

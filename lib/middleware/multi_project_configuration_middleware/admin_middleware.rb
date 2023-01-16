@@ -7,9 +7,9 @@ module MultiProjectConfigurationMiddleware
     end
 
     def call(env)
-      ::Tramway::Admin::ApplicationController.include MultiProjectCallbacks::AdminMiddleware::Application
-      ::Tramway::Admin::RecordsController.include MultiProjectCallbacks::AdminMiddleware::Records
-      ::Tramway::Admin::SingletonsController.include MultiProjectCallbacks::AdminMiddleware::Records
+      ::Tramway::ApplicationController.include MultiProjectCallbacks::AdminMiddleware::Application
+      ::Tramway::RecordsController.include MultiProjectCallbacks::AdminMiddleware::Records
+      ::Tramway::SingletonsController.include MultiProjectCallbacks::AdminMiddleware::Records
 
       @app.call(env)
     end
@@ -40,8 +40,10 @@ module MultiProjectCallbacks
         def add_project_id
           return if params[:model] == 'Project'
 
-          if params[:record].present?
-            params[:record][:project_id] = Project.where(url: ENV['PROJECT_URL']).first.id
+          attributes_key = params[model_class.to_s.underscore].present? ? model_class.to_s.underscore : :record
+
+          if params[attributes_key].present?
+            params[attributes_key][:project_id] = Project.where(url: ENV['PROJECT_URL']).first.id
           else
             params[:singleton][:project_id] = Project.where(url: ENV['PROJECT_URL']).first.id
           end
@@ -51,8 +53,8 @@ module MultiProjectCallbacks
 
         def build_counts(project)
           decorator_class.collections.reduce({}) do |hash, collection|
-            scope_name = "#{current_admin.role}_scope"
-            hash.merge! collection => filter_with_project(collection, project).send(scope_name, current_admin.id).count
+            scope_name = "#{current_user.role}_scope"
+            hash.merge! collection => filter_with_project(collection, project).send(scope_name, current_user.id).count
           end
         end
 

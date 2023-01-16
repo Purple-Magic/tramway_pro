@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Podcast::StatForm < Tramway::Core::ApplicationForm
+class Admin::Podcast::StatForm < Tramway::ApplicationForm
   properties :month, :year, :service, :downloads, :streams, :listeners, :hours, :average_listenning,
     :overhearing_percent, :project_id
 

@@ -9,7 +9,6 @@ class Courses::CommentDecorator < ApplicationDecorator
     :video_id,
     :begin_time,
     :end_time,
-    :state,
     :text,
     :created_at,
     :updated_at
@@ -45,7 +44,6 @@ class Courses::CommentDecorator < ApplicationDecorator
         file
         associated_link
         text
-        state
         created_at
         updated_at
       ]
@@ -67,6 +65,6 @@ class Courses::CommentDecorator < ApplicationDecorator
 
   def associated_link
     link_to associated.title,
-      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.associated_id, model: object.associated_type)
+      ::Tramway::Engine.routes.url_helpers.record_path(object.associated_id, model: object.associated_type)
   end
 end

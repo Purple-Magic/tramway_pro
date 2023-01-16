@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-Tramway::Core.initialize_application model_class: RedMagic
+Tramway.initialize_application model_class: RedMagic
 
-Tramway::Admin.set_available_models Course,
-  Tramway::User::User,
+Tramway.set_available_models Course,
+  Tramway::User,
   Courses::Topic,
   Courses::Lesson,
   Courses::Video,
@@ -14,7 +14,7 @@ Tramway::Admin.set_available_models Course,
   Blogs::Link,
   project: :kalashnikovisme
 
-Tramway::Admin.set_available_models Course,
+Tramway.set_available_models Course,
   Courses::Topic,
   Courses::Lesson,
   Courses::Video,
@@ -24,7 +24,7 @@ Tramway::Admin.set_available_models Course,
   role: :slurm,
   project: :kalashnikovisme
 
-Tramway::Admin.set_available_models Course,
+Tramway.set_available_models Course,
   Courses::Topic,
   Courses::Lesson,
   Courses::Video,
@@ -34,7 +34,7 @@ Tramway::Admin.set_available_models Course,
   role: :skillbox,
   project: :kalashnikovisme
 
-Tramway::Admin.set_available_models Course,
+Tramway.set_available_models Course,
   Courses::Topic,
   Courses::Lesson,
   Courses::Video,
@@ -44,10 +44,10 @@ Tramway::Admin.set_available_models Course,
   role: :hexlet,
   project: :kalashnikovisme
 
-Tramway::Admin.navbar_structure(
+Tramway.navbar_structure(
   Course,
   TimeLog,
-  Tramway::User::User,
+  Tramway::User,
   Blogs::Link,
   project: :kalashnikovisme
 )

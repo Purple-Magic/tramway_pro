@@ -1,4 +1,4 @@
-class ItWay::PersonDecorator < Tramway::Core::ApplicationDecorator
+class ItWay::PersonDecorator < Tramway::ApplicationDecorator
   delegate_attributes(
         :id,
         :first_name,

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Courses::ScreencastForm < Tramway::Core::ApplicationForm
+class Admin::Courses::ScreencastForm < Tramway::ApplicationForm
   properties :project_id, :scenario, :begin_time, :end_time, :file, :comment
 
   association :video

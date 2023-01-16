@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:it_way]) do
     mount Tramway::Conference::Engine => '/'
+    mount Tramway::Engine, at: '/admin', as: :it_way_admin
     mount Tramway::Api::Engine, at: '/api', as: :it_way_api
 
     get '/youtube-callback' => 'youtube_callbacks#create'
@@ -37,29 +38,25 @@ Rails.application.routes.draw do
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:kalashnikovisme]) do
     root to: 'kalashnikovisme/web/welcome#index'
 
-    mount Tramway::Admin::Engine, at: '/admin', as: :kalash_admin
-    mount Tramway::Auth::Engine, at: '/auth', as: :kalash_auth
+    mount Tramway::Engine, at: '/admin', as: :kalash_admin
   end
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:tramway_dev]) do
     root to: 'tramway_dev/web/welcome#index'
 
-    mount Tramway::Admin::Engine, at: '/admin'
-    mount Tramway::Auth::Engine, at: '/auth'
+    mount Tramway::Engine, at: '/admin'
   end
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:engineervol]) do
     root to: 'engineervol/web/welcome#index'
 
-    mount Tramway::Admin::Engine, at: '/admin', as: :vol_admin
-    mount Tramway::Auth::Engine, at: '/auth', as: :vol_auth
+    mount Tramway::Engine, at: '/admin', as: :vol_admin
   end
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:purple_magic]) do
     root to: 'purple_magic/web/welcome#index'
 
-    mount Tramway::Admin::Engine, at: '/admin', as: :purple_magic_admin
-    mount Tramway::Auth::Engine, at: '/auth', as: :purple_magic_auth
+    mount Tramway::Engine, at: '/admin', as: :purple_magic_admin
 
     namespace :purple_magic do
       namespace :api do
@@ -103,14 +100,13 @@ Rails.application.routes.draw do
       end
     end
 
-    mount Tramway::Admin::Engine, at: '/admin', as: :benchkiller_admin
+    mount Tramway::Engine, at: '/admin', as: :benchkiller_admin
   end
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:red_magic]) do
     root to: 'red_magic/web/welcome#index'
 
-    mount Tramway::Admin::Engine, at: '/admin', as: :red_magic_admin
-    mount Tramway::Auth::Engine, at: '/auth', as: :red_magic_auth
+    mount Tramway::Engine, at: '/admin', as: :red_magic_admin
     mount Tramway::Page::Engine, at: '/page', as: :red_magic
     mount Tramway::Api::Engine, at: '/api', as: :red_magic_api
 

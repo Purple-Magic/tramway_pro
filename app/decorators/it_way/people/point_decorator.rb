@@ -1,4 +1,4 @@
-class ItWay::People::PointDecorator < Tramway::Core::ApplicationDecorator
+class ItWay::People::PointDecorator < Tramway::ApplicationDecorator
   delegate_attributes(
         :id,
         :count,

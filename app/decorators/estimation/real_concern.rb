@@ -11,13 +11,13 @@ module Estimation::RealConcern
 
   def cost_path
     if object.costs.any?
-      Tramway::Admin::Engine.routes.url_helpers.edit_record_path(
+      Tramway::Engine.routes.url_helpers.edit_record_path(
         model: Estimation::Cost,
         id: object.costs.first.id,
         redirect: "/admin/records/#{object.estimation_project.id}?model=Estimation::Project"
       )
     else
-      Tramway::Admin::Engine.routes.url_helpers.new_record_path(
+      Tramway::Engine.routes.url_helpers.new_record_path(
         model: Estimation::Cost,
         'estimation/cost' => {
           associated: id,

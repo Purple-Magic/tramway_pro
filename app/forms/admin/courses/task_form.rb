@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Courses::TaskForm < Tramway::Core::ApplicationForm
+class Admin::Courses::TaskForm < Tramway::ApplicationForm
   properties :position, :text, :max_time, :min_time, :project_id
 
   association :lesson

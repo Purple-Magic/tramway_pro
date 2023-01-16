@@ -33,6 +33,7 @@ if ARGV[0] == 'get_db'
   system "cp -r /tmp/#{dump} ~/backup.tramway.dbs/#{dump}"
   system 'rails db:migrate'
   system 'rails db:seed'
+  system 'rails r bin/data_migrations/tramways/users.rb' # temporary stuff until migration to new tramway
   system 'rails r bin/generate/twitter-previews.rb'
   system "scp tmp/twitter-preview-person* #{ARGV[1]}@tramway.pro:/srv/tramway_pro/current/tmp/"
   command = "bash -lic \"bundle exec rails r bin/generate/push-twitter-previews.rb\""

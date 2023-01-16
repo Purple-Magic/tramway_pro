@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Podcast::HighlightForm < Tramway::Core::ApplicationForm
+class Podcast::HighlightForm < Tramway::ApplicationForm
   properties :episode_id, :time, :project_id
 
   def episode_id=(value)

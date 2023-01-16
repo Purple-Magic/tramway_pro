@@ -1,4 +1,4 @@
-class Admin::ItWay::PersonForm < Tramway::Core::ApplicationForm
+class Admin::ItWay::PersonForm < Tramway::ApplicationForm
   properties :first_name, :last_name, :avatar, :project_id, :star_id, :telegram_user_id, :event_person_id
 
   def initialize(object)

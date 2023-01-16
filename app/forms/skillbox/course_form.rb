@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Skillbox::CourseForm < Tramway::Core::ApplicationForm
+class Skillbox::CourseForm < Tramway::ApplicationForm
   properties :title, :project_id, :team
 
   def initialize(object)

@@ -25,14 +25,14 @@ class Podcast::StarDecorator < ApplicationDecorator
 
   def podcast_link
     link_to podcast.title,
-      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.podcast_id, model: 'Podcast')
+      ::Tramway::Engine.routes.url_helpers.record_path(object.podcast_id, model: 'Podcast')
   end
 
   def episodes
     content_tag(:ul) do
       object.episodes.each do |episode|
         concat(content_tag(:li) do
-          link_to episode.public_title, Tramway::Admin::Engine.routes.url_helpers.record_path(episode.id, model: Podcast::Episode)
+          link_to episode.public_title, Tramway::Engine.routes.url_helpers.record_path(episode.id, model: Podcast::Episode)
         end)
       end
     end

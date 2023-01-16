@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::MagicWood::ActorForm < Tramway::Core::ApplicationForm
+class Admin::MagicWood::ActorForm < Tramway::ApplicationForm
   properties :first_name, :last_name, :state, :project_id
 
   def initialize(object)

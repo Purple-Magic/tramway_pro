@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-Tramway::Admin.set_available_models(
-  Tramway::User::User,
+Tramway.set_available_models(
+  Tramway::User,
   Project,
   Tramway::Page::Page,
   Tramway::Profiles::SocialNetwork,
@@ -11,8 +11,8 @@ Tramway::Admin.set_available_models(
   role: :admin
 )
 
-Tramway::Admin.navbar_structure(
-  Tramway::User::User,
+Tramway.navbar_structure(
+  Tramway::User,
   TramwayDev,
   Project,
   {

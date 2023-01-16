@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Podcast::EpisodeForm < Tramway::Core::ApplicationForm
+class Podcast::EpisodeForm < Tramway::ApplicationForm
   properties :podcast_id, :number, :project_id, :file, :montage_state
 
   def podcast_id=(value)

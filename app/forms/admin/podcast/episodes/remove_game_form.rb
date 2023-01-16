@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Podcast::Episodes::RemoveStarForm < Tramway::Core::ApplicationForm
+class Admin::Podcast::Episodes::RemoveStarForm < Tramway::ApplicationForm
   properties :id
 
   def submit(params)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::ItWay::CertificateForm < Tramway::Core::ApplicationForm
+class Admin::ItWay::CertificateForm < Tramway::ApplicationForm
   properties :text, :certificate_type
 
   association :event

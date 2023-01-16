@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::BotTelegram::Scenario::StepForm < Tramway::Core::ApplicationForm
+class Admin::BotTelegram::Scenario::StepForm < Tramway::ApplicationForm
   properties :name, :text, :file, :project_id, :delay, :options, :reply_markup
 
   association :bot

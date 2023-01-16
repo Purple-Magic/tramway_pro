@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Television::VideoForm < Tramway::Core::ApplicationForm
+class Admin::Television::VideoForm < Tramway::ApplicationForm
   properties :title, :file, :project_id, :remote_file_path
 
   def initialize(object)

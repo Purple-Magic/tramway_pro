@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Slurm::CourseForm < Tramway::Core::ApplicationForm
+class Slurm::CourseForm < Tramway::ApplicationForm
   properties :title, :project_id, :team
 
   def initialize(object)

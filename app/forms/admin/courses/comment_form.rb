@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Courses::CommentForm < Tramway::Core::ApplicationForm
+class Admin::Courses::CommentForm < Tramway::ApplicationForm
   properties :begin_time, :end_time, :project_id, :text, :file, :phrase, :associated_type, :associated_id
 
   association :associated

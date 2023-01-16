@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Hexlet::Courses::CommentForm < Tramway::Core::ApplicationForm
+class Hexlet::Courses::CommentForm < Tramway::ApplicationForm
   properties :begin_time, :end_time, :project_id, :text, :file, :phrase, :associated_type, :associated_id
 
   association :associated

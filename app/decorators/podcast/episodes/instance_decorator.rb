@@ -24,7 +24,7 @@ class Podcast::Episodes::InstanceDecorator < ApplicationDecorator
 
   def episode_link
     link_to episode.title,
-      ::Tramway::Admin::Engine.routes.url_helpers.record_path(object.episode_id, model: 'Podcast::Episode')
+      ::Tramway::Engine.routes.url_helpers.record_path(object.episode_id, model: 'Podcast::Episode')
   end
 
   class << self

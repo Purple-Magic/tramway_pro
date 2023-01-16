@@ -47,7 +47,7 @@ class BotDecorator < ApplicationDecorator
 
   def users_count
     link_to object.users.distinct.count,
-      Tramway::Admin::Engine.routes.url_helpers.records_path(model: 'BotTelegram::User',
+      Tramway::Engine.routes.url_helpers.records_path(model: 'BotTelegram::User',
         filter: { bots_id_eq: object.id })
   end
 
@@ -61,7 +61,7 @@ class BotDecorator < ApplicationDecorator
 
   def messages
     filter = { bot_id_eq: object.id }
-    href = Tramway::Admin::Engine.routes.url_helpers.records_path(model: ::BotTelegram::Message, filter: filter)
+    href = Tramway::Engine.routes.url_helpers.records_path(model: ::BotTelegram::Message, filter: filter)
     content_tag :a, href: href do
       I18n.t('helpers.links.open')
     end
@@ -72,7 +72,7 @@ class BotDecorator < ApplicationDecorator
   end
 
   def additional_buttons
-    add_scenario_step_url = Tramway::Admin::Engine.routes.url_helpers.new_record_path(
+    add_scenario_step_url = Tramway::Engine.routes.url_helpers.new_record_path(
       model: 'BotTelegram::Scenario::Step',
       'bot_telegram/scenario/step' => { bot: object.id }, redirect: "/admin/records/#{object.id}?model=Bot"
     )

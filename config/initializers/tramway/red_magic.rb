@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-Tramway::Core.initialize_application model_class: RedMagic
+Tramway.initialize_application model_class: RedMagic
 
-Tramway::Admin.set_singleton_models RedMagic, project: :red_magic
+Tramway.set_singleton_models RedMagic, project: :red_magic
 
-Tramway::Admin.forms = 'podcast/episodes/add_star', 'podcast/episode/remove_star'
+Tramway.forms = 'podcast/episodes/add_star', 'podcast/episode/remove_star'
 
-Tramway::Admin.set_available_models(
+Tramway.set_available_models(
   Tramway::Landing::Block,
   Tramway::Landing::Tool,
   Tramway::Page::Page,
-  Tramway::User::User,
+  Tramway::User,
   Tramway::News::News,
   Estimation::Project,
   Estimation::Task,
@@ -40,7 +40,7 @@ Tramway::Admin.set_available_models(
   project: :red_magic
 )
 
-Tramway::Admin.set_available_models(
+Tramway.set_available_models(
   Podcast,
   Podcast::Episode,
   Podcast::Episodes::Topic,
@@ -51,7 +51,7 @@ Tramway::Admin.set_available_models(
   role: :podcast
 )
 
-Tramway::Admin.navbar_structure(
+Tramway.navbar_structure(
   RedMagic,
   {
     estimations: [
@@ -85,7 +85,7 @@ Tramway::Admin.navbar_structure(
       Television::ScheduleItem
     ]
   },
-  Tramway::User::User,
+  Tramway::User,
   Tramway::News::News,
   project: :red_magic
 )
@@ -157,7 +157,7 @@ Tramway::Export.set_exportable_models(
 
 Tramway::Landing.set_navbar true, project: :red_magic
 
-::Tramway::Admin.welcome_page_actions = lambda do
+::Tramway.welcome_page_actions = lambda do
   youtube_oauth_link = Yt::Account.new(
     scopes: [:youtube, 'youtube.readonly', 'youtube.force-ssl', 'youtubepartner', 'youtubepartner-channel-audit',
              'youtube.upload', 'youtube.channel-memberships.creator', 'youtube.third-party-link.creator'], redirect_uri: 'https://it-way.pro/youtube-callback', access_type: :offline

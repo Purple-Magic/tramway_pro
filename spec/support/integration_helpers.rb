@@ -33,8 +33,8 @@ module IntegrationHelpers
 
   # :reek:FeatureEnvy disable
   def click_on_association_edit_button(object, association)
-    current_path = Tramway::Admin::Engine.routes.url_helpers.record_path(object.id, model: object.class.name)
-    edit_path = Tramway::Admin::Engine.routes.url_helpers.edit_record_path(
+    current_path = Tramway::Engine.routes.url_helpers.record_path(object.id, model: object.class.name)
+    edit_path = Tramway::Engine.routes.url_helpers.edit_record_path(
       association.id,
       model: association.class.name,
       redirect: current_path
@@ -44,8 +44,8 @@ module IntegrationHelpers
 
   # :reek:FeatureEnvy disable
   def click_on_association_destroy_button(object, association)
-    current_path = Tramway::Admin::Engine.routes.url_helpers.record_path(object.id, model: object.class.name)
-    destroy_path = Tramway::Admin::Engine.routes.url_helpers.record_path(
+    current_path = Tramway::Engine.routes.url_helpers.record_path(object.id, model: object.class.name)
+    destroy_path = Tramway::Engine.routes.url_helpers.record_path(
       association.id,
       model: association.class.name,
       redirect: current_path

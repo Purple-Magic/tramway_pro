@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Benchkiller::Offers::AdminChatDecorator < ::Benchkiller::OfferDecorator
+class Benchkiller::OffersChatDecorator < ::Benchkiller::OfferDecorator
   def admin_message
     text = "*From:* @#{message.user.username}"
     text += "\n\n"

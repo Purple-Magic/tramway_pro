@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class ApplicationDecorator < Tramway::Core::ApplicationDecorator
+class ApplicationDecorator < Tramway::ApplicationDecorator
   include Concerns::TableBuilder
 end

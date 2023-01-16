@@ -23,6 +23,7 @@ describe 'Create lesson' do
       end
       click_on 'Добавить уроки'
 
+      fill_in 'record[title]', with: ''
       fill_in 'record[title]', with: attributes[:title]
       fill_in 'record[position]', with: attributes[:position]
 
@@ -40,7 +41,7 @@ describe 'Create lesson' do
     end
   end
 
-  ::Course::TEAMS.each do |team|
+  Courses::Teams::List.each do |team|
     describe "#{team.to_s.capitalize} team" do
       let!(:user) { create :admin, password: '123456', project_id: kalashnikovisme_id }
 

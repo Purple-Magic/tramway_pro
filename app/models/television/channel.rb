@@ -10,7 +10,7 @@ class Television::Channel < ApplicationRecord
 
   enumerize :channel_type, in: %w[repeated custom]
 
-  aasm :broadcast_state do
+  aasm column: :broadcast_state do
     state :stopped, initial: true
     state :broadcasting
 

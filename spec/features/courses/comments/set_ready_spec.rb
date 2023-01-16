@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'Edit comment page' do
+describe 'Set comment ready page' do
   before { move_host_to kalashnikovisme_host }
 
   describe 'Admin' do
@@ -32,7 +32,7 @@ describe 'Edit comment page' do
       end
 
       expect(page).to have_current_path(
-        ::Tramway::Admin::Engine.routes.url_helpers.record_path(comment.associated_id, model: comment.associated_type)
+        ::Tramway::Engine.routes.url_helpers.record_path(comment.associated_id, model: comment.associated_type)
       )
 
       comment.reload
@@ -40,7 +40,7 @@ describe 'Edit comment page' do
     end
   end
 
-  ::Course::TEAMS.each do |team|
+  Courses::Teams::List.each do |team|
     describe "#{team.to_s.capitalize} team" do
       let!(:user) { create :admin, password: '123456', project_id: kalashnikovisme_id }
       let!(:comment) { create :courses_comment, project_id: kalashnikovisme_id }
@@ -68,7 +68,7 @@ describe 'Edit comment page' do
         end
 
         expect(page).to have_current_path(
-          ::Tramway::Admin::Engine.routes.url_helpers.record_path(comment.associated_id, model: comment.associated_type)
+          ::Tramway::Engine.routes.url_helpers.record_path(comment.associated_id, model: comment.associated_type)
         )
 
         comment.reload

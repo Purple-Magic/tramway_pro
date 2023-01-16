@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class Word < Tramway::Core::ApplicationRecord
+class Word < Tramway::ApplicationRecord
   search_by :main, :synonims
 
-  aasm :review_state do
+  aasm column: :review_state do
     state :approved, initial: true
     state :unviewed
 

@@ -13,7 +13,7 @@ module BotTelegram::BenchkillerBot::AdminFeatures
     if offer.benchkiller_user&.company&.approved?
       offer.send_to_public_channel
     else
-      text = ::Benchkiller::Offers::AdminChatDecorator.decorate(offer).admin_message
+      text = ::Benchkiller::OffersChatDecorator.decorate(offer).admin_message
       keyboard = [
         [
           ['Подтвердить', { data: { command: :approve_offer, argument: offer.id } }],
@@ -42,7 +42,7 @@ module BotTelegram::BenchkillerBot::AdminFeatures
       :company_changes,
       company_name: company.title,
       changes: localize_changes(last_audit).join("\n"),
-      url: Tramway::Admin::Engine.routes.url_helpers.edit_record_url(company, model: company.class,
+      url: Tramway::Engine.routes.url_helpers.edit_record_url(company, model: company.class,
 host: Settings[Rails.env][:purple_magic])
     )
     send_notification_to_chat ::BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID, text

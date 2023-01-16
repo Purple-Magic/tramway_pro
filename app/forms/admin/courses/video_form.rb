@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Courses::VideoForm < Tramway::Core::ApplicationForm
+class Admin::Courses::VideoForm < Tramway::ApplicationForm
   properties :text, :project_id, :position, :release_date, :duration, :result_duration, :url
 
   association :lesson

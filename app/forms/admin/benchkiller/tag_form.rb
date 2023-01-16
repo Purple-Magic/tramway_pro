@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::Benchkiller::TagForm < Tramway::Core::ApplicationForm
+class Admin::Benchkiller::TagForm < Tramway::ApplicationForm
   properties :title, :project_id, :state
 
   def initialize(object)

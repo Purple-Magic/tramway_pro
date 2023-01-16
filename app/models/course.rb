@@ -7,14 +7,16 @@ class Course < ApplicationRecord
   has_many :tasks, class_name: 'Courses::Task', through: :lessons
   has_many :screencasts, class_name: 'Courses::Screencast', through: :videos
 
-  TEAMS = %i[slurm skillbox hexlet].freeze
+  enumerize :team, in: Courses::Teams::List
 
-  enumerize :team, in: TEAMS
-
-  TEAMS.each do |team|
+  Courses::Teams::List.each do |team|
     scope "#{team}_scope".to_sym, lambda { |_user_id|
       where team: team
     }
+  end
+
+  aasm do
+    state :hack
   end
 
   include Concerns::Time
