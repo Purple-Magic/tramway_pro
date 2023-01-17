@@ -13,6 +13,7 @@ require 'action_view/railtie'
 require 'action_cable/engine'
 require 'sprockets/railtie'
 require 'awesome_print'
+require_relative '../lib/middleware/multi_project_configuration_middleware/auth'
 require_relative '../lib/middleware/multi_project_configuration_middleware/conference'
 require_relative '../lib/middleware/multi_project_configuration_middleware/admin_middleware'
 require_relative '../lib/middleware/multi_project_configuration_middleware/api_middleware'
@@ -38,6 +39,7 @@ module TramwayPro
     config.i18n.default_locale = :ru
     config.autoload_paths += ["#{config.root}/app/models/ckeditor"]
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    config.middleware.use ::MultiProjectConfigurationMiddleware::Auth
     config.middleware.use ::MultiProjectConfigurationMiddleware::Conference
     config.middleware.use ::MultiProjectConfigurationMiddleware::AdminMiddleware
     config.middleware.use ::MultiProjectConfigurationMiddleware::ApiMiddleware
