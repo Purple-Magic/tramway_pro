@@ -17,7 +17,7 @@ gem 'tramway-event', '2.0'
 gem 'tramway-export', '0.2.1.1'
 gem 'tramway-landing', '3.3.0.7'
 gem 'tramway-news', '1.0.4.4'
-gem 'tramway-page', '1.6.0.1'
+gem 'tramway-page', '1.6.0.2'
 gem 'tramway-partner', '1.0.4.1'
 gem 'tramway-profiles', '1.4.1.2'
 
