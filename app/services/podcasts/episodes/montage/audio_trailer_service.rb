@@ -22,7 +22,6 @@ class Podcasts::Episodes::Montage::AudioTrailerService < Podcasts::Episodes::Bas
     normalize_trailer output
     episode.update_file! output, :trailer
 
-    send_notification_to_chat episode.podcast.chat_id, notification(:audio_trailer, :success)
     episode.trailer_finish!
   end
 
