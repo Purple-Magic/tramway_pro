@@ -31,6 +31,6 @@ class Podcasts::FinishWorker < ApplicationWorker
   end
 
   def render_instagram_stories(episode)
-    episode.using_highlights.each(&:render_instagram_story)
+    Podcasts::Episodes::Montage::AudioTrailerService.new(episode).using_highlights.each(&:render_instagram_story)
   end
 end
