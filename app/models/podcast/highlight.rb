@@ -17,6 +17,10 @@ class Podcast::Highlight < ApplicationRecord
   include Podcasts::Episodes::TimeManagement
   include Ffmpeg::CommandBuilder
 
+  aasm do
+    state :hack
+  end
+
   def directory
     @directory ||= episode.prepare_directory
   end
