@@ -3,15 +3,18 @@
 class Podcasts::Episodes::BaseService < ApplicationService
   include Podcasts::Episodes::PathManagement
   include Podcasts::Episodes::TimeManagement
-  include Podcasts::Episodes::CommandsManagement
   include Podcasts::Episodes::FilesManagement
   include Ffmpeg::CommandBuilder
 
-  def log_command(episode, action, command)
-    line = [action, DateTime.now.strftime('%d.%m.%Y %H:%M:%S'), command].join(', ')
-    commands = (episode.render_data&.dig('commands') || []) + [line]
-    episode.render_data ? episode.render_data['commands'] = commands : episode.render_data = { commands: commands }
-    episode.save!
+  def run(command, action:, name: nil)
+    log_command episode, action, command
+    Rails.logger.info command
+
+    _log, err, status = Open3.capture3({}, command, {})
+
+    if !status.success? && err.present?
+      episode.log_error(err) 
+    end
   end
 
   def update_file!(model, output, file_type)
@@ -39,5 +42,14 @@ class Podcasts::Episodes::BaseService < ApplicationService
 
   def move_to(temp_output, output)
     "mv #{temp_output} #{output} && rm -f #{temp_output}"
+  end
+
+  private
+
+  def log_command(episode, action, command)
+    line = [action, DateTime.now.strftime('%d.%m.%Y %H:%M:%S'), command].join(', ')
+    commands = (episode.render_data&.dig('commands') || []) + [line]
+    episode.render_data ? episode.render_data['commands'] = commands : episode.render_data = { commands: commands }
+    episode.save!
   end
 end
