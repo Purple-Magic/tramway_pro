@@ -8,5 +8,6 @@ class Podcasts::TrailerWorker < ApplicationWorker
   def perform(id)
     episode = Podcast::Episode.find id
     Podcasts::Episodes::Montage::AudioTrailerService.new(episode).call
+    send_notification_to_chat episode.podcast.chat_id, notification(:audio_trailer, :success)
   end
 end

@@ -1,5 +1,4 @@
 deploy_production:
-	nvm use 14
 	ansible-playbook -i deploy/inventory deploy/deploy.yml
 	RAILS_ENV=production bundle exec rails assets:clean assets:precompile
 	tar zcvf assets.tar.gz public/assets/
