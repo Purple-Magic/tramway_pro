@@ -1,10 +1,27 @@
 GIT
+  remote: https://github.com/AlexWayfer/time_difference.git
+  revision: 12247b665fd68c19a1ce97be5c564e2eafa49c22
+  branch: depfu/update/activesupport-7.0.4.1
+  specs:
+    time_difference (0.7.0)
+      activesupport (~> 7.0)
+
+GIT
   remote: https://github.com/BBonifield/json_matchers.git
   revision: 22b72deaf7e7a4a69bb924ce17414cb065c5e2fe
   branch: bugfix/properly-support-record-errors
   specs:
     json_matchers (0.6.3)
       json-schema (~> 2.7)
+
+GIT
+  remote: https://github.com/Shopify/active_model_serializers.git
+  revision: 03b31703dee30fc0f938bb79586df9105b65dc08
+  ref: 03b3170
+  specs:
+    active_model_serializers (0.9.7)
+      activemodel (>= 3.2)
+      concurrent-ruby (~> 1.0)
 
 GIT
   remote: https://github.com/glyph-fr/redactor-rails.git
@@ -31,61 +48,163 @@ GIT
       jquery-rails
       rails (>= 3.2.8)
 
+PATH
+  remote: ../tramway-dev/tramway-api
+  specs:
+    tramway-api (2.0.0.4)
+      knock
+      tramway (>= 0.1.0)
+      uuid
+
+PATH
+  remote: ../tramway-dev/tramway-conference
+  specs:
+    tramway-conference (1.9.5.6)
+
+PATH
+  remote: ../tramway-dev/tramway-export
+  specs:
+    tramway-export (0.2.1.1)
+      xls_exporter (>= 1.2)
+
+PATH
+  remote: ../tramway-dev/tramway-landing
+  specs:
+    tramway-landing (3.3.0.7)
+
+PATH
+  remote: ../tramway-dev/tramway-news
+  specs:
+    tramway-news (1.0.4.4)
+
+PATH
+  remote: ../tramway-dev/tramway-page
+  specs:
+    tramway-page (1.6.0.2)
+
+PATH
+  remote: ../tramway-dev/tramway-partner
+  specs:
+    tramway-partner (1.0.4.1)
+
+PATH
+  remote: ../tramway-dev/tramway-profiles
+  specs:
+    tramway-profiles (1.4.1.2)
+
+PATH
+  remote: ../tramway-event
+  specs:
+    tramway-event (2.0)
+      tramway
+
+PATH
+  remote: ../tramway
+  specs:
+    tramway (0.1.1.1)
+      aasm
+      audited (>= 4.8.0)
+      bootstrap (>= 4.1.2)
+      bootstrap-kaminari-views (= 0.0.5)
+      carrierwave
+      ckeditor (= 4.2.4)
+      clipboard-rails
+      copyright_mafa (~> 0.1.2, >= 0.1.2)
+      enumerize (~> 2.1, >= 2.1.2)
+      font-awesome-rails (~> 4.7, >= 4.7.0.1)
+      font_awesome5_rails
+      haml-rails
+      kaminari (>= 1.1.1)
+      loofah (>= 2.3.1)
+      mini_magick (~> 4.8, >= 4.8.0)
+      nokogiri
+      paranoia (~> 2.2)
+      pg_search
+      rails (~> 7)
+      ransack
+      rmagick (~> 4.2.2)
+      sass-rails (~> 6)
+      simple_form (>= 5.0.0)
+      smart_buttons (>= 1.0)
+      trap (~> 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
     aasm (5.2.0)
       concurrent-ruby (~> 1.0)
-    actioncable (5.1.7)
-      actionpack (= 5.1.7)
+    actioncable (7.0.4.1)
+      actionpack (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
       nio4r (~> 2.0)
-      websocket-driver (~> 0.6.1)
-    actionmailer (5.1.7)
-      actionpack (= 5.1.7)
-      actionview (= 5.1.7)
-      activejob (= 5.1.7)
+      websocket-driver (>= 0.6.1)
+    actionmailbox (7.0.4.1)
+      actionpack (= 7.0.4.1)
+      activejob (= 7.0.4.1)
+      activerecord (= 7.0.4.1)
+      activestorage (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
+      mail (>= 2.7.1)
+      net-imap
+      net-pop
+      net-smtp
+    actionmailer (7.0.4.1)
+      actionpack (= 7.0.4.1)
+      actionview (= 7.0.4.1)
+      activejob (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
       mail (~> 2.5, >= 2.5.4)
+      net-imap
+      net-pop
+      net-smtp
       rails-dom-testing (~> 2.0)
-    actionpack (5.1.7)
-      actionview (= 5.1.7)
-      activesupport (= 5.1.7)
-      rack (~> 2.0)
+    actionpack (7.0.4.1)
+      actionview (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
+      rack (~> 2.0, >= 2.2.0)
       rack-test (>= 0.6.3)
       rails-dom-testing (~> 2.0)
-      rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    actionview (5.1.7)
-      activesupport (= 5.1.7)
+      rails-html-sanitizer (~> 1.0, >= 1.2.0)
+    actiontext (7.0.4.1)
+      actionpack (= 7.0.4.1)
+      activerecord (= 7.0.4.1)
+      activestorage (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
+      globalid (>= 0.6.0)
+      nokogiri (>= 1.8.5)
+    actionview (7.0.4.1)
+      activesupport (= 7.0.4.1)
       builder (~> 3.1)
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
-      rails-html-sanitizer (~> 1.0, >= 1.0.3)
-    active_median (0.2.8)
-      activesupport (>= 5)
-    active_model_serializers (0.10.12)
-      actionpack (>= 4.1, < 6.2)
-      activemodel (>= 4.1, < 6.2)
-      case_transform (>= 0.2)
-      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
-    activejob (5.1.7)
-      activesupport (= 5.1.7)
+      rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_median (0.3.3)
+      activesupport (>= 5.2)
+    activejob (7.0.4.1)
+      activesupport (= 7.0.4.1)
       globalid (>= 0.3.6)
-    activemodel (5.1.7)
-      activesupport (= 5.1.7)
-    activerecord (5.1.7)
-      activemodel (= 5.1.7)
-      activesupport (= 5.1.7)
-      arel (~> 8.0)
-    activesupport (5.1.7)
+    activemodel (7.0.4.1)
+      activesupport (= 7.0.4.1)
+    activerecord (7.0.4.1)
+      activemodel (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
+    activestorage (7.0.4.1)
+      actionpack (= 7.0.4.1)
+      activejob (= 7.0.4.1)
+      activerecord (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
+      marcel (~> 1.0)
+      mini_mime (>= 1.1.0)
+    activesupport (7.0.4.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-      i18n (>= 0.7, < 2)
-      minitest (~> 5.1)
-      tzinfo (~> 1.1)
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
     airbrake (5.8.1)
       airbrake-ruby (~> 1.8)
     airbrake-ruby (1.8.0)
-    arel (8.0.0)
     ast (2.4.2)
     audited (5.1.0)
       activerecord (>= 5.0, < 7.1)
@@ -129,8 +248,6 @@ GEM
       marcel (~> 1.0.0)
       mini_mime (>= 0.1.3)
       ssrf_filter (~> 1.0)
-    case_transform (0.2)
-      activesupport
     childprocess (3.0.0)
     chronic (0.10.2)
     ckeditor (4.2.4)
@@ -143,9 +260,9 @@ GEM
     coderay (1.1.3)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
-    coffee-rails (4.2.2)
+    coffee-rails (5.0.0)
       coffee-script (>= 2.2.0)
-      railties (>= 4.0.0)
+      railties (>= 5.2.0)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
@@ -213,7 +330,7 @@ GEM
     factory_bot_rails (5.1.1)
       factory_bot (~> 5.1.0)
       railties (>= 4.2.0)
-    faker (3.0.0)
+    faker (3.1.0)
       i18n (>= 1.8.11, < 2)
     faraday (1.5.1)
       faraday-em_http (~> 1.0)
@@ -239,10 +356,10 @@ GEM
       nokogiri (>= 1.11.3)
       railties (>= 4.2)
     foreman (0.87.2)
-    fugit (1.8.0)
+    fugit (1.8.1)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
-    globalid (1.0.0)
+    globalid (1.0.1)
       activesupport (>= 5.0)
     haml (6.1.1)
       temple (>= 0.8.2)
@@ -274,7 +391,6 @@ GEM
     json-schema (2.8.1)
       addressable (>= 2.4)
     json_api_test_helpers (1.2.1.2)
-    jsonapi-renderer (0.2.2)
     jwt (1.5.6)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
@@ -294,12 +410,11 @@ GEM
       jwt (~> 1.5)
       rails (>= 4.2)
     kwalify (0.7.2)
-    launchy (2.5.0)
-      addressable (~> 2.7)
-    listen (3.1.5)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
-      ruby_dep (~> 1.2)
+    launchy (2.5.2)
+      addressable (~> 2.8)
+    listen (3.8.0)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -339,26 +454,24 @@ GEM
       net-protocol
     net-ssh (7.0.1)
     nio4r (2.5.8)
-    nokogiri (1.13.10)
+    nokogiri (1.14.0)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    open3 (0.1.0)
+    open3 (0.1.2)
     orm_adapter (0.5.0)
     parallel (1.22.1)
-    parallel_tests (4.0.0)
+    parallel_tests (4.1.0)
       parallel
     paranoia (2.6.1)
       activerecord (>= 5.1, < 7.1)
-    parser (3.1.3.0)
+    parser (3.2.0.0)
       ast (~> 2.4.1)
     pg (0.21.0)
-    pg_search (2.3.0)
-      activerecord (>= 4.2)
-      activesupport (>= 4.2)
-    polyamorous (2.3.0)
-      activerecord (>= 5.0)
+    pg_search (2.3.6)
+      activerecord (>= 5.2)
+      activesupport (>= 5.2)
     popper_js (2.11.6)
-    pry (0.14.1)
+    pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
     pry-nav (1.0.0)
@@ -367,45 +480,46 @@ GEM
     puma (3.12.6)
     raabro (1.4.0)
     racc (1.6.2)
-    rack (2.2.6)
+    rack (2.2.6.2)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
-    rack-proxy (0.7.4)
+    rack-proxy (0.7.6)
       rack
     rack-test (2.0.2)
       rack (>= 1.3)
-    rails (5.1.7)
-      actioncable (= 5.1.7)
-      actionmailer (= 5.1.7)
-      actionpack (= 5.1.7)
-      actionview (= 5.1.7)
-      activejob (= 5.1.7)
-      activemodel (= 5.1.7)
-      activerecord (= 5.1.7)
-      activesupport (= 5.1.7)
-      bundler (>= 1.3.0)
-      railties (= 5.1.7)
-      sprockets-rails (>= 2.0.0)
+    rails (7.0.4.1)
+      actioncable (= 7.0.4.1)
+      actionmailbox (= 7.0.4.1)
+      actionmailer (= 7.0.4.1)
+      actionpack (= 7.0.4.1)
+      actiontext (= 7.0.4.1)
+      actionview (= 7.0.4.1)
+      activejob (= 7.0.4.1)
+      activemodel (= 7.0.4.1)
+      activerecord (= 7.0.4.1)
+      activestorage (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
+      bundler (>= 1.15.0)
+      railties (= 7.0.4.1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.4.4)
+    rails-html-sanitizer (1.5.0)
       loofah (~> 2.19, >= 2.19.1)
-    railties (5.1.7)
-      actionpack (= 5.1.7)
-      activesupport (= 5.1.7)
+    railties (7.0.4.1)
+      actionpack (= 7.0.4.1)
+      activesupport (= 7.0.4.1)
       method_source
-      rake (>= 0.8.7)
-      thor (>= 0.18.1, < 2.0)
+      rake (>= 12.2)
+      thor (~> 1.0)
+      zeitwerk (~> 2.5)
     rainbow (3.1.1)
     raindrops (0.20.0)
     rake (13.0.6)
-    ransack (2.3.0)
-      actionpack (>= 5.0)
-      activerecord (>= 5.0)
-      activesupport (>= 5.0)
+    ransack (3.2.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
       i18n
-      polyamorous (= 2.3.0)
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -417,9 +531,9 @@ GEM
       tilt
     redcarpet (3.5.1)
     redis (4.8.0)
-    reek (6.1.2)
+    reek (6.1.4)
       kwalify (~> 0.7.0)
-      parser (~> 3.1.0)
+      parser (~> 3.2.0)
       rainbow (>= 2.0, < 4.0)
     regexp_parser (1.8.2)
     rexml (3.2.5)
@@ -456,7 +570,7 @@ GEM
       rubocop-ast (>= 1.7.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.24.0)
+    rubocop-ast (1.24.1)
       parser (>= 3.1.1.0)
     rubocop-rails (2.15.2)
       activesupport (>= 4.2.0)
@@ -472,7 +586,6 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
-    ruby_dep (1.5.0)
     rubyzip (2.3.2)
     rufus-scheduler (3.8.2)
       fugit (~> 1.1, >= 1.1.6)
@@ -484,17 +597,8 @@ GEM
     sanitize (6.0.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    sass (3.7.4)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
-    sass-rails (5.0.7)
-      railties (>= 4.0.0, < 6)
-      sass (~> 3.1)
-      sprockets (>= 2.8, < 4.0)
-      sprockets-rails (>= 2.0, < 4.0)
-      tilt (>= 1.1, < 3)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -507,6 +611,7 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    semantic_range (3.0.0)
     shortener (1.0.0)
       voight_kampff (~> 1.1.2)
     shoulda-matchers (2.8.0)
@@ -517,17 +622,17 @@ GEM
       redis (>= 4.5.0, < 5)
     sidekiq-batch (0.1.9)
       sidekiq (>= 3)
-    sidekiq-cron (1.9.0)
-      fugit (~> 1)
+    sidekiq-cron (1.9.1)
+      fugit (~> 1.8)
       sidekiq (>= 4.2.1)
     sidekiq-scheduler (4.0.3)
       redis (>= 4.2.0)
       rufus-scheduler (~> 3.2)
       sidekiq (>= 4, < 7)
       tilt (>= 1.4.0)
-    simple_form (5.0.3)
-      actionpack (>= 5.0)
-      activemodel (>= 5.0)
+    simple_form (5.1.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     smart_buttons (1.0.2)
       nokogiri (>= 1.10.8)
       simple_form
@@ -537,12 +642,12 @@ GEM
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
-    sprockets (3.7.2)
+    sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
-      rack (> 1, < 3)
-    sprockets-rails (3.2.2)
-      actionpack (>= 4.0)
-      activesupport (>= 4.0)
+      rack (>= 2.2.4, < 4)
+    sprockets-rails (3.4.2)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     ssrf_filter (1.1.1)
     state_machine_buttons (2.0)
@@ -560,56 +665,13 @@ GEM
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.11)
-    time_difference (0.7.0)
-      activesupport (~> 5.1)
     timeout (0.3.1)
-    tramway (0.1.1.1)
-      aasm
-      audited (>= 4.8.0)
-      bootstrap (>= 4.1.2)
-      bootstrap-kaminari-views (= 0.0.5)
-      carrierwave
-      ckeditor (= 4.2.4)
-      clipboard-rails
-      copyright_mafa (~> 0.1.2, >= 0.1.2)
-      enumerize (~> 2.1, >= 2.1.2)
-      font-awesome-rails (~> 4.7, >= 4.7.0.1)
-      font_awesome5_rails
-      haml-rails
-      kaminari (>= 1.1.1)
-      loofah (>= 2.3.1)
-      mini_magick (~> 4.8, >= 4.8.0)
-      nokogiri (= 1.13.10)
-      paranoia (~> 2.2)
-      pg_search
-      rails (= 5.1.7)
-      ransack
-      rmagick (~> 4.2.2)
-      sass-rails (~> 5.0, >= 5.0.7)
-      simple_form (>= 5.0.0)
-      smart_buttons (>= 1.0)
-      trap (~> 4.0)
-    tramway-api (2.0.0.4)
-      active_model_serializers (= 0.10.12)
-      knock
-      tramway (>= 0.1.0)
-      uuid
-    tramway-conference (1.9.5.6)
-    tramway-event (2.0)
-      tramway
-    tramway-export (0.2.1.1)
-      xls_exporter (>= 1.2)
-    tramway-landing (3.3.0.7)
-    tramway-news (1.0.4.4)
-    tramway-page (1.6.0.2)
-    tramway-partner (1.0.4.1)
-    tramway-profiles (1.4.1.2)
     trap (4.0)
-    tzinfo (1.2.10)
-      thread_safe (~> 0.1)
+    tzinfo (2.0.5)
+      concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (2.3.0)
+    unicode-display_width (2.4.2)
     unicorn (6.1.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
@@ -627,11 +689,11 @@ GEM
       descendants_tracker (~> 0.0, >= 0.0.3)
     voight_kampff (1.1.4)
       rack (>= 1.4, < 3.0)
-    web-console (3.7.0)
-      actionview (>= 5.0)
-      activemodel (>= 5.0)
+    web-console (4.2.0)
+      actionview (>= 6.0.0)
+      activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
-      railties (>= 5.0)
+      railties (>= 6.0.0)
     webdrivers (4.2.0)
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
@@ -640,11 +702,12 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    webpacker (4.3.0)
-      activesupport (>= 4.2)
+    webpacker (5.4.3)
+      activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
-      railties (>= 4.2)
-    websocket-driver (0.6.5)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
+    websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     whenever (1.0.0)
@@ -666,7 +729,7 @@ DEPENDENCIES
   aasm (= 5.2.0)
   actionview (>= 5.1.6.2)
   active_median
-  active_model_serializers (= 0.10.12)
+  active_model_serializers!
   airbrake (~> 5.0)
   audited (>= 4.8.0)
   awesome_print
@@ -706,14 +769,14 @@ DEPENDENCIES
   kaminari
   knock
   launchy
-  listen (>= 3.0.5, < 3.2)
+  listen (>= 3.8.0)
   loofah (>= 2.3.1)
   mimemagic (= 0.4.3)
   mini_magick (>= 4.9.4)
   more_html_tags (>= 0.2.0)
   net-scp
   net-ssh
-  nokogiri (>= 1.10.8)
+  nokogiri (>= 1.14.0)
   open3
   parallel_tests
   paranoia (~> 2.2)
@@ -724,7 +787,7 @@ DEPENDENCIES
   puma (= 3.12.6)
   rack (>= 2.0.8)
   rack-cors
-  rails (= 5.1.7)
+  rails (= 7.0.4.1)
   rails-html-sanitizer (>= 1.0.4)
   rake (>= 12.3.3)
   ransack
@@ -745,7 +808,7 @@ DEPENDENCIES
   russian
   safe_target_blank
   sanitize
-  sass-rails
+  sass-rails (= 6.0.0)
   selectize-rails
   selenium-webdriver
   shortener
@@ -762,17 +825,17 @@ DEPENDENCIES
   state_machine_buttons (= 2.0)
   streamio-ffmpeg
   telegram-bot-ruby (= 0.15.0)
-  time_difference
-  tramway (= 0.1.1.1)
-  tramway-api (= 2.0.0.4)
-  tramway-conference (= 1.9.5.6)
-  tramway-event (= 2.0)
-  tramway-export (= 0.2.1.1)
-  tramway-landing (= 3.3.0.7)
-  tramway-news (= 1.0.4.4)
-  tramway-page (= 1.6.0.2)
-  tramway-partner (= 1.0.4.1)
-  tramway-profiles (= 1.4.1.2)
+  time_difference!
+  tramway!
+  tramway-api!
+  tramway-conference!
+  tramway-event!
+  tramway-export!
+  tramway-landing!
+  tramway-news!
+  tramway-page!
+  tramway-partner!
+  tramway-profiles!
   trap (= 4.0)
   tzinfo-data
   uglifier (>= 1.3.0)
@@ -788,7 +851,7 @@ DEPENDENCIES
   yt
 
 RUBY VERSION
-   ruby 2.7.6p219
+   ruby 3.2.0p0
 
 BUNDLED WITH
    2.1.4
