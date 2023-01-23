@@ -137,7 +137,7 @@ gem 'redactor-rails', github: 'glyph-fr/redactor-rails'
 group :test do
   gem 'capybara', '>= 3.38'
   gem 'capybara_helpers'
-  gem 'factory_bot_rails', '5.1.1'
+  gem 'factory_bot_rails', '>= 6.2.0'
   gem 'faker'
   gem 'json_api_test_helpers', '1.2.1.2'
   gem 'json_matchers', github: 'BBonifield/json_matchers', branch: 'bugfix/properly-support-record-errors'
