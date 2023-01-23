@@ -33,27 +33,30 @@ Bundler.require(*Rails.groups)
 
 module TramwayPro
   class Application < Rails::Application
-    config.load_defaults 5.1
+    config.load_defaults 7.0
+
     config.i18n.available_locales = [:ru]
     config.i18n.enforce_available_locales = false
     config.i18n.default_locale = :ru
-    config.autoload_paths += ["#{config.root}/app/models/ckeditor"]
-    config.autoload_paths += Dir["#{config.root}/lib/**/"]
-    config.middleware.use ::MultiProjectConfigurationMiddleware::Auth
-    config.middleware.use ::MultiProjectConfigurationMiddleware::Conference
-    config.middleware.use ::MultiProjectConfigurationMiddleware::AdminMiddleware
-    config.middleware.use ::MultiProjectConfigurationMiddleware::ApiMiddleware
-    config.middleware.use ::MultiProjectConfigurationMiddleware::Landing
-    config.middleware.use ::MultiProjectConfigurationMiddleware::Event
-    config.middleware.use ::MultiProjectConfigurationMiddleware::User
-    config.middleware.use ::MultiProjectConfigurationMiddleware::Profiles
-    config.middleware.use ::MultiProjectConfigurationMiddleware::Page
-    config.middleware.use ::MultiProjectConfigurationMiddleware::Partner
-    config.middleware.use ::MultiProjectConfigurationMiddleware::ListaiBook
-    config.middleware.use ::MultiProjectConfigurationMiddleware::ListaiPage
-    config.middleware.use ::MultiProjectConfigurationMiddleware::Podcasts
-    config.middleware.use ::MultiProjectConfigurationMiddleware::PurpleMagicCallback
-    config.middleware.use ::MultiProjectConfigurationMiddleware::BotMiddleware
+    config.autoload_paths << "#{config.root}/app/models/ckeditor"
+    config.autoload_paths << "#{config.root}/lib"
+
+    config.middleware.use MultiProjectConfigurationMiddleware::Auth
+    config.middleware.use MultiProjectConfigurationMiddleware::Conference
+    config.middleware.use MultiProjectConfigurationMiddleware::AdminMiddleware
+    config.middleware.use MultiProjectConfigurationMiddleware::ApiMiddleware
+    config.middleware.use MultiProjectConfigurationMiddleware::Landing
+    config.middleware.use MultiProjectConfigurationMiddleware::Event
+    config.middleware.use MultiProjectConfigurationMiddleware::User
+    config.middleware.use MultiProjectConfigurationMiddleware::Profiles
+    config.middleware.use MultiProjectConfigurationMiddleware::Page
+    config.middleware.use MultiProjectConfigurationMiddleware::Partner
+    config.middleware.use MultiProjectConfigurationMiddleware::ListaiBook
+    config.middleware.use MultiProjectConfigurationMiddleware::ListaiPage
+    config.middleware.use MultiProjectConfigurationMiddleware::Podcasts
+    config.middleware.use MultiProjectConfigurationMiddleware::PurpleMagicCallback
+    config.middleware.use MultiProjectConfigurationMiddleware::BotMiddleware
+
     config.active_job.queue_adapter = :sidekiq
   end
 end
