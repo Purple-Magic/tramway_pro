@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Concerns::TimeLogsTable
-  include Concerns::TableBuilder
+module TimeLogsTable
+  include TableBuilder
 
   def time_logs_table
     table do

@@ -58,5 +58,11 @@ module TramwayPro
     config.middleware.use MultiProjectConfigurationMiddleware::BotMiddleware
 
     config.active_job.queue_adapter = :sidekiq
+
+    config.active_record.yaml_column_permitted_classes = [
+      ActiveSupport::TimeWithZone,
+      Time,
+      ActiveSupport::TimeZone
+    ]
   end
 end
