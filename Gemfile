@@ -21,7 +21,6 @@ gem 'rails', '7.0.4.1'
 # gem 'tramway-partner', '1.0.4.1'
 # gem 'tramway-profiles', '1.4.1.2'
 
-gem 'tramway-api', path: '../tramway-dev/tramway-api'
 gem 'tramway-conference', path: '../tramway-dev/tramway-conference'
 gem 'tramway', path: '../tramway'
 gem 'tramway-event', path: '../tramway-event'
@@ -122,7 +121,7 @@ group :development, :test do
   gem 'listen', '>= 3.8.0'
   gem 'parallel_tests'
   gem 'reek'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 6'
   gem 'rubocop', '1.18.3'
   gem 'rubocop-rails'
   gem 'rubocop-rake'
@@ -136,7 +135,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'redactor-rails', github: 'glyph-fr/redactor-rails'
 
 group :test do
-  gem 'capybara', '3.31'
+  gem 'capybara', '>= 3.38'
   gem 'capybara_helpers'
   gem 'factory_bot_rails', '5.1.1'
   gem 'faker'
