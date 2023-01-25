@@ -59,7 +59,7 @@ class Podcasts::Youtube::DescriptionBuilder < ApplicationService
 
   def people(role)
     [I18n.t("podcast_engine.youtube.description.stars.#{role}")] + episode.model.stars.send(role).map do |star|
-      "* @#{star.star.nickname} #{star.link}\n"
+      "* #{Podcast::StarDecorator.decorate(star.star).nickname} #{star.link}\n"
     end
   end
 

@@ -6,7 +6,6 @@ class Podcast::StarDecorator < ApplicationDecorator
 
   delegate_attributes(
     :id,
-    :nickname,
     :link,
     :podcast_id,
     :created_at,
@@ -35,6 +34,14 @@ class Podcast::StarDecorator < ApplicationDecorator
           link_to episode.public_title, Tramway::Engine.routes.url_helpers.record_path(episode.id, model: Podcast::Episode)
         end)
       end
+    end
+  end
+
+  def nickname
+    if object.nickname.match? /A-Za-z/
+      "@#{object.nickname}"
+    else
+      object.nickname
     end
   end
 
