@@ -20,8 +20,9 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
   include Concerns::AudioControls
 
   def title
-    full_title = "#{public_title} Episode #{number}"
-    full_title += " от #{publish_date.strftime('%d.%m.%Y')}" if publish_date.present?
+    full_title = public_title || ""
+    full_title += " Episode #{number}" if podcast.options&.dig('title', 'episode_number').present?
+    full_title += " от #{publish_date.strftime('%d.%m.%Y')}" if podcast.options&.dig('title', 'publish_date').present? && publish_date.present?
     full_title
   end
 
