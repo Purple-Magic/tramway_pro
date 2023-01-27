@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PodcastDecorator < ApplicationDecorator
-  delegate_attributes :title, :footer, :youtube_footer
+  delegate_attributes :title, :footer, :youtube_footer, :options
 
   decorate_associations :stars, :musics, :episodes, :stats, :channels
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20230122103432) do
+ActiveRecord::Schema.define(version: 20230127110441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -780,6 +780,7 @@ ActiveRecord::Schema.define(version: 20230122103432) do
     t.text "chat_id"
     t.text "url"
     t.string "aasm_state"
+    t.jsonb "options"
   end
 
   create_table "products", force: :cascade do |t|
