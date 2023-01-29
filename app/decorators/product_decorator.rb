@@ -6,7 +6,7 @@ class ProductDecorator < ApplicationDecorator
   decorate_association :tasks
   decorate_association :time_logs
 
-  include Concerns::TimeLogsTable
+  include TimeLogsTable
   include TimeManager
 
   class << self

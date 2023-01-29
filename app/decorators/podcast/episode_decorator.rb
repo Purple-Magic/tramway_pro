@@ -16,8 +16,8 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
   include Podcast::Episodes::VideoDecorator
   include Podcast::Episodes::SocialPostsConcern
 
-  include Concerns::SimpleIcon
-  include Concerns::AudioControls
+  include SimpleIcon
+  include AudioControls
 
   def title
     full_title = "#{public_title} Episode #{number}"

@@ -15,7 +15,7 @@ class Podcast::Episodes::PartDecorator < Tramway::ApplicationDecorator
 
   decorate_associations :episode
 
-  include Concerns::AudioControls
+  include AudioControls
 
   def title
     "#{begin_time}-#{end_time}"

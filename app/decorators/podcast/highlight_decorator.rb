@@ -5,7 +5,7 @@ class Podcast::HighlightDecorator < ApplicationDecorator
 
   decorate_association :episode
 
-  include Concerns::AudioControls
+  include AudioControls
 
   class << self
     def show_attributes
