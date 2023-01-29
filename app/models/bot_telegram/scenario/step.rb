@@ -15,7 +15,7 @@ class BotTelegram::Scenario::Step < ApplicationRecord
 
   scope :partner_scope, ->(_user_id) { all }
   scope :finish_step, lambda {
-    active.where(options: nil).or(active.where(options: '').or(active.where(options: false))).first
+    where(options: nil).or(where(options: '').or(where(options: false))).first
   }
   %i[rsm night purple_magic].each do |team|
     scope "#{team}_scope".to_sym, ->(_user_id) { joins(:bot).where('bots.team = ?', team) }
