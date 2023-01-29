@@ -20,10 +20,29 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
   include Concerns::AudioControls
 
   def title
-    full_title = public_title || ""
-    full_title += " Episode #{number}" if podcast.options&.dig('title', 'episode_number').present?
-    full_title += " от #{publish_date.strftime('%d.%m.%Y')}" if podcast.options&.dig('title', 'publish_date').present? && publish_date.present?
-    full_title
+    (podcast.options&.dig('title') || []).reduce(public_title || "") do |t, key|
+      public_send("title_#{key}", t)
+    end
+  end
+
+  def title_episode_number(str)
+    "#{str} Episode #{number}"
+  end
+
+  def title_publish_date(str)
+    "#{str} от #{publish_date.strftime('%d.%m.%Y')}"
+  end
+
+  def full_title
+    content_tag :pre do
+      id = :full_title
+
+      concat(content_tag(:span, id: id) do
+        title
+      end)
+
+      concat copy_to_clipboard id
+    end
   end
 
   class << self
@@ -32,7 +51,7 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
     end
 
     def show_attributes
-      %i[render_commands render_errors montage_state podcast_link public_title publish_date file ready_file premontage_file trailer cover story_cover trailer_video story_trailer_video full_video
+      %i[render_commands render_errors montage_state podcast_link full_title file ready_file premontage_file trailer cover story_cover trailer_video story_trailer_video full_video
          description_view youtube_description posts_to_channels instagram_post_text twitter_post_text
          patreon_post_text]
     end
