@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
 class PodcastDecorator < ApplicationDecorator
-  delegate_attributes :title, :footer, :youtube_footer, :options
+  delegate_attributes :title, :footer, :youtube_footer
 
   decorate_associations :stars, :musics, :episodes, :stats, :channels
 
   alias name title
 
   include Concerns::TimeLogsTable
+
+  def options
+    model&.options || {}
+  end
 
   class << self
     def show_associations
