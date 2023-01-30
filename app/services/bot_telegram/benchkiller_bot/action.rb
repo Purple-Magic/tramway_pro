@@ -3,9 +3,9 @@
 require 'uri'
 
 class BotTelegram::BenchkillerBot::Action
-  include ::BotTelegram::MessagesManager
-  include ::BotTelegram::BenchkillerBot
-  include ::BotTelegram::BenchkillerBot::Concern
+  include BotTelegram::MessagesManager
+  include BotTelegram::BenchkillerBot
+  include BotTelegram::BenchkillerBot::Concern
 
   attr_reader :message, :user, :chat, :bot, :bot_record
 

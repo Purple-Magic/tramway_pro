@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 ruby '3.2.0'
-gem 'rails', '7.0.4.1'
+gem 'rails', '7.0.4.2'
 
 # gem 'tramway', '0.1.1.1'
 # gem 'tramway-api', '2.0.0.4'
@@ -127,8 +127,6 @@ group :development, :test do
   gem 'rubocop-rake'
   gem 'rubocop-rspec'
   gem 'selenium-webdriver'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 

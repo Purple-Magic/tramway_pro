@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module BotTelegram::Leopold::Tracker
-  include ::BotTelegram::Leopold::Notify
+  include BotTelegram::Leopold::Notify
 
   def send_everyday_report(product)
     decorated_product = ProductDecorator.decorate product

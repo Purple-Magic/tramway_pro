@@ -1,14 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'it_way_pro'
-require_relative 'it_way_pro/words_check'
-require_relative 'commands'
-require_relative 'command'
-require_relative '../custom/scenario'
-
-class BotTelegram::Leopold::Scenario < ::BotTelegram::Custom::Scenario
-  include ::BotTelegram::Leopold::ItWayPro
-  include ::BotTelegram::Leopold::ChatsConcern
+class BotTelegram::Leopold::Scenario < BotTelegram::Custom::Scenario
+  include BotTelegram::Leopold::ItWayPro
+  include BotTelegram::Leopold::ChatsConcern
 
   BOT_ID = 9
 

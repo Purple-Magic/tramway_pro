@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
 require 'telegram/bot'
-require_relative 'scenario'
-require_relative 'leopold'
-require_relative 'leopold/scenario'
-require_relative 'benchkiller_bot/scenario'
-require_relative 'purple_magic_bot/scenario'
 
 class BotTelegram::BotListener
   class << self

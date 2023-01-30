@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-require_relative 'notify'
-
 module BotTelegram::BenchkillerBot::AdminFeatures
-  include ::BotTelegram::BenchkillerBot::Notify
+  include BotTelegram::BenchkillerBot::Notify
   include AuditsLocales
-  include ::BotTelegram::BenchkillerBot::Concern
+  include BotTelegram::BenchkillerBot::Concern
 
   def send_approve_message_to_admin_chat(offer)
     return unless offer.available? || offer.lookfor?
@@ -20,8 +18,8 @@ module BotTelegram::BenchkillerBot::AdminFeatures
           ['Отклонить', { data: { command: :decline_offer, argument: offer.id } }]
         ]
       ]
-      message = ::BotTelegram::Custom::Message.new text: text, inline_keyboard: keyboard
-      send_notification_to_chat ::BotTelegram::BenchkillerBot::ADMIN_CHAT_ID, message
+      message = BotTelegram::Custom::Message.new text: text, inline_keyboard: keyboard
+      send_notification_to_chat BotTelegram::BenchkillerBot::ADMIN_CHAT_ID, message
     end
   end
 
@@ -45,7 +43,7 @@ module BotTelegram::BenchkillerBot::AdminFeatures
       url: Tramway::Engine.routes.url_helpers.edit_record_url(company, model: company.class,
 host: Settings[Rails.env][:purple_magic])
     )
-    send_notification_to_chat ::BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID, text
+    send_notification_to_chat BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID, text
   end
 
   def send_companies_creating_to_admin_chat(company)
@@ -54,7 +52,7 @@ host: Settings[Rails.env][:purple_magic])
       :company_creates,
       company_name: company.title
     )
-    send_notification_to_chat ::BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID, text
+    send_notification_to_chat BotTelegram::BenchkillerBot::ADMIN_COMPANIES_CHAT_ID, text
   end
 
   def approve_offer(argument)

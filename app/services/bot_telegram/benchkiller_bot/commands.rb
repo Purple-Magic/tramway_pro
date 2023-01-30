@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../custom/message'
-
 module BotTelegram::BenchkillerBot::Commands
   include BotTelegram::BenchkillerBot
 
@@ -137,11 +135,11 @@ module BotTelegram::BenchkillerBot::Commands
   def create_company(_argument)
     BotTelegram::Users::State.create! user_id: user.id,
       bot_id: bot_record.id,
-      current_state: ::BotTelegram::BenchkillerBot::ACTIONS_DATA[:create_company][:state]
+      current_state: BotTelegram::BenchkillerBot::ACTIONS_DATA[:create_company][:state]
 
     message_to_user(
       bot.api,
-      ::BotTelegram::BenchkillerBot::ACTIONS_DATA[:create_company][:message],
+      BotTelegram::BenchkillerBot::ACTIONS_DATA[:create_company][:message],
       chat.telegram_chat_id
     )
   end
@@ -170,7 +168,7 @@ module BotTelegram::BenchkillerBot::Commands
 
   def manage_subscription(_argument); end
 
-  ::BotTelegram::BenchkillerBot::MENUS.each_key do |menu|
+  BotTelegram::BenchkillerBot::MENUS.each_key do |menu|
     define_method(menu) do |_argument|
       answer = i18n_scope(menu, :text)
       show menu: menu, answer: answer

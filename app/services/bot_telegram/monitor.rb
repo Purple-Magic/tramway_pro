@@ -1,5 +1,3 @@
-require_relative './leopold/notify'
-
 include BotTelegram::Leopold::Notify
 
 active_bots = Sidekiq::Workers.new.map do |worker|
