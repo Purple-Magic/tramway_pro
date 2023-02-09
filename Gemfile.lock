@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/AlexWayfer/time_difference.git
-  revision: 12247b665fd68c19a1ce97be5c564e2eafa49c22
-  branch: depfu/update/activesupport-7.0.4.1
+  revision: b051b6d62a32bb50d77ab331bd28dd0964e3cb6d
+  branch: depfu/update/activesupport-7.0.4.2
   specs:
     time_difference (0.7.0)
       activesupport (~> 7.0)
@@ -198,7 +198,7 @@ GEM
       airbrake-ruby (~> 1.8)
     airbrake-ruby (1.8.0)
     ast (2.4.2)
-    audited (5.1.0)
+    audited (5.2.0)
       activerecord (>= 5.0, < 7.1)
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
@@ -323,7 +323,7 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
-    faker (3.1.0)
+    faker (3.1.1)
       i18n (>= 1.8.11, < 2)
     faraday (1.5.1)
       faraday-em_http (~> 1.0)
@@ -413,7 +413,7 @@ GEM
       nokogiri (>= 1.5.9)
     macaddr (1.7.2)
       systemu (~> 2.6.5)
-    mail (2.8.0.1)
+    mail (2.8.1)
       mini_mime (>= 0.1.1)
       net-imap
       net-pop
@@ -434,7 +434,7 @@ GEM
     more_html_tags (0.2.0)
     multi_json (1.15.0)
     multi_xml (0.6.0)
-    multipart-post (2.2.3)
+    multipart-post (2.3.0)
     net-imap (0.3.4)
       date
       net-protocol
@@ -448,13 +448,13 @@ GEM
       net-protocol
     net-ssh (7.0.1)
     nio4r (2.5.8)
-    nokogiri (1.14.0)
+    nokogiri (1.14.1)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     open3 (0.1.2)
     orm_adapter (0.5.0)
     parallel (1.22.1)
-    parallel_tests (4.1.0)
+    parallel_tests (4.2.0)
       parallel
     paranoia (2.6.1)
       activerecord (>= 5.1, < 7.1)
@@ -510,7 +510,7 @@ GEM
     rainbow (3.1.1)
     raindrops (0.20.0)
     rake (13.0.6)
-    ransack (3.2.1)
+    ransack (4.0.0)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
@@ -523,16 +523,16 @@ GEM
       execjs
       railties (>= 3.2)
       tilt
-    redcarpet (3.5.1)
+    redcarpet (3.6.0)
     redis (4.8.0)
     reek (6.1.4)
       kwalify (~> 0.7.0)
       parser (~> 3.2.0)
       rainbow (>= 2.0, < 4.0)
-    regexp_parser (2.6.2)
+    regexp_parser (2.7.0)
     rexml (3.2.5)
     rmagick (4.2.2)
-    rspec-core (3.12.0)
+    rspec-core (3.12.1)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.2)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -588,7 +588,7 @@ GEM
       i18n (>= 0.5.0)
     safe_target_blank (1.0.2)
       rails
-    sanitize (6.0.0)
+    sanitize (6.0.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     sass-rails (6.0.0)
@@ -619,12 +619,11 @@ GEM
     sidekiq-cron (1.9.1)
       fugit (~> 1.8)
       sidekiq (>= 4.2.1)
-    sidekiq-scheduler (4.0.3)
-      redis (>= 4.2.0)
+    sidekiq-scheduler (5.0.1)
       rufus-scheduler (~> 3.2)
-      sidekiq (>= 4, < 7)
+      sidekiq (>= 4, < 8)
       tilt (>= 1.4.0)
-    simple_form (5.1.0)
+    simple_form (5.2.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
     smart_buttons (1.0.2)
@@ -649,7 +648,7 @@ GEM
       faraday
       inflecto
       virtus
-    temple (0.9.1)
+    temple (0.10.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.2.1)
@@ -692,7 +691,7 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    webpacker (5.4.3)
+    webpacker (5.4.4)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
@@ -838,7 +837,7 @@ DEPENDENCIES
   yt
 
 RUBY VERSION
-   ruby 3.2.0p0
+   ruby 3.2.1p31
 
 BUNDLED WITH
    2.4.6

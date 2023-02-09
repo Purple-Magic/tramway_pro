@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '3.2.0'
+ruby '3.2.1'
 gem 'rails', '7.0.4.2'
 
 # gem 'tramway', '0.1.1.1'
@@ -99,7 +99,7 @@ gem 'sprockets', '>= 3.7.2'
 gem 'state_machine_buttons', '2.0'
 gem 'streamio-ffmpeg'
 gem 'telegram-bot-ruby', '0.15.0'
-gem 'time_difference', github: 'AlexWayfer/time_difference', branch: 'depfu/update/activesupport-7.0.4.1'
+gem 'time_difference', github: 'AlexWayfer/time_difference', branch: 'depfu/update/activesupport-7.0.4.2'
 gem 'trap', '4.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn-rails'
