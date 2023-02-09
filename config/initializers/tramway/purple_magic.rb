@@ -15,7 +15,6 @@ Rails.application.config.after_initialize do
       BotTelegram::Scenario::Step,
       BotTelegram::Scenario::ProgressRecord,
       Bot,
-      Audited::Audit,
       Estimation::Project,
       Estimation::Task,
       Estimation::Customer,
@@ -116,7 +115,6 @@ Rails.application.config.after_initialize do
         TimeLog
       ]
     },
-    Audited::Audit,
     Tramway::User,
     project: :purple_magic
   )

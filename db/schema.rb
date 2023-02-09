@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_22_103432) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_09_231933) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -255,10 +255,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_22_103432) do
     t.text "text"
     t.integer "position"
     t.integer "project_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.text "answer"
     t.text "file"
     t.text "quest"
     t.integer "chapter_id"
+  end
+
+  create_table "chatquestulsk_games", force: :cascade do |t|
+    t.text "area"
+    t.integer "bot_telegram_user_id"
+    t.text "state"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
   end
@@ -379,6 +387,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_22_103432) do
     t.text "result_duration"
     t.text "url"
     t.string "aasm_state"
+  end
+
+  create_table "elections_candidates", force: :cascade do |t|
+    t.text "full_name"
+    t.text "description"
+    t.integer "area"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.text "consignment"
+    t.text "state"
+    t.integer "project_id"
   end
 
   create_table "estimation_coefficients", force: :cascade do |t|
@@ -760,6 +779,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_22_103432) do
     t.text "chat_id"
     t.text "url"
     t.string "aasm_state"
+    t.jsonb "options"
   end
 
   create_table "products", force: :cascade do |t|
@@ -935,7 +955,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_22_103432) do
     t.integer "event_id"
     t.text "title"
     t.datetime "deadline", precision: nil
-    t.string "action_state", default: "must_be_done"
+    t.text "action_state", default: "must_be_done"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.integer "project_id"
@@ -1209,6 +1229,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_22_103432) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.string "aasm_state"
+  end
+
+  create_table "versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.bigint "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.datetime "created_at"
+    t.text "object_changes"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
   create_table "videos", force: :cascade do |t|
