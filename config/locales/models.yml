@@ -254,6 +254,15 @@ ru:
         name: Имя
       it_way/person:
         messages_at_it_way_chat: Активность в чате IT Way
+      podcast/star:
+        nickname: Имя в описании выпуска
+        first_name: Имя
+        last_name: Фамилия
+        link: Основная ссылка
+        twitter: Никнейм в twitter
+        telegram: Никнейм в Telegram
+        instagram: Никнейм в Instagram
+        vk: Никнейм в VK
   enumerize:
     podcast:
       podcast_type:
