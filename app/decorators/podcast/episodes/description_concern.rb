@@ -18,8 +18,13 @@ module Podcast::Episodes::DescriptionConcern
     concat('Ведущие:')
     concat content_tag :br
     Podcast::StarDecorator.decorate(object.stars.main).each do |star|
-      concat link_to "🎙️ #{star.nickname}", star.link
-      concat content_tag :br
+      if star.link.present?
+        concat link_to "🎙️ #{star.nickname}", star.link
+        concat content_tag :br
+      else
+        concat "🎙️ #{star.nickname}"
+        concat content_tag :br
+      end
     end
   end
 
@@ -27,8 +32,13 @@ module Podcast::Episodes::DescriptionConcern
     concat('Гости:')
     concat content_tag :br
     Podcast::StarDecorator.decorate(object.stars.guest).each do |star|
-      concat link_to "🎙️ #{star.nickname}", star.link
-      concat content_tag :br
+      if star.link.present?
+        concat link_to "🎙️ #{star.nickname}", star.link
+        concat content_tag :br
+      else
+        concat "🎙️ #{star.nickname}"
+        concat content_tag :br
+      end
     end
   end
 
@@ -36,8 +46,13 @@ module Podcast::Episodes::DescriptionConcern
     concat('Эпизодическое участие:')
     concat content_tag :br
     Podcast::StarDecorator.decorate(object.stars.minor).each do |star|
-      concat link_to "🎙️ #{star.nickname}", star.link
-      concat content_tag :br
+      if star.link.present?
+        concat link_to "🎙️ #{star.nickname}", star.link
+        concat content_tag :br
+      else
+        concat "🎙️ #{star.nickname}"
+        concat content_tag :br
+      end
     end
   end
 
