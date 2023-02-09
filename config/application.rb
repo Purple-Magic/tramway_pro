@@ -35,6 +35,8 @@ module TramwayPro
   class Application < Rails::Application
     config.load_defaults 7.0
 
+    config.hosts << "red-magic.test"
+
     config.i18n.available_locales = [:ru]
     config.i18n.enforce_available_locales = false
     config.i18n.default_locale = :ru
