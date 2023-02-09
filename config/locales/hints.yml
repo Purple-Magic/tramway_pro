@@ -2,3 +2,22 @@ ru:
   hints:
     bot_telegram/scenario/step:
       delay: если вы укажете значение в этой ячейке, следующее сообщение после текущего будет выведено автоматически с указанной вами задержкой в секундах
+    podcast/star:
+      nickname: будет использоваться в RSS-ленте и в постах социальных сетях
+      first_name: будет использоваться в постах сетях, где нет упоминания звезды
+      last_name: будет использоваться в постах сетях, где нет упоминания звезды
+      link: будет использоваться в описании к выпуску
+      twitter: будет использования в твиттер посте
+      telegram: будет использоваться в постах в Telegram. Можно использовать никнейм Telegram-канала
+      instagram: будет использоваться в постах в Instagram
+      vk: будет использоваься в постах в VK. За маску ссылки будут взяты Имя и Фамилия
+  placeholders:
+    podcast/star:
+      nickname: kalashnikovisme
+      first_name: Павел
+      last_name: Калашников
+      link: https://kalashnikovisme.ru
+      twitter: kalashnikovisme
+      telegram: kalashnikovisme
+      instagram: kalashnikovisme
+      vk: kalashnikovisme
