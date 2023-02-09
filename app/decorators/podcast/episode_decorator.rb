@@ -30,7 +30,7 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
   end
 
   def title_publish_date(str)
-    "#{str} от #{publish_date.strftime('%d.%m.%Y')}"
+    "#{str} от #{publish_date&.strftime('%d.%m.%Y')}"
   end
 
   def full_title
