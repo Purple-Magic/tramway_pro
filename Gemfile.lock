@@ -87,7 +87,7 @@ PATH
 PATH
   remote: ../tramway-event
   specs:
-    tramway-event (2.0.0.1)
+    tramway-event (2.0)
       tramway
 
 PATH

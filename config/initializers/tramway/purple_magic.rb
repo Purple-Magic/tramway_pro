@@ -6,60 +6,68 @@ Rails.application.config.after_initialize do
   Tramway.set_singleton_models PurpleMagic, project: :purple_magic
 
   Tramway.set_available_models(
-    Tramway::Landing::Block,
-    Tramway::Page::Page,
-    Tramway::User,
-    BotTelegram::User,
-    BotTelegram::Message,
-    BotTelegram::Scenario::Step,
-    BotTelegram::Scenario::ProgressRecord,
-    Bot,
-    Audited::Audit,
-    Estimation::Project,
-    Estimation::Task,
-    Estimation::Customer,
-    Estimation::Coefficient,
-    Estimation::Expense,
-    Estimation::Cost,
-    Benchkiller::User,
-    Benchkiller::Company,
-    Benchkiller::Notification,
-    Benchkiller::Offer,
-    Benchkiller::Tag,
-    Benchkiller::Collation,
-    FindMeds::Feedback,
-    Product,
-    Products::Task,
-    TimeLog,
+    [
+      Tramway::Landing::Block,
+      Tramway::Page::Page,
+      Tramway::User,
+      BotTelegram::User,
+      BotTelegram::Message,
+      BotTelegram::Scenario::Step,
+      BotTelegram::Scenario::ProgressRecord,
+      Bot,
+      Audited::Audit,
+      Estimation::Project,
+      Estimation::Task,
+      Estimation::Customer,
+      Estimation::Coefficient,
+      Estimation::Expense,
+      Estimation::Cost,
+      Benchkiller::User,
+      Benchkiller::Company,
+      Benchkiller::Notification,
+      Benchkiller::Offer,
+      Benchkiller::Tag,
+      Benchkiller::Collation,
+      FindMeds::Feedback,
+      Product,
+      Products::Task,
+      TimeLog
+    ],
     project: :purple_magic
   )
 
   Tramway.set_available_models(
-    BotTelegram::User,
-    BotTelegram::Scenario::Step,
-    BotTelegram::Scenario::ProgressRecord,
+    [
+      BotTelegram::User,
+      BotTelegram::Scenario::Step,
+      BotTelegram::Scenario::ProgressRecord
+    ],
     role: :partner,
     project: :purple_magic
   )
 
   Tramway.set_available_models(
-    Bot,
-    BotTelegram::User,
-    BotTelegram::Scenario::Step,
-    BotTelegram::Scenario::ProgressRecord,
-    BotTelegram::Message,
+    [
+      Bot,
+      BotTelegram::User,
+      BotTelegram::Scenario::Step,
+      BotTelegram::Scenario::ProgressRecord,
+      BotTelegram::Message
+    ],
     role: :night,
     project: :purple_magic
   )
 
   Tramway.set_available_models(
-    Bot,
-    Benchkiller::User,
-    Benchkiller::Company,
-    Benchkiller::Notification,
-    Benchkiller::Offer,
-    Benchkiller::Tag,
-    Benchkiller::Collation,
+    [
+      Bot,
+      Benchkiller::User,
+      Benchkiller::Company,
+      Benchkiller::Notification,
+      Benchkiller::Offer,
+      Benchkiller::Tag,
+      Benchkiller::Collation
+    ],
     role: :benchkiller,
     project: :purple_magic
   )

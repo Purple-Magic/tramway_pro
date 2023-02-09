@@ -2,17 +2,21 @@
 
 Rails.application.config.after_initialize do
   Tramway::Export.set_exportable_models Tramway::Event::Participant, project: :conference
-  Tramway.set_available_models Word,
-    ItWay::Certificate,
-    Podcast,
-    Podcast::Episode,
-    Tramway::Landing::Block,
-    ItWay::Content,
-    ItWay::Participation,
-    ItWay::Person,
-    ItWay::People::Point,
+  Tramway.set_available_models(
+    [
+      Word,
+      ItWay::Certificate,
+      Podcast,
+      Podcast::Episode,
+      Tramway::Landing::Block,
+      ItWay::Content,
+      ItWay::Participation,
+      ItWay::Person,
+      ItWay::People::Point
+    ],
     project: :conference,
     role: :admin
+  )
 
   Tramway.navbar_structure(
     # Tramway::Conference::Unity,
