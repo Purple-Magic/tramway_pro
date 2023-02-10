@@ -3,7 +3,7 @@
 rails_env = "production"
 environment rails_env
 
-app_dir = "/srv/tramway_pro/shared" # Update me with your root rails app path
+app_dir = "srv/tramway_pro/shared" # Update me with your root rails app path
 
 bind  "unix://#{app_dir}/puma.sock"
 pidfile "#{app_dir}/puma.pid"
