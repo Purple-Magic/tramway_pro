@@ -10,10 +10,10 @@ class BotTelegram::BenchkillerBot::ChatDecorator
   end
 
   def main_chat?
-    @chat.telegram_chat_id == ::BotTelegram::BenchkillerBot::MAIN_CHAT_ID
+    @chat.telegram_chat_id == BotTelegram::BenchkillerBot::MAIN_CHAT_ID
   end
 
   def admin_chat?
-    @chat.telegram_chat_id == ::BotTelegram::BenchkillerBot::ADMIN_CHAT_ID
+    @chat.telegram_chat_id == BotTelegram::BenchkillerBot::ADMIN_CHAT_ID
   end
 end

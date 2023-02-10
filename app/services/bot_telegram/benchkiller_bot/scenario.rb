@@ -1,15 +1,9 @@
 # frozen_string_literal: true
 
-require_relative '../custom/scenario'
-require_relative 'chat_decorator'
-require_relative 'command'
-require_relative 'commands'
-require_relative 'action'
-
-class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
-  include ::BotTelegram::BenchkillerBot::Commands
-  include ::BotTelegram::BenchkillerBot::AdminFeatures
-  include ::BotTelegram::BenchkillerBot::Concern
+class BotTelegram::BenchkillerBot::Scenario < BotTelegram::Custom::Scenario
+  include BotTelegram::BenchkillerBot::Commands
+  include BotTelegram::BenchkillerBot::AdminFeatures
+  include BotTelegram::BenchkillerBot::Concern
 
   BOT_ID = 13
 
@@ -31,7 +25,7 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
     elsif start_action?
       start
     elsif button_action?
-      public_send ::BotTelegram::BenchkillerBot::BUTTONS.invert[message_from_telegram.text], nil
+      public_send BotTelegram::BenchkillerBot::BUTTONS.invert[message_from_telegram.text], nil
     elsif user.finished_state_for?(bot: bot_record)
       message_to_chat bot.api, chat.telegram_chat_id, 'Напиши /start'
     else
@@ -47,6 +41,6 @@ class BotTelegram::BenchkillerBot::Scenario < ::BotTelegram::Custom::Scenario
   end
 
   def button_action?
-    message_from_telegram.try(:text) && message_from_telegram.text.in?(::BotTelegram::BenchkillerBot::BUTTONS.values)
+    message_from_telegram.try(:text) && message_from_telegram.text.in?(BotTelegram::BenchkillerBot::BUTTONS.values)
   end
 end

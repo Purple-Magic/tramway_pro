@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:it_way]) do
     mount Tramway::Conference::Engine => '/'
     mount Tramway::Engine, at: '/admin', as: :it_way_admin
-    mount Tramway::Api::Engine, at: '/api', as: :it_way_api
+    # mount Tramway::Api::Engine, at: '/api', as: :it_way_api
 
     get '/youtube-callback' => 'youtube_callbacks#create'
     get '/:id' => 'shortener/shortened_urls#show'
@@ -36,25 +36,25 @@ Rails.application.routes.draw do
   end
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:kalashnikovisme]) do
-    root to: 'kalashnikovisme/web/welcome#index'
+    root to: 'kalashnikovisme/web/welcome#index', as: :kalashnikovisme_root
 
     mount Tramway::Engine, at: '/admin', as: :kalash_admin
   end
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:tramway_dev]) do
-    root to: 'tramway_dev/web/welcome#index'
+    root to: 'tramway_dev/web/welcome#index', as: :tramway_dev_root
 
     mount Tramway::Engine, at: '/admin'
   end
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:engineervol]) do
-    root to: 'engineervol/web/welcome#index'
+    root to: 'engineervol/web/welcome#index', as: :engineervol_root
 
     mount Tramway::Engine, at: '/admin', as: :vol_admin
   end
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:purple_magic]) do
-    root to: 'purple_magic/web/welcome#index'
+    root to: 'purple_magic/web/welcome#index', as: :purple_magic_root
 
     mount Tramway::Engine, at: '/admin', as: :purple_magic_admin
 
@@ -78,7 +78,7 @@ Rails.application.routes.draw do
   end
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:benchkiller]) do
-    root to: 'benchkiller/web/welcome#index'
+    root to: 'benchkiller/web/welcome#index', as: :benchkiller_root
 
     namespace :benchkiller do
       namespace :web do
@@ -104,11 +104,11 @@ Rails.application.routes.draw do
   end
 
   constraints Constraints::DomainConstraint.new(Settings[Rails.env][:red_magic]) do
-    root to: 'red_magic/web/welcome#index'
+    root to: 'red_magic/web/welcome#index', as: :red_magic_root
 
     mount Tramway::Engine, at: '/admin', as: :red_magic_admin
     mount Tramway::Page::Engine, at: '/page', as: :red_magic
-    mount Tramway::Api::Engine, at: '/api', as: :red_magic_api
+    # mount Tramway::Api::Engine, at: '/api', as: :red_magic_api
 
     namespace :red_magic do
       namespace :api do

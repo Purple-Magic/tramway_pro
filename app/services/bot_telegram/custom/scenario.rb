@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class BotTelegram::Custom::Scenario
-  include ::BotTelegram::MessagesManager
-  include ::BotTelegram::Info
+  include BotTelegram::MessagesManager
+  include BotTelegram::Info
 
   attr_reader :bot, :bot_record, :chat, :message_from_telegram, :message, :user
 

@@ -6,4 +6,6 @@ module ::Tramway::Extensions
   end
 end
 
-Tramway::Event::Event.include Tramway::Event::EventConcern
+Rails.application.config.after_initialize do
+  Tramway::Event::Event.include Tramway::Event::EventConcern
+end

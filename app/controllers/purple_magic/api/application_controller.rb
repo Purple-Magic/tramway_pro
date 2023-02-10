@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-class PurpleMagic::Api::ApplicationController < Tramway::Api::ApplicationController
+class PurpleMagic::Api::ApplicationController < ApplicationController
 end

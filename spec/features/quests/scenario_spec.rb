@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'bot_telegram'
 
 describe 'BotTelegram::Scenario' do
   let!(:user) { BotTelegram::User.last || create(:bot_telegram_user) }

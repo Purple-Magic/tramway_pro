@@ -23,7 +23,9 @@ module TramwayProObjectMethods
   end
 end
 
-Tramway::ApplicationController.include TramwayProObjectMethods
-Tramway::Conference::Web::WelcomeController.include TramwayProObjectMethods
-Tramway::RecordsController.include TramwayProObjectMethods
-Tramway::SingletonsController.include TramwayProObjectMethods
+Rails.application.config.after_initialize do
+  Tramway::ApplicationController.include TramwayProObjectMethods
+  Tramway::Conference::Web::WelcomeController.include TramwayProObjectMethods
+  Tramway::RecordsController.include TramwayProObjectMethods
+  Tramway::SingletonsController.include TramwayProObjectMethods
+end

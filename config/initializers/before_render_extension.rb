@@ -28,9 +28,11 @@ module BeforeRenderModule
     # FIXME: it's repeat of tramway-core/application_controller method
 
     def application
-      @application = ::Tramway.application_object
+      @application = Tramway.application_object
     end
   end
 end
 
-Tramway::ApplicationController.include BeforeRenderModule
+Rails.application.config.after_initialize do
+  Tramway::ApplicationController.include BeforeRenderModule
+end
