@@ -48,50 +48,10 @@ GIT
       jquery-rails
       rails (>= 3.2.8)
 
-PATH
-  remote: ../tramway-dev/tramway-conference
-  specs:
-    tramway-conference (1.9.5.8)
-
-PATH
-  remote: ../tramway-dev/tramway-export
-  specs:
-    tramway-export (0.2.1.3)
-      xls_exporter (>= 1.2)
-
-PATH
-  remote: ../tramway-dev/tramway-landing
-  specs:
-    tramway-landing (3.3.0.9)
-
-PATH
-  remote: ../tramway-dev/tramway-news
-  specs:
-    tramway-news (1.0.4.6)
-
-PATH
-  remote: ../tramway-dev/tramway-page
-  specs:
-    tramway-page (1.6.0.4)
-
-PATH
-  remote: ../tramway-dev/tramway-partner
-  specs:
-    tramway-partner (1.0.4.3)
-
-PATH
-  remote: ../tramway-dev/tramway-profiles
-  specs:
-    tramway-profiles (1.4.1.4)
-
-PATH
-  remote: ../tramway-event
-  specs:
-    tramway-event (2.0.1)
-      tramway
-
-PATH
-  remote: ../tramway
+GIT
+  remote: https://github.com/purple-magic/tramway.git
+  revision: adad92696dc181cb3feabaf7f45668c8282f741e
+  branch: 17-remove-rails-5-dependency-and-make-it-compatible-with-rails-7+
   specs:
     tramway (0.1.2)
       aasm
@@ -658,6 +618,20 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.11)
     timeout (0.3.1)
+    tramway-api (2.0.0.5)
+      knock
+      tramway (>= 0.1.0)
+      uuid
+    tramway-conference (1.9.5.7)
+    tramway-event (2.0.0.1)
+      tramway
+    tramway-export (0.2.1.2)
+      xls_exporter (>= 1.2)
+    tramway-landing (3.3.0.8)
+    tramway-news (1.0.4.5)
+    tramway-page (1.6.0.3)
+    tramway-partner (1.0.4.2)
+    tramway-profiles (1.4.1.3)
     trap (4.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -817,14 +791,15 @@ DEPENDENCIES
   telegram-bot-ruby (= 0.15.0)
   time_difference!
   tramway!
-  tramway-conference!
-  tramway-event!
-  tramway-export!
-  tramway-landing!
-  tramway-news!
-  tramway-page!
-  tramway-partner!
-  tramway-profiles!
+  tramway-api (= 2.0.0.5)
+  tramway-conference (= 1.9.5.7)
+  tramway-event (= 2.0.0.1)
+  tramway-export (= 0.2.1.2)
+  tramway-landing (= 3.3.0.8)
+  tramway-news (= 1.0.4.5)
+  tramway-page (= 1.6.0.3)
+  tramway-partner (= 1.0.4.2)
+  tramway-profiles (= 1.4.1.3)
   trap (= 4.0)
   tzinfo-data
   uglifier (>= 1.3.0)

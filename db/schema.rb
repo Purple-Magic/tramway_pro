@@ -255,18 +255,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_09_231933) do
     t.text "text"
     t.integer "position"
     t.integer "project_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
     t.text "answer"
     t.text "file"
     t.text "quest"
     t.integer "chapter_id"
-  end
-
-  create_table "chatquestulsk_games", force: :cascade do |t|
-    t.text "area"
-    t.integer "bot_telegram_user_id"
-    t.text "state"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
   end
@@ -387,17 +379,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_09_231933) do
     t.text "result_duration"
     t.text "url"
     t.string "aasm_state"
-  end
-
-  create_table "elections_candidates", force: :cascade do |t|
-    t.text "full_name"
-    t.text "description"
-    t.integer "area"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.text "consignment"
-    t.text "state"
-    t.integer "project_id"
   end
 
   create_table "estimation_coefficients", force: :cascade do |t|
@@ -779,7 +760,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_09_231933) do
     t.text "chat_id"
     t.text "url"
     t.string "aasm_state"
-    t.jsonb "options"
   end
 
   create_table "products", force: :cascade do |t|
@@ -955,7 +935,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_09_231933) do
     t.integer "event_id"
     t.text "title"
     t.datetime "deadline", precision: nil
-    t.text "action_state", default: "must_be_done"
+    t.string "action_state", default: "must_be_done"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.integer "project_id"
