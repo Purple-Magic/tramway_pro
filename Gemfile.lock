@@ -323,8 +323,8 @@ GEM
       haml (>= 4.0.6)
       railties (>= 5.1)
     hashdiff (1.0.1)
-    httparty (0.20.0)
-      mime-types (~> 3.0)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
@@ -728,7 +728,7 @@ DEPENDENCIES
   font_awesome5_rails
   foreman
   haml-rails
-  httparty (~> 0.20.0)
+  httparty (~> 0.21.0)
   jbuilder (~> 2.5)
   jquery-rails
   json_api_test_helpers (= 1.2.1.2)
