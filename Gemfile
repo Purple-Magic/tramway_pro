@@ -151,7 +151,7 @@ group :test do
 end
 
 group :production do
-  gem 'airbrake', '~> 5.0'
+  gem 'airbrake'
 end
 
 gem 'httparty', '~> 0.20.0'
