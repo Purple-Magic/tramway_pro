@@ -23,4 +23,13 @@ Rails.application.configure do
   config.assets.debug = true
   config.assets.quiet = true
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.hosts += [
+    "red-magic.test",
+    "it-way.test",
+    "kalashnikovisme.test",
+    "benchkiller.test",
+    "purple-magic.test",
+    "engineervol.test"
+  ]
 end
