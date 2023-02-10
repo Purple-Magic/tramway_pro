@@ -7,7 +7,7 @@ class PodcastDecorator < ApplicationDecorator
 
   alias name title
 
-  include Concerns::TimeLogsTable
+  include TimeLogsTable
 
   def options
     model&.options || {}

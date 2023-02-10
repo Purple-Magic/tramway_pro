@@ -35,13 +35,13 @@ FactoryBot.define do
     "file#{n}.png"
   end
   sequence :image_as_file do |_n|
-    fixture_file_upload('public/temp.png', 'image/png')
+    Rack::Test::UploadedFile.new('public/temp.png', 'image/png')
   end
   sequence :sound_as_file do |_n|
-    fixture_file_upload('public/sound.mp3', 'mp3')
+    Rack::Test::UploadedFile.new('public/sound.mp3', 'mp3')
   end
   sequence :full_hd_image_as_file do |_n|
-    fixture_file_upload('public/big-image.jpg', 'jpg/jpeg')
+    Rack::Test::UploadedFile.new('public/big-image.jpg', 'jpg/jpeg')
   end
   sequence :full_hd_image_as_path do |_n|
     Rails.root.join('public/big-image.jpg')
@@ -71,10 +71,10 @@ FactoryBot.define do
     "#{"#{n}000"[0, 3]}AH"
   end
   sequence :file do
-    fixture_file_upload('public/1.pdf', 'pdf')
+    Rack::Test::UploadedFile.new('public/1.pdf', 'pdf')
   end
   sequence :xlsx do
-    fixture_file_upload('public/1.xlsx', 'xlsx')
+    Rack::Test::UploadedFile.new('public/1.xlsx', 'xlsx')
   end
   sequence :username do |n|
     "#{Faker::Internet.username}_#{n}"

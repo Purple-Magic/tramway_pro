@@ -16,8 +16,8 @@ class Podcast::EpisodeDecorator < ApplicationDecorator
   include Podcast::Episodes::VideoDecorator
   include Podcast::Episodes::SocialPostsConcern
 
-  include Concerns::SimpleIcon
-  include Concerns::AudioControls
+  include SimpleIcon
+  include AudioControls
 
   def title
     (podcast.options&.dig('title') || []).reduce(public_title || "") do |t, key|

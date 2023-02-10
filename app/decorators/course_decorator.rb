@@ -26,7 +26,7 @@ class CourseDecorator < ApplicationDecorator
   end
 
   include Courses::DecoratorHelpers
-  include Concerns::TimeLogsTable
+  include TimeLogsTable
 
   def tree
     content_tag :div do

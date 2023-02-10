@@ -14,7 +14,7 @@ class Products::TaskDecorator < Tramway::ApplicationDecorator
   decorate_association :product
   decorate_association :time_logs, as: :associated
 
-  include Concerns::TimeLogsTable
+  include TimeLogsTable
 
   def created_at
     object.created_at.strftime('%d.%m.%Y %H:%M')

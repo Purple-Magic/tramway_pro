@@ -14,4 +14,13 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :test
   config.active_support.deprecation = :stderr
+
+  config.hosts += [
+    "red-magic.test",
+    "it-way.test",
+    "kalashnikovisme.test",
+    "benchkiller.test",
+    "purple-magic.test",
+    "engineervol.test"
+  ]
 end

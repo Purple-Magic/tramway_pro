@@ -6,14 +6,14 @@ class BotTelegram::Leopold::ChatDecorator
   STORY_MAKER_ID = '-559667872'
   DO_RE_MISSII = '-516113848'
 
-  include ::BotTelegram::Leopold::ChatsConcern
+  include BotTelegram::Leopold::ChatsConcern
 
   def initialize(chat)
     @chat = chat
   end
 
   def to_answer?
-    chat_id == ::BotTelegram::Leopold::ItWayPro::CHAT_ID || chat_id == '-677884132'
+    chat_id == BotTelegram::Leopold::ItWayPro::CHAT_ID || chat_id == '-677884132'
   end
 
   def it_way_podcast?

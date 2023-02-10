@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../custom/scenario'
-
-class BotTelegram::PurpleMagicBot::Scenario < ::BotTelegram::Custom::Scenario
+class BotTelegram::PurpleMagicBot::Scenario < BotTelegram::Custom::Scenario
   BOT_ID = 7
 
   MENUS = {
@@ -61,7 +59,7 @@ class BotTelegram::PurpleMagicBot::Scenario < ::BotTelegram::Custom::Scenario
       end
     end
 
-    message = ::BotTelegram::Custom::Message.new text: answer, reply_markup: { keyboard: keyboard }
+    message = BotTelegram::Custom::Message.new text: answer, reply_markup: { keyboard: keyboard }
 
     user.set_finished_state_for bot: bot_record
     message_to_user bot.api, message, chat.telegram_chat_id

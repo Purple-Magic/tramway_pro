@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Concerns::TableBuilder
+module TableBuilder
   def table(**options, &block)
     content_tag(:table, class: 'table table-bordered table-striped', **options) do
       yield if block

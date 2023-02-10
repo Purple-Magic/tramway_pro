@@ -21,7 +21,7 @@ class Benchkiller::CompanyDecorator < ApplicationDecorator
     :uuid
   )
 
-  include Concerns::TableBuilder
+  include TableBuilder
 
   def bot_card
     <<~TXT

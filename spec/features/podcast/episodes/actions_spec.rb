@@ -25,7 +25,6 @@ describe 'Actions' do
 
   Podcast::Episode::WORKER_EVENTS.each_with_index do |worker_event, index|
     it "runs #{worker_event[:worker]} worker" do
-      sleep 5 if index == 0
       visit '/admin'
       fill_in 'Email', with: "admin#{red_magic_id}@email.com"
       fill_in 'Пароль', with: '123456'

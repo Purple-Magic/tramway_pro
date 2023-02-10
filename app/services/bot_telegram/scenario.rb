@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
-require_relative './messages_manager'
-require_relative './info'
-
 module BotTelegram::Scenario
   class << self
-    include ::BotTelegram::MessagesManager
-    include ::BotTelegram::Info
-    include ::BotTelegram::StatsNotifications
+    include BotTelegram::MessagesManager
+    include BotTelegram::Info
+    include BotTelegram::StatsNotifications
 
     def run(message_from_telegram, bot, bot_record)
       user = user_from message_from_telegram.from

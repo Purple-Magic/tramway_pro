@@ -19,7 +19,7 @@ class Course < ApplicationRecord
     state :hack
   end
 
-  include Concerns::Time
+  include TimeConcern
 
   def video_duration_for(duration:)
     all_minutes = videos.sum do |video|

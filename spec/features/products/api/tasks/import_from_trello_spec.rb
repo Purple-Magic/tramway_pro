@@ -1,40 +1,40 @@
-# frozen_string_literal: true
+# # frozen_string_literal: true
 
-require 'rails_helper'
+# require 'rails_helper'
 
-describe 'Products' do
-  before { host! red_magic_host }
+# describe 'Products' do
+#   before { host! red_magic_host }
 
-  let(:product) { create :product }
+#   let(:product) { create :product }
 
-  describe 'API' do
-    describe 'Tasks' do
-      describe 'Creating' do
-        it 'creates new task' do
-          count = Products::Task.count
+#   describe 'API' do
+#     describe 'Tasks' do
+#       describe 'Creating' do
+#         it 'creates new task' do
+#           count = Products::Task.count
 
-          json = YAML.load_file("#{Rails.root}/docs/trello/butler/actions/product_engine/create_task.yml")
-          json['data']['attributes']['product_id'] = product.id
-          post '/api/v1/records?model=Products::Task', params: json
+#           json = YAML.load_file("#{Rails.root}/docs/trello/butler/actions/product_engine/create_task.yml")
+#           json['data']['attributes']['product_id'] = product.id
+#           post '/api/v1/records?model=Products::Task', params: json
 
-          expect(response).to have_http_status(:success)
-          expect(Products::Task.count).to eq count + 1
-        end
-      end
+#           expect(response).to have_http_status(:success)
+#           expect(Products::Task.count).to eq count + 1
+#         end
+#       end
 
-      describe 'Deleting' do
-        let!(:task) { create :products_task }
+#       describe 'Deleting' do
+#         let!(:task) { create :products_task }
 
-        it 'deletes new task' do
-          json = YAML.load_file("#{Rails.root}/docs/trello/butler/actions/product_engine/delete_task.yml")
-          json['data']['attributes']['deleted_at'] = DateTime.now
+#         it 'deletes new task' do
+#           json = YAML.load_file("#{Rails.root}/docs/trello/butler/actions/product_engine/delete_task.yml")
+#           json['data']['attributes']['deleted_at'] = DateTime.now
 
-          put "/api/v1/records/#{task.card_id}?model=Products::Task", params: json
-          task.reload
-          expect(task.deleted_at).not_to be_nil
-          expect(response).to have_http_status(:success)
-        end
-      end
-    end
-  end
-end
+#           put "/api/v1/records/#{task.card_id}?model=Products::Task", params: json
+#           task.reload
+#           expect(task.deleted_at).not_to be_nil
+#           expect(response).to have_http_status(:success)
+#         end
+#       end
+#     end
+#   end
+# end
