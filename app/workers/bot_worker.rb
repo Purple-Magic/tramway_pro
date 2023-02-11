@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../lib/tasks/bot_telegram/bot_listener'
+require 'bot_telegram/bot_listener'
 
 class BotWorker < ApplicationWorker
   sidekiq_options queue: :bot
