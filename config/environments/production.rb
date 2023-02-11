@@ -7,7 +7,10 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
   config.read_encrypted_secrets = true
   config.public_file_server.enabled = true
-  config.assets.js_compressor = Uglifier.new(harmony: true)
+  config.assets.configure do |env|
+    env.js_compressor  = :uglifier # or :closure, :yui
+    env.css_compressor = :sass   # or :yui
+  end
   config.assets.compile = true
   config.log_level = :debug
   config.log_tags = [:request_id]
