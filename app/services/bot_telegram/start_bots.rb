@@ -7,3 +7,6 @@ Bot.find_each do |bot|
   message = "#{bot.name} started"
   puts message.green
 end
+
+module BotTelegram::StartBots
+end
