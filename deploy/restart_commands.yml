@@ -5,19 +5,15 @@
 - name: Start puma
   command: "/bin/bash -lic 'cd /srv/tramway_pro/current && bundle exec puma -C config/puma/production.rb &'"
 
+# - name: Plan to start telegram bots
+#   command: "/bin/bash -lic 'cd /srv/tramway_pro/current && bundle exec rails runner app/services/bot_telegram/start_bots.rb'"
+
 # - name: Stop sidekiq
 #   ignore_errors: yes
 #   shell: "ps aux | grep -ie sidekiq | awk '{print $2}' | xargs kill -9"
 
 # - name: Start sidekiq
-#   shell: "/bin/bash -ilc '/usr/share/rvm/bin/rvm {{ ruby_version }} do bundle exec sidekiq -C {{ app_path }}/current/config/sidekiq.yml &'"
-#   args:
-#     chdir: "{{ app_path }}/current"
-
-# - name: Start telegram bots
-#   shell: "cd /srv/tramway_pro/current && /bin/bash -lic 'exec bundle exec rails runner app/services/bot_telegram/start_bots.rb'"
-#   args:
-#     chdir: "{{ app_path }}/current"
+#   command: "/bin/bash -ilc 'cd /srv/tramway_pro/current && bundle exec sidekiq -C config/sidekiq.yml &'"
 
 # - name: Restart errbit
 #   shell: "cd /home/tramway/errbit && /bin/bash -lic 'exec docker-compose restart'"
