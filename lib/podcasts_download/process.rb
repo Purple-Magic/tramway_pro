@@ -59,4 +59,4 @@ module PodcastsDownload::Process
   end
 end
 
-PodcastsDownload::Process.run
+# PodcastsDownload::Process.run
