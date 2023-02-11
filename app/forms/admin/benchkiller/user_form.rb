@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Benchkiller::Benchkiller::UserForm < Tramway::ApplicationForm
+class Admin::Benchkiller::UserForm < Tramway::ApplicationForm
   properties :bot_telegram_user_id, :state, :project_id
 
   def initialize(object)

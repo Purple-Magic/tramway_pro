@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative '../../lib/tasks/bot_telegram/benchkiller_bot'
-require_relative '../../lib/tasks/bot_telegram/benchkiller_bot/notify'
+require 'bot_telegram/benchkiller_bot'
+require 'bot_telegram/benchkiller_bot/notify'
 
 class BenchkillerSendPlannedNotifications < ActiveJob::Base
   queue_as :benchkiller

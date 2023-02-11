@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../lib/tasks/bot_telegram/leopold/notify'
+require 'bot_telegram/leopold/notify'
 
 class LeopoldSendItWayHistoryJob < ActiveJob::Base
   queue_as :default

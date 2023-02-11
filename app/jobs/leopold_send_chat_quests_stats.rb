@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative '../../lib/tasks/bot_telegram/leopold/scenario'
-require_relative '../../lib/tasks/bot_telegram/leopold/notify'
-require_relative '../../lib/tasks/bot_telegram/leopold/chat_decorator'
-require_relative '../../lib/tasks/bot_telegram/chat_quests/stats'
+require 'bot_telegram/leopold/scenario'
+require 'bot_telegram/leopold/notify'
+require 'bot_telegram/leopold/chat_decorator'
+require 'bot_telegram/chat_quests/stats'
 
 class LeopoldSendChatQuestsStats < ActiveJob::Base
   queue_as :default
