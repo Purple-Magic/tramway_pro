@@ -1,31 +1,33 @@
 # frozen_string_literal: true
 
-module MultiProjectConfigurationMiddleware
-  class Event
-    def initialize(app)
-      @app = app
-    end
-
-    PAIRS = {
-      '::Admin::Tramway::Event::EventForm' => 'MultiProjectCallbacks::Event::EventForm',
-      '::Admin::Tramway::Event::ParticipantForm' => 'MultiProjectCallbacks::Event::ParticipantForm',
-      '::Admin::Tramway::Event::ParticipantFormFieldForm' => 'MultiProjectCallbacks::Event::ParticipantFormFieldForm',
-      '::Admin::Tramway::Event::SectionForm' => 'MultiProjectCallbacks::Event::SectionForm',
-      '::Admin::Tramway::Event::PartakingForm' => 'MultiProjectCallbacks::Event::PartakingForm',
-      '::Admin::Tramway::Event::PersonForm' => 'MultiProjectCallbacks::Event::PersonForm',
-      '::Admin::Tramway::Event::ActionForm' => 'MultiProjectCallbacks::Event::ActionForm',
-      'Tramway::Event::Event' => 'Tramway::Event::EventConcern',
-      '::Tramway::Event::Participant' => 'MultiProjectCallbacks::Event::ParticipantConcern',
-      '::Tramway::Event::ParticipantsController' => 'MultiProjectCallbacks::Event::ParticipantsController',
-      '::Tramway::Event::EventsController' => 'MultiProjectCallbacks::Event::EventsController'
-    }.freeze
-
-    def call(env)
-      PAIRS.each do |pair|
-        pair.first.constantize.include pair.last.constantize
+module Middleware
+  module MultiProjectConfigurationMiddleware
+    class Event
+      def initialize(app)
+        @app = app
       end
 
-      @app.call(env)
+      PAIRS = {
+        '::Admin::Tramway::Event::EventForm' => 'MultiProjectCallbacks::Event::EventForm',
+        '::Admin::Tramway::Event::ParticipantForm' => 'MultiProjectCallbacks::Event::ParticipantForm',
+        '::Admin::Tramway::Event::ParticipantFormFieldForm' => 'MultiProjectCallbacks::Event::ParticipantFormFieldForm',
+        '::Admin::Tramway::Event::SectionForm' => 'MultiProjectCallbacks::Event::SectionForm',
+        '::Admin::Tramway::Event::PartakingForm' => 'MultiProjectCallbacks::Event::PartakingForm',
+        '::Admin::Tramway::Event::PersonForm' => 'MultiProjectCallbacks::Event::PersonForm',
+        '::Admin::Tramway::Event::ActionForm' => 'MultiProjectCallbacks::Event::ActionForm',
+        'Tramway::Event::Event' => 'Tramway::Event::EventConcern',
+        '::Tramway::Event::Participant' => 'MultiProjectCallbacks::Event::ParticipantConcern',
+        '::Tramway::Event::ParticipantsController' => 'MultiProjectCallbacks::Event::ParticipantsController',
+        '::Tramway::Event::EventsController' => 'MultiProjectCallbacks::Event::EventsController'
+      }.freeze
+
+      def call(env)
+        PAIRS.each do |pair|
+          pair.first.constantize.include pair.last.constantize
+        end
+
+        @app.call(env)
+      end
     end
   end
 end

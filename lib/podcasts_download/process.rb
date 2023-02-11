@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rss'
+# require 'rss'
 require 'net/http'
 require 'uri'
 

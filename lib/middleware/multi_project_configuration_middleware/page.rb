@@ -1,17 +1,19 @@
 # frozen_string_literal: true
 
-module MultiProjectConfigurationMiddleware
-  class Page
-    def initialize(app)
-      @app = app
-    end
+module Middleware
+  module MultiProjectConfigurationMiddleware
+    class Page
+      def initialize(app)
+        @app = app
+      end
 
-    def call(env)
-      ::Admin::Tramway::Page::PageForm.include MultiProjectCallbacks::Page::PageForm
-      ::Tramway::Page::Page.include MultiProjectCallbacks::Page::PageConcern
-      ::Tramway::Page::PagesController.include MultiProjectCallbacks::Page::PagesController
+      def call(env)
+        ::Admin::Tramway::Page::PageForm.include MultiProjectCallbacks::Page::PageForm
+        ::Tramway::Page::Page.include MultiProjectCallbacks::Page::PageConcern
+        ::Tramway::Page::PagesController.include MultiProjectCallbacks::Page::PagesController
 
-      @app.call(env)
+        @app.call(env)
+      end
     end
   end
 end

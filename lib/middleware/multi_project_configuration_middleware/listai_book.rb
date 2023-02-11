@@ -1,16 +1,18 @@
 # frozen_string_literal: true
 
-module MultiProjectConfigurationMiddleware
-  class ListaiBook
-    def initialize(app)
-      @app = app
-    end
+module Middleware
+  module MultiProjectConfigurationMiddleware
+    class ListaiBook
+      def initialize(app)
+        @app = app
+      end
 
-    def call(env)
-      ::Admin::Listai::BookForm.include MultiProjectCallbacks::ListaiBook::BookForm
-      ::Listai::Book.include MultiProjectCallbacks::ListaiBook::BookConcern
+      def call(env)
+        ::Admin::Listai::BookForm.include MultiProjectCallbacks::ListaiBook::BookForm
+        ::Listai::Book.include MultiProjectCallbacks::ListaiBook::BookConcern
 
-      @app.call(env)
+        @app.call(env)
+      end
     end
   end
 end

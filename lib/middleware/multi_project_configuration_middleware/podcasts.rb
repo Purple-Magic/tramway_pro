@@ -1,17 +1,19 @@
 # frozen_string_literal: true
 
-module MultiProjectConfigurationMiddleware
-  class Podcasts
-    def initialize(app)
-      @app = app
-    end
+module Middleware
+  module MultiProjectConfigurationMiddleware
+    class Podcasts
+      def initialize(app)
+        @app = app
+      end
 
-    def call(env)
-      ::Admin::PodcastForm.include MultiProjectCallbacks::PodcastCallbacks::PodcastForm
-      ::Podcast.include MultiProjectCallbacks::PodcastCallbacks::PodcastConcern
-      ::Podcast::Episode.include MultiProjectCallbacks::EpisodeCallbacks::EpisodeConcern
+      def call(env)
+        ::Admin::PodcastForm.include MultiProjectCallbacks::PodcastCallbacks::PodcastForm
+        ::Podcast.include MultiProjectCallbacks::PodcastCallbacks::PodcastConcern
+        ::Podcast::Episode.include MultiProjectCallbacks::EpisodeCallbacks::EpisodeConcern
 
-      @app.call(env)
+        @app.call(env)
+      end
     end
   end
 end

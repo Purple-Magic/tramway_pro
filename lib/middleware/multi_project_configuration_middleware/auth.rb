@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
-module MultiProjectConfigurationMiddleware
-  class Auth
-    def initialize(app)
-      @app = app
-    end
+module Middleware
+  module MultiProjectConfigurationMiddleware
+    class Auth
+      def initialize(app)
+        @app = app
+      end
 
-    def call(env)
-      Tramway::ApplicationController.include MultiProjectCallbacks::Auth::Application
+      def call(env)
+        Tramway::ApplicationController.include MultiProjectCallbacks::Auth::Application
 
-      @app.call(env)
+        @app.call(env)
+      end
     end
   end
 end

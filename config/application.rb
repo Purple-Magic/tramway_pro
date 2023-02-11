@@ -16,7 +16,6 @@ require 'awesome_print'
 require_relative '../lib/middleware/multi_project_configuration_middleware/auth'
 require_relative '../lib/middleware/multi_project_configuration_middleware/conference'
 require_relative '../lib/middleware/multi_project_configuration_middleware/admin_middleware'
-require_relative '../lib/middleware/multi_project_configuration_middleware/api_middleware'
 require_relative '../lib/middleware/multi_project_configuration_middleware/landing'
 require_relative '../lib/middleware/multi_project_configuration_middleware/event'
 require_relative '../lib/middleware/multi_project_configuration_middleware/user'
@@ -41,22 +40,22 @@ module TramwayPro
     config.autoload_paths << "#{config.root}/app/models/ckeditor"
     config.autoload_paths << "#{config.root}/app/services"
     config.autoload_paths << "#{config.root}/lib"
+    config.eager_load_paths << "#{config.root}/lib"
 
-    config.middleware.use MultiProjectConfigurationMiddleware::Auth
-    config.middleware.use MultiProjectConfigurationMiddleware::Conference
-    config.middleware.use MultiProjectConfigurationMiddleware::AdminMiddleware
-    config.middleware.use MultiProjectConfigurationMiddleware::ApiMiddleware
-    config.middleware.use MultiProjectConfigurationMiddleware::Landing
-    config.middleware.use MultiProjectConfigurationMiddleware::Event
-    config.middleware.use MultiProjectConfigurationMiddleware::User
-    config.middleware.use MultiProjectConfigurationMiddleware::Profiles
-    config.middleware.use MultiProjectConfigurationMiddleware::Page
-    config.middleware.use MultiProjectConfigurationMiddleware::Partner
-    config.middleware.use MultiProjectConfigurationMiddleware::ListaiBook
-    config.middleware.use MultiProjectConfigurationMiddleware::ListaiPage
-    config.middleware.use MultiProjectConfigurationMiddleware::Podcasts
-    config.middleware.use MultiProjectConfigurationMiddleware::PurpleMagicCallback
-    config.middleware.use MultiProjectConfigurationMiddleware::BotMiddleware
+    config.middleware.use Middleware::MultiProjectConfigurationMiddleware::Auth
+    config.middleware.use Middleware::MultiProjectConfigurationMiddleware::Conference
+    config.middleware.use Middleware::MultiProjectConfigurationMiddleware::AdminMiddleware
+    config.middleware.use Middleware::MultiProjectConfigurationMiddleware::Landing
+    config.middleware.use Middleware::MultiProjectConfigurationMiddleware::Event
+    config.middleware.use Middleware::MultiProjectConfigurationMiddleware::User
+    config.middleware.use Middleware::MultiProjectConfigurationMiddleware::Profiles
+    config.middleware.use Middleware::MultiProjectConfigurationMiddleware::Page
+    config.middleware.use Middleware::MultiProjectConfigurationMiddleware::Partner
+    config.middleware.use Middleware::MultiProjectConfigurationMiddleware::ListaiBook
+    config.middleware.use Middleware::MultiProjectConfigurationMiddleware::ListaiPage
+    config.middleware.use Middleware::MultiProjectConfigurationMiddleware::Podcasts
+    config.middleware.use Middleware::MultiProjectConfigurationMiddleware::PurpleMagicCallback
+    config.middleware.use Middleware::MultiProjectConfigurationMiddleware::BotMiddleware
 
     config.active_job.queue_adapter = :sidekiq
 

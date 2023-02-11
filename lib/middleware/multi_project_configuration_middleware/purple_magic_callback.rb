@@ -1,16 +1,18 @@
 # frozen_string_literal: true
 
-module MultiProjectConfigurationMiddleware
-  class PurpleMagicCallback
-    def initialize(app)
-      @app = app
-    end
+module Middleware
+  module MultiProjectConfigurationMiddleware
+    class PurpleMagicCallback
+      def initialize(app)
+        @app = app
+      end
 
-    def call(env)
-      ::PurpleMagic.include MultiProjectCallbacks::PurpleMagicConcern
-      ::Admin::PurpleMagicForm.include MultiProjectCallbacks::PurpleMagicForm
+      def call(env)
+        ::PurpleMagic.include MultiProjectCallbacks::PurpleMagicConcern
+        ::Admin::PurpleMagicForm.include MultiProjectCallbacks::PurpleMagicForm
 
-      @app.call(env)
+        @app.call(env)
+      end
     end
   end
 end

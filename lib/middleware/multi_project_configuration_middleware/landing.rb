@@ -1,18 +1,20 @@
 # frozen_string_literal: true
 
-module MultiProjectConfigurationMiddleware
-  class Landing
-    def initialize(app)
-      @app = app
-    end
+module Middleware
+  module MultiProjectConfigurationMiddleware
+    class Landing
+      def initialize(app)
+        @app = app
+      end
 
-    def call(env)
-      ::Admin::Tramway::Landing::BlockForm.include MultiProjectCallbacks::Landing::BlockForm
-      ::Admin::Tramway::Landing::ToolForm.include MultiProjectCallbacks::Landing::ToolForm
+      def call(env)
+        ::Admin::Tramway::Landing::BlockForm.include MultiProjectCallbacks::Landing::BlockForm
+        ::Admin::Tramway::Landing::ToolForm.include MultiProjectCallbacks::Landing::ToolForm
 
-      PhotoUploader.include Tramway::Landing::PhotoVersions
+        PhotoUploader.include Tramway::Landing::PhotoVersions
 
-      @app.call(env)
+        @app.call(env)
+      end
     end
   end
 end

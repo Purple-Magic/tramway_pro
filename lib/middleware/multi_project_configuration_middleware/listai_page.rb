@@ -1,16 +1,18 @@
 # frozen_string_literal: true
 
-module MultiProjectConfigurationMiddleware
-  class ListaiPage
-    def initialize(app)
-      @app = app
-    end
+module Middleware
+  module MultiProjectConfigurationMiddleware
+    class ListaiPage
+      def initialize(app)
+        @app = app
+      end
 
-    def call(env)
-      ::Admin::Listai::PageForm.include MultiProjectCallbacks::ListaiPage::PageForm
-      ::Listai::Page.include MultiProjectCallbacks::ListaiPage::PageConcern
+      def call(env)
+        ::Admin::Listai::PageForm.include MultiProjectCallbacks::ListaiPage::PageForm
+        ::Listai::Page.include MultiProjectCallbacks::ListaiPage::PageConcern
 
-      @app.call(env)
+        @app.call(env)
+      end
     end
   end
 end

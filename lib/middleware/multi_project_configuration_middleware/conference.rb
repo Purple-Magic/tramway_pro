@@ -1,22 +1,24 @@
 # frozen_string_literal: true
 
-module MultiProjectConfigurationMiddleware
-  class Conference
-    def initialize(app)
-      @app = app
-    end
-
-    PAIRS = {
-      '::Tramway::Conference::Web::WelcomeController' => 'MultiProjectCallbacks::Conference',
-      '::Admin::Tramway::Conference::UnityForm' => 'MultiProjectCallbacks::Conference::UnityForm'
-    }.freeze
-
-    def call(env)
-      PAIRS.each do |pair|
-        pair.first.constantize.include pair.last.constantize
+module Middleware
+  module MultiProjectConfigurationMiddleware
+    class Conference
+      def initialize(app)
+        @app = app
       end
 
-      @app.call(env)
+      PAIRS = {
+        '::Tramway::Conference::Web::WelcomeController' => 'MultiProjectCallbacks::Conference',
+        '::Admin::Tramway::Conference::UnityForm' => 'MultiProjectCallbacks::Conference::UnityForm'
+      }.freeze
+
+      def call(env)
+        PAIRS.each do |pair|
+          pair.first.constantize.include pair.last.constantize
+        end
+
+        @app.call(env)
+      end
     end
   end
 end

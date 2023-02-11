@@ -1,17 +1,19 @@
 # frozen_string_literal: true
 
-module MultiProjectConfigurationMiddleware
-  class AdminMiddleware
-    def initialize(app)
-      @app = app
-    end
+module Middleware
+  module MultiProjectConfigurationMiddleware
+    class AdminMiddleware
+      def initialize(app)
+        @app = app
+      end
 
-    def call(env)
-      ::Tramway::ApplicationController.include MultiProjectCallbacks::AdminMiddleware::Application
-      ::Tramway::RecordsController.include MultiProjectCallbacks::AdminMiddleware::Records
-      ::Tramway::SingletonsController.include MultiProjectCallbacks::AdminMiddleware::Records
+      def call(env)
+        ::Tramway::ApplicationController.include MultiProjectCallbacks::AdminMiddleware::Application
+        ::Tramway::RecordsController.include MultiProjectCallbacks::AdminMiddleware::Records
+        ::Tramway::SingletonsController.include MultiProjectCallbacks::AdminMiddleware::Records
 
-      @app.call(env)
+        @app.call(env)
+      end
     end
   end
 end

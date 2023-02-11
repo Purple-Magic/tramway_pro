@@ -1,16 +1,18 @@
 # frozen_string_literal: true
 
-module MultiProjectConfigurationMiddleware
-  class User
-    def initialize(app)
-      @app = app
-    end
+module Middleware
+  module MultiProjectConfigurationMiddleware
+    class User
+      def initialize(app)
+        @app = app
+      end
 
-    def call(env)
-      ::Admin::Tramway::UserForm.include MultiProjectCallbacks::UserForm
-      ::Tramway::User.include MultiProjectCallbacks::UserCallbacks
+      def call(env)
+        ::Admin::Tramway::UserForm.include MultiProjectCallbacks::UserForm
+        ::Tramway::User.include MultiProjectCallbacks::UserCallbacks
 
-      @app.call(env)
+        @app.call(env)
+      end
     end
   end
 end

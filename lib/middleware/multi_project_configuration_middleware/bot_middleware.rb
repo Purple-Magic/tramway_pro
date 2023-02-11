@@ -1,28 +1,30 @@
 # frozen_string_literal: true
 
-module MultiProjectConfigurationMiddleware
-  class BotMiddleware
-    def initialize(app)
-      @app = app
-    end
-
-    PAIRS = {
-      'BotTelegram::Scenario::ProgressRecord' => 'MultiProjectCallbacks::BotTelegram::Scenario::ProgressRecordConcern',
-      'BotTelegram::Scenario::Step' => 'MultiProjectCallbacks::BotTelegram::Scenario::StepConcern'
-    }.freeze
-
-    FORMS = ['BotTelegram::Scenario::ProgressRecordForm', 'BotTelegram::Scenario::StepForm'].freeze
-
-    def call(env)
-      PAIRS.each do |pair|
-        pair.first.constantize.include pair.last.constantize
+module Middleware
+  module MultiProjectConfigurationMiddleware
+    class BotMiddleware
+      def initialize(app)
+        @app = app
       end
 
-      FORMS.each do |name|
-        "Admin::#{name}".constantize.include "MultiProjectCallbacks::#{name}".constantize
-      end
+      PAIRS = {
+        'BotTelegram::Scenario::ProgressRecord' => 'MultiProjectCallbacks::BotTelegram::Scenario::ProgressRecordConcern',
+        'BotTelegram::Scenario::Step' => 'MultiProjectCallbacks::BotTelegram::Scenario::StepConcern'
+      }.freeze
 
-      @app.call(env)
+      FORMS = ['BotTelegram::Scenario::ProgressRecordForm', 'BotTelegram::Scenario::StepForm'].freeze
+
+      def call(env)
+        PAIRS.each do |pair|
+          pair.first.constantize.include pair.last.constantize
+        end
+
+        FORMS.each do |name|
+          "Admin::#{name}".constantize.include "MultiProjectCallbacks::#{name}".constantize
+        end
+
+        @app.call(env)
+      end
     end
   end
 end

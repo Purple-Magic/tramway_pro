@@ -1,19 +1,21 @@
 # frozen_string_literal: true
 
-module MultiProjectConfigurationMiddleware
-  class Partner
-    def initialize(app)
-      @app = app
-    end
+module Middleware
+  module MultiProjectConfigurationMiddleware
+    class Partner
+      def initialize(app)
+        @app = app
+      end
 
-    def call(env)
-      ::Admin::Tramway::Partner::OrganizationForm.include MultiProjectCallbacks::Partner::OrganizationForm
-      ::Admin::Tramway::Partner::PartnershipForm.include MultiProjectCallbacks::Partner::PartnershipForm
+      def call(env)
+        ::Admin::Tramway::Partner::OrganizationForm.include MultiProjectCallbacks::Partner::OrganizationForm
+        ::Admin::Tramway::Partner::PartnershipForm.include MultiProjectCallbacks::Partner::PartnershipForm
 
-      ::Tramway::Partner::Organization.include MultiProjectCallbacks::Partner::OrganizationModel
-      ::Tramway::Partner::Partnership.include MultiProjectCallbacks::Partner::PartnershipModel
+        ::Tramway::Partner::Organization.include MultiProjectCallbacks::Partner::OrganizationModel
+        ::Tramway::Partner::Partnership.include MultiProjectCallbacks::Partner::PartnershipModel
 
-      @app.call(env)
+        @app.call(env)
+      end
     end
   end
 end
