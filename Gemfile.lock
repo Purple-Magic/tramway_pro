@@ -50,7 +50,7 @@ GIT
 
 GIT
   remote: https://github.com/purple-magic/tramway.git
-  revision: adad92696dc181cb3feabaf7f45668c8282f741e
+  revision: 7e045ea3ee4daa1656b09044954d088e981ab9b3
   branch: 17-remove-rails-5-dependency-and-make-it-compatible-with-rails-7+
   specs:
     tramway (0.1.2)
@@ -621,18 +621,18 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.11)
     timeout (0.3.1)
-    tramway-api (2.0.0.7)
+    tramway-api (2.0.0.8)
       knock
       tramway (>= 0.1.0)
       uuid
-    tramway-conference (1.9.5.10)
+    tramway-conference (1.9.5.11)
     tramway-event (2.0.1)
       tramway
-    tramway-export (0.2.1.3)
+    tramway-export (0.2.1.4)
       xls_exporter (>= 1.2)
-    tramway-landing (3.3.0.9)
+    tramway-landing (3.3.0.10)
     tramway-news (1.0.4.6)
-    tramway-page (1.6.0.4)
+    tramway-page (1.6.0.5)
     tramway-partner (1.0.4.3)
     tramway-profiles (1.4.1.4)
     trap (4.0)
@@ -788,13 +788,13 @@ DEPENDENCIES
   telegram-bot-ruby (= 0.15.0)
   time_difference!
   tramway!
-  tramway-api (= 2.0.0.7)
-  tramway-conference (= 1.9.5.10)
+  tramway-api (= 2.0.0.8)
+  tramway-conference (= 1.9.5.11)
   tramway-event (= 2.0.1)
-  tramway-export (= 0.2.1.3)
-  tramway-landing (= 3.3.0.9)
+  tramway-export (= 0.2.1.4)
+  tramway-landing (= 3.3.0.10)
   tramway-news (= 1.0.4.6)
-  tramway-page (= 1.6.0.4)
+  tramway-page (= 1.6.0.5)
   tramway-partner (= 1.0.4.3)
   tramway-profiles (= 1.4.1.4)
   trap (= 4.0)
