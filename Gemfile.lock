@@ -50,7 +50,7 @@ GIT
 
 GIT
   remote: https://github.com/purple-magic/tramway.git
-  revision: 7e045ea3ee4daa1656b09044954d088e981ab9b3
+  revision: 35b7b47615667addc661c437c7bc7aa9223fd646
   branch: 17-remove-rails-5-dependency-and-make-it-compatible-with-rails-7+
   specs:
     tramway (0.1.2)
