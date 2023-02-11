@@ -1,3 +1,5 @@
+module BotTelegram::Monitor
+end
 # include BotTelegram::Leopold::Notify
 
 # active_bots = Sidekiq::Workers.new.map do |worker|
