@@ -1,4 +1,4 @@
-include BotTelegram::Leopold::Notify
+# include BotTelegram::Leopold::Notify
 
 # active_bots = Sidekiq::Workers.new.map do |worker|
 #   worker.third['payload']['args'].last
