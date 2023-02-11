@@ -11,7 +11,6 @@ ruby '3.2.1'
 gem 'rails', '7.0.4.2'
 
 gem 'tramway', github: 'purple-magic/tramway', branch: '17-remove-rails-5-dependency-and-make-it-compatible-with-rails-7+'
-gem 'tramway-api', '2.0.0.8'
 gem 'tramway-conference', '1.9.5.11'
 gem 'tramway-event', '2.0.1'
 gem 'tramway-export', '0.2.1.4'
