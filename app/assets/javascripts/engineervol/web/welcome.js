@@ -6,30 +6,30 @@ function getWidth(height) {
 
 function turnPageTo(page) {
   $flipbook = $('#flipbook');
-  const pagesToTurn = page - $flipbook.turn('page');
-  const turnActions = Math.abs(pagesToTurn / 2);
-  if (turnActions > 10) {
-    $flipbook.turn('page', page);
-  } else {
-    for (let turn = 0; turn < turnActions; turn++) {
-      setTimeout(function() {
-        if (pagesToTurn > 0) {
-          $flipbook.turn('next');
-        } else {
-          $flipbook.turn('previous');
-        }
-      }, 350 * turn);
-    } 
-  } 
+  // const pagesToTurn = page - $flipbook.turn('page');
+  // const turnActions = Math.abs(pagesToTurn / 2);
+  // if (turnActions > 10) {
+  //   $flipbook.turn('page', page);
+  // } else {
+  //   for (let turn = 0; turn < turnActions; turn++) {
+  //     setTimeout(function() {
+  //       if (pagesToTurn > 0) {
+  //         $flipbook.turn('next');
+  //       } else {
+  //         $flipbook.turn('previous');
+  //       }
+  //     }, 350 * turn);
+  //   } 
+  // } 
 }
 
 function init() {
   $flipbook = $('#flipbook');
   const width = getWidth(height);
-  $flipbook.turn({
-    width: width,
-    height: height
-  });
+  // $flipbook.turn({
+  //   width: width,
+  //   height: height
+  // });
 
   const $description = $('#description');
   $flipbook.bind('start', function(event, page, view) {
@@ -60,16 +60,16 @@ function init() {
   });
   setTimeout(function() {
     $flipbook = $('#flipbook');
-    $flipbook.turn('peel', 'br');
+    // $flipbook.turn('peel', 'br');
   }, 2000);
 }
 
 window.addEventListener('resize', function() {
-  window_height = $(window).height(); 
+  const window_height = $(window).height(); 
   if (window_height < height) {
     $flipbook = $('#flipbook');
     $flipbook.height(window_height);
-    $flipbook.turn('size', getWidth(window_height), window_height);
+    // $flipbook.turn('size', getWidth(window_height), window_height);
   }
   if ($(window).height() < $(window).width()) {
     $('#rotateDevice').hide();
@@ -85,8 +85,8 @@ setInterval(function() {
     $('#rotateDevice').hide();
     $('#rotateBackground').hide();
     $flipbook = $('#flipbook');
-    $flipbook.height(window_height);
-    $flipbook.turn('size', getWidth(window_height), window_height);
+    // $flipbook.height(window_height);
+    // $flipbook.turn('size', getWidth(window_height), window_height);
   } else {
     $('#rotateDevice').show();
     $('#rotateBackground').show();

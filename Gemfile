@@ -38,7 +38,7 @@ gem 'awesome_print'
 gem 'bcrypt'
 gem 'bcrypt_pbkdf', '>= 1.0'
 gem 'bigdecimal', '1.3.5'
-gem 'bootstrap', '5.1.3'
+gem 'bootstrap'
 gem 'bootstrap-datepicker-rails', github: 'kostia/bootstrap-datepicker-rails'
 gem 'bootstrap-kaminari-views', github: 'kalashnikovisme/bootstrap-kaminari-views', branch: :master
 gem 'browser'
