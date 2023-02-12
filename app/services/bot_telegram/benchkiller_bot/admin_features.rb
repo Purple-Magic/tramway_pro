@@ -24,7 +24,7 @@ module BotTelegram::BenchkillerBot::AdminFeatures
   end
 
   def send_companies_changes_to_admin_chat(company)
-    last_audit = company.audits.last
+    last_audit = company.versions.last
     return unless last_audit.audited_changes.keys.include? 'data'
     return if last_audit.audited_changes['data'].is_a? Hash
 

@@ -8,7 +8,7 @@ module BotTelegram::Leopold::Commands
         message_to_chat bot, chat, bot_record.options['i_have_this_word']
       else
         word = Word.create! main: text, review_state: :unviewed, project_id: 2
-        word.audits.last.update! user_id: chat.telegram_chat_id
+        word.versions.last.update! user_id: chat.telegram_chat_id
         message_to_chat bot, chat, bot_record.options['now_add_description_to_this_word']
       end
     else
@@ -18,7 +18,7 @@ module BotTelegram::Leopold::Commands
 
   def add_description(text)
     if condition_to_action? text, :add_description
-      word = Word.includes(:audits).where(audits: { user_id: chat.telegram_chat_id }, description: nil).last
+      word = Word.includes(:versions).where(versions: { user_id: chat.telegram_chat_id }, description: nil).last
       if word.present?
         word.update! description: text
         message_to_chat bot, chat, bot_record.options['please_add_synonims']
@@ -32,7 +32,7 @@ module BotTelegram::Leopold::Commands
 
   def add_synonims(text)
     if condition_to_action? text, :add_synonims
-      word = Word.includes(:audits).where(audits: { user_id: chat.telegram_chat_id },
+      word = Word.includes(:versions).where(versions: { user_id: chat.telegram_chat_id },
         synonims: nil).where.not(description: nil).last
       if word.present?
         synonims = text.split(',')
