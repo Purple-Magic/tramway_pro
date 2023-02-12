@@ -7,6 +7,6 @@ class YoutubeCallbacksController < ApplicationController
 
     Youtube::TokensService.new(yt).call
 
-    redirect_to root_path
+    redirect_to '/'
   end
 end
