@@ -73,6 +73,14 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
     $(grep -Ev '^\s*#' /tmp/AptReactRailsGemDependencies | xargs)
 
+COPY AptMimemagickGemDependencies /tmp/AptMimemagickGemDependencies
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,target=/var/lib/apt,sharing=locked \
+  --mount=type=tmpfs,target=/var/log \
+  apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
+    $(grep -Ev '^\s*#' /tmp/AptMimemagickGemDependencies | xargs)
+
 COPY AptYarnDependencies /tmp/AptYarnDependencies
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   --mount=type=cache,target=/var/lib/apt,sharing=locked \
