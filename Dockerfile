@@ -179,4 +179,4 @@ COPY --from=production-builder /home/tramway/app/public/packs /home/tramway/app/
 # 3) We can even copy the Bootsnap cache to speed up our Rails server load!
 COPY --chown=tramway:tramway --from=production-builder /home/tramway/app/tmp/cache/bootsnap* /home/tramway/app/tmp/cache/
 
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+CMD ["bundle", "exec", "puma", "-C", "config/puma/production.rb"]
