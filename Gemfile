@@ -10,7 +10,7 @@ end
 ruby '3.2.1'
 gem 'rails', '7.0.4.2'
 
-gem 'tramway', github: 'purple-magic/tramway', branch: '17-remove-rails-5-dependency-and-make-it-compatible-with-rails-7+'
+gem 'tramway', '0.1.2'
 gem 'tramway-conference', '1.9.5.12'
 gem 'tramway-event', '2.0.1'
 gem 'tramway-export', '0.2.1.4'

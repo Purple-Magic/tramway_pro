@@ -48,38 +48,6 @@ GIT
       jquery-rails
       rails (>= 3.2.8)
 
-GIT
-  remote: https://github.com/purple-magic/tramway.git
-  revision: 35b7b47615667addc661c437c7bc7aa9223fd646
-  branch: 17-remove-rails-5-dependency-and-make-it-compatible-with-rails-7+
-  specs:
-    tramway (0.1.2)
-      aasm
-      bootstrap (>= 4.1.2)
-      bootstrap-kaminari-views (= 0.0.5)
-      carrierwave
-      ckeditor (= 4.2.4)
-      clipboard-rails
-      copyright_mafa (~> 0.1.2, >= 0.1.2)
-      enumerize (~> 2.1, >= 2.1.2)
-      font-awesome-rails (~> 4.7, >= 4.7.0.1)
-      font_awesome5_rails
-      haml-rails
-      kaminari (>= 1.1.1)
-      loofah (>= 2.3.1)
-      mini_magick (~> 4.8, >= 4.8.0)
-      nokogiri
-      paper_trail
-      paranoia (~> 2.2)
-      pg_search
-      rails (~> 7)
-      ransack
-      rmagick (~> 4.2.2)
-      sass-rails (~> 6)
-      simple_form (>= 5.0.0)
-      smart_buttons (>= 1.0)
-      trap (~> 4.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -621,6 +589,32 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.11)
     timeout (0.3.1)
+    tramway (0.1.2)
+      aasm
+      bootstrap (>= 4.1.2)
+      bootstrap-kaminari-views (= 0.0.5)
+      carrierwave
+      ckeditor (= 4.2.4)
+      clipboard-rails
+      copyright_mafa (~> 0.1.2, >= 0.1.2)
+      enumerize (~> 2.1, >= 2.1.2)
+      font-awesome-rails (~> 4.7, >= 4.7.0.1)
+      font_awesome5_rails
+      haml-rails
+      kaminari (>= 1.1.1)
+      loofah (>= 2.3.1)
+      mini_magick (~> 4.8, >= 4.8.0)
+      nokogiri
+      paper_trail
+      paranoia (~> 2.2)
+      pg_search
+      rails (~> 7)
+      ransack
+      rmagick (~> 4.2.2)
+      sass-rails (~> 6)
+      simple_form (>= 5.0.0)
+      smart_buttons (>= 1.0)
+      trap (~> 4.0)
     tramway-conference (1.9.5.12)
     tramway-event (2.0.1)
       tramway
@@ -783,7 +777,7 @@ DEPENDENCIES
   streamio-ffmpeg
   telegram-bot-ruby (= 0.15.0)
   time_difference!
-  tramway!
+  tramway (= 0.1.2)
   tramway-conference (= 1.9.5.12)
   tramway-event (= 2.0.1)
   tramway-export (= 0.2.1.4)
