@@ -516,7 +516,6 @@ GEM
     rubyzip (2.3.2)
     rufus-scheduler (3.8.2)
       fugit (~> 1.1, >= 1.1.6)
-    russia_regions (0.0.6)
     russian (0.6.0)
       i18n (>= 0.5.0)
     safe_target_blank (1.0.2)
@@ -757,7 +756,6 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rake
   rubocop-rspec
-  russia_regions (= 0.0.6)
   russian
   safe_target_blank
   sanitize
