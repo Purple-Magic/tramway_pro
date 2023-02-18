@@ -1,7 +1,7 @@
 version: '3.8'
 services:  
   app:    
-    image: "kalashnikovisme/tramway_pro:develop"
+    image: kalashnikovisme/tramway_pro
     depends_on:      
       - db  
     environment:
