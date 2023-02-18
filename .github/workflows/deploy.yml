@@ -55,7 +55,7 @@ jobs:
       - name: Docker Hub login
         run: ssh production 'docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD  }}'
       - name: Docker Compose build
-        run: ssh production 'cd tramway_pro && docker-compose build --parallel'
+        run: ssh production 'docker image rm -f kalashnikovisme/tramway_pro:develop && cd tramway_pro && docker-compose build --parallel'
 
       - name: Docker Compose up
         run: ssh production 'cd tramway_pro && docker-compose up &'
