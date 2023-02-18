@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+  rails:
+    build:
+      context: .
+    environment:
+      - RUBY_VERSION=3.2.1
