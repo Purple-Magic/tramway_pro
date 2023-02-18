@@ -1,7 +1,24 @@
-version: "3.8"
-services:
-  rails:
-    build:
-      context: .
+version: '3.8'
+services:  
+  app:    
+    image: "kalashnikovisme/tramway_pro:develop"
+    depends_on:      
+      - db  
     environment:
       - RUBY_VERSION=3.2.1
+      - RAILS_DB_PRODUCTION=tramway_pro_test
+  db:    
+    image: postgres    
+    volumes:      
+      - postgres_data:/var/lib/postgresql/data  
+  web:    
+    build:      
+      context: .      
+      dockerfile: ./docker/web/DockerFile    
+    depends_on:      
+      - app    
+    ports:      
+      - 80:80
+
+volumes:  
+  postgres_data:

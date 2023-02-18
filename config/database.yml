@@ -11,4 +11,8 @@ test:
   database: tramway_pro_test
 production:
   <<: *default
+  username: postgres  
+  password:  
+  pool: 5  
+  host: db 
   database: <%= ENV["RAILS_DB_PRODUCTION"] %>
