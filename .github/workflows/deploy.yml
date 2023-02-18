@@ -8,7 +8,7 @@ jobs:
       fail-fast: false
 
     runs-on: ubuntu-latest
-    - env:
+    env:
       SHORT_SHA: ${{ format('{0}{1}{2}{3}{4}{5}{6}', github.sha[0], github.sha[1], github.sha[2], github.sha[3], github.sha[4], github.sha[5], github.sha[6]) }}
     steps:
       - name: Check out the repo
