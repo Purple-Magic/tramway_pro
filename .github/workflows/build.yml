@@ -11,7 +11,8 @@ jobs:
     steps:
       - name: Copy needed files
         run: |
-          cp ./config/database.sample.yml 
+          cp ./config/database.sample.yml ./config/database.yml
+          
       - uses: actions/checkout@v3
       - name: Docker Compose build
         uses: isbang/compose-action@v1.4.1
