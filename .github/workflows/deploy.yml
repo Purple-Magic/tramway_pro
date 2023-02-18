@@ -8,8 +8,6 @@ jobs:
       fail-fast: false
 
     runs-on: ubuntu-latest
-    env:
-      SHORT_SHA: ${{ format('{0}{1}{2}{3}{4}{5}{6}', github.sha[0], github.sha[1], github.sha[2], github.sha[3], github.sha[4], github.sha[5], github.sha[6]) }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
@@ -31,7 +29,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ SHORT_SHA }}
+          tags: latest
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Configure SSH
@@ -57,7 +55,7 @@ jobs:
       - name: Docker Hub login
         run: ssh production 'docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD  }}'
       - name: Docker Compose build
-        run: ssh production 'cd tramway_pro && TAG=${{ SHORT_SHA }} docker-compose build --parallel'
+        run: ssh production 'cd tramway_pro && TAG=latest docker-compose build --parallel'
 
       - name: Docker Compose up
         run: ssh production 'cd tramway_pro && docker-compose up &'
