@@ -19,6 +19,8 @@ services:
       - app    
     ports:      
       - 80:80
+  node:
+    image: node:14
 
 volumes:  
   postgres_data:
