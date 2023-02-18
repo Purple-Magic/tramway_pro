@@ -9,6 +9,11 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - name: Copy needed files
+        run: |
+          cp config/database.sample.yml config/database.yml
+          cp config/secrets.sample.yml config/secrets.yml
+
       - uses: actions/checkout@v3
       - name: Docker Compose build
         uses: isbang/compose-action@v1.4.1
