@@ -46,7 +46,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   apt-get update -qq \
   && apt-get dist-upgrade -y \
   && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
-    git-core
+    git-core \
+    curl
 
 COPY AptRMagickGemDependencies /tmp/AptRMagickGemDependencies
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
@@ -71,6 +72,19 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
     $(grep -Ev '^\s*#' /tmp/AptReactRailsGemDependencies | xargs)
+
+COPY AptYarnDependencies /tmp/AptYarnDependencies
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,target=/var/lib/apt,sharing=locked \
+  --mount=type=tmpfs,target=/var/log \
+  apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
+    $(grep -Ev '^\s*#' /tmp/AptYarnDependencies | xargs)
+
+# Install yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt -y update && apt install -y yarn
 
 # First, we create and configure a dedicated user to run our application
 RUN groupadd --gid 1005 tramway \
@@ -99,6 +113,7 @@ RUN bundle config --local no-cache 'true'
 RUN bundle install --jobs=${BUNDLE_JOBS}
 RUN rm -rf $BUNDLE_PATH/ruby/3.1.0/cache/*
 RUN rm -rf /home/tramway/.bundle/cache/*
+
 
 # Install JS packages
 COPY --chown=tramway:tramway package.json yarn.lock ./
