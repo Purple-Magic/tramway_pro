@@ -1,7 +1,7 @@
 version: '3.8'
 services:  
   app:    
-    image: kalashnikovisme/tramway_pro
+    image: "kalashnikovisme/tramway_pro:${TAG}"
     depends_on:      
       - db  
     environment:
