@@ -16,5 +16,6 @@ jobs:
           DOCKER_BUILDKIT: 1
         with:
           compose-file: "./docker-compose.yml"
+          build-flags: "--parallel"
           up-flags: "--build --abort-on-container-exit"
           down-flags: "--volumes"
