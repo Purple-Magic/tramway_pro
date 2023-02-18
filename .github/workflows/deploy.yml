@@ -53,4 +53,4 @@ jobs:
         run: ssh production 'docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD  }}'
 
       - name: Docker pull
-        run: ssh production 'docker pull kalashnikvisme/traway_pro:latest'
+        run: ssh production 'docker pull kalashnikovisme/tramway_pro:develop'
