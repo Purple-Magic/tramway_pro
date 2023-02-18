@@ -9,6 +9,7 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@master
       - name: Copy needed files
         run: cp ./config/database.sample.yml ./config/database.yml && cp ./config/secrets.sample.yml ./config/secrets.yml
 
