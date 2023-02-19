@@ -50,7 +50,7 @@ jobs:
           SSH_HOST: ${{ secrets.PRODUCTION_SSH_HOST }}
 
       - name: Clone repo to the remove server
-        run: ssh production 'rm -rf tramway_pro && git clone -b develop git@github.com:purple-magic/tramway_pro'
+        run: ssh production 'sudo rm -rf tramway_pro && git clone -b develop git@github.com:purple-magic/tramway_pro'
 
       - name: Docker Hub login
         run: ssh production 'docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD  }}'
