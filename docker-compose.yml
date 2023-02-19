@@ -7,10 +7,16 @@ services:
     environment:
       - RUBY_VERSION=3.2.1
       - RAILS_DB_PRODUCTION=tramway_pro_test
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    command: sh /home/tramway/app/exec.sh
   db:    
-    image: postgres    
+    image: postgres:15
     volumes:      
       - postgres_data:/var/lib/postgresql/data  
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - 5432:5432
   web:    
     build:      
       context: .      

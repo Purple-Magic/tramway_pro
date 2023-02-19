@@ -57,14 +57,6 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
     $(grep -Ev '^\s*#' /tmp/AptRMagickGemDependencies | xargs)
 
-COPY AptPgGemDependencies /tmp/AptPgGemDependencies
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-  --mount=type=cache,target=/var/lib/apt,sharing=locked \
-  --mount=type=tmpfs,target=/var/log \
-  apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
-    $(grep -Ev '^\s*#' /tmp/AptPgGemDependencies | xargs)
-
 COPY AptReactRailsGemDependencies /tmp/AptReactRailsGemDependencies
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   --mount=type=cache,target=/var/lib/apt,sharing=locked \
@@ -73,13 +65,13 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
     $(grep -Ev '^\s*#' /tmp/AptReactRailsGemDependencies | xargs)
 
-COPY AptMimemagickGemDependencies /tmp/AptMimemagickGemDependencies
+COPY AptPgGemDependencies /tmp/AptPgGemDependencies
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   --mount=type=cache,target=/var/lib/apt,sharing=locked \
   --mount=type=tmpfs,target=/var/log \
   apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
-    $(grep -Ev '^\s*#' /tmp/AptMimemagickGemDependencies | xargs)
+    $(grep -Ev '^\s*#' /tmp/AptPgGemDependencies | xargs)
 
 COPY AptYarnDependencies /tmp/AptYarnDependencies
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
@@ -159,6 +151,31 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 RUN gem update --system && \
     gem install bundler
 
+COPY AptMimemagickGemDependencies /tmp/AptMimemagickGemDependencies
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,target=/var/lib/apt,sharing=locked \
+  --mount=type=tmpfs,target=/var/log \
+  apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
+    $(grep -Ev '^\s*#' /tmp/AptMimemagickGemDependencies | xargs)
+
+COPY AptPgGemDependencies /tmp/AptPgGemDependencies
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,target=/var/lib/apt,sharing=locked \
+  --mount=type=tmpfs,target=/var/log \
+  apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
+    $(grep -Ev '^\s*#' /tmp/AptPgGemDependencies | xargs)
+
+COPY AptRMagickGemDependencies /tmp/AptRMagickGemDependencies
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,target=/var/lib/apt,sharing=locked \
+  --mount=type=tmpfs,target=/var/log \
+  apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
+    $(grep -Ev '^\s*#' /tmp/AptRMagickGemDependencies | xargs)
+
+
 # Create and configure a dedicated user (use the same name as for the production-builder image)
 RUN groupadd --gid 1005 tramway \
   && useradd --uid 1005 --gid tramway --shell /bin/bash --create-home tramway
@@ -188,4 +205,4 @@ COPY --from=production-builder /home/tramway/app/public/packs /home/tramway/app/
 # 3) We can even copy the Bootsnap cache to speed up our Rails server load!
 COPY --chown=tramway:tramway --from=production-builder /home/tramway/app/tmp/cache/bootsnap* /home/tramway/app/tmp/cache/
 
-CMD ["bundle", "exec", "puma"]
+RUN chmod +x /home/tramway/app/exec.sh

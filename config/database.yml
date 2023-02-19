@@ -12,7 +12,7 @@ test:
 production:
   <<: *default
   username: postgres  
-  password:  
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
   pool: 5  
   host: db 
   database: <%= ENV["RAILS_DB_PRODUCTION"] %>
