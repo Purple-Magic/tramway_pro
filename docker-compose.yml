@@ -8,6 +8,7 @@ services:
       - RUBY_VERSION=3.2.1
       - RAILS_DB_PRODUCTION=tramway_pro_test
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
     command: sh /home/tramway/app/exec.sh
   db:    
     image: postgres:15
