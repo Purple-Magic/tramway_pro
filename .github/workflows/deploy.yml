@@ -57,5 +57,8 @@ jobs:
       - name: Docker Compose build
         run: ssh production 'docker image rm -f kalashnikovisme/tramway_pro:develop && cd tramway_pro && docker-compose build --parallel'
 
+      - name: Docker Compose build
+        run: ssh production 'cd tramway_pro && docker-compose build --parallel' 
+
       - name: Docker Compose up
-        run: ssh production 'cd tramway_pro && docker-compose build --parallel && docker-compose up &' 
+        run: ssh production 'cd tramway_pro && POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} docker-compose up &'
