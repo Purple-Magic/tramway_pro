@@ -16,7 +16,6 @@ services:
       - postgres_data:/var/lib/postgresql/data  
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - RAILS_ROOT=/home/tramway/app/
     ports:
       - 5432:5432
   web:    
@@ -29,6 +28,5 @@ services:
     ports:      
       - 80:80
       - 443:443
-
 volumes:  
   postgres_data:
