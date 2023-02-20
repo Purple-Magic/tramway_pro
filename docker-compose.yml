@@ -4,20 +4,31 @@ services:
     image: "kalashnikovisme/tramway_pro:develop"
     depends_on:      
       - db  
+      - redis
     environment:
       - RUBY_VERSION=3.2.1
       - RAILS_DB_PRODUCTION=tramway_pro_test
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - SECRET_KEY_BASE=${SECRET_KEY_BASE}
     command: sh /home/tramway/app/exec.sh
+    volumes:
+      - ./public:/home/tramway/app/public/
+      - ./log:/home/tramway/app/log/
+    ports:
+      - 9292:9292
   db:    
     image: postgres:15
     volumes:      
       - postgres_data:/var/lib/postgresql/data  
+      - ./dumps:/dumps
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
       - 5432:5432
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
   web:    
     build:      
       context: .      
@@ -28,5 +39,7 @@ services:
     ports:      
       - 80:80
       - 443:443
+    volumes:
+      - ./public:/var/www/tramway_pro/public
 volumes:  
   postgres_data:

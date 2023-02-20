@@ -41,3 +41,4 @@ yarn-debug.log*
 .yarn-integrity
 
 export_benchkiller_db.rb
+/dumps

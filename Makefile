@@ -75,3 +75,6 @@ test:
 
 ssh:
 	ssh tramway@tramway.pro
+
+run_production:
+	POSTGRES_PASSWORD=123 SECRET_KEY_BASE=123 docker-compose up --build

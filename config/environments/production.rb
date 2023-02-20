@@ -26,7 +26,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.hosts += [
-    "red-magic.ru",
+    "red-magic.pro",
     "it-way.pro",
     "kalashnikovisme.ru",
     "benchkiller.com",

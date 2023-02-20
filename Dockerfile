@@ -17,7 +17,7 @@ ARG YARN_VERSION
 # ...
 WORKDIR /app
 
-EXPOSE 3000
+EXPOSE 9292
 CMD ["/usr/bin/bash"]
 
 # Then, we define the "development" stage from the base one
@@ -114,7 +114,6 @@ RUN bundle install --jobs=${BUNDLE_JOBS}
 RUN rm -rf $BUNDLE_PATH/ruby/3.1.0/cache/*
 RUN rm -rf /home/tramway/.bundle/cache/*
 
-
 # Install JS packages
 COPY --chown=tramway:tramway package.json yarn.lock ./
 RUN yarn install --check-files
@@ -192,7 +191,7 @@ ENV RAILS_ENV=production \
   LANG=C.UTF-8 \
   LC_ALL=C.UTF-8
 
-EXPOSE 3000
+EXPOSE 9292
 
 # Copy code
 COPY --chown=tramway:tramway . .
