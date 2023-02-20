@@ -10,7 +10,7 @@ services:
       - RAILS_DB_PRODUCTION=tramway_pro_test
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - SECRET_KEY_BASE=${SECRET_KEY_BASE}
-    command: sh /home/tramway/app/exec.sh
+    command: sh /home/tramway/app/run.sh
     volumes:
       - ./public:/home/tramway/app/public/
       - ./log:/home/tramway/app/log/
