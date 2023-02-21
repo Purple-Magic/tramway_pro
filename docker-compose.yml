@@ -12,7 +12,8 @@ services:
       - SECRET_KEY_BASE=${SECRET_KEY_BASE}
     command: sh /home/tramway/app/run.sh
     volumes:
-      - ./public:/home/tramway/app/public/
+      - ./public/system:/home/tramway/app/public/system
+      - ./public/uploads:/home/tramway/app/public/uploads
       - ./log:/home/tramway/app/log/
       - ./tmp:/home/tramway/app/tmp/
     ports:
