@@ -27,6 +27,7 @@ jobs:
       - name: Created needed stuff
         run: |
           mkdir node_modules
+          mkdir tmp
           touch yarn-error.log
 
       - name: Build and push Docker image
