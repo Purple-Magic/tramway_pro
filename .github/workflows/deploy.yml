@@ -25,7 +25,6 @@ jobs:
           images: kalashnikovisme/tramway_pro
 
       - name: Created needed stuff
-        uses: actions/checkout@v3
         run: |
           mkdir node_modules
           touch yarn-error.log
