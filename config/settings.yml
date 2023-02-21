@@ -57,7 +57,7 @@ production:
   tramway_dev: tramway.pro
   listai: listai.io
   purple_magic: purple-magic.com
-  red_magic: red-magic.ru
+  red_magic: red-magic.pro
   benchkiller: benchkiller.com
   engines:
     'it-way.pro': conference
@@ -70,7 +70,7 @@ production:
       title: Инженерное волонтёрство
     'purple-magic.com':
       <<: *purple_magic
-    'red-magic.ru':
+    'red-magic.pro':
       <<: *red_magic
     'kalashnikovisme.ru':
       <<: *kalashnikovisme
