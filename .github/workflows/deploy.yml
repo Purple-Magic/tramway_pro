@@ -58,6 +58,13 @@ jobs:
       - name: Clone repo to the remove server
         run: ssh production 'sudo rm -rf tramway_pro && git clone -b develop git@github.com:purple-magic/tramway_pro'
 
+      - name: Linking directories
+        run: |
+          ssh production 'ln -s /srv/tramway_pro/shared/log tramway_pro/log'
+          ssh production 'ln -s /srv/tramway_pro/shared/public/system tramway_pro/public/system'
+          ssh production 'ln -s /srv/tramway_pro/shared/public/uploads tramway_pro/public/uploads'
+          ssh production 'ln -s /srv/tramway_pro/shared/public/podcasts tramway_pro/public/podcasts'
+
       - name: Docker Hub login
         run: ssh production 'docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD  }}'
       - name: Docker Compose build
@@ -67,4 +74,4 @@ jobs:
         run: ssh production 'cd tramway_pro && docker-compose build --parallel' 
 
       - name: Docker Compose up
-        run: ssh production 'cd tramway_pro && docker-compose down && POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }} POSTGRES_DB=${{ secrets.POSTGRES_DB }} docker-compose up -d --force-recreate --remove-orphans'
+        run: ssh production 'cd tramway_pro && docker-compose down && POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }} POSTGRES_DB=${{ secrets.POSTGRES_DB }} STREAM_SERVER_ID=${{ secrets.STREAM_SERVER_ID }} STREAM_SERVER_USER=${{ secrets.STREAM_SERVER_USER }} docker-compose up -d --force-recreate --remove-orphans'
