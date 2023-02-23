@@ -15,4 +15,4 @@ production:
   password: <%= ENV['POSTGRES_PASSWORD'] %>
   pool: 5  
   host: db 
-  database: <%= ENV["RAILS_DB_PRODUCTION"] %>
+  database: <%= ENV["POSTGRES_DB"] %>
