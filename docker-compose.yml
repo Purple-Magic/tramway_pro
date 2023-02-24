@@ -10,6 +10,7 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+      - ERRBIT_PROJECT_KEY=${ERRBIT_PROJECT_KEY}
     command: sh /home/tramway/app/run.sh
     volumes:
       - ./public/system:/home/tramway/app/public/system
