@@ -225,5 +225,3 @@ RUN bundle exec rails assets:precompile
 # COPY --from=production-builder /home/tramway/app/public/assets /home/tramway/app/public/assets
 # 3) We can even copy the Bootsnap cache to speed up our Rails server load!
 # COPY --chown=tramway:tramway --from=production-builder /home/tramway/app/tmp/cache/bootsnap* /home/tramway/app/tmp/cache/
-
-RUN chmod +x /home/tramway/app/run.sh
