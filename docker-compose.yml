@@ -7,6 +7,7 @@ services:
       - redis
     environment:
       - RUBY_VERSION=3.2.1
+      - NODE_MAJOR=18
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - SECRET_KEY_BASE=${SECRET_KEY_BASE}

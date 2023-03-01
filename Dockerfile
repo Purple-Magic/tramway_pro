@@ -119,7 +119,16 @@ RUN rm -rf /home/tramway/.bundle/cache/*
 # RUN yarn install --check-files
 
 # Copy code
-COPY --chown=tramway:tramway . .
+COPY --chown=tramway:tramway ./app ./app
+COPY --chown=tramway:tramway ./bin ./bin
+COPY --chown=tramway:tramway ./config ./config
+COPY --chown=tramway:tramway ./db ./db
+COPY --chown=tramway:tramway ./lib ./lib
+COPY --chown=tramway:tramway ./spec ./spec
+COPY --chown=tramway:tramway ./config.ru ./config.ru
+COPY --chown=tramway:tramway ./package.json ./package.json
+COPY --chown=tramway:tramway ./yarn.lock ./yarn.lock
+COPY --chown=tramway:tramway ./node_modules ./node_modules
 
 # Precompile assets
 # NOTE: The command may require adding some environment variables (e.g., SECRET_KEY_BASE) if you're not using
@@ -207,7 +216,16 @@ ENV RAILS_ENV=production \
 EXPOSE 9292
 
 # Copy code
-COPY --chown=tramway:tramway . .
+COPY --chown=tramway:tramway ./app ./app
+COPY --chown=tramway:tramway ./bin ./bin
+COPY --chown=tramway:tramway ./config ./config
+COPY --chown=tramway:tramway ./db ./db
+COPY --chown=tramway:tramway ./lib ./lib
+COPY --chown=tramway:tramway ./spec ./spec
+COPY --chown=tramway:tramway ./config.ru ./config.ru
+COPY --chown=tramway:tramway ./package.json ./package.json
+COPY --chown=tramway:tramway ./yarn.lock ./yarn.lock
+COPY --chown=tramway:tramway ./node_modules ./node_modules
 
 # Copy artifacts
 # 1) Installed gems

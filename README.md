@@ -44,6 +44,12 @@ bundle exec rspec
 make code_check
 ```
 
+### Run production environment locally
+
+1. Change all domains in docker/web/nginx.conf to `.test` domain zone
+2. Change all domains in config/environments/production.rb to `.test` zone
+3. Change all domains in config/settings.yml to `.test` zone
+
 ### Воркфлоу работы с гемами tramway
 
 В случае, если изменения требуется сделать в гемах tramway, у задачи в trello будет стоять Метка `tramway`. Ссылка на [все карточки](https://trello.com/b/HVkPer5c/%D0%B3%D0%BE%D0%B4-%D0%BC%D0%BE%D0%BB%D0%BE%D0%B4%D1%8B%D1%85-2020?menu=filter&filter=label:tramway)
