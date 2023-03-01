@@ -11,7 +11,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - SECRET_KEY_BASE=${SECRET_KEY_BASE}
       - ERRBIT_PROJECT_KEY=${ERRBIT_PROJECT_KEY}
-    command: sh /home/tramway/app/run.sh
+    command: make run
     volumes:
       - ./public/system:/home/tramway/app/public/system
       - ./public/uploads:/home/tramway/app/public/uploads
@@ -19,6 +19,12 @@ services:
       - ./tmp:/home/tramway/app/tmp/
     ports:
       - 9292:9292
+  # sidekiq:
+  #   image: "kalashnikovisme/tramway_pro:develop"
+  #   depends_on:
+  #     - db
+  #     - redis
+  #   command: bundle exec sidekiq -C /home/tramway/app/config/sidekiq.yml
   db:    
     image: postgres:15
     volumes:      
@@ -44,5 +50,7 @@ services:
       - 443:443
     volumes:
       - ./public:/var/www/tramway_pro/public
+    depends_on:
+      - app 
 volumes:  
   postgres_data:

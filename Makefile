@@ -1,3 +1,8 @@
+run:
+	rails db:create
+	rails db:migrate
+	bundle exec puma
+
 deploy_production:
 	ansible-playbook -i deploy/inventory deploy/deploy.yml
 	RAILS_ENV=production bundle exec rails assets:clean assets:precompile

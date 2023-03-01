@@ -144,6 +144,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     time \
     locales \
     nodejs \
+    make \
   && update-locale LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Upgrade RubyGems and install the latest Bundler version
