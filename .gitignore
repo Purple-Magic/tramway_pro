@@ -21,7 +21,6 @@ public/uploads/
 public/system/
 public/*.mp4
 public/podcasts/
-config/sidekiq.yml
 
 config/settings.local.yml
 config/settings/*.local.yml

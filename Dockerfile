@@ -147,14 +147,23 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   && apt-get dist-upgrade -y \
   && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
     curl \
+    wget \
     gnupg2 \
     less \
     tzdata \
     time \
     locales \
-    nodejs \
     make \
   && update-locale LANG=C.UTF-8 LC_ALL=C.UTF-8
+
+
+# Install nodejs
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,target=/var/lib/apt,sharing=locked \
+  --mount=type=tmpfs,target=/var/log \
+  wget https://deb.nodesource.com/setup_$NODE_MAJOR.x | bash - && \
+  apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends nodejs
 
 # Upgrade RubyGems and install the latest Bundler version
 RUN gem update --system && \
@@ -216,16 +225,7 @@ ENV RAILS_ENV=production \
 EXPOSE 9292
 
 # Copy code
-COPY --chown=tramway:tramway ./app ./app
-COPY --chown=tramway:tramway ./bin ./bin
-COPY --chown=tramway:tramway ./config ./config
-COPY --chown=tramway:tramway ./db ./db
-COPY --chown=tramway:tramway ./lib ./lib
-COPY --chown=tramway:tramway ./spec ./spec
-COPY --chown=tramway:tramway ./config.ru ./config.ru
-COPY --chown=tramway:tramway ./package.json ./package.json
-COPY --chown=tramway:tramway ./yarn.lock ./yarn.lock
-COPY --chown=tramway:tramway ./node_modules ./node_modules
+COPY --chown=tramway:tramway . .
 
 # Copy artifacts
 # 1) Installed gems
