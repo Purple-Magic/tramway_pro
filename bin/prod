@@ -7,34 +7,35 @@
 require 'colorize'
 require 'yaml'
 
+def remote_run(command)
+  system "ssh -t #{ARGV[1]}@tramway.pro '#{command}'"
+end
+
 if ARGV[0] == 'get_db'
   puts 'You should add username on server'.red if ARGV[1].nil?
   restore_to = ARGV[2] || :tramway_pro_development
   at = Time.now.strftime('%Y-%m-%d--%H-%M')
   dump = "tramway_pro--#{at}.dump"
   puts 'Dumping production database'.green
-  system "scp #{ARGV[1]}@tramway.pro:/srv/tramway_pro/shared/config/database.yml ./"
-  db_config = YAML.load_file('database.yml')
-  db_name = db_config['production']['database']
-  system 'rm -rf database.yml'
-  system "ssh -t #{ARGV[1]}@tramway.pro 'pg_dump -Fc --no-acl --no-owner -v #{db_name} > #{dump}'"
-  # puts 'Downloading...'.green
-  # system "scp #{ARGV[1]}@tramway.pro:#{dump} /tmp/"
-  # system "ssh -t #{ARGV[1]}@tramway.pro 'rm #{dump}'"
-  # puts "Restoring #{restore_to} database".green
-  # system "ssh -t #{ARGV[1]}@tramway.pro 'rm -f #{dump}'"
-  # system 'dropdb tramway_pro_development --if-exists'
-  # system 'createdb tramway_pro_development'
-  # system "pg_restore -d #{restore_to} /tmp/#{dump}"
-  # puts 'Copy prod db for tests...'.yellow
-  # system "cp -rf /tmp/#{dump} tmp/test.dump"
-  # puts 'Copy prod db to backup folder...'.yellow
-  # system 'mkdir ~/backup.tramway.dbs'
-  # system "cp -r /tmp/#{dump} ~/backup.tramway.dbs/#{dump}"
-  # system 'rails db:migrate'
-  # system 'rails db:seed'
-  # system 'rails r bin/data_migrations/tramways/users.rb' # temporary stuff until migration to new tramway
-  # system 'rails r bin/generate/twitter-previews.rb'
+  remote_run "touch get_db_name_script.rb && echo \"puts Rails.configuration.database_configuration['production']['database'] > get_db_name_script.rb\"'"
+  remote_run "docker-compose exec app rails r get_db_name_script.rb"
+  system "ssh -t 'docker-compose exec db pg_dump -Fc --no-acl --no-owner -v #{db_name} > /dumps/#{dump}'"
+  puts 'Downloading...'.green
+  dump_path = "/home/tramway/tramway_pro/dumps/#{dump}"
+  system "scp #{ARGV[1]}@tramway.pro:#{dump_path} /tmp/"
+  system "ssh -t #{ARGV[1]}@tramway.pro 'rm #{dump_path}'"
+  puts "Restoring #{restore_to} database".green
+  dump = "tramway_pro--2023-02-18--18-15.dump"
+  system "docker-compose exec db psql -U postgres -c 'CREATE ROLE tramway with SUPERUSER'";
+  system "docker-compose exec db psql -U postgres -c 'DROP DATABASE #{restore_to} WITH (FORCE);'"
+  system "docker-compose exec db psql -U postgres -c 'CREATE DATABASE #{restore_to};'"
+  system "docker-compose exec db pg_restore -U postgres -d #{restore_to} /dumps/#{dump}"
+  puts 'Copy prod db to backup folder...'.yellow
+  system 'mkdir ~/backup.tramway.dbs'
+  system "cp -r /tmp/#{dump} ~/backup.tramway.dbs/#{dump}"
+  system 'docker-compose run app rails db:migrate'
+  system 'docker-compose run app rails db:seed'
+  # system 'docker-compose run app rails r bin/generate/twitter-previews.rb'
   # system "scp tmp/twitter-preview-person* #{ARGV[1]}@tramway.pro:/srv/tramway_pro/current/tmp/"
   # command = "bash -lic \"bundle exec rails r bin/generate/push-twitter-previews.rb\""
   # system "ssh -t #{ARGV[1]}@tramway.pro 'cd /srv/tramway_pro/current/ && #{command}'"
@@ -48,10 +49,4 @@ if ARGV[0] == 'get_files'
   copy_files_command = "rsync -avh --include='*.jpg' --include='*/' --exclude='*' #{ARGV[1]}@tramway.pro:/srv/tramway_pro/shared/public/ ./public"
   puts copy_files_command.blue
   system copy_files_command
-end
-
-if ARGV[0] == 'get_credentials'
-  puts 'You should add username on server'.red if ARGV[1].nil?
-  system "scp #{ARGV[1]}@tramway.pro:/home/tramway/tramway_pro/shared/config/oauth.yml config/oauth.yml"
-  puts 'Credentials getting done!'.green
 end
