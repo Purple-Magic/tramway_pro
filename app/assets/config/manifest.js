@@ -9,5 +9,4 @@
 //= link tramway/conference/application.js
 //= link tramway/event/application.js
 //= link tramway/news/application.css
-
-
+//= link engineervol/web/welcome.js
