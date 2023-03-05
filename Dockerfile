@@ -154,6 +154,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     time \
     locales \
     make \
+    ffmpeg \
   && update-locale LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Install nodejs
@@ -193,14 +194,6 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     $(grep -Ev '^\s*#' /tmp/AptRMagickGemDependencies | xargs)
 
 COPY AptNodeModulesDependencies /tmp/AptNodeModulesDependencies
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-  --mount=type=cache,target=/var/lib/apt,sharing=locked \
-  --mount=type=tmpfs,target=/var/log \
-  apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
-    $(grep -Ev '^\s*#' /tmp/AptNodeModulesDependencies | xargs)
-
-COPY AptAudioProcessingDependencies /tmp/AptNodeModulesDependencies
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   --mount=type=cache,target=/var/lib/apt,sharing=locked \
   --mount=type=tmpfs,target=/var/log \
