@@ -15,11 +15,7 @@ class Podcasts::Episodes::Montage::ConvertService < Podcasts::Episodes::BaseServ
     extension = episode.file.path.split('.').last
 
     if extension == 'ogg'
-      filename = episode.file.path.split('.')[0..-2].join('.')
-
-      episode.update converted_file: filename
-
-      command = write_logs(convert_to(:mp3, input: episode.file.path, output: filename))
+      command = write_logs(convert_to(:mp3, input: episode.file.path, output: episode.converted_file))
       run command, action: :convert
     end
 
