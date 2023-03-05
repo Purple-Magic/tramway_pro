@@ -200,6 +200,14 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
     $(grep -Ev '^\s*#' /tmp/AptNodeModulesDependencies | xargs)
 
+COPY AptAudioProcessingDependencies /tmp/AptNodeModulesDependencies
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,target=/var/lib/apt,sharing=locked \
+  --mount=type=tmpfs,target=/var/log \
+  apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
+    $(grep -Ev '^\s*#' /tmp/AptNodeModulesDependencies | xargs)
+
 # Install yarn
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
