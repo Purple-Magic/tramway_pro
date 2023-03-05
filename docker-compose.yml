@@ -20,8 +20,6 @@ services:
       - ./tmp:/home/tramway/app/tmp/
     ports:
       - 9292:9292
-    # build:
-    #   context: .
   sidekiq:
     image: "kalashnikovisme/tramway_pro:develop"
     depends_on:
@@ -40,6 +38,8 @@ services:
     image: redis:alpine
     ports:
       - 6379:6379
+    volumes:
+      - redis:/data/redis
   web:    
     build:      
       context: .      
@@ -56,3 +56,4 @@ services:
       - app 
 volumes:  
   postgres_data:
+  redis:
