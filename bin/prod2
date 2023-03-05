@@ -10,10 +10,10 @@ require 'yaml'
 if ARGV[0] == 'get_db'
   puts 'You should add username on server'.red if ARGV[1].nil?
   restore_to = ARGV[2] || :tramway_pro_development
-  # at = Time.now.strftime('%Y-%m-%d--%H-%M')
-  # dump = "tramway_pro--#{at}.dump"
-  # puts 'Dumping production database'.green
-  # system "scp #{ARGV[1]}@tramway.pro:/srv/tramway_pro/shared/config/database.yml ./"
+  at = Time.now.strftime('%Y-%m-%d--%H-%M')
+  dump = "tramway_pro--#{at}.dump"
+  puts 'Dumping production database'.green
+  system "scp #{ARGV[1]}@tramway.pro:/srv/tramway_pro/shared/config/database.yml ./"
   # db_config = YAML.load_file('database.yml')
   # db_name = db_config['production']['database']
   # system 'rm -rf database.yml'
