@@ -1,32 +1,35 @@
 version: '3.8'
+x-rails: &rails
+  image: "kalashnikovisme/tramway_pro:develop"
+  environment:
+    - RUBY_VERSION=3.2.1
+    - NODE_MAJOR=18
+    - POSTGRES_DB=${POSTGRES_DB}
+    - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+    - ERRBIT_PROJECT_KEY=${ERRBIT_PROJECT_KEY}
+  volumes:
+    - ./public/system:/home/tramway/app/public/system
+    - ./public/uploads:/home/tramway/app/public/uploads
+    - ./log:/home/tramway/app/log/
+    - ./tmp:/home/tramway/app/tmp/
+
 services:  
   app:    
-    image: "kalashnikovisme/tramway_pro:develop"
+    <<: *rails
     depends_on:      
       - db  
       - redis
-    environment:
-      - RUBY_VERSION=3.2.1
-      - NODE_MAJOR=18
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
-      - ERRBIT_PROJECT_KEY=${ERRBIT_PROJECT_KEY}
     command: make run
-    volumes:
-      - ./public/system:/home/tramway/app/public/system
-      - ./public/uploads:/home/tramway/app/public/uploads
-      - ./log:/home/tramway/app/log/
-      - ./tmp:/home/tramway/app/tmp/
     ports:
       - 9292:9292
   sidekiq:
-    image: "kalashnikovisme/tramway_pro:develop"
+    <<: *rails
     depends_on:
       - app
       - redis
     volumes:
-      - ./log:/home/tramway/app/log/
+      - ./:/home/tramway/app/
     command: bundle exec sidekiq -C /home/tramway/app/config/sidekiq.yml
   db:    
     image: postgres:15

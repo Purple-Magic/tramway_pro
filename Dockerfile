@@ -156,7 +156,6 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     make \
   && update-locale LANG=C.UTF-8 LC_ALL=C.UTF-8
 
-
 # Install nodejs
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   --mount=type=cache,target=/var/lib/apt,sharing=locked \
