@@ -99,7 +99,7 @@ class Podcast::Episode < ApplicationRecord
     render_data['errors'] << "-----------------------------------------------"
     render_data['errors'] << "Error #{DateTime.now.strftime('%d.%m.%Y %H:%M')}"
     render_data['errors'] << error
-    render_data['errors'] << error.backtrace
+    render_data['errors'] << error.backtrace if error.respond_to? :backtrace
     save!
   end
 end
