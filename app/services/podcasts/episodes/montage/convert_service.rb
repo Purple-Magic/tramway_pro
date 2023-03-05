@@ -12,7 +12,8 @@ class Podcasts::Episodes::Montage::ConvertService < Podcasts::Episodes::BaseServ
   private
 
   def convert
-    extension = episode.file.path.split('.')[0..-2].last
+    extension = episode.file.path.split('.').last
+
     if extension == 'ogg'
       filename = episode.file.path.split('.')[0..-2].join('.')
 
