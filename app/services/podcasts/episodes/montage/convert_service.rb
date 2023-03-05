@@ -18,13 +18,11 @@ class Podcasts::Episodes::Montage::ConvertService < Podcasts::Episodes::BaseServ
       filename = episode.file.path.split('.')[0..-2].join('.')
 
       episode.update converted_file: filename
-    end
 
-    episode.converted_file.tap do |filename|
       command = write_logs(convert_to(:mp3, input: episode.file.path, output: filename))
       run command, action: :convert
-
-      episode.convert!
     end
+
+    episode.convert!
   end
 end
