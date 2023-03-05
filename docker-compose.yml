@@ -24,6 +24,9 @@ services:
     image: "kalashnikovisme/tramway_pro:develop"
     depends_on:
       - app
+      - redis
+    volumes:
+      - ./log:/home/tramway/app/log/
     command: bundle exec sidekiq -C /home/tramway/app/config/sidekiq.yml
   db:    
     image: postgres:15
