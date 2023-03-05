@@ -1,9 +1,9 @@
-- name: Stop puma
-  shell: "[ -e /srv/tramway_pro/shared/puma.pid  ] && kill `cat /srv/tramway_pro/shared/puma.pid`"
-  ignore_errors: yes
+# - name: Stop puma
+#   shell: "[ -e /srv/tramway_pro/shared/puma.pid  ] && kill `cat /srv/tramway_pro/shared/puma.pid`"
+#   ignore_errors: yes
 
-- name: Start puma
-  command: "/bin/bash -lic 'cd /srv/tramway_pro/current && bundle exec puma -C config/puma/production.rb &'"
+# - name: Start puma
+#   command: "/bin/bash -lic 'cd /srv/tramway_pro/current && bundle exec puma -C config/puma/production.rb &'"
 
 # - name: Plan to start telegram bots
 #   command: "/bin/bash -lic 'cd /srv/tramway_pro/current && bundle exec rails runner app/services/bot_telegram/start_bots.rb'"
@@ -15,5 +15,5 @@
 # - name: Start sidekiq
 #   command: "/bin/bash -ilc 'cd /srv/tramway_pro/current && bundle exec sidekiq -C config/sidekiq.yml &'"
 
-# - name: Restart errbit
-#   shell: "cd /home/tramway/errbit && /bin/bash -lic 'exec docker-compose restart'"
+- name: Restart errbit
+  shell: "cd /home/tramway/errbit && /bin/bash -lic 'exec docker-compose restart'"

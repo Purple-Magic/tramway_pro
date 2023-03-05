@@ -1,0 +1,6 @@
+pkg-config 
+imagemagick 
+libmagickwand-dev 
+libmagickcore-dev
+gcc
+make

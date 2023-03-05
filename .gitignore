@@ -14,7 +14,6 @@
 !/tmp/.keep
 
 /node_modules
-/yarn-error.log
 
 .byebug_history
 public/assets/
@@ -22,9 +21,6 @@ public/uploads/
 public/system/
 public/*.mp4
 public/podcasts/
-config/secrets.yml
-config/database.yml
-config/sidekiq.yml
 
 config/settings.local.yml
 config/settings/*.local.yml
@@ -43,3 +39,4 @@ yarn-debug.log*
 .yarn-integrity
 
 export_benchkiller_db.rb
+/dumps

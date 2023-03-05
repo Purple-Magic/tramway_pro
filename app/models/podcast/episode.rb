@@ -63,7 +63,7 @@ class Podcast::Episode < ApplicationRecord
         after do
           save!
 
-          "Podcasts::#{worker_event[:worker]}Worker".constantize.perform_async id
+          "Podcasts::#{worker_event[:worker]}Worker".constantize.perform_async self.id
         end
       end
     end

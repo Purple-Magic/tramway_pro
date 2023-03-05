@@ -12,8 +12,13 @@ class Podcasts::MontageWorker < ApplicationWorker
     montage episode
   rescue StandardError => error
     log_error error
-    episode.log_error error
-    send_notification_to_chat episode.podcast.chat_id, notification(:montage, :something_went_wrong)
+
+    if episode.present?
+      episode.log_error error
+      send_notification_to_chat episode.podcast.chat_id, notification(:montage, :something_went_wrong)
+    else
+      send_notification_to_chat "kalashnikovisme", notification(:montage, :something_went_wrong)
+    end
   end
 
   private
