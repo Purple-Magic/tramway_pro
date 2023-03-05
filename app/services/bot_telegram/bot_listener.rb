@@ -10,20 +10,20 @@ class BotTelegram::BotListener
 
     def perform(id)
       bot_record = Bot.find id
-      Telegram::Bot::Client.run(bot_record.token) do |bot|
-        bot.listen do |message|
-          if can_be_processed? message
-            process message, bot_record, bot
-          else
-            error = "Empty message in bot #{bot_record.name}"
-            Rails.env.development? ? puts(error) : Airbrake.notify(error, message: message)
-          end
-        rescue StandardError => error
-          Rails.env.development? ? puts(error) : Airbrake.notify(error, message: message)
-        end
-      rescue Telegram::Bot::Exceptions::ResponseError => error
-        Rails.env.development? ? puts(error) : Airbrake.notify(error)
-      end
+      # Telegram::Bot::Client.run(bot_record.token) do |bot|
+      #   bot.listen do |message|
+      #     if can_be_processed? message
+      #       process message, bot_record, bot
+      #     else
+      #       error = "Empty message in bot #{bot_record.name}"
+      #       Rails.env.development? ? puts(error) : Airbrake.notify(error, message: message)
+      #     end
+      #   rescue StandardError => error
+      #     Rails.env.development? ? puts(error) : Airbrake.notify(error, message: message)
+      #   end
+      # rescue Telegram::Bot::Exceptions::ResponseError => error
+      #   Rails.env.development? ? puts(error) : Airbrake.notify(error)
+      # end
     end
 
     def process_message(message, bot_record, bot)
