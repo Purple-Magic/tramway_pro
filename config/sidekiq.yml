@@ -4,4 +4,3 @@ queues:
   - bot
   - podcast
 backtrace: true
-logfile: ./log/sidekiq.log
