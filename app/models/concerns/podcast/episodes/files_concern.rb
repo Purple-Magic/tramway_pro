@@ -17,7 +17,7 @@ module Podcast::Episodes::FilesConcern
   alias directory prepare_directory
 
   def converted_file
-    (file.present? ? file.path.split('.')[0..].join('.') : '') + '.mp3'
+    "#{file.path.split('.')[0..-2].join('.')}.mp3"
   end
 
   private
