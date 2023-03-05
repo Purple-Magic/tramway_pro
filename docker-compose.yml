@@ -1,7 +1,7 @@
 version: '3.8'
 
 x-rails: &rails
-  image: "kalashnikovisme/tramway_pro:develop"
+  image: "kalashnikovisme/tramway_pro:main"
   environment:
     - RUBY_VERSION=3.2.1
     - NODE_MAJOR=18
