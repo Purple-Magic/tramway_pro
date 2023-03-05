@@ -14,16 +14,13 @@ end
 if ARGV[0] == 'get_db'
   puts 'You should add username on server'.red if ARGV[1].nil?
   restore_to = ARGV[2] || :tramway_pro_development
-  at = Time.now.strftime('%Y-%m-%d--%H-%M')
-  dump = "tramway_pro--#{at}.dump"
   puts 'Dumping production database'.green
-  remote_run "touch get_db_name_script.rb && echo \"puts Rails.configuration.database_configuration['production']['database'] > get_db_name_script.rb\"'"
-  remote_run "docker-compose exec app rails r get_db_name_script.rb"
+  remote_run "docker-compose exec app rails r bin/get_db/dump_db.rb"
   system "ssh -t 'docker-compose exec db pg_dump -Fc --no-acl --no-owner -v #{db_name} > /dumps/#{dump}'"
   puts 'Downloading...'.green
   dump_path = "/home/tramway/tramway_pro/dumps/#{dump}"
   system "scp #{ARGV[1]}@tramway.pro:#{dump_path} /tmp/"
-  system "ssh -t #{ARGV[1]}@tramway.pro 'rm #{dump_path}'"
+  remote_run "rm #{dump_path}"
   puts "Restoring #{restore_to} database".green
   dump = "tramway_pro--2023-02-18--18-15.dump"
   system "docker-compose exec db psql -U postgres -c 'CREATE ROLE tramway with SUPERUSER'";
