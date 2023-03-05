@@ -1,4 +1,5 @@
 version: '3.8'
+
 x-rails: &rails
   image: "kalashnikovisme/tramway_pro:develop"
   environment:
