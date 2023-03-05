@@ -39,8 +39,8 @@ jobs:
   #         labels: ${{ steps.meta.outputs.labels }}
 
   deploy:
-    needs:
-      - build
+    # needs:
+    #   - build
     strategy:
       fail-fast: false
 
