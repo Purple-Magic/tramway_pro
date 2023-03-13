@@ -10,7 +10,6 @@ x-rails: &rails
     - SECRET_KEY_BASE=${SECRET_KEY_BASE}
     - ERRBIT_PROJECT_KEY=${ERRBIT_PROJECT_KEY}
   volumes:
-    - ./:/home/tramway/app
     - ./public/system:/home/tramway/app/public/system
     - ./public/uploads:/home/tramway/app/public/uploads
     - ./log:/home/tramway/app/log/
