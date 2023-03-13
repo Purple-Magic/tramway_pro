@@ -155,6 +155,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     locales \
     make \
     ffmpeg \
+    postgresql-client-common \
   && update-locale LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 # Install nodejs
