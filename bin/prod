@@ -16,7 +16,7 @@ if ARGV[0] == 'get_db'
   restore_to = ARGV[2] || :tramway_pro_development
   puts 'Dumping production database'.green
   remote_run "docker-compose exec app rails r bin/get_db/dump_db.rb"
-  system "ssh -t 'docker-compose exec db pg_dump -Fc --no-acl --no-owner -v #{db_name} > /dumps/#{dump}'"
+  system "ssh -t 'docker-compose exec db pg_dump -Fc --no-acl --no-owner -v #{db_name} > /dumps/tramway_pro.dump'"
   puts 'Downloading...'.green
   dump_path = "/home/tramway/tramway_pro/dumps/#{dump}"
   system "scp #{ARGV[1]}@tramway.pro:#{dump_path} /tmp/"
