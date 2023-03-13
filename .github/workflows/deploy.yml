@@ -77,7 +77,7 @@ jobs:
       - name: Docker Hub login
         run: ssh production 'docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD  }}'
       - name: Docker Compose build
-        run: ssh production 'docker image rm -f kalashnikovisme/tramway_pro:main && docker image prune -af && cd tramway_pro && docker-compose build --parallel'
+        run: ssh production 'docker image rm -f kalashnikovisme/tramway_pro:latest && docker image prune -af && cd tramway_pro && docker-compose build --parallel'
 
       - name: Docker Compose up
         run: ssh production 'cd tramway_pro && docker-compose down && POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }} POSTGRES_DB=${{ secrets.POSTGRES_DB }} STREAM_SERVER_ID=${{ secrets.STREAM_SERVER_ID }} STREAM_SERVER_USER=${{ secrets.STREAM_SERVER_USER }} ERRBIT_PROJECT_KEY=${{ secrets.ERRBIT_PROJECT_KEY }} docker-compose up -d --force-recreate --remove-orphans'
