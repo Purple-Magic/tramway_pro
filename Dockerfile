@@ -221,7 +221,8 @@ ENV RAILS_ENV=production \
   GEM_HOME=/home/tramway/bundle \
   PATH="/home/tramway/app/bin:${PATH}" \
   LANG=C.UTF-8 \
-  LC_ALL=C.UTF-8
+  LC_ALL=C.UTF-8 \
+  RAILS_LOG_TO_STDOUT=true
 
 EXPOSE 9292
 
