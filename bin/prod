@@ -17,14 +17,14 @@ if ARGV[0] == 'get_db'
   dump = 'tramway_pro.dump'
   puts 'Dumping production database'.green
   remote_run 'sudo service postgresql start'
-  remote_run "pg_dump -Fc --no-acl --no-owner -v $POSTGRES_DB > /dumps/#{dump}"
+  remote_run "touch #{dump}"
+  remote_run "pg_dump -Fc --no-acl --no-owner -v tramway_pro_production_kABGW9AjX68wxaI5 > #{dump}"
   remote_run 'sudo service postgresql stop'
   puts 'Downloading...'.green
-  dump_path = "/home/tramway/tramway_pro/dumps/#{dump}"
-  system "scp #{ARGV[1]}@tramway.pro:#{dump_path} /tmp/"
+  dump_path = "/home/tramway/tramway_pro/#{dump}"
+  system "scp #{ARGV[1]}@tramway.pro:#{dump_path} dumps/"
   remote_run "rm #{dump_path}"
   puts "Restoring #{restore_to} database".green
-  dump = "tramway_pro--2023-02-18--18-15.dump"
   system "docker-compose exec db psql -U postgres -c 'CREATE ROLE tramway with SUPERUSER'";
   system "docker-compose exec db psql -U postgres -c 'DROP DATABASE #{restore_to} WITH (FORCE);'"
   system "docker-compose exec db psql -U postgres -c 'CREATE DATABASE #{restore_to};'"
