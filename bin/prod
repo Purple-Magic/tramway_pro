@@ -14,9 +14,11 @@ end
 if ARGV[0] == 'get_db'
   puts 'You should add username on server'.red if ARGV[1].nil?
   restore_to = ARGV[2] || :tramway_pro_development
+  dump = 'tramway_pro.dump'
   puts 'Dumping production database'.green
-  remote_run "docker-compose exec app rails r bin/get_db/dump_db.rb"
-  system "ssh -t 'docker-compose exec db pg_dump -Fc --no-acl --no-owner -v #{db_name} > /dumps/tramway_pro.dump'"
+  remote_run 'sudo service postgresql start'
+  remote_run "pg_dump -Fc --no-acl --no-owner -v $POSTGRES_DB > /dumps/#{dump}"
+  remote_run 'sudo service postgresql stop'
   puts 'Downloading...'.green
   dump_path = "/home/tramway/tramway_pro/dumps/#{dump}"
   system "scp #{ARGV[1]}@tramway.pro:#{dump_path} /tmp/"
