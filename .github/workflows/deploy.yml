@@ -71,10 +71,11 @@ jobs:
       - name: Linking directories
         run: |
           ssh production 'ln -s /srv/tramway_pro/shared/log tramway_pro/log'
+          ssh production 'ln -s /srv/tramway_pro/shared/tmp tramway_pro/tmp'
           ssh production 'ln -s /srv/tramway_pro/shared/public/system tramway_pro/public/system'
           ssh production 'ln -s /srv/tramway_pro/shared/public/uploads tramway_pro/public/uploads'
           ssh production 'ln -s /srv/tramway_pro/shared/public/podcasts tramway_pro/public/podcasts'
-          ssh production 'sudo chmod -R 777 tmp' # FIXME 
+          # ssh production 'sudo chmod -R 777 tmp' # FIXME 
       - name: Docker Hub login
         run: ssh production 'docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD  }}'
       - name: Docker Compose build
