@@ -26,21 +26,15 @@ class Podcasts::Episodes::Montage::AudioTrailerService < Podcasts::Episodes::Bas
   end
 
   def normalize_trailer(output)
-    temp_output = update_output :normalize, output
-    render_command = write_logs normalize(input: episode.trailer.path, output: temp_output)
-    move_command = move_to(temp_output, output)
-    command = "#{render_command} && #{move_command}"
-    Rails.logger.info command
-    _log, _err, _status = Open3.capture3({}, command, {})
+    render_command = write_logs normalize(input: episode.trailer.path, output: output)
+    Rails.logger.info render_command
+    _log, _err, _status = Open3.capture3({}, render_command, {})
   end
 
   def render_trailer(output)
-    temp_output = update_output :temp, output
-    render_command = write_logs(content_concat(inputs: content, output: temp_output))
-    move_command = move_to(temp_output, output)
-    command = "#{render_command} && #{move_command}"
-    Rails.logger.info command
-    _log, _err, _status = Open3.capture3({}, command, {})
+    render_command = write_logs(content_concat(inputs: content, output: output))
+    Rails.logger.info render_command
+    _log, _err, _status = Open3.capture3({}, render_command, {})
   end
 
   def using_highlights
@@ -64,13 +58,9 @@ class Podcasts::Episodes::Montage::AudioTrailerService < Podcasts::Episodes::Bas
   end
 
   def build_and_runcommand(files_inputs, output)
-    temp_output = (output.split('.')[0..-2] + %w[temp mp3]).join('.')
-
-    render_command = content_concat inputs: files_inputs, output: temp_output
-    move_command = move_to(temp_output, output)
-    command = "#{render_command} && #{move_command}"
-    Rails.logger.info command
-    _log, _err, _status = Open3.capture3({}, command, {})
+    render_command = content_concat inputs: files_inputs, output: output
+    Rails.logger.info render_command
+    _log, _err, _status = Open3.capture3({}, render_command, {})
   end
 
   def content

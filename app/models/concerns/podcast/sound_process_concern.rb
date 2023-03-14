@@ -23,8 +23,4 @@ module Podcast::SoundProcessConcern
     "#{command} 2> #{Rails.root}/log/render-#{Rails.env}.log"
   end
   # :reek:UtilityFunction { enabled: true }
-
-  def move_to(temp_output, output)
-    "mv #{temp_output} #{output} && rm -f #{temp_output}"
-  end
 end

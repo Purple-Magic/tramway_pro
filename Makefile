@@ -82,4 +82,5 @@ ssh:
 	ssh tramway@tramway.pro
 
 run_production:
+	docker-compose down
 	POSTGRES_DB=tramway POSTGRES_PASSWORD=123 SECRET_KEY_BASE=123 docker-compose up

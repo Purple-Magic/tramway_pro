@@ -50,28 +50,29 @@ module Podcast::Episodes::MusicConcern
 
   def merge_samples_with_voices(music_output, output)
     ready_output = update_output :ready, output
-    render_command = write_logs merge_content(inputs: [music_output, premontage_file.path], output: ready_output)
-    move_command = move_to(ready_output, output)
-    command = "#{render_command} && #{move_command}"
-    log_command 'Merge music with voices', command
-    Rails.logger.info command
-    system command
-    wait_for_file_rendered output, :with_music
-    update_file! output, :premontage_file
+    render_command = write_logs merge_content(inputs: [music_output, premontage_file.path], output: output)
+    log_command 'Merge music with voices', render_command
+    Rails.logger.info render_command
+
+    _log, err, status = Open3.capture3({}, render_command, {})
+
+    if !status.success? && err.present?
+      log_error(err) 
+    end
   end
 
   def concat_with_beginning_and_ending(output)
-    ready_output = update_output :ready, output
     render_command = write_logs content_concat(
       inputs: [find_music(:begin)[:path], output, find_music(:finish)[:path]].compact,
-      output: ready_output
+      output: output
     )
-    move_command = move_to(ready_output, output)
-    command = "#{render_command} && #{move_command}"
-    log_command 'Concat with beginning and ending', command
-    Rails.logger.info command
-    system command.to_s
-    wait_for_file_rendered output, :with_music
-    update_file! output, :premontage_file
+    log_command 'Concat with beginning and ending', render_command
+    Rails.logger.info render_command
+
+    _log, err, status = Open3.capture3({}, render_command, {})
+
+    if !status.success? && err.present?
+      log_error(err) 
+    end
   end
 end
