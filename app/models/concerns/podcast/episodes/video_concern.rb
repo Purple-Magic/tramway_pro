@@ -8,33 +8,27 @@ module Podcast::Episodes::VideoConcern
     send_cover_error_notification unless cover.present?
 
     remote_output = remote_file_name output
-    video_temp_output = (remote_output.split('.')[0..-2] + %w[temp mp4]).join('.')
 
     send_files_to_remote_server [cover.path, trailer.path]
     render_command = render_video_from(
       remote_file_name(cover.path),
       remote_file_name(trailer.path),
-      output: video_temp_output
+      output: remote_output
     )
-    move_command = move_to(video_temp_output, remote_output)
-    command = "#{render_command} && #{move_command}"
-    command = "nohup /bin/bash -lic '#{command} && #{send_request_after_render_command(id, :trailer_video)}' &"
+    command = "nohup /bin/bash -lic '#{render_command} && #{send_request_after_render_command(id, :trailer_video)}' &"
     run_command_on_remote_server command
   end
 
   def render_story_video_trailer_action(output)
     remote_output = remote_file_name output
-    video_temp_output = (remote_output.split('.')[0..-2] + %w[temp mp4]).join('.')
 
     send_files_to_remote_server [story_cover.path, trailer.path]
     render_command = render_video_from(
       remote_file_name(story_cover.path),
       remote_file_name(trailer.path),
-      output: video_temp_output
+      output: remote_output
     )
-    move_command = move_to(video_temp_output, remote_output)
-    command = "#{render_command} && #{move_command}"
-    command = "nohup /bin/bash -lic '#{command} && #{send_request_after_render_command(id, :story_trailer_video)}' &"
+    command = "nohup /bin/bash -lic '#{render_command} && #{send_request_after_render_command(id, :story_trailer_video)}' &"
     run_command_on_remote_server command
   end
 

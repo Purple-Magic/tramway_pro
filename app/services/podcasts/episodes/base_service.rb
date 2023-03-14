@@ -40,10 +40,6 @@ class Podcasts::Episodes::BaseService < ApplicationService
   end
   # :reek:UtilityFunction { enabled: true }
 
-  def move_to(temp_output, output)
-    "mv #{temp_output} #{output} && rm -f #{temp_output}"
-  end
-
   private
 
   def log_command(episode, action, command)
