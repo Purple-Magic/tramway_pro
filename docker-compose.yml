@@ -12,6 +12,7 @@ x-rails: &rails
   volumes:
     - ./public/system:/home/tramway/app/public/system
     - ./public/uploads:/home/tramway/app/public/uploads
+    - ./public/podcasts:/home/tramway/app/public/podcasts
     - ./log:/home/tramway/app/log/
     - ./tmp:/home/tramway/app/tmp/
 
