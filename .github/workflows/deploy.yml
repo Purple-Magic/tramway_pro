@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build and Push Docker container
+    name: Build and Push image
     strategy:
       fail-fast: false
 
@@ -42,7 +42,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
   deploy:
-    name: Docker Compose build on production server
+    name: Docker Compose build
     needs:
       - build
     strategy:
