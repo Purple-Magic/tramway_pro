@@ -7,31 +7,16 @@ module Podcast::Episodes::VideoConcern
   def render_video_trailer_action(output, remote: true)
     send_cover_error_notification unless cover.present?
 
-    if remote
-      remote_output = remote_file_name output
+    remote_output = remote_file_name output
 
-      send_files_to_remote_server [cover.path, trailer.path]
-      render_command = render_video_from(
-        remote_file_name(cover.path),
-        remote_file_name(trailer.path),
-        output: remote_output
-      )
-      command = "nohup /bin/bash -lic '#{render_command} && #{send_request_after_render_command(id, :trailer_video)}' &"
-      run_command_on_remote_server command
-    else
-      render_command = render_video_from cover.path, trailer.path, output: output
-
-      log_command 'Render trailer video', render_command
-      Rails.logger.info render_command
-
-      _log, err, status = Open3.capture3({}, render_command, {})
-
-      if !status.success? && err.present?
-        log_error(err) 
-      end
-
-      update_file! output, :trailer_video
-    end
+    send_files_to_remote_server [cover.path, trailer.path]
+    render_command = render_video_from(
+      remote_file_name(cover.path),
+      remote_file_name(trailer.path),
+      output: remote_output
+    )
+    command = "nohup /bin/bash -lic '#{render_command} && #{send_request_after_render_command(id, :trailer_video)}' &"
+    run_command_on_remote_server command
   end
 
   def render_story_video_trailer_action(output)
@@ -87,14 +72,25 @@ module Podcast::Episodes::VideoConcern
   end
 
   REMOTE_SERVER = '82.148.30.250'
-  REMOTE_USER = 'root'
-  REMOTE_PATH = '/root/podcast_engine/'
 
-  def run_command_on_remote_server(remote_command)
-    command = "ssh #{REMOTE_USER}@#{REMOTE_SERVER} \"#{remote_command}\""
+  def run_command_on_remote_server(command)
     log_command 'Render video on remote server', command
     Rails.logger.info command
-    system command
+
+    # make the POST request
+    response = conn.post do |req|
+      req.url "#{REMOTE_SERVER}:8080"
+      req.headers['Content-Type'] = 'application/json'
+      req.body = { command: }.to_json
+    end
+
+    # handle the response
+    if response.success?
+      puts "Request succeeded with status #{response.status}"
+      puts "Response body: #{response.body}"
+    else
+      puts "Request failed with status #{response.status}"
+    end
   end
 
   def send_files_to_remote_server(inputs)
