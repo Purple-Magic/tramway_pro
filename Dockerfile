@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-ARG RUBY_VERSION=3.2.1
+ARG RUBY_VERSION=3.2.2
 ARG DISTRO_NAME=bullseye
 
 # Here we add the the name of the stage ("base")
