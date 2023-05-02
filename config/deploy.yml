@@ -1,0 +1,64 @@
+service: tramway_pro
+image: kalashnikovisme/tramway_pro
+servers:
+  web:
+    - <%= ENV['MAIN_HOST'] %>
+  sidekiq:
+    hosts:
+      - <%= ENV['MAIN_HOST'] %>
+    cmd: bundle exec sidekiq -C config/sidekiq.yml
+
+healthcheck:
+  path: /
+  max_attempts: 10
+
+options:
+  publish: "3000:3000"
+
+registry:
+  username: kalashnikovisme
+  password:
+    - MRSK_REGISTRY_PASSWORD
+
+builder:
+  multiarch: false
+  args:
+    DO_SPACES_KEY: <%= ENV['DO_SPACES_KEY'] %>
+    DO_SPACES_SECRET: <%= ENV['DO_SPACES_SECRET'] %>
+    DO_SPACES_BUCKET: <%= ENV['DO_SPACES_BUCKET'] %>
+    DO_SPACES_REGION: <%= ENV['DO_SPACES_REGION'] %>
+  dockerfile: docker/mrsk/Dockerfile
+
+env:
+  clear:
+    REDIS_URL: "redis://:<%= ENV['REDIS_PASSWORD'] %>@<%= ENV['ACCESSORIES_HOST'] %>:6379/1"
+    ACCESSORIES_HOST: <%= ENV['ACCESSORIES_HOST'] %>
+    DO_SPACES_KEY: <%= ENV['DO_SPACES_KEY'] %>
+    DO_SPACES_SECRET: <%= ENV['DO_SPACES_SECRET'] %>
+    DO_SPACES_BUCKET: <%= ENV['DO_SPACES_BUCKET'] %>
+    DO_SPACES_REGION: <%= ENV['DO_SPACES_REGION'] %>
+    POSTGRES_USER: <%= ENV['POSTGRES_USER'] %>
+    POSTGRES_DB: <%= ENV['POSTGRES_DB'] %>
+    POSTGRES_PASSWORD: <%= ENV['POSTGRES_PASSWORD'] %>
+    SECRET_KEY_BASE: <%= ENV['SECRET_KEY_BASE'] %>
+
+accessories:
+  db:
+    image: postgres:15.0
+    host: <%= ENV['ACCESSORIES_HOST'] %>
+    port: 5432
+    env:
+      secret:
+        - POSTGRES_PASSWORD
+        - POSTGRES_USER
+        - POSTGRES_DB
+    directories:
+      - postgres:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7.0.10
+    host: <%= ENV['ACCESSORIES_HOST'] %>
+    port: 6379
+    cmd: redis-server --requirepass <%= ENV['REDIS_PASSWORD'] %>
+    volumes:
+      - /var/lib/redis:/data

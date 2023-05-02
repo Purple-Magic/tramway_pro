@@ -1,0 +1,15 @@
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>
+
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
+
+digital_ocean:
+  service: S3
+  endpoint: "https://<%= ENV['DO_SPACES_REGION'] %>.digitaloceanspaces.com"
+  access_key_id: <%= ENV['DO_SPACES_KEY'] %>
+  secret_access_key: <%= ENV['DO_SPACES_SECRET'] %>
+  bucket: <%= ENV['DO_SPACES_BUCKET'] %>
+  region: unused
