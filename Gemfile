@@ -152,7 +152,3 @@ group :production do
 end
 
 gem 'httparty', '~> 0.20.0'
-
-gem "bootsnap", require: false
-
-gem "aws-sdk-s3", "~> 1.121"

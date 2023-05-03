@@ -83,7 +83,4 @@ ssh:
 
 run_production:
 	docker-compose down
-	example.com`,`www.example.com`,`subdomain.example.com`)POSTGRES_DB=tramway POSTGRES_PASSWORD=123 SECRET_KEY_BASE=123 docker-compose up
-
-envify:
-	export `cat ../.tramway_pro_env | xargs` && mrsk envify
+	POSTGRES_DB=tramway POSTGRES_PASSWORD=123 SECRET_KEY_BASE=123 docker-compose up

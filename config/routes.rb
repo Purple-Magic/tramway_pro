@@ -6,104 +6,104 @@ require 'sidekiq/cron/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
-  # constraints Constraints::DomainConstraint.new(Settings[Rails.env][:it_way]) do
-  #   mount Tramway::Conference::Engine => '/'
-  #   mount Tramway::Engine, at: '/admin', as: :it_way_admin
-  #   # mount Tramway::Api::Engine, at: '/api', as: :it_way_api
+  constraints Constraints::DomainConstraint.new(Settings[Rails.env][:it_way]) do
+    mount Tramway::Conference::Engine => '/'
+    mount Tramway::Engine, at: '/admin', as: :it_way_admin
+    # mount Tramway::Api::Engine, at: '/api', as: :it_way_api
 
-  #   get '/youtube-callback' => 'youtube_callbacks#create'
-  #   get '/:id' => 'shortener/shortened_urls#show'
+    get '/youtube-callback' => 'youtube_callbacks#create'
+    get '/:id' => 'shortener/shortened_urls#show'
 
-  #   scope module: :it_way do
-  #     resources :certificates, only: :show
-  #     resources :podcasts, only: :show
-  #     resources :people, only: [ :index, :show ]
+    scope module: :it_way do
+      resources :certificates, only: :show
+      resources :podcasts, only: :show
+      resources :people, only: [ :index, :show ]
 
-  #     namespace :people do
-  #       resources :previews, only: :show
-  #     end
-  #   end
+      namespace :people do
+        resources :previews, only: :show
+      end
+    end
 
-  #   namespace :purple_magic do
-  #     namespace :api do
-  #       namespace :v1 do
-  #         namespace :products do
-  #           resources :jira, only: [ :create ]
-  #         end
-  #       end
-  #     end
-  #   end
-  # end
+    namespace :purple_magic do
+      namespace :api do
+        namespace :v1 do
+          namespace :products do
+            resources :jira, only: [ :create ]
+          end
+        end
+      end
+    end
+  end
 
-  # constraints Constraints::DomainConstraint.new(Settings[Rails.env][:kalashnikovisme]) do
-  #   root to: 'kalashnikovisme/web/welcome#index', as: :kalashnikovisme_root
+  constraints Constraints::DomainConstraint.new(Settings[Rails.env][:kalashnikovisme]) do
+    root to: 'kalashnikovisme/web/welcome#index', as: :kalashnikovisme_root
 
-  #   mount Tramway::Engine, at: '/admin', as: :kalash_admin
-  # end
+    mount Tramway::Engine, at: '/admin', as: :kalash_admin
+  end
 
-  # constraints Constraints::DomainConstraint.new(Settings[Rails.env][:tramway_dev]) do
-  #   root to: 'tramway_dev/web/welcome#index', as: :tramway_dev_root
+  constraints Constraints::DomainConstraint.new(Settings[Rails.env][:tramway_dev]) do
+    root to: 'tramway_dev/web/welcome#index', as: :tramway_dev_root
 
-  #   mount Tramway::Engine, at: '/admin'
-  # end
+    mount Tramway::Engine, at: '/admin'
+  end
 
-  # constraints Constraints::DomainConstraint.new(Settings[Rails.env][:engineervol]) do
-  #   root to: 'engineervol/web/welcome#index', as: :engineervol_root
+  constraints Constraints::DomainConstraint.new(Settings[Rails.env][:engineervol]) do
+    root to: 'engineervol/web/welcome#index', as: :engineervol_root
 
-  #   mount Tramway::Engine, at: '/admin', as: :vol_admin
-  # end
+    mount Tramway::Engine, at: '/admin', as: :vol_admin
+  end
 
-  # constraints Constraints::DomainConstraint.new(Settings[Rails.env][:purple_magic]) do
-  #   root to: 'purple_magic/web/welcome#index', as: :purple_magic_root
+  constraints Constraints::DomainConstraint.new(Settings[Rails.env][:purple_magic]) do
+    root to: 'purple_magic/web/welcome#index', as: :purple_magic_root
 
-  #   mount Tramway::Engine, at: '/admin', as: :purple_magic_admin
+    mount Tramway::Engine, at: '/admin', as: :purple_magic_admin
 
-  #   namespace :purple_magic do
-  #     namespace :api do
-  #       namespace :v1 do
-  #         namespace :estimation do
-  #           resources :projects, only: :update
-  #         end
+    namespace :purple_magic do
+      namespace :api do
+        namespace :v1 do
+          namespace :estimation do
+            resources :projects, only: :update
+          end
 
-  #         namespace :leopold do
-  #           resources :messages, only: :create
-  #         end
+          namespace :leopold do
+            resources :messages, only: :create
+          end
 
-  #         namespace :products do
-  #           resources :time_logs, only: [ :create, :update, :delete ]
-  #         end
-  #       end
-  #     end
-  #   end
-  # end
+          namespace :products do
+            resources :time_logs, only: [ :create, :update, :delete ]
+          end
+        end
+      end
+    end
+  end
 
-  # constraints Constraints::DomainConstraint.new(Settings[Rails.env][:benchkiller]) do
-  #   root to: 'benchkiller/web/welcome#index', as: :benchkiller_root
+  constraints Constraints::DomainConstraint.new(Settings[Rails.env][:benchkiller]) do
+    root to: 'benchkiller/web/welcome#index', as: :benchkiller_root
 
-  #   namespace :benchkiller do
-  #     namespace :web do
-  #       resources :sessions, only: [:create]
-  #       get 'sign_out', to: 'sessions#destroy'
-  #       resources :offers, only: :index
-  #       resources :companies, only: %i[show edit update]
-  #       resources :deliveries, only: %i[new create show edit update] do
-  #         member do
-  #           get :run_process
-  #         end
-  #       end
-  #     end
+    namespace :benchkiller do
+      namespace :web do
+        resources :sessions, only: [:create]
+        get 'sign_out', to: 'sessions#destroy'
+        resources :offers, only: :index
+        resources :companies, only: %i[show edit update]
+        resources :deliveries, only: %i[new create show edit update] do
+          member do
+            get :run_process
+          end
+        end
+      end
 
-  #     namespace :api do
-  #       resources :user_tokens, only: :create
-  #       resources :offers, only: :index
-  #       resources :regions, only: :index
-  #     end
-  #   end
+      namespace :api do
+        resources :user_tokens, only: :create
+        resources :offers, only: :index
+        resources :regions, only: :index
+      end
+    end
 
-  #   mount Tramway::Engine, at: '/admin', as: :benchkiller_admin
-  # end
+    mount Tramway::Engine, at: '/admin', as: :benchkiller_admin
+  end
 
-  # constraints Constraints::DomainConstraint.new(Settings[Rails.env][:red_magic]) do
+  constraints Constraints::DomainConstraint.new(Settings[Rails.env][:red_magic]) do
     root to: 'red_magic/web/welcome#index', as: :red_magic_root
 
     mount Tramway::Engine, at: '/admin', as: :red_magic_admin
@@ -132,5 +132,5 @@ Rails.application.routes.draw do
     end
 
     get '/:id' => 'shortener/shortened_urls#show'
-  # end
+  end
 end

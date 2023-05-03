@@ -33,6 +33,4 @@ Rails.application.configure do
     "purple-magic.com",
     "engineervol.ru"
   ]
-
-  config.active_storage.service = :digital_ocean
 end

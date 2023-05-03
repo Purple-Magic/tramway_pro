@@ -13,7 +13,6 @@ require 'action_view/railtie'
 require 'action_cable/engine'
 require 'sprockets/railtie'
 require 'awesome_print'
-require "active_storage/engine"
 require_relative '../lib/middleware/multi_project_configuration_middleware/auth'
 require_relative '../lib/middleware/multi_project_configuration_middleware/conference'
 require_relative '../lib/middleware/multi_project_configuration_middleware/admin_middleware'
