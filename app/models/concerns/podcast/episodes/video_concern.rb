@@ -28,15 +28,13 @@ module Podcast::Episodes::VideoConcern
       remote_file_name(trailer.path),
       output: remote_output
     )
-    command = "nohup /bin/bash -lic '#{render_command} && #{send_request_after_render_command(id, :story_trailer_video)}' &"
     run_command_on_remote_server command
   end
 
   def render_full_video(output)
-    inputs = [remote_file_name(cover.path), remote_file_name(ready_file.path)]
     options = options_line(
-      inputs: inputs,
-      output: remote_file_name(output),
+      inputs: [cover.path, ready_file.path],
+      output: output,
       yes: true,
       loop_value: 1,
       video_codec: :libx264,
@@ -48,10 +46,7 @@ module Podcast::Episodes::VideoConcern
       strict: 2
     )
     command = "ffmpeg #{options}"
-    send_files_to_remote_server [cover.path, ready_file.path]
-    command = "nohup /bin/bash -c '#{command} && #{send_request_after_render_command(id, :full_video)}' &"
     Rails.logger.info command.to_s
-    run_command_on_remote_server command
   end
 
   def download_video_from_remote_host!(video_type)
