@@ -192,7 +192,7 @@ GEM
     config (4.1.0)
       deep_merge (~> 1.2, >= 1.2.1)
       dry-validation (~> 1.0, >= 1.0.0)
-    connection_pool (2.3.0)
+    connection_pool (2.4.0)
     copyright_mafa (0.1.2)
     crack (0.4.5)
       rexml
@@ -454,7 +454,7 @@ GEM
       railties (>= 3.2)
       tilt
     redcarpet (3.6.0)
-    redis-client (0.12.1)
+    redis-client (0.14.1)
       connection_pool
     reek (6.1.4)
       kwalify (~> 0.7.0)
@@ -542,7 +542,7 @@ GEM
       voight_kampff (~> 1.1.2)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
-    sidekiq (7.0.3)
+    sidekiq (7.0.8)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
